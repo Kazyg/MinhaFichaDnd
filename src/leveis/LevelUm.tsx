@@ -105,10 +105,20 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
 
     if (operacao === "incrementar" && valorAtual < 15 && pontosDisponiveis > 0) {
       novoValor = valorAtual + 1;
-      setPontosDisponiveis((prev) => prev - 1);
+      if(novoValor >= 14)
+      {
+        setPontosDisponiveis((prev) => prev - 2);
+      }else{
+        setPontosDisponiveis((prev) => prev - 1);
+      }
     } else if (operacao === "decrementar" && valorAtual > 8) {
       novoValor = valorAtual - 1;
-      setPontosDisponiveis((prev) => prev + 1);
+      if(valorAtual >= 14)
+        {
+          setPontosDisponiveis((prev) => prev + 2);
+        }else{
+          setPontosDisponiveis((prev) => prev + 1);
+        }
     }
 
     setAtributos((prev) => ({ ...prev, [atributo]: novoValor }));
@@ -272,14 +282,14 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
                     </button>
                   ))}
                   {atributoMetodo && (
-                    <button className="botao-distribuir" onClick={iniciarDistribuicao}>
+                    <button className="botao-distribuir" onClick={() => {iniciarDistribuicao()}}>
                       Distribuir Atributos
                     </button>
                   )}
                 </div>
               )}
             </div>
-  
+            {renderPopupAtributos()}
             {/* Traços raciais */}
             <div>
               <button className="secao-toggle" onClick={() => toggleSecao("tracos")}>
