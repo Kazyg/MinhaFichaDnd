@@ -1,3 +1,7 @@
+import { Arquifada } from "../classesEspeciais/Arquifada.class.ts";
+import { Corruptor } from "../classesEspeciais/Corruptor.class.ts";
+import { GrandeAntigo } from "../classesEspeciais/GrandeAntigo.class.ts";
+import { Patronos } from "../classesEspeciais/Patronos.class.ts";
 import { Classes } from "../classesPrincipais/Classes.class.ts";
 
 export class Bruxo extends Classes {
@@ -12,6 +16,7 @@ export class Bruxo extends Classes {
     nivelMagia: string;
     invocacoesConhecidas: number;
   }[];
+  patronos: Patronos[];
 
   constructor() {
     super(
@@ -26,6 +31,7 @@ export class Bruxo extends Classes {
     );
     this.level = 0; // Nível inicial
     this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis
+    this.patronos = [new Arquifada(), new Corruptor(), new GrandeAntigo()]
   }
 
   // Método para aumentar o nível

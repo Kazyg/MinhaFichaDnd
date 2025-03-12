@@ -37,7 +37,7 @@ export class Paladino extends Classes {
   private preencherNiveis() {
     return [
       { nivel: 1, proeficiencia: 2, espacosMagia: [0, 0, 0, 0, 0], caracteristicas: ["Sentido Divino", "Cura pelas Mãos"] },
-      { nivel: 2, proeficiencia: 2, espacosMagia: [2, 0, 0, 0, 0], caracteristicas: ["Estilo de Luta", "Conjuração", "Destruição Divina"] },
+      { nivel: 2, proeficiencia: 2, espacosMagia: [2, 0, 0, 0, 0], caracteristicas: ["Estilo de Luta Paladino", "Conjuração", "Destruição Divina"] },
       { nivel: 3, proeficiencia: 2, espacosMagia: [3, 0, 0, 0, 0], caracteristicas: ["Saúde Divina", "Juramento Sagrado"] },
       { nivel: 4, proeficiencia: 2, espacosMagia: [3, 0, 0, 0, 0], caracteristicas: ["Incremento no Valor de Habilidade"] },
       { nivel: 5, proeficiencia: 3, espacosMagia: [4, 2, 0, 0, 0], caracteristicas: ["Ataque Extra"] },

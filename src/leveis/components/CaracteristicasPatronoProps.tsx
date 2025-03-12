@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { bibliotecaPrincipal } from "../../bibliotecas/bibliotecaPrincipal.ts";
 
-interface CaracteristicasClasseProps {
-  classe: {
+interface CaracteristicasPatronoProps {
+  patrono: {
     niveis: {
       nivel: number;
       caracteristicas: string[];
@@ -11,7 +11,7 @@ interface CaracteristicasClasseProps {
   nivel: number;
 }
 
-const CaracteristicasClasse: React.FC<CaracteristicasClasseProps> = ({ classe, nivel }) => {
+const CaracteristicasPatrono: React.FC<CaracteristicasPatronoProps> = ({ patrono, nivel }) => {
   // Estado para controlar quais características estão expandidas
   const [caracteristicasExpandidas, setCaracteristicasExpandidas] = useState<{ [key: string]: boolean }>({});
 
@@ -25,7 +25,7 @@ const CaracteristicasClasse: React.FC<CaracteristicasClasseProps> = ({ classe, n
 
   return (
     <div>
-      {classe.niveis.find((n) => n.nivel === nivel)?.caracteristicas.map((caracteristica) => {
+      {patrono.niveis.find((n) => n.nivel === nivel)?.caracteristicas.map((caracteristica) => {
         // Busca a descrição da característica na biblioteca principal
         const descricao =
           bibliotecaPrincipal.caracteristicasDeClasse.find((item) => item.nome.toLowerCase() === caracteristica.toLowerCase())?.descricao ||
@@ -34,7 +34,7 @@ const CaracteristicasClasse: React.FC<CaracteristicasClasseProps> = ({ classe, n
         return (
           <div key={caracteristica} className="skills-container">
             <button
-              onClick={() => {toggleCaracteristica(caracteristica)}}
+              onClick={() => toggleCaracteristica(caracteristica)}
               className="w-full text-left p-2 border rounded-lg focus:outline-none"
             >
               {caracteristica.toLowerCase()} {caracteristicasExpandidas[caracteristica] ? "▲" : "▼"}
@@ -49,4 +49,4 @@ const CaracteristicasClasse: React.FC<CaracteristicasClasseProps> = ({ classe, n
   );
 };
 
-export default CaracteristicasClasse;
+export default CaracteristicasPatrono;

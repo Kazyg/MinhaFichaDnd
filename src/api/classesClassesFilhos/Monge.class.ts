@@ -52,7 +52,7 @@ export class Monge extends Classes {
       { nivel: 12, proeficiencia: 4, artesMarciais: "1d8", pontosChi: 12, deslocamento: "+6m", caracteristicas: ["Incremento no Valor de Habilidade"] },
       { nivel: 13, proeficiencia: 5, artesMarciais: "1d8", pontosChi: 13, deslocamento: "+6m", caracteristicas: ["Idiomas do Sol e da Lua"] },
       { nivel: 14, proeficiencia: 5, artesMarciais: "1d8", pontosChi: 14, deslocamento: "+7.5m", caracteristicas: ["Alma de Diamante"] },
-      { nivel: 15, proeficiencia: 5, artesMarciais: "1d8", pontosChi: 15, deslocamento: "+7.5m", caracteristicas: ["Corpo Atemporal"] },
+      { nivel: 15, proeficiencia: 5, artesMarciais: "1d8", pontosChi: 15, deslocamento: "+7.5m", caracteristicas: ["Corpo Atemporal Monge"] },
       { nivel: 16, proeficiencia: 5, artesMarciais: "1d8", pontosChi: 16, deslocamento: "+7.5m", caracteristicas: ["Incremento no Valor de Habilidade"] },
       { nivel: 17, proeficiencia: 6, artesMarciais: "1d10", pontosChi: 17, deslocamento: "+7.5m", caracteristicas: ["Característica de Tradição Monástica"] },
       { nivel: 18, proeficiencia: 6, artesMarciais: "1d10", pontosChi: 18, deslocamento: "+9m", caracteristicas: ["Corpo Vazio"] },

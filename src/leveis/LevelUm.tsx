@@ -1,8 +1,19 @@
 import React, { useState } from "react";
+import iconClasse from "../imagens/icon_class.png"
+import iconRaca from "../imagens/icon_ancestry.png"
 import { Classes } from "../api/classesPrincipais/Classes.class.ts"
 import { Raca } from "../api/classesPrincipais/Raca.class.ts"
 import "../pages/css/LevelOneSetup.css"
 import CaracteristicasClasse from "./components/CaracteristicasClasseProps.tsx";
+import CaracteristicasPatrono from "./components/CaracteristicasPatronoProps.tsx";
+import TalentoDescricao from "./components/TalendoDescricao.tsx";
+import ModalSelecaoPatrono from "../pages/modals/ModalSelecaoPatrono.tsx";
+import ModalSelecaoTalento from "../pages/modals/ModalSelecaoTalento.tsx";
+import { Patronos } from "../api/classesEspeciais/Patronos.class.ts";
+import { Corruptor } from "../api/classesEspeciais/Corruptor.class.ts";
+import { Arquifada } from "../api/classesEspeciais/Arquifada.class.ts";
+import { GrandeAntigo } from "../api/classesEspeciais/GrandeAntigo.class.ts";
+import { Talentos } from "../bibliotecas/Talentos.ts";
 
 interface LevelOneSetupProps {
   raca: Raca;
@@ -10,6 +21,24 @@ interface LevelOneSetupProps {
 }
 
 const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
+  const [modalPatronoAberto, setModalPatronoAberto] = useState(false);
+  const [patronoSelecionado, setPatronoSelecionado] = useState<Patronos | null>(null)
+  const [modalHumanoVarianteAberto, setModalHumanoVarianteAberto] = useState(false);
+  const [humanoVarianteFeatEscolhido, setHumanoVarianteFeatEscolhido] = useState<Talento | null>(null)
+
+  type Talento = {
+    nome: string;
+    descricao: string;
+  };
+
+  const talentos: Talento[] = Talentos;
+
+  const patronos: Patronos[] = [
+    new Corruptor(),
+    new Arquifada(),
+    new GrandeAntigo()
+  ]
+
   const [atributoMetodo, setAtributoMetodo] = useState<string | null>(null);
   const [atributos, setAtributos] = useState({
     forca: 8,
@@ -75,8 +104,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
           valores = [];
       }
       setValoresDisponiveis(valores);
-      if(metodo === "Point Buy")
-      {
+      if (metodo === "Point Buy") {
         setAtributos({
           forca: 8,
           destreza: 8,
@@ -85,7 +113,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
           sabedoria: 8,
           carisma: 8,
         });
-      }else {
+      } else {
         setAtributos({
           forca: 0,
           destreza: 0,
@@ -105,20 +133,18 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
 
     if (operacao === "incrementar" && valorAtual < 15 && pontosDisponiveis > 0) {
       novoValor = valorAtual + 1;
-      if(novoValor >= 14)
-      {
+      if (novoValor >= 14) {
         setPontosDisponiveis((prev) => prev - 2);
-      }else{
+      } else {
         setPontosDisponiveis((prev) => prev - 1);
       }
     } else if (operacao === "decrementar" && valorAtual > 8) {
       novoValor = valorAtual - 1;
-      if(valorAtual >= 14)
-        {
-          setPontosDisponiveis((prev) => prev + 2);
-        }else{
-          setPontosDisponiveis((prev) => prev + 1);
-        }
+      if (valorAtual >= 14) {
+        setPontosDisponiveis((prev) => prev + 2);
+      } else {
+        setPontosDisponiveis((prev) => prev + 1);
+      }
     }
 
     setAtributos((prev) => ({ ...prev, [atributo]: novoValor }));
@@ -238,110 +264,176 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
     );
   };
 
-    const [nivelExpandido, setNivelExpandido] = useState(true);
-    const [secoesExpandidas, setSecoesExpandidas] = useState({
-      atributos: true,
-      tracos: true,
-      proeficiencias: true,
-      caracteristicas: true,
-    });
-  
-    const toggleNivel = () => setNivelExpandido(!nivelExpandido);
-    const toggleSecao = (secao) => {
-      setSecoesExpandidas((prev) => ({
-        ...prev,
-        [secao]: !prev[secao],
-      }));
-    };
-  
-    return (
-      <div className="level-container">
-        <button className="secao-toggle" onClick={toggleNivel}>
+  const [nivelExpandido, setNivelExpandido] = useState(true);
+  const [secoesExpandidas, setSecoesExpandidas] = useState({
+    atributos: true,
+    tracos: true,
+    proeficiencias: true,
+    caracteristicas: true,
+  });
+
+  const toggleNivel = () => setNivelExpandido(!nivelExpandido);
+  const toggleSecao = (secao) => {
+    setSecoesExpandidas((prev) => ({
+      ...prev,
+      [secao]: !prev[secao],
+    }));
+  };
+
+  return (
+    <div className="level-container">
+      <button className="secao-toggle" onClick={toggleNivel}>
         <h2 className="tituloh2">Nível 1{nivelExpandido ? "▲" : "▼"}</h2>
-        </button>
-        {nivelExpandido && (
-          <>
-            {/* Escolha da distribuição de atributos */}
-            <div>
-              <button className="secao-toggle" onClick={() => toggleSecao("atributos")}>
+      </button>
+      {nivelExpandido && (
+        <>
+          {/* Escolha da distribuição de atributos */}
+          <div>
+            <button className="secao-toggle" onClick={() => toggleSecao("atributos")}>
               <h3 className="tituloh3">Método de distribuição de atributos {secoesExpandidas.atributos ? "▲" : "▼"}</h3>
-              </button>
-              {secoesExpandidas.atributos && (
-                <div>
-                  {[
-                    "Array Padrão",
-                    "Point Buy",
-                    "Rolagem de Dados",
-                  ].map((metodo) => (
-                    <button
-                      key={metodo}
-                      onClick={() => selecionarMetodo(metodo)}
-                      className="botao-distribuir"
-                    >
-                      {metodo} {atributoMetodo === metodo && "✔"}
-                    </button>
-                  ))}
-                  {atributoMetodo && (
-                    <button className="botao-distribuir" onClick={() => {iniciarDistribuicao()}}>
-                      Distribuir Atributos
-                    </button>
-                  )}
-                </div>
-              )}
-            </div>
-            {renderPopupAtributos()}
-            {/* Traços raciais */}
-            <div>
-              <button className="secao-toggle" onClick={() => toggleSecao("tracos")}>
+            </button>
+            {secoesExpandidas.atributos && (
+              <div>
+                {[
+                  "Array Padrão",
+                  "Point Buy",
+                  "Rolagem de Dados",
+                ].map((metodo) => (
+                  <button
+                    key={metodo}
+                    onClick={() => selecionarMetodo(metodo)}
+                    className="botao-distribuir"
+                  >
+                    {metodo} {atributoMetodo === metodo && "✔"}
+                  </button>
+                ))}
+                {atributoMetodo && (
+                  <button className="botao-distribuir" onClick={() => { iniciarDistribuicao() }}>
+                    Distribuir Atributos
+                  </button>
+                )}
+              </div>
+            )}
+          </div>
+          {renderPopupAtributos()}
+          {/* Traços raciais */}
+          <div>
+            <button className="secao-toggle" onClick={() => toggleSecao("tracos")}>
               <h3 className="tituloh3">Traços Raciais{secoesExpandidas.tracos ? "▲" : "▼"}</h3>
-              </button>
-              {secoesExpandidas.tracos && (
-                <div>
-                  {raca.tracos?.map((traco) => (
-                    <div key={traco.traco} className="skills-container">
-                      <button onClick={() => toggleTraco(traco.traco)}>
-                        {traco.traco} {tracosExpandidos[traco.traco] ? "▲" : "▼"}
-                      </button>
-                      {tracosExpandidos[traco.traco] && <p className="descricao">{traco.descricao}</p>}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-  
-            {/* Escolha de Proficiências */}
-            <div>
-              <button className="secao-toggle" onClick={() => toggleSecao("proeficiencias")}>
+            </button>
+            {secoesExpandidas.tracos && (
+              <div>
+                {raca.nome === "Humano Variante" &&
+                  <>
+                    <button className="botao-selecao" onClick={() => setModalHumanoVarianteAberto(true)}>
+                      <img src={iconRaca} className="button-icon" alt="HumanoFeat" />
+                      <div className="botao-texto">
+                        <span>Selecionar Talento</span>
+                        <strong>{humanoVarianteFeatEscolhido ? humanoVarianteFeatEscolhido.nome : "Selecionar Talento"}</strong>
+                      </div>
+                    </button>
+                    {modalHumanoVarianteAberto && (
+                      <>
+                        <div className="popup-overlay" onClick={() => setModalHumanoVarianteAberto(false)}></div>
+                        <div className="popup">
+                          <ModalSelecaoTalento
+                            titulo="Escolha um Talento"
+                            opcoes={talentos}
+                            onClose={() => setModalHumanoVarianteAberto(false)}
+                            onSelect={(talento) => {
+                              setHumanoVarianteFeatEscolhido(talento);
+                              setModalHumanoVarianteAberto(false);
+                            }}
+                            talentoInicial={humanoVarianteFeatEscolhido}
+                          />
+                        </div>
+                      </>
+                    )}
+                    {humanoVarianteFeatEscolhido && <TalentoDescricao talento={humanoVarianteFeatEscolhido?.nome}/>}
+                  </>
+                }
+                {raca.tracos?.map((traco) => (
+                  <div key={traco.traco} className="skills-container">
+                    <button onClick={() => toggleTraco(traco.traco)}>
+                      {traco.traco} {tracosExpandidos[traco.traco] ? "▲" : "▼"}
+                    </button>
+                    {tracosExpandidos[traco.traco] && <p className="descricao">{traco.descricao}</p>}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Escolha de Proficiências */}
+          <div>
+            <button className="secao-toggle" onClick={() => toggleSecao("proeficiencias")}>
               <h3 className="tituloh3">Escolha de Proficiências ({classe.habilidade} opções){secoesExpandidas.proeficiencias ? "▲" : "▼"}</h3>
-              </button>
-              {secoesExpandidas.proeficiencias && (
-                <div>
-                  {classe.habilidades.map((habilidade) => (
-                    <div key={habilidade} className="checkbox-container">
-                      <input
-                        type="checkbox"
-                        id={habilidade}
-                        checked={proeficienciasEscolhidas.includes(habilidade)}
-                        onChange={() => toggleProeficiencia(habilidade)}
-                      />
-                      <label htmlFor={habilidade}>{habilidade}</label>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-  
-            {/* Características do nível 1 */}
-            <div>
-              <button className="secao-toggle" onClick={() => toggleSecao("caracteristicas")}>
-                <h3 className="tituloh3">Características de Classe Nível 1{secoesExpandidas.caracteristicas ? "▲" : "▼"}</h3>
-              </button>
-              {secoesExpandidas.caracteristicas && <CaracteristicasClasse classe={classe} />}
-            </div>
-          </>
-        )}
-      </div>
-    );
+            </button>
+            {secoesExpandidas.proeficiencias && (
+              <div>
+                {classe.habilidades.map((habilidade) => (
+                  <div key={habilidade} className="checkbox-container">
+                    <input
+                      type="checkbox"
+                      id={habilidade}
+                      checked={proeficienciasEscolhidas.includes(habilidade)}
+                      onChange={() => toggleProeficiencia(habilidade)}
+                    />
+                    <label htmlFor={habilidade}>{habilidade}</label>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Características do nível 1 */}
+          <div>
+            <button className="secao-toggle" onClick={() => toggleSecao("caracteristicas")}>
+              <h3 className="tituloh3">Características de Classe Nível 1{secoesExpandidas.caracteristicas ? "▲" : "▼"}</h3>
+            </button>
+            {secoesExpandidas.caracteristicas && (
+              <div>
+                {classe.nome === "Bruxo" &&
+                  <>
+                    <button className="botao-selecao" onClick={() => setModalPatronoAberto(true)}>
+                      <img src={iconClasse} className="button-icon" alt="Patrono" />
+                      <div className="botao-texto">
+                        <span>Selecionar Patrono</span>
+                        <strong>{patronoSelecionado ? patronoSelecionado.nome : "Selecionar Patrono"}</strong>
+                      </div>
+                    </button>
+                    {modalPatronoAberto && (
+                      <>
+                        <div className="popup-overlay" onClick={() => setModalPatronoAberto(false)}></div>
+                        <div className="popup">
+                          <ModalSelecaoPatrono
+                            titulo="Escolha sua Classe"
+                            opcoes={patronos}
+                            onClose={() => setModalPatronoAberto(false)}
+                            onSelect={(patrono) => {
+                              setPatronoSelecionado(patrono);
+                              setModalPatronoAberto(false);
+                            }}
+                            patronoInicial={patronoSelecionado}
+                          />
+                        </div>
+                      </>
+                    )}
+                  </>
+                }
+                <CaracteristicasClasse classe={classe} nivel={1} />
+                {patronoSelecionado && (
+                  <>
+                    <CaracteristicasPatrono patrono={patronoSelecionado} nivel={1} />
+                  </>
+                )}
+              </div>
+            )}
+          </div>
+        </>
+      )}
+    </div>
+  );
 };
 
 export default LevelOneSetup;
