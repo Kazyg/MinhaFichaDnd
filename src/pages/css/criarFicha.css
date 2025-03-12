@@ -1,0 +1,21 @@
+.criar-ficha {
+  display: flex;  /* Faz os elementos ficarem lado a lado */
+  height: 100vh;  /* Ocupa toda a altura da tela */
+  overflow: hidden; /* Impede rolagem da página */
+}
+
+.criacao-ficha {
+  width: 300px; /* Mantém o tamanho fixo na esquerda */
+  height: 100vh;
+  overflow-y: auto;
+  background: #222;
+  padding: 20px;
+  color: white;
+}
+
+.informacoes-personagem {
+  flex-grow: 1; /* Ocupa todo o espaço restante */
+  padding: 20px;
+  color: white;
+  overflow-y: auto; /* Adiciona rolagem interna se precisar */
+}
