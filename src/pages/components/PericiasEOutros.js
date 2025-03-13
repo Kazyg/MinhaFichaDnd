@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../css/PericiasEOutros.css";
+import { useFicha } from "../../api/fichaPersonagem/FichaContext.tsx"
 
 export default function PericiasEOutros() {
   // Estado para armazenar quais perícias estão treinadas
@@ -22,6 +23,8 @@ export default function PericiasEOutros() {
     { modificador: " 0 ", nome: "Sobrevivência (SAB)", treinado: false },
   ]);
 
+  const { ficha, setFicha, refreshKey } = useFicha();
+
   // Função para alternar o status de treinado
   const toggleTreinado = (index) => {
     setPericias((prev) =>
@@ -32,17 +35,17 @@ export default function PericiasEOutros() {
   };
 
   return (
-    <div className="pericias-container">
+    <div key={refreshKey} className="pericias-container">
       {/* Quadro pequeno com informações básicas */}
       <div className="info-extra">
         <div className="info-coluna">
           <div className="info-item"><strong>Iniciativa:</strong> +0</div>
-          <div className="info-item"><strong>Speed:</strong> 30ft</div>
+          <div className="info-item"><strong>Speed:</strong> {ficha.speed}ft</div>
           <div className="info-item"><strong>Percepção:</strong> +0</div>
         </div>
         <div className="info-coluna">
           <div className="info-item"><strong>Proficiência:</strong> +2</div>
-          <div className="info-item"><strong>Tamanho:</strong> Médio</div>
+          <div className="info-item"><strong>Tamanho:</strong>{ficha.tamanho}</div>
         </div>
       </div>
 

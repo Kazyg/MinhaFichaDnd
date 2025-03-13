@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../css/InformacoesPersonagem.css";
+import { useFicha } from "../../api/fichaPersonagem/FichaContext.tsx"
 
 export default function InformacoesPersonagem() {
   const [nomePersonagem, setNomePersonagem] = useState("");
@@ -8,6 +9,8 @@ export default function InformacoesPersonagem() {
   const [popupNivelAberto, setPopupNivelAberto] = useState(false);
   const [vida, setVida] = useState(100);
   const [ca, setCa] = useState(10);
+
+  const { ficha, setFicha } = useFicha();
 
   const atributosIniciais = {
     DEX: 10,

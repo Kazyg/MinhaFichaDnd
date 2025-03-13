@@ -58,7 +58,9 @@ import { Ourico } from "../../api/backGroundsFilhos/Ourico.class.ts"
 import { OutLander } from "../../api/backGroundsFilhos/OutLander.class.ts"
 import { Pirata } from "../../api/backGroundsFilhos/Pirata.class.ts"
 import { Sabio } from "../../api/backGroundsFilhos/Sabio.class.ts"
-import { Idiomas } from "../../api/idiomas/idiomasData.ts";
+import { Idiomas } from "../../bibliotecas/idiomas/idiomasData.ts";
+import { useFicha } from "../../api/fichaPersonagem/FichaContext.tsx"
+import { Ficha } from "../../api/fichaPersonagem/FichaPersonagem.ts"
 
 export default function CriacaoFicha() {
   const [modalRacaAberto, setModalRacaAberto] = useState(false);
@@ -66,14 +68,12 @@ export default function CriacaoFicha() {
   const [modalBackGroundsAberto, setModalBackGroundsAberto] = useState(false);
   const [modalIdiomasAberto, setModalIdiomasAberto] = useState(false);
   const [subGrupoAberto, setSubGrupoAberto] = useState(false);
-  const [racaSelecionada, setRacaSelecionada] = useState<Raca | null>(null);
-  const [subRacaSelecionada, setSubRacaSelecionada] = useState<Raca | null>(null);
-  const [classeSelecionada, setClasseSelecionada] = useState<Classes | null>(null);
-  const [backGroundsSelecionada, setBackGroundsSelecionada] = useState<BackGround | null>(null);
   const [subRacas, setSubRacas] = useState<Raca[]>([]);
   const [atributosSelecionados, setAtributosSelecionados] = useState<string[] | null>([])
   const [idiomasSelecionado, setIdiomasSelecionado] = useState<Idiomas[] | null>(null)
   const [idiomaIndice, setIdiomaIndice] = useState<number>(0)
+
+  const { ficha, setFicha, forceUpdate } = useFicha();
 
   // Lista de raças disponíveis (filhas diretas de Raca)
   const racas: Raca[] = [
@@ -123,8 +123,8 @@ export default function CriacaoFicha() {
   ];
 
   const abrirSubGrupo = () => {
-    if (racaSelecionada?.subOpcoes && racaSelecionada.subOpcoes.length > 0) {
-      setSubRacas(racaSelecionada.subOpcoes);
+    if (ficha?.racaPrincipal?.subOpcoes && ficha?.racaPrincipal?.subOpcoes.length > 0) {
+      setSubRacas(ficha?.racaPrincipal?.subOpcoes);
       setSubGrupoAberto(true);
     }
   };
@@ -138,16 +138,16 @@ export default function CriacaoFicha() {
         <img src={iconRaca} className="button-icon" alt="Raça" />
         <div className="botao-texto">
           <span>Raça</span>
-          <strong>{racaSelecionada ? racaSelecionada.nome : "Selecionar Raça"}</strong>
+          <strong>{ficha?.racaPrincipal ? ficha?.racaPrincipal?.nome : "Selecionar Raça"}</strong>
         </div>
       </button>
 
-      {racaSelecionada?.subOpcoes && racaSelecionada.subOpcoes.length > 0 && (
+      {ficha?.racaPrincipal?.subOpcoes && ficha?.racaPrincipal?.subOpcoes.length > 0 && (
         <button className="botao-selecao-subopcao" onClick={abrirSubGrupo}>
           <img src={iconRaca} className="button-icon" alt="Sub-raça" />
           <div className="botao-texto">
             <span>Sub-raça</span>
-            <strong>{subRacaSelecionada ? subRacaSelecionada.nome : "Selecionar Sub-raça"}</strong>
+            <strong>{ficha.subRaca ? ficha.subRaca.nome : "Selecionar Sub-raça"}</strong>
           </div>
         </button>
       )}
@@ -156,7 +156,7 @@ export default function CriacaoFicha() {
         <img src={iconClass} className="button-icon" alt="Classe" />
         <div className="botao-texto">
           <span>Selecionar Classe</span>
-          <strong>{classeSelecionada ? classeSelecionada.nome : "Selecionar Classe"}</strong>
+          <strong>{ficha?.classePrincipal ? ficha.classePrincipal.nome : "Selecionar Classe"}</strong>
         </div>
       </button>
 
@@ -164,29 +164,26 @@ export default function CriacaoFicha() {
         <img src={iconBackGround} className="button-icon" alt="BackGround" />
         <div className="botao-texto">
           <span>Selecionar Background</span>
-          <strong>{backGroundsSelecionada ? backGroundsSelecionada.nome : "Selecionar BackGround"}</strong>
+          <strong>{ficha?.backGround ? ficha.backGround.nome : "Selecionar BackGround"}</strong>
         </div>
       </button>
 
-      {backGroundsSelecionada?.idiomas !== undefined && backGroundsSelecionada.idiomas > 0 && (
-        <button className="botao-selecao-subopcao" onClick={() => { setModalIdiomasAberto(true); setIdiomaIndice(0); }}>
-          <img src={iconBackGround} className="button-icon" alt="SIdioma" />
-          <div className="botao-texto">
-            <span>Idioma 1</span>
-            <strong>{idiomasSelecionado?.[0]?.nome ?? "Selecionar Idioma 1"}</strong>
-          </div>
-        </button>
-      )}
-
-      {backGroundsSelecionada?.idiomas !== undefined && backGroundsSelecionada.idiomas > 1 && (
-        <button className="botao-selecao-subopcao" onClick={() => { setModalIdiomasAberto(true); setIdiomaIndice(1) }}>
+      {Array.from({ length: ficha?.backGround?.idiomas || 0 }).map((_, index) => (
+        <button
+          key={index}
+          className="botao-selecao-subopcao"
+          onClick={() => {
+            setModalIdiomasAberto(true);
+            setIdiomaIndice(index);
+          }}
+        >
           <img src={iconBackGround} className="button-icon" alt="Idioma" />
           <div className="botao-texto">
-            <span>Idioma 2</span>
-            <strong>{idiomasSelecionado?.[1]?.nome ?? "Selecionar Idioma 2"}</strong>
+            <span>Idioma {index + 1}</span>
+            <strong>{idiomasSelecionado?.[index]?.nome ?? `Selecionar Idioma ${index + 1}`}</strong>
           </div>
         </button>
-      )}
+      ))}
 
       {modalRacaAberto && (
         <>
@@ -197,14 +194,18 @@ export default function CriacaoFicha() {
               opcoes={racas}
               onClose={() => setModalRacaAberto(false)}
               onSelect={(raca) => {
-                setRacaSelecionada(raca);
-                setSubRacaSelecionada(null);
+                ficha?.setRacaPrincipal(raca);
+                ficha?.setTamanho(raca?.tamanho? raca?.tamanho : null);
+                ficha?.setSpeed(raca?.velocidade? raca.velocidade : null);
+                ficha?.setIdiomasRaca(raca?.idiomas? raca.idiomas : null);
+                ficha?.setSubRaca(null);
+                forceUpdate();
                 setModalRacaAberto(false);
               }}
               onAtributeSelect={(atributoEscolhido) => {
                 setAtributosSelecionados(atributoEscolhido);
               }}
-              racaInicial={racaSelecionada}
+              racaInicial={ficha?.racaPrincipal ? ficha.racaPrincipal : null}
               atributosIniciais={atributosSelecionados}
             />
           </div>
@@ -221,10 +222,11 @@ export default function CriacaoFicha() {
               opcoes={subRacas}
               onClose={() => setSubGrupoAberto(false)}
               onSelect={(subRaca) => {
-                setSubRacaSelecionada(subRaca);
+                ficha?.setSubRaca(subRaca);
                 setSubGrupoAberto(false);
+                forceUpdate();
               }}
-              racaInicial={subRacaSelecionada}
+              racaInicial={ficha?.subRaca ? ficha.subRaca : null}
               onAtributeSelect={(atributoEscolhido) => {
                 setAtributosSelecionados(atributoEscolhido);
               }}
@@ -243,10 +245,11 @@ export default function CriacaoFicha() {
               opcoes={classes}
               onClose={() => setModalClasseAberto(false)}
               onSelect={(classes) => {
-                setClasseSelecionada(classes);
+                ficha?.setClassePrincipal(classes);
                 setModalClasseAberto(false);
+                forceUpdate();
               }}
-              classeInicial={classeSelecionada}
+              classeInicial={ficha?.classePrincipal ? ficha.classePrincipal : null}
             />
           </div>
         </>
@@ -261,11 +264,12 @@ export default function CriacaoFicha() {
               opcoes={backGrounds}
               onClose={() => setModalBackGroundsAberto(false)}
               onSelect={(backGrounds) => {
-                setBackGroundsSelecionada(backGrounds)
+                ficha?.setBackGround(backGrounds)
                 setModalBackGroundsAberto(false)
                 setIdiomasSelecionado(null)
+                forceUpdate();
               }}
-              backGroundInicial={backGroundsSelecionada}
+              backGroundInicial={ficha?.backGround ? ficha.backGround : null}
             />
           </div>
         </>
@@ -294,9 +298,9 @@ export default function CriacaoFicha() {
 
       <div className="niveis-container">
         <div className="nivel">
-          {racaSelecionada && classeSelecionada ? (
-            <LevelOneSetup raca={subRacaSelecionada ? subRacaSelecionada : racaSelecionada} classe={classeSelecionada} />
-          ): "Nivel 1"}
+          {ficha?.racaPrincipal && ficha.classePrincipal ? (
+            <LevelOneSetup raca={ficha.subRaca ? ficha.subRaca : ficha.racaPrincipal} classe={ficha.classePrincipal} />
+          ) : "Nivel 1"}
         </div>
       </div>
 

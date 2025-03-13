@@ -349,7 +349,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
                         </div>
                       </>
                     )}
-                    {humanoVarianteFeatEscolhido && <TalentoDescricao talento={humanoVarianteFeatEscolhido?.nome}/>}
+                    {humanoVarianteFeatEscolhido && <TalentoDescricao talento={humanoVarianteFeatEscolhido?.nome} />}
                   </>
                 }
                 {raca.tracos?.map((traco) => (
@@ -419,14 +419,14 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
                         </div>
                       </>
                     )}
+                    {patronoSelecionado && (
+                      <>
+                        <CaracteristicasPatrono patrono={patronoSelecionado} nivel={1} />
+                      </>
+                    )}
                   </>
                 }
                 <CaracteristicasClasse classe={classe} nivel={1} />
-                {patronoSelecionado && (
-                  <>
-                    <CaracteristicasPatrono patrono={patronoSelecionado} nivel={1} />
-                  </>
-                )}
               </div>
             )}
           </div>

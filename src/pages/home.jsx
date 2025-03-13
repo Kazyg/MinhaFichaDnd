@@ -2,10 +2,13 @@ import iconFixaCriarNova from "../imagens/icon-fixa-criar-nova.png";
 import iconFixaSalva from "../imagens/icon-fixa-salva.png";
 import { useNavigate } from "react-router-dom";
 import "../pages/css/Home.css";
+import { Ficha } from "../api/fichaPersonagem/FichaPersonagem.ts";
+import { useFicha } from "../api/fichaPersonagem/FichaContext.tsx"
 
 export default function Home() {
-  
+
   const navigate = useNavigate();
+  const { ficha, setFicha } = useFicha();
 
   return (
     <div className="home-container">
@@ -15,7 +18,11 @@ export default function Home() {
           <img src={iconFixaSalva} alt="Carregar Ficha Salva" className="icon-image" />
           <span className="tooltip">Carregar Ficha Salva</span>
         </button>
-        <button className="icon-button" onClick={() => navigate("/criar-ficha")}>
+        <button className="icon-button" onClick={() => {
+          const ficha = new Ficha();
+          setFicha(ficha);
+          navigate("/criar-ficha");
+        }}>
           <img src={iconFixaCriarNova} alt="Criar Nova Ficha" className="icon-image" />
           <span className="tooltip">Criar Nova Ficha</span>
         </button>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Idiomas, idiomas } from "../../api/idiomas/idiomasData.ts";
+import { Idiomas, idiomas } from "../../bibliotecas/idiomas/idiomasData.ts";
 
 interface ModalSelecaoIdiomaProps {
     titulo: string;
@@ -15,8 +15,6 @@ const ModalSelecaoIdioma: React.FC<ModalSelecaoIdiomaProps> = ({ titulo, onClose
     const idiomasFiltrados = idiomas.filter((idioma) =>
         idioma.nome.toLowerCase().includes(filtro.toLowerCase())
     );
-
-    var i;
 
     return (
         <div className="popup-content-modal">
