@@ -20,7 +20,7 @@ export class Monge extends Classes {
       ["Ferramentas de artesão"],
       ["Força", "Destreza"],
       2,
-      ["Acrobacia", "Atletismo", "Furtividade", "História", "Insight", "Religião"]
+      ["Acrobacia", "Atletismo", "Furtividade", "História", "Intuição", "Religião"]
     );
     this.level = 0; // Nível inicial
     this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis

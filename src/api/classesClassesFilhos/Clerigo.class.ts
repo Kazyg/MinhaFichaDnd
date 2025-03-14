@@ -19,7 +19,7 @@ export class Clerigo extends Classes {
       [""],
       ["Sabedoria", "Carisma"],
       2,
-      ["História", "Insight", "Medicina", "Persuasão", "Religião"]
+      ["História", "Intuição", "Medicina", "Persuasão", "Religião"]
     );
     this.level = 0; // Nível inicial
     this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis

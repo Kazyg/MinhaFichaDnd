@@ -27,7 +27,15 @@ export class Bruxo extends Classes {
       [""],
       ["Sabedoria", "Carisma"],
       2,
-      ["Arcana", "História", "Intimidação", "Investigação", "Natureza", "Religião", "Engano"]
+      [
+        "Arcanismo",
+        "Enganação",
+        "História",
+        "Intimidação",
+        "Investigação",
+        "Natureza",
+        "Religião",
+    ]
     );
     this.level = 0; // Nível inicial
     this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis

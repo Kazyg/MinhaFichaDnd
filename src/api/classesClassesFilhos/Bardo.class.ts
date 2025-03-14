@@ -21,8 +21,23 @@ export class Bardo extends Classes {
       ["Destreza", "Carisma"],
       3,
       [
-        "Acrobacia", "Arcanismo", "Atletismo", "Furtividade", "Manejo de Animais", "Prestidigitação", "História", "Intimidação", "Insight", "Investigação", "Medicina", "Natureza", "Percepção", "Persuasão", "Religião", "Performance", "Sobrevivência", "Engano"
-      ]
+        "Acrobacia",
+        "Arcanismo",
+        "Atletismo",
+        "Enganação",
+        "Furtividade",
+        "História",
+        "Intuição",
+        "Intimidação",
+        "Investigação",
+        "Medicina",
+        "Natureza",
+        "Percepção",
+        "Persuasão",
+        "Prestidigitação",
+        "Religião",
+        "Sobrevivência",
+    ]
     );
     this.level = 0;
     this.niveis = this.preencherNiveis();

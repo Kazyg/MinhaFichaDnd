@@ -195,10 +195,17 @@ export default function CriacaoFicha() {
               onClose={() => setModalRacaAberto(false)}
               onSelect={(raca) => {
                 ficha?.setRacaPrincipal(raca);
-                ficha?.setTamanho(raca?.tamanho? raca?.tamanho : null);
-                ficha?.setSpeed(raca?.velocidade? raca.velocidade : null);
-                ficha?.setIdiomasRaca(raca?.idiomas? raca.idiomas : null);
+                ficha?.setTamanho(raca?.tamanho ? raca?.tamanho : null);
+                ficha?.setSpeed(raca?.velocidade ? raca.velocidade : null);
+                ficha?.setIdiomasRaca(raca?.idiomas ? raca.idiomas : null);
                 ficha?.setSubRaca(null);
+                if (idiomasSelecionado) {
+                  const novosIdiomasSelecionados = idiomasSelecionado.filter(
+                    (idioma) => !raca?.idiomas?.includes(idioma.nome)
+                  );
+
+                  setIdiomasSelecionado(novosIdiomasSelecionados);
+                }
                 forceUpdate();
                 setModalRacaAberto(false);
               }}
@@ -265,6 +272,12 @@ export default function CriacaoFicha() {
               onClose={() => setModalBackGroundsAberto(false)}
               onSelect={(backGrounds) => {
                 ficha?.setBackGround(backGrounds)
+                if (idiomasSelecionado && idiomasSelecionado[1]) {
+                  ficha?.removerIdioma(idiomasSelecionado[1].nome);
+                }
+                if (idiomasSelecionado && idiomasSelecionado[0]) {
+                  ficha?.removerIdioma(idiomasSelecionado[0].nome);
+                }
                 setModalBackGroundsAberto(false)
                 setIdiomasSelecionado(null)
                 forceUpdate();
@@ -284,7 +297,10 @@ export default function CriacaoFicha() {
               onClose={() => setModalIdiomasAberto(false)}
               onSelect={(idioma) => {
                 if (!idioma) return;
-
+                if (idiomasSelecionado && idiomasSelecionado[idiomaIndice]) {
+                  ficha?.removerIdioma(idiomasSelecionado[idiomaIndice].nome);
+                }
+                ficha?.setIdiomas(idioma.nome);
                 const array = idiomasSelecionado ? idiomasSelecionado : [];
                 array[idiomaIndice] = idioma
                 setIdiomasSelecionado(array)

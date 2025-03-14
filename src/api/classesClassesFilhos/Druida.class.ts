@@ -19,7 +19,7 @@ export class Druida extends Classes {
       ["Kit de Herbalismo"],
       ["Inteligência", "Sabedoria"],
       2,
-      ["Arcana", "Manejo de Animais", "Insight", "Medicina", "Natureza", "Percepção", "Religião", "Sobrevivência"]
+      ["Arcanismo", "Adestrar Animais", "Intuição", "Medicina", "Natureza", "Percepção", "Religião", "Sobrevivência"]
     );
     this.level = 0; // Nível inicial
     this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis

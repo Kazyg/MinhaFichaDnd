@@ -18,7 +18,7 @@ export class Paladino extends Classes {
       [""],
       ["Sabedoria", "Carisma"],
       2,
-      ["Atletismo", "Intimidação", "Insight", "Medicina", "Persuasão", "Religião"]
+      ["Atletismo", "Intimidação", "Intuição", "Medicina", "Persuasão", "Religião"]
     );
     this.level = 0; // Nível inicial
     this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis

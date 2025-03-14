@@ -10,21 +10,21 @@ export default function InformacoesPersonagem() {
   const [vida, setVida] = useState(100);
   const [ca, setCa] = useState(10);
 
-  const { ficha, setFicha } = useFicha();
+  const { ficha, setFicha, refreshKey } = useFicha();
 
-  const atributosIniciais = {
-    DEX: 10,
-    CON: 10,
-    INT: 10,
-    SAB: 10,
-    FOR: 10,
-    CAR: 10,
-  };
+  const atributosIniciais = [
+    {nome: "FOR", valor: 10},
+    {nome: "DES", valor: 10},
+    {nome: "CON", valor: 10},
+    {nome: "INT", valor: 10},
+    {nome: "SAB", valor: 10},
+    {nome: "CAR", valor: 10}
+  ];
 
   const calcularModificador = (valor) => Math.floor((valor - 10) / 2);
 
   return (
-    <div className="informacoes-personagem compact">
+    <div key={refreshKey} className="informacoes-personagem compact">
       <div className="campos-gerais">
         <div className="campo">
           <label>Nome</label>
@@ -67,13 +67,13 @@ export default function InformacoesPersonagem() {
       <div className="atributos">
         <h4>Atributos</h4>
         <div className="atributos-container">
-          {Object.entries(atributosIniciais).map(([atributo, valor]) => (
+          {Object.entries(ficha?.atributosPersonagem || atributosIniciais).map(([atributo, dados]) => (
             <div key={atributo} className="atributo">
-              <span className="atributo-nome">{atributo}</span>
+              <span className="atributo-nome">{dados.nome}</span>
               <span> / </span>
-              <span className="atributo-valor">{valor}</span>
+              <span className="atributo-valor">{dados.valor}</span>
               <div className="atributo-divisoria" />
-              <span className="atributo-mod">{calcularModificador(valor) >= 0 ? `+${calcularModificador(valor)}` : calcularModificador(valor)}</span>
+              <span className="atributo-mod">{calcularModificador(dados.valor) >= 0 ? `+${calcularModificador(dados.valor)}` : calcularModificador(dados.valor)}</span>
             </div>
           ))}
         </div>

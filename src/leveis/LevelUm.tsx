@@ -14,6 +14,8 @@ import { Corruptor } from "../api/classesEspeciais/Corruptor.class.ts";
 import { Arquifada } from "../api/classesEspeciais/Arquifada.class.ts";
 import { GrandeAntigo } from "../api/classesEspeciais/GrandeAntigo.class.ts";
 import { Talentos } from "../bibliotecas/Talentos.ts";
+import { useFicha } from "../api/fichaPersonagem/FichaContext.tsx"
+import { Atributos } from "../api/classesPrincipais/Atributos.class.ts";
 
 interface LevelOneSetupProps {
   raca: Raca;
@@ -25,6 +27,8 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
   const [patronoSelecionado, setPatronoSelecionado] = useState<Patronos | null>(null)
   const [modalHumanoVarianteAberto, setModalHumanoVarianteAberto] = useState(false);
   const [humanoVarianteFeatEscolhido, setHumanoVarianteFeatEscolhido] = useState<Talento | null>(null)
+
+  const { ficha, setFicha, forceUpdate } = useFicha();
 
   type Talento = {
     nome: string;
@@ -57,11 +61,21 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
   };
 
   const toggleProeficiencia = (habilidade: string) => {
-    if (proeficienciasEscolhidas.includes(habilidade)) {
-      setProeficienciasEscolhidas(proeficienciasEscolhidas.filter((h) => h !== habilidade));
-    } else if (proeficienciasEscolhidas.length < classe.habilidade) {
-      setProeficienciasEscolhidas([...proeficienciasEscolhidas, habilidade]);
-    }
+    setProeficienciasEscolhidas((prev) => {
+      let novaLista;
+  
+      if (prev.includes(habilidade)) {
+        novaLista = prev.filter((h) => h !== habilidade);
+      } else if (prev.length < classe.habilidade) {
+        novaLista = [...prev, habilidade];
+      } else {
+        return prev;
+      }
+  
+      ficha?.setPericias(novaLista);
+      forceUpdate();
+      return novaLista;
+    });
   };
 
   const [valoresDisponiveis, setValoresDisponiveis] = useState<number[]>([]); // Para Array Padrão e Rolagem de Dados
@@ -157,22 +171,33 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
     }));
   };
 
+  const aplicarAtributosDaRaca = (raca: { atributos?: { atributo: string[]; bonus: number[] } }) => {
+    if (raca.atributos) {
+      const { atributo, bonus } = raca.atributos;
+
+      for (let i = 0; i < atributo.length; i++) {
+        const atributoAtual = atributo[i];
+        const bonusAtual = bonus[i];
+
+        ficha?.atributosPersonagem.somarAtributo(atributoAtual, bonusAtual);
+      }
+    }
+    console.log(ficha?.atributosPersonagem);
+  }
+
   const atualizarValoresDisponiveis = (valor: number, valorAntigo: number | null) => {
     let array = valoresDisponiveis
     const index = array.indexOf(valor);
 
     if (index !== -1) {
-      // Se encontrou o valor antigo, substitui e remove caso seja null
       const novoArray = array.map((v, i) => (i === index ? valorAntigo : v)).filter(v => v !== null);
       setValoresDisponiveis(novoArray)
     } else {
-      // Se não encontrou, adiciona o novo valor ao array
       const novoArray = [...array, valorAntigo].filter(v => v !== null);
       setValoresDisponiveis(novoArray)
     }
   }
 
-  // Renderizar o popup de distribuição de atributos
   const renderPopupAtributos = () => {
     if (!mostrarPopupAtributos) return null;
 
@@ -258,7 +283,24 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
               ))}
             </div>
           )}
-          <button onClick={() => { fecharPopup(); console.log(atributos) }}>Fechar</button>
+          <button onClick={() => {
+            fecharPopup();
+            const atributosConcluidos = new Atributos(
+              atributos.forca,
+              atributos.destreza,
+              atributos.constituicao,
+              atributos.inteligencia,
+              atributos.sabedoria,
+              atributos.carisma
+            );
+            ficha?.setAtributosPersonagem(
+              atributosConcluidos
+            );
+            console.log(ficha?.atributosPersonagem);
+            aplicarAtributosDaRaca(raca);
+            console.log(ficha?.atributosPersonagem);
+            forceUpdate();
+          }}>Concluir</button>
         </div>
       </div>
     );
@@ -377,7 +419,10 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
                       type="checkbox"
                       id={habilidade}
                       checked={proeficienciasEscolhidas.includes(habilidade)}
-                      onChange={() => toggleProeficiencia(habilidade)}
+                      onChange={() => {
+                        debugger;
+                        toggleProeficiencia(habilidade);
+                      }}
                     />
                     <label htmlFor={habilidade}>{habilidade}</label>
                   </div>

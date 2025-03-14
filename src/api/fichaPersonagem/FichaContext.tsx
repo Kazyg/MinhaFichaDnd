@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import { Ficha } from "./FichaPersonagem.ts";
 
 type FichaContextType = {
@@ -15,6 +15,22 @@ export const FichaProvider = ({ children }) => {
   const [refreshKey, setRefreshKey] = useState(0);
 
   const forceUpdate = () => setRefreshKey((prev) => prev + 1);
+
+  // Carrega a ficha do localStorage ao inicializar
+  useEffect(() => {
+    const fichaSalva = localStorage.getItem("ficha");
+    if (fichaSalva) {
+      const fichaObj = JSON.parse(fichaSalva);
+      setFicha(new Ficha(fichaObj));
+    }
+  }, []);
+
+  // Salva a ficha no localStorage sempre que ela for alterada
+  useEffect(() => {
+    if (ficha) {
+      localStorage.setItem("ficha", JSON.stringify(ficha));
+    }
+  }, [ficha, refreshKey]);
 
   return (
     <FichaContext.Provider value={{ ficha, setFicha, refreshKey, forceUpdate }}>

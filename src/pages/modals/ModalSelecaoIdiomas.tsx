@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Idiomas, idiomas } from "../../bibliotecas/idiomas/idiomasData.ts";
+import { useFicha } from "../../api/fichaPersonagem/FichaContext.tsx"
 
 interface ModalSelecaoIdiomaProps {
     titulo: string;
@@ -16,6 +17,8 @@ const ModalSelecaoIdioma: React.FC<ModalSelecaoIdiomaProps> = ({ titulo, onClose
         idioma.nome.toLowerCase().includes(filtro.toLowerCase())
     );
 
+    const { ficha } = useFicha();
+
     return (
         <div className="popup-content-modal">
             <h2>{titulo}</h2>
@@ -28,15 +31,16 @@ const ModalSelecaoIdioma: React.FC<ModalSelecaoIdiomaProps> = ({ titulo, onClose
                         onChange={(e) => setFiltro(e.target.value)}
                     />
                     <ul>
-                        {idiomasFiltrados.map((idioma) => (
-                            <li key={idioma.nome} onClick={() => {
-                                const idiomaSelecionado = idiomas.find(x => x.nome === idioma.nome);
-                                setSelecionado(idiomaSelecionado || null);
-                                console.log(selecionado)
-                            }}>
-                                {idioma.nome}
-                            </li>
-                        ))}
+                        {idiomasFiltrados
+                            .filter(idioma => !ficha?.idiomas || !ficha.idiomas.includes(idioma.nome))
+                            .map((idioma) => (
+                                <li key={idioma.nome} onClick={() => {
+                                    const idiomaSelecionado = idiomas.find(x => x.nome === idioma.nome);
+                                    setSelecionado(idiomaSelecionado || null);
+                                }}>
+                                    {idioma.nome}
+                                </li>
+                            ))}
                     </ul>
                 </div>
 

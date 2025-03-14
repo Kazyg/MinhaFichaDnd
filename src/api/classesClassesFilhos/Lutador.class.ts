@@ -17,7 +17,7 @@ export class Lutador extends Classes {
       [""],
       ["Força", "Constituição"],
       2,
-      ["Acrobacia", "Atletismo", "Manejo de Animais", "História", "Intimidação", "Insight", "Percepção", "Sobrevivência"]
+      ["Acrobacia", "Atletismo", "Adestrar Animais", "História", "Intimidação", "Intuição", "Percepção", "Sobrevivência"]
     );
     this.level = 0; // Nível inicial
     this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis

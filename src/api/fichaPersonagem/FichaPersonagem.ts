@@ -23,38 +23,23 @@ export class Ficha {
     talentos: string[] | null;
     idiomas: string[] | null;
 
-    constructor(
-        nomePersonagem: string,
-        racaPrincipal: Raca,
-        classePrincipal: Classes,
-        backGround: BackGround,
-        atributosPersonagem: Atributos,
-        iniciativa: number,
-        proeficiencia: number,
-        percepcao: number,
-        vidaTotal: number,
-        pericias: string[],
-        levelTotal: number,
-        classeArmadura: number,
-        speed: number,
-        tamanho: string,
-        idiomas: string[]
-    ) {
-        this.nomePersonagem = nomePersonagem;
-        this.racaPrincipal = racaPrincipal;
-        this.classePrincipal = classePrincipal;
-        this.backGround = backGround;
-        this.atributosPersonagem = atributosPersonagem;
-        this.iniciativa = iniciativa;
-        this.proeficiencia = proeficiencia;
-        this.percepcao = percepcao;
-        this.vidaTotal = vidaTotal;
-        this.pericias = pericias;
-        this.levelTotal = levelTotal;
-        this.classeArmadura = classeArmadura;
-        this.speed = speed;
-        this.tamanho = tamanho;
-        this.idiomas = idiomas;
+    constructor(data: Partial<Ficha> = {})
+    {
+        this.nomePersonagem = data?.nomePersonagem ?? null;
+        this.racaPrincipal = data?.racaPrincipal ?? null;
+        this.classePrincipal = data?.classePrincipal ?? null;
+        this.backGround = data?.backGround ?? null;
+        this.atributosPersonagem = data?.atributosPersonagem ?? null;
+        this.iniciativa = data?.iniciativa ?? null;
+        this.proeficiencia = data?.proeficiencia ?? null;
+        this.percepcao = data?.percepcao ?? null;
+        this.vidaTotal = data?.vidaTotal ?? null;
+        this.pericias = data?.pericias ?? null;
+        this.levelTotal = data?.levelTotal ?? null;
+        this.classeArmadura = data?.classeArmadura ?? null;
+        this.speed = data?.speed ?? null;
+        this.tamanho = data?.tamanho ?? null;
+        this.idiomas = data?.idiomas ?? null;
     }
 
     // Métodos para alterar propriedades
@@ -82,7 +67,7 @@ export class Ficha {
         this.backGround = backGround;
     }
 
-    setAtributosPersonagem(atributos: Atributos | null) {
+    setAtributosPersonagem(atributos: Atributos) {
         this.atributosPersonagem = atributos;
     }
 
@@ -100,6 +85,16 @@ export class Ficha {
 
     setVidaTotal(vidaTotal: number | null) {
         this.vidaTotal = vidaTotal;
+    }
+
+    setPericia(pericia: string | null){
+        pericia? this.pericias?.push(pericia) : this.pericias = this.pericias;
+    }
+
+    removerIPericia(pericia: string) {
+        if (this.pericias) {
+            this.pericias = this.pericias.filter((i) => i !== pericia);
+        }
     }
 
     setPericias(pericias: string[] | null) {

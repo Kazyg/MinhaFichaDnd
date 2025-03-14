@@ -21,7 +21,7 @@ export class Feiticeiro extends Classes {
       [""],
       ["Constituição", "Carisma"],
       2,
-      ["Arcana", "Intimidação", "Insight", "Persuasão", "Religião", "Engano"]
+      ["Arcanismo", "Enganação", "Intuição", "Intimidação", "Persuasão", "Religião"]
     );
     this.level = 0; // Nível inicial
     this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis
