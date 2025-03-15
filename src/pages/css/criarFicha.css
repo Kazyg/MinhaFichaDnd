@@ -1,15 +1,13 @@
 .criar-ficha {
-  display: flex;  /* Faz os elementos ficarem lado a lado */
-  height: 100vh;  /* Ocupa toda a altura da tela */
+  display: flex;
   overflow: hidden; /* Impede rolagem da página */
 }
 
 .criacao-ficha {
-  width: 300px; /* Mantém o tamanho fixo na esquerda */
+  width: 340px; /* Mantém o tamanho fixo na esquerda */
   height: 100vh;
   overflow-y: auto;
   background: #222;
-  padding: 20px;
   color: white;
 }
 
@@ -18,4 +16,51 @@
   padding: 20px;
   color: white;
   overflow-y: auto; /* Adiciona rolagem interna se precisar */
+}
+
+/* Estilo do container do menu */
+.menu-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 15px;
+  width: 100%;
+  background-color: #333;
+  padding: 10px;
+  z-index: 1000;
+}
+
+/* Estilo do botão de hambúrguer */
+.hamburger-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Estilo das opções do menu */
+.menu-options {
+  display: flex;
+  flex-direction: column;
+  background-color: #444;
+  margin-top: 100px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.menu-options button {
+  background: none;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.menu-options button:hover {
+  background-color: #555;
 }

@@ -14,8 +14,6 @@ interface ModalSelecaoProps {
 const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClose, onSelect, racaInicial, onAtributeSelect, atributosIniciais }) => {
     const [filtro, setFiltro] = useState("");
     const [selecionado, setSelecionado] = useState<Raca | null>(racaInicial || null);
-    const [subOpcoes, setSubOpcoes] = useState<Raca[]>([]);
-    const [mostrarSubOpcoes, setMostrarSubOpcoes] = useState(false);
     const [atributosSelecionados, setAtributosSelecionados] = useState<string[]>(atributosIniciais || []);
 
     const atributos = ["força", "destreza", "constituição", "inteligência", "sabedoria", "carisma"];
@@ -48,9 +46,7 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
                     <ul>
                         {opcoesFiltradas.map((opcao) => (
                             <li key={opcao.nome} onClick={() => {
-                                setSelecionado(opcao);
-                                setSubOpcoes(opcao.subOpcoes || []);
-                                setMostrarSubOpcoes(false);
+                                setSelecionado(opcao);                                
                             }}>
                                 {opcao.nome}
                             </li>
@@ -73,7 +69,7 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
                                     <br />
                                 </span>
                             ))}</p>
-                            {(selecionado.nome == "Humano(feat)" || selecionado.nome == "Meio-Elfo") && (
+                            {(selecionado.nome === "Humano Variante" || selecionado.nome === "Meio-Elfo") && (
                                 <div>
                                     <h3>Escolha 2 Atributos</h3>
                                     <div className="selecao-atributos">
@@ -93,7 +89,7 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
                                                     }
                                                     onChange={() => handleAtributoChange(atributo)}
                                                     disabled={
-                                                        (selecionado.nome == "Meio-Elfo" && atributo === "carisma")
+                                                        (selecionado.nome === "Meio-Elfo" && atributo === "carisma")
                                                     }
                                                 />
                                                 {atributo}
@@ -103,7 +99,7 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
                                 </div>
                             )}
 
-                            <button onClick={() => { onAtributeSelect(atributosSelecionados); onSelect(selecionado); onClose() }} disabled={((selecionado.nome == "Humano(feat)" || selecionado.nome == "Meio-Elfo") && atributosSelecionados.length !== 2) || selecionado.nome == "Meio-Elfo" && atributosSelecionados.includes("carisma")}>Escolher {selecionado.nome}</button>
+                            <button onClick={() => { onAtributeSelect(atributosSelecionados); onSelect(selecionado); onClose() }} disabled={((selecionado.nome === "Humano Variante" || selecionado.nome === "Meio-Elfo") && atributosSelecionados.length !== 2) || (selecionado.nome === "Meio-Elfo" && atributosSelecionados.includes("carisma"))}>Escolher {selecionado.nome}</button>
                         </>
                     )}
                 </div>

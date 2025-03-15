@@ -60,7 +60,6 @@ import { Pirata } from "../../api/backGroundsFilhos/Pirata.class.ts"
 import { Sabio } from "../../api/backGroundsFilhos/Sabio.class.ts"
 import { Idiomas } from "../../bibliotecas/idiomas/idiomasData.ts";
 import { useFicha } from "../../api/fichaPersonagem/FichaContext.tsx"
-import { Ficha } from "../../api/fichaPersonagem/FichaPersonagem.ts"
 
 export default function CriacaoFicha() {
   const [modalRacaAberto, setModalRacaAberto] = useState(false);
@@ -73,7 +72,7 @@ export default function CriacaoFicha() {
   const [idiomasSelecionado, setIdiomasSelecionado] = useState<Idiomas[] | null>(null)
   const [idiomaIndice, setIdiomaIndice] = useState<number>(0)
 
-  const { ficha, setFicha, forceUpdate } = useFicha();
+  const { ficha, forceUpdate } = useFicha();
 
   // Lista de raças disponíveis (filhas diretas de Raca)
   const racas: Raca[] = [
@@ -199,6 +198,8 @@ export default function CriacaoFicha() {
                 ficha?.setSpeed(raca?.velocidade ? raca.velocidade : null);
                 ficha?.setIdiomasRaca(raca?.idiomas ? raca.idiomas : null);
                 ficha?.setSubRaca(null);
+                ficha?.setAtributosPersonagem(null);
+                ficha?.setIniciativa(null);
                 if (idiomasSelecionado) {
                   const novosIdiomasSelecionados = idiomasSelecionado.filter(
                     (idioma) => !raca?.idiomas?.includes(idioma.nome)
@@ -314,7 +315,8 @@ export default function CriacaoFicha() {
 
       <div className="niveis-container">
         <div className="nivel">
-          {ficha?.racaPrincipal && ficha.classePrincipal ? (
+          {ficha?.racaPrincipal && ficha.classePrincipal &&
+            (!ficha.racaPrincipal.subOpcoes || ficha.subRaca) ? (
             <LevelOneSetup raca={ficha.subRaca ? ficha.subRaca : ficha.racaPrincipal} classe={ficha.classePrincipal} />
           ) : "Nivel 1"}
         </div>

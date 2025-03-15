@@ -3,26 +3,26 @@ import "../css/InformacoesPersonagem.css";
 import { useFicha } from "../../api/fichaPersonagem/FichaContext.tsx"
 
 export default function InformacoesPersonagem() {
-  const [nomePersonagem, setNomePersonagem] = useState("");
   const [nivel, setNivel] = useState(1);
   const [xp, setXp] = useState("");
   const [popupNivelAberto, setPopupNivelAberto] = useState(false);
   const [vida, setVida] = useState(100);
   const [ca, setCa] = useState(10);
-
-  const { ficha, setFicha, refreshKey } = useFicha();
+  
+  const { ficha, refreshKey, forceUpdate } = useFicha();
+  const [tempNome, setTempNome] = useState(ficha?.nomePersonagem);
 
   const atributosIniciais = [
-    {nome: "FOR", valor: 10},
-    {nome: "DES", valor: 10},
-    {nome: "CON", valor: 10},
-    {nome: "INT", valor: 10},
-    {nome: "SAB", valor: 10},
-    {nome: "CAR", valor: 10}
+    { nome: "FOR", valor: 10 },
+    { nome: "DES", valor: 10 },
+    { nome: "CON", valor: 10 },
+    { nome: "INT", valor: 10 },
+    { nome: "SAB", valor: 10 },
+    { nome: "CAR", valor: 10 }
   ];
 
   const calcularModificador = (valor) => Math.floor((valor - 10) / 2);
-
+  
   return (
     <div key={refreshKey} className="informacoes-personagem compact">
       <div className="campos-gerais">
@@ -31,8 +31,15 @@ export default function InformacoesPersonagem() {
           <input
             type="text"
             placeholder="Nome do Personagem"
-            value={nomePersonagem}
-            onChange={(e) => setNomePersonagem(e.target.value)}
+            value={tempNome}
+            onChange={(e) => {
+              setTempNome(e.target.value);
+              clearTimeout(window.nomeTimeout);
+              window.nomeTimeout = setTimeout(() => {
+                ficha.setNomePersonagem(e.target.value);
+                forceUpdate();
+              }, 1500); // Aguarda 500ms depois que o usuário para de digitar
+            }}
           />
         </div>
         <div className="campo">

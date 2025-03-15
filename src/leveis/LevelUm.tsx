@@ -28,7 +28,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
   const [modalHumanoVarianteAberto, setModalHumanoVarianteAberto] = useState(false);
   const [humanoVarianteFeatEscolhido, setHumanoVarianteFeatEscolhido] = useState<Talento | null>(null)
 
-  const { ficha, setFicha, forceUpdate } = useFicha();
+  const { ficha, forceUpdate } = useFicha();
 
   type Talento = {
     nome: string;
@@ -179,7 +179,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
         const atributoAtual = atributo[i];
         const bonusAtual = bonus[i];
 
-        ficha?.atributosPersonagem.somarAtributo(atributoAtual, bonusAtual);
+        ficha?.atributosPersonagem?.somarAtributo(atributoAtual, bonusAtual);
       }
     }
     console.log(ficha?.atributosPersonagem);
@@ -418,9 +418,8 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
                     <input
                       type="checkbox"
                       id={habilidade}
-                      checked={proeficienciasEscolhidas.includes(habilidade)}
-                      onChange={() => {
-                        debugger;
+                      checked={ficha?.pericias?.includes(habilidade) || proeficienciasEscolhidas.includes(habilidade)}
+                      onChange={() => {                       
                         toggleProeficiencia(habilidade);
                       }}
                     />

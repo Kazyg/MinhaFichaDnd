@@ -1,6 +1,6 @@
 .informacoes-personagem {
   position: absolute; /* Para posicionar livremente */
-  top: -20px; /* Cola no topo */
+  top: 15px; /* Cola no topo */
   left: 295px; /* Ajuste fino para colar na criação de ficha (pode precisar ajustar) */
   margin-left: 0px;
   background-color: #2c2f33;

@@ -1,6 +1,6 @@
 .pericias-container {
     position: absolute;
-    top: 123px;
+    top: 162px;
     left: 318px;
     margin-top: 10px;
     background-color: #2c2f33;
@@ -8,7 +8,7 @@
     border-radius: 8px;
     max-width: 500px;
     transform: scale(0.8);
-    max-height: 530px; /* Limita a altura total do quadro */
+    max-height: 490px; /* Limita a altura total do quadro */
     overflow-y: auto; /* Adiciona scroll caso ultrapasse o tamanho */
   }
   
@@ -71,6 +71,21 @@
     transform: scale(1.2); /* Aumenta o tamanho do checkbox */
     cursor: pointer;
   }
+
+  .pericia-item input[type="checkbox"]:disabled {
+    opacity: 1; /* Remove o efeito apagado */
+  }
+  
+  .pericia-item input[type="checkbox"]:disabled:checked::before {
+    content: "✔"; /* Substitui o check padrão */
+    font-size: 1em; /* Aumenta o tamanho do ✔ */
+    color: black; /* Cor verde brilhante */
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 15px;
+  }
   
   .pericias-container::-webkit-scrollbar {
     width: 8px;
@@ -80,3 +95,4 @@
     background: gray;
     border-radius: 4px;
   }
+  
