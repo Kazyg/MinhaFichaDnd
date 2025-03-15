@@ -1,0 +1,240 @@
+/* Estilo para o popup */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #222; /* Fundo escuro */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    width: 80%;
+    max-width: 1000px; /* Largura máxima */
+    max-height: 90vh; /* Altura máxima */
+    display: flex;
+    flex-direction: column;
+    color: white; /* Texto branco */
+  }
+  
+  /* Estilo para o fundo escuro quando o popup está aberto */
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+  
+  /* Estilo para o conteúdo do popup */
+  .popup-content-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 600px;
+    gap: 20px;
+    flex: 1;
+    overflow: hidden; /* Evita transbordamento */
+  }
+
+  .popup-content-modal h2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  .popup-body-modal {
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  /* Estilo para a lista de raças (30% da largura) */
+  .lista-racas {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 30px;
+    gap: 10px;
+  }
+  
+  /* Estilo para o campo de filtro */
+  .lista-racas input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+  }
+  
+  /* Estilo para a lista de raças (com scrollbar) */
+  .lista-racas ul {
+    list-style: none;
+    width: 100%;
+    height: 100%;
+    max-height: 42.655vh;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto; /* Scrollbar vertical */
+    flex: 1;
+    background-color: #333;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .lista-racas ul li {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #444;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    color: white;
+  }
+  
+  .lista-racas ul li:hover {
+    background-color: #555;
+  }
+  
+  /* Estilo para os detalhes da raça (70% da largura) */
+  .detalhes-raca {
+    width: 675px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #333;
+    border-radius: 5px;
+    padding: 20px;
+    color: white;
+    overflow-y: auto; /* Adiciona scrollbar se necessário */
+    max-height: 47vh;
+  }
+  
+  .detalhes-raca p {
+    margin: 2.5px;
+  }
+
+  .detalhes-raca h3 {
+    margin-bottom: 8px;
+    margin-top: 5px;
+  }
+  /* Estilo para o botão de escolher raça */
+  .detalhes-raca button {
+    padding: 10px;
+    background-color: #ff4500; /* Laranja */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: auto; /* Coloca o botão no final */
+  }
+  
+  .detalhes-raca button:hover {
+    background-color: #e03c00; /* Laranja mais escuro */
+  }
+  
+  .popup-footer {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  /* Estilo para o botão de fechar */
+  .popup-footer button.fechar {
+    background-color: #ff4d4d; /* Vermelho */
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  
+  .popup-footer button.fechar:hover {
+    background-color: #cc0000; /* Vermelho mais escuro */
+  }
+  
+  /* Scrollbar */
+  .lista-racas ul::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .lista-racas ul::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 4px;
+  }
+  
+  .detalhes-raca::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .detalhes-raca::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 4px;
+  }
+
+  .selecao-atributos {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    background-color: #333;
+    border-radius: 5px;
+    color: white;
+    margin-top: 10px; /* Espaço do topo */
+  }
+  
+  .selecao-atributos h3 {
+    margin-bottom: 15px;
+    margin-top: 0;
+  }
+  
+  /* Estilo para o container do checkbox */
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #444; /* Cor de fundo semelhante aos itens da lista */
+  }
+  
+  .checkbox-container:hover {
+    background-color: #555; /* Cor de fundo mais clara no hover */
+  }
+  
+  /* Estilo para o checkbox */
+  .checkbox-container input[type="checkbox"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #777;
+    border-radius: 3px;
+    background-color: #333;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .checkbox-container input[type="checkbox"]:checked {
+    background-color: #ff4500; /* Laranja quando marcado */
+    border-color: #ff4500;
+  }
+  
+  .checkbox-container input[type="checkbox"]:checked::before {
+    content: "✔"; /* Símbolo de checkmark */
+    position: absolute;
+    font-size: 14px;
+    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .checkbox-container input[type="checkbox"]:disabled {
+    opacity: 0.5; /* Opacidade menor quando desabilitado */
+    cursor: not-allowed;
+  }
+  
+  .checkbox-container input[type="checkbox"]:disabled + span {
+    opacity: 0.5; /* Opacidade menor para o texto quando desabilitado */
+  }
+
+  .checkbox-container.disabled-hover:hover {
+    background-color: #444 !important;
+  }

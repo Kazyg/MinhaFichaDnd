@@ -1,0 +1,132 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100vw;
+    text-align: center;
+    color: white;
+    background: url('../../imagens/background-home.jpg') no-repeat center center;
+    background-size: cover;
+  }
+  
+  .home-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  
+  .button-container {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .icon-button {
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .icon-image {
+    width: 64px;
+    height: 64px;
+  }
+  
+  .tooltip {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -2rem;
+    font-size: 0.875rem;
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .icon-button:hover .tooltip {
+    opacity: 1;
+  }
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+  }
+  
+  .ficha-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+  }
+  
+  .ficha-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin: 5px 0;
+    background: #ddd;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .ficha-item:hover {
+    background: #bbb;
+  }
+  
+  .close-button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .close-button:hover {
+    background: darkred;
+  }
+  
+  .delete-button{
+    display: flex;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    background: transparent;
+  }
+
+  .delete-button :hover{
+    background: white
+  }
+
+  .delete-icon{
+    width: 25px;
+    height: 25px;
+    margin-top: -5px;
+    margin-bottom: -5px;
+  }
+  
