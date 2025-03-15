@@ -50,14 +50,14 @@ const ModalSelecaoClasse: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, 
                             <p><strong>Testes de resistencias:</strong> {selecionado.testesResistencias.join(", ")}</p>
                             <p><strong>Proeficiencias:</strong> {selecionado.habilidades.join(", ")}</p>
 
-                            <button onClick={() => { onSelect(selecionado); onClose() }}>Escolher {selecionado.nome}</button>
+                            <button className="escolher-button" onClick={() => { onSelect(selecionado); onClose() }}>Escolher {selecionado.nome}</button>
                         </>
                     )}
                 </div>
             </div>
 
             <div className="popup-footer">
-                <button className="fechar" onClick={() => { onClose() }}>Fechar</button>
+                <button className="escolher-button" onClick={() => { onClose() }}>Fechar</button>
             </div>
         </div>
     );

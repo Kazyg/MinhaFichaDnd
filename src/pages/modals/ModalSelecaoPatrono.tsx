@@ -53,14 +53,14 @@ const ModalSelecaoPatrono: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo,
                                 </span>
                             ))}</p>
 
-                            <button onClick={() => { onSelect(selecionado); onClose() }}>Escolher {selecionado.nome}</button>
+                            <button className="escolher-button" onClick={() => { onSelect(selecionado); onClose() }}>Escolher {selecionado.nome}</button>
                         </>
                     )}
                 </div>
             </div>
 
             <div className="popup-footer">
-                <button className="fechar" onClick={() => { onClose() }}>Fechar</button>
+                <button className="escolher-button" onClick={() => { onClose() }}>Fechar</button>
             </div>
         </div>
     );

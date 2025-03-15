@@ -76,6 +76,13 @@
   transform: scale(0.85);
 }
 
+.botao-selecao-talento{
+  display: flex;
+  align-items: center;
+  width: 110% !important;
+  margin-left: -10px !important;
+}
+
 .botao-classe {
   padding-top: 12px;
   padding-bottom: 12px;
@@ -139,4 +146,8 @@
 .criacao-ficha::-webkit-scrollbar-thumb {
   background: gray;
   border-radius: 4px;
+}
+
+.escolher-button {
+  width: 100% !important;
 }

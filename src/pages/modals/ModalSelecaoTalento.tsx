@@ -44,14 +44,14 @@ const ModalSelecaoTalento: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo,
                             <h3>{selecionado.nome}</h3>
                             <p>{selecionado.descricao}</p>
 
-                            <button onClick={() => { onSelect(selecionado); onClose() }}>Escolher {selecionado.nome}</button>
+                            <button className="escolher-button" onClick={() => { onSelect(selecionado); onClose() }}>Escolher {selecionado.nome}</button>
                         </>
                     )}
                 </div>
             </div>
 
             <div className="popup-footer">
-                <button className="fechar" onClick={() => { onClose() }}>Fechar</button>
+                <button className="escolher-button" onClick={() => { onClose() }}>Fechar</button>
             </div>
         </div>
     );

@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Raca } from "../../api/classesPrincipais/Raca.class";
+import { MeioElfo } from "../../api/classesFilhos/MeioElfo.class.ts";
+import { HumanoVariante } from "../../api/classesFilhos/HumanoVariante.class.ts";
 
 interface ModalSelecaoProps {
     opcoes: Raca[];
@@ -19,13 +21,34 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
     const atributos = ["força", "destreza", "constituição", "inteligência", "sabedoria", "carisma"];
 
     const handleAtributoChange = (atributo: string) => {
-        if (atributosSelecionados.includes(atributo)) {
-            setAtributosSelecionados(atributosSelecionados.filter(a => a !== atributo));
-        } else if (atributosSelecionados.length < 2) {
-            setAtributosSelecionados([...atributosSelecionados, atributo]);
-        } else {
-            setAtributosSelecionados([...atributosSelecionados.slice(1), atributo]);
+        setAtributosSelecionados((prevAtributos) => {
+            let novosAtributos;
+
+            if (prevAtributos.includes(atributo)) {
+                novosAtributos = prevAtributos.filter(a => a !== atributo);
+            } else if (prevAtributos.length < 2) {
+                novosAtributos = [...prevAtributos, atributo];
+            } else {
+                novosAtributos = [...prevAtributos.slice(1), atributo];
+            }
+
+            return novosAtributos;
+        });
+    };
+
+    const selecionadoRef = useRef(selecionado); // Cria uma referência para o estado selecionado
+
+    const atribuirAtributos = (atributosEscolhidos: string[], raca: Raca) => {
+        let novoSelecionado;
+
+        if (raca.nome === "Humano Variante") {
+            novoSelecionado = new HumanoVariante(atributosEscolhidos[0], atributosEscolhidos[1]);
+        } else if (raca.nome === "Meio-Elfo") {
+            novoSelecionado = new MeioElfo(atributosEscolhidos[0], atributosEscolhidos[1]);
         }
+
+        setSelecionado(novoSelecionado); // Atualiza o estado
+        selecionadoRef.current = novoSelecionado; // Atualiza a referência
     };
 
     const opcoesFiltradas = opcoes.filter((opcao) =>
@@ -46,7 +69,7 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
                     <ul>
                         {opcoesFiltradas.map((opcao) => (
                             <li key={opcao.nome} onClick={() => {
-                                setSelecionado(opcao);                                
+                                setSelecionado(opcao);
                             }}>
                                 {opcao.nome}
                             </li>
@@ -99,14 +122,22 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
                                 </div>
                             )}
 
-                            <button onClick={() => { onAtributeSelect(atributosSelecionados); onSelect(selecionado); onClose() }} disabled={((selecionado.nome === "Humano Variante" || selecionado.nome === "Meio-Elfo") && atributosSelecionados.length !== 2) || (selecionado.nome === "Meio-Elfo" && atributosSelecionados.includes("carisma"))}>Escolher {selecionado.nome}</button>
+                            <button className="escolher-button" onClick={() => {
+                                onAtributeSelect(atributosSelecionados);
+                                atribuirAtributos(atributosSelecionados, selecionado);
+                                onSelect(selecionadoRef.current);
+                                onClose();
+                            }}
+                                disabled={((selecionado.nome === "Humano Variante" || selecionado.nome === "Meio-Elfo") && atributosSelecionados.length !== 2) || (selecionado.nome === "Meio-Elfo" && atributosSelecionados.includes("carisma")
+                                )}>Escolher {selecionado.nome}
+                            </button>
                         </>
                     )}
                 </div>
             </div>
 
             <div className="popup-footer">
-                <button className="fechar" onClick={() => { onClose() }}>Fechar</button>
+                <button className="escolher-button" onClick={() => { onClose() }}>Fechar</button>
             </div>
         </div>
     );
