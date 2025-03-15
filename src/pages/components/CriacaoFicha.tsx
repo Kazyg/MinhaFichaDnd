@@ -315,8 +315,9 @@ export default function CriacaoFicha() {
 
       <div className="niveis-container">
         <div className="nivel">
-          {ficha?.racaPrincipal && ficha.classePrincipal &&
-            (!ficha.racaPrincipal.subOpcoes || ficha.subRaca) ? (
+          {ficha?.racaPrincipal &&
+            ficha?.classePrincipal &&
+            (ficha.racaPrincipal.subOpcoes && ficha.racaPrincipal.subOpcoes.length > 0 ? ficha.subRaca : true) ? (
             <LevelOneSetup raca={ficha.subRaca ? ficha.subRaca : ficha.racaPrincipal} classe={ficha.classePrincipal} />
           ) : "Nivel 1"}
         </div>

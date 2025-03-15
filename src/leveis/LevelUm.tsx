@@ -176,7 +176,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
       const { atributo, bonus } = raca.atributos;
 
       for (let i = 0; i < atributo.length; i++) {
-        const atributoAtual = atributo[i];
+        const atributoAtual = atributo[i].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         const bonusAtual = bonus[i];
 
         ficha?.atributosPersonagem?.somarAtributo(atributoAtual, bonusAtual);
@@ -367,7 +367,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
               <div>
                 {raca.nome === "Humano Variante" &&
                   <>
-                    <button className="botao-selecao" onClick={() => setModalHumanoVarianteAberto(true)}>
+                    <button className="botao-selecao-talento" onClick={() => setModalHumanoVarianteAberto(true)}>
                       <img src={iconRaca} className="button-icon" alt="HumanoFeat" />
                       <div className="botao-texto">
                         <span>Selecionar Talento</span>
@@ -439,7 +439,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
               <div>
                 {classe.nome === "Bruxo" &&
                   <>
-                    <button className="botao-selecao" onClick={() => setModalPatronoAberto(true)}>
+                    <button className="botao-selecao-talento" onClick={() => setModalPatronoAberto(true)}>
                       <img src={iconClasse} className="button-icon" alt="Patrono" />
                       <div className="botao-texto">
                         <span>Selecionar Patrono</span>
