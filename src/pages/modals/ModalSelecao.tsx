@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Raca } from "../../api/classesPrincipais/Raca.class";
+import { MeioElfo } from "../../api/classesFilhos/MeioElfo.class.ts";
 import { HumanoVariante } from "../../api/classesFilhos/HumanoVariante.class.ts";
 
 interface ModalSelecaoProps {
@@ -20,9 +21,11 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
     const atributos = ["força", "destreza", "constituição", "inteligência", "sabedoria", "carisma"];
 
     const handleAtributoChange = (atributo: string) => {
-        if (atributosSelecionados.includes(atributo)) {
         setAtributosSelecionados((prevAtributos) => {
             let novosAtributos;
+
+            if (prevAtributos.includes(atributo)) {
+                novosAtributos = prevAtributos.filter(a => a !== atributo);
             } else if (prevAtributos.length < 2) {
                 novosAtributos = [...prevAtributos, atributo];
             } else {
