@@ -1,10 +1,11 @@
+/* Estilos base (desktop) */
 .criar-ficha {
   display: flex;
-  overflow: hidden; /* Impede rolagem da página */
+  overflow: hidden;
 }
 
 .criacao-ficha {
-  width: 340px; /* Mantém o tamanho fixo na esquerda */
+  width: 340px;
   height: 100vh;
   overflow-y: auto;
   background: #222;
@@ -12,13 +13,12 @@
 }
 
 .informacoes-personagem {
-  flex-grow: 1; /* Ocupa todo o espaço restante */
+  flex-grow: 1;
   padding: 20px;
   color: white;
-  overflow-y: auto; /* Adiciona rolagem interna se precisar */
+  overflow-y: auto;
 }
 
-/* Estilo do container do menu */
 .menu-container {
   display: flex;
   flex-direction: row;
@@ -33,7 +33,6 @@
   z-index: 1000;
 }
 
-/* Estilo do botão de hambúrguer */
 .hamburger-button {
   background: none;
   border: none;
@@ -42,7 +41,6 @@
   cursor: pointer;
 }
 
-/* Estilo das opções do menu */
 .menu-options {
   display: flex;
   flex-direction: column;
@@ -63,4 +61,35 @@
 
 .menu-options button:hover {
   background-color: #555;
+}
+
+/* Estilos para celular (max-width: 768px) */
+@media (max-width: 768px) {
+  .criar-ficha {
+    flex-direction: column;
+  }
+
+  .criacao-ficha {
+    width: 100%;
+    height: auto;
+    padding: 5px;
+  }
+
+  .informacoes-personagem {
+    padding: 5px;
+  }
+
+  .menu-container {
+    height: 40px;
+    padding: 5px;
+  }
+
+  .hamburger-button {
+    font-size: 20px;
+  }
+
+  .menu-options {
+    margin-top: 40px;
+    padding: 5px;
+  }
 }

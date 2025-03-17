@@ -219,3 +219,38 @@
   border-radius: 4px;
   cursor: pointer;
 }
+@media (max-width: 768px) {
+  .informacoes-personagem {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    max-height: auto;
+    transform: none;
+  }
+
+  .container-principal {
+    flex-direction: column;
+  }
+
+  .coluna-1,
+  .coluna-2,
+  .coluna-3,
+  .coluna-4 {
+    width: 100%;
+  }
+
+  .atributos-container,
+  .proficiencias-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .icon-ca {
+    width: 50px;
+    height: 50px;
+  }
+
+  .ca-text {
+    font-size: 20px;
+  }
+}

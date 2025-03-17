@@ -1,98 +1,111 @@
 .pericias-container {
-    position: absolute;
-    top: 134px;
-    left: 317px;
-    margin-top: 10px;
-    background-color: #2c2f33;
-    padding: 10px;
-    border-radius: 8px;
-    max-width: 500px;
-    transform: scale(0.8);
-    max-height: 521px; /* Limita a altura total do quadro */
-    overflow-y: auto; /* Adiciona scroll caso ultrapasse o tamanho */
-  }
-  
-  /* Estilização do quadro pequeno */
-  .info-extra {
-    display: flex;
-    justify-content: space-between;
-    background-color: #3b3f44;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-  }
-  
-  .info-coluna {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-  
-  .info-item {
-    color: white;
-    font-size: 14px;
-  }
-  
-  /* Estilização da lista de perícias */
-  .pericias-lista {
-    background-color: #3b3f44;
-    padding: 10px;
-    border-radius: 5px;
-  }
-  
-  .pericias-lista h4 {
-    text-align: center;
-    font-size: 16px;
-    margin-top: 0px;
-    margin-bottom: -10px;
-    color: white;
-  }
-  
-  .pericias-lista ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .pericia-item {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 5px 0;
-    border-bottom: 1px solid #555;
-    color: white;
-    font-size: 15px;
-  }
-  
-  .pericia-item:last-child {
-    border-bottom: none;
-  }
-  
-  .pericia-item input {
-    transform: scale(1.2); /* Aumenta o tamanho do checkbox */
-    cursor: pointer;
+  position: absolute;
+  top: 134px;
+  left: 317px;
+  margin-top: 10px;
+  background-color: #2c2f33;
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 500px;
+  transform: scale(0.8);
+  max-height: 521px;
+  overflow-y: auto;
+}
+
+.info-extra {
+  display: flex;
+  justify-content: space-between;
+  background-color: #3b3f44;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.info-coluna {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.info-item {
+  color: white;
+  font-size: 14px;
+}
+
+.pericias-lista {
+  background-color: #3b3f44;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.pericias-lista h4 {
+  text-align: center;
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.pericias-lista ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.pericia-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 0;
+  border-bottom: 1px solid #555;
+  color: white;
+  font-size: 15px;
+}
+
+.pericia-item:last-child {
+  border-bottom: none;
+}
+
+.pericia-item input {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.pericia-item input[type="checkbox"]:disabled {
+  opacity: 1;
+}
+
+.pericia-item input[type="checkbox"]:disabled:checked::before {
+  content: "✔";
+  font-size: 1em;
+  color: black;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 15px;
+}
+
+.pericias-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.pericias-container::-webkit-scrollbar-thumb {
+  background: gray;
+  border-radius: 4px;
+}
+
+/* Estilos para celular (max-width: 768px) */
+@media (max-width: 768px) {
+  .pericias-container {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    max-height: 300px;
+    transform: none;
   }
 
-  .pericia-item input[type="checkbox"]:disabled {
-    opacity: 1; /* Remove o efeito apagado */
+  .pericia-item {
+    font-size: 14px;
   }
-  
-  .pericia-item input[type="checkbox"]:disabled:checked::before {
-    content: "✔"; /* Substitui o check padrão */
-    font-size: 1em; /* Aumenta o tamanho do ✔ */
-    color: black; /* Cor verde brilhante */
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 15px;
-  }
-  
-  .pericias-container::-webkit-scrollbar {
-    width: 8px;
-  }
-  
-  .pericias-container::-webkit-scrollbar-thumb {
-    background: gray;
-    border-radius: 4px;
-  }
-  
+}
