@@ -277,3 +277,20 @@
   .secao-toggle :hover {
     background: #444 !important;
   }
+
+  @media (max-width: 768px) {
+    .checkbox-level-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 270px;
+      margin-left: -17px;
+      gap: 5px;
+    }
+
+    .checkbox-container {
+      width: 120px !important;
+      padding: 5px;
+    }
+  }

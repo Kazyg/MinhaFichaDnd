@@ -172,7 +172,8 @@
   .selecao-atributos {
     display: flex;
     flex-direction: row;
-    gap: 2px;
+    justify-content: space-evenly;
+    gap: 20px;
     background-color: #333;
     border-radius: 5px;
     color: white;
@@ -190,7 +191,7 @@
     align-items: center;
     gap: 3px;
     cursor: pointer;
-    padding: 8px;
+    padding: 5px;
     border-radius: 5px;
     background-color: #444; /* Cor de fundo semelhante aos itens da lista */
   }
@@ -237,4 +238,83 @@
 
   .checkbox-container.disabled-hover:hover {
     background-color: #444 !important;
+  }
+
+  @media (max-width: 768px) {
+    .popup {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 90%; /* Ajusta a largura do popup para telas menores */
+      max-width: 100%; /* Remove a largura máxima */
+      height: auto; /* Altura automática */
+      max-height: 100vh; /* Ajusta a altura máxima */
+      padding: 5px; /* Reduz o padding */
+    }
+  
+    .popup-content-modal {
+      height: auto; /* Altura automática */
+      flex-direction: column; /* Altera a direção do flex para coluna */
+      width: 350px;
+      gap: 15px; /* Reduz o espaçamento entre os elementos */
+    }
+  
+    .popup-body-modal {
+      flex-direction: column; /* Altera a direção do flex para coluna */
+      align-items: center;
+      width: 350px;
+      gap: 15px; /* Espaçamento entre a lista e a descrição */
+    }
+  
+    .lista-racas {
+      min-width: 250px;
+      width: 93%; /* Ocupa 100% da largura */
+      margin-right: 0; /* Remove a margem direita */
+      margin-left: -17px;
+    }
+  
+    .lista-racas ul {
+      max-height: 30vh; /* Ajusta a altura máxima da lista */
+    }
+  
+    .detalhes-raca {
+      width: 90%; /* Ocupa 100% da largura */
+      height: auto; /* Altura automática */
+      max-height: 30vh; /* Ajusta a altura máxima da descrição */
+      padding: 15px; /* Reduz o padding */
+      margin-left: 3px;
+    }
+  
+    .detalhes-raca button {
+      margin-top: 10px; /* Ajusta a margem do botão */
+    }
+    
+    .selecao-atributos-container{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 98%;
+      margin-left: 3px;
+    }
+
+    .selecao-atributos{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+    }
+    /* Estilo para o checkbox na versão mobile */
+    .checkbox-container {
+      position: relative;
+      margin-top: 10px;
+      width: 40% !important;
+      margin-left: 0px !important;
+    }
+  
+    /* Ajusta o botão de fechar para mobile */
+    .popup-footer button.fechar {
+      width: 100%; /* Ocupa 100% da largura */
+      margin-top: 10px; /* Ajusta a margem */
+    }
   }

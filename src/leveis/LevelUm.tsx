@@ -413,7 +413,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
               <h3 className="tituloh3">Escolha de Proficiências ({classe.habilidade} opções){secoesExpandidas.proeficiencias ? "▲" : "▼"}</h3>
             </button>
             {secoesExpandidas.proeficiencias && (
-              <div>
+              <div className="checkbox-level-container">
                 {classe.habilidades.map((habilidade) => (
                   <div key={habilidade} className="checkbox-container">
                     <input

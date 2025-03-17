@@ -51,7 +51,6 @@
   color: white;
   flex-grow: 1;
   overflow-y: auto;
-  max-height: 360px;
 }
 
 .conteudo-abas::-webkit-scrollbar {
@@ -69,22 +68,21 @@
     position: relative;
     top: auto;
     left: auto;
-    width: 100%;
-    height: auto;
+    max-width: 90%;
+    margin-left: 15px;
+    height: 100%;
     padding: 5px;
   }
 
   .menu-abas {
-    flex-direction: column;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
   }
 
   .aba-botao {
-    width: 100%;
+    width: 25%;
     text-align: center;
-  }
-
-  .conteudo-abas {
-    max-height: 200px;
   }
 }

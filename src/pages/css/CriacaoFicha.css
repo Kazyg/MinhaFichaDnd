@@ -154,10 +154,11 @@
   .criacao-ficha {
     position: relative;
     top: auto;
-    width: 100%;
+    margin-left: 15px;
+    max-width: 90% !important;
     height: auto;
     padding: 5px;
-    max-height: 400px;
+    max-height: none !important;
   }
 
   .niveis-container {

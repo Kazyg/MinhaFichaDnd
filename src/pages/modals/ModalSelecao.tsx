@@ -95,7 +95,7 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
                                 </span>
                             ))}</p>
                             {(selecionado.nome === "Humano Variante" || selecionado.nome === "Meio-Elfo") && (
-                                <div>
+                                <div className="selecao-atributos-container">
                                     <h3>Escolha 2 Atributos</h3>
                                     <div className="selecao-atributos">
                                         {atributos.map((atributo) => (
