@@ -145,11 +145,12 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
     const valorAtual = atributos[atributo];
     let novoValor = valorAtual;
 
-    if (operacao === "incrementar" && valorAtual < 15 && pontosDisponiveis > 0) {
-      novoValor = valorAtual + 1;
-      if (novoValor >= 14) {
+    if (operacao === "incrementar" && valorAtual < 15 && pontosDisponiveis > 0 && valorAtual >= 8) {
+      if (novoValor +1 >= 14 && pontosDisponiveis >= 2) {
+        novoValor = valorAtual + 1;
         setPontosDisponiveis((prev) => prev - 2);
-      } else {
+      } else if (novoValor +1 <= 13) {
+        novoValor = valorAtual + 1;
         setPontosDisponiveis((prev) => prev - 1);
       }
     } else if (operacao === "decrementar" && valorAtual > 8) {

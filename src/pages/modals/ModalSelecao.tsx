@@ -45,6 +45,8 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
             novoSelecionado = new HumanoVariante(atributosEscolhidos[0], atributosEscolhidos[1]);
         } else if (raca.nome === "Meio-Elfo") {
             novoSelecionado = new MeioElfo(atributosEscolhidos[0], atributosEscolhidos[1]);
+        }else{
+            novoSelecionado = selecionado;
         }
 
         setSelecionado(novoSelecionado); // Atualiza o estado

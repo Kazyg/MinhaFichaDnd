@@ -1,13 +1,13 @@
 .inventario-container {
     position: absolute;
-    top: 212px;
-    left: 540px;
+    top: 187px;
+    left: 543px;
     margin-top: 10px;
     background-color: #2c2f33;
     padding: 10px;
     border-radius: 8px;
     width: 795px;
-    height: 388px;
+    height: 415px;
     display: flex;
     flex-direction: column;
   }

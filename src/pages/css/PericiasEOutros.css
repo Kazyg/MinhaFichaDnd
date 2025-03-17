@@ -1,14 +1,14 @@
 .pericias-container {
     position: absolute;
-    top: 162px;
-    left: 318px;
+    top: 134px;
+    left: 317px;
     margin-top: 10px;
     background-color: #2c2f33;
     padding: 10px;
     border-radius: 8px;
     max-width: 500px;
     transform: scale(0.8);
-    max-height: 490px; /* Limita a altura total do quadro */
+    max-height: 521px; /* Limita a altura total do quadro */
     overflow-y: auto; /* Adiciona scroll caso ultrapasse o tamanho */
   }
   
