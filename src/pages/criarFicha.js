@@ -1,22 +1,28 @@
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CriacaoFicha from "./components/CriacaoFicha.tsx";
 import InformacoesPersonagem from "./components/InformacoesPersonagem.js";
 import PericiasEOutros from "./components/PericiasEOutros.js";
 import InventarioMagiasDetalhes from "./components/InventarioMagiasDetalhes.js";
 import "./css/criarFicha.css";
 import { useFicha } from "../api/fichaPersonagem/FichaContext.tsx";
-import React, { useState } from "react";
-
-
 
 export default function CriarFicha() {
-
   const { ficha, salvarFicha } = useFicha();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+
+  // Redireciona para a Home se a ficha não estiver instanciada
+  useEffect(() => {
+    if (!ficha) {
+      navigate("/");
+    }
+  }, [ficha, navigate]);
+
   if (!ficha) {
-    return <div>Carregando ficha...</div>; // Ou redirecione para a página inicial
+    return null; // Ou uma mensagem de carregamento
   }
 
-  // Funções para as opções do menu
   const handleSalvarFicha = () => {
     salvarFicha(ficha);
     setIsMenuOpen(!isMenuOpen);
@@ -24,7 +30,6 @@ export default function CriarFicha() {
 
   const handleExportarPDF = () => {
     console.log('Exportar PDF');
-    // Implemente a lógica para exportar PDF
   };
 
   const handleExportarJSON = () => {
@@ -32,39 +37,29 @@ export default function CriarFicha() {
   };
 
   const exportarFicha = () => {
-    // Converte a ficha para JSON
-    const fichaJSON = JSON.stringify(ficha, null, 2); // O `null, 2` formata o JSON com indentação
-  
-    // Cria um blob com o conteúdo JSON
+    const fichaJSON = JSON.stringify(ficha, null, 2);
     const blob = new Blob([fichaJSON], { type: 'application/json' });
-  
-    // Cria um link para download
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'ficha_personagem.json'; // Nome do arquivo
+    link.download = 'ficha_personagem.json';
     document.body.appendChild(link);
     link.click();
-  
-    // Limpa o link após o download
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
   };
 
   const handleExportarXML = () => {
     console.log('Exportar XML');
-    // Implemente a lógica para exportar XML
   };
 
   return (
     <div className="criar-ficha">
       <div className="menu-container">
-        {/* Botão do menu de hambúrguer */}
         <button className="hamburger-button" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           ☰
         </button>
 
-        {/* Menu de opções */}
         {isMenuOpen && (
           <div className="menu-options">
             <button onClick={handleSalvarFicha}>Salvar Ficha</button>
