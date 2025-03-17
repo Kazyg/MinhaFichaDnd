@@ -26,6 +26,11 @@
   gap: 10px;
 }
 
+.coluna-2,
+.coluna-3 {
+  align-items: center;
+}
+
 .coluna-1 {
   width: 150px;
   /* Largura fixa para a coluna do nome, nível e XP */
@@ -41,14 +46,12 @@
   position: relative;
   top: 0px;
   margin-top: -10px;
-  left: 76px;
 }
 
 .coluna-3 h4 {
   position: relative;
   top: 0px;
   margin-top: -10px;
-  left: 65px;
 }
 
 .coluna-4 {
@@ -219,13 +222,13 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
 @media (max-width: 768px) {
   .informacoes-personagem {
     position: relative;
     top: auto;
     left: auto;
-    width: 100%;
-    max-height: auto;
+    max-height: 100%;
     transform: none;
   }
 
@@ -240,17 +243,57 @@
     width: 100%;
   }
 
+  .coluna-2, .coluna-3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .atributos-container,
+  .proficiencias-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+
+  .atributo,
+  .proficiencia {
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+    width: 80px;
+  }
+
+  .coluna-4 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ca-container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .ca-text {
+    left: -49px !important;
+    font-size: 40px;
+  }
+
+  .ca {
+    margin-left: -20px !important;
+    width: 200px !important;
+  }
+
   .atributos-container,
   .proficiencias-container {
     grid-template-columns: repeat(2, 1fr);
   }
 
   .icon-ca {
-    width: 50px;
-    height: 50px;
-  }
-
-  .ca-text {
-    font-size: 20px;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    left: 25px;
   }
 }

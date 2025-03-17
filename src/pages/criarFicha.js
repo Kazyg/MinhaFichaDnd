@@ -11,6 +11,14 @@ export default function CriarFicha() {
   const { ficha, salvarFicha } = useFicha();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [abaAtiva, setAbaAtiva] = useState("criacao");
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Redireciona para a Home se a ficha não estiver instanciada
   useEffect(() => {
@@ -69,10 +77,43 @@ export default function CriarFicha() {
           </div>
         )}
       </div>
-      <CriacaoFicha />
-      <InformacoesPersonagem />
-      <PericiasEOutros />
-      <InventarioMagiasDetalhes />
+      {/* Modo Desktop: exibe todos os componentes */}
+      {!isMobile ? (
+        <>
+          <CriacaoFicha />
+          <InformacoesPersonagem />
+          <PericiasEOutros />
+          <InventarioMagiasDetalhes />
+        </>
+      ) : (
+        /* Modo Mobile: menu para trocar entre componentes */
+        <div className="menu-abas-criarFicha">
+          {[
+            { nome: "Criar", id: "criacao" },
+            { nome: "Informações", id: "informacoes" },
+            { nome: "Perícias", id: "pericias" },
+            { nome: "Inventário", id: "inventario" }
+          ].map((aba) => (
+            <button
+              key={aba.id}
+              className={`aba-botao ${abaAtiva === aba.id ? "ativa" : ""}`}
+              onClick={() => setAbaAtiva(aba.id)}
+            >
+              {aba.nome}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Conteúdo das abas no Mobile */}
+      {isMobile && (
+        <div className="conteudo-abas">
+          {abaAtiva === "criacao" && <CriacaoFicha />}
+          {abaAtiva === "informacoes" && <InformacoesPersonagem />}
+          {abaAtiva === "pericias" && <PericiasEOutros />}
+          {abaAtiva === "inventario" && <InventarioMagiasDetalhes />}
+        </div>
+      )}
     </div>
   );
 }
