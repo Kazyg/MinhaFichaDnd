@@ -261,6 +261,10 @@
   }
 
   .botao-distribuir {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
     width: 110% !important;
     padding: 10px;
     margin-left: -10px;

@@ -2,6 +2,7 @@ import { BackGround } from "../classesPrincipais/BackGrounds.class";
 import { Classes } from "../classesPrincipais/Classes.class";
 import { Raca } from "../classesPrincipais/Raca.class";
 import { Atributos } from "../classesPrincipais/Atributos.class";
+import { Multiclasses } from "../classesPrincipais/Multiclasses";
 
 export class Ficha {
     id: string;
@@ -10,7 +11,7 @@ export class Ficha {
     subRaca: Raca | null;
     classePrincipal: Classes | null;
     subClasse: any | null;
-    classesSecundarias: {classe: Classes, nivelClasse: number}[] | null;
+    multiclasses: Multiclasses[] | null;
     backGround: BackGround | null;
     atributosPersonagem: Atributos | null;
     iniciativa: number | null;
@@ -32,6 +33,7 @@ export class Ficha {
         this.subRaca = data?.subRaca ?? null;
         this.classePrincipal = data?.classePrincipal ?? null;
         this.backGround = data?.backGround ?? null;
+        this.multiclasses = data?.multiclasses ?? null;
         this.atributosPersonagem = data?.atributosPersonagem ?? null;
         this.iniciativa = data?.iniciativa ?? null;
         this.proeficiencia = data?.proeficiencia ?? null;
@@ -178,5 +180,8 @@ export class Ficha {
         if (this.idiomas) {
             this.idiomas = this.idiomas.filter((i) => i !== idioma);
         }
+    }
+    setMulticlasse(multiclasses: Multiclasses) {
+        this.multiclasses = [multiclasses];
     }
 }
