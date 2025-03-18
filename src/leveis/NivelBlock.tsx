@@ -25,7 +25,6 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
         }));
     };
 
-    // Encontrar a classe selecionada para este nível
     const classeNoNivel = ficha?.multiclasses?.find(m => m.nivelEscolhido.includes(nivel));
 
     const getAtributo = (atributo) => atributo ? atributo.valor ?? 0 : 0;
@@ -48,10 +47,8 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
     const calcularNivelClasse = (nivelAtual: number): number => {
         let nivelClasse = 0;
         debugger;
-        // Ordena os níveis em que essa classe foi escolhida
         const niveisEscolhidos = ficha?.multiclasses?.find(m => m.classe.nome === classeNoNivel?.classe.nome)?.nivelEscolhido.sort((a, b) => a - b) ?? [];
-    
-        // Conta quantos níveis dessa classe foram escolhidos até o nível atual
+        
         for (const nivel of niveisEscolhidos) {
             if (nivel <= nivelAtual) {
                 nivelClasse++;

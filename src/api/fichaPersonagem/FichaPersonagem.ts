@@ -25,6 +25,7 @@ export class Ficha {
     tamanho: string | null;
     talentos: string[] | null;
     idiomas: string[] | null;
+    estiloLuta: string | null;
 
     constructor(data: Partial<Ficha> = {}) {
         this.id = data?.id ?? this.gerarIdUnico();
@@ -45,6 +46,7 @@ export class Ficha {
         this.speed = data?.speed ?? null;
         this.tamanho = data?.tamanho ?? null;
         this.idiomas = data?.idiomas ?? null;
+        this.estiloLuta = data?.estiloLuta ?? null;
     }
 
     calcularModificador(valor) {
@@ -183,5 +185,8 @@ export class Ficha {
     }
     setMulticlasse(multiclasses: Multiclasses) {
         this.multiclasses = [multiclasses];
+    }
+    setEstiloLuta(estilo: string) {
+        this.estiloLuta = estilo;
     }
 }
