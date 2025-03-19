@@ -9,9 +9,6 @@ jobs:
   auto_pull_request:
     runs-on: ubuntu-latest
     steps:
-      - name: Verificar branch de origem
-        run: echo "Nova branch criada: ${{ github.ref }}"
-
       - name: Configurar GitHub CLI
         run: |
           sudo apt update
