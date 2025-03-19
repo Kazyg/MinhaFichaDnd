@@ -47,14 +47,13 @@ const ModalSelecaoBackGround: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
                             <p><strong>Idiomas:</strong> {selecionado.idiomas}</p>
                             <p><strong>Proeficiencias em ferramentas:</strong> {selecionado.proeficienciaFerramentas.join(", ")}</p>
                             <p><strong>Caracteristicas:</strong> {selecionado.caracteristicas.join(", ")}</p>
-
-                            <button className="escolher-button" onClick={() => { onSelect(selecionado); onClose() }}>Escolher {selecionado.nome}</button>
                         </>
                     )}
                 </div>
             </div>
 
             <div className="popup-footer">
+            {selecionado && (<button className="escolher-button" onClick={() => { onSelect(selecionado); onClose() }}>Escolher {selecionado.nome}</button>)}
                 <button className="escolher-button" onClick={() => { onClose() }}>Fechar</button>
             </div>
         </div>

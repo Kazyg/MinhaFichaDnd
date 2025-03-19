@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Classes } from "../../api/classesPrincipais/Classes.class.ts";
+import { useFicha } from "../../api/fichaPersonagem/FichaContext.tsx";
 
 interface ModalSelecaoProps {
     opcoes: Classes[];
@@ -12,10 +13,16 @@ interface ModalSelecaoProps {
 const ModalSelecaoClasse: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClose, onSelect, classeInicial }) => {
     const [filtro, setFiltro] = useState("");
     const [selecionado, setSelecionado] = useState<Classes | null>(classeInicial || null);
+    const { ficha } = useFicha();
 
     const opcoesFiltradas = opcoes.filter((opcao) =>
         opcao.nome.toLowerCase().includes(filtro.toLowerCase())
     );
+
+    const classePrincipal = opcoesFiltradas.find(opcao => opcao.nome === ficha?.classePrincipal?.nome);
+    const opcoesOrdenadas = classePrincipal
+        ? [classePrincipal, ...opcoesFiltradas.filter(opcao => opcao.nome !== classePrincipal.nome)]
+        : opcoesFiltradas;
 
     return (
         <div className="popup-content-modal">
@@ -29,7 +36,7 @@ const ModalSelecaoClasse: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, 
                         onChange={(e) => setFiltro(e.target.value)}
                     />
                     <ul>
-                        {opcoesFiltradas.map((opcao) => (
+                        {opcoesOrdenadas.map((opcao) => (
                             <li key={opcao.nome} onClick={() => {
                                 setSelecionado(opcao);
                             }}>
@@ -49,14 +56,13 @@ const ModalSelecaoClasse: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, 
                             <p><strong>Ferramentas:</strong> {selecionado.ferramentas.join(", ")}</p>
                             <p><strong>Testes de resistencias:</strong> {selecionado.testesResistencias.join(", ")}</p>
                             <p><strong>Proeficiencias:</strong> {selecionado.habilidades.join(", ")}</p>
-
-                            <button className="escolher-button" onClick={() => { onSelect(selecionado); onClose() }}>Escolher {selecionado.nome}</button>
                         </>
                     )}
                 </div>
             </div>
 
             <div className="popup-footer">
+                {selecionado && (<button className="escolher-button" onClick={() => { onSelect(selecionado); onClose() }}>Escolher {selecionado.nome}</button>)}
                 <button className="escolher-button" onClick={() => { onClose() }}>Fechar</button>
             </div>
         </div>

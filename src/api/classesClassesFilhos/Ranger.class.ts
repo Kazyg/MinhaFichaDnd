@@ -1,4 +1,6 @@
 import { Classes } from "../classesPrincipais/Classes.class.ts";
+import { SubClasses } from "../classesPrincipais/SubClasses.ts";
+import { ConclaveDaBesta, ConclaveDoCaçador, ConclaveDoRastreadorSubterrâneo } from "../classesPrincipais/SubClassesExport.ts";
 
 export class Ranger extends Classes {
   level: number;
@@ -9,6 +11,7 @@ export class Ranger extends Classes {
     espacosMagia: number[];
     caracteristicas: string[];
   }[];
+  subClasse: SubClasses[];
 
   constructor() {
     super(
@@ -23,6 +26,7 @@ export class Ranger extends Classes {
     );
     this.level = 0; // Nível inicial
     this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis
+    this.subClasse = [new ConclaveDaBesta(), new ConclaveDoCaçador(), new ConclaveDoRastreadorSubterrâneo()];
   }
 
   // Método para aumentar o nível

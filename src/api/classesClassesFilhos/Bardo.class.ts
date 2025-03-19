@@ -1,4 +1,6 @@
 import { Classes } from "../classesPrincipais/Classes.class.ts";
+import { SubClasses } from "../classesPrincipais/SubClasses.ts";
+import { ColegioDoConhecimento, ColegioDaBravura } from "../classesPrincipais/SubClassesExport.ts";
 
 export class Bardo extends Classes {
   level: number;
@@ -10,6 +12,7 @@ export class Bardo extends Classes {
     magiasConhecidas: number;
     espacosMagia: number[];
   }[];
+  subClasse: SubClasses[];
 
   constructor() {
     super(
@@ -41,6 +44,7 @@ export class Bardo extends Classes {
     );
     this.level = 0;
     this.niveis = this.preencherNiveis();
+    this.subClasse = [new ColegioDoConhecimento(), new ColegioDaBravura()];
   }
 
   aumentarNivel(): void {
