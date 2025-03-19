@@ -109,7 +109,7 @@ export const Talentos = [
     },
     {
       nome: "CONJURADOR DE RITUAL",
-      requisito: { atributo: "inteligencia, sabedoria", valor : 13  },
+      requisito: { atributo: ["inteligencia", "sabedoria"], valor : 13  },
       descricao: `
         Pré-requisito: Inteligência ou Sabedoria 13 ou maior.
         Você aprendeu um número de magias que você pode conjurar como rituais. Essas magias são escritas em um livro de rituais, o qual deve estar em suas mãos enquanto você conjura uma dessas magias.
@@ -144,7 +144,7 @@ export const Talentos = [
     },
     {
       nome: "ESPECIALISTA EM BRIGA",
-      bonus: {atributo:"forca,constituição", valor: 1},
+      bonus: {atributo:["forca", "constituição"], valor: 1},
       descricao: `
         Acostumado a brigas de bar usando qualquer coisa como armas, e na falta, os punhos, você ganha os seguintes benefícios:
         - Aumente o valor de Força ou Constituição em 1, até o máximo de 20.
