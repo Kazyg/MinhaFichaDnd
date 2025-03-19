@@ -45,7 +45,7 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
             novoSelecionado = new HumanoVariante(atributosEscolhidos[0], atributosEscolhidos[1]);
         } else if (raca.nome === "Meio-Elfo") {
             novoSelecionado = new MeioElfo(atributosEscolhidos[0], atributosEscolhidos[1]);
-        }else{
+        } else {
             novoSelecionado = selecionado;
         }
 
@@ -123,22 +123,21 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
                                     </div>
                                 </div>
                             )}
-
-                            <button className="escolher-button" onClick={() => {
-                                onAtributeSelect(atributosSelecionados);
-                                atribuirAtributos(atributosSelecionados, selecionado);
-                                onSelect(selecionadoRef.current);
-                                onClose();
-                            }}
-                                disabled={((selecionado.nome === "Humano Variante" || selecionado.nome === "Meio-Elfo") && atributosSelecionados.length !== 2) || (selecionado.nome === "Meio-Elfo" && atributosSelecionados.includes("carisma")
-                                )}>Escolher {selecionado.nome}
-                            </button>
                         </>
                     )}
                 </div>
             </div>
 
             <div className="popup-footer">
+                {selecionado && (<button className="escolher-button" onClick={() => {
+                    onAtributeSelect(atributosSelecionados);
+                    atribuirAtributos(atributosSelecionados, selecionado);
+                    onSelect(selecionadoRef.current);
+                    onClose();
+                }}
+                    disabled={((selecionado.nome === "Humano Variante" || selecionado.nome === "Meio-Elfo") && atributosSelecionados.length !== 2) || (selecionado.nome === "Meio-Elfo" && atributosSelecionados.includes("carisma")
+                    )}>Escolher {selecionado.nome}
+                </button>)}
                 <button className="escolher-button" onClick={() => { onClose() }}>Fechar</button>
             </div>
         </div>

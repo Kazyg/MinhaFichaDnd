@@ -1,3 +1,5 @@
+import { SubClasses } from "../classesPrincipais/SubClasses.ts";
+
 export class Classes {
     nome: string;
     dadosVida: number;
@@ -11,6 +13,7 @@ export class Classes {
         nivel: number;
         caracteristicas: string[];
       }[];
+      subClasse: SubClasses[];
 
     constructor(
         nome: string,

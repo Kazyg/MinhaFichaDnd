@@ -1,4 +1,6 @@
 import { Classes } from "../classesPrincipais/Classes.class.ts";
+import { SubClasses } from "../classesPrincipais/SubClasses.ts";
+import { EscolaDeAbjuracao, EscolaDeConjuracao, EscolaDeAdivinhacao, EscolaDeEncantamento, EscolaDeEvocacao, EscolaDeIlusao, EscolaDeNecromancia, EscolaDeTransmutacao } from "../classesPrincipais/SubClassesExport.ts";
 
 export class Mago extends Classes {
   level: number;
@@ -9,6 +11,7 @@ export class Mago extends Classes {
     espacosMagia: number[];
     caracteristicas: string[];
   }[];
+  subClasse: SubClasses[];
 
   constructor() {
     super(
@@ -23,6 +26,7 @@ export class Mago extends Classes {
     );
     this.level = 0; // Nível inicial
     this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis
+    this.subClasse = [new EscolaDeAbjuracao(), new EscolaDeConjuracao(), new EscolaDeAdivinhacao(), new EscolaDeEncantamento(), new EscolaDeEvocacao(), new EscolaDeIlusao(), new EscolaDeNecromancia(), new EscolaDeTransmutacao()];
   }
 
   // Método para aumentar o nível

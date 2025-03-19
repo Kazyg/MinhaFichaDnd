@@ -50,13 +50,13 @@ const ModalSelecaoIdioma: React.FC<ModalSelecaoIdiomaProps> = ({ titulo, onClose
                             <h3>{selecionado.nome}</h3>
                             <p><strong>Falantes Tipicos:</strong> {selecionado.falantes_tipicos}</p>
                             <p><strong>Alfabetos:</strong> {selecionado.alfabeto}</p>
-                            <p><strong>Informações:</strong> {selecionado.informacoes}</p>
-                            <button className="escolher-button" onClick={() => { onSelect(selecionado); onClose(); }}>Escolher {selecionado.nome}</button>
+                            <p><strong>Informações:</strong> {selecionado.informacoes}</p>                           
                         </>
                     )}
                 </div>
             </div>
             <div className="popup-footer">
+            {selecionado && (<button className="escolher-button" onClick={() => { onSelect(selecionado); onClose() }}>Escolher {selecionado.nome}</button>)}
                 <button className="escolher-button" onClick={() => onClose()}>Fechar</button>
             </div>
         </div>

@@ -1,18 +1,19 @@
 import React, { useState } from "react";
+import { SubClasses } from "../../api/classesPrincipais/SubClasses.ts";
 
 interface ModalSelecaoProps {
-    opcoes: { classe: string[], nome: string, descricao: string }[];
+    opcoes: SubClasses[] | null;
     titulo: string;
     onClose: () => void;
-    onSelect: (opcao: { classe: string[], nome: string, descricao: string } | null) => void;
-    EstiloInicial: { classe: string[], nome: string, descricao: string } | null;
+    onSelect: (opcao: SubClasses | null) => void;
+    subClasseInicial: SubClasses | null;
 }
 
-const ModalSelecaoEstiloLuta: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClose, onSelect, EstiloInicial }) => {
+const ModalSelecaoSubClasse: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClose, onSelect, subClasseInicial }) => {
     const [filtro, setFiltro] = useState("");
-    const [selecionado, setSelecionado] = useState<{ classe: string[], nome: string, descricao: string } | null>(EstiloInicial || null);
+    const [selecionado, setSelecionado] = useState<SubClasses | null>(subClasseInicial || null);
 
-    const opcoesFiltradas = opcoes.filter((opcao) =>
+    const opcoesFiltradas = opcoes?.filter((opcao) =>
         opcao.nome.toLowerCase().includes(filtro.toLowerCase())
     );
 
@@ -23,12 +24,12 @@ const ModalSelecaoEstiloLuta: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
                 <div className="lista-racas">
                     <input
                         type="text"
-                        placeholder="Filtrar classes..."
+                        placeholder="Filtrar subClasses..."
                         value={filtro}
                         onChange={(e) => setFiltro(e.target.value)}
                     />
                     <ul>
-                        {opcoesFiltradas.map((opcao) => (
+                        {opcoesFiltradas?.map((opcao) => (
                             <li key={opcao.nome} onClick={() => {
                                 setSelecionado(opcao);
                             }}>
@@ -42,7 +43,17 @@ const ModalSelecaoEstiloLuta: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
                     {selecionado && (
                         <>
                             <h3>{selecionado.nome}</h3>
-                            <p><strong>Descricao:</strong> 1D{selecionado.descricao}</p>
+                            <p><strong>Descrição:</strong> {selecionado.descricao}</p>
+                            {selecionado.niveis.map((subClasse) => {
+                                return (
+                                    <>
+                                        <p><strong>Nome:</strong> {subClasse.nome}</p>
+                                        <p><strong>Nível:</strong> {subClasse.nivel}</p>
+                                        <p><strong>Descrição:</strong> {subClasse.descricao}</p>
+                                        <hr></hr>
+                                    </>
+                                );
+                            })}
                         </>
                     )}
                 </div>
@@ -56,4 +67,4 @@ const ModalSelecaoEstiloLuta: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
     );
 };
 
-export default ModalSelecaoEstiloLuta;
+export default ModalSelecaoSubClasse;

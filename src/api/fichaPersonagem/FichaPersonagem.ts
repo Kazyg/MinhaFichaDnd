@@ -3,6 +3,7 @@ import { Classes } from "../classesPrincipais/Classes.class";
 import { Raca } from "../classesPrincipais/Raca.class";
 import { Atributos } from "../classesPrincipais/Atributos.class";
 import { Multiclasses } from "../classesPrincipais/Multiclasses";
+import { SubClasses } from "../classesPrincipais/SubClasses";
 
 export class Ficha {
     id: string;
@@ -10,7 +11,7 @@ export class Ficha {
     racaPrincipal?: Raca | null;
     subRaca: Raca | null;
     classePrincipal: Classes | null;
-    subClasse: any | null;
+    subClasse: {classe: Classes, subclasse: SubClasses}[] | null;
     multiclasses: Multiclasses[] | null;
     backGround: BackGround | null;
     atributosPersonagem: Atributos | null;
@@ -33,6 +34,7 @@ export class Ficha {
         this.racaPrincipal = data?.racaPrincipal ?? null;
         this.subRaca = data?.subRaca ?? null;
         this.classePrincipal = data?.classePrincipal ?? null;
+        this.subClasse = data?.subClasse ?? null;
         this.backGround = data?.backGround ?? null;
         this.multiclasses = data?.multiclasses ?? null;
         this.atributosPersonagem = data?.atributosPersonagem ?? null;
@@ -76,8 +78,15 @@ export class Ficha {
         this.classePrincipal = classe;
     }
 
-    setSubClasse(subClasse: any | null) {
-        this.subClasse = subClasse;
+    setSubClasse(classe: Classes, subClasse: SubClasses) {
+        if(this.subClasse === null){
+            this.subClasse = [];
+        }
+        this.subClasse.push({classe: classe, subclasse: subClasse});
+    }
+    
+    removerSubClasse(id: string){
+        if(this.subClasse)this.subClasse = this.subClasse.filter(s => s.subclasse.id === id);
     }
 
     setBackGround(backGround: BackGround | null) {

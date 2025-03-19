@@ -1,4 +1,6 @@
 import { Classes } from "../classesPrincipais/Classes.class.ts";
+import { SubClasses } from "../classesPrincipais/SubClasses.ts";
+import { JuramentoDeDevoção, JuramentoDeVingança, JuramentoDosAnciões } from "../classesPrincipais/SubClassesExport.ts";
 
 export class Paladino extends Classes {
   level: number;
@@ -8,6 +10,7 @@ export class Paladino extends Classes {
     espacosMagia: number[];
     caracteristicas: string[];
   }[];
+  subClasse: SubClasses[];
 
   constructor() {
     super(
@@ -22,6 +25,7 @@ export class Paladino extends Classes {
     );
     this.level = 0; // Nível inicial
     this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis
+    this.subClasse = [new JuramentoDeDevoção(), new JuramentoDeVingança(), new JuramentoDosAnciões()];
   }
 
   // Método para aumentar o nível
