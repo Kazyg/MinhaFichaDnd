@@ -12,11 +12,19 @@ jobs:
       - name: Verificar branch de origem
         run: echo "Nova branch criada: ${{ github.ref }}"
 
+      - name: Configurar GitHub CLI
+        run: |
+          sudo apt update
+          sudo apt install gh -y
+
       - name: Criar Pull Request automático
-        if: startsWith(github.ref, 'refs/heads/') && github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           BRANCH_NAME=${GITHUB_REF#refs/heads/}
-          gh pr create --base develop --head "$BRANCH_NAME" --title "Merge $BRANCH_NAME into develop" --body "Este PR foi criado automaticamente para mesclar $BRANCH_NAME na develop."
-
+          if [[ "$BRANCH_NAME" != "main" && "$BRANCH_NAME" != "develop" ]]; then
+            gh auth login --with-token <<< "$GITHUB_TOKEN"
+            gh pr create --base develop --head "$BRANCH_NAME" --title "Merge $BRANCH_NAME into develop" --body "Este PR foi criado automaticamente para mesclar $BRANCH_NAME na develop."
+          else
+            echo "A branch $BRANCH_NAME não requer um PR automático para develop."
+          fi
