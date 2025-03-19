@@ -1,0 +1,22 @@
+name: Auto PR para develop
+
+on:
+  create:
+    branches:
+      - '**'  # Aciona quando uma nova branch for criada
+
+jobs:
+  auto_pull_request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verificar branch de origem
+        run: echo "Nova branch criada: ${{ github.ref }}"
+
+      - name: Criar Pull Request automático
+        if: startsWith(github.ref, 'refs/heads/') && github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          gh pr create --base develop --head "$BRANCH_NAME" --title "Merge $BRANCH_NAME into develop" --body "Este PR foi criado automaticamente para mesclar $BRANCH_NAME na develop."
+
