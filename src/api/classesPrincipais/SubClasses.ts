@@ -1,6 +1,7 @@
 export class SubClasses {
     id: string;
     nome: string;
+    magias: string[];
     descricao: string;
     niveis: {
         nome: string;

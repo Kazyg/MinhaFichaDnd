@@ -133,7 +133,7 @@ export default function CriacaoFicha() {
   function selecionarMulticlasse(classeEscolhida: Classes, nivelAtual: number): void {
     const nivelExistente = ficha?.multiclasses?.find(m => m.nivelEscolhido.includes(nivelAtual));
     const multiclasseExistente = ficha?.multiclasses?.find(m => m.classe.nome === classeEscolhida.nome);
-
+    debugger;
     if (nivelExistente) {
       if (nivelExistente.classe.nome === classeEscolhida.nome) return
       else {
@@ -143,6 +143,25 @@ export default function CriacaoFicha() {
           ficha?.multiclasses?.splice(ficha?.multiclasses?.findIndex(m => m.id === nivelExistente.id), 1);
         } else if (multiclasseAchada) {
           multiclasseAchada.nivelClasse -= 1;
+          if (!validaSubClasse(multiclasseAchada.classe.nome, multiclasseAchada.nivelClasse))
+          {
+            
+            let subclasseAchada = ficha?.subClasse?.find(s => s.classe.nome === multiclasseAchada.classe.nome)?.subclasse;
+            if(subclasseAchada)ficha?.removerSubClasse(subclasseAchada.id)
+          }
+          if(multiclasseAchada.nivelClasse < 3 && ficha?.subClasse?.find(s => s.classe.nome === multiclasseAchada.classe.nome)?.subclasse.nome === "Círculo da Terra")
+          {
+            ficha.removerTerreno();
+          }
+          if(ficha?.subClasse?.find(s => s.classe.nome === multiclasseAchada.classe.nome)?.subclasse.nome === "Caminho do Guerreiro Totêmico"){
+            if(multiclasseAchada.nivelClasse < 14){
+              ficha.excluirAnimal(14);
+            } else if(multiclasseAchada.nivelClasse < 6){
+              ficha.excluirAnimal(6);
+            } else if(multiclasseAchada.nivelClasse < 3){
+              ficha.excluirAnimal(3);
+            }
+          }
         }
 
         if (multiclasseExistente) {
@@ -162,6 +181,19 @@ export default function CriacaoFicha() {
         ficha?.multiclasses ? ficha?.multiclasses.push(novaMulticlasse) : ficha?.setMulticlasse(novaMulticlasse);
       }
     }
+  }
+
+  function validaSubClasse(classe, nivel) {
+    // Converte a classe para minúsculas para evitar problemas de case sensitivity
+    classe = classe?.toLowerCase();
+
+    // Verifica as condições
+    const condicao1 = (classe === "feiticeiro" || classe === "clérigo" || classe === "bruxo") && nivel === 1;
+    const condicao2 = (classe === "druida" || classe === "mago") && nivel === 2;
+    const condicao3 = nivel === 3 && !["feiticeiro", "clérigo", "bruxo", "druida", "mago"].includes(classe);
+
+    // Retorna true se qualquer uma das condições for verdadeira
+    return condicao1 || condicao2 || condicao3;
   }
 
   return (
@@ -374,7 +406,7 @@ export default function CriacaoFicha() {
                   classesDisponiveis={classes}
                   selecionarMulticlasse={selecionarMulticlasse}
                 />
-              ) : "Nivel "+ (i + 2)}
+              ) : "Nivel " + (i + 2)}
             </div>
           </div>
         ))}
