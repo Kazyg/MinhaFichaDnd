@@ -133,7 +133,6 @@ export default function CriacaoFicha() {
   function selecionarMulticlasse(classeEscolhida: Classes, nivelAtual: number): void {
     const nivelExistente = ficha?.multiclasses?.find(m => m.nivelEscolhido.includes(nivelAtual));
     const multiclasseExistente = ficha?.multiclasses?.find(m => m.classe.nome === classeEscolhida.nome);
-    debugger;
     if (nivelExistente) {
       if (nivelExistente.classe.nome === classeEscolhida.nome) return
       else {
@@ -348,6 +347,12 @@ export default function CriacaoFicha() {
                 if (idiomasSelecionado && idiomasSelecionado[0]) {
                   ficha?.removerIdioma(idiomasSelecionado[0].nome);
                 }
+                if (!ficha?.pericias || ficha.pericias.length === 0) {
+                  backGrounds?.proeficienciasHabilidades && ficha?.setPericias(backGrounds?.proeficienciasHabilidades);
+                }else {
+                  backGrounds?.proeficienciasHabilidades && ficha?.setPericia(backGrounds?.proeficienciasHabilidades);
+                }
+                forceUpdate();
                 setModalBackGroundsAberto(false)
                 setIdiomasSelecionado(null)
                 forceUpdate();
