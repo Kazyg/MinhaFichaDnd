@@ -164,11 +164,16 @@ export default function InventarioMagiasDetalhes() {
       {/* Modal para selecionar equipamentos */}
       {
         modalEquipamentoAberto && (
-          <ModalInventarioEquipamentos
-            equipamentos={armaduras_equip} // Passa o array de equipamentos
-            onClose={fecharModalEquipamento}
-            onSelecionarEquipamento={selecionarEquipamento}
-          />
+          <>
+            <div className="popup-overlay" onClick={() => setModalAberto(false)}></div>
+            <div className="popup">
+              <ModalInventarioEquipamentos
+                equipamentos={armaduras_equip} // Passa o array de equipamentos
+                onClose={fecharModalEquipamento}
+                onSelecionarEquipamento={selecionarEquipamento}
+              />
+            </div>
+          </>
         )
       }
     </div >

@@ -53,7 +53,7 @@ export default function ModalInventarioArma({
 
       {/* Mostra os botões de filtro ou a lista de armas */}
       {mostrarFiltros ? (
-        <div className={styles.filtroBotoes}>
+        <div className="menu-abas">
           <button onClick={() => selecionarFiltro("Armas Simples", "não")}>Simples Corpo a Corpo</button>
           <button onClick={() => selecionarFiltro("Armas Marciais", "não")}>Marcial Corpo a Corpo</button>
           <button onClick={() => selecionarFiltro("Armas Simples", "sim")}>Simples à Distância</button>
