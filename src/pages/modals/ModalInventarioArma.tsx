@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import styles from "../../pages/css/ModalInventarioArma.module.css"; // Estilos para o modal
-
-
 
 interface Arma {
   nome: string;
