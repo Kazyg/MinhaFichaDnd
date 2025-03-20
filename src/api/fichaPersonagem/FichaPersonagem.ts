@@ -151,8 +151,10 @@ export class Ficha {
         this.vidaTotal = vidaTotal;
     }
 
-    setPericia(pericia: string | null) {
-        pericia && this.pericias?.push(pericia);
+    setPericia(pericia: string[] | null) {
+        if (pericia) {
+            this.pericias = [...(this.pericias || []), ...pericia];
+        }
     }
 
     removerIPericia(pericia: string) {
@@ -161,8 +163,12 @@ export class Ficha {
         }
     }
 
-    setPericias(pericias: string[] | null) {
-        this.pericias = pericias;
+    setPericias(pericias: string[]) {
+        if(this.backGround){
+            this.pericias = [...this.backGround.proeficienciasHabilidades, ...pericias]
+        }else {
+            this.pericias = pericias;
+        }
     }
 
     setLevelTotal(levelTotal: number | null) {

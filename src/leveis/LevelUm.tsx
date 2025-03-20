@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import iconClasse from "../imagens/icon_class.png"
 import iconRaca from "../imagens/icon_ancestry.png"
 import { Classes } from "../api/classesPrincipais/Classes.class.ts"
@@ -31,7 +31,6 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
   const [humanoVarianteFeatEscolhido, setHumanoVarianteFeatEscolhido] = useState<Talento | null>(null);
   const [subGrupoAberto, setSubGrupoAberto] = useState(false);
   const [subClasses, setSubClasses] = useState<SubClasses[] | null>([]);
-
   const { ficha, forceUpdate } = useFicha();
 
   type Talento = {
@@ -65,6 +64,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
   };
 
   const toggleProeficiencia = (habilidade: string) => {
+    debugger;
     setProeficienciasEscolhidas((prev) => {
       let novaLista;
 
@@ -75,7 +75,6 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
       } else {
         return prev;
       }
-
       ficha?.setPericias(novaLista);
       forceUpdate();
       return novaLista;
@@ -477,8 +476,12 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
                     <div key={habilidade} className="checkbox-container">
                       <input
                         type="checkbox"
+                        disabled={ficha?.backGround?.proeficienciasHabilidades?.includes(habilidade)}
                         id={habilidade}
-                        checked={ficha?.pericias?.includes(habilidade) || proeficienciasEscolhidas.includes(habilidade)}
+                        checked={
+                          ficha?.pericias?.includes(habilidade) ||
+                          proeficienciasEscolhidas.includes(habilidade)
+                        }
                         onChange={() => {
                           toggleProeficiencia(habilidade);
                         }}
