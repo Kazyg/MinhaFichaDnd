@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../css/InventarioMagiasDetalhes.css";
 
 // Itens
-import { armas } from "../../api/equipamentos/Armas.ts"; 
+import { armas } from "../../api/equipamentos/Armas.ts";
 import { armaduras_equip } from "../../api/equipamentos/Armaduras.ts";
 
 // Modals
@@ -148,21 +148,29 @@ export default function InventarioMagiasDetalhes() {
 
       {/* Modal para selecionar armas */}
       {modalAberto && (
-        <ModalInventarioArma
-          armas={armas} // Passa o array de armas
-          onClose={fecharModal}
-          onSelecionarArma={selecionarArma}
-        />
-      )}
+        <>
+          <div className="popup-overlay" onClick={() => setModalAberto(false)}></div>
+          <div className="popup">
+            <ModalInventarioArma
+              armas={armas} // Passa o array de armas
+              onClose={fecharModal}
+              onSelecionarArma={selecionarArma}
+            />
+          </div>
+        </>
+      )
+      }
 
       {/* Modal para selecionar equipamentos */}
-      {modalEquipamentoAberto && (
-        <ModalInventarioEquipamentos
-          equipamentos={armaduras_equip} // Passa o array de equipamentos
-          onClose={fecharModalEquipamento}
-          onSelecionarEquipamento={selecionarEquipamento}
-        />
-      )}
-    </div>
+      {
+        modalEquipamentoAberto && (
+          <ModalInventarioEquipamentos
+            equipamentos={armaduras_equip} // Passa o array de equipamentos
+            onClose={fecharModalEquipamento}
+            onSelecionarEquipamento={selecionarEquipamento}
+          />
+        )
+      }
+    </div >
   );
 }
