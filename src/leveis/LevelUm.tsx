@@ -16,6 +16,8 @@ import { GrandeAntigo } from "../api/classesEspeciais/GrandeAntigo.class.ts";
 import { Talentos } from "../bibliotecas/Talentos.ts";
 import { useFicha } from "../api/fichaPersonagem/FichaContext.tsx"
 import { Atributos } from "../api/classesPrincipais/Atributos.class.ts";
+import { SubClasses } from "../api/classesPrincipais/SubClasses.ts";
+import ModalSelecaoSubClasse from "../pages/modals/ModalSelecaoSubClasse.tsx";
 
 interface LevelOneSetupProps {
   raca: Raca;
@@ -24,9 +26,11 @@ interface LevelOneSetupProps {
 
 const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
   const [modalPatronoAberto, setModalPatronoAberto] = useState(false);
-  const [patronoSelecionado, setPatronoSelecionado] = useState<Patronos | null>(null)
+  const [patronoSelecionado, setPatronoSelecionado] = useState<Patronos | null>(null);
   const [modalHumanoVarianteAberto, setModalHumanoVarianteAberto] = useState(false);
-  const [humanoVarianteFeatEscolhido, setHumanoVarianteFeatEscolhido] = useState<Talento | null>(null)
+  const [humanoVarianteFeatEscolhido, setHumanoVarianteFeatEscolhido] = useState<Talento | null>(null);
+  const [subGrupoAberto, setSubGrupoAberto] = useState(false);
+  const [subClasses, setSubClasses] = useState<SubClasses[] | null>([]);
 
   const { ficha, forceUpdate } = useFicha();
 
@@ -63,7 +67,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
   const toggleProeficiencia = (habilidade: string) => {
     setProeficienciasEscolhidas((prev) => {
       let novaLista;
-  
+
       if (prev.includes(habilidade)) {
         novaLista = prev.filter((h) => h !== habilidade);
       } else if (prev.length < classe.habilidade) {
@@ -71,7 +75,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
       } else {
         return prev;
       }
-  
+
       ficha?.setPericias(novaLista);
       forceUpdate();
       return novaLista;
@@ -146,10 +150,10 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
     let novoValor = valorAtual;
 
     if (operacao === "incrementar" && valorAtual < 15 && pontosDisponiveis > 0 && valorAtual >= 8) {
-      if (novoValor +1 >= 14 && pontosDisponiveis >= 2) {
+      if (novoValor + 1 >= 14 && pontosDisponiveis >= 2) {
         novoValor = valorAtual + 1;
         setPontosDisponiveis((prev) => prev - 2);
-      } else if (novoValor +1 <= 13) {
+      } else if (novoValor + 1 <= 13) {
         novoValor = valorAtual + 1;
         setPontosDisponiveis((prev) => prev - 1);
       }
@@ -197,6 +201,60 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
       const novoArray = [...array, valorAntigo].filter(v => v !== null);
       setValoresDisponiveis(novoArray)
     }
+  }
+
+  const abrirSubGrupo = () => {
+    if (classe?.subClasse) {
+      if (classe.subClasse.length > 0) {
+        setSubClasses(classe.subClasse);
+        setSubGrupoAberto(true);
+      }
+    }
+  };
+
+  const textoSubclasse = () => {
+    switch (classe.nome.toLowerCase()) {
+      case "patrulheiro":
+        return "Conclave de Patrulheiro";
+      case "bárbaro":
+      case "barbaro":
+        return "seu Caminho Primitivo";
+      case "bardo":
+        return "seu Colégio de Bardo";
+      case "bruxo":
+        return "sua Dádiva do Pacto"
+      case "druida":
+        return "seu Círculo Druídico";
+      case "feiticeiro":
+        return "sua Origem de Feitiçaria";
+      case "guerreiro":
+        return "seu Arquétipo Marcial";
+      case "ladino":
+        return "seu Arquétipo de Ladino";
+      case "mago":
+        return "sua Tradição Arcana";
+      case "monge":
+        return "sua Tradição Monástica";
+      case "paladino":
+        return "seu Juramento Sagrado";
+      case "clerigo":
+        return "seu Domínio Divino"
+      default:
+        return "Classe não encontrada ou sem subclasse definida.";
+    }
+  }
+
+  function validaSubClasse(classe, nivel) {
+    // Converte a classe para minúsculas para evitar problemas de case sensitivity
+    classe = classe?.toLowerCase();
+
+    // Verifica as condições
+    const condicao1 = (classe === "feiticeiro" || classe === "clerigo") && nivel === 1;
+    const condicao2 = (classe === "druida" || classe === "mago") && nivel === 2;
+    const condicao3 = nivel === 3 && !["feiticeiro", "clérigo", "bruxo", "druida", "mago"].includes(classe);
+
+    // Retorna true se qualquer uma das condições for verdadeira
+    return condicao1 || condicao2 || condicao3;
   }
 
   const renderPopupAtributos = () => {
@@ -324,160 +382,193 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
   };
 
   return (
-    <div className="level-container">
-      <button className="secao-toggle" onClick={toggleNivel}>
-        <h2 className="tituloh2">Nível 1{nivelExpandido ? "▲" : "▼"}</h2>
-      </button>
-      {nivelExpandido && (
+    <>
+      <div className="level-container">
+        <button className="secao-toggle" onClick={toggleNivel}>
+          <h2 className="tituloh2">Nível 1{nivelExpandido ? "▲" : "▼"}</h2>
+        </button>
+        {nivelExpandido && (
+          <>
+            {/* Escolha da distribuição de atributos */}
+            <div>
+              <button className="secao-toggle" onClick={() => toggleSecao("atributos")}>
+                <h3 className="tituloh3">Método de distribuição de atributos {secoesExpandidas.atributos ? "▲" : "▼"}</h3>
+              </button>
+              {secoesExpandidas.atributos && (
+                <div>
+                  {[
+                    "Array Padrão",
+                    "Point Buy",
+                    "Rolagem de Dados",
+                  ].map((metodo) => (
+                    <button
+                      key={metodo}
+                      onClick={() => selecionarMetodo(metodo)}
+                      className="botao-distribuir"
+                    >
+                      {metodo} {atributoMetodo === metodo && "✔"}
+                    </button>
+                  ))}
+                  {atributoMetodo && (
+                    <button className="botao-distribuir" onClick={() => { iniciarDistribuicao() }}>
+                      Distribuir Atributos
+                    </button>
+                  )}
+                </div>
+              )}
+            </div>
+            {renderPopupAtributos()}
+            {/* Traços raciais */}
+            <div>
+              <button className="secao-toggle" onClick={() => toggleSecao("tracos")}>
+                <h3 className="tituloh3">Traços Raciais{secoesExpandidas.tracos ? "▲" : "▼"}</h3>
+              </button>
+              {secoesExpandidas.tracos && (
+                <div>
+                  {raca.nome === "Humano Variante" &&
+                    <>
+                      <button className="botao-selecao-talento" onClick={() => setModalHumanoVarianteAberto(true)}>
+                        <img src={iconRaca} className="button-icon" alt="HumanoFeat" />
+                        <div className="botao-texto">
+                          <span>Selecionar Talento</span>
+                          <strong>{humanoVarianteFeatEscolhido ? humanoVarianteFeatEscolhido.nome : "Selecionar Talento"}</strong>
+                        </div>
+                      </button>
+                      {modalHumanoVarianteAberto && (
+                        <>
+                          <div className="popup-overlay" onClick={() => setModalHumanoVarianteAberto(false)}></div>
+                          <div className="popup">
+                            <ModalSelecaoTalento
+                              titulo="Escolha um Talento"
+                              opcoes={talentos}
+                              onClose={() => setModalHumanoVarianteAberto(false)}
+                              onSelect={(talento) => {
+                                setHumanoVarianteFeatEscolhido(talento);
+                                setModalHumanoVarianteAberto(false);
+                              }}
+                              talentoInicial={humanoVarianteFeatEscolhido}
+                            />
+                          </div>
+                        </>
+                      )}
+                      {humanoVarianteFeatEscolhido && <TalentoDescricao talento={humanoVarianteFeatEscolhido?.nome} />}
+                    </>
+                  }
+                  {raca.tracos?.map((traco) => (
+                    <div key={traco.traco} className="skills-container">
+                      <button onClick={() => toggleTraco(traco.traco)}>
+                        {traco.traco} {tracosExpandidos[traco.traco] ? "▲" : "▼"}
+                      </button>
+                      {tracosExpandidos[traco.traco] && <p className="descricao">{traco.descricao}</p>}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Escolha de Proficiências */}
+            <div>
+              <button className="secao-toggle" onClick={() => toggleSecao("proeficiencias")}>
+                <h3 className="tituloh3">Escolha de Proficiências ({classe.habilidade} opções){secoesExpandidas.proeficiencias ? "▲" : "▼"}</h3>
+              </button>
+              {secoesExpandidas.proeficiencias && (
+                <div className="checkbox-level-container">
+                  {classe.habilidades.map((habilidade) => (
+                    <div key={habilidade} className="checkbox-container">
+                      <input
+                        type="checkbox"
+                        id={habilidade}
+                        checked={ficha?.pericias?.includes(habilidade) || proeficienciasEscolhidas.includes(habilidade)}
+                        onChange={() => {
+                          toggleProeficiencia(habilidade);
+                        }}
+                      />
+                      <label htmlFor={habilidade}>{habilidade}</label>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Características do nível 1 */}
+            <div>
+              <button className="secao-toggle" onClick={() => toggleSecao("caracteristicas")}>
+                <h3 className="tituloh3">Características de Classe Nível 1{secoesExpandidas.caracteristicas ? "▲" : "▼"}</h3>
+              </button>
+              {secoesExpandidas.caracteristicas && (
+                <div>
+                  {classe.nome === "Bruxo" &&
+                    <>
+                      <button className="botao-selecao-talento" onClick={() => setModalPatronoAberto(true)}>
+                        <img src={iconClasse} className="button-icon" alt="Patrono" />
+                        <div className="botao-texto">
+                          <span>Selecionar Patrono</span>
+                          <strong>{patronoSelecionado ? patronoSelecionado.nome : "Selecionar Patrono"}</strong>
+                        </div>
+                      </button>
+                      {modalPatronoAberto && (
+                        <>
+                          <div className="popup-overlay" onClick={() => setModalPatronoAberto(false)}></div>
+                          <div className="popup">
+                            <ModalSelecaoPatrono
+                              titulo="Escolha sua Classe"
+                              opcoes={patronos}
+                              onClose={() => setModalPatronoAberto(false)}
+                              onSelect={(patrono) => {
+                                setPatronoSelecionado(patrono);
+                                setModalPatronoAberto(false);
+                              }}
+                              patronoInicial={patronoSelecionado}
+                            />
+                          </div>
+                        </>
+                      )}
+                      {patronoSelecionado && (
+                        <>
+                          <CaracteristicasPatrono patrono={patronoSelecionado} nivel={1} />
+                        </>
+                      )}
+                    </>
+                  }
+                  {validaSubClasse(classe.nome, 1) && (
+                    <>
+                      <button className="botao-distribuir" onClick={() => abrirSubGrupo()}>
+                        <img src={iconClasse} className="button-icon" alt="Classe" />
+                        <div className="botao-texto">
+                          <span>Selecionar {textoSubclasse()}</span>
+                          <strong>{ficha?.subClasse?.find(s => s.classe.nome === classe.nome)?.subclasse.nome || "Selecionar " + textoSubclasse()}</strong>
+                        </div>
+                      </button>
+                    </>
+                  )}
+                  <CaracteristicasClasse classe={classe} nivel={1} />
+                </div>
+              )}
+            </div>
+          </>
+        )}
+      </div>
+      {subGrupoAberto && (
         <>
-          {/* Escolha da distribuição de atributos */}
-          <div>
-            <button className="secao-toggle" onClick={() => toggleSecao("atributos")}>
-              <h3 className="tituloh3">Método de distribuição de atributos {secoesExpandidas.atributos ? "▲" : "▼"}</h3>
-            </button>
-            {secoesExpandidas.atributos && (
-              <div>
-                {[
-                  "Array Padrão",
-                  "Point Buy",
-                  "Rolagem de Dados",
-                ].map((metodo) => (
-                  <button
-                    key={metodo}
-                    onClick={() => selecionarMetodo(metodo)}
-                    className="botao-distribuir"
-                  >
-                    {metodo} {atributoMetodo === metodo && "✔"}
-                  </button>
-                ))}
-                {atributoMetodo && (
-                  <button className="botao-distribuir" onClick={() => { iniciarDistribuicao() }}>
-                    Distribuir Atributos
-                  </button>
-                )}
-              </div>
-            )}
-          </div>
-          {renderPopupAtributos()}
-          {/* Traços raciais */}
-          <div>
-            <button className="secao-toggle" onClick={() => toggleSecao("tracos")}>
-              <h3 className="tituloh3">Traços Raciais{secoesExpandidas.tracos ? "▲" : "▼"}</h3>
-            </button>
-            {secoesExpandidas.tracos && (
-              <div>
-                {raca.nome === "Humano Variante" &&
-                  <>
-                    <button className="botao-selecao-talento" onClick={() => setModalHumanoVarianteAberto(true)}>
-                      <img src={iconRaca} className="button-icon" alt="HumanoFeat" />
-                      <div className="botao-texto">
-                        <span>Selecionar Talento</span>
-                        <strong>{humanoVarianteFeatEscolhido ? humanoVarianteFeatEscolhido.nome : "Selecionar Talento"}</strong>
-                      </div>
-                    </button>
-                    {modalHumanoVarianteAberto && (
-                      <>
-                        <div className="popup-overlay" onClick={() => setModalHumanoVarianteAberto(false)}></div>
-                        <div className="popup">
-                          <ModalSelecaoTalento
-                            titulo="Escolha um Talento"
-                            opcoes={talentos}
-                            onClose={() => setModalHumanoVarianteAberto(false)}
-                            onSelect={(talento) => {
-                              setHumanoVarianteFeatEscolhido(talento);
-                              setModalHumanoVarianteAberto(false);
-                            }}
-                            talentoInicial={humanoVarianteFeatEscolhido}
-                          />
-                        </div>
-                      </>
-                    )}
-                    {humanoVarianteFeatEscolhido && <TalentoDescricao talento={humanoVarianteFeatEscolhido?.nome} />}
-                  </>
+          <div className="popup-overlay" onClick={() => setSubGrupoAberto(false)}></div>
+          <div className="popup">
+            <ModalSelecaoSubClasse
+              titulo={"Escolha " + textoSubclasse()}
+              opcoes={subClasses}
+              onClose={() => setSubGrupoAberto(false)}
+              onSelect={(subClasse) => {
+                if (classe && subClasse) {
+                  ficha?.setSubClasse(classe, subClasse);
                 }
-                {raca.tracos?.map((traco) => (
-                  <div key={traco.traco} className="skills-container">
-                    <button onClick={() => toggleTraco(traco.traco)}>
-                      {traco.traco} {tracosExpandidos[traco.traco] ? "▲" : "▼"}
-                    </button>
-                    {tracosExpandidos[traco.traco] && <p className="descricao">{traco.descricao}</p>}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Escolha de Proficiências */}
-          <div>
-            <button className="secao-toggle" onClick={() => toggleSecao("proeficiencias")}>
-              <h3 className="tituloh3">Escolha de Proficiências ({classe.habilidade} opções){secoesExpandidas.proeficiencias ? "▲" : "▼"}</h3>
-            </button>
-            {secoesExpandidas.proeficiencias && (
-              <div className="checkbox-level-container">
-                {classe.habilidades.map((habilidade) => (
-                  <div key={habilidade} className="checkbox-container">
-                    <input
-                      type="checkbox"
-                      id={habilidade}
-                      checked={ficha?.pericias?.includes(habilidade) || proeficienciasEscolhidas.includes(habilidade)}
-                      onChange={() => {                       
-                        toggleProeficiencia(habilidade);
-                      }}
-                    />
-                    <label htmlFor={habilidade}>{habilidade}</label>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Características do nível 1 */}
-          <div>
-            <button className="secao-toggle" onClick={() => toggleSecao("caracteristicas")}>
-              <h3 className="tituloh3">Características de Classe Nível 1{secoesExpandidas.caracteristicas ? "▲" : "▼"}</h3>
-            </button>
-            {secoesExpandidas.caracteristicas && (
-              <div>
-                {classe.nome === "Bruxo" &&
-                  <>
-                    <button className="botao-selecao-talento" onClick={() => setModalPatronoAberto(true)}>
-                      <img src={iconClasse} className="button-icon" alt="Patrono" />
-                      <div className="botao-texto">
-                        <span>Selecionar Patrono</span>
-                        <strong>{patronoSelecionado ? patronoSelecionado.nome : "Selecionar Patrono"}</strong>
-                      </div>
-                    </button>
-                    {modalPatronoAberto && (
-                      <>
-                        <div className="popup-overlay" onClick={() => setModalPatronoAberto(false)}></div>
-                        <div className="popup">
-                          <ModalSelecaoPatrono
-                            titulo="Escolha sua Classe"
-                            opcoes={patronos}
-                            onClose={() => setModalPatronoAberto(false)}
-                            onSelect={(patrono) => {
-                              setPatronoSelecionado(patrono);
-                              setModalPatronoAberto(false);
-                            }}
-                            patronoInicial={patronoSelecionado}
-                          />
-                        </div>
-                      </>
-                    )}
-                    {patronoSelecionado && (
-                      <>
-                        <CaracteristicasPatrono patrono={patronoSelecionado} nivel={1} />
-                      </>
-                    )}
-                  </>
-                }
-                <CaracteristicasClasse classe={classe} nivel={1} />
-              </div>
-            )}
+                setSubGrupoAberto(false);
+                forceUpdate();
+              }}
+              subClasseInicial={ficha?.subClasse?.find(s => s.classe === classe)?.subclasse ?? null}
+            />
           </div>
         </>
       )}
-    </div>
+    </>
   );
 };
 

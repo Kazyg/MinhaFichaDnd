@@ -9,6 +9,7 @@ import ModalSelecaoClasse from "../modals/ModalSelecaoClasse.tsx";
 import ModalSelecaoBackGround from "../modals/ModalSelecaoBackGround.tsx";
 import ModalSelecaoIdioma from "../modals/ModalSelecaoIdiomas.tsx";
 import LevelOneSetup from "../../leveis/LevelUm.tsx";
+import NivelBlock from "../../leveis/NivelBlock.tsx";
 import { Raca } from "../../api/classesPrincipais/Raca.class.ts";
 import { Anao } from "../../api/classesFilhos/Anao.class.ts";
 import { Draconato } from "../../api/classesFilhos/Draconato.class.ts";
@@ -60,6 +61,7 @@ import { Pirata } from "../../api/backGroundsFilhos/Pirata.class.ts"
 import { Sabio } from "../../api/backGroundsFilhos/Sabio.class.ts"
 import { Idiomas } from "../../bibliotecas/idiomas/idiomasData.ts";
 import { useFicha } from "../../api/fichaPersonagem/FichaContext.tsx"
+import { Multiclasses } from "../../api/classesPrincipais/Multiclasses.ts"
 
 export default function CriacaoFicha() {
   const [modalRacaAberto, setModalRacaAberto] = useState(false);
@@ -127,6 +129,72 @@ export default function CriacaoFicha() {
       setSubGrupoAberto(true);
     }
   };
+
+  function selecionarMulticlasse(classeEscolhida: Classes, nivelAtual: number): void {
+    const nivelExistente = ficha?.multiclasses?.find(m => m.nivelEscolhido.includes(nivelAtual));
+    const multiclasseExistente = ficha?.multiclasses?.find(m => m.classe.nome === classeEscolhida.nome);
+    debugger;
+    if (nivelExistente) {
+      if (nivelExistente.classe.nome === classeEscolhida.nome) return
+      else {
+        nivelExistente.nivelEscolhido = nivelExistente.nivelEscolhido.filter(n => n !== nivelAtual);
+        let multiclasseAchada = ficha?.multiclasses?.find(m => m.id === nivelExistente.id);
+        if (multiclasseAchada?.nivelEscolhido.length === 0) {
+          ficha?.multiclasses?.splice(ficha?.multiclasses?.findIndex(m => m.id === nivelExistente.id), 1);
+        } else if (multiclasseAchada) {
+          multiclasseAchada.nivelClasse -= 1;
+          if (!validaSubClasse(multiclasseAchada.classe.nome, multiclasseAchada.nivelClasse))
+          {
+            
+            let subclasseAchada = ficha?.subClasse?.find(s => s.classe.nome === multiclasseAchada.classe.nome)?.subclasse;
+            if(subclasseAchada)ficha?.removerSubClasse(subclasseAchada.id)
+          }
+          if(multiclasseAchada.nivelClasse < 3 && ficha?.subClasse?.find(s => s.classe.nome === multiclasseAchada.classe.nome)?.subclasse.nome === "Círculo da Terra")
+          {
+            ficha.removerTerreno();
+          }
+          if(ficha?.subClasse?.find(s => s.classe.nome === multiclasseAchada.classe.nome)?.subclasse.nome === "Caminho do Guerreiro Totêmico"){
+            if(multiclasseAchada.nivelClasse < 14){
+              ficha.excluirAnimal(14);
+            } else if(multiclasseAchada.nivelClasse < 6){
+              ficha.excluirAnimal(6);
+            } else if(multiclasseAchada.nivelClasse < 3){
+              ficha.excluirAnimal(3);
+            }
+          }
+        }
+
+        if (multiclasseExistente) {
+          multiclasseExistente.nivelClasse += 1;
+          multiclasseExistente.nivelEscolhido.push(nivelAtual);
+        } else {
+          const novaMulticlasse = new Multiclasses(classeEscolhida, 1, nivelAtual);
+          ficha?.multiclasses ? ficha?.multiclasses.push(novaMulticlasse) : ficha?.setMulticlasse(novaMulticlasse);
+        }
+      }
+    } else {
+      if (multiclasseExistente) {
+        multiclasseExistente.nivelClasse += 1;
+        multiclasseExistente.nivelEscolhido.push(nivelAtual);
+      } else {
+        const novaMulticlasse = new Multiclasses(classeEscolhida, 1, nivelAtual);
+        ficha?.multiclasses ? ficha?.multiclasses.push(novaMulticlasse) : ficha?.setMulticlasse(novaMulticlasse);
+      }
+    }
+  }
+
+  function validaSubClasse(classe, nivel) {
+    // Converte a classe para minúsculas para evitar problemas de case sensitivity
+    classe = classe?.toLowerCase();
+
+    // Verifica as condições
+    const condicao1 = (classe === "feiticeiro" || classe === "clérigo" || classe === "bruxo") && nivel === 1;
+    const condicao2 = (classe === "druida" || classe === "mago") && nivel === 2;
+    const condicao3 = nivel === 3 && !["feiticeiro", "clérigo", "bruxo", "druida", "mago"].includes(classe);
+
+    // Retorna true se qualquer uma das condições for verdadeira
+    return condicao1 || condicao2 || condicao3;
+  }
 
   return (
     <div className="criacao-ficha">
@@ -255,6 +323,7 @@ export default function CriacaoFicha() {
               onSelect={(classes) => {
                 ficha?.setClassePrincipal(classes);
                 setModalClasseAberto(false);
+                if (classes) selecionarMulticlasse(classes, 1);
                 forceUpdate();
               }}
               classeInicial={ficha?.classePrincipal ? ficha.classePrincipal : null}
@@ -313,20 +382,32 @@ export default function CriacaoFicha() {
         </>
       )}
 
-      <div className="niveis-container">
-        <div className="nivel">
-          {ficha?.racaPrincipal &&
-            ficha?.classePrincipal &&
-            (ficha.racaPrincipal.subOpcoes && ficha.racaPrincipal.subOpcoes.length > 0 ? ficha.subRaca : true) ? (
-            <LevelOneSetup raca={ficha.subRaca ? ficha.subRaca : ficha.racaPrincipal} classe={ficha.classePrincipal} />
-          ) : "Nivel 1"}
+      <div className="todos-niveis-container">
+        <div className="niveis-container">
+          <div className="nivel">
+            {ficha?.racaPrincipal &&
+              ficha?.classePrincipal &&
+              (ficha.racaPrincipal.subOpcoes && ficha.racaPrincipal.subOpcoes.length > 0 ? ficha.subRaca : true) ? (
+              <LevelOneSetup raca={ficha.subRaca ? ficha.subRaca : ficha.racaPrincipal} classe={ficha.classePrincipal} />
+            ) : "Nivel 1"}
+          </div>
         </div>
-      </div>
 
-      <div className="niveis-container">
-        {[...Array(20)].map((_, i) => (
-          <div key={i + 1} className="nivel">
-            <span>Nível {i + 1}</span>
+
+        {[...Array(19)].map((_, i) => (
+          <div className="niveis-container">
+            <div className="nivel">
+              {ficha?.racaPrincipal &&
+                ficha?.classePrincipal &&
+                (ficha.racaPrincipal.subOpcoes && ficha.racaPrincipal.subOpcoes.length > 0 ? ficha.subRaca : true) ? (
+                <NivelBlock
+                  key={i + 2}
+                  nivel={i + 2}
+                  classesDisponiveis={classes}
+                  selecionarMulticlasse={selecionarMulticlasse}
+                />
+              ) : "Nivel " + (i + 2)}
+            </div>
           </div>
         ))}
       </div>

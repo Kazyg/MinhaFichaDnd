@@ -2,6 +2,8 @@ import { BackGround } from "../classesPrincipais/BackGrounds.class";
 import { Classes } from "../classesPrincipais/Classes.class";
 import { Raca } from "../classesPrincipais/Raca.class";
 import { Atributos } from "../classesPrincipais/Atributos.class";
+import { Multiclasses } from "../classesPrincipais/Multiclasses";
+import { SubClasses } from "../classesPrincipais/SubClasses";
 
 export class Ficha {
     id: string;
@@ -9,8 +11,8 @@ export class Ficha {
     racaPrincipal?: Raca | null;
     subRaca: Raca | null;
     classePrincipal: Classes | null;
-    subClasse: any | null;
-    classesSecundarias: {classe: Classes, nivelClasse: number}[] | null;
+    subClasse: {classe: Classes, subclasse: SubClasses}[] | null;
+    multiclasses: Multiclasses[] | null;
     backGround: BackGround | null;
     atributosPersonagem: Atributos | null;
     iniciativa: number | null;
@@ -24,6 +26,9 @@ export class Ficha {
     tamanho: string | null;
     talentos: string[] | null;
     idiomas: string[] | null;
+    estiloLuta: string | null;
+    animalSelecionado: {animal: string, nivel: number}[] | null;
+    terrenoSelecionado: string | null;
 
     constructor(data: Partial<Ficha> = {}) {
         this.id = data?.id ?? this.gerarIdUnico();
@@ -31,7 +36,9 @@ export class Ficha {
         this.racaPrincipal = data?.racaPrincipal ?? null;
         this.subRaca = data?.subRaca ?? null;
         this.classePrincipal = data?.classePrincipal ?? null;
+        this.subClasse = data?.subClasse ?? null;
         this.backGround = data?.backGround ?? null;
+        this.multiclasses = data?.multiclasses ?? null;
         this.atributosPersonagem = data?.atributosPersonagem ?? null;
         this.iniciativa = data?.iniciativa ?? null;
         this.proeficiencia = data?.proeficiencia ?? null;
@@ -43,6 +50,9 @@ export class Ficha {
         this.speed = data?.speed ?? null;
         this.tamanho = data?.tamanho ?? null;
         this.idiomas = data?.idiomas ?? null;
+        this.estiloLuta = data?.estiloLuta ?? null;
+        this.animalSelecionado = data?.animalSelecionado ?? null;
+        this.terrenoSelecionado = data?.terrenoSelecionado ?? null;
     }
 
     calcularModificador(valor) {
@@ -72,8 +82,15 @@ export class Ficha {
         this.classePrincipal = classe;
     }
 
-    setSubClasse(subClasse: any | null) {
-        this.subClasse = subClasse;
+    setSubClasse(classe: Classes, subClasse: SubClasses) {
+        if(this.subClasse === null){
+            this.subClasse = [];
+        }
+        this.subClasse.push({classe: classe, subclasse: subClasse});
+    }
+    
+    removerSubClasse(id: string){
+        if(this.subClasse)this.subClasse = this.subClasse.filter(s => s.subclasse.id !== id);
     }
 
     setBackGround(backGround: BackGround | null) {
@@ -178,5 +195,35 @@ export class Ficha {
         if (this.idiomas) {
             this.idiomas = this.idiomas.filter((i) => i !== idioma);
         }
+    }
+    setMulticlasse(multiclasses: Multiclasses) {
+        this.multiclasses = [multiclasses];
+    }
+    setEstiloLuta(estilo: string) {
+        this.estiloLuta = estilo;
+    }
+    substituirOuAdicionarAnimal(animal: string, nivel: number){
+        if (!this.animalSelecionado) {
+            this.animalSelecionado = [];
+        }
+        const index = this.animalSelecionado.findIndex((item) => item.nivel === nivel);
+      
+        if (index !== -1) {
+          this.animalSelecionado[index].animal = animal;
+        } else {
+          this.animalSelecionado.push({ animal, nivel });
+        }
+    }
+    excluirAnimal(nivel: number){
+        if (!this.animalSelecionado) {
+            this.animalSelecionado = [];
+        }
+        this.animalSelecionado = this.animalSelecionado.filter((item) => item.nivel !== nivel);
+    }
+    setTerrenoSelecionado(terreno: string){
+        this.terrenoSelecionado = terreno;
+    }
+    removerTerreno(){
+        this.terrenoSelecionado = null;
     }
 }
