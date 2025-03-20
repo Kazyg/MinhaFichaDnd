@@ -19,7 +19,7 @@ const CaracteristicasClasse: React.FC<CaracteristicasClasseProps> = ({ classe, n
   const [caracteristicasExpandidas, setCaracteristicasExpandidas] = useState<{ [key: string]: boolean }>({});
   const [modalSelecaoEstiloLutaAberto, setModalSelecaoEstiloLutaAberto] = useState(false);
   const estilosDeLuta = EstilosLuta;
-  const {ficha, refreshKey, forceUpdate} = useFicha();
+  const { ficha, refreshKey, forceUpdate } = useFicha();
 
   const toggleCaracteristica = (caracteristica: string) => {
     setCaracteristicasExpandidas((prev) => ({
@@ -69,25 +69,55 @@ const CaracteristicasClasse: React.FC<CaracteristicasClasseProps> = ({ classe, n
             </div>
             {modalSelecaoEstiloLutaAberto && (
               <>
-              <div className="popup-overlay" onClick={() => setModalSelecaoEstiloLutaAberto(false)}></div>
-              <div className="popup">
+                <div className="popup-overlay" onClick={() => setModalSelecaoEstiloLutaAberto(false)}></div>
+                <div className="popup">
                   <ModalSelecaoEstiloLuta
-                      titulo="Escolha seu Estilo de luta"
-                      opcoes={filtrarEstilosDeLutaPorClasse(classe.nome, estilosDeLuta)}
-                      onClose={() => setModalSelecaoEstiloLutaAberto(false)}
-                      onSelect={(estilo) => {
-                          if(estilo)ficha?.setEstiloLuta(estilo?.nome);
-                          setModalSelecaoEstiloLutaAberto(false);
-                          forceUpdate();
-                      }}
-                      EstiloInicial={EstilosLuta.find(e => e.nome === ficha?.estiloLuta) || null}
+                    titulo="Escolha seu Estilo de luta"
+                    opcoes={filtrarEstilosDeLutaPorClasse(classe.nome, estilosDeLuta)}
+                    onClose={() => setModalSelecaoEstiloLutaAberto(false)}
+                    onSelect={(estilo) => {
+                      if (estilo) ficha?.setEstiloLuta(estilo?.nome);
+                      setModalSelecaoEstiloLutaAberto(false);
+                      forceUpdate();
+                    }}
+                    EstiloInicial={EstilosLuta.find(e => e.nome === ficha?.estiloLuta) || null}
                   />
-              </div>
-          </>
+                </div>
+              </>
             )}
           </>
         );
       })}
+      {
+        ficha?.subClasse?.find((s) => s.classe.nome === classe.nome) && (
+          <>
+            {ficha?.subClasse
+              ?.find((s) => s.classe.nome === classe.nome)
+              ?.subclasse.niveis.map((nivelSubClasse) => {
+                if (nivelSubClasse.nivel === nivel) {
+                  return (
+                    <div key={nivelSubClasse.nivel} className="skills-container">
+                      <button
+                        onClick={() => {
+                          toggleCaracteristica(nivelSubClasse.nome);
+                        }}
+                        className="w-full text-left p-2 border rounded-lg focus:outline-none"
+                      >
+                        {nivelSubClasse.nome.toLowerCase()} {caracteristicasExpandidas[nivelSubClasse.nome] ? "▲" : "▼"}
+                      </button>
+                      {caracteristicasExpandidas[nivelSubClasse.nome] && (
+                        <p className="descricao p-2 border rounded-lg mt-2">
+                          {nivelSubClasse.descricao}
+                        </p>
+                      )}
+                    </div>
+                  );
+                }
+                return null;
+              })}
+          </>
+        )
+      }
     </div>
   );
 };

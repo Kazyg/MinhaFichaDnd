@@ -249,7 +249,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
     classe = classe?.toLowerCase();
 
     // Verifica as condições
-    const condicao1 = (classe === "feiticeiro" || classe === "clerigo" || classe === "bruxo") && nivel === 1;
+    const condicao1 = (classe === "feiticeiro" || classe === "clerigo") && nivel === 1;
     const condicao2 = (classe === "druida" || classe === "mago") && nivel === 2;
     const condicao3 = nivel === 3 && !["feiticeiro", "clérigo", "bruxo", "druida", "mago"].includes(classe);
 

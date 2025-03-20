@@ -7,6 +7,8 @@ import ModalSelecaoSubClasse from "../pages/modals/ModalSelecaoSubClasse.tsx";
 import { useFicha } from "../api/fichaPersonagem/FichaContext.tsx";
 import CaracteristicasClasse from "./components/CaracteristicasClasseProps.tsx";
 import { SubClasses } from "../api/classesPrincipais/SubClasses.ts";
+import { CaminhoGuerreiroTotemico } from "../api/classesClassesNetos/CaminhoGuerreiroTotemico.ts"
+import { CirculoDaTerra } from "../api/classesClassesNetos/CirculoDaTerra.ts";
 
 const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
     const [modalClasseAberto, setModalClasseAberto] = useState(false);
@@ -20,6 +22,9 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
     });
     const [subGrupoAberto, setSubGrupoAberto] = useState(false);
     const [subClasses, setSubClasses] = useState<SubClasses[] | null>([]);
+    const caminhoGuerreiroTotemico = new CaminhoGuerreiroTotemico();
+    const circuloDaTerra = new CirculoDaTerra();
+    const [descricaoExpandida, setDescricaoExpandida] = useState<boolean>(false);
 
     const toggleNivel = () => setNivelExpandido(!nivelExpandido);
     const toggleSecao = (secao) => {
@@ -27,6 +32,11 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
             ...prev,
             [secao]: !prev[secao],
         }));
+    };
+
+    const handleSelecionarOpcao = (opcao: string) => {
+        ficha?.substituirOuAdicionarAnimal(opcao, calcularNivelClasse(nivel));
+        forceUpdate();
     };
 
     const classeNoNivel = ficha?.multiclasses?.find(m => m.nivelEscolhido.includes(nivel));
@@ -48,6 +58,17 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
             default: return false;
         }
     });
+
+    const opcoesAmbientes = [
+        "Ártico",
+        "Costa",
+        "Deserto",
+        "Floresta",
+        "Montanha",
+        "Pântano",
+        "Planície",
+        "Subterrâneo",
+    ];
 
     const calcularNivelClasse = (nivelAtual: number): number => {
         let nivelClasse = 0;
@@ -71,6 +92,11 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
                 setSubGrupoAberto(true);
             }
         }
+    };
+
+    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        ficha?.setTerrenoSelecionado(event.target.value);
+        forceUpdate();
     };
 
     const textoSubclasse = () => {
@@ -150,6 +176,79 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
                                 </button>
                                 {secoesExpandidas.caracteristicas && (
                                     <div>
+                                        {ficha?.subClasse?.find(s => s.classe.nome === classeNoNivel.classe.nome)?.subclasse.nome === "Caminho do Guerreiro Totêmico" && (calcularNivelClasse(nivel) === 3 || calcularNivelClasse(nivel) === 6 || calcularNivelClasse(nivel) === 14) && (
+                                            <>
+                                                {caminhoGuerreiroTotemico.niveis.find((n) => n.nivel === calcularNivelClasse(nivel) && n.opcoes !== null)?.opcoes?.map((opcao) => (
+                                                    <div key={opcao.nome} className="skills-container">
+                                                        <label className="flex items-center p-2 border rounded-lg">
+                                                            <input
+                                                                key={refreshKey}
+                                                                type="checkbox"
+                                                                checked={ficha?.animalSelecionado?.find((a) => a.nivel === calcularNivelClasse(nivel))?.animal === opcao.nome}
+                                                                onChange={() => handleSelecionarOpcao(opcao.nome)}
+                                                                className="mr-2"
+                                                            />
+                                                            {opcao.nome.toLowerCase()}
+                                                        </label>
+                                                        {ficha?.animalSelecionado?.find((a) => a.nivel === calcularNivelClasse(nivel))?.animal === opcao.nome && (
+                                                            <>
+                                                                <button
+                                                                    onClick={() => { setDescricaoExpandida(!descricaoExpandida) }}
+                                                                    className="w-full text-left p-2 border rounded-lg focus:outline-none"
+                                                                >
+                                                                    {opcao.nome.toLowerCase()} {descricaoExpandida ? "▲" : "▼"}
+                                                                </button>
+                                                                {descricaoExpandida && (
+                                                                    <p className="descricao p-2 border rounded-lg mt-2">{opcao.descricao}</p>
+                                                                )}
+                                                            </>
+                                                        )}
+                                                    </div>
+                                                ))
+                                                }
+                                            </>
+                                        )}
+                                        {ficha?.subClasse?.find(s => s.classe.nome === classeNoNivel.classe.nome)?.subclasse.nome === "Círculo da Terra" &&
+                                            calcularNivelClasse(nivel) === 3 && (
+                                                <>
+                                                    <div className="combobox-container">
+                                                        <label htmlFor="ambiente" className="block mb-2 font-medium">
+                                                            Selecione um ambiente:
+                                                        </label>
+                                                        <select
+                                                            id="ambiente"
+                                                            value={ficha?.terrenoSelecionado ?? ""}
+                                                            onChange={handleChange}
+                                                            className="p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                        >
+                                                            <option value="">Selecione...</option>
+                                                            {opcoesAmbientes.map((ambiente) => (
+                                                                <option key={ambiente} value={ambiente}>
+                                                                    {ambiente}
+                                                                </option>
+                                                            ))}
+                                                        </select>
+                                                    </div>
+                                                </>
+                                            )}
+                                        {ficha?.terrenoSelecionado &&
+                                            [3, 5, 7, 9].includes(calcularNivelClasse(nivel)) && classeNoNivel.classe.nome === "Druida" &&(
+                                                <>
+                                                    <p className="mt-4 p-2 bg-gray-100 border rounded-lg">
+                                                        Magias do Terreno: <strong>{ficha?.terrenoSelecionado}</strong>
+                                                    </p>
+                                                    {circuloDaTerra.niveis
+                                                        .find((n) => n.nivel === calcularNivelClasse(nivel) && n.magias.length > 0)
+                                                        ?.magias.find((m) => m.terreno === ficha?.terrenoSelecionado)
+                                                        ?.magias.map((magia, index) => (
+                                                            <p key={index} className="descricao p-2 border rounded-lg mt-2" title="Consulte a lista de magias para mais informações">
+                                                                {magia}
+                                                            </p>
+                                                        ))
+                                                    }
+                                                </>
+                                            )
+                                        }
                                         <CaracteristicasClasse classe={classeNoNivel?.classe} nivel={calcularNivelClasse(nivel)} />
                                     </div>
                                 )}

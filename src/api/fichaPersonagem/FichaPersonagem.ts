@@ -27,6 +27,8 @@ export class Ficha {
     talentos: string[] | null;
     idiomas: string[] | null;
     estiloLuta: string | null;
+    animalSelecionado: {animal: string, nivel: number}[] | null;
+    terrenoSelecionado: string | null;
 
     constructor(data: Partial<Ficha> = {}) {
         this.id = data?.id ?? this.gerarIdUnico();
@@ -49,6 +51,8 @@ export class Ficha {
         this.tamanho = data?.tamanho ?? null;
         this.idiomas = data?.idiomas ?? null;
         this.estiloLuta = data?.estiloLuta ?? null;
+        this.animalSelecionado = data?.animalSelecionado ?? null;
+        this.terrenoSelecionado = data?.terrenoSelecionado ?? null;
     }
 
     calcularModificador(valor) {
@@ -86,7 +90,7 @@ export class Ficha {
     }
     
     removerSubClasse(id: string){
-        if(this.subClasse)this.subClasse = this.subClasse.filter(s => s.subclasse.id === id);
+        if(this.subClasse)this.subClasse = this.subClasse.filter(s => s.subclasse.id !== id);
     }
 
     setBackGround(backGround: BackGround | null) {
@@ -197,5 +201,29 @@ export class Ficha {
     }
     setEstiloLuta(estilo: string) {
         this.estiloLuta = estilo;
+    }
+    substituirOuAdicionarAnimal(animal: string, nivel: number){
+        if (!this.animalSelecionado) {
+            this.animalSelecionado = [];
+        }
+        const index = this.animalSelecionado.findIndex((item) => item.nivel === nivel);
+      
+        if (index !== -1) {
+          this.animalSelecionado[index].animal = animal;
+        } else {
+          this.animalSelecionado.push({ animal, nivel });
+        }
+    }
+    excluirAnimal(nivel: number){
+        if (!this.animalSelecionado) {
+            this.animalSelecionado = [];
+        }
+        this.animalSelecionado = this.animalSelecionado.filter((item) => item.nivel !== nivel);
+    }
+    setTerrenoSelecionado(terreno: string){
+        this.terrenoSelecionado = terreno;
+    }
+    removerTerreno(){
+        this.terrenoSelecionado = null;
     }
 }

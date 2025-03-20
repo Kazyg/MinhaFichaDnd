@@ -5,7 +5,7 @@ export class CirculoDaTerra extends SubClasses {
         nome: string;
         nivel: number;
         descricao: string;
-        magias?: { terreno: string; magias: string[] }[];
+        magias: { terreno: string; magias: string[] }[];
     }[];
 
     constructor() {
@@ -21,14 +21,16 @@ export class CirculoDaTerra extends SubClasses {
             {
                 nome: "Truque Adicional",
                 nivel: 2,
-                descricao: "Quando você escolhe esse círculo no 2° nível, você aprende um truque de druida adicional, à sua escolha."
+                descricao: "Quando você escolhe esse círculo no 2° nível, você aprende um truque de druida adicional, à sua escolha.",
+                magias: []
             },
             {
                 nome: "Recuperação Natural",
                 nivel: 2,
                 descricao: `
                     A partir do 2° nível, você pode recuperar parte da sua energia mágica parando para fazer uma meditação e comunhão com a natureza. Durante um descanso curto, você escolhe espaços de magia gastos para recuperar. O espaço de magia pode ter um nível combinado igual ou menor que metade do seu nível de druida (arredondado para baixo) e, nenhum dos espaços pode ser de uma magia de 6° nível ou superior. Você não pode usar essa característica novamente até terminar um descanso longo. Por exemplo, quando você for um druida de 4° nível, você pode recuperar até dois níveis em espaços de magia. Você pode recuperar, tanto uma magia de 2° nível, quanto duas magias de 1° nível.
-                `
+                `,
+                magias: []
             },
             {
                 nome: "Magias de Círculo",
@@ -193,21 +195,24 @@ export class CirculoDaTerra extends SubClasses {
                 nivel: 6,
                 descricao: `
                     A partir do 6° nível, mover-se através de terreno difícil não-mágico não te custará nenhum movimento extra. Você também pode passar através de plantas não-mágicas sem ser atrasado por elas e sem sofrer dano delas se elas tiverem espinhos, espinhas ou perigos similares. Além disso, você tem vantagem em testes de resistência contra plantas criadas magicamente ou manipuladas para impedir movimentação, como as criadas pela magia constrição.
-                `
+                `,
+                magias: []
             },
             {
                 nome: "Proteção Natural",
                 nivel: 10,
                 descricao: `
                     Quando você atingir o 10° nível, você não pode ser enfeitiçado ou amedrontado por elementais ou fadas e você se torna imune a venenos e doenças.
-                `
+                `,
+                magias: []
             },
             {
                 nome: "Santuário Natural",
                 nivel: 14,
                 descricao: `
                     A partir do 14° nível, as criaturas do mundo natural sentem sua ligação com a natureza e hesitarão em atacar você. Quando uma besta ou planta atacar você, essa criatura deverá fazer um teste de resistência de Sabedoria contra uma CD igual a das suas magias de druida. Em uma falha, a criatura deve escolher um alvo diferente ou o ataque erra automaticamente. Em um sucesso, a criatura se torna imune a esse efeito por 24 horas. A criatura está ciente deste efeito antes de resolver atacar você.
-                `
+                `,
+                magias: []
             }
         ];
     }

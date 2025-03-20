@@ -11,7 +11,7 @@ export class Barbaro extends Classes {
       furias: number;
       danoFuria: number;
     }[];
-    subclasse: SubClasses[];
+    subClasse: SubClasses[];
   
     constructor() {
       super("barbaro", 12, ["Armadura leve", "armadura média", "escudos"], ["Armas simples", "armas marciais"], [""], ["Força", "Constituição"], 2, ["Atletismo", "Adestrar Animais", "Intimidação", "Natureza", "Percepção", "Sobrevivência"]);
@@ -38,7 +38,7 @@ export class Barbaro extends Classes {
         { nivel: 19, proeficiencia: 6, caracteristicas: ["Incremento no Valor de Habilidade"], furias: 6, danoFuria: 4 },
         { nivel: 20, proeficiencia: 6, caracteristicas: ["Campeão Primitivo"], furias: Infinity, danoFuria: 4 }
       ];
-      this.subclasse = [
+      this.subClasse = [
         new CaminhoFurioso(),
         new CaminhoGuerreiroTotemico()
       ];
