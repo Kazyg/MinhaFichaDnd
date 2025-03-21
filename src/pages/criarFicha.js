@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CriacaoFicha from "./components/CriacaoFicha.tsx";
 import InformacoesPersonagem from "./components/InformacoesPersonagem.js";
 import PericiasEOutros from "./components/PericiasEOutros.js";
-import InventarioMagiasDetalhes from "./components/InventarioMagiasDetalhes.js";
+import InventarioMagiasDetalhes from "./components/InventarioMagiasDetalhes.tsx";
 import "./css/criarFicha.css";
 import { useFicha } from "../api/fichaPersonagem/FichaContext.tsx";
 

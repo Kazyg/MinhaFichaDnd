@@ -22,7 +22,7 @@ export class Bruxo extends Classes {
     super(
       "Bruxo",
       8,
-      ["Armaduras leves"],
+      ["Armadura leve"],
       ["Armas simples"],
       [""],
       ["Sabedoria", "Carisma"],

@@ -61,7 +61,7 @@
   
   /* Estilo para o campo de filtro */
   .lista-racas input {
-    width: 90%;
+    width: 100%;
     margin-bottom: 5px;
     padding: 10px;
     border: 1px solid #444;
@@ -110,7 +110,7 @@
     padding: 20px;
     color: white;
     overflow-y: auto; /* Adiciona scrollbar se necessário */
-    max-height: 47vh;
+    max-height: 55vh;
   }
   
   .detalhes-raca p {
@@ -119,6 +119,7 @@
   }
 
   .detalhes-raca h3 {
+    text-align: center;
     margin-bottom: 8px;
     margin-top: 5px;
   }
@@ -181,8 +182,25 @@
     color: white;
     margin-top: 10px; /* Espaço do topo */
   }
+
+  .selecao-atributos-ancestral {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 20px;
+    background-color: #333;
+    border-radius: 5px;
+    color: white;
+    margin-top: 10px; /* Espaço do topo */
+  }
   
   .selecao-atributos h3 {
+    margin-bottom: 15px;
+    margin-top: 0;
+  }
+
+  .selecao-atributos-ancestral h3 {
     margin-bottom: 15px;
     margin-top: 0;
   }

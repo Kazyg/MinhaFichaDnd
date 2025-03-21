@@ -1,5 +1,6 @@
 // equipamentos/Armaduras.ts
 export class Armaduras_equip {
+    id: string;
     nome: string;
     categoria: string;
     ac: number;
@@ -17,6 +18,7 @@ export class Armaduras_equip {
         custo: number,
         peso: number
     ) {
+        this.id = this.gerarIdUnico();
         this.nome = nome;
         this.categoria = categoria;
         this.ac = ac;
@@ -25,6 +27,12 @@ export class Armaduras_equip {
         this.custo = custo;
         this.peso = peso;
     }
+
+    gerarIdUnico() {
+        const timestamp = Date.now().toString(36);
+        const random = Math.random().toString(36).substring(2, 5);
+        return `${timestamp}-${random}`;
+    };
 }
 
 // Array de armaduras

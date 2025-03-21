@@ -12,6 +12,6 @@ export class Gnomo extends Raca {
             traco: "Esperteza Gnômica",
             descricao: "Você possui vantagem em todos os testes de resistência de Inteligência, Sabedoria e Carisma contra magia."
         }
-    ], subOpcoes);
+    ],["ferramentas de artesão"], subOpcoes);
   }
 }

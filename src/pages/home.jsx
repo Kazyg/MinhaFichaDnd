@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import "../pages/css/Home.css";
 import { Ficha } from "../api/fichaPersonagem/FichaPersonagem.ts";
 import { useFicha } from "../api/fichaPersonagem/FichaContext.tsx"
+import { Efeitos } from "../api/classesPrincipais/Efeitos.ts";
 
 export default function Home() {
 
@@ -67,6 +68,7 @@ export default function Home() {
           <button className="icon-button" onClick={() => {
             const ficha = new Ficha();
             setFicha(ficha);
+            ficha.setEfeitos(new Efeitos());
             ficha.setLevelTotal(1);
             salvarFicha(ficha);
             navigate("/criar-ficha");

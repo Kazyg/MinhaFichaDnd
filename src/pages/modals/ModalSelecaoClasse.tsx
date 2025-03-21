@@ -55,7 +55,7 @@ const ModalSelecaoClasse: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, 
                             <p><strong>Armas:</strong> {selecionado.armas.join(", ")}</p>
                             <p><strong>Ferramentas:</strong> {selecionado.ferramentas.join(", ")}</p>
                             <p><strong>Testes de resistencias:</strong> {selecionado.testesResistencias.join(", ")}</p>
-                            <p><strong>Proeficiencias:</strong> {selecionado.habilidades.join(", ")}</p>
+                            <p><strong>Proeficiencias: {selecionado.habilidade} Dentre: </strong>{selecionado.habilidades.join(", ")}</p>
                         </>
                     )}
                 </div>

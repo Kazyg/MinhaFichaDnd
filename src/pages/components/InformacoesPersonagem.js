@@ -107,7 +107,7 @@ export default function InformacoesPersonagem() {
           <div className="proficiencias-container">
             {Object.entries(ficha?.atributosPersonagem || atributosIniciais).map(([atributo, dados]) => (
               <div key={atributo} className="proficiencia">
-                <span className="proficiencia-nome">{dados.nome}</span>
+                <span className="proficiencia-nome" title={dados.tipo}>{dados.nome}</span>
                 <span> / </span>
                 <div className="proficiencia-divisoria" />
                 <span className="proficiencia-mod">{parseInt(calcularModificador(dados.valor) >= 0 ? `+${calcularModificador(dados.valor)}` : calcularModificador(dados.valor)) + (calcularProeficiencia(dados.id))}</span>

@@ -4,6 +4,9 @@ import { Raca } from "../classesPrincipais/Raca.class";
 import { Atributos } from "../classesPrincipais/Atributos.class";
 import { Multiclasses } from "../classesPrincipais/Multiclasses";
 import { SubClasses } from "../classesPrincipais/SubClasses";
+import { Efeitos } from "../classesPrincipais/Efeitos";
+import { Armaduras_equip } from "../equipamentos/Armaduras.ts"
+import { Armas } from "../equipamentos/Armas";
 
 export class Ficha {
     id: string;
@@ -11,7 +14,7 @@ export class Ficha {
     racaPrincipal?: Raca | null;
     subRaca: Raca | null;
     classePrincipal: Classes | null;
-    subClasse: {classe: Classes, subclasse: SubClasses}[] | null;
+    subClasse: { classe: Classes, subclasse: SubClasses }[] | null;
     multiclasses: Multiclasses[] | null;
     backGround: BackGround | null;
     atributosPersonagem: Atributos | null;
@@ -27,8 +30,11 @@ export class Ficha {
     talentos: string[] | null;
     idiomas: string[] | null;
     estiloLuta: string | null;
-    animalSelecionado: {animal: string, nivel: number}[] | null;
+    animalSelecionado: { animal: string, nivel: number }[] | null;
     terrenoSelecionado: string | null;
+    efeitos: Efeitos | null;
+    ArmadurasMochila: Armaduras_equip[] | null;
+    ArmasMochila: Armas[] | null;
 
     constructor(data: Partial<Ficha> = {}) {
         this.id = data?.id ?? this.gerarIdUnico();
@@ -53,6 +59,9 @@ export class Ficha {
         this.estiloLuta = data?.estiloLuta ?? null;
         this.animalSelecionado = data?.animalSelecionado ?? null;
         this.terrenoSelecionado = data?.terrenoSelecionado ?? null;
+        this.efeitos = data?.efeitos ?? null;
+        this.ArmadurasMochila = data?.ArmadurasMochila ?? null;
+        this.ArmasMochila = data?.ArmasMochila ?? null;
     }
 
     calcularModificador(valor) {
@@ -72,6 +81,11 @@ export class Ficha {
 
     setRacaPrincipal(raca: Raca | null) {
         this.racaPrincipal = raca;
+        if (this.backGround?.proeficienciasHabilidades && raca?.pericia) {
+            this.pericias = [...this.backGround?.proeficienciasHabilidades, ...raca?.pericia]
+        } else if (!this.backGround?.proeficienciasHabilidades && raca?.pericia) {
+            this.pericias = raca.pericia
+        }
     }
 
     setSubRaca(subRaca: Raca | null) {
@@ -83,18 +97,23 @@ export class Ficha {
     }
 
     setSubClasse(classe: Classes, subClasse: SubClasses) {
-        if(this.subClasse === null){
+        if (this.subClasse === null) {
             this.subClasse = [];
         }
-        this.subClasse.push({classe: classe, subclasse: subClasse});
+        this.subClasse.push({ classe: classe, subclasse: subClasse });
     }
-    
-    removerSubClasse(id: string){
-        if(this.subClasse)this.subClasse = this.subClasse.filter(s => s.subclasse.id !== id);
+
+    removerSubClasse(id: string) {
+        if (this.subClasse) this.subClasse = this.subClasse.filter(s => s.subclasse.id !== id);
     }
 
     setBackGround(backGround: BackGround | null) {
         this.backGround = backGround;
+        if (backGround?.proeficienciasHabilidades && this.racaPrincipal?.pericia) {
+            this.pericias = [...backGround?.proeficienciasHabilidades, ...this.racaPrincipal?.pericia]
+        } else if (backGround?.proeficienciasHabilidades && !this.racaPrincipal?.pericia) {
+            this.pericias = backGround.proeficienciasHabilidades
+        }
     }
 
     setAtributosPersonagem(atributos: Atributos | null) {
@@ -164,9 +183,9 @@ export class Ficha {
     }
 
     setPericias(pericias: string[]) {
-        if(this.backGround){
+        if (this.backGround) {
             this.pericias = [...this.backGround.proeficienciasHabilidades, ...pericias]
-        }else {
+        } else {
             this.pericias = pericias;
         }
     }
@@ -208,28 +227,51 @@ export class Ficha {
     setEstiloLuta(estilo: string) {
         this.estiloLuta = estilo;
     }
-    substituirOuAdicionarAnimal(animal: string, nivel: number){
+    substituirOuAdicionarAnimal(animal: string, nivel: number) {
         if (!this.animalSelecionado) {
             this.animalSelecionado = [];
         }
         const index = this.animalSelecionado.findIndex((item) => item.nivel === nivel);
-      
+
         if (index !== -1) {
-          this.animalSelecionado[index].animal = animal;
+            this.animalSelecionado[index].animal = animal;
         } else {
-          this.animalSelecionado.push({ animal, nivel });
+            this.animalSelecionado.push({ animal, nivel });
         }
     }
-    excluirAnimal(nivel: number){
+    excluirAnimal(nivel: number) {
         if (!this.animalSelecionado) {
             this.animalSelecionado = [];
         }
         this.animalSelecionado = this.animalSelecionado.filter((item) => item.nivel !== nivel);
     }
-    setTerrenoSelecionado(terreno: string){
+    setTerrenoSelecionado(terreno: string) {
         this.terrenoSelecionado = terreno;
     }
-    removerTerreno(){
+    removerTerreno() {
         this.terrenoSelecionado = null;
+    }
+    setEfeitos(efeitos: Efeitos) {
+        this.efeitos = efeitos;
+    }
+    setArmaMochila(arma: Armas) {
+        if (!this.ArmasMochila) {
+            this.ArmasMochila = [arma];
+        } else {
+            this.ArmasMochila = [...this.ArmasMochila, arma];
+        }
+    }
+    excluirArmaMochila(idArma: string){
+        if (this.ArmasMochila) this.ArmasMochila = this.ArmasMochila.filter(s => s.id !== idArma);
+    }
+    setArmaduraMochila(armadura: Armaduras_equip) {
+        if (!this.ArmadurasMochila) {
+            this.ArmadurasMochila = [armadura];
+        } else {
+            this.ArmadurasMochila = [...this.ArmadurasMochila, armadura];
+        }
+    }
+    excluirArmaduraMochila(idArmadura: string){
+        if (this.ArmadurasMochila) this.ArmadurasMochila = this.ArmadurasMochila.filter(s => s.id !== idArmadura);
     }
 }

@@ -20,6 +20,6 @@ export class Elfo extends Raca {
             traco: "Transe",
             descricao: "Elfos não precisam dormir. Ao invés disso, eles meditam profundamente, permanecendo semiconscientes, durante 4 horas por dia. (A palavra em idioma comum para tal meditação é 'transe'.) Enquanto medita, um elfo é capaz de sonhar de certo modo. Esses sonhos na verdade são exercícios mentais que se tornam reflexos através de anos de prática. Depois de descansar dessa forma, você ganha os mesmos benefícios que um humano depois de 8 horas de sono."
         }
-    ], subOpcoes);
+    ], [], subOpcoes);
   }
 }

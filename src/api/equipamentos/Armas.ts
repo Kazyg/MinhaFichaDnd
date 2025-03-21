@@ -1,14 +1,14 @@
-// equipamentos/Armas.ts
 export class Armas {
+    id: string;
     nome: string;
     categoria: string;
-    dano: { dano_1: string; dano_2: string }; // Objeto para dano
+    dano: { dano_1: string; dano_2: string };
     dano_tipo: string;
     dano_atributo: string[];
     custo: number;
     peso: number;
     propriedades: string;
-    distancia: string; // Nova propriedade para indicar se é à distância
+    distancia: string;
 
     constructor(
         nome: string,
@@ -21,6 +21,7 @@ export class Armas {
         propriedades: string,
         distancia: string // Nova propriedade
     ) {
+        this.id = this.gerarIdUnico();
         this.nome = nome;
         this.categoria = categoria;
         this.dano = dano;
@@ -31,6 +32,12 @@ export class Armas {
         this.propriedades = propriedades;
         this.distancia = distancia;
     }
+
+    gerarIdUnico() {
+        const timestamp = Date.now().toString(36);
+        const random = Math.random().toString(36).substring(2, 5);
+        return `${timestamp}-${random}`;
+    };
 }
 
 // Exemplo de utilização: 

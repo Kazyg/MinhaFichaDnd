@@ -20,5 +20,6 @@ export class ElfoFloresta extends Elfo {
       );
       this.atributos?.atributo.push("sabedoria");
       this.atributos?.bonus.push(1);
+      this.proeficiencias?.push("espadas longas", "espadas curtas", "arcos longos", "arcos curtos");
     }
   }

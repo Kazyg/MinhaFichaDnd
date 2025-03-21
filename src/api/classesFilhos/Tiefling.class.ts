@@ -16,7 +16,6 @@ export class Tiefling extends Raca {
           desse traço novamente. Sua habilidade de conjuração para essas magias é Carisma.
         `,
         },
-      ]
-    );
+      ]);
   }
 }

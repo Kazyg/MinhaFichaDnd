@@ -1,21 +1,10 @@
 import React, { useState } from "react";
-
-interface Arma {
-  nome: string;
-  categoria: string;
-  dano: { dano_1: string; dano_2: string };
-  dano_tipo: string;
-  dano_atributo: string[];
-  custo: number;
-  peso: number;
-  propriedades: string;
-  distancia: string;
-}
+import { Armas } from "../../api/equipamentos/Armas";
 
 interface ModalInventarioArmaProps {
-  armas: Arma[];
+  armas: Armas[];
   onClose: () => void;
-  onSelecionarArma: (arma: Arma) => void;
+  onSelecionarArma: (arma: Armas) => void;
 }
 
 export default function ModalInventarioArma({
@@ -27,7 +16,7 @@ export default function ModalInventarioArma({
   const [filtroCategoria, setFiltroCategoria] = useState<string | null>(null);
   const [filtroDistancia, setFiltroDistancia] = useState<string | null>(null);
   const [filtro, setFiltro] = useState("");
-  const [armaSelecionada, setArma] = useState<Arma | null>(null)
+  const [armaSelecionada, setArma] = useState<Armas | null>(null)
 
   // Função para filtrar as armas
   const armasFiltradas = armas.filter((arma) => {
@@ -63,13 +52,13 @@ export default function ModalInventarioArma({
         <>
           <div className="popup-body-modal">
             <div className="lista-racas">
-              <ul>
-                <input
+            <input
                   type="text"
-                  placeholder="Filtrar raças..."
+                  placeholder={`Filtrar ${filtroCategoria}...`}
                   value={filtro}
                   onChange={(e) => setFiltro(e.target.value)}
                 />
+              <ul>
                 {opcoesFiltradas.map((arma) => (
                   <>
                     <li key={arma.nome} onClick={() => setArma(arma)}>

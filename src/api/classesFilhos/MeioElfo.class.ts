@@ -1,7 +1,7 @@
 import { Raca } from "../classesPrincipais/Raca.class.ts";
 
 export class MeioElfo extends Raca {
-  constructor(atributo1: string, atributo2: string) {
+  constructor(atributo1: string, atributo2: string, pericia1: string, pericia2: string) {
     super("Meio-Elfo", "Médio", 30, ["Comum", "Élfico"],{atributo:["carisma", atributo1, atributo2], bonus:[2,1,1]} , [
       {
           traco: "Visão no Escuro",
@@ -16,5 +16,6 @@ export class MeioElfo extends Raca {
           descricao: "Você ganha proficiência em duas perícias, à sua escolha."
       }
   ]);
+  this.pericia = [pericia1, pericia2];
   }
 }

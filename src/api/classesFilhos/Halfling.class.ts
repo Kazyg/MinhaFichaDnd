@@ -16,6 +16,6 @@ export class Halfling extends Raca {
             traco: "Agilidade Halfling",
             descricao: "Você pode mover-se através do espaço de qualquer criatura que for de um tamanho maior que o seu."
         }
-    ], subOpcoes);
+    ], [], subOpcoes);
   }
 }

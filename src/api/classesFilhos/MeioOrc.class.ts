@@ -1,7 +1,7 @@
 import { Raca } from "../classesPrincipais/Raca.class.ts";
 
 export class MeioOrc extends Raca {
-  constructor() {
+  constructor(pericia: string) {
     super("Meio-Orc", "Médio", 30, ["Comum", "Orc"],{atributo:["forca", "constituicao"], bonus:[2,1]} , 
       [
         {
@@ -21,5 +21,6 @@ export class MeioOrc extends Raca {
             descricao: "Quando você atinge um ataque crítico com uma arma corpo-a-corpo, você pode rolar um dos dados de dano da arma mais uma vez e adicioná-lo ao dano extra causado pelo acerto crítico."
         }
     ]);
+    this.pericia = [pericia]
   }
 }
