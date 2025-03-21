@@ -69,6 +69,7 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
         "Trombeta",
         "Violino"
     ];
+    const minhaDiv: HTMLElement | null = document.getElementById("div-level-container");
 
     const toggleNivel = () => setNivelExpandido(!nivelExpandido);
     const toggleSecao = (secao) => {
@@ -193,15 +194,24 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
         }
     }
 
+    function validaClasseNoNivel(classe: Classes | undefined) {
+        debugger;
+        if(classe !== undefined){
+            return classesPermitidas.some(c => c.nome === classe?.nome);
+        }else {
+            return true;
+        }
+    }
+
     return (
         <>
-            <div key={refreshKey} className="level-container">
+            <div id="div-level-container" key={refreshKey} className={`level-container ${validaClasseNoNivel(classeNoNivel?.classe) ? "" : "incorreto"}`}>
                 <button className="secao-toggle" onClick={toggleNivel}>
                     <h2 className="tituloh2">Nível {nivel}{nivelExpandido ? "▲" : "▼"}</h2>
                 </button>
                 {nivelExpandido && (
                     <>
-                        <button className="botao-distribuir" onClick={() => setModalClasseAberto(true)}>
+                        <button title={validaClasseNoNivel(classeNoNivel?.classe) ? "" : "ESTA CLASSE NÃO É PERMITIDA PARA OS SEUS STATUS ATUAIS"} className="botao-distribuir" onClick={() => setModalClasseAberto(true)}>
                             <img src={iconClass} className="button-icon" alt="Classe" />
                             <div className="botao-texto">
                                 <span>Selecionar Classe</span>
