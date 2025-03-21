@@ -1,10 +1,10 @@
 export class Atributos {
-  forca: { id: number, nome: string; valor: number };
-  destreza: { id: number, nome: string; valor: number };
-  constituicao: { id: number, nome: string; valor: number };
-  inteligencia: { id: number, nome: string; valor: number };
-  sabedoria: { id: number, nome: string; valor: number };
-  carisma: { id: number, nome: string; valor: number };
+  forca: { id: number, nome: string; valor: number, tipo: string };
+  destreza: { id: number, nome: string; valor: number, tipo: string };
+  constituicao: { id: number, nome: string; valor: number, tipo: string };
+  inteligencia: { id: number, nome: string; valor: number , tipo: string};
+  sabedoria: { id: number, nome: string; valor: number, tipo: string };
+  carisma: { id: number, nome: string; valor: number, tipo: string };
 
   constructor(
     forca: number = 8,
@@ -14,12 +14,12 @@ export class Atributos {
     sabedoria: number = 8,
     carisma: number = 8
   ) {
-    this.forca = { id: 1, nome: "FOR", valor: forca };
-    this.destreza = { id: 2, nome: "DES", valor: destreza };
-    this.constituicao = { id: 3, nome: "CON", valor: constituicao };
-    this.inteligencia = { id: 4, nome: "INT", valor: inteligencia };
-    this.sabedoria = { id: 5, nome: "SAB", valor: sabedoria };
-    this.carisma = { id: 6, nome: "CAR", valor: carisma };
+    this.forca = { id: 1, nome: "FOR", valor: forca, tipo: "Resistir a efeitos físicos, como ser derrubado ou empurrado." };
+    this.destreza = { id: 2, nome: "DES", valor: destreza, tipo: "Esquivar-se de ataques ou efeitos que exigem reflexos rápidos." };
+    this.constituicao = { id: 3, nome: "CON", valor: constituicao, tipo: "Resistir a venenos, doenças ou fadiga." };
+    this.inteligencia = { id: 4, nome: "INT", valor: inteligencia , tipo: "Resistir a efeitos mentais ou ilusões."};
+    this.sabedoria = { id: 5, nome: "SAB", valor: sabedoria, tipo: "Resistir a efeitos mentais, como medo ou encantamento." };
+    this.carisma = { id: 6, nome: "CAR", valor: carisma, tipo: "Resistir a efeitos que afetam a força de vontade, como possessão." };
   }
 
   setAtributos(atributos: Atributos) {

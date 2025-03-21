@@ -42,7 +42,7 @@ const ModalSelecaoEstiloLuta: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
                     {selecionado && (
                         <>
                             <h3>{selecionado.nome}</h3>
-                            <p><strong>Descricao:</strong> 1D{selecionado.descricao}</p>
+                            <p><strong>Descricao:</strong>{selecionado.descricao}</p>
                         </>
                     )}
                 </div>

@@ -5,6 +5,8 @@ export class Raca {
     idiomas?: string[];
     atributos?: { atributo: string[], bonus: number[] };
     tracos?: { traco: string; descricao: string }[];
+    proeficiencias?: string[];
+    pericia?: string[];
     subOpcoes?: Raca[];
   
     constructor(
@@ -14,7 +16,9 @@ export class Raca {
       idiomas: string[],
       atributos: { atributo: string[], bonus: number[] },
       tracos: { traco: string; descricao: string }[],
-      subOpcoes: Raca[] = []
+      proeficiencias: string[] = [],
+      subOpcoes: Raca[] = [],
+      pericia: string[] = []
     ) {
       this.nome = nome;
       this.tamanho = tamanho;
@@ -22,7 +26,9 @@ export class Raca {
       this.idiomas = idiomas;
       this.atributos = atributos;
       this.tracos = tracos;
+      this.proeficiencias = proeficiencias;
       this.subOpcoes = subOpcoes;
+      this.pericia = pericia
     }
   }
   

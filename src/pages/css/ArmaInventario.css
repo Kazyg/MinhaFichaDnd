@@ -1,0 +1,145 @@
+.inventario-armas-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inventario-armas-container h3 {
+    margin-top: -5px;
+}
+
+.adicionar-armas {
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 0.875rem;
+    background-color: #444;
+    color: white;
+    border: none;
+    outline: 2px solid #e03e00;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 15px;
+}
+
+.adicionar-armas:hover {
+    background: #e03e00;
+}
+
+.proficiencias-personagem-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 40px;
+    margin-top: -10px;
+}
+
+.proficiencias-personagem {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    gap: 8px;
+}
+
+.proficiencias-personagem span{
+    margin-top: -2px;
+}
+
+.icon-proficiencia {
+    width: 20px;
+    height: 20px;
+}
+
+.icon-excluir{
+    width: 22px;
+    height: 22px;
+    margin-top: 4px;
+}
+
+.botao-excluir-container{
+    width: 5%;
+}
+
+.botao-excluir{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 10%;
+    border: none;
+    outline: 2px solid #e03e00;
+    padding: 0px;
+    background-color: #acacac;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.botao-excluir:hover {
+    background-color: #e03e00;
+}
+
+.lista-armas{
+    display: flex;
+    flex-direction: column;
+    width: 102%;
+    padding: 0;
+    gap: 7px;
+}
+
+.item-arma{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 98%;
+    gap: 8px;
+    outline: 2px solid #e03e00;
+    margin-left: 5px;
+    padding-left: 5px;
+}
+
+.titulo-arma{
+    width: 8%;
+}
+
+.titulo-arma h3{
+    font-size: 15px;
+    position: relative;
+    top: 45%;
+}
+
+.imagem-icon-arma img{
+    position: relative;
+    top: 42%
+}
+
+.imagem-icon-arma {
+    width: 5%;
+}
+
+.arma{
+    display: flex;
+    flex-direction: column;
+    width: 82%;
+}
+.arma1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 14px;
+}
+.arma2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.icon-proficiencia-arma {
+    width: 20px;
+    height: 20px;
+}

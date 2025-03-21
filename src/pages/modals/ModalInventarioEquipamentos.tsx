@@ -1,19 +1,10 @@
 import React, { useState } from "react";
-
-interface Equipamento {
-  nome: string;
-  categoria: string;
-  ac: number;
-  forca: number;
-  furtividade: string;
-  custo: number;
-  peso: number;
-}
+import { Armaduras_equip } from "../../api/equipamentos/Armaduras";
 
 interface ModalInventarioEquipamentosProps {
-  equipamentos: Equipamento[];
+  equipamentos: Armaduras_equip[];
   onClose: () => void;
-  onSelecionarEquipamento: (equipamento: Equipamento) => void;
+  onSelecionarEquipamento: (equipamento: Armaduras_equip) => void;
 }
 
 export default function ModalInventarioEquipamentos({
@@ -23,7 +14,8 @@ export default function ModalInventarioEquipamentos({
 }: ModalInventarioEquipamentosProps) {
   const [mostrarFiltros, setMostrarFiltros] = useState(true); // Estado para controlar a exibição dos filtros
   const [filtroCategoria, setFiltroCategoria] = useState<string | null>(null);
-  const [escolhido, setEscolhido] = useState<Equipamento | null>(null);
+  const [escolhido, setEscolhido] = useState<Armaduras_equip | null>(null);
+  const [filtro, setFiltro] = useState("");
 
   // Função para filtrar os equipamentos
   const equipamentosFiltrados = equipamentos.filter((equipamento) => {
@@ -35,6 +27,11 @@ export default function ModalInventarioEquipamentos({
     setFiltroCategoria(categoria);
     setMostrarFiltros(false); // Esconde os botões de filtro e mostra a lista de equipamentos
   };
+
+  const opcoesFiltradas = equipamentosFiltrados.filter((opcao) =>
+    opcao.nome.toLowerCase().includes(filtro.toLowerCase())
+  );
+
 
   return (
     <div className="popup-content-modal">
@@ -52,8 +49,14 @@ export default function ModalInventarioEquipamentos({
         <>
           <div className="popup-body-modal">
             <div className="lista-racas">
+            <input
+                  type="text"
+                  placeholder={`Filtrar ${filtroCategoria}...`}
+                  value={filtro}
+                  onChange={(e) => setFiltro(e.target.value)}
+                />
               <ul>
-                {equipamentosFiltrados.map((equipamento) => (
+                {opcoesFiltradas.map((equipamento) => (
                   <li key={equipamento.nome} onClick={() => setEscolhido(equipamento)}>
                     <strong>{equipamento.nome}</strong>
                   </li>

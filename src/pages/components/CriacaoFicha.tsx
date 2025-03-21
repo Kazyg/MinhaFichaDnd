@@ -55,13 +55,15 @@ import { Eremita } from "../../api/backGroundsFilhos/Eremita.class.ts"
 import { Heroi } from "../../api/backGroundsFilhos/Heroi.class.ts"
 import { Marinheiro } from "../../api/backGroundsFilhos/Marinheiro.class.ts"
 import { Nobre } from "../../api/backGroundsFilhos/Nobre.class.ts"
-import { Ourico } from "../../api/backGroundsFilhos/Ourico.class.ts"
-import { OutLander } from "../../api/backGroundsFilhos/OutLander.class.ts"
+import { LadraoDasSombras } from "../../api/backGroundsFilhos/LadraoDasSombras.ts"
+import { Forasteiro } from "../../api/backGroundsFilhos/Forasteiro.ts"
 import { Pirata } from "../../api/backGroundsFilhos/Pirata.class.ts"
 import { Sabio } from "../../api/backGroundsFilhos/Sabio.class.ts"
-import { Idiomas } from "../../bibliotecas/idiomas/idiomasData.ts";
+import { Idiomas, idiomas } from "../../bibliotecas/idiomas/idiomasData.ts";
 import { useFicha } from "../../api/fichaPersonagem/FichaContext.tsx"
 import { Multiclasses } from "../../api/classesPrincipais/Multiclasses.ts"
+import { Orfao } from "../../api/backGroundsFilhos/Orfao.ts"
+
 
 export default function CriacaoFicha() {
   const [modalRacaAberto, setModalRacaAberto] = useState(false);
@@ -79,14 +81,14 @@ export default function CriacaoFicha() {
   // Lista de raças disponíveis (filhas diretas de Raca)
   const racas: Raca[] = [
     new Anao([new AnaoColina(), new AnaoMontanha()]),
-    new Draconato(),
+    new Draconato(""),
     new Halfling([new HalflingLeve(), new HalflingRobusto()]),
     new Humano(),
-    new HumanoVariante("", ""),
+    new HumanoVariante("", "", ""),
     new Elfo([new ElfoAlto(), new ElfoFloresta(), new ElfoNegro()]),
     new Gnomo([new GnomoFloresta(), new GnomoRocha()]),
-    new MeioElfo("", ""),
-    new MeioOrc(),
+    new MeioElfo("", "", "", ""),
+    new MeioOrc(""),
     new Tiefling()
   ];
 
@@ -117,10 +119,11 @@ export default function CriacaoFicha() {
     new Heroi(),
     new Marinheiro(),
     new Nobre(),
-    new Ourico(),
-    new OutLander(),
+    new LadraoDasSombras(),
+    new Forasteiro(),
     new Sabio(),
-    new Pirata()
+    new Pirata(),
+    new Orfao()
   ];
 
   const abrirSubGrupo = () => {
@@ -242,6 +245,7 @@ export default function CriacaoFicha() {
             setModalIdiomasAberto(true);
             setIdiomaIndice(index);
           }}
+          disabled={ficha?.backGround?.nome === "Membro da Guilda dos Ladrões das Sombras"}
         >
           <img src={iconBackGround} className="button-icon" alt="Idioma" />
           <div className="botao-texto">
@@ -274,11 +278,16 @@ export default function CriacaoFicha() {
 
                   setIdiomasSelecionado(novosIdiomasSelecionados);
                 }
+                ficha?.efeitos?.setProeficienciasRaca(raca?.proeficiencias ?? []);
                 forceUpdate();
                 setModalRacaAberto(false);
               }}
               onAtributeSelect={(atributoEscolhido) => {
                 setAtributosSelecionados(atributoEscolhido);
+              }}
+              onFerramentaSelect={(ferramenta) => {
+                debugger;
+                ferramenta && ficha?.efeitos?.setProeficienciasRaca([ferramenta]);
               }}
               racaInicial={ficha?.racaPrincipal ? ficha.racaPrincipal : null}
               atributosIniciais={atributosSelecionados}
@@ -299,11 +308,15 @@ export default function CriacaoFicha() {
               onSelect={(subRaca) => {
                 ficha?.setSubRaca(subRaca);
                 setSubGrupoAberto(false);
+                ficha?.efeitos?.setProeficienciasRaca(subRaca?.proeficiencias ?? []);
                 forceUpdate();
               }}
               racaInicial={ficha?.subRaca ? ficha.subRaca : null}
               onAtributeSelect={(atributoEscolhido) => {
                 setAtributosSelecionados(atributoEscolhido);
+              }}
+              onFerramentaSelect={(ferramenta) => {
+                ferramenta && ficha?.efeitos?.proeficienciasRaca.push(ferramenta);
               }}
               atributosIniciais={atributosSelecionados}
             />
@@ -321,6 +334,7 @@ export default function CriacaoFicha() {
               onClose={() => setModalClasseAberto(false)}
               onSelect={(classes) => {
                 ficha?.setClassePrincipal(classes);
+                if(classes?.armaduras && classes.armas)ficha?.efeitos?.setProeficienciasClasse([...classes?.armaduras, ...classes?.armas]);
                 setModalClasseAberto(false);
                 if (classes) selecionarMulticlasse(classes, 1);
                 forceUpdate();
@@ -347,15 +361,24 @@ export default function CriacaoFicha() {
                 if (idiomasSelecionado && idiomasSelecionado[0]) {
                   ficha?.removerIdioma(idiomasSelecionado[0].nome);
                 }
-                if (!ficha?.pericias || ficha.pericias.length === 0) {
-                  backGrounds?.proeficienciasHabilidades && ficha?.setPericias(backGrounds?.proeficienciasHabilidades);
-                }else {
-                  backGrounds?.proeficienciasHabilidades && ficha?.setPericia(backGrounds?.proeficienciasHabilidades);
-                }
-                forceUpdate();
                 setModalBackGroundsAberto(false)
-                setIdiomasSelecionado(null)
+                if(backGrounds?.nome === "Membro da Guilda dos Ladrões das Sombras"){
+                  let idioma = idiomas.find(i => i.nome === "Gíria de Ladrões");
+                  if(idioma){
+                    setIdiomasSelecionado([idioma]);
+                    ficha?.setIdiomas(idioma.nome);
+                  }
+                }else{
+                  setIdiomasSelecionado(null)
+                }
+                backGrounds?.proeficienciaFerramentas && ficha?.efeitos?.setProeficienciasBackGround(backGrounds?.proeficienciaFerramentas)
                 forceUpdate();
+              }}
+              onInstrumentoSelect={(instrumento) => {
+                ficha?.backGround?.equipamentos.push(instrumento);
+              }}
+              onItemSelect={(item) => {
+                ficha?.backGround?.equipamentos.push(item);
               }}
               backGroundInicial={ficha?.backGround ? ficha.backGround : null}
             />

@@ -16,7 +16,7 @@ export class Rogue extends Classes {
     super(
       "Ladino",
       8,
-      ["Armaduras leves"],
+      ["Armadura leve"],
       ["Armas simples", "besta de mão", "espada curta", "espada longa", "florete", "arco curto"],
       ["Ferramentas de ladrões"],
       ["Destreza", "Inteligência"],

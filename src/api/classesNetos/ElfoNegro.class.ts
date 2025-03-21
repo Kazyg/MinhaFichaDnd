@@ -24,5 +24,6 @@ export class ElfoNegro extends Elfo {
       );
       this.atributos?.atributo.push("carisma");
       this.atributos?.bonus.push(1);
+      this.proeficiencias?.push("rapieiras", "espadas curtas", "bestas de mão");
     }
   }

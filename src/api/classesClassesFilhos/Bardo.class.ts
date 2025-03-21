@@ -18,7 +18,7 @@ export class Bardo extends Classes {
     super(
       "Bardo",
       8,
-      ["Armaduras leves"],
+      ["Armadura leve"],
       ["Armas simples", "besta de mão", "espada longa", "espada curta", "florete"],
       ["Instrumento musical", "instrumento musical", "instrumento musical"],
       ["Destreza", "Carisma"],

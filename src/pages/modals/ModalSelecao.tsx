@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import { Raca } from "../../api/classesPrincipais/Raca.class";
 import { MeioElfo } from "../../api/classesFilhos/MeioElfo.class.ts";
 import { HumanoVariante } from "../../api/classesFilhos/HumanoVariante.class.ts";
+import { Draconato } from "../../api/classesFilhos/Draconato.class.ts";
+import { MeioOrc } from "../../api/classesFilhos/MeioOrc.class.ts";
 
 interface ModalSelecaoProps {
     opcoes: Raca[];
@@ -9,16 +11,44 @@ interface ModalSelecaoProps {
     onClose: () => void;
     onSelect: (opcao: Raca | null) => void;
     onAtributeSelect: (atributosSelect: string[] | null) => void;
+    onFerramentaSelect: (ferramentaSelect: string | null) => void;
     racaInicial: Raca | null;
     atributosIniciais: string[] | null;
 }
 
-const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClose, onSelect, racaInicial, onAtributeSelect, atributosIniciais }) => {
+const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClose, onSelect, racaInicial, onAtributeSelect, atributosIniciais, onFerramentaSelect }) => {
     const [filtro, setFiltro] = useState("");
     const [selecionado, setSelecionado] = useState<Raca | null>(racaInicial || null);
     const [atributosSelecionados, setAtributosSelecionados] = useState<string[]>(atributosIniciais || []);
+    const [ferramentaSelecionada, setFerramentaSelecionada] = useState<string | null>(null);
+    const [ancestralidadeSelecionada, setAncestralidadeSelecionada] = useState<string>("");
+    const [periciaHumano, setPericiaHumano] = useState("");
+    const [periciaMeioElfo1, setPericiaMeioElfo1] = useState("");
+    const [periciaMeioElfo2, setPericiaMeioElfo2] = useState("");
 
     const atributos = ["força", "destreza", "constituição", "inteligência", "sabedoria", "carisma"];
+    const ferramentas = ["ferramentas de ferreiro", "suprimentos de cervejeiro", "ferramentas de pedreiro"];
+    const ancestralidade = ["Branco", "Bronze", "Cobre", "Latão", "Negro", "Ouro", "Prata", "Verde", "Vermelho"]
+    const pericias = [
+        "Atletismo",
+        "Acrobacia",
+        "Furtividade",
+        "Prestidigitação",
+        "Arcanismo",
+        "História",
+        "Investigação",
+        "Natureza",
+        "Religião",
+        "Adestrar Animais",
+        "Intuição",
+        "Medicina",
+        "Percepção",
+        "Sobrevivência",
+        "Atuação",
+        "Enganação",
+        "Intimidação",
+        "Persuasão",
+    ];
 
     const handleAtributoChange = (atributo: string) => {
         setAtributosSelecionados((prevAtributos) => {
@@ -36,16 +66,20 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
         });
     };
 
-    const selecionadoRef = useRef(selecionado); // Cria uma referência para o estado selecionado
+    const selecionadoRef = useRef(selecionado);
 
-    const atribuirAtributos = (atributosEscolhidos: string[], raca: Raca) => {
+    const atribuirAtributos = (escolhidos: string[], raca: Raca, ancestralidade: string) => {
         let novoSelecionado;
 
         if (raca.nome === "Humano Variante") {
-            novoSelecionado = new HumanoVariante(atributosEscolhidos[0], atributosEscolhidos[1]);
+            novoSelecionado = new HumanoVariante(escolhidos[0], escolhidos[1], periciaHumano);
         } else if (raca.nome === "Meio-Elfo") {
-            novoSelecionado = new MeioElfo(atributosEscolhidos[0], atributosEscolhidos[1]);
-        } else {
+            novoSelecionado = new MeioElfo(escolhidos[0], escolhidos[1], periciaMeioElfo1, periciaMeioElfo2);
+        } else if (raca.nome === "Draconato") {
+            novoSelecionado = new Draconato(ancestralidade);
+        } else if(raca.nome === "Meio-Orc"){
+            novoSelecionado = new MeioOrc("Intimidação")
+        }else {
             novoSelecionado = selecionado;
         }
 
@@ -56,6 +90,22 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
     const opcoesFiltradas = opcoes.filter((opcao) =>
         opcao.nome.toLowerCase().includes(filtro.toLowerCase())
     );
+
+    function verificarCondicoes(
+        selecionado: { nome: string },
+        atributosSelecionados: string[],
+        ferramentaSelecionada: any,
+        ancestralidadeSelecionada: any
+    ): boolean {
+        return (
+            ((selecionado.nome === "Humano Variante" || selecionado.nome === "Meio-Elfo") && atributosSelecionados.length !== 2) ||
+            (selecionado.nome === "Meio-Elfo" && atributosSelecionados.includes("carisma")) ||
+            (selecionado.nome === "Anão" && ferramentaSelecionada === null) ||
+            (selecionado.nome === "Draconato" && ancestralidadeSelecionada === null) ||
+            (selecionado.nome === "Humano Variante" && periciaHumano === "") ||
+            (selecionado.nome === "Meio-Elfo" && (periciaMeioElfo1 === "" || periciaMeioElfo2 === ""))
+        );
+    }
 
     return (
         <div className="popup-content-modal">
@@ -95,6 +145,59 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
                                 </span>
                             ))}</p>
                             {(selecionado.nome === "Humano Variante" || selecionado.nome === "Meio-Elfo") && (
+                                <div>
+                                    <h3>Escolha sua perícia</h3>
+                                    {selecionado.nome === "Humano Variante" && (
+                                        <select
+                                            value={periciaHumano}
+                                            onChange={(e) => setPericiaHumano(e.target.value)}
+                                        >
+                                            <option value="">Selecione uma perícia</option>
+                                            {pericias.map((pericia) => (
+                                                <option key={pericia} value={pericia}>
+                                                    {pericia}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    )}
+                                    {selecionado.nome === "Meio-Elfo" && (
+                                        <div>
+                                            <select
+                                                value={periciaMeioElfo1}
+                                                onChange={(e) => setPericiaMeioElfo1(e.target.value)}
+                                            >
+                                                <option value="">Selecione a primeira perícia</option>
+                                                {pericias.map((pericia) => (
+                                                    <option
+                                                        key={pericia}
+                                                        value={pericia}
+                                                        disabled={pericia === periciaMeioElfo2}
+                                                    >
+                                                        {pericia}
+                                                    </option>
+                                                ))}
+                                            </select>
+
+                                            <select
+                                                value={periciaMeioElfo2}
+                                                onChange={(e) => setPericiaMeioElfo2(e.target.value)}
+                                            >
+                                                <option value="">Selecione a segunda perícia</option>
+                                                {pericias.map((pericia) => (
+                                                    <option
+                                                        key={pericia}
+                                                        value={pericia}
+                                                        disabled={pericia === periciaMeioElfo1}
+                                                    >
+                                                        {pericia}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+                            {(selecionado.nome === "Humano Variante" || selecionado.nome === "Meio-Elfo") && (
                                 <div className="selecao-atributos-container">
                                     <h3>Escolha 2 Atributos</h3>
                                     <div className="selecao-atributos">
@@ -123,6 +226,46 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
                                     </div>
                                 </div>
                             )}
+                            {selecionado.nome === "Anão" && (
+                                <div className="selecao-atributos-container">
+                                    <h3>Escolha uma ferramenta</h3>
+                                    <div className="selecao-atributos">
+                                        {ferramentas.map((ferramenta) => (
+                                            <label key={ferramenta} className="checkbox-container">
+                                                <input
+                                                    type="checkbox"
+                                                    value={ferramenta}
+                                                    checked={
+                                                        ferramentaSelecionada === ferramenta
+                                                    }
+                                                    onChange={() => setFerramentaSelecionada(ferramenta)}
+                                                />
+                                                {ferramenta}
+                                            </label>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                            {selecionado.nome === "Draconato" && (
+                                <div className="selecao-atributos-container">
+                                    <h3>Escolha uma Ancestralidade</h3>
+                                    <div className="selecao-atributos-ancestral">
+                                        {ancestralidade.map((ancestral) => (
+                                            <label key={ancestral} className="checkbox-container">
+                                                <input
+                                                    type="checkbox"
+                                                    value={ancestral}
+                                                    checked={
+                                                        ancestralidadeSelecionada === ancestral
+                                                    }
+                                                    onChange={() => setAncestralidadeSelecionada(ancestral)}
+                                                />
+                                                Dragão {ancestral}
+                                            </label>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
                         </>
                     )}
                 </div>
@@ -131,12 +274,12 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
             <div className="popup-footer">
                 {selecionado && (<button className="escolher-button" onClick={() => {
                     onAtributeSelect(atributosSelecionados);
-                    atribuirAtributos(atributosSelecionados, selecionado);
+                    atribuirAtributos(atributosSelecionados, selecionado, ancestralidadeSelecionada);
                     onSelect(selecionadoRef.current);
+                    onFerramentaSelect(ferramentaSelecionada);
                     onClose();
                 }}
-                    disabled={((selecionado.nome === "Humano Variante" || selecionado.nome === "Meio-Elfo") && atributosSelecionados.length !== 2) || (selecionado.nome === "Meio-Elfo" && atributosSelecionados.includes("carisma")
-                    )}>Escolher {selecionado.nome}
+                    disabled={verificarCondicoes(selecionado, atributosSelecionados, ferramentaSelecionada, ancestralidadeSelecionada)}>Escolher {selecionado.nome}
                 </button>)}
                 <button className="escolher-button" onClick={() => { onClose() }}>Fechar</button>
             </div>

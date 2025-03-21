@@ -2,7 +2,7 @@ import { Raca } from "../classesPrincipais/Raca.class.ts";
 
 export class Anao extends Raca {
   constructor(subOpcoes: Raca[] = []) {
-    super("Anão", "Médio", 25, ["Comum", "Anão"], { atributo: ["constituicao"], bonus: [2] } ,
+    super("Anão", "Médio", 25, ["Comum", "Anão"], { atributo: ["constituicao"], bonus: [2] } , 
       [
         {
             traco: "Visão no Escuro",
@@ -24,6 +24,11 @@ export class Anao extends Raca {
             traco: "Especialização em Rochas",
             descricao: "Sempre que você realizar um teste de Inteligência (História) relacionado à origem de um trabalho em pedra, você é considerado proficiente na perícia História e adiciona o dobro do seu bônus de proficiência ao teste, ao invés do seu bônus de proficiência normal."
         }
-    ], subOpcoes);
+    ],
+    [
+      "machados de batalha", "machadinhas",
+      "martelos leves", "martelos de guerra"
+    ],
+    subOpcoes);
   }
 }

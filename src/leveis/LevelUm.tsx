@@ -18,6 +18,7 @@ import { useFicha } from "../api/fichaPersonagem/FichaContext.tsx"
 import { Atributos } from "../api/classesPrincipais/Atributos.class.ts";
 import { SubClasses } from "../api/classesPrincipais/SubClasses.ts";
 import ModalSelecaoSubClasse from "../pages/modals/ModalSelecaoSubClasse.tsx";
+import { Draconato, dracoes } from "../api/classesFilhos/Draconato.class.ts";
 
 interface LevelOneSetupProps {
   raca: Raca;
@@ -32,6 +33,17 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
   const [subGrupoAberto, setSubGrupoAberto] = useState(false);
   const [subClasses, setSubClasses] = useState<SubClasses[] | null>([]);
   const { ficha, forceUpdate } = useFicha();
+  const [proeficienciasEscolhidas, setProeficienciasEscolhidas] = useState<string[]>([]);
+  const [tracosExpandidos, setTracosExpandidos] = useState<Record<string, boolean>>({});
+  const [mostrarPopupAtributos, setMostrarPopupAtributos] = useState(false);
+  const [valoresDisponiveis, setValoresDisponiveis] = useState<number[]>([]);
+  const [pontosDisponiveis, setPontosDisponiveis] = useState(27);
+  const listaDracoes = dracoes;
+
+  useEffect(() => {
+    const novasProeficiencias = [];
+    setProeficienciasEscolhidas(novasProeficiencias);
+  }, [ficha?.backGround]);
 
   type Talento = {
     nome: string;
@@ -55,16 +67,12 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
     sabedoria: 8,
     carisma: 8
   });
-  const [proeficienciasEscolhidas, setProeficienciasEscolhidas] = useState<string[]>([]);
-  const [tracosExpandidos, setTracosExpandidos] = useState<Record<string, boolean>>({});
-  const [mostrarPopupAtributos, setMostrarPopupAtributos] = useState(false);
 
   const toggleTraco = (nome: string) => {
     setTracosExpandidos((prev) => ({ ...prev, [nome]: !prev[nome] }));
   };
 
   const toggleProeficiencia = (habilidade: string) => {
-    debugger;
     setProeficienciasEscolhidas((prev) => {
       let novaLista;
 
@@ -81,10 +89,6 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
     });
   };
 
-  const [valoresDisponiveis, setValoresDisponiveis] = useState<number[]>([]); // Para Array Padrão e Rolagem de Dados
-  const [pontosDisponiveis, setPontosDisponiveis] = useState(27); // Para Point Buy
-
-  // Métodos de distribuição de atributos
   const gerarArrayPadrao = () => [15, 14, 13, 12, 10, 8];
   const rolarDados = () => {
     const rolar4d6 = () => {
@@ -461,6 +465,31 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
                       {tracosExpandidos[traco.traco] && <p className="descricao">{traco.descricao}</p>}
                     </div>
                   ))}
+                  {raca instanceof Draconato && (
+                    <>
+                      <div className="skills-container">
+                        <button onClick={() => toggleTraco(raca.ancestralidade)}>
+                          Dragao {raca.ancestralidade} {tracosExpandidos[raca.ancestralidade] ? "▲" : "▼"}
+                        </button>
+                        {tracosExpandidos[raca.ancestralidade] && (
+                          <>
+                            {listaDracoes.map((dragao) => {
+                              if (dragao.nome === raca.ancestralidade) {
+                                return (
+                                  <div key={dragao.nome}>
+                                    <p className="descricao">Tipo de Dano: {dragao.tipoDano}</p>
+                                    <p className="descricao">Area do Dano: {dragao.armaSopro}</p>
+                                    <p className="descricao">Teste: {dragao.teste}</p>
+                                  </div>
+                                );
+                              }
+                              return null; // Retorna null se a condição não for atendida
+                            })}
+                          </>
+                        )}
+                      </div>
+                    </>
+                  )}
                 </div>
               )}
             </div>
@@ -476,7 +505,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
                     <div key={habilidade} className="checkbox-container">
                       <input
                         type="checkbox"
-                        disabled={ficha?.backGround?.proeficienciasHabilidades?.includes(habilidade)}
+                        disabled={ficha?.backGround?.proeficienciasHabilidades?.includes(habilidade) || ficha?.racaPrincipal?.pericia?.includes(habilidade)}
                         id={habilidade}
                         checked={
                           ficha?.pericias?.includes(habilidade) ||
