@@ -22,7 +22,8 @@ export class Mago extends Classes {
       [""],
       ["Inteligência", "Sabedoria"],
       2,
-      ["Arcanismo", "História", "Intuição", "Investigação", "Medicina", "Religião"]
+      ["Arcanismo", "História", "Intuição", "Investigação", "Medicina", "Religião"],
+      []
     );
     this.level = 0; // Nível inicial
     this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis

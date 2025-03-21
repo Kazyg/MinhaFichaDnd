@@ -35,7 +35,8 @@ export class Bruxo extends Classes {
         "Investigação",
         "Natureza",
         "Religião",
-    ]
+    ],
+    ["Armadura leve", "armas simples"]
     );
     this.level = 0; // Nível inicial
     this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis

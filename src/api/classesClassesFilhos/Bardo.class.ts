@@ -40,7 +40,8 @@ export class Bardo extends Classes {
         "Prestidigitação",
         "Religião",
         "Sobrevivência",
-    ]
+    ],
+    ["Armadura leve"]
     );
     this.level = 0;
     this.niveis = this.preencherNiveis();

@@ -32,7 +32,7 @@ export class Ficha {
     estiloLuta: string | null;
     animalSelecionado: { animal: string, nivel: number }[] | null;
     terrenoSelecionado: string | null;
-    efeitos: Efeitos | null;
+    efeitos: Efeitos[] | null;
     ArmadurasMochila: Armaduras_equip[] | null;
     ArmasMochila: Armas[] | null;
 
@@ -252,7 +252,20 @@ export class Ficha {
         this.terrenoSelecionado = null;
     }
     setEfeitos(efeitos: Efeitos) {
-        this.efeitos = efeitos;
+        if(this.efeitos === null){
+            this.efeitos = []
+        }
+        this.efeitos?.push(efeitos);
+    }
+    excluirEfeitoPorTitulo(titulo: string){
+        if(this.efeitos){
+            this.efeitos = this.efeitos?.filter(e => e.tituloEfeito !== titulo);
+        }
+    }
+    excluirEfeitoPorNivel(nivel: number){
+        if(this.efeitos){
+            this.efeitos = this.efeitos?.filter(e => e.level !== nivel);
+        }
     }
     setArmaMochila(arma: Armas) {
         if (!this.ArmasMochila) {

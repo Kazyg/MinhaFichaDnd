@@ -9,6 +9,10 @@ import CaracteristicasClasse from "./components/CaracteristicasClasseProps.tsx";
 import { SubClasses } from "../api/classesPrincipais/SubClasses.ts";
 import { CaminhoGuerreiroTotemico } from "../api/classesClassesNetos/CaminhoGuerreiroTotemico.ts"
 import { CirculoDaTerra } from "../api/classesClassesNetos/CirculoDaTerra.ts";
+import { Classes } from "../api/classesPrincipais/Classes.class.ts";
+import { Efeitos } from "../api/classesPrincipais/Efeitos.ts";
+import { Ranger } from "../api/classesClassesFilhos/Ranger.class.ts"
+import { Rogue } from "../api/classesClassesFilhos/Rogue.class.ts"
 
 const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
     const [modalClasseAberto, setModalClasseAberto] = useState(false);
@@ -25,6 +29,46 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
     const caminhoGuerreiroTotemico = new CaminhoGuerreiroTotemico();
     const circuloDaTerra = new CirculoDaTerra();
     const [descricaoExpandida, setDescricaoExpandida] = useState<boolean>(false);
+    const [classeBonus, setClasseBonus] = useState(false);
+    const [periciaBardo, setPericiaBardo] = useState("");
+    const [periciaPatrulheiro, setPericiaPatrulheiro] = useState("");
+    const [periciaLadino, setPericiaLadino] = useState("");
+    const [instrumentoSelecionado, setInstrumentoSelecionado] = useState("");
+    const ranger = new Ranger();
+    const rogue = new Rogue();
+    const pericias = [
+        "Atletismo",
+        "Acrobacia",
+        "Furtividade",
+        "Prestidigitação",
+        "Arcanismo",
+        "História",
+        "Investigação",
+        "Natureza",
+        "Religião",
+        "Adestrar Animais",
+        "Intuição",
+        "Medicina",
+        "Percepção",
+        "Sobrevivência",
+        "Atuação",
+        "Enganação",
+        "Intimidação",
+        "Persuasão",
+    ];
+    const instrumentosMusicais = [
+        "Alaúde",
+        "Bandolim",
+        "Corneta",
+        "Flauta",
+        "Flauta de Pã",
+        "Gaita de Fole",
+        "Lira",
+        "Tambor",
+        "Tamborim",
+        "Trombeta",
+        "Violino"
+    ];
 
     const toggleNivel = () => setNivelExpandido(!nivelExpandido);
     const toggleSecao = (secao) => {
@@ -142,6 +186,12 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
         return condicao1 || condicao2 || condicao3;
     }
 
+    function verificarBonusClasse(classe: Classes) {
+        if (ficha?.multiclasses?.find(m => m.classe.nome === classe.nome)?.nivelClasse === 1 &&
+            (classe.nome === "Ladino" || classe.nome === "Patrulheiro" || classe.nome === "Bardo")) {
+            setClasseBonus(true);
+        }
+    }
 
     return (
         <>
@@ -167,6 +217,102 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
                                         <strong>{ficha?.subClasse?.find(s => s.classe.nome === classeNoNivel?.classe.nome)?.subclasse.nome || "Selecionar " + textoSubclasse()}</strong>
                                     </div>
                                 </button>
+                            </>
+                        )}
+                        {classeBonus && (
+                            <>
+                                {classeNoNivel?.classe.nome === "Bardo" && (
+                                    <>
+                                        <select
+                                            value={periciaBardo}
+                                            onChange={(e) => {
+                                                setPericiaBardo(e.target.value);
+                                                ficha?.excluirEfeitoPorTitulo("periciaBardoMulticlasse");
+                                                let efeito = new Efeitos();
+                                                efeito.setPericia(e.target.value);
+                                                efeito.setLevel(nivel);
+                                                efeito.setTituloEfeito("periciaBardoMulticlasse");
+                                                efeito.setClasseNome("Bardo");
+                                                ficha?.setEfeitos(efeito);
+                                            }}
+                                        >
+                                            <option value="">Selecione uma perícia</option>
+                                            {pericias.map((pericia) => (
+                                                <option key={pericia} value={pericia}>
+                                                    {pericia}
+                                                </option>
+                                            ))}
+                                        </select>
+                                        <select
+                                            value={instrumentoSelecionado}
+                                            onChange={(e) => {
+                                                setInstrumentoSelecionado(e.target.value)
+                                                ficha?.excluirEfeitoPorTitulo("instrumentoBardoMulticlasse");
+                                                let efeito = new Efeitos();
+                                                efeito.setProeficienciasBackGround([e.target.value]);
+                                                efeito.setLevel(nivel);
+                                                efeito.setTituloEfeito("instrumentoBardoMulticlasse");
+                                                efeito.setClasseNome("Bardo");
+                                                ficha?.setEfeitos(efeito);
+                                            }}
+                                        >
+                                            <option value="">Selecione um instrumento musical</option>
+                                            {instrumentosMusicais.map((instrumento) => (
+                                                <option key={instrumento} value={instrumento}>
+                                                    {instrumento}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </>
+                                )}
+                                {classeNoNivel?.classe.nome === "Patrulheiro" && (
+                                    <>
+                                        <select
+                                            value={periciaPatrulheiro}
+                                            onChange={(e) => {
+                                                setPericiaPatrulheiro(e.target.value);
+                                                ficha?.excluirEfeitoPorTitulo("periciaPatrulheiroMulticlasse");
+                                                let efeito = new Efeitos();
+                                                efeito.setPericia(e.target.value);
+                                                efeito.setLevel(nivel);
+                                                efeito.setTituloEfeito("periciaPatrulheiroMulticlasse");
+                                                efeito.setClasseNome("Patrulheiro");
+                                                ficha?.setEfeitos(efeito);
+                                            }}
+                                        >
+                                            <option value="">Selecione uma perícia</option>
+                                            {ranger.habilidades.map((pericia) => (
+                                                <option key={pericia} value={pericia}>
+                                                    {pericia}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </>
+                                )}
+                                {classeNoNivel?.classe.nome === "Ladino" && (
+                                    <>
+                                        <select
+                                            value={periciaLadino}
+                                            onChange={(e) => {
+                                                setPericiaLadino(e.target.value);
+                                                ficha?.excluirEfeitoPorTitulo("periciaLadinoMulticlasse");
+                                                let efeito = new Efeitos();
+                                                efeito.setPericia(e.target.value);
+                                                efeito.setLevel(nivel);
+                                                efeito.setTituloEfeito("periciaLadinoMulticlasse");
+                                                efeito.setClasseNome("Ladino");
+                                                ficha?.setEfeitos(efeito);
+                                            }}
+                                        >
+                                            <option value="">Selecione uma perícia</option>
+                                            {rogue.habilidades.map((pericia) => (
+                                                <option key={pericia} value={pericia}>
+                                                    {pericia}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </>
+                                )}
                             </>
                         )}
                         {classeNoNivel?.classe && (
@@ -232,7 +378,7 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
                                                 </>
                                             )}
                                         {ficha?.terrenoSelecionado &&
-                                            [3, 5, 7, 9].includes(calcularNivelClasse(nivel)) && classeNoNivel.classe.nome === "Druida" &&(
+                                            [3, 5, 7, 9].includes(calcularNivelClasse(nivel)) && classeNoNivel.classe.nome === "Druida" && (
                                                 <>
                                                     <p className="mt-4 p-2 bg-gray-100 border rounded-lg">
                                                         Magias do Terreno: <strong>{ficha?.terrenoSelecionado}</strong>
@@ -266,9 +412,10 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
                             opcoes={classesPermitidas}
                             onClose={() => setModalClasseAberto(false)}
                             onSelect={(classe) => {
-                                if (classe) selecionarMulticlasse(classe, nivel);
+                                classe && selecionarMulticlasse(classe, nivel);
                                 setModalClasseAberto(false);
                                 forceUpdate();
+                                classe && verificarBonusClasse(classe);
                             }}
                             classeInicial={classeNoNivel?.classe || null}
                         />

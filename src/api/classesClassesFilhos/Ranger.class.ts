@@ -22,7 +22,8 @@ export class Ranger extends Classes {
       [""],
       ["Força", "Destreza"],
       3,
-      ["Atletismo", "Furtividade", "Adestrar Animais", "Intuição", "Investigação", "Natureza", "Percepção", "Sobrevivência"]
+      ["Atletismo", "Furtividade", "Adestrar Animais", "Intuição", "Investigação", "Natureza", "Percepção", "Sobrevivência"],
+      ["Armadura leve", "armadura média", "escudos", "armas simples", "armas marciais"]
     );
     this.level = 0; // Nível inicial
     this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis

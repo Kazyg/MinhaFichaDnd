@@ -63,6 +63,7 @@ import { Idiomas, idiomas } from "../../bibliotecas/idiomas/idiomasData.ts";
 import { useFicha } from "../../api/fichaPersonagem/FichaContext.tsx"
 import { Multiclasses } from "../../api/classesPrincipais/Multiclasses.ts"
 import { Orfao } from "../../api/backGroundsFilhos/Orfao.ts"
+import { Efeitos } from "../../api/classesPrincipais/Efeitos.ts";
 
 
 export default function CriacaoFicha() {
@@ -143,24 +144,24 @@ export default function CriacaoFicha() {
         let multiclasseAchada = ficha?.multiclasses?.find(m => m.id === nivelExistente.id);
         if (multiclasseAchada?.nivelEscolhido.length === 0) {
           ficha?.multiclasses?.splice(ficha?.multiclasses?.findIndex(m => m.id === nivelExistente.id), 1);
+          ficha?.excluirEfeitoPorNivel(nivelAtual);
         } else if (multiclasseAchada) {
           multiclasseAchada.nivelClasse -= 1;
-          if (!validaSubClasse(multiclasseAchada.classe.nome, multiclasseAchada.nivelClasse))
-          {
-            
+          ficha?.excluirEfeitoPorNivel(nivelAtual);
+          if (!validaSubClasse(multiclasseAchada.classe.nome, multiclasseAchada.nivelClasse)) {
+
             let subclasseAchada = ficha?.subClasse?.find(s => s.classe.nome === multiclasseAchada.classe.nome)?.subclasse;
-            if(subclasseAchada)ficha?.removerSubClasse(subclasseAchada.id)
+            if (subclasseAchada) ficha?.removerSubClasse(subclasseAchada.id)
           }
-          if(multiclasseAchada.nivelClasse < 3 && ficha?.subClasse?.find(s => s.classe.nome === multiclasseAchada.classe.nome)?.subclasse.nome === "Círculo da Terra")
-          {
+          if (multiclasseAchada.nivelClasse < 3 && ficha?.subClasse?.find(s => s.classe.nome === multiclasseAchada.classe.nome)?.subclasse.nome === "Círculo da Terra") {
             ficha.removerTerreno();
           }
-          if(ficha?.subClasse?.find(s => s.classe.nome === multiclasseAchada.classe.nome)?.subclasse.nome === "Caminho do Guerreiro Totêmico"){
-            if(multiclasseAchada.nivelClasse < 14){
+          if (ficha?.subClasse?.find(s => s.classe.nome === multiclasseAchada.classe.nome)?.subclasse.nome === "Caminho do Guerreiro Totêmico") {
+            if (multiclasseAchada.nivelClasse < 14) {
               ficha.excluirAnimal(14);
-            } else if(multiclasseAchada.nivelClasse < 6){
+            } else if (multiclasseAchada.nivelClasse < 6) {
               ficha.excluirAnimal(6);
-            } else if(multiclasseAchada.nivelClasse < 3){
+            } else if (multiclasseAchada.nivelClasse < 3) {
               ficha.excluirAnimal(3);
             }
           }
@@ -169,18 +170,40 @@ export default function CriacaoFicha() {
         if (multiclasseExistente) {
           multiclasseExistente.nivelClasse += 1;
           multiclasseExistente.nivelEscolhido.push(nivelAtual);
+          ficha?.efeitos?.forEach((efeito) => {
+            if (efeito.classeNome === classeEscolhida.nome && efeito.level > nivelAtual) {
+              efeito.level -= 1;
+            }
+          });
         } else {
           const novaMulticlasse = new Multiclasses(classeEscolhida, 1, nivelAtual);
           ficha?.multiclasses ? ficha?.multiclasses.push(novaMulticlasse) : ficha?.setMulticlasse(novaMulticlasse);
+          let efeito = new Efeitos();
+          efeito.setProeficienciasMulticlasse(classeEscolhida.proficienciaMulticlasse);
+          efeito.setLevel(nivelAtual);
+          efeito.setTituloEfeito(classeEscolhida.nome);
+          efeito.setClasseNome(classeEscolhida.nome);
+          ficha?.setEfeitos(efeito);
         }
       }
     } else {
       if (multiclasseExistente) {
         multiclasseExistente.nivelClasse += 1;
         multiclasseExistente.nivelEscolhido.push(nivelAtual);
+        ficha?.efeitos?.forEach((efeito) => {
+          if (efeito.classeNome === classeEscolhida.nome && efeito.level > nivelAtual) {
+            efeito.level -= 1;
+          }
+        });
       } else {
         const novaMulticlasse = new Multiclasses(classeEscolhida, 1, nivelAtual);
         ficha?.multiclasses ? ficha?.multiclasses.push(novaMulticlasse) : ficha?.setMulticlasse(novaMulticlasse);
+        let efeito = new Efeitos();
+        efeito.setProeficienciasMulticlasse(classeEscolhida.proficienciaMulticlasse);
+        efeito.setLevel(nivelAtual);
+        efeito.setTituloEfeito(classeEscolhida.nome);
+        efeito.setClasseNome(classeEscolhida.nome);
+        ficha?.setEfeitos(efeito);
       }
     }
   }
@@ -271,6 +294,7 @@ export default function CriacaoFicha() {
                 ficha?.setSubRaca(null);
                 ficha?.setAtributosPersonagem(null);
                 ficha?.setIniciativa(null);
+                ficha?.excluirEfeitoPorTitulo("racaPrincipal");
                 if (idiomasSelecionado) {
                   const novosIdiomasSelecionados = idiomasSelecionado.filter(
                     (idioma) => !raca?.idiomas?.includes(idioma.nome)
@@ -278,7 +302,11 @@ export default function CriacaoFicha() {
 
                   setIdiomasSelecionado(novosIdiomasSelecionados);
                 }
-                ficha?.efeitos?.setProeficienciasRaca(raca?.proeficiencias ?? []);
+                let efeito = new Efeitos();
+                efeito.setProeficienciasRaca(raca?.proeficiencias ?? []);
+                efeito.setLevel(1);
+                efeito.setTituloEfeito("racaPrincipal");
+                ficha?.setEfeitos(efeito);
                 forceUpdate();
                 setModalRacaAberto(false);
               }}
@@ -286,8 +314,14 @@ export default function CriacaoFicha() {
                 setAtributosSelecionados(atributoEscolhido);
               }}
               onFerramentaSelect={(ferramenta) => {
-                debugger;
-                ferramenta && ficha?.efeitos?.setProeficienciasRaca([ferramenta]);
+                ficha?.excluirEfeitoPorTitulo("ferramentaClasse");
+                let efeito = new Efeitos();
+                if (ferramenta) {
+                  efeito.setProeficienciasRaca([ferramenta]);
+                  efeito.setLevel(1);
+                  efeito.setTituloEfeito("ferramentaClasse")
+                  ficha?.setEfeitos(efeito);
+                }
               }}
               racaInicial={ficha?.racaPrincipal ? ficha.racaPrincipal : null}
               atributosIniciais={atributosSelecionados}
@@ -307,8 +341,13 @@ export default function CriacaoFicha() {
               onClose={() => setSubGrupoAberto(false)}
               onSelect={(subRaca) => {
                 ficha?.setSubRaca(subRaca);
+                ficha?.excluirEfeitoPorTitulo("subRaca");
                 setSubGrupoAberto(false);
-                ficha?.efeitos?.setProeficienciasRaca(subRaca?.proeficiencias ?? []);
+                let efeito = new Efeitos();
+                efeito.setProeficienciasRaca(subRaca?.proeficiencias ?? []);
+                efeito.setLevel(1);
+                efeito.setTituloEfeito("subRaca");
+                ficha?.setEfeitos(efeito);
                 forceUpdate();
               }}
               racaInicial={ficha?.subRaca ? ficha.subRaca : null}
@@ -316,7 +355,14 @@ export default function CriacaoFicha() {
                 setAtributosSelecionados(atributoEscolhido);
               }}
               onFerramentaSelect={(ferramenta) => {
-                ferramenta && ficha?.efeitos?.proeficienciasRaca.push(ferramenta);
+                let efeito = new Efeitos();
+                ficha?.excluirEfeitoPorTitulo("ferramentaSubRaca");
+                if(ferramenta){
+                  efeito.proeficienciasRaca.push(ferramenta);
+                  efeito.setLevel(1);
+                  efeito.setTituloEfeito("ferramentaSubRaca");
+                  ficha?.setEfeitos(efeito);
+                }
               }}
               atributosIniciais={atributosSelecionados}
             />
@@ -334,7 +380,12 @@ export default function CriacaoFicha() {
               onClose={() => setModalClasseAberto(false)}
               onSelect={(classes) => {
                 ficha?.setClassePrincipal(classes);
-                if(classes?.armaduras && classes.armas)ficha?.efeitos?.setProeficienciasClasse([...classes?.armaduras, ...classes?.armas]);
+                ficha?.excluirEfeitoPorTitulo("classePrincipal")
+                let efeito = new Efeitos();
+                if (classes?.armaduras && classes.armas) efeito.setProeficienciasClasse([...classes?.armaduras, ...classes?.armas]);
+                efeito.setLevel(1);
+                efeito.setTituloEfeito("classePrincipal");
+                ficha?.setEfeitos(efeito);
                 setModalClasseAberto(false);
                 if (classes) selecionarMulticlasse(classes, 1);
                 forceUpdate();
@@ -355,6 +406,7 @@ export default function CriacaoFicha() {
               onClose={() => setModalBackGroundsAberto(false)}
               onSelect={(backGrounds) => {
                 ficha?.setBackGround(backGrounds)
+                ficha?.excluirEfeitoPorTitulo("background")
                 if (idiomasSelecionado && idiomasSelecionado[1]) {
                   ficha?.removerIdioma(idiomasSelecionado[1].nome);
                 }
@@ -362,16 +414,20 @@ export default function CriacaoFicha() {
                   ficha?.removerIdioma(idiomasSelecionado[0].nome);
                 }
                 setModalBackGroundsAberto(false)
-                if(backGrounds?.nome === "Membro da Guilda dos Ladrões das Sombras"){
+                if (backGrounds?.nome === "Membro da Guilda dos Ladrões das Sombras") {
                   let idioma = idiomas.find(i => i.nome === "Gíria de Ladrões");
-                  if(idioma){
+                  if (idioma) {
                     setIdiomasSelecionado([idioma]);
                     ficha?.setIdiomas(idioma.nome);
                   }
-                }else{
+                } else {
                   setIdiomasSelecionado(null)
                 }
-                backGrounds?.proeficienciaFerramentas && ficha?.efeitos?.setProeficienciasBackGround(backGrounds?.proeficienciaFerramentas)
+                let efeito = new Efeitos();
+                backGrounds?.proeficienciaFerramentas && efeito.setProeficienciasBackGround(backGrounds?.proeficienciaFerramentas);
+                efeito.setLevel(1);
+                efeito.setTituloEfeito("background");
+                ficha?.setEfeitos(efeito);
                 forceUpdate();
               }}
               onInstrumentoSelect={(instrumento) => {

@@ -21,7 +21,8 @@ export class Rogue extends Classes {
       ["Ferramentas de ladrões"],
       ["Destreza", "Inteligência"],
       4,
-      ["Acrobacia", "Atletismo", "Atuação", "Enganação", "Furtividade", "Intimidação", "Intuição", "Investigação", "Percepção", "Persuasão", "Prestidigitação"]
+      ["Acrobacia", "Atletismo", "Atuação", "Enganação", "Furtividade", "Intimidação", "Intuição", "Investigação", "Percepção", "Persuasão", "Prestidigitação"],
+      ["Armaduras leve", "ferramentas de ladrão"]
     );
     this.level = 0; // Nível inicial
     this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis
