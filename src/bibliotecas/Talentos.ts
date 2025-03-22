@@ -1,9 +1,8 @@
-import { Atributos } from "../api/classesPrincipais/Atributos.class";
-
 export const Talentos = [
     {
       nome: "ADEPTO ELEMENTAL",
-      requisito: "Conjuracao",
+      requisito: {tipo: "magia", requisito: ["conjuracao"], valor: null},
+      bonus: [{tipo: null, condicao: null, bonus: null, valor: null}],
       descricao: `
         Pré-requisito: Capacidade de conjurar pelo menos uma magia.
         Quando você ganha esse talento, escolha um dos tipos de dano a seguir: ácido, elétrico, fogo, frio ou trovão.
@@ -13,6 +12,8 @@ export const Talentos = [
     },
     {
       nome: "ADEPTO MARCIAL",
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: null, condicao: null, bonus: null, valor: null}],
       descricao: `
         Você tem treinamento marcial que permite a você realizar manobras de combate especiais. Você ganha os seguintes benefícios:
         - Você aprende duas manobras, à sua escolha, das que estão disponíveis ao arquétipo Mestre de Batalha na classe guerreiro. Se a manobra que você usar obrigar um alvo a realizar um teste de resistência, a CD do teste de resistência será igual a 8 + seu bônus de proficiência + seu modificador de Força ou Destreza (à sua escolha).
@@ -21,7 +22,8 @@ export const Talentos = [
     },
     {
       nome: "ALERTA",
-      bonus: { atributo: "iniciativa", valor: 5},
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: "pericia", condicao: null, bonus: ["Iniciativa"], valor: 5}],
       descricao: `
         Sempre a espera de perigo, você ganha os seguintes benefícios:
         - Você recebe +5 de bônus em iniciativa.
@@ -31,7 +33,8 @@ export const Talentos = [
     },
     {
       nome: "AMBIDESTRO",
-      bonus:"", // Ver como fazer para equipar os itens
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: "CA", condicao: "duas maos ocupadas com arma de uma mão", bonus: ["CA"], valor: 1}],
       descricao: `
         Você dominou o estilo de luta com duas armas, ganhando os seguintes benefícios:
         - Você ganha +1 de bônus na CA enquanto estiver empunhando uma arma corpo-a-corpo em cada mão.
@@ -41,12 +44,16 @@ export const Talentos = [
     },
     {
       nome: "ATACANTE BESTIAL",
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: null, condicao: null, bonus: null, valor: null}],
       descricao: `
         Uma vez por turno, quando você rolar o dano para um ataque corpo-a-corpo com arma, você pode jogar novamente o dado de dano da arma e usar qualquer dos valores.
       `,
     },
     {
       nome: "ATIRADOR AGUÇADO",
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: null, condicao: null, bonus: null, valor: null}],
       descricao: `
         Você dominou o uso de armas à distância e pode realizar tiros que seriam impossíveis para outros. Você ganha os seguintes benefícios:
         - Atacar um alvo além da distância normal não impõem desvantagem nas suas jogadas de ataque com armas à distância.
@@ -56,8 +63,8 @@ export const Talentos = [
     },
     {
       nome: "ATIRADOR DE MAGIA",
-      requisito: "conjuracao",
-      bonus: {magia: 0,espaco: 1},
+      requisito: {tipo: "magia", requisito: ["conjuracao"], valor: null},
+      bonus: [{tipo: "magia", condicao: null, bonus: ["novo truque"], valor: 1}],
       descricao: `
         Pré-requisito: Capacidade de conjurar pelo menos uma magia.
         Você aprendeu técnicas para aprimorar seus ataques com certos tipos de magia, ganhando os seguintes benefícios:
@@ -68,7 +75,8 @@ export const Talentos = [
     },
     {
       nome: "ATLETA",
-      bonus: {atributo:["destreza", "forca"], valor: 1},
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: "atributo", condicao: null, bonus: ["destreza", "forca"], valor: 1}],
       descricao: `
         Você passou por extenso treinamento físico para ganhar os seguintes benefícios:
         - Aumente seu valor de Força ou Destreza em 1, até o máximo de 20.
@@ -79,7 +87,8 @@ export const Talentos = [
     },
     {
       nome: "ATOR",
-      bonus: { atributo: "carisma", valor : 1  },
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: "atributo", condicao: null, bonus: ["carisma"], valor: 1}],
       descricao: `
         Perito em mimica e dramaturgia, você recebe os seguintes benefícios:
         - Aumente seu valor de Carisma em 1, até o máximo de 20.
@@ -89,6 +98,8 @@ export const Talentos = [
     },
     {
       nome: "COMBATENTE MONTADO",
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: null, condicao: null, bonus: null, valor: null}],
       descricao: `
         Você é um oponente perigoso de se enfrentar quando está montado. Enquanto estiver montado e não estiver incapacitado, você ganha os seguintes benefícios:
         - Você tem vantagem nas jogadas de ataque corpo-a-corpo contra qualquer criatura desmontada que seja menor que a sua montaria.
@@ -98,7 +109,8 @@ export const Talentos = [
     },
     {
       nome: "CONJURADOR DE GUERRA",
-      requisito: "conjuracao",
+      requisito: {tipo: "magia", requisito: ["conjuracao"], valor: null},
+      bonus: [{tipo: null, condicao: null, bonus: null, valor: null}],
       descricao: `
         Pré-requisito: Capacidade de conjurar pelo menos uma magia.
         Você praticou a conjuração de magias no meio do combate, aprendendo técnicas que lhe concedem os seguintes benefícios:
@@ -109,7 +121,8 @@ export const Talentos = [
     },
     {
       nome: "CONJURADOR DE RITUAL",
-      requisito: { atributo: ["inteligencia", "sabedoria"], valor : 13  },
+      requisito: {tipo: "atributo", requisito: ["inteligencia", "sabedoria"], valor: 13},
+      bonus: [{tipo: null, condicao: null, bonus: null, valor: null}],
       descricao: `
         Pré-requisito: Inteligência ou Sabedoria 13 ou maior.
         Você aprendeu um número de magias que você pode conjurar como rituais. Essas magias são escritas em um livro de rituais, o qual deve estar em suas mãos enquanto você conjura uma dessas magias.
@@ -119,6 +132,8 @@ export const Talentos = [
     },
     {
       nome: "CURANDEIRO",
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: null, condicao: null, bonus: null, valor: null}],
       descricao: `
         Você é um cirurgião capacitado, permitindo que você trate de ferimentos rapidamente, trazendo seus aliados de volta à luta. Você adquire os seguintes benefícios:
         - Quando você usar um kit de primeiros-socorros para estabilizar uma criatura morrendo, a criatura recupera 1 ponto de vida, ao invés disso.
@@ -127,7 +142,8 @@ export const Talentos = [
     },
     {
       nome: "DUELISTA DEFENSIVO",
-      requisito: {atibuto: "destreza", valor: 13},
+      requisito: {tipo: "atributo", requisito: ["destreza"], valor: 13},
+      bonus: [{tipo: null, condicao: null, bonus: null, valor: null}],
       descricao: `
         Pré-requisito: Destreza 13 ou maior.
         Quando você estiver empunhando uma arma de acuidade com a qual você seja proficiente e outra criatura atingir você com um ataque corpo-a-corpo, você pode usar sua reação para adicionar seu bônus de proficiência a sua CA para esse ataque, potencialmente fazendo o ataque errar.
@@ -135,6 +151,8 @@ export const Talentos = [
     },
     {
       nome: "ESPECIALISTA EM BESTA",
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: null, condicao: null, bonus: null, valor: null}],
       descricao: `
         Graças a sua pratica extensiva com bestas, você ganha os seguintes benefícios:
         - Você ignora a qualidade de recarga de bestas nas quais você é proficiente.
@@ -144,7 +162,8 @@ export const Talentos = [
     },
     {
       nome: "ESPECIALISTA EM BRIGA",
-      bonus: {atributo:["forca", "constituição"], valor: 1},
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: "atributo", condicao: null, bonus: ["forca", "constituicao"], valor: 1}],
       descricao: `
         Acostumado a brigas de bar usando qualquer coisa como armas, e na falta, os punhos, você ganha os seguintes benefícios:
         - Aumente o valor de Força ou Constituição em 1, até o máximo de 20.
@@ -154,6 +173,8 @@ export const Talentos = [
     },
     {
       nome: "EXPLORADOR DE CAVERNAS",
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: null, condicao: null, bonus: null, valor: null}],
       descricao: `
         Alerta às armadilhas escondidas e portas secretas encontradas em muitas masmorras, você ganha os seguintes benefícios:
         - Você tem vantagem em testes de Sabedoria (Percepção) e de Inteligência (Investigação) feitos para detectar a presença de portas secretas.
@@ -164,7 +185,8 @@ export const Talentos = [
     },
     {
       nome: "IMOBILIZADOR",
-      requisito: {Atributo:"forca", valor: 13},
+      requisito: {tipo: "atributo", requisito: ["forca"], valor: 13},
+      bonus: [{tipo: null, condicao: null, bonus: null, valor: null}],
       descricao: `
         Pré-requisito: Força 13 ou maior.
         Você desenvolveu a perícia necessária para se prender a alguém em um combate engajado. Você recebe os seguintes benefícios:
@@ -174,10 +196,8 @@ export const Talentos = [
     },
     {
       nome: "INICIADO EM MAGIA",
-      bonus:[
-        {magia: 0, espaço: 2},
-        {magia: 1, espaco: 1}
-      ],
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: "magia", condicao: null, bonus: ["iniciado em magia"], valor: null}],
       descricao: `
         Escolha uma classe: bardo, bruxo, clérigo, druida, feiticeiro ou mago. Você aprende dois truques da lista de magias da classe escolhida.
         Além disso, escolha uma magia de 1° nível da mesma lista. Você aprende essa magia e pode conjura-la com o menor nível possível. Uma vez que a conjure, você precisa terminar um descanso longo para poder conjura-la novamente. Essa restrição aplica-se apenas à magia adquirida através desse talento.
@@ -186,6 +206,8 @@ export const Talentos = [
     },
     {
       nome: "INVESTIDA PODEROSA",
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: null, condicao: null, bonus: null, valor: null}],
       descricao: `
         Quando você usa a ação de Disparada, você pode usar sua ação bônus para realizar um ataque corpo-a-corpo com arma ou para empurrar uma criatura.
         Se você se mover, pelo menos, 3 metros em linha reta, imediatamente antes de realizar essa ação bônus, você pode tanto ganhar +5 de bônus na jogada de dano do ataque (se você escolher realizar um ataque corpo-a-corpo e atingir) ou empurrar o alvo até 3 metros de você (se você escolher empurrar e for bem sucedido).
@@ -193,7 +215,8 @@ export const Talentos = [
     },
     {
       nome: "LÍDER INSPIRADOR",
-      requisito: {atributo: "carisma", valor: 13},
+      requisito: {tipo: "atributo", requisito: ["carisma"], valor: 13},
+      bonus: [{tipo: null, condicao: null, bonus: null, valor: null}],
       descricao: `
         Pré-requisito: Carisma 13 ou maior.
         Você pode gastar 10 minutos inspirando seus companheiros, suportando a vontade deles de lutar.
@@ -202,6 +225,8 @@ export const Talentos = [
     },
     {
       nome: "MAESTRIA EM ARMA DE HASTE",
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: null, condicao: null, bonus: null, valor: null}],
       descricao: `
         Você consegue manter seus inimigos afastados utilizando armas de haste. Você ganha os seguintes benefícios:
         - Quando você realiza a ação de Ataque e ataca com uma glaive, alabarda ou bordão, você pode usar uma ação bônus para realizar um ataque corpo-a-corpo com a outra extremidade da arma. Esse ataque usa o mesmo modificador de habilidade do ataque primário. O dado de dano da arma para esse ataque é um d4 e o ataque causa dano de concussão.
@@ -210,8 +235,8 @@ export const Talentos = [
     },
     {
       nome: "MAESTRIA EM ARMADURA MÉDIA",
-      requisito: {Proficiencia_Armadura: "media"},
-      // bonus: +1 ac if armadura média = equipada e dex > 16.
+      requisito: {tipo: "armadura", requisito: ["armadura media"], valor: null},
+      bonus: [{tipo: "CA", condicao: "armadura media equipada", bonus: ["CA"], valor: 1}],
       descricao: `
         Pré-requisito: Proficiência em armadura média.
         Você praticou seus movimentos usando armaduras pesadas para ganhar os seguintes benefícios:
@@ -221,8 +246,8 @@ export const Talentos = [
     },
     {
       nome: "MAESTRIA EM ARMADURA PESADA",
-      requisito: {Proficiencia_Armadura: "pesada"},
-      bonus: {Atributo: "forca", valor: 1},
+      requisito: {tipo: "armadura", requisito: ["armadura pesada"], valor: null},
+      bonus: [{tipo: "atributo", condicao: null, bonus: ["forca"], valor: 1}],
       descricao: `
         Pré-requisito: Proficiência em armadura pesada.
         Você pode usar sua armadura para defletir ataques potencialmente fatais a outros. Você ganha os seguintes benefícios:
@@ -232,6 +257,8 @@ export const Talentos = [
     },
     {
       nome: "MATADOR DE CONJURADORES",
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: null, condicao: null, bonus: null, valor: null}],
       descricao: `
         Você praticou técnicas úteis em combate corpo-a-corpo contra conjuradores, ganhando os seguintes benefícios:
         - Quando uma criatura a até 1,5 metro de você conjurar uma magia, você pode usar sua reação para realizar um ataque corpo-a-corpo contra ela.
@@ -241,7 +268,8 @@ export const Talentos = [
     },
     {
       nome: "MENTE AFIADA",
-      bonus: {atributo: "inteligencia", valor: 1},
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: "atributo", condicao: null, bonus: ["inteligencia"], valor: 1}],
       descricao: `
         Você tem uma mente que pode cronometrar o tempo e memorizar direção e detalhes com precisão absurda. Você ganha os seguintes benefícios:
         - Aumente seu valor de Inteligência em 1, até o máximo de 20.
@@ -252,7 +280,8 @@ export const Talentos = [
     },
     {
       nome: "MESTRE DE ARMAS",
-      bonus: {atributo:["destreza", "forca"], valor: 1},
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: "atributo", condicao: null, bonus: ["destreza", "forca"], valor: 1}],
       descricao: `
         Você tem praticado extensivamente com uma variedade de armas, ganhando os seguintes benefícios:
         - Aumente o valor de Força ou Destreza em 1, até o máximo de 20.
@@ -261,6 +290,8 @@ export const Talentos = [
     },
     {
       nome: "MESTRE DE ARMAS GRANDES",
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: null, condicao: null, bonus: null, valor: null}],
       descricao: `
         Você aprendeu a usar o peso em sua vantagem, deixando o balanço potencializar seus golpes. Você recebe os seguintes benefícios:
         - No seu turno, quando você atingir um acerto crítico com uma arma corpo-a-corpo ou reduzir os pontos de vida de uma criatura a 0, você pode realizar um ataque corpo-a-corpo com arma, com uma ação bônus.
@@ -269,6 +300,8 @@ export const Talentos = [
     },
     {
       nome: "MESTRE DE ESCUDO",
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: null, condicao: null, bonus: null, valor: null}],
       descricao: `
         Você não usa escudos apenas para proteção, mas também de forma ofensiva. Você ganha os seguintes benefícios enquanto estiver empunhando um escudo:
         - Se você realizar a ação de Ataque no seu turno, você pode usar uma ação bônus para tentar empurrar uma criatura, a até 1,5 metro de você, com seu escudo.
@@ -278,6 +311,8 @@ export const Talentos = [
     },
     {
       nome: "MOBILIDADE",
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: null, condicao: null, bonus: null, valor: null}],
       descricao: `
         Você é excepcionalmente rápido e ágil. Você ganha os seguintes benefícios:
         - Seu deslocamento aumenta em 3 metros.
@@ -287,11 +322,11 @@ export const Talentos = [
     },
     {
       nome: "OBSERVADOR",
-      bonus: [
-        {pericia: "percepcao", valor: 5},
-        {pericia: "investigacao", valor: 5},
-        {atributo:["inteligencia", "sabedoria"], valor: 1}
-        ],
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: "pericia", condicao: null, bonus: ["percepcao"], valor: 5},
+        {tipo: "pericia", condicao: null, bonus: ["investigacao"], valor: 5},
+        {tipo: "atributo", condicao: null, bonus: ["inteligencia", "sabedoria"], valor: 1}
+      ],
       descricao: `
         Rápido em perceber os detalhes do ambiente, você ganha os seguintes benefícios:
         - Aumente seu valor de Inteligência ou Sabedoria em 1, até o máximo de 20.
@@ -301,17 +336,18 @@ export const Talentos = [
     },
     {
       nome: "PERITO",
-      bonus: {pericia: 3},
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: "pericia", condicao: null, bonus: ["pericia"], valor: 3}],
       descricao: `
         Você ganha proficiência em qualquer combinação de três perícias ou ferramentas, à sua escolha.
       `,
     },
     {
       nome: "POLIGLOTA",
-      bonus: [
-          {atributo: "inteligencia", valor: 1},
-          {idioma: 3}
-        ],
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: "atributo", condicao: null, bonus: ["inteligencia"], valor: 1},
+        {tipo: "idioma", condicao: null, bonus: ["idioma"], valor: 3}
+      ],
       descricao: `
         Você estudou línguas e códigos, ganhando os seguintes benefícios:
         - Aumente seu valor de Inteligência em 1, até o máximo de 20.
@@ -321,9 +357,9 @@ export const Talentos = [
     },
     {
       nome: "PROTEÇÃO LEVE",
-      bonus: [
-          {Atributo: "forca", valor: 1},
-          {proficiencia: "armadura_leve"}
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: "atributo", condicao: null, bonus: ["forca"], valor: 1},
+        {tipo: "armadura", condicao: null, bonus: ["armadura leve"], valor: null}
       ],
       descricao: `
         Você treinou até dominar o uso de armaduras leves, ganhando os seguintes benefícios:
@@ -333,11 +369,10 @@ export const Talentos = [
     },
     {
       nome: "PROTEÇÃO MODERADA",
-      requisito: {proficiencia_Armadura: "media"}, 
-      bonus: [
-        {atributo: "forca", valor: 1},
-        {proficiencia_Armadura: "media"},
-        {proficiencia: "escudo"}
+      requisito: {tipo: "armadura", requisito: ["armadura leve"], valor: null},
+      bonus: [{tipo: "atributo", condicao: null, bonus: ["forca"], valor: 1},
+        {tipo: "armadura", condicao: null, bonus: ["armadura media"], valor: null},
+        {tipo: "armadura", condicao: null, bonus: ["escudos"], valor: null}
       ],
       descricao: `
         Pré-requisito: Proficiência em armadura leve.
@@ -348,11 +383,9 @@ export const Talentos = [
     },
     {
       nome: "PROTEÇÃO PESADA",
-      requisito: {proficiencia_armadura: "media"},
-      bonus: [
-        {atributo: "força", valor: 1 },
-        {proficiencia_armadura: "pesada"}
-      ],
+      requisito: {tipo: "armadura", requisito: ["armadura media"], valor: null},
+      bonus: [{tipo: "atributo", condicao: null, bonus: ["forca"], valor: 1},
+      {tipo: "armadura", condicao: null, bonus: ["armadura media"], valor: null}],
       descricao: `
         Pré-requisito: Proficiência em armadura média.
         Você treinou até dominar o uso de armaduras pesadas, ganhando os seguintes benefícios:
@@ -362,7 +395,9 @@ export const Talentos = [
     },
     {
       nome: "RESILIENTE",
-      bonus: {Atributo: 1, valor: 1, resistencia: 1},
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: "atributo", condicao: null, bonus: ["escolha"], valor: 1},
+      {tipo: "proficiencia", condicao: null, bonus: ["proficiencia"], valor: null}],
       descricao: `
         Escolha um valor de habilidade. Você ganha os seguintes benefícios:
         - Aumente o valor de habilidade escolhido em 1, até o máximo de 20.
@@ -370,8 +405,9 @@ export const Talentos = [
       `,
     },
     {
-      nome: "RESISTENTE", 
-      bonus: {atributo: "constituicao", valor: 1},
+      nome: "RESISTENTE",
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: "atributo", condicao: null, bonus: ["constituicao"], valor: 1}],
       descricao:
       `
         Duro e resistente, você ganha os seguintes benefícios:
@@ -381,13 +417,16 @@ export const Talentos = [
     },
     {
       nome: "ROBUSTO",
-      // bonus: Bonus de vida = 2*level_atual e +2 de hp por lv 
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: "vida", condicao: null, bonus: ["vida por level"], valor: 2}],
       descricao: `
         Seu máximo de pontos de vida aumenta em um valor igual a duas vezes seu nível quando você adquire esse talento. Toda vez que você ganhar um nível, após isso, seu máximo de pontos de vida aumenta em 2 pontos de vida adicionais.
       `,
     },
     {
       nome: "SENTINELA",
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: null, condicao: null, bonus: null, valor: null}],
       descricao: `
         Você domina técnicas para obter vantagem a cada vez que qualquer inimigo baixar a guarda, ganhando os seguintes benefícios:
         - Quando você atinge uma criatura com um ataque de oportunidade, o deslocamento da criatura se torna 0 pelo resto do turno.
@@ -397,7 +436,8 @@ export const Talentos = [
     },
     {
       nome: "SORRATEIRO",
-      requisito: {atributo: "destreza", valor: 13},
+      requisito: {tipo: "atributo", requisito: ["destreza"], valor: 13},
+      bonus: [{tipo: null, condicao: null, bonus: null, valor: null}],
       descricao: `
         Pré-requisito: Destreza 13 ou maior.
         Você é especialista em espreitar através das sombras. Você ganha os seguintes benefícios:
@@ -408,6 +448,8 @@ export const Talentos = [
     },
     {
       nome: "SORTUDO",
+      requisito: {tipo: null, requisito: null, valor: null},
+      bonus: [{tipo: null, condicao: null, bonus: null, valor: null}],
       descricao: `
         Você tem uma sorte inexplicável que parece surgir nos momentos exatos.
         Você tem 3 pontos de sorte. A qualquer momento que você realizar uma jogada de ataque, teste de habilidade ou teste de resistência, você pode gastar um ponto de sorte para rolar um d20 adicional. Você pode escolher gastar um dos seus pontos de sorte depois de rolar o dado, mas antes de saber o resultado da jogada. Você escolhe qual dos d20s irá usar para a jogada de ataque, teste de habilidade ou teste de resistência.

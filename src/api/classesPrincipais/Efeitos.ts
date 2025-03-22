@@ -7,6 +7,7 @@ export class Efeitos {
     proeficienciasClasse: string[];
     proficienciasMulticlasse: string[];
     atributo: string;
+    talento: string;
     pericia: string;
     bonus: number;
     level: number;
@@ -49,5 +50,14 @@ export class Efeitos {
     }
     setClasseNome(nome: string){
         this.classeNome = nome;
+    }
+    setAtributo(atributo: string){
+        this.atributo = atributo;
+    }
+    setBonus(bonus: number){
+        this.bonus = bonus;
+    }
+    setTalento(talento: string){
+        this.talento = talento;
     }
 }
