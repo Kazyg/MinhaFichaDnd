@@ -19,6 +19,7 @@ import { Atributos } from "../api/classesPrincipais/Atributos.class.ts";
 import { SubClasses } from "../api/classesPrincipais/SubClasses.ts";
 import ModalSelecaoSubClasse from "../pages/modals/ModalSelecaoSubClasse.tsx";
 import { Draconato, dracoes } from "../api/classesFilhos/Draconato.class.ts";
+import { Efeitos } from "../api/classesPrincipais/Efeitos.ts";
 
 interface LevelOneSetupProps {
   raca: Raca;
@@ -29,7 +30,6 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
   const [modalPatronoAberto, setModalPatronoAberto] = useState(false);
   const [patronoSelecionado, setPatronoSelecionado] = useState<Patronos | null>(null);
   const [modalHumanoVarianteAberto, setModalHumanoVarianteAberto] = useState(false);
-  const [humanoVarianteFeatEscolhido, setHumanoVarianteFeatEscolhido] = useState<Talento | null>(null);
   const [subGrupoAberto, setSubGrupoAberto] = useState(false);
   const [subClasses, setSubClasses] = useState<SubClasses[] | null>([]);
   const { ficha, forceUpdate } = useFicha();
@@ -434,7 +434,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
                         <img src={iconRaca} className="button-icon" alt="HumanoFeat" />
                         <div className="botao-texto">
                           <span>Selecionar Talento</span>
-                          <strong>{humanoVarianteFeatEscolhido ? humanoVarianteFeatEscolhido.nome : "Selecionar Talento"}</strong>
+                          <strong>{ficha?.efeitos?.find(e => e.tituloEfeito === "TalentoEscolhidoHumanoVariante") ? ficha?.efeitos?.find(e => e.tituloEfeito === "TalentoEscolhidoHumanoVariante")?.talento : "Selecionar Talento"}</strong>
                         </div>
                       </button>
                       {modalHumanoVarianteAberto && (
@@ -446,15 +446,21 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
                               opcoes={talentos}
                               onClose={() => setModalHumanoVarianteAberto(false)}
                               onSelect={(talento) => {
-                                setHumanoVarianteFeatEscolhido(talento);
                                 setModalHumanoVarianteAberto(false);
+                                ficha?.excluirEfeitoPorTitulo(`TalentoEscolhidoHumanoVariante`);
+                                let efeito = new Efeitos();
+                                efeito.setTalento(talento.nome);
+                                efeito.setLevel(1);
+                                efeito.setTituloEfeito(`TalentoEscolhidoHumanoVariante`);
+                                ficha?.setEfeitos(efeito);
+                                forceUpdate();
                               }}
-                              talentoInicial={humanoVarianteFeatEscolhido}
+                              talentoInicial={talentos.find(t => t.nome === ficha?.efeitos?.find(e => e.tituloEfeito === "TalentoEscolhidoHumanoVariante")?.talento) ?? null}
                             />
                           </div>
                         </>
                       )}
-                      {humanoVarianteFeatEscolhido && <TalentoDescricao talento={humanoVarianteFeatEscolhido?.nome} />}
+                      {!!ficha?.efeitos?.find(e => e.tituloEfeito === "TalentoEscolhidoHumanoVariante") && <TalentoDescricao talento={ficha?.efeitos?.find(e => e.tituloEfeito === "TalentoEscolhidoHumanoVariante")?.talento ?? ""} />}
                     </>
                   }
                   {raca.tracos?.map((traco) => (

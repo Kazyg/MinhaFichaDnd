@@ -13,7 +13,8 @@ export class Classes {
         nivel: number;
         caracteristicas: string[];
       }[];
-      subClasse: SubClasses[];
+    subClasse: SubClasses[];
+    proficienciaMulticlasse: string[];
 
     constructor(
         nome: string,
@@ -23,7 +24,8 @@ export class Classes {
         ferramentas: string[],
         testesResistencias: string[],
         habilidade: number,
-        habilidades: string[]
+        habilidades: string[],
+        proficienciaMulticlasse: string[]
     ){
         this.nome = nome;
         this.dadosVida = dadosVida;
@@ -33,5 +35,6 @@ export class Classes {
         this.testesResistencias = testesResistencias;
         this.habilidade = habilidade;
         this.habilidades = habilidades;
+        this.proficienciaMulticlasse = proficienciaMulticlasse;
     }
 }

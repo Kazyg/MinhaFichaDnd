@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFicha } from "../../../api/fichaPersonagem/FichaContext.tsx";
 import noProficienciaIcon from "../../../imagens/swords_24dp_B7B7B7_FILL0_wght400_GRAD0_opsz24.png"
 import proficienciaIcon from "../../../imagens/swords_24dp_EA3323_FILL0_wght400_GRAD0_opsz24.png"
@@ -6,16 +6,42 @@ import excluirIcon from "../../../imagens/delete_icon.png"
 import "../../css/ArmaInventario.css"
 
 export default function AbaArmas({ setModalAberto }) {
-    const { ficha } = useFicha();
-    const proficienciasPersonagem = new Set([
-        ...ficha?.efeitos?.proeficienciasBackGround ?? [],
-        ...ficha?.efeitos?.proeficienciasClasse ?? [],
-        ...ficha?.efeitos?.proeficienciasRaca ?? []].map(normalizarString))
-    const proficienciaArmaSimples = verificarProficiencias("armas simples");
-    const proficienciaArmaMarciais = verificarProficiencias("armas marciais");
-    const proficienciaArmaExoticas = verificarProficiencias("armas exoticas");
+    const { ficha, refreshKey, forceUpdate } = useFicha();
+    const proficienciaArmaSimples = verificarProficiencias("armas simples", coletarProeficiencias(ficha?.efeitos));
+    const proficienciaArmaMarciais = verificarProficiencias("armas marciais", coletarProeficiencias(ficha?.efeitos));
+    const proficienciaArmaExoticas = verificarProficiencias("armas exoticas", coletarProeficiencias(ficha?.efeitos));
 
-    function verificarProficiencias(arma) {
+    function coletarProeficiencias(efeitos) {
+        const proficienciasPersonagem = new Set();
+        if (efeitos !== null) {
+            efeitos.forEach(efeito => {
+                if (efeito.proeficienciasBackGround) {
+                    efeito.proeficienciasBackGround.forEach(proficiencia => {
+                        proficienciasPersonagem.add(normalizarString(proficiencia));
+                    });
+                }
+                if (efeito.proeficienciasClasse) {
+                    efeito.proeficienciasClasse.forEach(proficiencia => {
+                        proficienciasPersonagem.add(normalizarString(proficiencia));
+                    });
+                }
+                if (efeito.proeficienciasRaca) {
+                    efeito.proeficienciasRaca.forEach(proficiencia => {
+                        proficienciasPersonagem.add(normalizarString(proficiencia));
+                    });
+                }
+                if (efeito.proficienciasMulticlasse) {
+                    efeito.proficienciasMulticlasse.forEach(proficiencia => {
+                        proficienciasPersonagem.add(normalizarString(proficiencia));
+                    });
+                }
+            });
+        }
+
+        return proficienciasPersonagem;
+    }
+
+    function verificarProficiencias(arma, proficienciasPersonagem) {
 
         return proficienciasPersonagem.has(normalizarString(arma));
     }
@@ -26,20 +52,21 @@ export default function AbaArmas({ setModalAberto }) {
             .replace(/[\u0300-\u036f]/g, "")
             .toLowerCase();
     }
+
     return (
-        <div className="inventario-armas-container">
+        <div key={refreshKey} className="inventario-armas-container">
             <h3>Inventario de Armas</h3>
             <div className="proficiencias-personagem-container">
                 <div className="proficiencias-personagem">
-                    <img className="icon-proficiencia" src={proficienciaArmaSimples ? proficienciaIcon : noProficienciaIcon} title={proficienciaArmaSimples ? "proficiente" : "não proficiente"}></img>
+                    <img className="icon-proficiencia" alt="proficiencia" src={proficienciaArmaSimples ? proficienciaIcon : noProficienciaIcon} title={proficienciaArmaSimples ? "proficiente" : "não proficiente"}></img>
                     <span>Armas Simples</span>
                 </div>
                 <div className="proficiencias-personagem">
-                    <img className="icon-proficiencia" src={proficienciaArmaMarciais ? proficienciaIcon : noProficienciaIcon} title={proficienciaArmaMarciais ? "proficiente" : "não proficiente"}></img>
+                    <img className="icon-proficiencia" alt="proficiencia" src={proficienciaArmaMarciais ? proficienciaIcon : noProficienciaIcon} title={proficienciaArmaMarciais ? "proficiente" : "não proficiente"}></img>
                     <span>Armas Marciais</span>
                 </div>
                 <div className="proficiencias-personagem">
-                    <img className="icon-proficiencia" src={proficienciaArmaExoticas ? proficienciaIcon : noProficienciaIcon} title={proficienciaArmaExoticas ? "proficiente" : "não proficiente"}></img>
+                    <img className="icon-proficiencia" alt="proficiencia" src={proficienciaArmaExoticas ? proficienciaIcon : noProficienciaIcon} title={proficienciaArmaExoticas ? "proficiente" : "não proficiente"}></img>
                     <span>Armas Exoticas</span>
                 </div>
             </div>
@@ -48,7 +75,11 @@ export default function AbaArmas({ setModalAberto }) {
                 {ficha?.ArmasMochila?.map((arma, index) => (
                     <li key={index} className="item-arma">
                         <div className="imagem-icon-arma">
-                            <img className="icon-proficiencia-arma" src={(verificarProficiencias(arma.nome) || verificarProficiencias(arma.categoria)) ? proficienciaIcon : noProficienciaIcon} title={(verificarProficiencias(arma.nome) || verificarProficiencias(arma.categoria)) ? "proficiente" : "não proficiente"}></img>
+                            <img alt="proficiencia" className="icon-proficiencia-arma"
+                                src={(verificarProficiencias(arma.nome, coletarProeficiencias(ficha?.efeitos)) ||
+                                    verificarProficiencias(arma.categoria, coletarProeficiencias(ficha?.efeitos))) ? proficienciaIcon : noProficienciaIcon}
+                                title={(verificarProficiencias(arma.nome, coletarProeficiencias(ficha?.efeitos)) ||
+                                    verificarProficiencias(arma.categoria, coletarProeficiencias(ficha?.efeitos))) ? "proficiente" : "não proficiente"}></img>
                         </div>
                         <div className="titulo-arma">
                             <h3>{arma.nome}</h3>
@@ -72,8 +103,11 @@ export default function AbaArmas({ setModalAberto }) {
                         <div className="botao-excluir-container">
                             <button
                                 className="botao-excluir"
-                                onClick={() => ficha.excluirArmaMochila(arma.id)}
-                            ><img className="icon-excluir" src={excluirIcon}></img>
+                                onClick={() => {
+                                    ficha.excluirArmaMochila(arma.id);
+                                    forceUpdate();
+                                }}
+                            ><img alt="excluir" className="icon-excluir" src={excluirIcon}></img>
                             </button>
                         </div>
                     </li>

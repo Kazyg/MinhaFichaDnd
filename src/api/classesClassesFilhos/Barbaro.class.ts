@@ -14,7 +14,8 @@ export class Barbaro extends Classes {
     subClasse: SubClasses[];
   
     constructor() {
-      super("barbaro", 12, ["Armadura leve", "armadura média", "escudos"], ["Armas simples", "armas marciais"], [""], ["Força", "Constituição"], 2, ["Atletismo", "Adestrar Animais", "Intimidação", "Natureza", "Percepção", "Sobrevivência"]);
+      super("barbaro", 12, ["Armadura leve", "armadura média", "escudos"], ["Armas simples", "armas marciais"], [""], ["Força", "Constituição"], 2, 
+        ["Atletismo", "Adestrar Animais", "Intimidação", "Natureza", "Percepção", "Sobrevivência"], ["Escudos", "armas simples", "armas marciais"]);
       this.level = 0;
       this.niveis = [
         { nivel: 1, proeficiencia: 2, caracteristicas: ["Fúria", "Defesa sem Armadura"], furias: 2, danoFuria: 2 },

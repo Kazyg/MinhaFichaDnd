@@ -1,8 +1,16 @@
 export class Efeitos {
     id: string;
+    tituloEfeito: string;
+    classeNome: string;
     proeficienciasRaca: string[];
     proeficienciasBackGround: string[];
     proeficienciasClasse: string[];
+    proficienciasMulticlasse: string[];
+    atributo: string;
+    talento: string;
+    pericia: string;
+    bonus: number;
+    level: number;
     constructor() {
         this.id = this.gerarIdUnico();
     }
@@ -27,5 +35,29 @@ export class Efeitos {
     }
     setProeficienciasBackGround(proeficiencias: string []){
         this.proeficienciasBackGround = [...proeficiencias];
+    }
+    setProeficienciasMulticlasse(proficiencias: string []){
+        this.proficienciasMulticlasse = [...proficiencias];
+    }
+    setLevel(level: number){
+        this.level = level;
+    }
+    setTituloEfeito(titulo: string){
+        this.tituloEfeito = titulo;
+    }
+    setPericia(pericia: string){
+        this.pericia = pericia;
+    }
+    setClasseNome(nome: string){
+        this.classeNome = nome;
+    }
+    setAtributo(atributo: string){
+        this.atributo = atributo;
+    }
+    setBonus(bonus: number){
+        this.bonus = bonus;
+    }
+    setTalento(talento: string){
+        this.talento = talento;
     }
 }
