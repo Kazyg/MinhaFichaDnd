@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CriacaoFicha from "./components/CriacaoFicha.tsx";
-import InformacoesPersonagem from "./components/InformacoesPersonagem.js";
+import InformacoesPersonagem from "./components/InformacoesPersonagem.tsx";
 import PericiasEOutros from "./components/PericiasEOutros.js";
 import InventarioMagiasDetalhes from "./components/InventarioMagiasDetalhes.tsx";
 import "./css/criarFicha.css";

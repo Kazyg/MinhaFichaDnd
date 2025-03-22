@@ -22,6 +22,7 @@ export class Ficha {
     proeficiencia: number | null;
     percepcao: number | null;
     vidaTotal: number | null;
+    vidaAtual: number | null;
     pericias: string[] | null;
     levelTotal: number | null;
     classeArmadura: number | null;
@@ -29,12 +30,17 @@ export class Ficha {
     tamanho: string | null;
     talentos: string[] | null;
     idiomas: string[] | null;
-    estiloLuta: string | null;
+    estiloLuta: {estilo: string, classe: string}[] | null;
     animalSelecionado: { animal: string, nivel: number }[] | null;
     terrenoSelecionado: string | null;
     efeitos: Efeitos[] | null;
     ArmadurasMochila: Armaduras_equip[] | null;
     ArmasMochila: Armas[] | null;
+    cA: number | null;
+    ArmaduraEquipada: Armaduras_equip | null;
+    escudoEquipado: Armaduras_equip | null;
+    ArmaEquipada: Armas[] | null;
+    maosOcupadas: number | null;
 
     constructor(data: Partial<Ficha> = {}) {
         this.id = data?.id ?? this.gerarIdUnico();
@@ -62,6 +68,12 @@ export class Ficha {
         this.efeitos = data?.efeitos ?? null;
         this.ArmadurasMochila = data?.ArmadurasMochila ?? null;
         this.ArmasMochila = data?.ArmasMochila ?? null;
+        this.cA = data?.cA ?? null;
+        this.vidaAtual = data.vidaAtual ?? null;
+        this.ArmaduraEquipada = data?.ArmaduraEquipada ?? null;
+        this.ArmaEquipada = data?.ArmaEquipada ?? null;
+        this.escudoEquipado = data?.escudoEquipado ?? null;
+        this.maosOcupadas = data?.maosOcupadas ?? null;
     }
 
     calcularModificador(valor) {
@@ -224,8 +236,14 @@ export class Ficha {
     setMulticlasse(multiclasses: Multiclasses) {
         this.multiclasses = [multiclasses];
     }
-    setEstiloLuta(estilo: string) {
-        this.estiloLuta = estilo;
+    setEstiloLuta(estilo: string, classe: string) {
+        if(this.estiloLuta === null){
+            this.estiloLuta = []
+        }
+        this.estiloLuta.push({estilo: estilo, classe: classe});
+    }
+    excluirEstiloLuta(classe: string){
+        if(this.estiloLuta)this.estiloLuta = this.estiloLuta?.filter(e => e.classe !== classe);
     }
     substituirOuAdicionarAnimal(animal: string, nivel: number) {
         if (!this.animalSelecionado) {
@@ -286,5 +304,38 @@ export class Ficha {
     }
     excluirArmaduraMochila(idArmadura: string){
         if (this.ArmadurasMochila) this.ArmadurasMochila = this.ArmadurasMochila.filter(s => s.id !== idArmadura);
+    }
+    setCA(cA: number){
+        this.cA = cA;
+    }
+    setVidaAtual(vidaAtual: number){
+        this.vidaAtual = vidaAtual;
+    }
+    setArmaduraEquipada(armadura: Armaduras_equip){
+        this.ArmaduraEquipada = armadura;
+    }
+    setDesequiparArmadura(){
+        this.ArmaduraEquipada = null;
+    }
+    setEscudoEquipado(escudo: Armaduras_equip){
+        this.escudoEquipado = escudo;
+    }
+    setDesequiparEscudo(){
+        this.escudoEquipado = null;
+    }
+    setEquiparArma(arma: Armas){
+        if(this.ArmaEquipada === null){
+            this.ArmaEquipada = [];
+        }
+        this.ArmaEquipada?.push(arma);
+    }
+    setDesequiparArma(arma: string){
+        if(this.ArmaEquipada)this.ArmaEquipada = this.ArmaEquipada.filter(a => a.id === arma);
+    }
+    setMaosOcupadas(mao: number){
+        if(this.maosOcupadas === null){
+            this.maosOcupadas = 0;
+        }
+        this.maosOcupadas += mao;
     }
 }

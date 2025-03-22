@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useFicha } from "../../api/fichaPersonagem/FichaContext.tsx";
 
 interface ModalSelecaoProps {
     opcoes: { classe: string[], nome: string, descricao: string }[];
@@ -11,6 +12,7 @@ interface ModalSelecaoProps {
 const ModalSelecaoEstiloLuta: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClose, onSelect, EstiloInicial }) => {
     const [filtro, setFiltro] = useState("");
     const [selecionado, setSelecionado] = useState<{ classe: string[], nome: string, descricao: string } | null>(EstiloInicial || null);
+    const { ficha } = useFicha();
 
     const opcoesFiltradas = opcoes.filter((opcao) =>
         opcao.nome.toLowerCase().includes(filtro.toLowerCase())
@@ -28,7 +30,7 @@ const ModalSelecaoEstiloLuta: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
                         onChange={(e) => setFiltro(e.target.value)}
                     />
                     <ul>
-                        {opcoesFiltradas.map((opcao) => (
+                        {opcoesFiltradas.filter(e => !ficha?.estiloLuta?.find(fe => fe.estilo === e.nome)).map((opcao) => (
                             <li key={opcao.nome} onClick={() => {
                                 setSelecionado(opcao);
                             }}>
@@ -49,7 +51,11 @@ const ModalSelecaoEstiloLuta: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
             </div>
 
             <div className="popup-footer">
-                {selecionado && (<button className="escolher-button" onClick={() => { onSelect(selecionado); onClose() }}>Escolher {selecionado.nome}</button>)}
+                {selecionado && (<button className="escolher-button"
+                    onClick={() => {
+                        onSelect(selecionado);
+                        onClose()
+                    }}>Escolher {selecionado.nome}</button>)}
                 <button className="escolher-button" onClick={() => { onClose() }}>Fechar</button>
             </div>
         </div>

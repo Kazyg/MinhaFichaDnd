@@ -9,6 +9,8 @@ export class Efeitos {
     atributo: string;
     talento: string;
     pericia: string;
+    arma: string;
+    ca: string;
     bonus: number;
     level: number;
     constructor() {
@@ -59,5 +61,11 @@ export class Efeitos {
     }
     setTalento(talento: string){
         this.talento = talento;
+    }
+    setCa(ca: string){
+        this.ca = ca;
+    }
+    setArma(arma: string){
+        this.arma = arma;
     }
 }

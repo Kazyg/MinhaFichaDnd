@@ -43,7 +43,7 @@
     gap: 8px;
 }
 
-.proficiencias-personagem span{
+.proficiencias-personagem span {
     margin-top: -2px;
 }
 
@@ -52,17 +52,56 @@
     height: 20px;
 }
 
-.icon-excluir{
+.icon-excluir {
     width: 22px;
     height: 22px;
     margin-top: 4px;
 }
 
-.botao-excluir-container{
+.equipar {
+    position: absolute;
+    top: 0;
+    left: 4px;
+    width: 22px;
+    height: 22px;
+    margin-top: 4px;
+}
+
+.equipar:hover {
+    position: absolute;
+    top: 0;
+    left: 4px;
+    width: 22px;
+    height: 22px;
+    margin-top: 4px;
+    opacity: 0;
+}
+
+.equipar-hover {
+    position: absolute;
+    top: 0;
+    left: 4px;
+    width: 22px;
+    height: 22px;
+    margin-top: 4px;
+    opacity: 0;
+}
+
+.equipar-hover:hover {
+    position: absolute;
+    top: 0;
+    left: 4px;
+    width: 22px;
+    height: 22px;
+    margin-top: 4px;
+    opacity: 1;
+}
+
+.botao-excluir-container {
     width: 5%;
 }
 
-.botao-excluir{
+.botao-excluir {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -83,7 +122,21 @@
     background-color: #e03e00;
 }
 
-.lista-armas{
+.botao-equipar {
+    position: relative;
+    top: 20%;
+    border: none;
+    outline: 2px solid #e03e00;
+    padding: 0px;
+    background-color: #acacac;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.lista-armas {
     display: flex;
     flex-direction: column;
     width: 102%;
@@ -91,7 +144,7 @@
     gap: 7px;
 }
 
-.item-arma{
+.item-arma {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -102,17 +155,17 @@
     padding-left: 5px;
 }
 
-.titulo-arma{
+.titulo-arma {
     width: 8%;
 }
 
-.titulo-arma h3{
+.titulo-arma h3 {
     font-size: 15px;
     position: relative;
     top: 45%;
 }
 
-.imagem-icon-arma img{
+.imagem-icon-arma img {
     position: relative;
     top: 42%
 }
@@ -121,18 +174,20 @@
     width: 5%;
 }
 
-.arma{
+.arma {
     display: flex;
     flex-direction: column;
     width: 82%;
 }
-.arma1{
+
+.arma1 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     font-size: 14px;
 }
-.arma2{
+
+.arma2 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
