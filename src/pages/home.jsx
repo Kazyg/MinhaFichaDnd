@@ -66,8 +66,8 @@ export default function Home() {
           </button>
           <button className="icon-button" onClick={() => {
             const ficha = new Ficha();
-            setFicha(ficha);
             ficha.setLevelTotal(1);
+            setFicha(ficha);
             salvarFicha(ficha);
             navigate("/criar-ficha");
           }}>

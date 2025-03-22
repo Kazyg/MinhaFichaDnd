@@ -3,7 +3,13 @@ import { useFicha } from "../../../api/fichaPersonagem/FichaContext.tsx";
 import noProficienciaIcon from "../../../imagens/swords_24dp_B7B7B7_FILL0_wght400_GRAD0_opsz24.png"
 import proficienciaIcon from "../../../imagens/swords_24dp_EA3323_FILL0_wght400_GRAD0_opsz24.png"
 import excluirIcon from "../../../imagens/delete_icon.png"
+import iconEquiparArma1 from "../../../imagens/iconEquiparVerde.png"
+import iconEquiparArma2 from "../../../imagens/iconEquiparCinza.png"
+import iconDesequiparArma1 from "../../../imagens/iconDesequiparVermelho.png"
+import iconDesequiparArma2 from "../../../imagens/iconDesequiparCinza.png"
 import "../../css/ArmaInventario.css"
+import { toast } from "react-toastify";
+import { Armas } from "../../../api/equipamentos/Armas.ts";
 
 export default function AbaArmas({ setModalAberto }) {
     const { ficha, refreshKey, forceUpdate } = useFicha();
@@ -51,6 +57,28 @@ export default function AbaArmas({ setModalAberto }) {
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
             .toLowerCase();
+    }
+
+    function equiparDesequiparArmadura(equipamento: Armas) {
+        debugger;
+        if (!!ficha?.ArmaEquipada?.find(a => a.id === equipamento.id)) {
+            ficha?.setDesequiparArma(equipamento.id);
+            ficha?.setMaosOcupadas(-1);
+        } else {
+            if ((ficha?.maosOcupadas ?? 0) >= 2) {
+                toast.error('Você não tem mão sobrando para equipar este item!', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            } else {
+                ficha?.setEquiparArma(equipamento);
+                ficha?.setMaosOcupadas(1);
+            }
+        }
     }
 
     return (
@@ -108,6 +136,25 @@ export default function AbaArmas({ setModalAberto }) {
                                     forceUpdate();
                                 }}
                             ><img alt="excluir" className="icon-excluir" src={excluirIcon}></img>
+                            </button>
+                            <button
+                                className="botao-equipar"
+                                onClick={() => {
+                                    equiparDesequiparArmadura(arma);
+                                    forceUpdate();
+                                }}
+                            >
+                                {!!ficha?.ArmaEquipada?.find(a => a.id === arma.id) ? (
+                                    <>
+                                        <img alt="excluir" className="equipar" src={iconDesequiparArma2}></img>
+                                        <img alt="excluir" className="equipar-hover" src={iconDesequiparArma1}></img>
+                                    </>
+                                ) :(
+                                    <>
+                                        <img alt="excluir" className="equipar" src={iconEquiparArma2}></img>
+                                        <img alt="excluir" className="equipar-hover" src={iconEquiparArma1}></img>
+                                    </>
+                                )}
                             </button>
                         </div>
                     </li>

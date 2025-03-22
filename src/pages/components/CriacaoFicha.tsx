@@ -145,9 +145,18 @@ export default function CriacaoFicha() {
         if (multiclasseAchada?.nivelEscolhido.length === 0) {
           ficha?.multiclasses?.splice(ficha?.multiclasses?.findIndex(m => m.id === nivelExistente.id), 1);
           ficha?.excluirEfeitoPorNivel(nivelAtual);
+          ficha?.excluirEstiloLuta(multiclasseAchada.classe.nome);
         } else if (multiclasseAchada) {
           multiclasseAchada.nivelClasse -= 1;
-          ficha?.excluirEfeitoPorNivel(nivelAtual);
+          const niveisEscolhidos = multiclasseAchada.nivelEscolhido.sort((a, b) => a - b);
+          const efeitosClasse = ficha?.efeitos?.filter(e => e.classeNome === multiclasseAchada.classe.nome);
+          efeitosClasse?.map((efeito, index) => {
+            ficha?.efeitos?.find(e => e.id === efeito.id)?.setLevel(niveisEscolhidos[index]);
+          })
+          const nivelEstiloLutaClasse = multiclasseAchada.classe.niveis.find(n => n.caracteristicas.find(c => c.includes("Estilo de Luta")))?.nivel;
+          if(nivelEstiloLutaClasse)if(multiclasseAchada.nivelClasse < nivelEstiloLutaClasse){
+            ficha?.excluirEstiloLuta(multiclasseAchada.classe.nome);
+          }
           if (!validaSubClasse(multiclasseAchada.classe.nome, multiclasseAchada.nivelClasse)) {
 
             let subclasseAchada = ficha?.subClasse?.find(s => s.classe.nome === multiclasseAchada.classe.nome)?.subclasse;

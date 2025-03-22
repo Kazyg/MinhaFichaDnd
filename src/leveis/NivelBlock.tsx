@@ -208,7 +208,6 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
     }
 
     function validaClasseNoNivel(classe: Classes | undefined) {
-        debugger;
         if (classe !== undefined) {
             return classesPermitidas.some(c => c.nome === classe?.nome);
         } else {
@@ -219,7 +218,7 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
     function validaIncrementoAtributo(classe: Classes | undefined) {
         let classeIncremento = classe?.niveis.find(c => c.caracteristicas.includes("Incremento no Valor de Habilidade"))
         if (classe === undefined) return false;
-        else if (classeIncremento?.nivel === nivel) {
+        else if (classeIncremento?.nivel === calcularNivelClasse(nivel)) {
             return true
         } else {
             return false

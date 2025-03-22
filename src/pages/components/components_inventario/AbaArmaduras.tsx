@@ -2,8 +2,14 @@ import React from "react";
 import noProficienciaIcon from "../../../imagens/security_24dp_B7B7B7_FILL0_wght400_GRAD0_opsz24.png"
 import proficienciaIcon from "../../../imagens/security_24dp_EA3323_FILL0_wght400_GRAD0_opsz24.png"
 import excluirIcon from "../../../imagens/delete_icon.png"
+import iconEquiparArmadura1 from "../../../imagens/add_moderator_24dp_D9D9D9_FILL0_wght400_GRAD0_opsz24.png"
+import iconEquiparArmadura2 from "../../../imagens/add_moderator_24dp_75FB4C_FILL0_wght400_GRAD0_opsz24.png"
+import iconDesequiparArmadura1 from "../../../imagens/remove_moderator_24dp_D9D9D9_FILL0_wght400_GRAD0_opsz24.png"
+import iconDesequiparArmadura2 from "../../../imagens/remove_moderator_24dp_EA3323_FILL0_wght400_GRAD0_opsz24.png"
 import { useFicha } from "../../../api/fichaPersonagem/FichaContext.tsx";
 import "../../css/ArmaInventario.css"
+import { Armaduras_equip } from "../../../api/equipamentos/Armaduras.ts";
+import { toast } from "react-toastify";
 
 export default function AbaArmaduras({ setModalEquipamentoAberto }) {
   const { ficha, refreshKey, forceUpdate } = useFicha();
@@ -51,6 +57,36 @@ export default function AbaArmaduras({ setModalEquipamentoAberto }) {
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
       .toLowerCase();
+  }
+
+  function equiparDesequiparArmadura(equipamento: Armaduras_equip) {
+    debugger;
+    if (equipamento.categoria === "Escudo") {
+      if (ficha?.escudoEquipado?.id === equipamento.id) {
+        ficha.setDesequiparEscudo()
+        ficha.setMaosOcupadas(-1);
+      } else {
+        if ((ficha?.maosOcupadas ?? 0) >= 2) {
+          toast.error('Você não tem mão sobrando para equipar este item!', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+        } else {
+          ficha?.setEscudoEquipado(equipamento);
+          ficha?.setMaosOcupadas(1);
+        }
+      }
+    } else {
+      if (ficha?.ArmaduraEquipada?.id === equipamento.id) {
+        ficha.setDesequiparArmadura()
+      } else {
+        ficha?.setArmaduraEquipada(equipamento);
+      }
+    }
   }
 
   return (
@@ -108,6 +144,26 @@ export default function AbaArmaduras({ setModalEquipamentoAberto }) {
                   forceUpdate();
                 }}
               ><img alt="excluir" className="icon-excluir" src={excluirIcon}></img>
+              </button>
+              <button
+                className="botao-equipar"
+                onClick={() => {
+                  equiparDesequiparArmadura(equipamento);
+                  forceUpdate();
+                }}
+              >
+                {(ficha?.ArmaduraEquipada?.id !== equipamento.id && ficha.escudoEquipado?.id !== equipamento.id) && (
+                  <>
+                    <img alt="excluir" className="equipar" src={iconEquiparArmadura1}></img>
+                    <img alt="excluir" className="equipar-hover" src={iconEquiparArmadura2}></img>
+                  </>
+                )}
+                {(ficha?.ArmaduraEquipada?.id === equipamento.id || ficha.escudoEquipado?.id === equipamento.id) && (
+                  <>
+                    <img alt="excluir" className="equipar" src={iconDesequiparArmadura1}></img>
+                    <img alt="excluir" className="equipar-hover" src={iconDesequiparArmadura2}></img>
+                  </>
+                )}
               </button>
             </div>
           </li>
