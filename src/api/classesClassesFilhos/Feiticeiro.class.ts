@@ -44,7 +44,7 @@ export class Feiticeiro extends Classes {
   // Método para preencher a tabela de níveis
   private preencherNiveis() {
     return [
-      { nivel: 1, proeficiencia: 2, pontosFeiticaria: 0, caracteristicas: ["Conjuração", "Origem de Feitiçaria"], truquesConhecidos: 4, magiasConhecidas: 2, espacosMagia: [2, 0, 0, 0, 0, 0, 0, 0, 0] },
+      { nivel: 1, proeficiencia: 2, pontosFeiticaria: 0, caracteristicas: ["Conjuração de Feiticeiro", "Origem de Feitiçaria"], truquesConhecidos: 4, magiasConhecidas: 2, espacosMagia: [2, 0, 0, 0, 0, 0, 0, 0, 0] },
       { nivel: 2, proeficiencia: 2, pontosFeiticaria: 2, caracteristicas: ["Fonte de Magia"], truquesConhecidos: 4, magiasConhecidas: 3, espacosMagia: [3, 0, 0, 0, 0, 0, 0, 0, 0] },
       { nivel: 3, proeficiencia: 2, pontosFeiticaria: 3, caracteristicas: ["Metamágica"], truquesConhecidos: 4, magiasConhecidas: 4, espacosMagia: [4, 2, 0, 0, 0, 0, 0, 0, 0] },
       { nivel: 4, proeficiencia: 2, pontosFeiticaria: 4, caracteristicas: ["Incremento no Valor de Habilidade"], truquesConhecidos: 5, magiasConhecidas: 5, espacosMagia: [4, 3, 0, 0, 0, 0, 0, 0, 0] },

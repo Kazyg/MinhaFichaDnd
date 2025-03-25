@@ -43,10 +43,10 @@ export default function ModalInventarioArma({
       {/* Mostra os botões de filtro ou a lista de armas */}
       {mostrarFiltros ? (
         <div className="menu-abas">
-          <button onClick={() => selecionarFiltro("Armas Simples", "não")}>Simples Corpo a Corpo</button>
-          <button onClick={() => selecionarFiltro("Armas Marciais", "não")}>Marcial Corpo a Corpo</button>
-          <button onClick={() => selecionarFiltro("Armas Simples", "sim")}>Simples à Distância</button>
-          <button onClick={() => selecionarFiltro("Armas Marciais", "sim")}>Marcial à Distância</button>
+          <button className="escolher-button" onClick={() => selecionarFiltro("Armas Simples", "não")}>Simples Corpo a Corpo</button>
+          <button className="escolher-button" onClick={() => selecionarFiltro("Armas Marciais", "não")}>Marcial Corpo a Corpo</button>
+          <button className="escolher-button" onClick={() => selecionarFiltro("Armas Simples", "sim")}>Simples à Distância</button>
+          <button className="escolher-button" onClick={() => selecionarFiltro("Armas Marciais", "sim")}>Marcial à Distância</button>
         </div>
       ) : (
         <>
@@ -97,7 +97,7 @@ export default function ModalInventarioArma({
       }
 
       {/* Botão para fechar o modal */}
-      <button onClick={onClose}>Fechar</button>
+      <button className="escolher-button" onClick={onClose}>Fechar</button>
     </div >
   );
 }

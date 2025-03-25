@@ -468,7 +468,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
                       <button onClick={() => toggleTraco(traco.traco)}>
                         {traco.traco} {tracosExpandidos[traco.traco] ? "▲" : "▼"}
                       </button>
-                      {tracosExpandidos[traco.traco] && <p className="descricao">{traco.descricao}</p>}
+                      {tracosExpandidos[traco.traco] && <p className="descricao texto-formatado">{traco.descricao}</p>}
                     </div>
                   ))}
                   {raca instanceof Draconato && (

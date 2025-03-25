@@ -43,7 +43,7 @@ export class Ranger extends Classes {
   private preencherNiveis() {
     return [
       { nivel: 1, proeficiencia: 2, magiasConhecidas: 0, espacosMagia: [0, 0, 0, 0, 0], caracteristicas: ["Inimigo Favorito", "Explorador Natural"] },
-      { nivel: 2, proeficiencia: 2, magiasConhecidas: 2, espacosMagia: [2, 0, 0, 0, 0], caracteristicas: ["Estilo de Luta Patrulheiro", "Conjuração"] },
+      { nivel: 2, proeficiencia: 2, magiasConhecidas: 2, espacosMagia: [2, 0, 0, 0, 0], caracteristicas: ["Estilo de Luta Patrulheiro", "Conjuração de Patrulheiro"] },
       { nivel: 3, proeficiencia: 2, magiasConhecidas: 3, espacosMagia: [3, 0, 0, 0, 0], caracteristicas: ["Conclave de Patrulheiro", "Consciência Primitiva"] },
       { nivel: 4, proeficiencia: 2, magiasConhecidas: 3, espacosMagia: [3, 0, 0, 0, 0], caracteristicas: ["Incremento no Valor de Habilidade"] },
       { nivel: 5, proeficiencia: 3, magiasConhecidas: 4, espacosMagia: [4, 2, 0, 0, 0], caracteristicas: ["Característica de Conclave de Patrulheiro"] },

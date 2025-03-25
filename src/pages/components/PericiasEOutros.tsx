@@ -4,7 +4,15 @@ import { useFicha } from "../../api/fichaPersonagem/FichaContext.tsx"
 
 export default function PericiasEOutros() {
   const { ficha, refreshKey } = useFicha();
-  const [pericias, setPericias] = useState([]);
+  const [pericias, setPericias] = useState<
+    {
+      modificador?: { id: number; nome: string; valor: number; tipo: string };
+      atributo: string;
+      nome: string;
+      descricao: string;
+      treinado?: boolean;
+    }[]
+  >([]);
   useEffect(() => {
     if (ficha) {
       const novasPericias = [
@@ -157,7 +165,7 @@ export default function PericiasEOutros() {
         <div className="info-coluna">
           <div className="info-item"><strong>Iniciativa:</strong> +{ficha?.iniciativa || "0"}</div>
           <div className="info-item"><strong>Speed:</strong> {ficha?.speed || "0"}ft</div>
-          <div className="info-item"><strong>Percepção:</strong> +{10 + calcularModificador(ficha?.atributosPersonagem?.sabedoria?.valor ?? 10) + (pericias.find(pericia => pericia.nome === "Percepção")?.treinado ? ficha.proeficiencia : 0)}</div>
+          <div className="info-item"><strong>Percepção:</strong> +{10 + calcularModificador(ficha?.atributosPersonagem?.sabedoria?.valor ?? 10) + (pericias.find(pericia => pericia.nome === "Percepção")?.treinado ? (ficha?.proeficiencia ?? 0) : 0)}</div>
         </div>
         <div className="info-coluna">
           <div className="info-item"><strong>Proficiência:</strong> +{ficha?.proeficiencia || "0"}</div>
@@ -171,18 +179,24 @@ export default function PericiasEOutros() {
         <ul>
           {pericias.map((pericia, index) => (
             <li key={index} className="pericia-item">
-              {10 + calcularModificador(pericia.modificador?.valor ?? 10) + (pericia.treinado ? ficha.proeficiencia : 0)}
-              <input
-                type="checkbox"
-                disabled
-                checked={ficha?.pericias?.includes(pericia.nome)}
-                onChange={() => toggleTreinado(index)}
-              />
-              <span title={pericia.descricao}>
-                {pericia.nome}
-                {" "}
-                {pericia.atributo}
-              </span>
+              <div className="modificador">
+                {calcularModificador(10 + calcularModificador(pericia.modificador?.valor ?? 10) + (pericia.treinado ? (ficha?.proeficiencia ?? 0) : 0))}
+              </div>
+              <div className="checkbox">
+                <input
+                  type="checkbox"
+                  disabled
+                  checked={ficha?.pericias?.includes(pericia.nome)}
+                  onChange={() => toggleTreinado(index)}
+                />
+              </div>
+              <div className="pericia">
+                <span title={pericia.descricao}>
+                  {pericia.nome}
+                  {" "}
+                  {pericia.atributo}
+                </span>
+              </div>
             </li>
           ))}
         </ul>

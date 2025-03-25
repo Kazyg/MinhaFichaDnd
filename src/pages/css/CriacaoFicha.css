@@ -159,7 +159,13 @@
 }
 
 .escolher-button {
-  width: 100% !important;
+  width: 200px !important;
+  margin-bottom: 10px;
+  background-color: #ff4500;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 /* Estilos para celular (max-width: 768px) */

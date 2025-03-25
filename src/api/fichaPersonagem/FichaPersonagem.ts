@@ -41,6 +41,7 @@ export class Ficha {
     escudoEquipado: Armaduras_equip | null;
     ArmaEquipada: Armas[] | null;
     maosOcupadas: number | null;
+    espacosMagiaDisponiveis: number | null;
 
     constructor(data: Partial<Ficha> = {}) {
         this.id = data?.id ?? this.gerarIdUnico();
@@ -74,6 +75,7 @@ export class Ficha {
         this.ArmaEquipada = data?.ArmaEquipada ?? null;
         this.escudoEquipado = data?.escudoEquipado ?? null;
         this.maosOcupadas = data?.maosOcupadas ?? null;
+        this.espacosMagiaDisponiveis = data?.espacosMagiaDisponiveis ?? null;
     }
 
     calcularModificador(valor) {
@@ -330,12 +332,15 @@ export class Ficha {
         this.ArmaEquipada?.push(arma);
     }
     setDesequiparArma(arma: string){
-        if(this.ArmaEquipada)this.ArmaEquipada = this.ArmaEquipada.filter(a => a.id === arma);
+        if(this.ArmaEquipada)this.ArmaEquipada = this.ArmaEquipada.filter(a => a.id !== arma);
     }
     setMaosOcupadas(mao: number){
         if(this.maosOcupadas === null){
             this.maosOcupadas = 0;
         }
         this.maosOcupadas += mao;
+    }
+    setEspacosMagiaDisponiveis(espacos: number){
+        this.espacosMagiaDisponiveis = espacos;
     }
 }

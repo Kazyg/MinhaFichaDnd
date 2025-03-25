@@ -40,10 +40,10 @@ export default function ModalInventarioEquipamentos({
       {/* Mostra os botões de filtro ou a lista de equipamentos */}
       {mostrarFiltros ? (
         <div className="menu-abas">
-          <button onClick={() => selecionarFiltro("Armadura Leve")}>Armaduras Leves</button>
-          <button onClick={() => selecionarFiltro("Armadura Média")}>Armaduras Médias</button>
-          <button onClick={() => selecionarFiltro("Armadura Pesada")}>Armaduras Pesadas</button>
-          <button onClick={() => selecionarFiltro("Escudo")}>Escudos</button>
+          <button className="escolher-button" onClick={() => selecionarFiltro("Armadura Leve")}>Armaduras Leves</button>
+          <button className="escolher-button" onClick={() => selecionarFiltro("Armadura Média")}>Armaduras Médias</button>
+          <button className="escolher-button" onClick={() => selecionarFiltro("Armadura Pesada")}>Armaduras Pesadas</button>
+          <button className="escolher-button" onClick={() => selecionarFiltro("Escudo")}>Escudos</button>
         </div>
       ) : (
         <>
@@ -83,7 +83,7 @@ export default function ModalInventarioEquipamentos({
           </div>
         </>
       )}
-      <button onClick={onClose}>Fechar</button>
+      <button className="escolher-button" onClick={onClose}>Fechar</button>
     </div>
   );
 }

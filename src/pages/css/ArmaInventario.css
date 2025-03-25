@@ -198,3 +198,9 @@
     width: 20px;
     height: 20px;
 }
+
+.magias {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

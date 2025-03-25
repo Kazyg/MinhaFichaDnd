@@ -3,7 +3,6 @@ import "../css/InformacoesPersonagem.css";
 import iconCa from "../../imagens/icon_ac.png"
 import { useFicha } from "../../api/fichaPersonagem/FichaContext.tsx"
 import VidaComponente from "./components_InformacoesPersonagem/ModalVida.tsx";
-import { Atributos } from "../../api/classesPrincipais/Atributos.class.ts";
 
 declare global {
   interface Window {
@@ -54,55 +53,84 @@ export default function InformacoesPersonagem() {
 
   const calcularModificador = (valor) => Math.floor((valor - 10) / 2);
 
-  function calcularAtributo(dados: Atributos) {
+  function calcularAtributo(dados: string) {
     const efeitosDestreza = ficha?.efeitos?.filter((e: any) => e.level <= (ficha?.levelTotal || 0) && e.atributo === "destreza");
     const efeitosConstituicao = ficha?.efeitos?.filter((e: any) => e.level <= (ficha.levelTotal || 0) && e.atributo === "constituição");
     const efeitosSabedoria = ficha?.efeitos?.filter((e: any) => e.level <= (ficha.levelTotal || 0) && e.atributo === "sabedoria");
     const efeitosInteligencia = ficha?.efeitos?.filter((e: any) => e.level <= (ficha.levelTotal || 0) && e.atributo === "inteligência");
     const efeitosForca = ficha?.efeitos?.filter((e: any) => e.level <= (ficha.levelTotal || 0) && e.atributo === "força");
     const efeitosCarisma = ficha?.efeitos?.filter((e: any) => e.level <= (ficha.levelTotal || 0) && e.atributo === "carisma");
-  }
 
-  function calcularCA() {
-    const efeitosDestreza = ficha?.efeitos?.filter((e: any) => e.level <= (ficha?.levelTotal || 0) && e.atributo === "destreza");
-    const efeitosCA = ficha?.efeitos?.filter((e: any) => e.level <= (ficha?.levelTotal || 0) && e.ca === "CA");
     let destrezaAtual = ficha?.atributosPersonagem?.destreza.valor;
     let constituicaoAtual = ficha?.atributosPersonagem?.constituicao.valor;
     let sabedoriaAtual = ficha?.atributosPersonagem?.sabedoria.valor;
-    let ca = 10;
-    if (!ficha?.ArmaduraEquipada) {
+    let inteligenciaAtual = ficha?.atributosPersonagem?.inteligencia.valor;
+    let forcaAtual = ficha?.atributosPersonagem?.forca.valor;
+    let carismaAtual = ficha?.atributosPersonagem?.carisma.valor;
+
+    if (dados === "DES") {
       if (efeitosDestreza) if (efeitosDestreza.length > 0) {
         const bonusDestreza = efeitosDestreza.reduce((acc: number, e: any) => acc + e.bonus, 0);
         if (destrezaAtual) destrezaAtual += bonusDestreza
       }
-      ca += calcularModificador(destrezaAtual);
+      return destrezaAtual;
+    }
+    if (dados === "CON") {
+      if (efeitosConstituicao) if (efeitosConstituicao.length > 0) {
+        const bonusConstituicao = efeitosConstituicao.reduce((acc: number, e: any) => acc + e.bonus, 0);
+        if (constituicaoAtual) constituicaoAtual += bonusConstituicao;
+      }
+      return constituicaoAtual;
+    }
+    if (dados === "SAB") {
+      if (efeitosSabedoria) if (efeitosSabedoria.length > 0) {
+        const bonusSabedoria = efeitosSabedoria.reduce((acc: number, e: any) => acc + e.bonus, 0);
+        if (sabedoriaAtual) sabedoriaAtual += bonusSabedoria;
+      }
+      return sabedoriaAtual;
+    }
+    if (dados === "INT") {
+      if (efeitosInteligencia) if (efeitosInteligencia.length > 0) {
+        const bonusInteligencia = efeitosInteligencia.reduce((acc: number, e: any) => acc + e.bonus, 0);
+        if (inteligenciaAtual) inteligenciaAtual += bonusInteligencia;
+      }
+      return inteligenciaAtual;
+    }
+    if (dados === "FOR") {
+      if (efeitosForca) if (efeitosForca.length > 0) {
+        const bonudForca = efeitosForca.reduce((acc: number, e: any) => acc + e.bonus, 0);
+        if (forcaAtual) forcaAtual += bonudForca;
+      }
+      return forcaAtual;
+    }
+    if (dados === "CAR") {
+      if (efeitosCarisma) if (efeitosCarisma.length > 0) {
+        const bonusCarisma = efeitosCarisma.reduce((acc: number, e: any) => acc + e.bonus, 0);
+        if (carismaAtual) carismaAtual += bonusCarisma;
+      }
+      return carismaAtual;
+    }
+  }
+
+  function calcularCA() {
+    const efeitosCA = ficha?.efeitos?.filter((e: any) => e.level <= (ficha?.levelTotal || 0) && e.ca === "CA");
+    let ca = 10;
+    if (!ficha?.ArmaduraEquipada) {
+      ca += calcularModificador(calcularAtributo("DES"));
       if (!!ficha?.multiclasses?.find(m => m.classe.nome === "barbaro")) {
-        const efeitosConstituicao = ficha.efeitos?.filter((e: any) => e.level <= (ficha.levelTotal || 0) && e.atributo === "constituição");
-        if (efeitosConstituicao) if (efeitosConstituicao.length > 0) {
-          const bonusConstituicao = efeitosConstituicao.reduce((acc: number, e: any) => acc + e.bonus, 0);
-          if (constituicaoAtual) constituicaoAtual += bonusConstituicao;
-        }
-        ca += calcularModificador(constituicaoAtual);
+        ca += calcularModificador(calcularAtributo("CON"));
       } else if (!!ficha?.multiclasses?.find(m => m.classe.nome === "Monge")) {
-        const efeitosSabedoria = ficha.efeitos?.filter((e: any) => e.level <= (ficha.levelTotal || 0) && e.atributo === "sabedoria");
-        if (efeitosSabedoria) if (efeitosSabedoria.length > 0) {
-          const bonusSabedoria = efeitosSabedoria.reduce((acc: number, e: any) => acc + e.bonus, 0);
-          if (sabedoriaAtual) sabedoriaAtual += bonusSabedoria;
-        }
-        ca += calcularModificador(sabedoriaAtual);
+        ca += calcularModificador(calcularAtributo("SAB"));
       }
     } else {
       if (ficha.ArmaduraEquipada.categoria === "Armadura Média") {
         if (proficienciaArmaduraMedia) {
           ca = ficha.ArmaduraEquipada.ac
-          if (efeitosDestreza) if (efeitosDestreza.length > 0) {
-            const bonusDestreza = efeitosDestreza.reduce((acc: number, e: any) => acc + e.bonus, 0);
-            if (destrezaAtual) destrezaAtual += bonusDestreza
-          }
-          if (calcularModificador(destrezaAtual) > 2) {
+          let bonusDestreza = calcularAtributo("DES")
+          if (calcularModificador(bonusDestreza) > 2) {
             ca += 2;
           } else {
-            ca += calcularModificador(destrezaAtual);
+            ca += calcularModificador(bonusDestreza);
           }
         } else {
           ca = 10;
@@ -111,19 +139,15 @@ export default function InformacoesPersonagem() {
       if (ficha.ArmaduraEquipada.categoria === "Armadura Leve") {
         if (proficienciaArmaduraLeve) {
           ca = ficha.ArmaduraEquipada.ac
-          if (efeitosDestreza) if (efeitosDestreza.length > 0) {
-            const bonusDestreza = efeitosDestreza.reduce((acc: number, e: any) => acc + e.bonus, 0);
-            if (destrezaAtual) destrezaAtual += bonusDestreza
-          }
-          ca += calcularModificador(destrezaAtual);
-        }else {
+          ca += calcularModificador(calcularAtributo("DES"));
+        } else {
           ca = 10;
         }
       }
       if (ficha.ArmaduraEquipada.categoria === "Armadura Pesada") {
-        if(proficienciaArmaduraPesada){
+        if (proficienciaArmaduraPesada) {
           ca = ficha.ArmaduraEquipada.ac;
-        }else{
+        } else {
           ca = 10;
         }
       }
@@ -234,7 +258,7 @@ export default function InformacoesPersonagem() {
                 <span> / </span>
                 <span className="atributo-valor">{dados.valor}</span>
                 <div className="atributo-divisoria" />
-                <span className="atributo-mod">{calcularModificador(dados.valor) >= 0 ? `+${calcularModificador(dados.valor)}` : calcularModificador(dados.valor)}</span>
+                <span className="atributo-mod">{calcularModificador(calcularAtributo(dados.nome)) >= 0 ? `+${calcularModificador(calcularAtributo(dados.nome))}` : calcularModificador(calcularAtributo(dados.nome))}</span>
               </div>
             ))}
           </div>
@@ -249,7 +273,7 @@ export default function InformacoesPersonagem() {
                 <span className="proficiencia-nome" title={dados.tipo}>{dados.nome}</span>
                 <span> / </span>
                 <div className="proficiencia-divisoria" />
-                <span className="proficiencia-mod">{calcularModificador(dados.valor) >= 0 ? `+${calcularModificador(dados.valor)}` : calcularModificador(dados.valor) + (calcularProeficiencia(dados.id))}</span>
+                <span className="proficiencia-mod">{((calcularModificador(calcularAtributo(dados.nome)) >= 0 ? `+${calcularModificador(calcularAtributo(dados.nome))}` : calcularModificador(calcularAtributo(dados.nome)) + (calcularProeficiencia(dados.id))))}</span>
               </div>
             ))}
           </div>

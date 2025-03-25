@@ -42,7 +42,7 @@ export class Druida extends Classes {
   // Método para preencher a tabela de níveis
   private preencherNiveis() {
     return [
-      { nivel: 1, proeficiencia: 2, caracteristicas: ["Druídico", "Conjuração"], truquesConhecidos: 2, espacosMagia: [2, 0, 0, 0, 0, 0, 0, 0, 0] },
+      { nivel: 1, proeficiencia: 2, caracteristicas: ["Druídico", "Conjuração de Druida"], truquesConhecidos: 2, espacosMagia: [2, 0, 0, 0, 0, 0, 0, 0, 0] },
       { nivel: 2, proeficiencia: 2, caracteristicas: ["Círculo Druídico", "Forma Selvagem"], truquesConhecidos: 2, espacosMagia: [3, 0, 0, 0, 0, 0, 0, 0, 0] },
       { nivel: 3, proeficiencia: 2, caracteristicas: [], truquesConhecidos: 2, espacosMagia: [4, 2, 0, 0, 0, 0, 0, 0, 0] },
       { nivel: 4, proeficiencia: 2, caracteristicas: ["Aprimoramento de Forma Selvagem", "Incremento no Valor de Habilidade"], truquesConhecidos: 3, espacosMagia: [4, 3, 0, 0, 0, 0, 0, 0, 0] },

@@ -96,7 +96,7 @@ const CaracteristicasClasse: React.FC<CaracteristicasClasseProps> = ({ classe, n
                 {caracteristica.toLowerCase()} {caracteristicasExpandidas[caracteristica] ? "▲" : "▼"}
               </button>
               {caracteristicasExpandidas[caracteristica] && (
-                <p className="descricao p-2 border rounded-lg mt-2">{descricao}</p>
+                <p className="descricao p-2 border rounded-lg mt-2 texto-formatado">{descricao}</p>
               )}
             </div>
             {modalSelecaoEstiloLutaAberto && (
@@ -140,7 +140,7 @@ const CaracteristicasClasse: React.FC<CaracteristicasClasseProps> = ({ classe, n
                         {nivelSubClasse.nome.toLowerCase()} {caracteristicasExpandidas[nivelSubClasse.nome] ? "▲" : "▼"}
                       </button>
                       {caracteristicasExpandidas[nivelSubClasse.nome] && (
-                        <p className="descricao p-2 border rounded-lg mt-2">
+                        <p className="descricao p-2 border rounded-lg mt-2 texto-formatado">
                           {nivelSubClasse.descricao}
                         </p>
                       )}
