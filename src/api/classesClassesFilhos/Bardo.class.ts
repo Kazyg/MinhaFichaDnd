@@ -58,7 +58,7 @@ export class Bardo extends Classes {
 
   private preencherNiveis() {
     return [
-      { nivel: 1, proeficiencia: 2, caracteristicas: ["Conjuração", "Inspiração de Bardo (d6)"], truquesConhecidos: 2, magiasConhecidas: 4, espacosMagia: [2, 0, 0, 0, 0, 0, 0, 0, 0] },
+      { nivel: 1, proeficiencia: 2, caracteristicas: ["Conjuração de Bardo", "Inspiração de Bardo (d6)"], truquesConhecidos: 2, magiasConhecidas: 4, espacosMagia: [2, 0, 0, 0, 0, 0, 0, 0, 0] },
       { nivel: 2, proeficiencia: 2, caracteristicas: ["Versatilidade", "Canção do Descanso (d6)"], truquesConhecidos: 2, magiasConhecidas: 5, espacosMagia: [3, 0, 0, 0, 0, 0, 0, 0, 0] },
       { nivel: 3, proeficiencia: 2, caracteristicas: ["Colégio de Bardo", "Aptidão"], truquesConhecidos: 2, magiasConhecidas: 6, espacosMagia: [4, 2, 0, 0, 0, 0, 0, 0, 0] },
       { nivel: 4, proeficiencia: 2, caracteristicas: ["Incremento no Valor de Habilidade"], truquesConhecidos: 3, magiasConhecidas: 7, espacosMagia: [4, 3, 0, 0, 0, 0, 0, 0, 0] },

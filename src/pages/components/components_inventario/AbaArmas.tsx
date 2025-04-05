@@ -60,7 +60,6 @@ export default function AbaArmas({ setModalAberto }) {
     }
 
     function equiparDesequiparArmadura(equipamento: Armas) {
-        debugger;
         if (!!ficha?.ArmaEquipada?.find(a => a.id === equipamento.id)) {
             ficha?.setDesequiparArma(equipamento.id);
             ficha?.setMaosOcupadas(-1);

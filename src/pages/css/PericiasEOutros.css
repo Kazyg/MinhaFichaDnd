@@ -54,6 +54,7 @@
 .pericia-item {
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
   gap: 5px;
   padding: 5px 0;
   border-bottom: 1px solid #555;
@@ -94,6 +95,17 @@
   border-radius: 4px;
 }
 
+.modificador{
+  width: 8%;
+  text-align: right;
+}
+.checkbox {
+  width: 12%;
+}
+.pericia {
+  width: 80%;
+}
+
 /* Estilos para celular (max-width: 768px) */
 @media (max-width: 768px) {
   .pericias-container {
@@ -102,6 +114,17 @@
     left: auto;
     max-height: 100%;
     transform: none;
+  }
+
+  .modificador{
+    width: 5%;
+    text-align: right;
+  }
+  .checkbox {
+    width: 5%;
+  }
+  .pericia {
+    width: 90%;
   }
 
   .pericia-item {

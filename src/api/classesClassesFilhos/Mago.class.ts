@@ -42,7 +42,7 @@ export class Mago extends Classes {
   // Método para preencher a tabela de níveis
   private preencherNiveis() {
     return [
-      { nivel: 1, proeficiencia: 2, truquesConhecidos: 3, espacosMagia: [2, 0, 0, 0, 0, 0, 0, 0, 0], caracteristicas: ["Conjuração", "Recuperação Arcana"] },
+      { nivel: 1, proeficiencia: 2, truquesConhecidos: 3, espacosMagia: [2, 0, 0, 0, 0, 0, 0, 0, 0], caracteristicas: ["Conjuração de Mago", "Recuperação Arcana"] },
       { nivel: 2, proeficiencia: 2, truquesConhecidos: 3, espacosMagia: [3, 0, 0, 0, 0, 0, 0, 0, 0], caracteristicas: ["Tradição Arcana"] },
       { nivel: 3, proeficiencia: 2, truquesConhecidos: 3, espacosMagia: [4, 2, 0, 0, 0, 0, 0, 0, 0], caracteristicas: [] },
       { nivel: 4, proeficiencia: 2, truquesConhecidos: 4, espacosMagia: [4, 3, 0, 0, 0, 0, 0, 0, 0], caracteristicas: ["Incremento no Valor de Habilidade"] },

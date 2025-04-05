@@ -90,7 +90,7 @@ export const caracteristicasDeClasse = [
       `,
   },
   {
-    nome: "Conjuração",
+    nome: "Conjuração de Bardo",
     descricao: `
           Você aprendeu a desembaraçar e remodelar o decido da realidade em harmonia com os seus desejos e música.
           Suas magias são parte do seu vasto repertório, magia que você pode entoar em diferentes situações. Veja o capítulo 10 para as regras gerais de conjuração e o capítulo 11 para a lista de magias de bardo.
@@ -416,7 +416,7 @@ export const caracteristicasDeClasse = [
         `,
   },
   {
-    nome: "Conjuração do Feiticeiro",
+    nome: "Conjuração de Feiticeiro",
     descricao: `
           Um evento do seu passado ou na vida de um parente ou ancestral deixou uma marca indelével em você, infundindo você com magia arcana. A fonte desse poder, independente da sua origem, flui em suas magias. Veja o capítulo 10 para as regras gerais de conjuração e o capítulo 11 para a lista de magias de feiticeiro.
       
@@ -656,7 +656,7 @@ export const caracteristicasDeClasse = [
             `,
   },
   {
-    nome: "Conjuração do Mago",
+    nome: "Conjuração de Mago",
     descricao: `
               Como um estudante da magia arcana, você possui um livro de magias (ou grimório) que revela os primeiros vislumbres de seu verdadeiro poder. Consulte o capítulo 10 para as regras gerais sobre conjuração de magias e o capítulo 11 para conferir a lista de magias de mago.
           
@@ -871,7 +871,7 @@ export const caracteristicasDeClasse = [
             `,
   },
   {
-    nome: "Conjuração do Paladino",
+    nome: "Conjuração de Paladino",
     descricao: `
               No 2° nível, você aprende a extrair magia divina através de meditação e oração para conjurar magias, como um clérigo faz. Veja o capítulo 10 para as regras gerais de conjuração e o capítulo 11 para a lista de magias de paladino.
           
@@ -990,21 +990,27 @@ export const caracteristicasDeClasse = [
             `,
   },
   {
-    nome: "Conjuração do Patrulheiro",
+    nome: "Conjuração de Patrulheiro",
     descricao: `
-              Quando você alcança o 2° nível, você aprende a usar a essência mágica da natureza para conjurar magias, como um druida faz. Veja o capítulo 10 para as regras gerais de conjuração e o capítulo 11 para a lista de magias de patrulheiro.
+              Quando você alcança o 2° nível, você aprende a usar a essência mágica da natureza para conjurar magias, como um druida faz. 
+              Veja o capítulo 10 para as regras gerais de conjuração e o capítulo 11 para a lista de magias de patrulheiro.
           
               **Espaços de Magia:**
-              A tabela O Patrulheiro mostra quantos espaços de magia você tem para conjurar suas magias de 1° nível e superiores. Para conjurar uma dessas magias, você deve gastar um espaço de magia do nível da magia ou superior. Você recupera todos os espaços de magia gastos quando você completa um descanso longo.
+              A tabela O Patrulheiro mostra quantos espaços de magia você tem para conjurar suas magias de 1° nível e superiores. \n
+              Para conjurar uma dessas magias, você deve gastar um espaço de magia do nível da magia ou superior. \n
+              Você recupera todos os espaços de magia gastos quando você completa um descanso longo.\n
               Por exemplo, se você quiser conjurar a magia de 1° nível amizade animal e você tiver um espaço de magia de 1° nível e um de 2° nível disponíveis, você poderá conjurar amizade animal usando qualquer dos dois espaços.
           
               **Magias Conhecidas de 1° Nível e Superiores:**
-              Você conhece duas magias de 1° nível, à sua escolha, da lista de magias de patrulheiro.
-              A coluna Magias Conhecidas na tabela O Patrulheiro mostra quando você aprende mais magias de patrulheiro, à sua escolha. Cada uma dessas magias deve ser de um nível a que você tenha acesso, como mostrado na tabela. Por exemplo, quando você alcança o 5° nível da classe, você pode aprender uma nova magia de 1° ou 2° nível.
-              Além disso, quando você adquire um nível nessa classe, você pode escolher uma magia de patrulheiro que você conheça e substituí-la por outra magia da lista de magias de patrulheiro, que também deve ser de um nível ao qual você tenha espaços de magia.
+              Você conhece duas magias de 1° nível, à sua escolha, da lista de magias de patrulheiro.\n
+              A coluna Magias Conhecidas na tabela O Patrulheiro mostra quando você aprende mais magias de patrulheiro, à sua escolha. \n
+              Cada uma dessas magias deve ser de um nível a que você tenha acesso, como mostrado na tabela. Por exemplo, quando você alcança o 5° nível da classe, você pode aprender uma nova magia de 1° ou 2° nível.\n
+              Além disso, quando você adquire um nível nessa classe, você pode escolher uma magia de patrulheiro que você conheça e substituí-la por outra magia da lista de magias de patrulheiro, que também deve ser de um nível ao qual você tenha espaços de magia.\n
           
               **Habilidade de Conjuração:**
-              Sabedoria é a sua habilidade para conjurar suas magias de patrulheiro, já que sua magia vem da sua sintonia com a natureza. Você usa sua Sabedoria sempre que alguma magia se referir a sua habilidade de conjurar magias. Além disso, você usa o seu modificador de Sabedoria para definir a CD dos testes de resistência para as magias de patrulheiro que você conjura e quando você realiza uma jogada de ataque com uma magia.
+              Sabedoria é a sua habilidade para conjurar suas magias de patrulheiro, já que sua magia vem da sua sintonia com a natureza. 
+              Você usa sua Sabedoria sempre que alguma magia se referir a sua habilidade de conjurar magias. 
+              Além disso, você usa o seu modificador de Sabedoria para definir a CD dos testes de resistência para as magias de patrulheiro que você conjura e quando você realiza uma jogada de ataque com uma magia.
               CD para suas magias = 8 + bônus de proficiência + seu modificador de Sabedoria
               Modificador de ataque de magia = seu bônus de proficiência + seu modificador de Sabedoria
             `,

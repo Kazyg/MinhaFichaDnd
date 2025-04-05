@@ -1,0 +1,96 @@
+.magia-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 10px;
+    width: 97%;
+    margin-bottom: 15px;
+  }
+  
+  .moldura-magia1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25%;
+    height: 110%;
+  }
+  .moldura-magia2 {
+    position: absolute;
+    top: 0;
+    left: 20%;
+    width: 25%;
+    height: 110%;
+  }
+  .moldura-magia3 {
+    position: absolute;
+    top: 0;
+    left: 40%;
+    width: 25%;
+    height: 110%;
+  }
+  .moldura-magia4 {
+    position: absolute;
+    top: 0;
+    left: 60%;
+    width: 25%;
+    height: 110%;
+  }
+  .moldura-magia5 {
+    position: absolute;
+    top: 0;
+    left: 80%;
+    width: 20%;
+    height: 110%;
+  }
+
+  .moldura-container {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .magia-coluna1,
+  .magia-coluna2,
+  .magia-coluna3 {
+    position: relative; /* Mantém os elementos acima da moldura */
+  }
+
+  .magia-coluna1{
+    width: 20%;
+  }
+
+  .magia-coluna2{
+    width: 50%;
+  }
+
+  .magia-coluna3{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: last baseline;
+    margin-right: 5px;
+    margin-top: -10px;
+    margin-bottom: 15px;
+    width: 20%;
+  }
+
+  .botao-excluir{
+    margin-top: 15px;
+  }
+
+  .dados-magia-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 99%;
+    margin-right: 0;
+    height: 80px;
+    padding-left: 4px;
+    margin-top: -6px;
+    margin-bottom: -18px;
+    background-color: #3b3f44;
+    outline: 2px solid #222;
+    border-radius: 5px;
+    z-index: 1000;
+  }

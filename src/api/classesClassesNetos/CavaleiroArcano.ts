@@ -6,6 +6,7 @@ export class CavaleiroArcano extends SubClasses {
         nivel: number;
         descricao: string;
     }[];
+    magiasEspacos: {nivel: number, truques: number, magias: number, espacosMagia: {nivel: number, espacos: number}[]}[];
 
     constructor() {
         super(
@@ -13,6 +14,7 @@ export class CavaleiroArcano extends SubClasses {
             "O arquétipo de Cavaleiro Arcano combina a maestria marcial comum a todos os guerreiros, com um cuidadoso estudo de magia. Os cavaleiros arcanos usam técnicas mágicas similares as praticadas pelos magos. Eles focam seu estudo em duas das oito escolas: abjuração e evocação. As magias de abjuração concedem proteção adicional em batalha ao Cavaleiro Arcano, e as magias de evocação causam dano a vários oponentes de uma vez, estendendo o alcance do guerreiro em combate. Esses cavaleiros aprendem, comparativamente, um pequeno número de magias, guardando-as na memória ao invés de mantê-las em um grimório."
         );
         this.niveis = this.preencherNiveis();
+        this.magiasEspacos = this.preencherMagias();
     }
 
     private preencherNiveis() {
@@ -75,6 +77,28 @@ export class CavaleiroArcano extends SubClasses {
                     A partir do 18° nível, quando você usar sua ação para conjurar uma magia, você pode realizar um ataque com arma, com uma ação bônus.
                 `
             }
+        ];
+    }
+    private preencherMagias() {
+        return [
+            { nivel: 3, truques: 2, magias: 3, espacosMagia: [{nivel: 1, espacos: 2}, {nivel: 2, espacos: 0}] },
+            { nivel: 4, truques: 2, magias: 4, espacosMagia: [{nivel: 1, espacos: 3}, {nivel: 2, espacos: 0}] },
+            { nivel: 5, truques: 2, magias: 4, espacosMagia: [{nivel: 1, espacos: 3}, {nivel: 2, espacos: 0}] },
+            { nivel: 6, truques: 2, magias: 4, espacosMagia: [{nivel: 1, espacos: 3}, {nivel: 2, espacos: 0}] },
+            { nivel: 7, truques: 2, magias: 5, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 2}] },
+            { nivel: 8, truques: 2, magias: 6, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 2}] },
+            { nivel: 9, truques: 2, magias: 6, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 2}] },
+            { nivel: 10, truques: 3, magias: 7, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 3}] },
+            { nivel: 11, truques: 3, magias: 8, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 3}] },
+            { nivel: 12, truques: 3, magias: 8, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 3}] },
+            { nivel: 13, truques: 3, magias: 9, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 3}, {nivel: 3, espacos: 2}] },
+            { nivel: 14, truques: 3, magias: 10, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 3}, {nivel: 3, espacos: 2}] },
+            { nivel: 15, truques: 3, magias: 10, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 3}, {nivel: 3, espacos: 2}] },
+            { nivel: 16, truques: 3, magias: 11, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 3}, {nivel: 3, espacos: 3}] },
+            { nivel: 17, truques: 3, magias: 11, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 3}, {nivel: 3, espacos: 3}] },
+            { nivel: 18, truques: 3, magias: 11, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 3}, {nivel: 3, espacos: 3}] },
+            { nivel: 19, truques: 3, magias: 12, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 3}, {nivel: 3, espacos: 3}, {nivel: 4, espacos: 1}] },
+            { nivel: 20, truques: 3, magias: 13, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 3}, {nivel: 3, espacos: 3}, {nivel: 4, espacos: 1}] }
         ];
     }
 }

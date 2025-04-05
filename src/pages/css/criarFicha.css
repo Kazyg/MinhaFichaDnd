@@ -44,9 +44,10 @@
 .menu-options {
   display: flex;
   flex-direction: column;
+  position: fixed;
   background-color: #444;
-  margin-top: 100px;
-  padding: 10px;
+  margin-top: 35px;
+  z-index: 1000;
   border-radius: 5px;
 }
 
@@ -69,7 +70,8 @@
   .menu-abas-criarFicha {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    width: 90%;
+    justify-content: space-between;
     background-color: #3b3f44;
     padding: 5px;
     border-radius: 5px;
@@ -77,11 +79,16 @@
     position: sticky;
     top: 0;
     z-index: 10;
-    margin-top: 55px;
+    margin-top: 5px;
+    gap: 10px;
   }
 
   .criar-ficha {
     flex-direction: column;
+  }
+
+  .conteudo-abas {
+    margin-top: 40px;
   }
 
   .criacao-ficha {
@@ -91,6 +98,7 @@
   }
 
   .informacoes-personagem {
+    margin-top: 10px;
     padding: 5px;
   }
 
@@ -104,7 +112,7 @@
   }
 
   .menu-options {
-    margin-top: 100px;
+    margin-top: 45px;
     padding: 5px;
   }
 }

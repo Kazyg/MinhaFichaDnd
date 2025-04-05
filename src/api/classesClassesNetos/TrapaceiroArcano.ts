@@ -6,6 +6,7 @@ export class TrapaceiroArcano extends SubClasses {
         nivel: number;
         descricao: string;
     }[];
+    magiasEspacos: {nivel: number, truques: number, magias: number, espacosMagia: {nivel: number, espacos: number}[]}[];
 
     constructor() {
         super(
@@ -13,6 +14,7 @@ export class TrapaceiroArcano extends SubClasses {
             "Alguns ladinos aprimoram suas finas perícias de furtividade e agilidade com magia, aprendendo truques de encantamento e ilusão. Esses ladinos incluem não somente batedores de carteira e assaltantes, mas também trapaceiros, enganadores e um número significativo de aventureiros."
         );
         this.niveis = this.preencherNiveis();
+        this.magiasEspacos = this.preencherMagias();
     }
 
     private preencherNiveis() {
@@ -75,6 +77,28 @@ export class TrapaceiroArcano extends SubClasses {
                     Uma vez que você tenha usado essa característica, você não pode usá-la novamente até ter terminado um descanso longo.
                 `
             }
+        ];
+    }
+    private preencherMagias() {
+        return [
+            { nivel: 3, truques: 3, magias: 3, espacosMagia: [{nivel: 1, espacos: 2}, {nivel: 2, espacos: 0}] },
+            { nivel: 4, truques: 3, magias: 4, espacosMagia: [{nivel: 1, espacos: 3}, {nivel: 2, espacos: 0}] },
+            { nivel: 5, truques: 3, magias: 4, espacosMagia: [{nivel: 1, espacos: 3}, {nivel: 2, espacos: 0}] },
+            { nivel: 6, truques: 3, magias: 4, espacosMagia: [{nivel: 1, espacos: 3}, {nivel: 2, espacos: 0}] },
+            { nivel: 7, truques: 3, magias: 5, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 2}] },
+            { nivel: 8, truques: 3, magias: 6, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 2}] },
+            { nivel: 9, truques: 3, magias: 6, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 2}] },
+            { nivel: 10, truques: 4, magias: 7, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 3}] },
+            { nivel: 11, truques: 4, magias: 8, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 3}] },
+            { nivel: 12, truques: 4, magias: 8, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 3}] },
+            { nivel: 13, truques: 4, magias: 9, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 3}, {nivel: 3, espacos: 2}] },
+            { nivel: 14, truques: 4, magias: 10, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 3}, {nivel: 3, espacos: 2}] },
+            { nivel: 15, truques: 4, magias: 10, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 3}, {nivel: 3, espacos: 2}] },
+            { nivel: 16, truques: 4, magias: 11, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 3}, {nivel: 3, espacos: 3}] },
+            { nivel: 17, truques: 4, magias: 11, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 3}, {nivel: 3, espacos: 3}] },
+            { nivel: 18, truques: 4, magias: 11, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 3}, {nivel: 3, espacos: 3}] },
+            { nivel: 19, truques: 4, magias: 12, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 3}, {nivel: 3, espacos: 3}, {nivel: 4, espacos: 1}] },
+            { nivel: 20, truques: 4, magias: 13, espacosMagia: [{nivel: 1, espacos: 4}, {nivel: 2, espacos: 3}, {nivel: 3, espacos: 3}, {nivel: 4, espacos: 1}] }
         ];
     }
 }

@@ -42,7 +42,7 @@ export class Clerigo extends Classes {
   // Método para preencher a tabela de níveis
   private preencherNiveis() {
     return [
-      { nivel: 1, proeficiencia: 2, caracteristicas: ["Conjuração", "Domínio Divino"], truquesConhecidos: 3, espacosMagia: [2, 0, 0, 0, 0, 0, 0, 0, 0] },
+      { nivel: 1, proeficiencia: 2, caracteristicas: ["Conjuração de Clérigo", "Domínio Divino"], truquesConhecidos: 3, espacosMagia: [2, 0, 0, 0, 0, 0, 0, 0, 0] },
       { nivel: 2, proeficiencia: 2, caracteristicas: ["Canalizar Divindade (1/descanso)", "Característica de Domínio Divino"], truquesConhecidos: 3, espacosMagia: [3, 0, 0, 0, 0, 0, 0, 0, 0] },
       { nivel: 3, proeficiencia: 2, caracteristicas: [], truquesConhecidos: 3, espacosMagia: [4, 2, 0, 0, 0, 0, 0, 0, 0] },
       { nivel: 4, proeficiencia: 2, caracteristicas: ["Incremento no Valor de Habilidade"], truquesConhecidos: 4, espacosMagia: [4, 3, 0, 0, 0, 0, 0, 0, 0] },

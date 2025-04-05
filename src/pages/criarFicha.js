@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CriacaoFicha from "./components/CriacaoFicha.tsx";
 import InformacoesPersonagem from "./components/InformacoesPersonagem.tsx";
-import PericiasEOutros from "./components/PericiasEOutros.js";
+import PericiasEOutros from "./components/PericiasEOutros.tsx";
 import InventarioMagiasDetalhes from "./components/InventarioMagiasDetalhes.tsx";
 import "./css/criarFicha.css";
 import { useFicha } from "../api/fichaPersonagem/FichaContext.tsx";
@@ -68,26 +68,8 @@ export default function CriarFicha() {
           ☰
         </button>
 
-        {isMenuOpen && (
-          <div className="menu-options">
-            <button onClick={handleSalvarFicha}>Salvar Ficha</button>
-            <button onClick={handleExportarPDF}>Exportar PDF</button>
-            <button onClick={handleExportarJSON}>Exportar JSON</button>
-            <button onClick={handleExportarXML}>Exportar XML</button>
-          </div>
-        )}
-      </div>
-      {/* Modo Desktop: exibe todos os componentes */}
-      {!isMobile ? (
-        <>
-          <CriacaoFicha />
-          <InformacoesPersonagem />
-          <PericiasEOutros />
-          <InventarioMagiasDetalhes />
-        </>
-      ) : (
-        /* Modo Mobile: menu para trocar entre componentes */
-        <div className="menu-abas-criarFicha">
+        {isMobile && (
+          <div className="menu-abas-criarFicha">
           {[
             { nome: "Criar", id: "criacao" },
             { nome: "Informações", id: "informacoes" },
@@ -103,6 +85,24 @@ export default function CriarFicha() {
             </button>
           ))}
         </div>
+        )}
+      </div>
+      {isMenuOpen && (
+          <div className="menu-options">
+            <button onClick={handleSalvarFicha}>Salvar Ficha</button>
+            <button onClick={handleExportarPDF}>Exportar PDF</button>
+            <button onClick={handleExportarJSON}>Exportar JSON</button>
+            <button onClick={handleExportarXML}>Exportar XML</button>
+          </div>
+        )}
+      {/* Modo Desktop: exibe todos os componentes */}
+      {!isMobile && (
+        <>
+          <CriacaoFicha />
+          <InformacoesPersonagem />
+          <PericiasEOutros />
+          <InventarioMagiasDetalhes />
+        </>
       )}
 
       {/* Conteúdo das abas no Mobile */}

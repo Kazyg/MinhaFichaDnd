@@ -60,7 +60,6 @@ export default function AbaArmaduras({ setModalEquipamentoAberto }) {
   }
 
   function equiparDesequiparArmadura(equipamento: Armaduras_equip) {
-    debugger;
     if (equipamento.categoria === "Escudo") {
       if (ficha?.escudoEquipado?.id === equipamento.id) {
         ficha.setDesequiparEscudo()

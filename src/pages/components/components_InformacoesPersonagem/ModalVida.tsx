@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useFicha } from "../../../api/fichaPersonagem/FichaContext.tsx";
 import { Ficha } from "../../../api/fichaPersonagem/FichaPersonagem.ts";
+import { Portal } from "./Portal.tsx"
 import "../../css/popupVida.css"
 
 interface PopupVidaProps {
-    onConfirmar: (novaVida: number) => void;
+    onConfirmar: (novaVida: number, cura: number, dano: number) => void;
     onCancelar: () => void;
     onRestaurar: () => void;
 }
@@ -12,11 +13,19 @@ interface PopupVidaProps {
 const PopupVida: React.FC<PopupVidaProps> = ({ onConfirmar, onCancelar, onRestaurar }) => {
     const { ficha } = useFicha();
     const [vidaTemporaria, setVidaTemporaria] = useState(ficha?.vidaAtual || 0);
+    const [cura, setCura] = useState(0);
+    const [dano, setDano] = useState(0);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeCura = (e: React.ChangeEvent<HTMLInputElement>) => {
         const valor = parseInt(e.target.value, 10);
         if (!isNaN(valor)) {
-            setVidaTemporaria(Math.max(0, Math.min(calcularVida(ficha), valor)));
+            setCura(valor);
+        }
+    };
+    const handleChangeDano = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const valor = parseInt(e.target.value, 10);
+        if (!isNaN(valor)) {
+            setDano(valor);
         }
     };
 
@@ -54,31 +63,45 @@ const PopupVida: React.FC<PopupVidaProps> = ({ onConfirmar, onCancelar, onRestau
     };
 
     return (
-        <div className="popup-vida">
-            <h3>Ajustar Vida</h3>
-            <div className="barra-deslizante-mobile">
-                <input
-                    type="range"
-                    min={0}
-                    max={calcularVida(ficha)}
-                    value={vidaTemporaria}
-                    onChange={(e) => setVidaTemporaria(parseInt(e.target.value, 10))}
-                    style={{ width: "100%" }}
-                />
-            </div>
-            <div className="campo-texto">
-                <input
-                    type="number"
-                    min={0}
-                    max={calcularVida(ficha)}
-                    value={vidaTemporaria}
-                    onChange={handleChange}
-                />
-            </div>
-            <div className="botoes">
-                <button onClick={() => onConfirmar(vidaTemporaria)}>Confirmar</button>
-                <button onClick={onCancelar}>Cancelar</button>
-                <button onClick={onRestaurar}>Restaurar Vida</button>
+        <div>
+            <div>
+                <h3>Ajustar Vida</h3>
+                <div className="barra-deslizante-mobile">
+                    {vidaTemporaria}
+                    <input
+                        type="range"
+                        min={0}
+                        max={calcularVida(ficha)}
+                        value={vidaTemporaria}
+                        onChange={(e) => setVidaTemporaria(parseInt(e.target.value, 10))}
+                        style={{ width: "100%" }}
+                    />
+                </div>
+                <div className="campo-texto">
+                    <div className="campo-texto1">
+                        <h5>Dano:</h5>
+                        <input
+                            type="number"
+                            max={calcularVida(ficha)}
+                            onChange={handleChangeDano}
+                        />
+                    </div>
+                    <div className="campo-texto1">
+                        <h5>Cura:</h5>
+                        <input
+                            type="number"
+                            max={calcularVida(ficha)}
+                            onChange={handleChangeCura}
+                        />
+                    </div>
+                </div>
+                <div className="botoes">
+                    <button onClick={() => {
+                        onConfirmar(vidaTemporaria, cura, dano)
+                    }}>Confirmar</button>
+                    <button onClick={onCancelar}>Cancelar</button>
+                    <button onClick={onRestaurar}>Restaurar Vida</button>
+                </div>
             </div>
         </div>
     );
@@ -87,8 +110,32 @@ const PopupVida: React.FC<PopupVidaProps> = ({ onConfirmar, onCancelar, onRestau
 const VidaComponente: React.FC = () => {
     const { ficha } = useFicha();
     const [mostrarPopup, setMostrarPopup] = useState(false);
+    useEffect(() => {
+        if (mostrarPopup) {
+            const popup = document.createElement('div');
+            popup.className = 'popup-vida-global';
+            popup.innerHTML = `
+            <div class="popup-vida-content">
+              <!-- Seu conteúdo do PopupVida aqui -->
+            </div>
+          `;
+            document.body.appendChild(popup);
 
-    const handleConfirmar = (novaVida: number) => {
+            return () => {
+                document.body.removeChild(popup);
+            };
+        }
+    }, [mostrarPopup]);
+
+    const handleConfirmar = (novaVida: number, cura: number, dano: number) => {
+        novaVida += cura;
+        if (novaVida > calcularVida(ficha)) {
+            novaVida = calcularVida(ficha)
+        }
+        novaVida -= dano;
+        if (novaVida < 0) {
+            novaVida = 0
+        }
         ficha?.setVidaAtual(novaVida);
         setMostrarPopup(false);
     };
@@ -143,11 +190,17 @@ const VidaComponente: React.FC = () => {
                 </div>
             </div>
             {mostrarPopup && (
-                <PopupVida
-                    onConfirmar={handleConfirmar}
-                    onCancelar={() => setMostrarPopup(false)}
-                    onRestaurar={handleRestaurar}
-                />
+                <Portal>
+                    <div className="popup-vida-global">
+                        <div className="popup-vida-content">
+                            <PopupVida
+                                onConfirmar={handleConfirmar}
+                                onCancelar={() => setMostrarPopup(false)}
+                                onRestaurar={handleRestaurar}
+                            />
+                        </div>
+                    </div>
+                </Portal>
             )}
         </div>
     );

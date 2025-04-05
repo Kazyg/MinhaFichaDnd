@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/home.jsx";
 import CriarFicha from "./pages/criarFicha";
 import { FichaProvider } from "./api/fichaPersonagem/FichaContext.tsx";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
