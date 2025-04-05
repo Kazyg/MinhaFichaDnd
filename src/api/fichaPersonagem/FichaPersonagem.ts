@@ -7,6 +7,7 @@ import { SubClasses } from "../classesPrincipais/SubClasses";
 import { Efeitos } from "../classesPrincipais/Efeitos";
 import { Armaduras_equip } from "../equipamentos/Armaduras.ts"
 import { Armas } from "../equipamentos/Armas";
+import { th } from "framer-motion/client";
 
 export class Ficha {
     id: string;
@@ -41,7 +42,11 @@ export class Ficha {
     escudoEquipado: Armaduras_equip | null;
     ArmaEquipada: Armas[] | null;
     maosOcupadas: number | null;
-    espacosMagiaDisponiveis: number | null;
+    espacosMagiaDisponiveis: {nivelMagia: number, espaco: number}[] | null;
+    espacosMagiaTotais: {nivelMagia: number, espaco: number}[] | null;
+    magiasConhecidas: {classe: string, magias: number}[] | null;
+    truquesConhecidos: {classe: string, magias: number}[] | null;
+    magiasEscolhidas: {classe: string, magia: string[]}[] | null;
 
     constructor(data: Partial<Ficha> = {}) {
         this.id = data?.id ?? this.gerarIdUnico();
@@ -75,7 +80,11 @@ export class Ficha {
         this.ArmaEquipada = data?.ArmaEquipada ?? null;
         this.escudoEquipado = data?.escudoEquipado ?? null;
         this.maosOcupadas = data?.maosOcupadas ?? null;
+        this.magiasConhecidas = data?.magiasConhecidas ?? null;
         this.espacosMagiaDisponiveis = data?.espacosMagiaDisponiveis ?? null;
+        this.espacosMagiaTotais = data?.espacosMagiaTotais ?? null;
+        this.truquesConhecidos = data?.truquesConhecidos ?? null;
+        this.magiasEscolhidas = data?.magiasEscolhidas ?? null;
     }
 
     calcularModificador(valor) {
@@ -340,7 +349,27 @@ export class Ficha {
         }
         this.maosOcupadas += mao;
     }
-    setEspacosMagiaDisponiveis(espacos: number){
-        this.espacosMagiaDisponiveis = espacos;
+    setEspacosMagiaDisponiveis(magiasmulticlasse: {nivelMagia: number, espaco: number}[]){
+        this.espacosMagiaDisponiveis = magiasmulticlasse;
+    }
+    setEspacosMagiaTotais(magiasmulticlasse: {nivelMagia: number, espaco: number}[]){
+        this.espacosMagiaTotais = magiasmulticlasse;
+    }
+    setMagiasConhecidas(magiasmulticlasse: {classe: string, magias: number}[]){
+        this.magiasConhecidas = magiasmulticlasse;
+    }
+    setTruquesConhecidas(magiasmulticlasse: {classe: string, magias: number}[]){
+        this.truquesConhecidos = magiasmulticlasse;
+    }
+    setMagiaEscolhidas(magiasEscolhidas: {classe: string, magia: string}){
+        if(this.magiasEscolhidas === null) this.magiasEscolhidas = [{classe: magiasEscolhidas.classe, magia: []}];
+        if(!this.magiasEscolhidas.some(m => m.classe === magiasEscolhidas.classe)) this.magiasEscolhidas.push({classe: magiasEscolhidas.classe, magia: []});
+        if(!this.magiasEscolhidas.some(m => m.magia.some(mn => mn === magiasEscolhidas.magia))) this.magiasEscolhidas?.find(m => m.classe === magiasEscolhidas.classe)?.magia.push(magiasEscolhidas.magia);
+    }
+    excluirMagiaEscolhidas(magia: string){
+        this.magiasEscolhidas = this.magiasEscolhidas && this.magiasEscolhidas.map((item) => ({
+            classe: item.classe,
+            magia: item.magia.filter(m => m !== magia),
+          }));
     }
 }

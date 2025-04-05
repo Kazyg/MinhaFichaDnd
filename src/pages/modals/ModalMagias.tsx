@@ -8,9 +8,10 @@ interface ModalSelecaoProps {
     titulo: string;
     onClose: () => void;
     onSelect: (nomeMagia: string) => void;
+    magiaSelect: string | null;
 }
 
-const ModalSelecaoMagias: React.FC<ModalSelecaoProps> = ({ titulo, onClose, onSelect }) => {
+const ModalSelecaoMagias: React.FC<ModalSelecaoProps> = ({ titulo, onClose, onSelect, magiaSelect }) => {
     const listaMagias = [...new Set([...magiasBardo, ...magiasBruxo, ...magiasClerigo, ...magiasDruida, ...magiasFeiticeiro, ...magiasMago, ...magiasPaladino, ...magiasPatrulheiro])];
     const listaParaFiltrar = [
         { classe: "Magias de Bardo", magias: magiasBardo },
@@ -40,7 +41,7 @@ const ModalSelecaoMagias: React.FC<ModalSelecaoProps> = ({ titulo, onClose, onSe
     const [filtroClasse, setFiltroClasse] = useState("");
     const [filtroEscola, setFiltroEscola] = useState("");
     const [filtroNivel, setFiltroNivel] = useState<number | null>(null);
-    const [selecionado, setSelecionado] = useState("");
+    const [selecionado, setSelecionado] = useState(magiaSelect);
     const magiasCompletas = Magias;
     const { refreshKey, forceUpdate } = useFicha();
 
