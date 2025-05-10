@@ -31,7 +31,7 @@ export class Ficha {
     tamanho: string | null;
     talentos: string[] | null;
     idiomas: string[] | null;
-    estiloLuta: {estilo: string, classe: string}[] | null;
+    estiloLuta: { estilo: string, classe: string }[] | null;
     animalSelecionado: { animal: string, nivel: number }[] | null;
     terrenoSelecionado: string | null;
     efeitos: Efeitos[] | null;
@@ -42,11 +42,11 @@ export class Ficha {
     escudoEquipado: Armaduras_equip | null;
     ArmaEquipada: Armas[] | null;
     maosOcupadas: number | null;
-    espacosMagiaDisponiveis: {nivelMagia: number, espaco: number}[] | null;
-    espacosMagiaTotais: {nivelMagia: number, espaco: number}[] | null;
-    magiasConhecidas: {classe: string, magias: number}[] | null;
-    truquesConhecidos: {classe: string, magias: number}[] | null;
-    magiasEscolhidas: {classe: string, magia: string[]}[] | null;
+    espacosMagiaDisponiveis: { nivelMagia: number, espaco: number }[] | null;
+    espacosMagiaTotais: { nivelMagia: number, espaco: number }[] | null;
+    magiasConhecidas: { classe: string, magias: number }[] | null;
+    truquesConhecidos: { classe: string, magias: number }[] | null;
+    magiasEscolhidas: { classe: string, magia: string[] }[] | null;
 
     constructor(data: Partial<Ficha> = {}) {
         this.id = data?.id ?? this.gerarIdUnico();
@@ -248,13 +248,13 @@ export class Ficha {
         this.multiclasses = [multiclasses];
     }
     setEstiloLuta(estilo: string, classe: string) {
-        if(this.estiloLuta === null){
+        if (this.estiloLuta === null) {
             this.estiloLuta = []
         }
-        this.estiloLuta.push({estilo: estilo, classe: classe});
+        this.estiloLuta.push({ estilo: estilo, classe: classe });
     }
-    excluirEstiloLuta(classe: string){
-        if(this.estiloLuta)this.estiloLuta = this.estiloLuta?.filter(e => e.classe !== classe);
+    excluirEstiloLuta(classe: string) {
+        if (this.estiloLuta) this.estiloLuta = this.estiloLuta?.filter(e => e.classe !== classe);
     }
     substituirOuAdicionarAnimal(animal: string, nivel: number) {
         if (!this.animalSelecionado) {
@@ -281,18 +281,18 @@ export class Ficha {
         this.terrenoSelecionado = null;
     }
     setEfeitos(efeitos: Efeitos) {
-        if(this.efeitos === null){
+        if (this.efeitos === null) {
             this.efeitos = []
         }
         this.efeitos?.push(efeitos);
     }
-    excluirEfeitoPorTitulo(titulo: string){
-        if(this.efeitos){
+    excluirEfeitoPorTitulo(titulo: string) {
+        if (this.efeitos) {
             this.efeitos = this.efeitos?.filter(e => e.tituloEfeito !== titulo);
         }
     }
-    excluirEfeitoPorNivel(nivel: number){
-        if(this.efeitos){
+    excluirEfeitoPorNivel(nivel: number) {
+        if (this.efeitos) {
             this.efeitos = this.efeitos?.filter(e => e.level !== nivel);
         }
     }
@@ -303,7 +303,7 @@ export class Ficha {
             this.ArmasMochila = [...this.ArmasMochila, arma];
         }
     }
-    excluirArmaMochila(idArma: string){
+    excluirArmaMochila(idArma: string) {
         if (this.ArmasMochila) this.ArmasMochila = this.ArmasMochila.filter(s => s.id !== idArma);
     }
     setArmaduraMochila(armadura: Armaduras_equip) {
@@ -313,63 +313,85 @@ export class Ficha {
             this.ArmadurasMochila = [...this.ArmadurasMochila, armadura];
         }
     }
-    excluirArmaduraMochila(idArmadura: string){
+    excluirArmaduraMochila(idArmadura: string) {
         if (this.ArmadurasMochila) this.ArmadurasMochila = this.ArmadurasMochila.filter(s => s.id !== idArmadura);
     }
-    setCA(cA: number){
+    setCA(cA: number) {
         this.cA = cA;
     }
-    setVidaAtual(vidaAtual: number){
+    setVidaAtual(vidaAtual: number) {
         this.vidaAtual = vidaAtual;
     }
-    setArmaduraEquipada(armadura: Armaduras_equip){
+    setArmaduraEquipada(armadura: Armaduras_equip) {
         this.ArmaduraEquipada = armadura;
     }
-    setDesequiparArmadura(){
+    setDesequiparArmadura() {
         this.ArmaduraEquipada = null;
     }
-    setEscudoEquipado(escudo: Armaduras_equip){
+    setEscudoEquipado(escudo: Armaduras_equip) {
         this.escudoEquipado = escudo;
     }
-    setDesequiparEscudo(){
+    setDesequiparEscudo() {
         this.escudoEquipado = null;
     }
-    setEquiparArma(arma: Armas){
-        if(this.ArmaEquipada === null){
+    setEquiparArma(arma: Armas) {
+        if (this.ArmaEquipada === null) {
             this.ArmaEquipada = [];
         }
         this.ArmaEquipada?.push(arma);
     }
-    setDesequiparArma(arma: string){
-        if(this.ArmaEquipada)this.ArmaEquipada = this.ArmaEquipada.filter(a => a.id !== arma);
+    setDesequiparArma(arma: string) {
+        if (this.ArmaEquipada) this.ArmaEquipada = this.ArmaEquipada.filter(a => a.id !== arma);
     }
-    setMaosOcupadas(mao: number){
-        if(this.maosOcupadas === null){
+    setMaosOcupadas(mao: number) {
+        if (this.maosOcupadas === null) {
             this.maosOcupadas = 0;
         }
         this.maosOcupadas += mao;
     }
-    setEspacosMagiaDisponiveis(magiasmulticlasse: {nivelMagia: number, espaco: number}[]){
+    setEspacosMagiaDisponiveis(magiasmulticlasse: { nivelMagia: number, espaco: number }[]) {
         this.espacosMagiaDisponiveis = magiasmulticlasse;
     }
-    setEspacosMagiaTotais(magiasmulticlasse: {nivelMagia: number, espaco: number}[]){
+    setEspacosMagiaTotais(magiasmulticlasse: { nivelMagia: number, espaco: number }[]) {
         this.espacosMagiaTotais = magiasmulticlasse;
     }
-    setMagiasConhecidas(magiasmulticlasse: {classe: string, magias: number}[]){
-        this.magiasConhecidas = magiasmulticlasse;
+    setMagiasConhecidas(novasMagias: { classe: string, magias: number }[]) {
+        if (this.magiasConhecidas === null) {
+            this.magiasConhecidas = [];
+        }
+
+        novasMagias.forEach(novaMagia => {
+            const index = this.magiasConhecidas?.findIndex(m => m.classe === novaMagia.classe) || 0;
+            if (index !== -1) {
+                if(this.magiasConhecidas) this.magiasConhecidas[index] = novaMagia;
+            } else {
+                if(this.magiasConhecidas) this.magiasConhecidas.push(novaMagia);
+            }
+        });
     }
-    setTruquesConhecidas(magiasmulticlasse: {classe: string, magias: number}[]){
-        this.truquesConhecidos = magiasmulticlasse;
+    setTruquesConhecidas(novosTruques: { classe: string, magias: number }[]) {
+        if (this.truquesConhecidos === null) {
+            this.truquesConhecidos = [];
+        }
+
+        novosTruques.forEach(novoTruque => {
+            const index = this.truquesConhecidos?.findIndex(t => t.classe === novoTruque.classe) || 0;
+            if (index !== -1) {
+                if(this.truquesConhecidos) this.truquesConhecidos[index] = novoTruque;
+            } else {
+                if(this.truquesConhecidos) this.truquesConhecidos.push(novoTruque);
+            }
+        });
     }
-    setMagiaEscolhidas(magiasEscolhidas: {classe: string, magia: string}){
-        if(this.magiasEscolhidas === null) this.magiasEscolhidas = [{classe: magiasEscolhidas.classe, magia: []}];
-        if(!this.magiasEscolhidas.some(m => m.classe === magiasEscolhidas.classe)) this.magiasEscolhidas.push({classe: magiasEscolhidas.classe, magia: []});
-        if(!this.magiasEscolhidas.some(m => m.magia.some(mn => mn === magiasEscolhidas.magia))) this.magiasEscolhidas?.find(m => m.classe === magiasEscolhidas.classe)?.magia.push(magiasEscolhidas.magia);
+    setMagiaEscolhidas(magiasEscolhidas: { classe: string, magia: string }) {
+        if (this.magiasEscolhidas === null) this.magiasEscolhidas = [{ classe: magiasEscolhidas.classe, magia: [] }];
+        if (!this.magiasEscolhidas.some(m => m.classe === magiasEscolhidas.classe)) this.magiasEscolhidas.push({ classe: magiasEscolhidas.classe, magia: [] });
+        if (!this.magiasEscolhidas.some(m => m.magia.some(mn => mn === magiasEscolhidas.magia))) this.magiasEscolhidas?.find(m => m.classe === magiasEscolhidas.classe)?.magia.push(magiasEscolhidas.magia);
     }
-    excluirMagiaEscolhidas(magia: string){
+    excluirMagiaEscolhidas(magia: string) {
         this.magiasEscolhidas = this.magiasEscolhidas && this.magiasEscolhidas.map((item) => ({
             classe: item.classe,
             magia: item.magia.filter(m => m !== magia),
-          }));
+        }));
     }
 }
