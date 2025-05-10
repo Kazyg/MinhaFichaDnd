@@ -180,7 +180,7 @@ export default function PericiasEOutros() {
           {pericias.map((pericia, index) => (
             <li key={index} className="pericia-item">
               <div className="modificador">
-                {calcularModificador(10 + calcularModificador(pericia.modificador?.valor ?? 10) + (pericia.treinado ? (ficha?.proeficiencia ?? 0) : 0))}
+                {calcularModificador(pericia.modificador?.valor ?? 10) + (pericia.treinado ? (ficha?.proeficiencia ?? 0) : 0)}
               </div>
               <div className="checkbox">
                 <input
