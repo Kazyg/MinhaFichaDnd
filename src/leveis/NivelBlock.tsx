@@ -17,9 +17,13 @@ import { Rogue } from "../api/classesClassesFilhos/Rogue.class.ts"
 import { Talentos } from "../bibliotecas/Talentos.ts";
 import ModalSelecaoTalento from "../pages/modals/ModalSelecaoTalento.tsx";
 import TalentoDescricao from "./components/TalendoDescricao.tsx";
+import { Metamagica } from "../bibliotecas/Metamagica.ts"
+import ModalSelecaoMetamagica from "../pages/modals/ModalSelecaoMetamagica.tsx";
 
 const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
     const [modalClasseAberto, setModalClasseAberto] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(false);
+    const [indexMetamagica, setIndexMetamagica] = useState(1);
     const { ficha, refreshKey, forceUpdate } = useFicha();
     const [nivelExpandido, setNivelExpandido] = useState(true);
     const [secoesExpandidas, setSecoesExpandidas] = useState({
@@ -30,6 +34,7 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
     });
     const [subGrupoAberto, setSubGrupoAberto] = useState(false);
     const [modalTalentoAberta, setModalTalentoAberto] = useState(false);
+    const [modalMetamagicaAberta, setModalMetamagicaAberto] = useState(false);
     const [subClasses, setSubClasses] = useState<SubClasses[] | null>([]);
     const caminhoGuerreiroTotemico = new CaminhoGuerreiroTotemico();
     const circuloDaTerra = new CirculoDaTerra();
@@ -44,8 +49,8 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
     const rogue = new Rogue();
     type Talento = {
         nome: string;
-        requisito: {tipo: string | null, requisito: string[] | null, valor: number | null}
-        bonus: {tipo: string | null, condicao: string | null, bonus: string[] | null; valor: number | null}[]
+        requisito: { tipo: string | null, requisito: string[] | null, valor: number | null }
+        bonus: { tipo: string | null, condicao: string | null, bonus: string[] | null; valor: number | null }[]
         descricao: string;
     };
     const talentos: Talento[] = Talentos;
@@ -156,6 +161,10 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
         ficha?.setTerrenoSelecionado(event.target.value);
         forceUpdate();
     };
+
+    const tituloMetamagica = () => {
+        return ficha?.getMetamagica(indexMetamagica);
+    }
 
     const textoSubclasse = () => {
         switch (classeNoNivel?.classe.nome.toLowerCase()) {
@@ -503,6 +512,55 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
                                                     </div>
                                                 </>
                                             )}
+                                        {classeNoNivel.classe.nome === "Feiticeiro" &&
+                                            (calcularNivelClasse(nivel) === 3 || calcularNivelClasse(nivel) === 10 || calcularNivelClasse(nivel) === 17) && (
+                                                <>
+                                                    {calcularNivelClasse(nivel) === 3 && (
+                                                        <button className="botao-distribuir" onClick={() => { setModalMetamagicaAberto(true); setIndexMetamagica(1) }}>
+                                                            <img src={iconClass} className="button-icon" alt="Classe" />
+                                                            <div className="botao-texto">
+                                                                <span>Selecionar Metamagica</span>
+                                                                <strong>{
+                                                                    ficha?.metamagica1?.nome ?? "Selecionar Metamagica"
+                                                                }</strong>
+                                                            </div>
+                                                        </button>
+                                                    )}
+                                                    {calcularNivelClasse(nivel) === 3 && (
+                                                        <button className="botao-distribuir" onClick={() => { setModalMetamagicaAberto(true); setIndexMetamagica(3) }}>
+                                                            <img src={iconClass} className="button-icon" alt="Classe" />
+                                                            <div className="botao-texto">
+                                                                <span>Selecionar Metamagica</span>
+                                                                <strong>{
+                                                                    ficha?.metamagica2?.nome ?? "Selecionar Metamagica"
+                                                                }</strong>
+                                                            </div>
+                                                        </button>
+                                                    )}
+                                                    {calcularNivelClasse(nivel) === 10 && (
+                                                        <button className="botao-distribuir" onClick={() => { setModalMetamagicaAberto(true); setIndexMetamagica(10) }}>
+                                                            <img src={iconClass} className="button-icon" alt="Classe" />
+                                                            <div className="botao-texto">
+                                                                <span>Selecionar Metamagica</span>
+                                                                <strong>{
+                                                                    ficha?.metamagica3?.nome ?? "Selecionar Metamagica"
+                                                                }</strong>
+                                                            </div>
+                                                        </button>
+                                                    )}
+                                                    {calcularNivelClasse(nivel) === 17 && (
+                                                        <button className="botao-distribuir" onClick={() => { setModalMetamagicaAberto(true); setIndexMetamagica(17) }}>
+                                                            <img src={iconClass} className="button-icon" alt="Classe" />
+                                                            <div className="botao-texto">
+                                                                <span>Selecionar Metamagica</span>
+                                                                <strong>{
+                                                                    ficha?.metamagica4?.nome ?? "Selecionar Metamagica"
+                                                                }</strong>
+                                                            </div>
+                                                        </button>
+                                                    )}
+                                                </>
+                                            )}
                                         {ficha?.terrenoSelecionado &&
                                             [3, 5, 7, 9].includes(calcularNivelClasse(nivel)) && classeNoNivel.classe.nome === "Druida" && (
                                                 <>
@@ -522,6 +580,32 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
                                             )
                                         }
                                         <CaracteristicasClasse classe={classeNoNivel?.classe} nivel={calcularNivelClasse(nivel)} />
+                                        {classeNoNivel.classe.nome === "Feiticeiro" && [3, 10, 17].includes(calcularNivelClasse(nivel)) && (
+                                            <div className="skills-container">
+                                                <button
+                                                    onClick={() => setIsExpanded(!isExpanded)}
+                                                    className="w-full text-left p-2 border rounded-lg focus:outline-none"
+                                                >
+                                                    Metamágicas de Feiticeiro{isExpanded ? "▲" : "▼"}
+                                                </button>
+
+                                                {isExpanded && (
+                                                    <div className="p-4 space-y-4">
+                                                        <div>
+                                                            <p className="font-semibold">{ficha?.getMetamagica(calcularNivelClasse(nivel))}</p>
+                                                            <p className="text-sm">{Metamagica.find(m => m.nome === ficha?.getMetamagica(calcularNivelClasse(nivel)))?.descricao}</p>
+                                                        </div>
+
+                                                        {calcularNivelClasse(nivel) === 3 && (
+                                                            <div>
+                                                                <p className="font-semibold">{ficha?.getMetamagica(1)}</p>
+                                                                <p className="text-sm">{Metamagica.find(m => m.nome === ficha?.getMetamagica(1))?.descricao}</p>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )}
                                         {!!ficha?.efeitos?.find(e => e.tituloEfeito === `selecionadoTalento${nivel}`) && <TalentoDescricao talento={ficha?.efeitos?.find(e => e.tituloEfeito === `TalentoEscolhido${nivel}`)?.talento ?? ""} />}
                                     </div>
                                 )}
@@ -587,6 +671,22 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
                                 forceUpdate();
                             }}
                             talentoInicial={talentos.find(t => t.nome === ficha?.efeitos?.find(e => e.tituloEfeito === `TalentoEscolhido${nivel}`)?.talento) ?? null}
+                        />
+                    </div>
+                </>
+            )}
+            {modalMetamagicaAberta && (
+                <>
+                    <div className="popup-overlay" onClick={() => setModalMetamagicaAberto(false)}></div>
+                    <div className="popup">
+                        <ModalSelecaoMetamagica
+                            titulo="Escolher Metamagica"
+                            opcoes={Metamagica}
+                            onClose={() => setModalMetamagicaAberto(false)}
+                            onSelect={(Metamagica) => {
+                                ficha?.setMetamagicaSelecionada(Metamagica || "", indexMetamagica);
+                                forceUpdate();
+                            }}
                         />
                     </div>
                 </>
