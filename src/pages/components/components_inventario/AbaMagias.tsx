@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { JSX } from 'react';
 import { motion } from "framer-motion";
 import ModalSelecaoMagias from "../../modals/ModalMagias.tsx";
 import "../../css/Magias.css"
@@ -299,14 +300,13 @@ export default function AbaMagias() {
   }
 
   function calcularMagiasConhecidas() {
-    debugger;
     let magiasConhecidas: { classe: string, magias: number }[] = [];
     let truqueConhecidos: { classe: string, magias: number }[] = [];
     if (ficha) {
       const { levelTotal, multiclasses, atributosPersonagem, efeitos } = ficha;
       let tamanhoArrayClasses = multiclasses?.length || 0;
       if (levelTotal && multiclasses) for (let quantClasses = 1; quantClasses <= tamanhoArrayClasses; quantClasses++) {
-        const classeNoNivel = hidratarClasse(multiclasses[quantClasses -1].classe);
+        const classeNoNivel = hidratarClasse(multiclasses[quantClasses - 1].classe);
         let nivelClasse = 0;
         const niveisEscolhidos = ficha?.multiclasses?.find(m => m.classe.nome === classeNoNivel?.nome)?.nivelEscolhido.sort((a, b) => a - b) ?? [];
 
@@ -407,7 +407,7 @@ export default function AbaMagias() {
   function calcularEspacosMagia() {
     let levelConjurador = 0;
     if (ficha) {
-      const { levelTotal, multiclasses, atributosPersonagem, efeitos } = ficha;
+      const { levelTotal, multiclasses } = ficha;
       multiclasses?.map((multiclasse) => {
 
         let nivelClasse = 0;
@@ -435,7 +435,6 @@ export default function AbaMagias() {
           (multiclasse?.classe.nome === "Ladino" && ficha.subClasse?.find(s => s.classe.nome === multiclasse.classe.nome)?.subclasse instanceof TrapaceiroArcano)) {
           levelConjurador += Math.floor(nivelClasse / 3);
         }
-
       })
     }
     ficha?.setEspacosMagiaTotais(tabelaConjuradores.find(t => t.nivel === levelConjurador)?.espacos || [{ nivelMagia: 0, espaco: 0 }])
@@ -485,7 +484,6 @@ export default function AbaMagias() {
     tipo: string;
   }, classe: string[]) {
     calcularMagiasConhecidas();
-    debugger;
     let classeValida;
     if (magiaAchada.nivel === 0) {
       let permitido = false;
@@ -535,6 +533,51 @@ export default function AbaMagias() {
     }
     return { valida: true, classeValida };
   }
+
+  type Atributos = "forca" | "destreza" | "constituicao" | "inteligencia" | "sabedoria" | "carisma";
+
+  const atributoPorClasseConjuradora: { [classe: string]: Atributos } = {
+    Mago: "inteligencia",
+    Clerigo: "sabedoria",
+    Druida: "sabedoria",
+    Paladino: "carisma",
+    Bruxo: "carisma",
+    Feiticeiro: "carisma",
+    Bardo: "carisma",
+    Patrulheiro: "sabedoria",
+  };
+
+  const calcularCDsMagia = () => {
+    let linhas: JSX.Element[] = [];
+
+    ficha?.multiclasses?.forEach((mc: any) => {
+      const classeNome = mc.classe.nome;
+      const atributoChave = atributoPorClasseConjuradora[classeNome];
+
+      if (!atributoChave) return;
+
+      let valorBase = ficha.atributosPersonagem?.[atributoChave]?.valor ?? 10;
+
+      const efeitosDoAtributo = ficha.efeitos?.filter((e: any) => e.atributo === atributoChave);
+      if (efeitosDoAtributo) if (efeitosDoAtributo?.length > 0) {
+        const bonus = efeitosDoAtributo.reduce((acc: number, e: any) => acc + e.bonus, 0);
+        valorBase += bonus;
+      }
+
+      const mod = calcularModificador(valorBase);
+      const prof = ficha?.proeficiencia ?? 0;
+      const cd = 8 + mod + prof;
+
+      linhas.push(<p key={classeNome}>{classeNome} ({atributoChave}): {cd}</p>);
+    });
+
+    return (
+      <div>
+        <h3>DC de magias</h3>
+        {linhas}
+      </div>
+    );
+  };
 
   const renderMagiasPorNivel = () => {
     const magiasAgrupadas = agruparMagiasPorNivel();
@@ -642,10 +685,17 @@ export default function AbaMagias() {
   return (
     <>
       <div key={refreshKey} className="magias">
-        <h3>Magias Aprendidas</h3>
-        <button className="adicionar-armas" onClick={() => setModalMagiasAberta(true)}>
-          Escolher Magia
-        </button>
+        <div className="header-magias">
+          <div className="dc-magias">
+            {calcularCDsMagia()}
+          </div>
+          <div className="header-titulo">
+            <h3>Magias Aprendidas</h3>
+            <button className="adicionar-armas" onClick={() => setModalMagiasAberta(true)}>
+              Escolher Magia
+            </button>
+          </div>
+        </div>
         {renderMagiasPorNivel()}
       </div>
       {modalInfoMagiasAberta && (

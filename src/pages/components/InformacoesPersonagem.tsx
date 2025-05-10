@@ -1,6 +1,11 @@
 import React, { useState, useRef } from "react";
 import "../css/InformacoesPersonagem.css";
 import iconCa from "../../imagens/icon_ac.png"
+import iconMorte1 from "../../imagens/skull_24dp_000000_FILL0_wght400_GRAD0_opsz24.png"
+import iconMorte2 from "../../imagens/skull_24dp_CCCCCC_FILL0_wght400_GRAD0_opsz24.png"
+import iconMorte3 from "../../imagens/skull_24dp_EA3323_FILL0_wght400_GRAD0_opsz24.png"
+import iconLife1 from "../../imagens/shield_with_heart_24dp_75FB4C_FILL0_wght400_GRAD0_opsz24.png"
+import iconLife2 from "../../imagens/shield_with_heart_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png"
 import { useFicha } from "../../api/fichaPersonagem/FichaContext.tsx"
 import VidaComponente from "./components_InformacoesPersonagem/ModalVida.tsx";
 
@@ -203,6 +208,53 @@ export default function InformacoesPersonagem() {
       .toLowerCase();
   }
 
+  const TestesDeMorte = () => {
+    const [sucessos, setSucessos] = useState(0);
+    const [falhas, setFalhas] = useState(0);
+
+    const toggleSucesso = (index) => {
+      setSucessos((prev) => (index < prev ? index : index + 1));
+    };
+
+    const toggleFalha = (index) => {
+      setFalhas((prev) => (index < prev ? index : index + 1));
+    };
+
+    return (
+      <div className="teste-morte">
+        <h3>Saves de Morte</h3>
+        <div className="teste-morte-container">
+          {[0, 1, 2].map((i) => (
+            <button className="botao-espaco-magia" key={i} onClick={() => toggleSucesso(i)}>
+              <img
+                src={i < sucessos ? iconLife1 : iconLife2}
+                className="espaco-magia-icon"
+                alt="Sucesso"
+              />
+            </button>
+          ))}
+        </div>
+        <div className="teste-vida-container">
+          {[0, 1, 2].map((i) => (
+            <button className="botao-espaco-magia" key={i} onClick={() => toggleFalha(i)}>
+              <img
+                src={
+                  i < falhas
+                    ? falhas >= 3
+                      ? iconMorte3
+                      : iconMorte1
+                    : iconMorte2
+                }
+                className="espaco-magia-icon"
+                alt="Falha"
+              />
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div key={refreshKey} className="informacoes-personagem compact">
       <div className="container-principal">
@@ -292,6 +344,9 @@ export default function InformacoesPersonagem() {
           <div>
             <VidaComponente />
           </div>
+        </div>
+        <div className="coluna-5">
+            {TestesDeMorte()}
         </div>
       </div>
     </div>

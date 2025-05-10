@@ -16,6 +16,8 @@
     align-items: center;
     justify-content: space-between;
     padding: 20px;
+    padding-left: 12px;
+    padding-right: 12px;
     border-radius: 10px;
     width: 97%;
     margin-bottom: 15px;
@@ -102,6 +104,37 @@
 
   .magia-coluna1{
     width: 20%;
+  }
+
+  .header-magias {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .dc-magias {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+  }
+
+  .dc-magias p {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  .header-titulo {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    left: 15%;
+  }
+
+  .header-titulo h3 {
+    margin-top: -10px;
   }
 
   .magia-coluna2{
