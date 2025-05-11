@@ -12,7 +12,7 @@ import ModalSelecaoTalento from "../pages/modals/ModalSelecaoTalento.tsx";
 import { Patronos } from "../api/classesEspeciais/Patronos.class.ts";
 import { Corruptor } from "../api/classesEspeciais/Corruptor.class.ts";
 import { Arquifada } from "../api/classesEspeciais/Arquifada.class.ts";
-import { LaminaMaldita } from "../api/classesEspeciais/LaminaMaldita.ts;
+import { LaminaMaldita } from "../api/classesEspeciais/LaminaMaldita.ts";
 import { GrandeAntigo } from "../api/classesEspeciais/GrandeAntigo.class.ts";
 import { Talentos } from "../bibliotecas/Talentos.ts";
 import { useFicha } from "../api/fichaPersonagem/FichaContext.tsx"
