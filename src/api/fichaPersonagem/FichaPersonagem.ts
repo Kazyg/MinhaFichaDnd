@@ -7,6 +7,7 @@ import { SubClasses } from "../classesPrincipais/SubClasses";
 import { Efeitos } from "../classesPrincipais/Efeitos";
 import { Armaduras_equip } from "../equipamentos/Armaduras.ts"
 import { Armas } from "../equipamentos/Armas";
+import { Metamagica } from "../../bibliotecas/Metamagica.ts";
 import { th } from "framer-motion/client";
 
 export class Ficha {
@@ -47,6 +48,10 @@ export class Ficha {
     magiasConhecidas: { classe: string, magias: number }[] | null;
     truquesConhecidos: { classe: string, magias: number }[] | null;
     magiasEscolhidas: { classe: string, magia: string[] }[] | null;
+    metamagica1: {nome: string, descricao: string} | null;
+    metamagica2: {nome: string, descricao: string} | null;
+    metamagica3: {nome: string, descricao: string} | null;
+    metamagica4: {nome: string, descricao: string} | null;
 
     constructor(data: Partial<Ficha> = {}) {
         this.id = data?.id ?? this.gerarIdUnico();
@@ -85,6 +90,10 @@ export class Ficha {
         this.espacosMagiaTotais = data?.espacosMagiaTotais ?? null;
         this.truquesConhecidos = data?.truquesConhecidos ?? null;
         this.magiasEscolhidas = data?.magiasEscolhidas ?? null;
+        this.metamagica1 = data?.metamagica1 ?? null;
+        this.metamagica2 = data?.metamagica2 ?? null;
+        this.metamagica3 = data?.metamagica3 ?? null;
+        this.metamagica4 = data?.metamagica4 ?? null;
     }
 
     calcularModificador(valor) {
@@ -393,5 +402,17 @@ export class Ficha {
             classe: item.classe,
             magia: item.magia.filter(m => m !== magia),
         }));
+    }
+    setMetamagicaSelecionada(nome: string, index: number) {
+        if(index === 1) this.metamagica1 = {nome: nome, descricao: Metamagica.find(m => m.nome === nome)?.descricao || ""}
+        if(index === 3) this.metamagica2 = {nome: nome, descricao: Metamagica.find(m => m.nome === nome)?.descricao || ""}
+        if(index === 10) this.metamagica3 = {nome: nome, descricao: Metamagica.find(m => m.nome === nome)?.descricao || ""}
+        if(index === 17) this.metamagica4 = {nome: nome, descricao: Metamagica.find(m => m.nome === nome)?.descricao || ""}
+    }
+    getMetamagica(index: number){
+        if(index === 1) return this.metamagica1?.nome;
+        if(index === 3) return this.metamagica2?.nome;
+        if(index === 10) return this.metamagica3?.nome;
+        if(index === 17) return this.metamagica4?.nome;
     }
 }

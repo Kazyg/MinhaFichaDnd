@@ -1,0 +1,27 @@
+name: Auto PR para develop
+
+on:
+  create:
+    branches:
+      - '**'  # Aciona quando uma nova branch for criada
+
+jobs:
+  auto_pull_request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configurar GitHub CLI
+        run: |
+          sudo apt update
+          sudo apt install gh -y
+
+      - name: Criar Pull Request automático
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          if [[ "$BRANCH_NAME" != "main" && "$BRANCH_NAME" != "develop" ]]; then
+            gh auth login --with-token <<< "$GITHUB_TOKEN"
+            gh pr create --base develop --head "$BRANCH_NAME" --title "Merge $BRANCH_NAME into develop" --body "Este PR foi criado automaticamente para mesclar $BRANCH_NAME na develop."
+          else
+            echo "A branch $BRANCH_NAME não requer um PR automático para develop."
+          fi
