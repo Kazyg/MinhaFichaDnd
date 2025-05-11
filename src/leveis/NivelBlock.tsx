@@ -19,9 +19,17 @@ import ModalSelecaoTalento from "../pages/modals/ModalSelecaoTalento.tsx";
 import TalentoDescricao from "./components/TalendoDescricao.tsx";
 import { Metamagica } from "../bibliotecas/Metamagica.ts"
 import ModalSelecaoMetamagica from "../pages/modals/ModalSelecaoMetamagica.tsx";
+import ModalSelecaoPatrono from "../pages/modals/ModalSelecaoPatrono.tsx";
+import { Patronos } from "../api/classesEspeciais/Patronos.class.ts";
+import { Corruptor } from "../api/classesEspeciais/Corruptor.class.ts";
+import { Arquifada } from "../api/classesEspeciais/Arquifada.class.ts";
+import { GrandeAntigo } from "../api/classesEspeciais/GrandeAntigo.class.ts";
+import CaracteristicasPatrono from "./components/CaracteristicasPatronoProps.tsx";
 
 const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
     const [modalClasseAberto, setModalClasseAberto] = useState(false);
+    const [modalPatronoAberto, setModalPatronoAberto] = useState(false);
+    const [patronoSelecionado, setPatronoSelecionado] = useState<Patronos | null>(null);
     const [isExpanded, setIsExpanded] = useState(false);
     const [indexMetamagica, setIndexMetamagica] = useState(1);
     const { ficha, refreshKey, forceUpdate } = useFicha();
@@ -53,6 +61,11 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
         bonus: { tipo: string | null, condicao: string | null, bonus: string[] | null; valor: number | null }[]
         descricao: string;
     };
+    const patronos: Patronos[] = [
+        new Corruptor(),
+        new Arquifada(),
+        new GrandeAntigo()
+      ]
     const talentos: Talento[] = Talentos;
     const atributos = ["força", "destreza", "constituição", "inteligência", "sabedoria", "carisma"];
     const pericias = [
@@ -153,6 +166,8 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
             if (classeNoNivel?.classe.subClasse.length > 0) {
                 setSubClasses(classeNoNivel?.classe.subClasse);
                 setSubGrupoAberto(true);
+            } else if (classeNoNivel.classe.nome === "bruxo") {
+
             }
         }
     };
@@ -161,10 +176,6 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
         ficha?.setTerrenoSelecionado(event.target.value);
         forceUpdate();
     };
-
-    const tituloMetamagica = () => {
-        return ficha?.getMetamagica(indexMetamagica);
-    }
 
     const textoSubclasse = () => {
         switch (classeNoNivel?.classe.nome.toLowerCase()) {
@@ -201,9 +212,9 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
         classe = classe?.toLowerCase();
 
         // Verifica as condições
-        const condicao1 = (classe === "feiticeiro" || classe === "clérigo" || classe === "bruxo") && nivel === 1;
+        const condicao1 = (classe === "feiticeiro" || classe === "clérigo") && nivel === 1;
         const condicao2 = (classe === "druida" || classe === "mago") && nivel === 2;
-        const condicao3 = nivel === 3 && !["feiticeiro", "clérigo", "bruxo", "druida", "mago"].includes(classe);
+        const condicao3 = nivel === 3 && !["feiticeiro", "clérigo", "druida", "mago"].includes(classe);
 
         // Retorna true se qualquer uma das condições for verdadeira
         return condicao1 || condicao2 || condicao3;
@@ -579,6 +590,39 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
                                                 </>
                                             )
                                         }
+                                        {classeNoNivel.classe.nome === "Bruxo" && calcularNivelClasse(nivel) === 1 && (
+                                            <>
+                                                <button className="botao-selecao-talento" onClick={() => setModalPatronoAberto(true)}>
+                                                    <img src={iconClass} className="button-icon" alt="Patrono" />
+                                                    <div className="botao-texto">
+                                                        <span>Selecionar Patrono</span>
+                                                        <strong>{patronoSelecionado ? patronoSelecionado.nome : "Selecionar Patrono"}</strong>
+                                                    </div>
+                                                </button>
+                                                {modalPatronoAberto && (
+                                                    <>
+                                                        <div className="popup-overlay" onClick={() => setModalPatronoAberto(false)}></div>
+                                                        <div className="popup">
+                                                            <ModalSelecaoPatrono
+                                                                titulo="Escolha sua Classe"
+                                                                opcoes={patronos}
+                                                                onClose={() => setModalPatronoAberto(false)}
+                                                                onSelect={(patrono) => {
+                                                                    setPatronoSelecionado(patrono);
+                                                                    setModalPatronoAberto(false);
+                                                                }}
+                                                                patronoInicial={patronoSelecionado}
+                                                            />
+                                                        </div>
+                                                    </>
+                                                )}
+                                                {patronoSelecionado && (
+                                                    <>
+                                                        <CaracteristicasPatrono patrono={patronoSelecionado} nivel={1} />
+                                                    </>
+                                                )}
+                                            </>
+                                        )}
                                         <CaracteristicasClasse classe={classeNoNivel?.classe} nivel={calcularNivelClasse(nivel)} />
                                         {classeNoNivel.classe.nome === "Feiticeiro" && [3, 10, 17].includes(calcularNivelClasse(nivel)) && (
                                             <div className="skills-container">

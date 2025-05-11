@@ -1,8 +1,12 @@
+import { PactoCorrente } from "../classesClassesNetos/PactoCorrente.ts";
+import { PactoLamina } from "../classesClassesNetos/PactoLamina.ts";
+import { PactoTomo } from "../classesClassesNetos/PactoTomo.ts";
 import { Arquifada } from "../classesEspeciais/Arquifada.class.ts";
 import { Corruptor } from "../classesEspeciais/Corruptor.class.ts";
 import { GrandeAntigo } from "../classesEspeciais/GrandeAntigo.class.ts";
 import { Patronos } from "../classesEspeciais/Patronos.class.ts";
 import { Classes } from "../classesPrincipais/Classes.class.ts";
+import { SubClasses } from "../classesPrincipais/SubClasses.ts";
 
 export class Bruxo extends Classes {
   level: number;
@@ -17,6 +21,7 @@ export class Bruxo extends Classes {
     invocacoesConhecidas: number;
   }[];
   patronos: Patronos[];
+  subClasse: SubClasses[];
 
   constructor() {
     super(
@@ -40,7 +45,8 @@ export class Bruxo extends Classes {
     );
     this.level = 0; // Nível inicial
     this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis
-    this.patronos = [new Arquifada(), new Corruptor(), new GrandeAntigo()]
+    this.patronos = [new Arquifada(), new Corruptor(), new GrandeAntigo()];
+    this.subClasse = [new PactoCorrente(), new PactoLamina(), new PactoTomo()];
   }
 
   // Método para aumentar o nível
