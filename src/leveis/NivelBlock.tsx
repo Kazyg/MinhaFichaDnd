@@ -24,6 +24,7 @@ import { Patronos } from "../api/classesEspeciais/Patronos.class.ts";
 import { Corruptor } from "../api/classesEspeciais/Corruptor.class.ts";
 import { Arquifada } from "../api/classesEspeciais/Arquifada.class.ts";
 import { GrandeAntigo } from "../api/classesEspeciais/GrandeAntigo.class.ts";
+import { LaminaMaldita } from "../api/classesEspeciais/LaminaMaldita.ts";
 import CaracteristicasPatrono from "./components/CaracteristicasPatronoProps.tsx";
 
 const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
@@ -64,7 +65,8 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
     const patronos: Patronos[] = [
         new Corruptor(),
         new Arquifada(),
-        new GrandeAntigo()
+        new GrandeAntigo(),
+        new LaminaMaldita()
       ]
     const talentos: Talento[] = Talentos;
     const atributos = ["força", "destreza", "constituição", "inteligência", "sabedoria", "carisma"];
@@ -236,13 +238,16 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
     }
 
     function validaIncrementoAtributo(classe: Classes | undefined) {
-        let classeIncremento = classe?.niveis.find(c => c.caracteristicas.includes("Incremento no Valor de Habilidade"))
-        if (classe === undefined) return false;
-        else if (classeIncremento?.nivel === calcularNivelClasse(nivel)) {
-            return true
-        } else {
-            return false
-        }
+        debugger;
+        if (!classe) return false;
+
+        const nivelAtual = calcularNivelClasse(nivel);
+        const nivelComIncremento = classe.niveis.find(c =>
+            c.nivel === nivelAtual &&
+            c.caracteristicas.includes("Incremento no Valor de Habilidade")
+        );
+
+        return !!nivelComIncremento;
     }
 
     return (
