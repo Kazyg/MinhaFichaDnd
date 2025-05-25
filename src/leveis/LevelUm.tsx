@@ -12,6 +12,7 @@ import ModalSelecaoTalento from "../pages/modals/ModalSelecaoTalento.tsx";
 import { Patronos } from "../api/classesEspeciais/Patronos.class.ts";
 import { Corruptor } from "../api/classesEspeciais/Corruptor.class.ts";
 import { Arquifada } from "../api/classesEspeciais/Arquifada.class.ts";
+import { Celestial } from "../api/classesEspeciais/OCelestial.ts";
 import { LaminaMaldita } from "../api/classesEspeciais/LaminaMaldita.ts";
 import { GrandeAntigo } from "../api/classesEspeciais/GrandeAntigo.class.ts";
 import { Talentos } from "../bibliotecas/Talentos.ts";
@@ -57,7 +58,8 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
     new Corruptor(),
     new Arquifada(),
     new GrandeAntigo(),
-    new LaminaMaldita()
+    new LaminaMaldita(),
+    new Celestial()
   ]
 
   const [atributoMetodo, setAtributoMetodo] = useState<string | null>(null);

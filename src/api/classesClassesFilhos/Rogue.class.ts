@@ -1,6 +1,6 @@
 import { Classes } from "../classesPrincipais/Classes.class.ts";
 import { SubClasses } from "../classesPrincipais/SubClasses.ts";
-import { Assassino, Ladrao, TrapaceiroArcano } from "../classesPrincipais/SubClassesExport.ts";
+import { Assassino, Batedor, Espadachim, Inquiridor, Ladrao, Mentor, TrapaceiroArcano } from "../classesPrincipais/SubClassesExport.ts";
 
 export class Rogue extends Classes {
   level: number;
@@ -26,7 +26,7 @@ export class Rogue extends Classes {
     );
     this.level = 0; // Nível inicial
     this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis
-    this.subClasse = [new Assassino(), new Ladrao(), new TrapaceiroArcano() ]
+    this.subClasse = [new Assassino(), new Ladrao(), new TrapaceiroArcano(), new Inquiridor(), new Mentor(), new Batedor(), new Espadachim()]
   }
 
   // Método para aumentar o nível

@@ -2,6 +2,7 @@ import { PactoCorrente } from "../classesClassesNetos/PactoCorrente.ts";
 import { PactoLamina } from "../classesClassesNetos/PactoLamina.ts";
 import { PactoTomo } from "../classesClassesNetos/PactoTomo.ts";
 import { Arquifada } from "../classesEspeciais/Arquifada.class.ts";
+import { Celestial } from "../classesEspeciais/OCelestial.ts";
 import { Corruptor } from "../classesEspeciais/Corruptor.class.ts";
 import { GrandeAntigo } from "../classesEspeciais/GrandeAntigo.class.ts";
 import { Patronos } from "../classesEspeciais/Patronos.class.ts";
@@ -45,7 +46,7 @@ export class Bruxo extends Classes {
     );
     this.level = 0; // Nível inicial
     this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis
-    this.patronos = [new Arquifada(), new Corruptor(), new GrandeAntigo()];
+    this.patronos = [new Arquifada(), new Corruptor(), new GrandeAntigo(), new Celestial()];
     this.subClasse = [new PactoCorrente(), new PactoLamina(), new PactoTomo()];
   }
 

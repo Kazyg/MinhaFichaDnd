@@ -1,6 +1,6 @@
 import { Classes } from "../classesPrincipais/Classes.class.ts";
 import { SubClasses } from "../classesPrincipais/SubClasses.ts";
-import { CaminhoDaMaoAberta, CaminhoDaSombra, CaminhoDosQuatroElementos } from "../classesPrincipais/SubClassesExport.ts";
+import { CaminhoDaMaoAberta, CaminhoDaSombra, CaminhoDosQuatroElementos, EstiloDaAlmaSolar, EstiloDoKensei, EstiloDoMestreBebado } from "../classesPrincipais/SubClassesExport.ts";
 
 export class Monge extends Classes {
   level: number;
@@ -28,7 +28,7 @@ export class Monge extends Classes {
     );
     this.level = 0; // Nível inicial
     this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis
-    this.subClasse = [  new CaminhoDaMaoAberta(), new CaminhoDaSombra(), new CaminhoDosQuatroElementos() ];
+    this.subClasse = [  new CaminhoDaMaoAberta(), new CaminhoDaSombra(), new CaminhoDosQuatroElementos(), new EstiloDoMestreBebado(), new EstiloDoKensei(), new EstiloDaAlmaSolar()];
   }
 
   // Método para aumentar o nível
