@@ -1,6 +1,6 @@
 import { Classes } from "../classesPrincipais/Classes.class.ts";
 import { SubClasses } from "../classesPrincipais/SubClasses.ts";
-import { Campeao, CavaleiroArcano, MestreDeBatalha } from "../classesPrincipais/SubClassesExport.ts";
+import { ArqueiroArcano, Campeao, Cavaleiro, CavaleiroArcano, MestreDeBatalha, Samurai } from "../classesPrincipais/SubClassesExport.ts";
 
 export class Lutador extends Classes {
   level: number;
@@ -25,7 +25,7 @@ export class Lutador extends Classes {
     );
     this.level = 0; // Nível inicial
     this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis
-    this.subClasse = [new Campeao(), new CavaleiroArcano(), new MestreDeBatalha()];
+    this.subClasse = [new Campeao(), new CavaleiroArcano(), new MestreDeBatalha(), new ArqueiroArcano(), new Cavaleiro(), new Samurai()];
   }
 
   // Método para aumentar o nível

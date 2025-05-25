@@ -1,6 +1,6 @@
 import { Classes } from "../classesPrincipais/Classes.class.ts"
 import { SubClasses } from "../classesPrincipais/SubClasses.ts";
-import { CaminhoFurioso, CaminhoGuerreiroTotemico } from "../classesPrincipais/SubClassesExport.ts"
+import { CaminhoDoArautoDaTempestade, CaminhoDoFanatico, CaminhoDoGuardiaoAncestral, CaminhoFurioso, CaminhoGuerreiroTotemico } from "../classesPrincipais/SubClassesExport.ts"
 
 export class Barbaro extends Classes {
     level: number;
@@ -41,7 +41,10 @@ export class Barbaro extends Classes {
       ];
       this.subClasse = [
         new CaminhoFurioso(),
-        new CaminhoGuerreiroTotemico()
+        new CaminhoGuerreiroTotemico(),
+        new CaminhoDoGuardiaoAncestral(),
+        new CaminhoDoArautoDaTempestade(),
+        new CaminhoDoFanatico()
       ];
     }
   

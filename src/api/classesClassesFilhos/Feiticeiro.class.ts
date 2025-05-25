@@ -1,6 +1,6 @@
 import { Classes } from "../classesPrincipais/Classes.class.ts";
 import { SubClasses } from "../classesPrincipais/SubClasses.ts";
-import { LinhagemDraconica, MagiaSelvagem } from "../classesPrincipais/SubClassesExport.ts";
+import { AdeptoDasSombras, AlmaFavorecida, FeiticeiroDaTempestade, LinhagemDraconica, MagiaSelvagem } from "../classesPrincipais/SubClassesExport.ts";
 
 export class Feiticeiro extends Classes {
   level: number;
@@ -29,7 +29,7 @@ export class Feiticeiro extends Classes {
     );
     this.level = 0; // Nível inicial
     this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis
-    this.subClasse = [new LinhagemDraconica(), new MagiaSelvagem()];
+    this.subClasse = [new LinhagemDraconica(), new MagiaSelvagem(), new AlmaFavorecida(), new AdeptoDasSombras(), new FeiticeiroDaTempestade()];
   }
 
   // Método para aumentar o nível

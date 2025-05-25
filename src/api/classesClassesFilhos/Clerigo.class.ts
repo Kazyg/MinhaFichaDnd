@@ -1,6 +1,6 @@
 import { Classes } from "../classesPrincipais/Classes.class.ts";
 import { SubClasses } from "../classesPrincipais/SubClasses.ts";
-import { DominioDaLuz, DominioDoConhecimento, DominioDaVida, DominioDaTempestade, DominioDaEnganacao, DominioDaGuerra, DominioDaNatureza } from "../classesPrincipais/SubClassesExport.ts";
+import { DominioDaLuz, DominioDoConhecimento, DominioDaVida, DominioDaTempestade, DominioDaEnganacao, DominioDaGuerra, DominioDaNatureza, DominioDaForja, DominioDaSepultura } from "../classesPrincipais/SubClassesExport.ts";
 
 export class Clerigo extends Classes {
   level: number;
@@ -27,7 +27,17 @@ export class Clerigo extends Classes {
     );
     this.level = 0; // Nível inicial
     this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis
-    this.subClasse = [new DominioDaLuz(), new DominioDoConhecimento(), new DominioDaVida(), new DominioDaTempestade(), new DominioDaEnganacao(), new DominioDaGuerra(), new DominioDaNatureza()];
+    this.subClasse = [
+      new DominioDaLuz(), 
+      new DominioDoConhecimento(), 
+      new DominioDaVida(), 
+      new DominioDaTempestade(), 
+      new DominioDaEnganacao(), 
+      new DominioDaGuerra(), 
+      new DominioDaNatureza(), 
+      new DominioDaForja(),
+      new DominioDaSepultura()
+  ];
   }
 
   // Método para aumentar o nível
