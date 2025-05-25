@@ -9,6 +9,7 @@ import { Armaduras_equip } from "../equipamentos/Armaduras.ts"
 import { Armas } from "../equipamentos/Armas";
 import { Metamagica } from "../../bibliotecas/Metamagica.ts";
 import { th } from "framer-motion/client";
+import { Itens } from "../../bibliotecas/Itens.ts";
 
 export class Ficha {
     id: string;
@@ -52,6 +53,10 @@ export class Ficha {
     metamagica2: {nome: string, descricao: string} | null;
     metamagica3: {nome: string, descricao: string} | null;
     metamagica4: {nome: string, descricao: string} | null;
+    ouro: number;
+    prata: number;
+    cobre: number;
+    itensMochila: Itens[] | null;
 
     constructor(data: Partial<Ficha> = {}) {
         this.id = data?.id ?? this.gerarIdUnico();
@@ -94,6 +99,10 @@ export class Ficha {
         this.metamagica2 = data?.metamagica2 ?? null;
         this.metamagica3 = data?.metamagica3 ?? null;
         this.metamagica4 = data?.metamagica4 ?? null;
+        this.ouro = data?.ouro ?? 0;
+        this.prata = data?.prata ?? 0;
+        this.cobre = data?.cobre ?? 0;
+        this.itensMochila = data?.itensMochila ?? null;
     }
 
     calcularModificador(valor) {
@@ -414,5 +423,24 @@ export class Ficha {
         if(index === 3) return this.metamagica2?.nome;
         if(index === 10) return this.metamagica3?.nome;
         if(index === 17) return this.metamagica4?.nome;
+    }
+    adicionarOuro(quantidade: number){
+        this.ouro += quantidade;
+    }
+    adicionarPrata(quantidade: number){
+        this.prata += quantidade;
+    }
+    adicionarCobre(quantidade: number){
+        this.cobre += quantidade;
+    }
+    setItemMochila(item: Itens) {
+        if (!this.itensMochila) {
+            this.itensMochila = [item];
+        } else {
+            this.itensMochila = [...this.itensMochila, item];
+        }
+    }
+    excluirItem(idItem: string) {
+        if (this.itensMochila) this.itensMochila = this.itensMochila.filter(s => s.id !== idItem);
     }
 }

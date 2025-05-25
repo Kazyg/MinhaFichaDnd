@@ -32,8 +32,11 @@ export default function ModalInventarioArma({
     setMostrarFiltros(false); // Esconde os botões de filtro e mostra a lista de armas
   };
 
+  const normalizar = (texto: string) =>
+    texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
   const opcoesFiltradas = armasFiltradas.filter((opcao) =>
-    opcao.nome.toLowerCase().includes(filtro.toLowerCase())
+    normalizar(opcao.nome).includes(filtro.toLowerCase())
   );
 
   return (
@@ -52,12 +55,12 @@ export default function ModalInventarioArma({
         <>
           <div className="popup-body-modal">
             <div className="lista-racas">
-            <input
-                  type="text"
-                  placeholder={`Filtrar ${filtroCategoria}...`}
-                  value={filtro}
-                  onChange={(e) => setFiltro(e.target.value)}
-                />
+              <input
+                type="text"
+                placeholder={`Filtrar ${filtroCategoria}...`}
+                value={filtro}
+                onChange={(e) => setFiltro(e.target.value)}
+              />
               <ul>
                 {opcoesFiltradas.map((arma) => (
                   <>

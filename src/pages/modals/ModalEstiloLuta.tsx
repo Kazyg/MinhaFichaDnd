@@ -14,8 +14,11 @@ const ModalSelecaoEstiloLuta: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
     const [selecionado, setSelecionado] = useState<{ classe: string[], nome: string, descricao: string } | null>(EstiloInicial || null);
     const { ficha } = useFicha();
 
+    const normalizar = (texto: string) =>
+        texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
     const opcoesFiltradas = opcoes.filter((opcao) =>
-        opcao.nome.toLowerCase().includes(filtro.toLowerCase())
+        normalizar(opcao.nome).includes(filtro.toLowerCase())
     );
 
     return (

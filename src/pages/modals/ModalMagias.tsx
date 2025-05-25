@@ -33,7 +33,7 @@ const ModalSelecaoMagias: React.FC<ModalSelecaoProps> = ({ titulo, onClose, onSe
         "necromancia",
         "transmutação"
     ];
-    const listaNiveisFiltro = [0,1,2,3,4,5,6,7,8,9]
+    const listaNiveisFiltro = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     const [filtro, setFiltro] = useState("");
     const [filtrosAbertos, setFiltrosAbertos] = useState(false);
     const [filtrosSelecionado, setFiltrosSelecionado] = useState(false);
@@ -47,21 +47,24 @@ const ModalSelecaoMagias: React.FC<ModalSelecaoProps> = ({ titulo, onClose, onSe
 
     const magiasUnicas = [
         ...new Map(listaMagias.map(magia => [magia.nome, magia])).values()
-      ];
+    ];
+
+    const normalizar = (texto: string) =>
+        texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
     const opcoesFiltradas = magiasUnicas.filter((opcao) =>
-        opcao.nome.toLowerCase().includes(filtro.toLowerCase())
+        normalizar(opcao.nome).includes(filtro.toLowerCase())
     );
 
     const opcoesFiltros = () => {
         let opcoesFiltros = opcoesFiltradas;
-        if(filtroClasse !== ""){
+        if (filtroClasse !== "") {
             opcoesFiltros = listaParaFiltrar.find(l => l.classe === filtroClasse)?.magias || opcoesFiltradas;
         }
-        if(filtroEscola !== ""){
+        if (filtroEscola !== "") {
             opcoesFiltros = opcoesFiltros.filter(o => o.tipo === filtroEscola);
         }
-        if(filtroNivel !== null){
+        if (filtroNivel !== null) {
             opcoesFiltros = opcoesFiltros.filter(o => o.nivel === filtroNivel);
         }
         return opcoesFiltros;
@@ -129,13 +132,13 @@ const ModalSelecaoMagias: React.FC<ModalSelecaoProps> = ({ titulo, onClose, onSe
                             ))}
                         </select>
                         <button onClick={() => {
-                            setFiltrosAbertos(false); 
+                            setFiltrosAbertos(false);
                             setFiltrosSelecionado(false);
                             setFiltroNivel(null);
                             setFiltroClasse("");
                             setFiltroEscola("");
-                            }}>
-                            <img src={iconNoFilter} className="imagem-nofiltro"/>
+                        }}>
+                            <img src={iconNoFilter} className="imagem-nofiltro" />
                         </button>
                     </div>
                 </div>
@@ -183,15 +186,15 @@ const ModalSelecaoMagias: React.FC<ModalSelecaoProps> = ({ titulo, onClose, onSe
                     {selecionado && (
                         <>
                             <h3>{selecionado}</h3>
-                            <p><strong>Nivel: </strong>{listaMagias.find(l => l.nome === selecionado)?.nivel}º</p>
-                            <p><strong>Escola: </strong>{listaMagias.find(l => l.nome === selecionado)?.tipo}</p>
-                            <p><strong>Tempo de Conjuração: </strong>{magiasCompletas.find(m => m.nome === selecionado)?.conjuracao}</p>
-                            <p><strong>Alcance: </strong>{magiasCompletas.find(m => m.nome === selecionado)?.alcance.tipo}
-                            {(magiasCompletas.find(m => m.nome === selecionado)?.alcance.distancia || 0) > 1 && (<> {magiasCompletas.find(m => m.nome === selecionado)?.alcance.distancia + " metros"}</>)}</p>
-                            <p><strong>Componentes: </strong>{magiasCompletas.find(m => m.nome === selecionado)?.componentes.componentes.map(comp => <>{comp} </>)} 
-                            {magiasCompletas.find(m => m.nome === selecionado)?.componentes.material && (<>({magiasCompletas.find(m => m.nome === selecionado)?.componentes.material})</>)}</p>
-                            <p><strong>Duração: </strong>{magiasCompletas.find(m => m.nome === selecionado)?.concentracao && (<>concentração, </>)}{magiasCompletas.find(m => m.nome === selecionado)?.duracao}</p>
-                            <p><strong>Descricao: </strong>{magiasCompletas.find(m => m.nome === selecionado)?.descricao}</p>
+                            <p><strong>Nivel: </strong>{listaMagias.find(l => normalizar(l.nome) === normalizar(selecionado))?.nivel}º</p>
+                            <p><strong>Escola: </strong>{listaMagias.find(l => normalizar(l.nome) === normalizar(selecionado))?.tipo}</p>
+                            <p><strong>Tempo de Conjuração: </strong>{magiasCompletas.find(m => normalizar(m.nome) === normalizar(selecionado))?.conjuracao}</p>
+                            <p><strong>Alcance: </strong>{magiasCompletas.find(m => normalizar(m.nome) === normalizar(selecionado))?.alcance.tipo}
+                                {(magiasCompletas.find(m => normalizar(m.nome) === normalizar(selecionado))?.alcance.distancia || 0) > 1 && (<> {magiasCompletas.find(m => normalizar(m.nome) === normalizar(selecionado))?.alcance.distancia + " metros"}</>)}</p>
+                            <p><strong>Componentes: </strong>{magiasCompletas.find(m => normalizar(m.nome) === normalizar(selecionado))?.componentes.componentes.map(comp => <>{comp} </>)}
+                                {magiasCompletas.find(m => normalizar(m.nome) === normalizar(selecionado))?.componentes.material && (<>({magiasCompletas.find(m => normalizar(m.nome) === normalizar(selecionado))?.componentes.material})</>)}</p>
+                            <p><strong>Duração: </strong>{magiasCompletas.find(m => normalizar(m.nome) === normalizar(selecionado))?.concentracao && (<>concentração, </>)}{magiasCompletas.find(m => normalizar(m.nome) === normalizar(selecionado))?.duracao}</p>
+                            <p><strong>Descricao: </strong>{magiasCompletas.find(m => normalizar(m.nome) === normalizar(selecionado))?.descricao}</p>
                         </>
                     )}
                 </div>

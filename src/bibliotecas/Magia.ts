@@ -118,7 +118,19 @@ export const magiasBardo = [
   { nome: "Palavra de Poder Curar", nivel: 9, tipo: "evocação" },
   { nome: "Palavra de Poder Matar", nivel: 9, tipo: "encantamento" },
   { nome: "Metamorfose Verdadeira", nivel: 9, tipo: "transmutação" },
-  { nome: "Sexto Sentido", nivel: 9, tipo: "adivinhação" }
+  { nome: "Sexto Sentido", nivel: 9, tipo: "adivinhação" },
+  { nome: "Golpe trovejante", nivel: 0, tipo: "evocação" },
+  { nome: "Tremor de terra", nivel: 1, tipo: "evocação" },
+  { nome: "Escrita celeste", nivel: 2, tipo: "transmutação" },
+  { nome: "Pirotecnia", nivel: 2, tipo: "transmutação" },
+  { nome: "Vento protetor", nivel: 2, tipo: "evocação" },
+  { nome: "Infestar de inimigos", nivel: 3, tipo: "encantamento" },
+  { nome: "Soneca", nivel: 3, tipo: "encantamento" },
+  { nome: "Enfeitiçar monstro", nivel: 4, tipo: "encantamento" },
+  { nome: "Estática sináptica", nivel: 5, tipo: "encantamento" },
+  { nome: "Fortalecimento de perícia", nivel: 9, tipo: "transmutação" },
+  { nome: "Grifo psíquico", nivel: 9, tipo: "encantamento" },
+  { nome: "Metamorfose em massa", nivel: 9, tipo: "transmutação" },
 ];
 
 export const magiasBruxo = [
@@ -195,7 +207,32 @@ export const magiasBruxo = [
   { nome: "Metamorfose Verdadeira", nivel: 9, tipo: "transmutação" },
   { nome: "Palavra de Poder Matar", nivel: 9, tipo: "encantamento" },
   { nome: "Projeção Astral", nivel: 9, tipo: "necromancia" },
-  { nome: "Sexto Sentido", nivel: 9, tipo: "adivinhação" }
+  { nome: "Sexto Sentido", nivel: 9, tipo: "adivinhação" },
+  { nome: "Criar fogueira", nivel: 0, tipo: "conjuração" },
+  { nome: "Golpe trovejante", nivel: 0, tipo: "evocação" },
+  { nome: "Infestação", nivel: 0, tipo: "conjuração" },
+  { nome: "Pedra encantada", nivel: 0, tipo: "transmutação" },
+  { nome: "Picada congelante", nivel: 0, tipo: "evocação" },
+  { nome: "Soar os mortos", nivel: 0, tipo: "necromancia" },
+  { nome: "Causar medo", nivel: 1, tipo: "necromancia" },
+  { nome: "Agarrão da terra", nivel: 2, tipo: "transmutação" },
+  { nome: "Espinho mental", nivel: 2, tipo: "adivinhação" },
+  { nome: "Lâmina sombria", nivel: 2, tipo: "ilusão" },
+  { nome: "Infestar de inimigos", nivel: 3, tipo: "encantamento" },
+  { nome: "Invocar demônios menores", nivel: 3, tipo: "conjuração" },
+  { nome: "Passo trovejante", nivel: 3, tipo: "conjuração" },
+  { nome: "Destruição elemental", nivel: 4, tipo: "transmutação" },
+  { nome: "Enfeitiçar monstro", nivel: 4, tipo: "encantamento" },
+  { nome: "Invocar demônio maior", nivel: 4, tipo: "conjuração" },
+  { nome: "Resplendor enjoativo", nivel: 4, tipo: "evocação" },
+  { nome: "Sombra de transtorno", nivel: 4, tipo: "necromancia" },
+  { nome: "Chamado infernal", nivel: 5, tipo: "conjuração" },
+  { nome: "Dança macabra", nivel: 5, tipo: "necromancia" },
+  { nome: "Enervação", nivel: 5, tipo: "necromancia" },
+  { nome: "Estática sináptica", nivel: 5, tipo: "encantamento" },
+  { nome: "Inundação de energia negativa", nivel: 5, tipo: "necromancia" },
+  { nome: "Parede de luz", nivel: 5, tipo: "evocação" },
+  { nome: "Passo distante", nivel: 5, tipo: "conjuração" },
 ];
 
 export const magiasClerigo = [
@@ -304,7 +341,33 @@ export const magiasClerigo = [
   { nome: "Cura Completa em Massa", nivel: 9, tipo: "evocação" },
   { nome: "Portal", nivel: 9, tipo: "conjuração" },
   { nome: "Projeção Astral", nivel: 9, tipo: "necromancia" },
-  { nome: "Ressurreição Verdadeira", nivel: 9, tipo: "necromancia" }
+  { nome: "Ressurreição Verdadeira", nivel: 9, tipo: "necromancia" },
+  { nome: "Palavra do esplendor", nivel: 0, tipo: "evocação" },
+  { nome: "Soar os mortos", nivel: 0, tipo: "necromancia" },
+  { nome: "Cerimônia", nivel: 1, tipo: "abjuração" },
+  { nome: "Transferência de vida", nivel: 3, tipo: "necromancia" },
+  { nome: "Escrita celeste", nivel: 2, tipo: "transmutação" },
+  { nome: "Espírito curativo", nivel: 2, tipo: "conjuração" },
+  { nome: "Vento protetor", nivel: 2, tipo: "evocação" },
+  { nome: "Erupção de terra", nivel: 3, tipo: "transmutação" },
+  { nome: "Flechas flamejantes", nivel: 3, tipo: "transmutação" },
+  { nome: "Maremato", nivel: 3, tipo: "conjuração" },
+  { nome: "Muralha de água", nivel: 3, tipo: "evocação" },
+  { nome: "Destruição elemental", nivel: 4, tipo: "transmutação" },
+  { nome: "Enfeitiçar monstro", nivel: 4, tipo: "encantamento" },
+  { nome: "Esfera aquosa", nivel: 4, tipo: "conjuração" },
+  { nome: "Guardilão da natureza", nivel: 4, tipo: "transmutação" },
+  { nome: "Controlar os ventos", nivel: 5, tipo: "transmutação" },
+  { nome: "Ira da natureza", nivel: 5, tipo: "evocação" },
+  { nome: "Redemoinho", nivel: 5, tipo: "evocação" },
+  { nome: "Transmutar pedra", nivel: 5, tipo: "transmutação" },
+  { nome: "Bosque de druida", nivel: 6, tipo: "abjuração" },
+  { nome: "Manto de chamas", nivel: 6, tipo: "transmutação" },
+  { nome: "Manto de gelo", nivel: 6, tipo: "transmutação" },
+  { nome: "Manto de pedra", nivel: 6, tipo: "transmutação" },
+  { nome: "Manto de vento", nivel: 6, tipo: "transmutação" },
+  { nome: "Ossos da terra", nivel: 6, tipo: "transmutação" },
+  { nome: "Proteção primordial", nivel: 6, tipo: "abjuração" },
 ];
 
 export const magiasDruida = [
@@ -417,7 +480,25 @@ export const magiasDruida = [
   { nome: "Alterar Forma", nivel: 9, tipo: "transmutação" },
   { nome: "Ressurreição Verdadeira", nivel: 9, tipo: "necromancia" },
   { nome: "Sexto Sentido", nivel: 9, tipo: "adivinhação" },
-  { nome: "Tempestade da Vingança", nivel: 9, tipo: "conjuração" }
+  { nome: "Tempestade da Vingança", nivel: 9, tipo: "conjuração" },
+  { nome: "Controlar chamas", nivel: 0, tipo: "transmutação" },
+  { nome: "Criar fogueira", nivel: 0, tipo: "conjuração" },
+  { nome: "Golpe trovejante", nivel: 0, tipo: "evocação" },
+  { nome: "Infestação", nivel: 0, tipo: "conjuração" },
+  { nome: "Lufado", nivel: 0, tipo: "transmutação" },
+  { nome: "Moldar água", nivel: 0, tipo: "transmutação" },
+  { nome: "Moldar terra", nivel: 0, tipo: "transmutação" },
+  { nome: "Pedra encantada", nivel: 0, tipo: "transmutação" },
+  { nome: "Picada congelante", nivel: 0, tipo: "evocação" },
+  { nome: "Selvageria primitiva", nivel: 0, tipo: "transmutação" },
+  { nome: "Absorver elementos", nivel: 1, tipo: "abjuração" },
+  { nome: "Faca de gelo", nivel: 1, tipo: "conjuração" },
+  { nome: "Lago", nivel: 1, tipo: "abjuração" },
+  { nome: "Tremor de terra", nivel: 1, tipo: "evocação" },
+  { nome: "Vínculo com a besta", nivel: 1, tipo: "adivinhação" },
+  { nome: "Agarrão da terra", nivel: 2, tipo: "transmutação" },
+  { nome: "Diabo da poeira", nivel: 2, tipo: "conjuração" },
+  { nome: "Vendaval", nivel: 7, tipo: "evocação" },
 ];
 
 export const magiasFeiticeiro = [
@@ -549,7 +630,38 @@ export const magiasFeiticeiro = [
   { nome: "Desejo", nivel: 9, tipo: "conjuração" },
   { nome: "Palavra de Poder Matar", nivel: 9, tipo: "encantamento" },
   { nome: "Parar o Tempo", nivel: 9, tipo: "transmutação" },
-  { nome: "Portal", nivel: 9, tipo: "conjuração" }
+  { nome: "Portal", nivel: 9, tipo: "conjuração" },
+  { nome: "Controlar chamas", nivel: 0, tipo: "transmutação" },
+  { nome: "Criar fogueira", nivel: 0, tipo: "conjuração" },
+  { nome: "Golpe trovejante", nivel: 0, tipo: "evocação" },
+  { nome: "Infestação", nivel: 0, tipo: "conjuração" },
+  { nome: "Lufado", nivel: 0, tipo: "transmutação" },
+  { nome: "Moldar água", nivel: 0, tipo: "transmutação" },
+  { nome: "Moldar terra", nivel: 0, tipo: "transmutação" },
+  { nome: "Picada congelante", nivel: 0, tipo: "evocação" },
+  { nome: "Absorver elementos", nivel: 1, tipo: "abjuração" },
+  { nome: "Catapulta", nivel: 1, tipo: "transmutação" },
+  { nome: "Faca de gelo", nivel: 1, tipo: "conjuração" },
+  { nome: "Ralo de osso", nivel: 1, tipo: "evocação" },
+  { nome: "Tremor de terra", nivel: 1, tipo: "evocação" },
+  { nome: "Abraço terrestre de Maximilian", nivel: 2, tipo: "transmutação" },
+  { nome: "Agarrão da terra", nivel: 2, tipo: "transmutação" },
+  { nome: "Bafo de dragão", nivel: 2, tipo: "transmutação" },
+  { nome: "Chuva de bolas de neve de Snilloc", nivel: 2, tipo: "evocação" },
+  { nome: "Diabo da poeira", nivel: 2, tipo: "conjuração" },
+  { nome: "Espinho mental", nivel: 2, tipo: "adivinhação" },
+  { nome: "Dispersão", nivel: 6, tipo: "conjuração" },
+  { nome: "Manto de chamas", nivel: 6, tipo: "transmutação" },
+  { nome: "Manto de gelo", nivel: 6, tipo: "transmutação" },
+  { nome: "Manto de pedra", nivel: 6, tipo: "transmutação" },
+  { nome: "Manto de vento", nivel: 6, tipo: "transmutação" },
+  { nome: "Prisão mental", nivel: 6, tipo: "ilusão" },
+  { nome: "Coroa de estrelas", nivel: 7, tipo: "evocação" },
+  { nome: "Palavra de poder dor", nivel: 7, tipo: "encantamento" },
+  { nome: "Vendaval", nivel: 7, tipo: "evocação" },
+  { nome: "Evaporação de Abi-Dalzim", nivel: 8, tipo: "necromancia" },
+  { nome: "Grito psíquico", nivel: 9, tipo: "encantamento" },
+  { nome: "Metamorfose em massa", nivel: 9, tipo: "transmutação" },
 ];
 
 export const magiasMago = [
@@ -767,7 +879,79 @@ export const magiasMago = [
   { nome: "Parar o Tempo", nivel: 9, tipo: "transmutação" },
   { nome: "Portal", nivel: 9, tipo: "conjuração" },
   { nome: "Projeção Astral", nivel: 9, tipo: "necromancia" },
-  { nome: "Sexto Sentido", nivel: 9, tipo: "adivinhação" }
+  { nome: "Sexto Sentido", nivel: 9, tipo: "adivinhação" },
+  { nome: "Controlar chamas", nivel: 0, tipo: "transmutação" },
+  { nome: "Criar fogueira", nivel: 0, tipo: "conjuração" },
+  { nome: "Golpe trovejante", nivel: 0, tipo: "evocação" },
+  { nome: "Infestação", nivel: 0, tipo: "conjuração" },
+  { nome: "Lufado", nivel: 0, tipo: "transmutação" },
+  { nome: "Moldar água", nivel: 0, tipo: "transmutação" },
+  { nome: "Moldar terra", nivel: 0, tipo: "transmutação" },
+  { nome: "Picada congelante", nivel: 0, tipo: "evocação" },
+  { nome: "Absorver elementos", nivel: 1, tipo: "abjuração" },
+  { nome: "Catapulta", nivel: 1, tipo: "transmutação" },
+  { nome: "Causar medo", nivel: 1, tipo: "necromancia" },
+  { nome: "Faca de gelo", nivel: 1, tipo: "conjuração" },
+  { nome: "Laço", nivel: 1, tipo: "abjuração" },
+  { nome: "Tremor de terra", nivel: 1, tipo: "evocação" },
+  { nome: "Abraço terrestre de Maximilian", nivel: 2, tipo: "transmutação" },
+  { nome: "Agarrão da terra", nivel: 2, tipo: "transmutação" },
+  { nome: "Bafo de dragão", nivel: 2, tipo: "transmutação" },
+  { nome: "Chuva de bolas de neve de Snilloc", nivel: 2, tipo: "evocação" },
+  { nome: "Diabo da poeira", nivel: 2, tipo: "conjuração" },
+  { nome: "Escrita celeste", nivel: 2, tipo: "transmutação" },
+  { nome: "Espinho mental", nivel: 2, tipo: "adivinhação" },
+  { nome: "Lâmina sombria", nivel: 2, tipo: "ilusão" },
+  { nome: "Pirotecnia", nivel: 2, tipo: "transmutação" },
+  { nome: "Queimadura de Aganazar", nivel: 2, tipo: "evocação" },
+  { nome: "Vento protetor", nivel: 2, tipo: "evocação" },
+  { nome: "Erupção de terra", nivel: 3, tipo: "transmutação" },
+  { nome: "Flechas flamejantes", nivel: 3, tipo: "transmutação" },
+  { nome: "Infestar de inimigos", nivel: 3, tipo: "encantamento" },
+  { nome: "Invocar demônios menores", nivel: 3, tipo: "conjuração" },
+  { nome: "Maremato", nivel: 3, tipo: "conjuração" },
+  { nome: "Meteoros momentâneos de Melf", nivel: 3, tipo: "evocação" },
+  { nome: "Muralha de água", nivel: 3, tipo: "evocação" },
+  { nome: "Passo trovejante", nivel: 3, tipo: "conjuração" },
+  { nome: "Soneca", nivel: 3, tipo: "encantamento" },
+  { nome: "Transferência de vida", nivel: 3, tipo: "necromancia" },
+  { nome: "Enfeitiçar monstro", nivel: 4, tipo: "encantamento" },
+  { nome: "Esfera aquosa", nivel: 4, tipo: "conjuração" },
+  { nome: "Esfera cússica", nivel: 4, tipo: "evocação" },
+  { nome: "Esfera tempestuosa", nivel: 4, tipo: "evocação" },
+  { nome: "Resplendor enjoativo", nivel: 4, tipo: "evocação" },
+  { nome: "Ataque do vento de aço", nivel: 5, tipo: "conjuração" },
+  { nome: "Aurora", nivel: 5, tipo: "evocação" },
+  { nome: "Chamado Infernal", nivel: 5, tipo: "conjuração" },
+  { nome: "Controlar os ventos", nivel: 5, tipo: "transmutação" },
+  { nome: "Dança macabra", nivel: 5, tipo: "necromancia" },
+  { nome: "Enervação", nivel: 5, tipo: "necromancia" },
+  { nome: "Estática sináptica", nivel: 5, tipo: "encantamento" },
+  { nome: "Fortalecimento de perícia", nivel: 5, tipo: "transmutação" },
+  { nome: "Imolação", nivel: 5, tipo: "evocação" },
+  { nome: "Inundação de energia negativa", nivel: 5, tipo: "necromancia" },
+  { nome: "Parede de luz", nivel: 5, tipo: "evocação" },
+  { nome: "Passo distante", nivel: 5, tipo: "conjuração" },
+  { nome: "Transmutar pedra", nivel: 5, tipo: "transmutação" },
+  { nome: "Dispersão", nivel: 6, tipo: "conjuração" },
+  { nome: "Galola da alma", nivel: 6, tipo: "necromancia" },
+  { nome: "Manta de chamas", nivel: 6, tipo: "transmutação" },
+  { nome: "Manta de gelo", nivel: 6, tipo: "transmutação" },
+  { nome: "Manta de pedra", nivel: 6, tipo: "transmutação" },
+  { nome: "Manta de vento", nivel: 6, tipo: "transmutação" },
+  { nome: "Prisão mental", nivel: 6, tipo: "ilusão" },
+  { nome: "Transformação de Tenser", nivel: 6, tipo: "transmutação" },
+  { nome: "Criar homúnculo", nivel: 6, tipo: "transmutação" },
+  { nome: "Coroa de estrelas", nivel: 7, tipo: "evocação" },
+  { nome: "Palavra de poder dor", nivel: 7, tipo: "encantamento" },
+  { nome: "Vendaval", nivel: 7, tipo: "evocação" },
+  { nome: "Dragão ilusório", nivel: 8, tipo: "ilusão" },
+  { nome: "Escuridão enlouquecedora", nivel: 8, tipo: "evocação" },
+  { nome: "Evaporação de Abi-Dalzim", nivel: 8, tipo: "necromancia" },
+  { nome: "Fortaleza poderosa", nivel: 8, tipo: "conjuração" },
+  { nome: "Grito psíquico", nivel: 9, tipo: "encantamento" },
+  { nome: "Invulnerabilidade", nivel: 9, tipo: "abjuração" },
+  { nome: "Metamorfose em massa", nivel: 9, tipo: "transmutação" },
 ];
 
 export const magiasPaladino = [
@@ -815,7 +999,12 @@ export const magiasPaladino = [
   { nome: "Dissipar o Bem e Mal", nivel: 5, tipo: "abjuração" },
   { nome: "Missão", nivel: 5, tipo: "encantamento" },
   { nome: "Onda Destrutiva", nivel: 5, tipo: "evocação" },
-  { nome: "Reviver os Mortos", nivel: 5, tipo: "necromancia" }
+  { nome: "Reviver os Mortos", nivel: 5, tipo: "necromancia" },
+  { nome: "Cerimônia", nivel: 1, tipo: "abjuração" },
+  { nome: "Encontrar montaria maior", nivel: 4, tipo: "conjuração" },
+  { nome: "Arma sagrada", nivel: 5, tipo: "evocação" },
+  { nome: "Aurora", nivel: 5, tipo: "evocação" },
+  { nome: "Templo dos deuses", nivel: 7, tipo: "conjuração" },
 ];
 
 export const magiasPatrulheiro = [
@@ -864,7 +1053,16 @@ export const magiasPatrulheiro = [
   { nome: "Aljava Veloz", nivel: 5, tipo: "transmutação" },
   { nome: "Caminhar em Árvores", nivel: 5, tipo: "conjuração" },
   { nome: "Comunhão com a Natureza", nivel: 5, tipo: "adivinhação" },
-  { nome: "Conjurar Saraivada", nivel: 5, tipo: "conjuração" }
+  { nome: "Conjurar Saraivada", nivel: 5, tipo: "conjuração" },
+  { nome: "Absorver elementos", nivel: 1, tipo: "abjuração" },
+  { nome: "Golpe de Zephyr", nivel: 1, tipo: "transmutação" },
+  { nome: "Laço", nivel: 1, tipo: "abjuração" },
+  { nome: "Vínculo com a besta", nivel: 1, tipo: "adivinhação" },
+  { nome: "Espírito curativo", nivel: 2, tipo: "conjuração" },
+  { nome: "Flechas flamejantes", nivel: 3, tipo: "transmutação" },
+  { nome: "Guardilão da natureza", nivel: 4, tipo: "transmutação" },
+  { nome: "Ataque do vento de aço", nivel: 5, tipo: "conjuração" },
+  { nome: "Ira da natureza", nivel: 5, tipo: "evocação" }
 ];
 
 export const Magias = [
@@ -6823,5 +7021,1717 @@ A magia pode penetrar a maioria das barreiras, mas é bloqueada por 30 centímet
     concentracao: false,
     duracao: "1 hora",
     descricao: "Protege uma criatura voluntária que você tocar e cria uma conexão mística. Enquanto o alvo estiver a até 18 metros de você, ele recebe +1 de bônus na CA, nos testes de resistência e terá resistência a todos os danos. No entanto, a cada vez que ele sofrer dano, você sofrerá a mesma quantidade de dano. A magia acaba se você cair a 0 PV, se afastarem mais de 18m, se for conjurada novamente ou se você dissipar com uma ação."
+  },
+  // MAGIAS DE BRUXO
+  {
+    nome: "Abraço Terrestre de Maximilian",
+    nivel: 2,
+    tipo: "transmutação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 90
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "uma mão em miniatura esculpida em barro"
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Uma mão de solo compacto surge e agarra uma criatura, causando 2d6 de dano de concussão e impedindo-a. A mão pode esmagar o alvo novamente com ação adicional (2d6 de dano). O alvo pode se libertar com teste de Força contra sua CD."
+  },
+  {
+    nome: "Absorver Elementos",
+    nivel: 1,
+    tipo: "abjuração",
+    conjuracao: "1 reação",
+    ritual: false,
+    alcance: {
+      tipo: "pessoal",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["S"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "1 rodada",
+    descricao: "Ganha resistência a um tipo de dano elementar e adiciona 1d6 desse tipo de dano no próximo ataque corpo-a-corpo. Aumenta 1d6 por nível superior."
+  },
+  {
+    nome: "Agarrão da Terra",
+    nivel: 2,
+    tipo: "transmutação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 90
+    },
+    componentes: {
+      componentes: ["V"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Reduz o deslocamento de voo do alvo para 0 metros. Criaturas voadoras caem 18 metros por turno até pousarem."
+  },
+  {
+    nome: "Arma Sagrada",
+    nivel: 5,
+    tipo: "evocação",
+    conjuracao: "1 ação bônus",
+    ritual: false,
+    alcance: {
+      tipo: "toque",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 hora",
+    descricao: "Arma toca emite luz e causa +2d8 de dano radiante. Pode ser dissipada para cegar criaturas próximas (4d8 de dano radiante)."
+  },
+  {
+    nome: "Ataque do Vento de Aço",
+    nivel: 5,
+    tipo: "conjuração",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 9
+    },
+    componentes: {
+      componentes: ["S", "M"],
+      material: "uma arma de combate corpo-a-corpo valendo, no mínimo, 1 pp"
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Ataca até 5 criaturas com 6d10 de dano de energia e teleporta para perto de um alvo."
+  },
+  {
+    nome: "Aurora",
+    nivel: 5,
+    tipo: "evocação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 18
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "um pingente de raio solar valendo, no mínimo, 100 po"
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Cria cilindro de luz solar (9m raio, 12m altura) que causa 4d10 de dano radiante por turno. Pode ser movido com ação bônus."
+  },
+  {
+    nome: "Bafo de Dragão",
+    nivel: 2,
+    tipo: "transmutação",
+    conjuracao: "1 ação bônus",
+    ritual: false,
+    alcance: {
+      tipo: "toque",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "uma pimenta ardida"
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Concede a uma criatura a habilidade de cuspir energia (3d6 de dano em cone de 4.5m). Aumenta 1d6 por nível superior."
+  },
+  {
+    nome: "Bosque de Druida",
+    nivel: 6,
+    tipo: "abjuração",
+    conjuracao: "10 minutos",
+    ritual: false,
+    alcance: {
+      tipo: "toque",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "visco colhido com foice dourada sob lua cheia (consumido)"
+    },
+    concentracao: false,
+    duracao: "24 horas",
+    descricao: "Protege área com névoa sólida, matagal esmagador e guardiões do bosque (árvores despertadas). Pode incluir efeitos adicionais como rajadas de vento."
+  },
+  {
+    nome: "Catapulta",
+    nivel: 1,
+    tipo: "transmutação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 45
+    },
+    componentes: {
+      componentes: ["S"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Arremessa objeto (0.5-2.5kg) causando 3d8 de dano de concussão. Aumenta peso e dano em níveis superiores."
+  },
+  {
+    nome: "Causar Medo",
+    nivel: 1,
+    tipo: "necromancia",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 18
+    },
+    componentes: {
+      componentes: ["V"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Amedronta uma criatura (teste de Sabedoria). Pode afetar criaturas adicionais em níveis superiores."
+  },
+  {
+    nome: "Cerimônia",
+    nivel: 1,
+    tipo: "abjuração",
+    conjuracao: "1 hora",
+    ritual: true,
+    alcance: {
+      tipo: "toque",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "pó de prata valendo 25 po (consumido)"
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Realiza ritos como Expiação, Abençoar Água, Rito de Passagem (+d4 em testes), Dedicação (+d4 em resistências) ou Casamento (+2 CA para casais)."
+  },
+  {
+    nome: "Chamado Infernal",
+    nivel: 5,
+    tipo: "conjuração",
+    conjuracao: "1 minuto",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 27
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "rubi valendo 999 po"
+    },
+    concentracao: true,
+    duracao: "até 1 hora",
+    descricao: "Convoca um demônio de ND 6 ou menos. Requer testes de Carisma para controle. Com talismã, convoca demônio específico com +1 ND."
+  },
+  {
+    nome: "Chuva de Bolas de Neve de Snilloc",
+    nivel: 2,
+    tipo: "evocação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 27
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "pedaço de gelo ou lasca de pedra branca"
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Bolas de neve mágicas causam 3d6 de dano de frio em esfera de 1.5m. Aumenta 1d6 por nível superior."
+  },
+  {
+    nome: "Controlar Chamas",
+    nivel: 0,
+    tipo: "transmutação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 18
+    },
+    componentes: {
+      componentes: ["S"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "Especial",
+    descricao: "Manipula chamas não mágicas: expandir, extinguir, modificar luz ou criar formas ilusórias (duram 1h). Pode manter 3 efeitos simultâneos."
+  },
+  {
+    nome: "Controlar os Ventos",
+    nivel: 5,
+    tipo: "transmutação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 90
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 hora",
+    descricao: "Controla ar em cubo de 30m: Lufadas (vento direcional), Ventos Ascendentes (reduz dano de queda) ou Ventos Descendentes (derruba voadores)."
+  },
+  {
+    nome: "Coroa de Estrelas",
+    nivel: 7,
+    tipo: "evocação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "pessoal",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "1 hora",
+    descricao: "Cria 7 estrelas orbitantes que podem ser arremessadas (4d12 de dano radiante cada). Emite luz baseada no número de estrelas restantes."
+  },
+  {
+    nome: "Criar Fogueira",
+    nivel: 0,
+    tipo: "conjuração",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 18
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Cria fogueira em cubo de 1.5m que causa 1d8 de dano de fogo. Dano aumenta em níveis superiores."
+  },
+  {
+    nome: "Criar Homúnculo",
+    nivel: 6,
+    tipo: "transmutação",
+    conjuracao: "1 hora",
+    ritual: false,
+    alcance: {
+      tipo: "toque",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "argila, cinzas, raiz de mandrágora e adaga com joias (1000 po, consumido)"
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Cria homúnculo companheiro. Pode compartilhar pontos de vida durante descanso longo. Apenas um por vez."
+  },
+  {
+    nome: "Dança Macabra",
+    nivel: 5,
+    tipo: "necromancia",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 18
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 hora",
+    descricao: "Anima até 5 cadáveres como zumbis ou esqueletos com bônus de ataque. Controláveis com ação bônus."
+  },
+  {
+    nome: "Destruição Elemental",
+    nivel: 4,
+    tipo: "transmutação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 27
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Alvo perde resistência e sofre +2d6 de dano adicional de um tipo elementar escolhido. Pode afetar mais criaturas em níveis superiores."
+  },
+  {
+    nome: "Diabo da Poeira",
+    nivel: 2,
+    tipo: "conjuração",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 18
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "punhado de pó"
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Cria elemental em forma de redemoinho que causa 1d8 de dano de concussão e empurra criaturas. Pode mover com ação bônus."
+  },
+  {
+    nome: "Dispersão",
+    nivel: 6,
+    tipo: "conjuração",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 9
+    },
+    componentes: {
+      componentes: ["V"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Teleporta até 5 criaturas para espaços desocupados dentro de 36m. Criaturas relutantes fazem teste de Sabedoria."
+  },
+  {
+    nome: "Dragão Ilusório",
+    nivel: 8,
+    tipo: "ilusão",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 36
+    },
+    componentes: {
+      componentes: ["S"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Cria dragão sombrio que causa medo (teste de Sabedoria) e pode expelir energia (7d6 de dano em cone de 18m). Imune a dano."
+  },
+  {
+    nome: "Encontrar Montaria Maior",
+    nivel: 4,
+    tipo: "conjuração",
+    conjuracao: "10 minutos",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 9
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Convoca montaria celestial/fada/demoníaca (grifo, pegasus, etc). Pode ser reconvocada se desaparecer."
+  },
+  {
+    nome: "Enervação",
+    nivel: 5,
+    tipo: "necromancia",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 18
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Drena vida do alvo (4d8 de dano necrótico por turno). Conjurador recupera metade do dano causado. Aumenta 1d8 por nível superior."
+  },
+  {
+    nome: "Enfeitiçar Monstro",
+    nivel: 4,
+    tipo: "encantamento",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 9
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "1 hora",
+    descricao: "Torna monstro amigável (teste de Sabedoria com vantagem se em combate). Pode afetar mais criaturas em níveis superiores."
+  },
+  {
+    nome: "Erupção de Terra",
+    nivel: 3,
+    tipo: "transmutação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 36
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "pedaço de obsidiana"
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Fonte de terra causa 3d12 de dano de concussão e deixa terreno difícil. Aumenta 1d12 por nível superior."
+  },
+  {
+    nome: "Escrita Celeste",
+    nivel: 2,
+    tipo: "transmutação",
+    conjuracao: "1 ação",
+    ritual: true,
+    alcance: {
+      tipo: "linha de visão",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 hora",
+    descricao: "Cria até 10 palavras com nuvens no céu. Vento forte pode dissipar prematuramente."
+  },
+  {
+    nome: "Escuridão Enlouquecedora",
+    nivel: 8,
+    tipo: "evocação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 45
+    },
+    componentes: {
+      componentes: ["V", "M"],
+      material: "gota de piche e mercúrio"
+    },
+    concentracao: true,
+    duracao: "até 10 minutos",
+    descricao: "Esfera de escuridão mágica (18m raio) causa 8d8 de dano psíquico por turno. Bloqueia visão mesmo para visão no escuro."
+  },
+  {
+    nome: "Esfera Aquosa",
+    nivel: 4,
+    tipo: "conjuração",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 27
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "gotícula de água"
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Esfera de água de 3m raio que impede criaturas (teste de Força). Pode mover com ação e extingue chamas ao terminar."
+  },
+  {
+    nome: "Esfera Cáustica",
+    nivel: 4,
+    tipo: "evocação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 45
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "gota de bile de lesma gigante"
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Esfera de ácido causa 10d4 de dano inicial e 5d4 no próximo turno. Aumenta 2d4 por nível superior."
+  },
+  {
+    nome: "Esfera Tempestuosa",
+    nivel: 4,
+    tipo: "evocação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 45
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Esfera de vento (6m raio) causa 2d6 de dano por turno e terreno difícil. Pode lançar relâmpagos com ação bônus (4d6 de dano)."
+  },
+  {
+    nome: "Espinho Mental",
+    nivel: 2,
+    tipo: "adivinhação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 18
+    },
+    componentes: {
+      componentes: ["S"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 hora",
+    descricao: "Causa 3d8 de dano psíquico e revela localização do alvo enquanto no mesmo plano. Aumenta 1d6 por nível superior."
+  },
+  {
+    nome: "Espírito Curativo",
+    nivel: 2,
+    tipo: "conjuração",
+    conjuracao: "1 ação bônus",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 18
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Espírito cura 1d6 PV para criaturas em seu espaço. Pode mover com ação bônus. Aumenta 1d6 por nível superior."
+  },
+  {
+    nome: "Estática Sináptica",
+    nivel: 5,
+    tipo: "encantamento",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 36
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Explosão psíquica (8d6 de dano) e confunde alvos (subtrai d6 de ataques/testes por 1 minuto)."
+  },
+  {
+    nome: "Evaporação de Abi-Dalzim",
+    nivel: 8,
+    tipo: "necromancia",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 45
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "pedaço de esponja"
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Remove umidade em cubo de 9m, causando 12d8 de dano necrótico. Plantas não-mágicas morrem instantaneamente."
+  },
+  {
+    nome: "Faca de Gelo",
+    nivel: 1,
+    tipo: "conjuração",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 18
+    },
+    componentes: {
+      componentes: ["S", "M"],
+      material: "gota de água ou gelo"
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Arremessa fragmento de gelo (1d10 perfurante) que explode (2d6 de frio em 1.5m). Aumenta 1d6 de frio por nível superior."
+  },
+  {
+    nome: "Flechas Flamejantes",
+    nivel: 3,
+    tipo: "transmutação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "toque",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 hora",
+    descricao: "12 flechas/virotes ganham +1d6 de dano de fogo. Aumenta 2 munições por nível superior."
+  },
+  {
+    nome: "Fortalecimento de Perícia",
+    nivel: 5,
+    tipo: "transmutação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "toque",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 hora",
+    descricao: "Dobra bônus de proficiência em uma perícia que o alvo já seja proficiente."
+  },
+  {
+    nome: "Fortaleza Poderosa",
+    nivel: 8,
+    tipo: "conjuração",
+    conjuracao: "1 minuto",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 1500
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "diamante de 500 po (consumido)"
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Conjura fortaleza com 4 torres, paredes e forte interior. Inclui 100 servos invisíveis. Permanente se conjurada semanalmente por 1 ano."
+  },
+  // MAGIAS DE BRUXO (continuação)
+  {
+    nome: "Gaiola da Alma",
+    nivel: 6,
+    tipo: "necromancia",
+    conjuracao: "1 reação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 18
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "pequena jaula de prata (100 po)"
+    },
+    concentracao: false,
+    duracao: "8 horas",
+    descricao: "Aprisiona a alma de um humanoide que morre dentro do alcance. Permite: Roubar Vida (2d8 PV como ação bônus), Consultar Alma (respostas telepáticas), Emprestar Perícia (vantagem em um teste) e Olhos dos Mortos (sensor invisível em local conhecido). A alma é liberada após 6 usos ou quando a gaiola é destruída."
+  },
+  {
+    nome: "Golpe de Zephyr",
+    nivel: 1,
+    tipo: "transmutação",
+    conjuracao: "1 ação bônus",
+    ritual: false,
+    alcance: {
+      tipo: "pessoal",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Ganha imunidade a ataques de oportunidade e pode usar uma vez para ganhar vantagem em um ataque com +1d8 de dano de energia, aumentando velocidade em 9m naquele turno."
+  },
+  {
+    nome: "Golpe Trovejante",
+    nivel: 0,
+    tipo: "evocação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "pessoal",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["S"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Explosão sonora causa 1d6 de dano trovejante em criaturas a 1.5m (teste de Constituição). Dano aumenta em níveis superiores."
+  },
+  {
+    nome: "Grito Psíquico",
+    nivel: 9,
+    tipo: "encantamento",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 27
+    },
+    componentes: {
+      componentes: ["S"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Até 10 criaturas sofrem 14d6 de dano psíquico e ficam atordoadas (teste de Inteligência). Cabeças explodem se mortas. Criaturas com INT ≤2 são imunes."
+  },
+  {
+    nome: "Guardião da Natureza",
+    nivel: 4,
+    tipo: "transmutação",
+    conjuracao: "1 ação bônus",
+    ritual: false,
+    alcance: {
+      tipo: "pessoal",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Transformação com duas formas: Fera Primitiva (+3m de movimento, visão no escuro 36m, vantagem em ataques de Força, +1d6 de dano de energia) ou Grande Árvore (10 PV temporários, vantagem em testes de Constituição/Destreza/Sabedoria, terreno difícil para inimigos)."
+  },
+  {
+    nome: "Imolação",
+    nivel: 5,
+    tipo: "evocação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 27
+    },
+    componentes: {
+      componentes: ["V"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Alvo sofre 7d6 de dano de fogo (teste de Destreza) e pega fogo (3d6 de dano por turno até sucesso). Se reduzido a 0 PV, vira cinzas. Chamas não podem ser apagadas magicamente."
+  },
+  {
+    nome: "Infestação",
+    nivel: 0,
+    tipo: "conjuração",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 9
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "pulga viva"
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Nuvem de parasitas causa 1d6 de dano de veneno e move alvo 1.5m aleatoriamente (teste de Constituição). Dano aumenta em níveis superiores."
+  },
+  {
+    nome: "Infestar de Inimigos",
+    nivel: 3,
+    tipo: "encantamento",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 36
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Alvo (teste de Inteligência) não distingue aliados de inimigos, atacando aleatoriamente. Pode repetir teste ao sofrer dano."
+  },
+  {
+    nome: "Inundação de Energia Negativa",
+    nivel: 5,
+    tipo: "necromancia",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 18
+    },
+    componentes: {
+      componentes: ["V", "M"],
+      material: "osso quebrado e seda negra"
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Causa 5d12 de dano necrótico (teste de Constituição). Mortos-vivos curam metade do dano. Criaturas mortas ressurgem como zumbis."
+  },
+  {
+    nome: "Invocar Demônio Maior",
+    nivel: 4,
+    tipo: "conjuração",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 18
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "frasco de sangue humanoide (24h)"
+    },
+    concentracao: true,
+    duracao: "até 1 hora",
+    descricao: "Convoca demônio de ND ≤5. Círculo de sangue impede demônio de atacar dentro dele. Demônio faz teste de Carisma por turno para resistir ao controle. Aumenta ND em níveis superiores."
+  },
+  {
+    nome: "Invocar Demônios Menores",
+    nivel: 3,
+    tipo: "conjuração",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 18
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "frasco de sangue humanoide (24h)"
+    },
+    concentracao: true,
+    duracao: "até 1 hora",
+    descricao: "Convoca 2-8 demônios baseado em rolagem (ND ≤1). Círculo de sangue protege contra eles. Conjura mais demônios em níveis superiores."
+  },
+  {
+    nome: "Invulnerabilidade",
+    nivel: 9,
+    tipo: "abjuração",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "pessoal",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "pedaço de adamantina (500 po, consumido)"
+    },
+    concentracao: true,
+    duracao: "até 10 minutos",
+    descricao: "Torna-se imune a todo tipo de dano enquanto durar a concentração."
+  },
+  {
+    nome: "Ira da Natureza",
+    nivel: 5,
+    tipo: "evocação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 36
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Anima plantas em cubo de 18m: Grama (terreno difícil), Árvores (4d6 de dano de corte), Raízes (impedir criaturas), Rochas (3d8 de dano de esmagamento como ação bônus)."
+  },
+  {
+    nome: "Laço",
+    nivel: 1,
+    tipo: "abjuração",
+    conjuracao: "1 minuto",
+    ritual: false,
+    alcance: {
+      tipo: "toque",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["S", "M"],
+      material: "7.5m de corda (consumido)"
+    },
+    concentracao: false,
+    duracao: "8 horas",
+    descricao: "Cria armadilha invisível em círculo de 1.5m raio que prende criaturas Médias ou maiores no ar (teste de Destreza). Pode ser desarmada com teste de Arcanismo."
+  },
+  {
+    nome: "Lâmina Sombria",
+    nivel: 2,
+    tipo: "ilusão",
+    conjuracao: "1 ação bônus",
+    ritual: false,
+    alcance: {
+      tipo: "pessoal",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Cria espada sombria (2d8 psíquico, propriedades sutileza/leve/arremessável 6/18m). Vantagem em luz baixa/escura. Dano aumenta em níveis superiores."
+  },
+  {
+    nome: "Lufada",
+    nivel: 0,
+    tipo: "transmutação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 90
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Opções: Empurrar criatura Média/pequena 1.5m (teste de Força), mover objeto ≤2.5kg 3m, ou criar efeito sensorial inofensivo (folhas voando, etc)."
+  },
+  {
+    nome: "Manto de Chamas",
+    nivel: 6,
+    tipo: "transmutação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "pessoal",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Ganha: Imunidade a fogo/resistência a frio, aura de 1d10 de dano de fogo, e ação para criar linha de fogo (4d8 de dano). Emite luz plena/penumbra."
+  },
+  {
+    nome: "Manto de Gelo",
+    nivel: 6,
+    tipo: "transmutação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "pessoal",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Ganha: Imunidade a frio/resistência a fogo, movimento livre em gelo, aura de terreno difícil gelado, e ação para cone de vento gélido (4d6 de frio e reduz movimento)."
+  },
+  {
+    nome: "Manto de Pedra",
+    nivel: 6,
+    tipo: "transmutação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "pessoal",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Ganha: Resistência a dano não-mágico, ação para tremor (derruba criaturas), e movimento através de terra/rocha (mas não pode terminar turno dentro)."
+  },
+  {
+    nome: "Manto de Vento",
+    nivel: 6,
+    tipo: "transmutação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "pessoal",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Ganha: Desvantagem em ataques à distância contra você, voo 18m, e ação para cubo de vento (2d10 de concussão e empurra criaturas Pequenas/Médias)."
+  },
+  {
+    nome: "Maremoto",
+    nivel: 3,
+    tipo: "conjuração",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 36
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "gota de água"
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Onda de água (9x3x3m) causa 4d8 de concussão e derruba criaturas (teste de Destreza). Extingue chamas em 9m."
+  },
+  {
+    nome: "Metamorfose em Massa",
+    nivel: 9,
+    tipo: "transmutação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 36
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "casulo de lagarta"
+    },
+    concentracao: true,
+    duracao: "até 1 hora",
+    descricao: "Transforma até 10 criaturas em bestas (teste de Sabedoria). Formas devem ter ND ≤ alvo. Alvos ganham PV temporários da forma. Metamorfos têm sucesso automático."
+  },
+  {
+    nome: "Meteoros Momentâneos de Melf",
+    nivel: 3,
+    tipo: "evocação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "pessoal",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "salitre, enxofre e alcatrão de pinheiro"
+    },
+    concentracao: true,
+    duracao: "até 10 minutos",
+    descricao: "Cria 6 meteoros orbitantes que podem ser arremessados (2d6 de fogo em 1.5m raio). Aumenta meteoros em níveis superiores."
+  },
+  {
+    nome: "Moldar Água",
+    nivel: 0,
+    tipo: "transmutação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 9
+    },
+    componentes: {
+      componentes: ["S"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "Especial",
+    descricao: "Manipula água em cubo de 1.5m: mover, formar animações, mudar cor/opacidade ou congelar. Pode manter 2 efeitos simultâneos."
+  },
+  {
+    nome: "Moldar Terra",
+    nivel: 0,
+    tipo: "transmutação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 9
+    },
+    componentes: {
+      componentes: ["S"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "Especial",
+    descricao: "Manipula terra/pedra em cubo de 1.5m: escavar, criar formas/escritos, ou alterar terreno para difícil/normal. Pode manter 2 efeitos simultâneos."
+  },
+  {
+    nome: "Muralha de Água",
+    nivel: 3,
+    tipo: "evocação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 18
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "gota de água"
+    },
+    concentracao: true,
+    duracao: "até 10 minutos",
+    descricao: "Cria muralha (9x3x0.3m ou anel 6x6x0.3m) que é terreno difícil, reduz dano de fogo e pode congelar com magias de frio."
+  },
+  {
+    nome: "Muralha de Areia",
+    nivel: 3,
+    tipo: "evocação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 27
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "punhado de areia"
+    },
+    concentracao: true,
+    duracao: "até 10 minutos",
+    descricao: "Muralha de areia (9x3x3m) bloqueia visão, cega criaturas dentro e custa 3x movimento."
+  },
+  {
+    nome: "Ossos da Terra",
+    nivel: 6,
+    tipo: "transmutação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 36
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Faz surgir 6 pilares de pedra (1.5m diâmetro, 9m altura) que podem erguer criaturas. Se esmagados contra teto, causam 6d6 de dano. Aumenta pilares em níveis superiores."
+  },
+  {
+    nome: "Palavra de Poder Dor",
+    nivel: 7,
+    tipo: "encantamento",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 18
+    },
+    componentes: {
+      componentes: ["V"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Criatura com ≤100 PV sofre dor incapacitante (movimento limitado a 3m, desvantagem em ataques/testes, teste de Constituição para conjurar). Teste de Constituição por turno para terminar."
+  },
+  {
+    nome: "Palavra do Esplendor",
+    nivel: 0,
+    tipo: "evocação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 1.5
+    },
+    componentes: {
+      componentes: ["V", "M"],
+      material: "símbolo sagrado"
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Causa 1d6 de dano radiante em criaturas escolhidas (teste de Constituição). Dano aumenta em níveis superiores."
+  },
+  {
+    nome: "Parede de Luz",
+    nivel: 5,
+    tipo: "evocação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 36
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "espelho de mão"
+    },
+    concentracao: false,
+    duracao: "10 minutos",
+    descricao: "Cria parede de luz (18x3x1.5m) que causa 4d8 de dano radiante e cegueira (teste de Constituição). Pode disparar raios (4d8) reduzindo tamanho da parede."
+  },
+  {
+    nome: "Passo Distante",
+    nivel: 5,
+    tipo: "conjuração",
+    conjuracao: "1 ação bônus",
+    ritual: false,
+    alcance: {
+      tipo: "pessoal",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Teleporta 18m como ação bônus a cada turno."
+  },
+  {
+    nome: "Passo Trovejante",
+    nivel: 3,
+    tipo: "conjuração",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 27
+    },
+    componentes: {
+      componentes: ["V"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Teleporta e causa 3d10 de dano trovejante em 3m raio (teste de Constituição). Pode levar criatura voluntária. Dano aumenta em níveis superiores."
+  },
+  {
+    nome: "Pedra Encantada",
+    nivel: 0,
+    tipo: "transmutação",
+    conjuracao: "1 ação bônus",
+    ritual: false,
+    alcance: {
+      tipo: "toque",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "1 minuto",
+    descricao: "Encanta 1-3 pedrinhas para ataque à distância (1d6 + mod. conjuração de dano). Magia termina após ataque."
+  },
+  {
+    nome: "Pequeno Servo",
+    nivel: 3,
+    tipo: "transmutação",
+    conjuracao: "1 minuto",
+    ritual: false,
+    alcance: {
+      tipo: "toque",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "8 horas",
+    descricao: "Anima objeto minúsculo como servo (CA 15, 10 PV, ataque 1d4+3). Pode criar mais servos em níveis superiores."
+  },
+  {
+    nome: "Picada Congelante",
+    nivel: 0,
+    tipo: "evocação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 18
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Causa 1d6 de frio e desvantagem no próximo ataque (teste de Constituição). Dano aumenta em níveis superiores."
+  },
+  {
+    nome: "Pirotecnia",
+    nivel: 2,
+    tipo: "transmutação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 18
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Escolhe em chamas de 1.5m cubo: Fogos de Artifício (cegueira em 3m, teste de Constituição) ou Fumaça (escuridão densa em 6m raio por 1 minuto)."
+  },
+  {
+    nome: "Prisão Mental",
+    nivel: 6,
+    tipo: "ilusão",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 18
+    },
+    componentes: {
+      componentes: ["S"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Prende criatura em ilusão (teste de Inteligência). Causa 5d10 psíquico inicial e 10d10 se tentar escapar. Imunidade a encantamento concede sucesso automático."
+  },
+  {
+    nome: "Proteção Primordial",
+    nivel: 6,
+    tipo: "abjuração",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "pessoal",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Resistência a dano elementar (ácido, frio, fogo, elétrico, trovejante). Reação para ganhar imunidade a um tipo até próximo turno."
+  },
+  {
+    nome: "Queimadura de Aganazzar",
+    nivel: 2,
+    tipo: "evocação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "pessoal",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "escama de dragão vermelho"
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Linha de fogo 9x1.5m causa 3d8 de dano (teste de Destreza). Aumenta dano em níveis superiores."
+  },
+  {
+    nome: "Raio de Caos",
+    nivel: 1,
+    tipo: "evocação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 36
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Ataque causa 2d8 + 1d6 de dano aleatório (tipo determinado por d8). Se dados iguais, salta para novo alvo. Aumenta dano em níveis superiores."
+  },
+  {
+    nome: "Redemoinho",
+    nivel: 5,
+    tipo: "evocação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 36
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "papel/folhas em formato de funil"
+    },
+    concentracao: true,
+    duracao: "até 1 hora",
+    descricao: "Cria redemoinho aquático (3m raio, 9m altura) que causa 6d6 de concussão por turno e puxa criaturas 3m para o centro."
+  },
+  {
+    nome: "Resplendor Enjoativo",
+    nivel: 4,
+    tipo: "evocação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 36
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 10 minutos",
+    descricao: "Luz esverdeada (9m raio) causa 4d10 de dano radiante, exaustão e emite luz que anula invisibilidade (teste de Constituição por turno)."
+  },
+  {
+    nome: "Selvageria Primitiva",
+    nivel: 0,
+    tipo: "transmutação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "pessoal",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["S"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Ataque corpo-a-corpo com 1d10 de dano ácido. Dano aumenta em níveis superiores."
+  },
+  {
+    nome: "Soar os Mortos",
+    nivel: 0,
+    tipo: "necromancia",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 18
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Causa 1d8 necrótico (1d12 se alvo já estiver ferido, teste de Sabedoria). Dano aumenta em níveis superiores."
+  },
+  {
+    nome: "Sombra de Transtorno",
+    nivel: 4,
+    tipo: "necromancia",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "pessoal",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "globo ocular de morto-vivo com gema (150 po)"
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Sombra obscurece luz e causa 2d8 de dano necrótico quando atacado em alcance curto. Concede resistência a dano radiante."
+  },
+  {
+    nome: "Soneca",
+    nivel: 3,
+    tipo: "encantamento",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 9
+    },
+    componentes: {
+      componentes: ["S", "M"],
+      material: "pitada de areia"
+    },
+    concentracao: false,
+    duracao: "10 minutos",
+    descricao: "Até 3 criaturas dispostas caem inconscientes (benefícios de descanso curto se durar toda duração). Pode afetar mais criaturas em níveis superiores."
+  },
+  {
+    nome: "Templo dos Deuses",
+    nivel: 7,
+    tipo: "conjuração",
+    conjuracao: "1 hora",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 36
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "símbolo sagrado (5 po)"
+    },
+    concentracao: false,
+    duracao: "24 horas",
+    descricao: "Cria templo (até 36m cubo) que bloqueia tipos de criaturas escolhidas (teste de Carisma), penaliza rolagens de inimigos e aumenta cura. Permanente se conjurado semanalmente por 1 ano."
+  },
+  {
+    nome: "Transferência de Vida",
+    nivel: 3,
+    tipo: "necromancia",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 9
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Cura criatura em dobro do dano necrótico sofrido (4d8 base). Aumenta dano/cura em níveis superiores."
+  },
+  {
+    nome: "Transformação de Tenser",
+    nivel: 6,
+    tipo: "transmutação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "pessoal",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "pelos de touro"
+    },
+    concentracao: true,
+    duracao: "até 10 minutos",
+    descricao: "Ganha: 50 PV temporários, vantagem em ataques com armas, +2d12 de dano de energia, proficiência com armaduras/armas, proficiência em testes de Força/Constituição e Ataque Extra. Após magia, teste de Constituição (CD 15) ou ganha exaustão."
+  },
+  {
+    nome: "Transmutar Pedra",
+    nivel: 5,
+    tipo: "transmutação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 36
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "barro e água"
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Opções: Pedra em Lama (terreno difícil, possível afundar) ou Lama em Pedra (aprisiona criaturas, teste de Destreza)."
+  },
+  {
+    nome: "Tremor de Terra",
+    nivel: 1,
+    tipo: "evocação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "pessoal",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V", "S"],
+      material: null
+    },
+    concentracao: false,
+    duracao: "Instantânea",
+    descricao: "Tremor em 3m raio causa 1d6 de concussão e derruba criaturas (teste de Destreza). Terra/pedra solta se torna terreno difícil. Dano aumenta em níveis superiores."
+  },
+  {
+    nome: "Vendaval",
+    nivel: 7,
+    tipo: "evocação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "distancia",
+      distancia: 90
+    },
+    componentes: {
+      componentes: ["V", "M"],
+      material: "chumaço de palha"
+    },
+    concentracao: true,
+    duracao: "até 1 minuto",
+    descricao: "Cria redemoinho (3m raio, 9m altura) que causa 10d6 de concussão e pode prender criaturas (testes de Destreza/Força). Move 9m por ação."
+  },
+  {
+    nome: "Vento Protetor",
+    nivel: 2,
+    tipo: "evocação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "pessoal",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V"],
+      material: null
+    },
+    concentracao: true,
+    duracao: "até 10 minutos",
+    descricao: "Vento forte (30km/h) em 3m raio que: extingue chamas pequenas, causa terreno difícil, dá desvantagem em ataques à distância e dispersa gases."
+  },
+  {
+    nome: "Vínculo com a Besta",
+    nivel: 1,
+    tipo: "adivinhação",
+    conjuracao: "1 ação",
+    ritual: false,
+    alcance: {
+      tipo: "toque",
+      distancia: 0
+    },
+    componentes: {
+      componentes: ["V", "S", "M"],
+      material: "tufo de pelos envolto em pano"
+    },
+    concentracao: true,
+    duracao: "até 10 minutos",
+    descricao: "Estabelece elo telepático com besta (INT ≤3). Besta ganha vantagem em ataques contra criaturas próximas a você."
   }
 ];

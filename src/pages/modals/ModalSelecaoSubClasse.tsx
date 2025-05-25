@@ -13,8 +13,11 @@ const ModalSelecaoSubClasse: React.FC<ModalSelecaoProps> = ({ opcoes = [], titul
     const [filtro, setFiltro] = useState("");
     const [selecionado, setSelecionado] = useState<SubClasses | null>(subClasseInicial || null);
 
+    const normalizar = (texto: string) =>
+        texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
     const opcoesFiltradas = opcoes?.filter((opcao) =>
-        opcao.nome.toLowerCase().includes(filtro.toLowerCase())
+        normalizar(opcao.nome).includes(filtro.toLowerCase())
     );
 
     return (

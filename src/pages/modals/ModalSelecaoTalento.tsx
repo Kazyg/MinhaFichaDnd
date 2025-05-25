@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 
 interface ModalSelecaoProps {
-    opcoes: {nome: string, descricao: string}[];
+    opcoes: { nome: string, descricao: string }[];
     titulo: string;
     onClose: () => void;
-    onSelect: (opcao: {nome: string, descricao: string}) => void;
-    talentoInicial: {nome: string, descricao: string} | null;
+    onSelect: (opcao: { nome: string, descricao: string }) => void;
+    talentoInicial: { nome: string, descricao: string } | null;
 }
 
 const ModalSelecaoTalento: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClose, onSelect, talentoInicial }) => {
     const [filtro, setFiltro] = useState("");
-    const [selecionado, setSelecionado] = useState<{nome: string, descricao: string} | null>(talentoInicial || null);
+    const [selecionado, setSelecionado] = useState<{ nome: string, descricao: string } | null>(talentoInicial || null);
+
+    const normalizar = (texto: string) =>
+        texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
     const opcoesFiltradas = opcoes.filter((opcao) =>
-        opcao.nome.toLowerCase().includes(filtro.toLowerCase())
+        normalizar(opcao.nome).includes(filtro.toLowerCase())
     );
 
     return (
@@ -49,7 +52,7 @@ const ModalSelecaoTalento: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo,
             </div>
 
             <div className="popup-footer">
-            {selecionado && (<button className="escolher-button" onClick={() => { onSelect(selecionado); onClose() }}>Escolher {selecionado.nome}</button>)}
+                {selecionado && (<button className="escolher-button" onClick={() => { onSelect(selecionado); onClose() }}>Escolher {selecionado.nome}</button>)}
                 <button className="escolher-button" onClick={() => { onClose() }}>Fechar</button>
             </div>
         </div>
