@@ -33,6 +33,7 @@ const CaracteristicasClasse: React.FC<CaracteristicasClasseProps> = ({ classe, n
     const opcoesFiltradas = estilosDeLuta.filter(estilo =>
       estilo.classe.includes(classe)
     );
+    
 
     return opcoesFiltradas;
   }

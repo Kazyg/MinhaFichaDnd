@@ -222,6 +222,15 @@
     margin-top: -10px;
     margin-bottom: -10px;
   }
+
+  .popup-footer-itens {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: -10px;
+    margin-bottom: -10px;
+  }
+  
   /* Estilo para o botão de fechar */
   .popup-footer button.fechar {
     background-color: #ff4d4d; /* Vermelho */

@@ -1,6 +1,7 @@
+import { CirculoDosSonhos } from "../classesClassesNetos/CirculoDosSonhos.ts";
 import { Classes } from "../classesPrincipais/Classes.class.ts";
 import { SubClasses } from "../classesPrincipais/SubClasses.ts";
-import { CirculoDaLua, CirculoDaTerra } from "../classesPrincipais/SubClassesExport.ts";
+import { CirculoDaLua, CirculoDaTerra, CirculoDoPastor } from "../classesPrincipais/SubClassesExport.ts";
 
 export class Druida extends Classes {
   level: number;
@@ -27,7 +28,7 @@ export class Druida extends Classes {
     );
     this.level = 0; // Nível inicial
     this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis
-    this.subClasse = [new CirculoDaLua(), new CirculoDaTerra()];
+    this.subClasse = [new CirculoDaLua(), new CirculoDaTerra(), new CirculoDosSonhos(), new CirculoDoPastor()];
   }
 
   // Método para aumentar o nível

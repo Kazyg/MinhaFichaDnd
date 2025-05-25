@@ -77,9 +77,9 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
             novoSelecionado = new MeioElfo(escolhidos[0], escolhidos[1], periciaMeioElfo1, periciaMeioElfo2);
         } else if (raca.nome === "Draconato") {
             novoSelecionado = new Draconato(ancestralidade);
-        } else if(raca.nome === "Meio-Orc"){
+        } else if (raca.nome === "Meio-Orc") {
             novoSelecionado = new MeioOrc("Intimidação")
-        }else {
+        } else {
             novoSelecionado = selecionado;
         }
 
@@ -87,8 +87,11 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
         selecionadoRef.current = novoSelecionado; // Atualiza a referência
     };
 
+    const normalizar = (texto: string) =>
+        texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
     const opcoesFiltradas = opcoes.filter((opcao) =>
-        opcao.nome.toLowerCase().includes(filtro.toLowerCase())
+        normalizar(opcao.nome).includes(filtro.toLowerCase())
     );
 
     function verificarCondicoes(

@@ -15,8 +15,11 @@ const ModalSelecaoClasse: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, 
     const [selecionado, setSelecionado] = useState<Classes | null>(classeInicial || null);
     const { ficha } = useFicha();
 
+    const normalizar = (texto: string) =>
+        texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
     const opcoesFiltradas = opcoes.filter((opcao) =>
-        opcao.nome.toLowerCase().includes(filtro.toLowerCase())
+        normalizar(opcao.nome).includes(filtro.toLowerCase())
     );
 
     const classePrincipal = opcoesFiltradas.find(opcao => opcao.nome === ficha?.classePrincipal?.nome);

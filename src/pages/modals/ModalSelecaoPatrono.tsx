@@ -13,8 +13,11 @@ const ModalSelecaoPatrono: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo,
     const [filtro, setFiltro] = useState("");
     const [selecionado, setSelecionado] = useState<Patronos | null>(patronoInicial || null);
 
+    const normalizar = (texto: string) =>
+        texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
     const opcoesFiltradas = opcoes.filter((opcao) =>
-        opcao.nome.toLowerCase().includes(filtro.toLowerCase())
+        normalizar(opcao.nome).includes(filtro.toLowerCase())
     );
 
     return (
@@ -58,7 +61,7 @@ const ModalSelecaoPatrono: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo,
             </div>
 
             <div className="popup-footer">
-            {selecionado && (<button className="escolher-button" onClick={() => { onSelect(selecionado); onClose() }}>Escolher {selecionado.nome}</button>)}
+                {selecionado && (<button className="escolher-button" onClick={() => { onSelect(selecionado); onClose() }}>Escolher {selecionado.nome}</button>)}
                 <button className="escolher-button" onClick={() => { onClose() }}>Fechar</button>
             </div>
         </div>

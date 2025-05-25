@@ -33,13 +33,15 @@ const ModalSelecaoBackGround: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
 
     const itensCharlatao = [
         "dez garrafas tampadas preenchidas com líquidos coloridos",
-        "conjunto de dados viciados", 
+        "conjunto de dados viciados",
         "baralho de cartas marcadas",
         "anel de sinete de um duque imaginário"
     ]
+    const normalizar = (texto: string) =>
+        texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
     const opcoesFiltradas = opcoes.filter((opcao) =>
-        opcao.nome.toLowerCase().includes(filtro.toLowerCase())
+        normalizar(opcao.nome).includes(filtro.toLowerCase())
     );
 
     return (
@@ -106,14 +108,15 @@ const ModalSelecaoBackGround: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
             </div>
 
             <div className="popup-footer">
-                {selecionado && (<button disabled={(selecionado.nome === "artista" && instrumentoSelecionado === "") || 
-                (selecionado.nome === "Charlatao" && itemSelecionado === "")}
-                className="escolher-button" 
-                onClick={() => { 
-                    onSelect(selecionado); 
-                    onClose();
-                    onInstrumentoSelect(instrumentoSelecionado);
-                    onItemSelect(itemSelecionado)}}>Escolher {selecionado.nome}</button>)}
+                {selecionado && (<button disabled={(selecionado.nome === "artista" && instrumentoSelecionado === "") ||
+                    (selecionado.nome === "Charlatao" && itemSelecionado === "")}
+                    className="escolher-button"
+                    onClick={() => {
+                        onSelect(selecionado);
+                        onClose();
+                        onInstrumentoSelect(instrumentoSelecionado);
+                        onItemSelect(itemSelecionado)
+                    }}>Escolher {selecionado.nome}</button>)}
                 <button className="escolher-button" onClick={() => { onClose() }}>Fechar</button>
             </div>
         </div>
