@@ -11,6 +11,9 @@ interface CaracteristicasPatronoProps {
   nivel: number;
 }
 
+const normalizar = (texto: string) =>
+        texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
 const CaracteristicasPatrono: React.FC<CaracteristicasPatronoProps> = ({ patrono, nivel }) => {
   // Estado para controlar quais características estão expandidas
   const [caracteristicasExpandidas, setCaracteristicasExpandidas] = useState<{ [key: string]: boolean }>({});
@@ -28,7 +31,7 @@ const CaracteristicasPatrono: React.FC<CaracteristicasPatronoProps> = ({ patrono
       {patrono.niveis.find((n) => n.nivel === nivel)?.caracteristicas.map((caracteristica) => {
         // Busca a descrição da característica na biblioteca principal
         const descricao =
-          bibliotecaPrincipal.caracteristicasDeClasse.find((item) => item.nome.toLowerCase() === caracteristica.toLowerCase())?.descricao ||
+          bibliotecaPrincipal.caracteristicasDeClasse.find((item) => normalizar(item.nome).toLowerCase() === normalizar(caracteristica).toLowerCase())?.descricao ||
           "Descrição não encontrada.";
 
         return (

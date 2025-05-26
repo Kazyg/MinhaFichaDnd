@@ -1097,5 +1097,64 @@ export const caracteristicasDeClasse = [
   {
     nome: "CRIAR LACAIO",
     descricao: `No 14° nível, você adquire a habilidade de infectar a mente de um humanoide com a magia alienígena do seu patrono. Você pode usar sua ação para tocar um humanoide incapacitado. Essa criatura então, ficará enfeitiçada por você até que a magia remover maldição seja conjurada sobre ela, a condição enfeitiçado seja removida dela ou você use essa característica novamente. Você pode se comunicar telepaticamente com a criatura enfeitiçada contanto que ambos estejam no mesmo plano de existência.`
+  },
+  {
+    nome: "LISTA DE MAGIAS EXPANDIDA",
+    descricao: "O Celestial permite que você escolha uma lista expandida de magias quando aprende uma magia de bruxo. As seguintes magias são adicionadas à sua lista de magias de bruxo."
+  },
+  {
+    nome: "TRUQUES ADICIONAIS",
+    descricao: "No 1° nível, você aprende os truques luz e chama sagrada. Eles contam como truques de bruxo para você, mas não contam para o seu número de truques conhecidos."
+  },
+  {
+    nome: "ILUMINAÇÃO CURATIVA",
+    descricao: `No 1° nível, você ganha a capacidade de canalizar energia celestial para curar ferimentos. Você tem um conjunto de d6s que você gasta para alimentar essa cura. O número de dados reserva é igual a 1 + seu nível de bruxo. Como uma ação bônus, você pode curar uma criatura que possa ver a 18 metros de alcance gastando dados dessa reserva. O número máximo de dados que pode gastar ao mesmo tempo é igual ao seu modificador Carisma (mínimo de um dado). Role os dados que gastou, some-os e restaure a quantidade somada em pontos de vida. Sua reserva recupera todos os dados gastos quando você terminar um descanso longo.`
+  },
+  {
+    nome: "ALMA RADIANTE",
+    descricao: `A partir do 6° nível, sua conexão com o Celestial permite que você sirva como um canal para a energia radiante. Você tem resistência ao dano radiante e quando conjurar uma magia que cause dano radiante ou de fogo, pode adicionar seu modificador de Carisma aos testes de dano radiante ou de dano de fogo dessa magia contra um dos alvos.`
+  },
+  {
+    nome: "RESILIÊNCIA CELESTIAL",
+    descricao: `A partir do 10° nível, você ganha pontos de vida temporários sempre que terminar um descanso curto ou longo. Esses pontos de vida temporários equivalem ao seu nível bruxo + seu modificador Carisma. Além disso, escolha até cinco criaturas que possa ver no final deste descanso. Essas criaturas ganham, cada uma, pontos de vida temporários iguais a metade do seu nível de bruxo + seu modificador Carisma.`
+  },
+  {
+    nome: "VINGANÇA ARDENTE",
+    descricao: `A partir do 14° nível, a energia radiante que você canaliza o permite que resista à morte. Quando tiver que realizar um teste de resistência contra a morte no início do seu turno, pode, em vez disso, se levantar com uma explosão de energia radiante. Você recupera pontos de vida iguais à metade do seu ponto de vida máximo, e então se levanta se assim o desejar. Cada criatura de sua escolha que esteja dentro do alcance de 9 metros recebe dano radiante igual a 2d8 + seu modificador Carisma, e está cega até o final do turno atual. Depois de usar esta característica, não pode usá-la novamente até terminar um descanso longo.`
+  },
+  {
+    nome: "LISTA DE MAGIAS EXPANDIDA",
+    descricao: "A Lâmina Maldita permite que você escolha uma lista expandida de magias quando aprende uma magia de bruxo. As seguintes magias são adicionadas à sua lista de magias de bruxo: escudo arcano, destruição colérica (1º), nublar, marca da punição (2º), piscar, arma elemental (3º), assassino fantasmagórico, destruição estonteante (4º), destruição banidora, cone de frio (5º)."
+  },
+  {
+    nome: "MALDIÇÃO DA LÂMINA MALDITA",
+    descricao: `Começando no 1º nível, você ganha a habilidade de colocar uma maldição perniciosa em alguém. Como uma ação bônus, escolha uma criatura que possa ver até 9 metros de alcance. O alvo é amaldiçoado por 1 minuto. A maldição termina mais cedo se o alvo morrer, você morrer, ou se você estiver incapacitado.
+                    
+Até a maldição terminar, você ganha os seguintes benefícios:
+- Você ganha um bônus para testes de dano contra o alvo amaldiçoado. O bônus é igual ao seu bônus de proficiência.
+- Qualquer ataque que você faça contra o alvo amaldiçoado é um golpe crítico em um resultado de 19 ou 20 no d20.
+- Se o alvo amaldiçoado morrer, você recupera pontos de vida iguais ao seu nível de bruxo + seu modificador de Carisma (mínimo de 1 ponto de vida).
+
+Você não pode usar essa característica novamente até terminar um descanso curto ou longo.`
+  },
+  {
+    nome: "GUERREIRO MALDITO",
+    descricao: `No 1º nível, você adquire o treinamento necessário para se armar efetivamente para a batalha. Você ganha proficiência em armaduras médias, escudos e armas marciais.
+
+A influência de seu patrono também permite que canalize sua vontade através de uma arma específica. Sempre que terminar um descanso longo, pode tocar uma arma com a qual seja proficiente e que não possua a propriedade de duas mãos. Quando atacar com essa arma, pode usar seu modificador de Carisma, em vez de Força ou Destreza, para os testes de ataque e danos. Esse benefício dura até terminar um descanso longo. Se ganhar mais tarde a característica Pacto da Lâmina, esse benefício se estende a todas as armas de pacto que conjure com essa característica, independente do tipo da arma.`
+  },
+  {
+    nome: "ESPECTRO AMALDIÇOADO",
+    descricao: `A partir do 6º nível, você pode amaldiçoar a alma de uma pessoa que mata, vinculando-a temporariamente aos seus serviços. Quando você mata um humanoide, pode fazer com que seu espectro se levante de seu cadáver como um espectro (estatísticas no Manual dos Monstros). Quando o espectro aparece, ele ganha pontos de vida temporários iguais à metade do seu nível de bruxo. Role iniciativa para o espectro, que tem seus próprios turnos. Ele obedece aos seus comandos verbais e ganha um bônus especial em seus testes de ataque iguais ao seu modificador de Carisma (mínimo de +0).
+
+O espectro permanece aos seus serviços até o final do próximo descanso longo, momento em que se anula para a vida após a morte. Depois de vincular um espectro com essa característica, não pode usá-la novamente até terminar um descanso longo.`
+  },
+  {
+    nome: "ARMADURA DE MALDIÇÕES",
+    descricao: `No 10º nível, suas maldições são mais poderosas. Se o alvo amaldiçoado pela Maldição da Lâmina Maldita o atingir com um teste de ataque, pode usar sua reação para rolar um d6. Em um 4 ou superior, o ataque instantaneamente falha sobre você, independentemente do resultado.`
+  },
+  {
+    nome: "MESTRE DAS MALDIÇÕES",
+    descricao: `A partir do 14º nível, você pode espalhar sua Maldição da Lâmina Maldita de uma criatura morta para outra criatura. Quando a criatura amaldiçoada pela Maldição da Lâmina Maldita morre, você pode aplicar a maldição a uma criatura diferente que possa ver a até 9 metros de alcance, desde que não esteja incapacitado. Quando aplica a maldição dessa maneira, não recupera pontos de vida da morte da criatura anteriormente amaldiçoada.`
   }
 ];

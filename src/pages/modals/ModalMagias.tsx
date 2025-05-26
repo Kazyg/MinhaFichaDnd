@@ -149,7 +149,7 @@ const ModalSelecaoMagias: React.FC<ModalSelecaoProps> = ({ titulo, onClose, onSe
                         <input
                             className="lista-racas-input"
                             type="text"
-                            placeholder="Filtrar classes..."
+                            placeholder="Filtrar magias..."
                             value={filtro}
                             onChange={(e) => setFiltro(e.target.value)}
                         />

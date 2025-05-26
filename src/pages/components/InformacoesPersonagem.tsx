@@ -117,6 +117,75 @@ export default function InformacoesPersonagem() {
     }
   }
 
+  function explicacaoCA() {
+    const efeitosCA = ficha?.efeitos?.filter((e: any) => e.level <= (ficha?.levelTotal || 0) && e.ca === "CA");
+    let explicacao: string[] = [];
+
+    // Base da CA
+    let base = 10;
+
+    if (!ficha?.ArmaduraEquipada) {
+      explicacao.push("10 (base sem armadura)");
+
+      const modDex = calcularModificador(calcularAtributo("DES"));
+      explicacao.push(`${modDex >= 0 ? "+" : ""}${modDex} Destreza`);
+
+      if (ficha?.multiclasses?.some(m => m.classe.nome === "barbaro")) {
+        const modCon = calcularModificador(calcularAtributo("CON"));
+        explicacao.push(`${modCon >= 0 ? "+" : ""}${modCon} Constituição (bárbaro)`);
+      } else if (ficha?.multiclasses?.some(m => m.classe.nome === "Monge")) {
+        const modSab = calcularModificador(calcularAtributo("SAB"));
+        explicacao.push(`${modSab >= 0 ? "+" : ""}${modSab} Sabedoria (monge)`);
+      }
+
+    } else {
+      const armadura = ficha.ArmaduraEquipada;
+      const modDex = calcularModificador(calcularAtributo("DES"));
+
+      if (armadura.categoria === "Armadura Leve") {
+        if (proficienciaArmaduraLeve) {
+          explicacao.push(`${armadura.ac} Armadura Leve`);
+          explicacao.push(`${modDex >= 0 ? "+" : ""}${modDex} Destreza`);
+        } else {
+          explicacao.push("10 (sem proficiência com Armadura Leve)");
+        }
+
+      } else if (armadura.categoria === "Armadura Média") {
+        if (proficienciaArmaduraMedia) {
+          explicacao.push(`${armadura.ac} Armadura Média`);
+          if (modDex > 2) {
+            explicacao.push("+2 Destreza (limite da armadura)");
+          } else {
+            explicacao.push(`${modDex >= 0 ? "+" : ""}${modDex} Destreza`);
+          }
+        } else {
+          explicacao.push("10 (sem proficiência com Armadura Média)");
+        }
+
+      } else if (armadura.categoria === "Armadura Pesada") {
+        if (proficienciaArmaduraPesada) {
+          explicacao.push(`${armadura.ac} Armadura Pesada`);
+        } else {
+          explicacao.push("10 (sem proficiência com Armadura Pesada)");
+        }
+      }
+    }
+
+    // Escudo
+    if (ficha?.escudoEquipado && proficienciaEscudos) {
+      explicacao.push(`+${ficha.escudoEquipado.ac} Escudo`);
+    }
+
+    // Efeitos adicionais
+    if (efeitosCA) if (efeitosCA?.length > 0) {
+      efeitosCA.forEach(e => {
+        explicacao.push(`${e.bonus >= 0 ? "+" : ""}${e.bonus} ${"efeito diversos"}`);
+      });
+    }
+
+    return explicacao.join(" + ");
+  }
+
   function calcularCA() {
     const efeitosCA = ficha?.efeitos?.filter((e: any) => e.level <= (ficha?.levelTotal || 0) && e.ca === "CA");
     let ca = 10;
@@ -337,7 +406,7 @@ export default function InformacoesPersonagem() {
             <img src={iconCa} alt="CA" className="icon-ca"></img>
             <span className="ca-text">{calcularCA() || 10}</span>
             <div className="ca">
-              <span className="ca-detalhes">Explicação da CA aqui</span>
+              <span className="ca-detalhes">{explicacaoCA()}</span>
             </div>
           </div>
 
@@ -346,7 +415,7 @@ export default function InformacoesPersonagem() {
           </div>
         </div>
         <div className="coluna-5">
-            {TestesDeMorte()}
+          {TestesDeMorte()}
         </div>
       </div>
     </div>

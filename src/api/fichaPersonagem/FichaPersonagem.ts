@@ -10,6 +10,7 @@ import { Armas } from "../equipamentos/Armas";
 import { Metamagica } from "../../bibliotecas/Metamagica.ts";
 import { th } from "framer-motion/client";
 import { Itens } from "../../bibliotecas/Itens.ts";
+import { Patronos } from "../classesEspeciais/Patronos.class.ts";
 
 export class Ficha {
     id: string;
@@ -57,6 +58,7 @@ export class Ficha {
     prata: number;
     cobre: number;
     itensMochila: Itens[] | null;
+    patrono: Patronos | null | undefined;
 
     constructor(data: Partial<Ficha> = {}) {
         this.id = data?.id ?? this.gerarIdUnico();
@@ -103,6 +105,7 @@ export class Ficha {
         this.prata = data?.prata ?? 0;
         this.cobre = data?.cobre ?? 0;
         this.itensMochila = data?.itensMochila ?? null;
+        this.patrono = data?.patrono ?? null;
     }
 
     calcularModificador(valor) {
@@ -442,5 +445,8 @@ export class Ficha {
     }
     excluirItem(idItem: string) {
         if (this.itensMochila) this.itensMochila = this.itensMochila.filter(s => s.id !== idItem);
+    }
+    setPatrono(patrono: Patronos | null | undefined) {
+        this.patrono = patrono;
     }
 }
