@@ -31,10 +31,10 @@ import CaracteristicasPatrono from "./components/CaracteristicasPatronoProps.tsx
 const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
     const [modalClasseAberto, setModalClasseAberto] = useState(false);
     const [modalPatronoAberto, setModalPatronoAberto] = useState(false);
-    const [patronoSelecionado, setPatronoSelecionado] = useState<Patronos | null>(null);
     const [isExpanded, setIsExpanded] = useState(false);
     const [indexMetamagica, setIndexMetamagica] = useState(1);
     const { ficha, refreshKey, forceUpdate } = useFicha();
+    const [patronoSelecionado, setPatronoSelecionado] = useState<Patronos | null | undefined>(ficha?.patrono);
     const [nivelExpandido, setNivelExpandido] = useState(true);
     const [secoesExpandidas, setSecoesExpandidas] = useState({
         atributos: true,
@@ -69,7 +69,7 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
         new GrandeAntigo(),
         new LaminaMaldita(),
         new Celestial()
-      ]
+    ]
     const talentos: Talento[] = Talentos;
     const atributos = ["força", "destreza", "constituição", "inteligência", "sabedoria", "carisma"];
     const pericias = [
@@ -240,7 +240,6 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
     }
 
     function validaIncrementoAtributo(classe: Classes | undefined) {
-        debugger;
         if (!classe) return false;
 
         const nivelAtual = calcularNivelClasse(nivel);
@@ -617,8 +616,9 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
                                                                 onSelect={(patrono) => {
                                                                     setPatronoSelecionado(patrono);
                                                                     setModalPatronoAberto(false);
+                                                                    ficha?.setPatrono(patronoSelecionado)
                                                                 }}
-                                                                patronoInicial={patronoSelecionado}
+                                                                patronoInicial={ficha?.patrono}
                                                             />
                                                         </div>
                                                     </>

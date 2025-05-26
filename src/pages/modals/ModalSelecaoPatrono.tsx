@@ -6,7 +6,7 @@ interface ModalSelecaoProps {
     titulo: string;
     onClose: () => void;
     onSelect: (opcao: Patronos | null) => void;
-    patronoInicial: Patronos | null;
+    patronoInicial: Patronos | null | undefined;
 }
 
 const ModalSelecaoPatrono: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClose, onSelect, patronoInicial }) => {

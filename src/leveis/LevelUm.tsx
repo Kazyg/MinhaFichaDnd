@@ -29,12 +29,12 @@ interface LevelOneSetupProps {
 }
 
 const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
+  const { ficha, forceUpdate } = useFicha();
   const [modalPatronoAberto, setModalPatronoAberto] = useState(false);
-  const [patronoSelecionado, setPatronoSelecionado] = useState<Patronos | null>(null);
+  const [patronoSelecionado, setPatronoSelecionado] = useState<Patronos | null | undefined>(ficha?.patrono);
   const [modalHumanoVarianteAberto, setModalHumanoVarianteAberto] = useState(false);
   const [subGrupoAberto, setSubGrupoAberto] = useState(false);
   const [subClasses, setSubClasses] = useState<SubClasses[] | null>([]);
-  const { ficha, forceUpdate } = useFicha();
   const [proeficienciasEscolhidas, setProeficienciasEscolhidas] = useState<string[]>([]);
   const [tracosExpandidos, setTracosExpandidos] = useState<Record<string, boolean>>({});
   const [mostrarPopupAtributos, setMostrarPopupAtributos] = useState(false);
@@ -559,8 +559,9 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
                               onSelect={(patrono) => {
                                 setPatronoSelecionado(patrono);
                                 setModalPatronoAberto(false);
+                                ficha?.setPatrono(patronoSelecionado);
                               }}
-                              patronoInicial={patronoSelecionado}
+                              patronoInicial={ficha?.patrono}
                             />
                           </div>
                         </>

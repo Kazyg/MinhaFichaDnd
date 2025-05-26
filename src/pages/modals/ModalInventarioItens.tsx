@@ -18,18 +18,30 @@ export default function ModalEscolherItem({
   const [filtro, setFiltro] = useState("");
   const [escolhido, setEscolhido] = useState<Itens | null>(null);
 
+  const itensUnicos = [
+        ...new Map(itens.map(magia => [magia.nome, magia])).values()
+    ];
+
   const normalizar = (texto: string) =>
     texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
-  const opcoesFiltradas = [...itens]
-    .sort((a, b) => normalizar(a.nome).localeCompare(normalizar(b.nome)))
-    .filter((item) => normalizar(item.nome).includes(normalizar(filtro)));
+  const opcoesFiltradas = itensUnicos.filter((opcao) =>
+    normalizar(opcao.nome).includes(normalizar(filtro))
+  );
 
   const formatarCusto = (valor: number) => {
-    if (valor >= 1) return `${valor} ouro`;
-    if (valor >= 0.1) return `${valor * 10} prata`;
-    return `${valor * 100} cobre`;
+    if (valor >= 1) {
+      const ouros = valor;
+      return `${ouros} ouro${ouros === 1 ? '' : 's'}`;
+    }
+    if (valor >= 0.1) {
+      const pratas = valor * 10;
+      return `${pratas} prata${pratas === 1 ? '' : 's'}`;
+    }
+    const cobres = valor * 100;
+    return `${cobres} cobre${cobres === 1 ? '' : 's'}`;
   };
+
 
   const temDinheiroSuficiente = (custo: number) => {
     const totalGp = (ficha?.ouro ?? 0) + (ficha?.prata ?? 0) / 10 + (ficha?.cobre ?? 0) / 100;
@@ -102,7 +114,7 @@ export default function ModalEscolherItem({
             onChange={(e) => setFiltro(e.target.value)}
           />
           <ul>
-            {opcoesFiltradas.map((item) => (
+            {opcoesFiltradas.sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR")).map((item) => (
               <li key={item.nome} onClick={() => setEscolhido(item)}>
                 <strong>{item.nome}</strong>
               </li>
@@ -114,7 +126,7 @@ export default function ModalEscolherItem({
             <>
               <h3>{escolhido.nome}</h3>
               <p><strong>Tipo:</strong> {escolhido.tipo}</p>
-              <p><strong>Preço:</strong> {escolhido.preco} moedas de ouro</p>
+              <p><strong>Preço:</strong> {formatarCusto(escolhido.preco)}</p>
               <p><strong>Peso:</strong> {escolhido.peso} kg</p>
               <p><strong>Raridade:</strong> {escolhido.raridade}</p>
               <p><strong>Sintonizável:</strong> {escolhido.sintonizavel ? "Sim" : "Não"}</p>

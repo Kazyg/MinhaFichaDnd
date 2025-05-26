@@ -32,26 +32,25 @@ const PopupVida: React.FC<PopupVidaProps> = ({ onConfirmar, onCancelar, onRestau
     const calcularModificador = (valor) => Math.floor((valor - 10) / 2);
 
     const calcularVida = (ficha: Ficha | null): number => {
+        debugger;
         let vidaTotal = 0;
         if (ficha) {
             const { levelTotal, multiclasses, atributosPersonagem, efeitos } = ficha;
-            if (atributosPersonagem) {
-                let constituicaoAtual = atributosPersonagem.constituicao.valor;
+            if (atributosPersonagem && levelTotal) {
+                // Soma todos os bônus de constituição, independentemente do nível
+                const bonusTotalConstituicao = efeitos
+                    ?.filter((e: any) => e.atributo === "constituição")
+                    .reduce((acc: number, e: any) => acc + e.bonus, 0) ?? 0;
 
-                if (levelTotal) for (let nivel = 1; nivel <= levelTotal; nivel++) {
+                const constituicaoTotal = atributosPersonagem.constituicao.valor + bonusTotalConstituicao;
+                const modificadorConstituicao = calcularModificador(constituicaoTotal);
+
+                for (let nivel = 1; nivel <= levelTotal; nivel++) {
                     const classeNoNivel = multiclasses?.find((m: any) => m.nivelEscolhido.includes(nivel));
                     const dadoVida = classeNoNivel?.classe.dadosVida;
 
-                    const efeitosConstituicao = efeitos?.filter((e: any) => e.level === nivel && e.atributo === "constituição");
-                    if (efeitosConstituicao) if (efeitosConstituicao.length > 0) {
-                        const bonusConstituicao = efeitosConstituicao.reduce((acc: number, e: any) => acc + e.bonus, 0);
-                        if (constituicaoAtual) constituicaoAtual += bonusConstituicao;
-                    }
-
-                    const modificadorConstituicao = calcularModificador(constituicaoAtual);
-
                     if (nivel === 1 && dadoVida) {
-                        vidaTotal = dadoVida + modificadorConstituicao;
+                        vidaTotal += dadoVida + modificadorConstituicao;
                     } else if (dadoVida) {
                         const vidaAdicional = Math.ceil((dadoVida + 1) / 2) + modificadorConstituicao;
                         vidaTotal += vidaAdicional;
@@ -61,6 +60,8 @@ const PopupVida: React.FC<PopupVidaProps> = ({ onConfirmar, onCancelar, onRestau
         }
         return vidaTotal;
     };
+
+
 
     return (
         <div>
@@ -148,26 +149,25 @@ const VidaComponente: React.FC = () => {
     const calcularModificador = (valor) => Math.floor((valor - 10) / 2);
 
     const calcularVida = (ficha: Ficha | null): number => {
+        debugger;
         let vidaTotal = 0;
         if (ficha) {
             const { levelTotal, multiclasses, atributosPersonagem, efeitos } = ficha;
-            if (atributosPersonagem) {
-                let constituicaoAtual = atributosPersonagem.constituicao.valor;
+            if (atributosPersonagem && levelTotal) {
+                // Soma todos os bônus de constituição, independentemente do nível
+                const bonusTotalConstituicao = efeitos
+                    ?.filter((e: any) => e.atributo === "constituição")
+                    .reduce((acc: number, e: any) => acc + e.bonus, 0) ?? 0;
 
-                if (levelTotal) for (let nivel = 1; nivel <= levelTotal; nivel++) {
+                const constituicaoTotal = atributosPersonagem.constituicao.valor + bonusTotalConstituicao;
+                const modificadorConstituicao = calcularModificador(constituicaoTotal);
+
+                for (let nivel = 1; nivel <= levelTotal; nivel++) {
                     const classeNoNivel = multiclasses?.find((m: any) => m.nivelEscolhido.includes(nivel));
                     const dadoVida = classeNoNivel?.classe.dadosVida;
 
-                    const efeitosConstituicao = efeitos?.filter((e: any) => e.level === nivel && e.atributo === "constituição");
-                    if (efeitosConstituicao) if (efeitosConstituicao.length > 0) {
-                        const bonusConstituicao = efeitosConstituicao.reduce((acc: number, e: any) => acc + e.bonus, 0);
-                        if (constituicaoAtual) constituicaoAtual += bonusConstituicao;
-                    }
-
-                    const modificadorConstituicao = calcularModificador(constituicaoAtual);
-
                     if (nivel === 1 && dadoVida) {
-                        vidaTotal = dadoVida + modificadorConstituicao;
+                        vidaTotal += dadoVida + modificadorConstituicao;
                     } else if (dadoVida) {
                         const vidaAdicional = Math.ceil((dadoVida + 1) / 2) + modificadorConstituicao;
                         vidaTotal += vidaAdicional;
