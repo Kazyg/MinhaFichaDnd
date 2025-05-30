@@ -8,7 +8,6 @@ import { Efeitos } from "../classesPrincipais/Efeitos";
 import { Armaduras_equip } from "../equipamentos/Armaduras.ts"
 import { Armas } from "../equipamentos/Armas";
 import { Metamagica } from "../../bibliotecas/Metamagica.ts";
-import { th } from "framer-motion/client";
 import { Itens } from "../../bibliotecas/Itens.ts";
 import { Patronos } from "../classesEspeciais/Patronos.class.ts";
 
@@ -50,10 +49,10 @@ export class Ficha {
     magiasConhecidas: { classe: string, magias: number }[] | null;
     truquesConhecidos: { classe: string, magias: number }[] | null;
     magiasEscolhidas: { classe: string, magia: string[] }[] | null;
-    metamagica1: {nome: string, descricao: string} | null;
-    metamagica2: {nome: string, descricao: string} | null;
-    metamagica3: {nome: string, descricao: string} | null;
-    metamagica4: {nome: string, descricao: string} | null;
+    metamagica1: { nome: string, descricao: string } | null;
+    metamagica2: { nome: string, descricao: string } | null;
+    metamagica3: { nome: string, descricao: string } | null;
+    metamagica4: { nome: string, descricao: string } | null;
     ouro: number;
     prata: number;
     cobre: number;
@@ -227,11 +226,10 @@ export class Ficha {
     }
 
     setPericias(pericias: string[]) {
-        if (this.backGround) {
-            this.pericias = [...this.backGround.proeficienciasHabilidades, ...pericias]
-        } else {
-            this.pericias = pericias;
-        }
+        const periciasOrigem = this.backGround?.proeficienciasHabilidades ?? [];
+        const periciasRaca = this.racaPrincipal?.pericia ?? [];
+        const todasPericias = [...new Set([...periciasOrigem, ...periciasRaca, ...pericias])];
+        this.pericias = todasPericias;
     }
 
     setLevelTotal(levelTotal: number | null) {
@@ -384,9 +382,9 @@ export class Ficha {
         novasMagias.forEach(novaMagia => {
             const index = this.magiasConhecidas?.findIndex(m => m.classe === novaMagia.classe) || 0;
             if (index !== -1) {
-                if(this.magiasConhecidas) this.magiasConhecidas[index] = novaMagia;
+                if (this.magiasConhecidas) this.magiasConhecidas[index] = novaMagia;
             } else {
-                if(this.magiasConhecidas) this.magiasConhecidas.push(novaMagia);
+                if (this.magiasConhecidas) this.magiasConhecidas.push(novaMagia);
             }
         });
     }
@@ -398,9 +396,9 @@ export class Ficha {
         novosTruques.forEach(novoTruque => {
             const index = this.truquesConhecidos?.findIndex(t => t.classe === novoTruque.classe) || 0;
             if (index !== -1) {
-                if(this.truquesConhecidos) this.truquesConhecidos[index] = novoTruque;
+                if (this.truquesConhecidos) this.truquesConhecidos[index] = novoTruque;
             } else {
-                if(this.truquesConhecidos) this.truquesConhecidos.push(novoTruque);
+                if (this.truquesConhecidos) this.truquesConhecidos.push(novoTruque);
             }
         });
     }
@@ -416,24 +414,24 @@ export class Ficha {
         }));
     }
     setMetamagicaSelecionada(nome: string, index: number) {
-        if(index === 1) this.metamagica1 = {nome: nome, descricao: Metamagica.find(m => m.nome === nome)?.descricao || ""}
-        if(index === 3) this.metamagica2 = {nome: nome, descricao: Metamagica.find(m => m.nome === nome)?.descricao || ""}
-        if(index === 10) this.metamagica3 = {nome: nome, descricao: Metamagica.find(m => m.nome === nome)?.descricao || ""}
-        if(index === 17) this.metamagica4 = {nome: nome, descricao: Metamagica.find(m => m.nome === nome)?.descricao || ""}
+        if (index === 1) this.metamagica1 = { nome: nome, descricao: Metamagica.find(m => m.nome === nome)?.descricao || "" }
+        if (index === 3) this.metamagica2 = { nome: nome, descricao: Metamagica.find(m => m.nome === nome)?.descricao || "" }
+        if (index === 10) this.metamagica3 = { nome: nome, descricao: Metamagica.find(m => m.nome === nome)?.descricao || "" }
+        if (index === 17) this.metamagica4 = { nome: nome, descricao: Metamagica.find(m => m.nome === nome)?.descricao || "" }
     }
-    getMetamagica(index: number){
-        if(index === 1) return this.metamagica1?.nome;
-        if(index === 3) return this.metamagica2?.nome;
-        if(index === 10) return this.metamagica3?.nome;
-        if(index === 17) return this.metamagica4?.nome;
+    getMetamagica(index: number) {
+        if (index === 1) return this.metamagica1?.nome;
+        if (index === 3) return this.metamagica2?.nome;
+        if (index === 10) return this.metamagica3?.nome;
+        if (index === 17) return this.metamagica4?.nome;
     }
-    adicionarOuro(quantidade: number){
+    adicionarOuro(quantidade: number) {
         this.ouro += quantidade;
     }
-    adicionarPrata(quantidade: number){
+    adicionarPrata(quantidade: number) {
         this.prata += quantidade;
     }
-    adicionarCobre(quantidade: number){
+    adicionarCobre(quantidade: number) {
         this.cobre += quantidade;
     }
     setItemMochila(item: Itens) {
