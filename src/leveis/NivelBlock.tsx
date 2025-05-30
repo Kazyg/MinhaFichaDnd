@@ -216,9 +216,9 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
         classe = classe?.toLowerCase();
 
         // Verifica as condições
-        const condicao1 = (classe === "feiticeiro" || classe === "clérigo") && nivel === 1;
+        const condicao1 = (classe === "feiticeiro" || classe === "clerigo") && nivel === 1;
         const condicao2 = (classe === "druida" || classe === "mago") && nivel === 2;
-        const condicao3 = nivel === 3 && !["feiticeiro", "clérigo", "druida", "mago"].includes(classe);
+        const condicao3 = nivel === 3 && !["feiticeiro", "clerigo", "druida", "mago"].includes(classe);
 
         // Retorna true se qualquer uma das condições for verdadeira
         return condicao1 || condicao2 || condicao3;

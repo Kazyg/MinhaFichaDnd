@@ -258,7 +258,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
     // Verifica as condições
     const condicao1 = (classe === "feiticeiro" || classe === "clerigo") && nivel === 1;
     const condicao2 = (classe === "druida" || classe === "mago") && nivel === 2;
-    const condicao3 = nivel === 3 && !["feiticeiro", "clérigo", "bruxo", "druida", "mago"].includes(classe);
+    const condicao3 = nivel === 3 && !["feiticeiro", "clerigo", "bruxo", "druida", "mago"].includes(classe);
 
     // Retorna true se qualquer uma das condições for verdadeira
     return condicao1 || condicao2 || condicao3;
