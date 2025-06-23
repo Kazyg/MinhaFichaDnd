@@ -181,7 +181,7 @@ const VidaComponente: React.FC = () => {
     return (
         <div className="vida">
             <h4>Vida</h4>
-            {ficha?.vidaAtual}/{calcularVida(ficha)}
+            {ficha?.vidaAtual ?? 0}/{calcularVida(ficha)}
             <div className="barra-vida" onClick={() => setMostrarPopup(true)}>
                 <div
                     className="vida-atual"
