@@ -118,45 +118,53 @@ export default function InformacoesPersonagem() {
   }
 
   function explicacaoCA() {
-    const efeitosCA = ficha?.efeitos?.filter((e: any) => e.level <= (ficha?.levelTotal || 0) && e.ca === "CA");
+    const efeitosCA = ficha?.efeitos?.filter(
+      (e: any) => e.level <= (ficha?.levelTotal || 0) && e.ca === "CA"
+    );
     let explicacao: string[] = [];
 
-    // Base da CA
-    let base = 10;
+    const getModStr = (atributo: string, descricao: string = "") => {
+      const mod = calcularModificador(calcularAtributo(atributo));
+      const valor = isNaN(mod) ? 0 : mod;
+      return `${valor >= 0 ? "+" : ""}${valor}${descricao ? " " + descricao : ""}`;
+    };
+
+    const formatValor = (valor: any, descricao: string = "") => {
+      const num = Number(valor);
+      if (isNaN(num)) return `+0${descricao ? " " + descricao : ""}`;
+      return `${num >= 0 ? "+" : ""}${num}${descricao ? " " + descricao : ""}`;
+    };
 
     if (!ficha?.ArmaduraEquipada) {
       explicacao.push("10 (base sem armadura)");
-
-      const modDex = calcularModificador(calcularAtributo("DES"));
-      explicacao.push(`${modDex >= 0 ? "+" : ""}${modDex} Destreza`);
+      explicacao.push(getModStr("DES", "Destreza"));
 
       if (ficha?.multiclasses?.some(m => m.classe.nome === "barbaro")) {
-        const modCon = calcularModificador(calcularAtributo("CON"));
-        explicacao.push(`${modCon >= 0 ? "+" : ""}${modCon} Constituição (bárbaro)`);
+        explicacao.push(getModStr("CON", "Constituição (bárbaro)"));
       } else if (ficha?.multiclasses?.some(m => m.classe.nome === "Monge")) {
-        const modSab = calcularModificador(calcularAtributo("SAB"));
-        explicacao.push(`${modSab >= 0 ? "+" : ""}${modSab} Sabedoria (monge)`);
+        explicacao.push(getModStr("SAB", "Sabedoria (monge)"));
       }
 
     } else {
       const armadura = ficha.ArmaduraEquipada;
       const modDex = calcularModificador(calcularAtributo("DES"));
+      const modDexValid = isNaN(modDex) ? 0 : modDex;
 
       if (armadura.categoria === "Armadura Leve") {
         if (proficienciaArmaduraLeve) {
-          explicacao.push(`${armadura.ac} Armadura Leve`);
-          explicacao.push(`${modDex >= 0 ? "+" : ""}${modDex} Destreza`);
+          explicacao.push(formatValor(armadura.ac, "Armadura Leve"));
+          explicacao.push(`${modDexValid >= 0 ? "+" : ""}${modDexValid} Destreza`);
         } else {
           explicacao.push("10 (sem proficiência com Armadura Leve)");
         }
 
       } else if (armadura.categoria === "Armadura Média") {
         if (proficienciaArmaduraMedia) {
-          explicacao.push(`${armadura.ac} Armadura Média`);
-          if (modDex > 2) {
+          explicacao.push(formatValor(armadura.ac, "Armadura Média"));
+          if (modDexValid > 2) {
             explicacao.push("+2 Destreza (limite da armadura)");
           } else {
-            explicacao.push(`${modDex >= 0 ? "+" : ""}${modDex} Destreza`);
+            explicacao.push(`${modDexValid >= 0 ? "+" : ""}${modDexValid} Destreza`);
           }
         } else {
           explicacao.push("10 (sem proficiência com Armadura Média)");
@@ -164,7 +172,7 @@ export default function InformacoesPersonagem() {
 
       } else if (armadura.categoria === "Armadura Pesada") {
         if (proficienciaArmaduraPesada) {
-          explicacao.push(`${armadura.ac} Armadura Pesada`);
+          explicacao.push(formatValor(armadura.ac, "Armadura Pesada"));
         } else {
           explicacao.push("10 (sem proficiência com Armadura Pesada)");
         }
@@ -173,18 +181,19 @@ export default function InformacoesPersonagem() {
 
     // Escudo
     if (ficha?.escudoEquipado && proficienciaEscudos) {
-      explicacao.push(`+${ficha.escudoEquipado.ac} Escudo`);
+      explicacao.push(formatValor(ficha.escudoEquipado.ac, "Escudo"));
     }
 
     // Efeitos adicionais
-    if (efeitosCA) if (efeitosCA?.length > 0) {
+    if (efeitosCA && efeitosCA.length > 0) {
       efeitosCA.forEach(e => {
-        explicacao.push(`${e.bonus >= 0 ? "+" : ""}${e.bonus} ${"efeito diversos"}`);
+        explicacao.push(formatValor(e.bonus, "efeito diversos"));
       });
     }
 
-    return explicacao.join(" + ");
+    return explicacao.join(", ");
   }
+
 
   function calcularCA() {
     const efeitosCA = ficha?.efeitos?.filter((e: any) => e.level <= (ficha?.levelTotal || 0) && e.ca === "CA");
@@ -379,7 +388,14 @@ export default function InformacoesPersonagem() {
                 <span> / </span>
                 <span className="atributo-valor">{dados.valor}</span>
                 <div className="atributo-divisoria" />
-                <span className="atributo-mod">{calcularModificador(calcularAtributo(dados.nome)) >= 0 ? `+${calcularModificador(calcularAtributo(dados.nome))}` : calcularModificador(calcularAtributo(dados.nome))}</span>
+                {(() => {
+                  const mod = calcularModificador(calcularAtributo(dados.nome));
+                  return (
+                    <span className="atributo-mod">
+                      {isNaN(mod) ? "0" : mod >= 0 ? `+${mod}` : mod}
+                    </span>
+                  );
+                })()}
               </div>
             ))}
           </div>
@@ -394,7 +410,21 @@ export default function InformacoesPersonagem() {
                 <span className="proficiencia-nome" title={dados.tipo}>{dados.nome}</span>
                 <span> / </span>
                 <div className="proficiencia-divisoria" />
-                <span className="proficiencia-mod">{((calcularModificador(calcularAtributo(dados.nome)) >= 0 ? `+${calcularModificador(calcularAtributo(dados.nome))}` : calcularModificador(calcularAtributo(dados.nome)) + (calcularProeficiencia(dados.id))))}</span>
+                {(() => {
+                  const atributo = calcularAtributo(dados.nome);
+                  const mod = calcularModificador(atributo);
+                  const prof = calcularProeficiencia(dados.id);
+
+                  if (isNaN(mod) || isNaN(prof)) return <span className="proficiencia-mod">0</span>;
+
+                  const total = mod + prof;
+
+                  return (
+                    <span className="proficiencia-mod">
+                      {total >= 0 ? `+${total}` : total}
+                    </span>
+                  );
+                })()}
               </div>
             ))}
           </div>

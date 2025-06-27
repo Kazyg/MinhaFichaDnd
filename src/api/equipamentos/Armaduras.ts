@@ -165,7 +165,7 @@ export const armaduras_equip: Armaduras_equip[] = [
 
     new Armaduras_equip(
         "Escudo",                    // nome
-        "Escudo",                    // categoria   
+        "Escudos",                    // categoria   
         2,                           // ac (bônus de +2)
         0,                           // forca necessaria
         "",                          // furtividade
