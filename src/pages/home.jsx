@@ -14,8 +14,9 @@ export default function Home() {
   const [modalAberta, setModalAberta] = useState(false);
   const [arquivoSelecionado, setArquivoSelecionado] = useState(null);
 
-  const selecionarFicha = (ficha: ficha) => {
-    setFicha(new Ficha(ficha));
+  const selecionarFicha = (fichaSelecionada) => {
+    const fichaInstancia = fichaSelecionada instanceof Ficha ? fichaSelecionada : new Ficha(fichaSelecionada);
+    setFicha(fichaInstancia);
     navigate("/criar-ficha");
   };
 
@@ -41,9 +42,10 @@ export default function Home() {
         try {
           const fichaJSON = e.target.result;
           const fichaCarregada = JSON.parse(fichaJSON);
+          const fichaInstancia = new Ficha(fichaCarregada);
 
-          salvarFicha(fichaCarregada);
-          selecionarFicha(fichaCarregada);
+          salvarFicha(fichaInstancia);
+          selecionarFicha(fichaInstancia);
 
         } catch (error) {
           console.error("Erro ao carregar o arquivo JSON:", error);

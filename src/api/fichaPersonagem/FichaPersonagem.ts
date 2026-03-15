@@ -78,11 +78,13 @@ export class Ficha {
         this.classeArmadura = data?.classeArmadura ?? null;
         this.speed = data?.speed ?? null;
         this.tamanho = data?.tamanho ?? null;
+        this.talentos = data?.talentos ?? null;
         this.idiomas = data?.idiomas ?? null;
         this.estiloLuta = data?.estiloLuta ?? null;
         this.animalSelecionado = data?.animalSelecionado ?? null;
         this.terrenoSelecionado = data?.terrenoSelecionado ?? null;
         this.efeitos = data?.efeitos ?? null;
+
         this.ArmadurasMochila = data?.ArmadurasMochila ?? null;
         this.ArmasMochila = data?.ArmasMochila ?? null;
         this.cA = data?.cA ?? null;
@@ -107,7 +109,7 @@ export class Ficha {
         this.patrono = data?.patrono ?? null;
     }
 
-    calcularModificador(valor) {
+    calcularModificador(valor: number): number {
         return Math.floor((valor - 10) / 2)
     };
 
@@ -165,6 +167,10 @@ export class Ficha {
     }
 
     setIniciativa(destreza: number | null) {
+        if (destreza === null) {
+            this.iniciativa = null;
+            return;
+        }
         this.iniciativa = this.calcularModificador(destreza)
     }
 

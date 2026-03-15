@@ -56,7 +56,11 @@ export default function InformacoesPersonagem() {
     return 0;
   }
 
-  const calcularModificador = (valor) => Math.floor((valor - 10) / 2);
+  const calcularModificador = (valor) => {
+    const num = Number(valor);
+    if (isNaN(num)) return 0;
+    return Math.floor((num - 10) / 2);
+  }
 
   function calcularAtributo(dados: string) {
     const efeitosDestreza = ficha?.efeitos?.filter((e: any) => e.level <= (ficha?.levelTotal || 0) && e.atributo === "destreza");

@@ -1,48 +1,63 @@
 .pericias-container {
-  position: absolute;
-  top: 134px;
-  left: 317px;
-  margin-top: 10px;
+  position: relative;
+  margin-top: 0;
   background-color: #2c2f33;
-  padding: 10px;
-  border-radius: 8px;
-  max-width: 500px;
-  transform: scale(0.8);
-  max-height: 521px;
-  overflow-y: auto;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  font-size: 0.75rem;
+  gap: 0.5rem;
 }
 
 .info-extra {
   display: flex;
   justify-content: space-between;
   background-color: #3b3f44;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 10px;
+  padding: 0.4rem;
+  border-radius: 0.3rem;
+  margin-bottom: 0;
+  font-size: 0.7rem;
 }
 
 .info-coluna {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 0.2rem;
 }
 
 .info-item {
   color: white;
-  font-size: 14px;
+  font-size: 0.75rem;
 }
 
 .pericias-lista {
   background-color: #3b3f44;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 0.4rem;
+  border-radius: 0.3rem;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.pericias-lista::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.pericias-lista::-webkit-scrollbar-thumb {
+  background: gray;
+  border-radius: 0.25rem;
 }
 
 .pericias-lista h4 {
   text-align: center;
-  font-size: 16px;
+  font-size: 1rem;
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 0.6rem;
   color: white;
 }
 
@@ -54,12 +69,12 @@
 .pericia-item {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  gap: 5px;
-  padding: 5px 0;
+  justify-content: flex-start;
+  gap: 0.25rem;
+  padding: 0.2rem 0;
   border-bottom: 1px solid #555;
   color: white;
-  font-size: 15px;
+  font-size: 0.75rem;
 }
 
 .pericia-item:last-child {
@@ -83,27 +98,43 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 15px;
+  line-height: 0.9rem;
 }
 
 .pericias-container::-webkit-scrollbar {
-  width: 8px;
+  width: 0.5rem;
 }
 
 .pericias-container::-webkit-scrollbar-thumb {
   background: gray;
-  border-radius: 4px;
+  border-radius: 0.25rem;
 }
 
 .modificador{
-  width: 8%;
+  width: 1.1rem;
   text-align: right;
 }
+
 .checkbox {
-  width: 12%;
+  width: 1.1rem;
 }
+
 .pericia {
-  width: 80%;
+  flex: 1;
+  width: auto;
+  text-align: left;
+}
+
+.pericia-nome {
+  flex: 1;
+  text-align: left;
+}
+
+.pericia-bonus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0.9rem;
 }
 
 /* Estilos para celular (max-width: 768px) */
@@ -112,22 +143,28 @@
     position: relative;
     top: auto;
     left: auto;
-    max-height: 100%;
     transform: none;
+    margin: 1rem;
+    padding: 0.5rem;
+    max-height: none;
+    overflow: visible;
+    font-size: 0.875rem;
   }
 
   .modificador{
     width: 5%;
     text-align: right;
   }
+
   .checkbox {
     width: 5%;
   }
+
   .pericia {
     width: 90%;
   }
 
   .pericia-item {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 }

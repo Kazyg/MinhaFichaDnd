@@ -31,9 +31,10 @@
 .proficiencias-personagem-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    gap: 40px;
-    margin-top: -10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 0;
 }
 
 .proficiencias-personagem {
@@ -98,7 +99,11 @@
 }
 
 .botao-excluir-container {
-    width: 5%;
+    width: 76px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
 }
 
 .botao-excluir {
@@ -139,7 +144,7 @@
 .lista-armas {
     display: flex;
     flex-direction: column;
-    width: 102%;
+    width: 100%;
     padding: 0;
     gap: 7px;
 }
@@ -148,15 +153,15 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 98%;
+    width: 100%;
     gap: 8px;
     outline: 2px solid #e03e00;
-    margin-left: 5px;
+    margin-left: 0;
     padding-left: 5px;
 }
 
 .titulo-arma {
-    width: 8%;
+    width: 120px;
 }
 
 .titulo-arma h3 {
@@ -177,7 +182,8 @@
 .arma {
     display: flex;
     flex-direction: column;
-    width: 82%;
+    width: 100%;
+    min-width: 0;
 }
 
 .arma1 {
@@ -185,6 +191,8 @@
     flex-direction: row;
     justify-content: space-between;
     font-size: 14px;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
 .arma2 {
@@ -192,6 +200,25 @@
     flex-direction: row;
     justify-content: space-between;
     font-size: 14px;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .item-arma {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .titulo-arma {
+        width: 100%;
+    }
+
+    .botao-excluir-container {
+        width: 100%;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
 }
 
 .icon-proficiencia-arma {
