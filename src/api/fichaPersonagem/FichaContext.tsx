@@ -1,6 +1,16 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { Ficha } from "./FichaPersonagem.ts";
 
+const STORAGE_KEYS = {
+  fichas: "fichas",
+  fichaId: "ficha",
+} as const;
+
+const normalizeFicha = (value: unknown): Ficha => {
+  if (value instanceof Ficha) return value;
+  return new Ficha(value as Partial<Ficha>);
+};
+
 type FichaContextType = {
   fichas: Ficha[];
   ficha: Ficha | null;
@@ -13,85 +23,85 @@ type FichaContextType = {
 
 const FichaContext = createContext<FichaContextType | null>(null);
 
-export const FichaProvider = ({ children }) => {
+export const FichaProvider = ({ children }: React.PropsWithChildren<{}>) => {
   const [fichas, setFichas] = useState<Ficha[]>([]);
   const [ficha, setFicha] = useState<Ficha | null>(null);
   const [refreshKey, setRefreshKey] = useState(0);
+  const [isHydrated, setIsHydrated] = useState(false);
 
-  const forceUpdate = () => setRefreshKey((prev) => prev + 1);
+  const forceUpdate = () => setRefreshKey((prev: number) => prev + 1);
 
   // 🔹 Carrega as fichas do localStorage ao iniciar
   useEffect(() => {
-    const fichasSalvas = localStorage.getItem("fichas");
-    if (fichasSalvas) {
-      try {
-        const fichasArray = JSON.parse(fichasSalvas) || [];
-        setFichas(fichasArray);
+    const fichasSalvas = localStorage.getItem(STORAGE_KEYS.fichas);
+    try {
+      const rawArray = fichasSalvas ? (JSON.parse(fichasSalvas) as unknown[]) : [];
+      const fichasArray = Array.isArray(rawArray) ? rawArray.map(normalizeFicha) : [];
+      setFichas(fichasArray);
 
-        // Recupera a última ficha usada
-        const fichaSalva = localStorage.getItem("ficha");
-        if (fichaSalva) {
-          const fichaRecuperada = fichasArray.find((f) => f.id === fichaSalva);
-          if (fichaRecuperada) {
-            setFicha(fichaRecuperada);
-          }
+      // Recupera a última ficha usada
+      const fichaSalvaId = localStorage.getItem(STORAGE_KEYS.fichaId);
+      if (fichaSalvaId) {
+        const fichaRecuperada = fichasArray.find((f) => f.id === fichaSalvaId);
+        if (fichaRecuperada) {
+          setFicha(fichaRecuperada);
         }
-      } catch (error) {
-        console.error("Erro ao carregar fichas do localStorage:", error);
       }
+    } catch (error) {
+      console.error("Erro ao carregar fichas do localStorage:", error);
+      setFichas([]);
+      setFicha(null);
+    } finally {
+      setIsHydrated(true);
     }
   }, []);
 
   // 🔹 Salva as fichas no localStorage sempre que `fichas` mudar
   useEffect(() => {
-    if (fichas.length > 0) {
-      localStorage.setItem("fichas", JSON.stringify(fichas));
-    }
-  }, [fichas]);
+    if (!isHydrated) return;
+    localStorage.setItem(STORAGE_KEYS.fichas, JSON.stringify(fichas));
+  }, [fichas, isHydrated]);
 
   useEffect(() => {
+    if (!isHydrated) return;
     if (ficha) {
-      localStorage.setItem("ficha", ficha.id);
+      localStorage.setItem(STORAGE_KEYS.fichaId, ficha.id);
+    } else {
+      localStorage.removeItem(STORAGE_KEYS.fichaId);
     }
-  }, [ficha]);
+  }, [ficha, isHydrated]);
 
   // 🔹 Adiciona ou atualiza uma ficha na lista corretamente
   const salvarFicha = (novaFicha: Ficha) => {
-    setFichas((prevFichas) => {
-      const index = prevFichas.findIndex((f) => f.id === novaFicha.id);
+    const fichaNormalizada = normalizeFicha(novaFicha);
+    setFichas((prevFichas: Ficha[]) => {
+      const index = prevFichas.findIndex((f: Ficha) => f.id === fichaNormalizada.id);
       let novasFichas;
 
       if (index !== -1) {
         // Atualiza ficha existente
         novasFichas = [...prevFichas];
-        novasFichas[index] = novaFicha;
+        novasFichas[index] = fichaNormalizada;
       } else {
         // Adiciona nova ficha
-        novasFichas = [...prevFichas, novaFicha];
+        novasFichas = [...prevFichas, fichaNormalizada];
       }
-
-      // 🔥 Salva no localStorage
-      localStorage.setItem("fichas", JSON.stringify(novasFichas));
       return novasFichas;
     });
 
-    setFicha(novaFicha);
+    setFicha(fichaNormalizada);
     forceUpdate();
   };
 
   // 🔹 Deleta uma ficha pelo ID
   const deletarFicha = (id: string) => {
-    setFichas((prevFichas) => {
-      const novasFichas = prevFichas.filter((f) => f.id !== id);
-
-      // 🔥 Salva imediatamente no localStorage
-      localStorage.setItem("fichas", JSON.stringify(novasFichas));
+    setFichas((prevFichas: Ficha[]) => {
+      const novasFichas = prevFichas.filter((f: Ficha) => f.id !== id);
       return novasFichas;
     });
 
     if (ficha?.id === id) {
       setFicha(null);
-      localStorage.removeItem("ficha");
     }
 
     forceUpdate();

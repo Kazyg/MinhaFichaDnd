@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { JSX } from 'react';
 import { motion } from "framer-motion";
 import ModalSelecaoMagias from "../../modals/ModalMagias.tsx";
 import "../../css/Magias.css"
+
 import { toast } from "react-toastify";
 import { useFicha } from "../../../api/fichaPersonagem/FichaContext.tsx";
 import { Bruxo } from "../../../api/classesClassesFilhos/Bruxo.class.ts";
@@ -20,8 +21,9 @@ import magiaFire from "../../../imagens/darkFireMagia.png"
 import magiaIcon from "../../../imagens/local_fire_department_24dp_B7B7B7_FILL0_wght400_GRAD0_opsz24.png"
 import excluirIcon from "../../../imagens/delete_icon.png"
 import magiaIcon1 from "../../../imagens/local_fire_department_24dp_EA3323_FILL0_wght400_GRAD0_opsz24.png"
-import { magiasBardo, magiasBruxo, magiasClerigo, magiasDruida, magiasFeiticeiro, magiasMago, magiasPaladino, magiasPatrulheiro, Magias } from "../../../bibliotecas/Magia.ts"
+import { magiasBardo, magiasBruxo, magiasClerigo, magiasDruida, magiasFeiticeiro, magiasMago, magiasPaladino, magiasPatrulheiro } from "../../../bibliotecas/Magia.ts"
 import { Classes } from "../../../api/classesPrincipais/Classes.class.ts";
+import { calcularBonusMagiaPorClasse, calcularValorAtributoFinal } from "../../../api/fichaPersonagem/fichaEfeitosUtils.ts";
 
 export default function AbaMagias() {
   const [modalMagiasAberta, setModalMagiasAberta] = useState(false);
@@ -64,7 +66,7 @@ export default function AbaMagias() {
     })
   };
 
-  const calcularModificador = (valor) => Math.floor((valor - 10) / 2);
+  const calcularModificador = (valor: number) => Math.floor((valor - 10) / 2);
 
   const tabelaConjuradores = [
     {
@@ -228,7 +230,7 @@ export default function AbaMagias() {
     const magiasAgrupadas: Record<number, { nome: string, classe: string }[]> = {};
 
     ficha?.magiasEscolhidas?.forEach(magiaEscolhida => {
-      let classe;
+      let classe: keyof typeof todasMagiasPorClasse | undefined;
       switch (magiaEscolhida.classe) {
         case "Bardo": classe = "Bardo";
           break;
@@ -247,6 +249,7 @@ export default function AbaMagias() {
         case "Patrulheiro": classe = "Patrulheiro";
           break;
       }
+      if (!classe) return;
       magiaEscolhida.magia.forEach(magiaNome => {
         const magiaInfo = buscarMagiaNaClasse(magiaNome, classe);
         if (magiaInfo) {
@@ -311,7 +314,7 @@ export default function AbaMagias() {
         const niveisEscolhidos = ficha?.multiclasses?.find(m => m.classe.nome === classeNoNivel?.nome)?.nivelEscolhido.sort((a, b) => a - b) ?? [];
 
         for (const nivel of niveisEscolhidos) {
-          if (nivel <= nivel) {
+          if (nivel <= (levelTotal || 0)) {
             nivelClasse++;
           } else {
             break;
@@ -330,7 +333,7 @@ export default function AbaMagias() {
             const bonusSabedoria = efeitosSabedoria.reduce((acc: number, e: any) => acc + e.bonus, 0);
             if (sabedoriaAtual) sabedoriaAtual += bonusSabedoria;
           }
-          magiaClerigo = calcularModificador(sabedoriaAtual) + nivelClasse;
+          magiaClerigo = calcularModificador(sabedoriaAtual ?? 10) + nivelClasse;
           magiasConhecidas.push({ classe: "Clerigo", magias: magiaClerigo });
           truqueConhecidos.push({ classe: "Clerigo", magias: classeNoNivel.niveis.find(n => n.nivel === nivelClasse)?.truquesConhecidos ?? 0 });
         }
@@ -342,7 +345,7 @@ export default function AbaMagias() {
             const bonusSabedoria = efeitosSabedoria.reduce((acc: number, e: any) => acc + e.bonus, 0);
             if (sabedoriaAtual) sabedoriaAtual += bonusSabedoria;
           }
-          magiaDruida = calcularModificador(sabedoriaAtual) + nivelClasse;
+          magiaDruida = calcularModificador(sabedoriaAtual ?? 10) + nivelClasse;
           magiasConhecidas.push({ classe: "Druida", magias: magiaDruida });
           truqueConhecidos.push({ classe: "Druida", magias: classeNoNivel.niveis.find(n => n.nivel === nivelClasse)?.truquesConhecidos ?? 0 });
         }
@@ -372,7 +375,7 @@ export default function AbaMagias() {
             const bonusInteligencia = efeitosInteligencia.reduce((acc: number, e: any) => acc + e.bonus, 0);
             if (inteligenciaAtual) inteligenciaAtual += bonusInteligencia;
           }
-          magiaMago = calcularModificador(inteligenciaAtual) + nivelClasse;
+          magiaMago = calcularModificador(inteligenciaAtual ?? 10) + nivelClasse;
           magiasConhecidas.push({ classe: "Mago", magias: magiaMago });
           truqueConhecidos.push({ classe: "Mago", magias: classeNoNivel.niveis.find(n => n.nivel === nivelClasse)?.truquesConhecidos ?? 0 });
         }
@@ -385,7 +388,7 @@ export default function AbaMagias() {
             const bonusInteligencia = efeitosCarisma.reduce((acc: number, e: any) => acc + e.bonus, 0);
             if (carismaAtual) carismaAtual += bonusInteligencia;
           }
-          magiaPaladino = calcularModificador(carismaAtual) + nivelClasse;
+          magiaPaladino = calcularModificador(carismaAtual ?? 10) + nivelClasse;
           magiasConhecidas.push({ classe: "Paladino", magias: magiaPaladino });
           truqueConhecidos.push({ classe: "Paladino", magias: 0 });
         }
@@ -408,12 +411,13 @@ export default function AbaMagias() {
     let levelConjurador = 0;
     if (ficha) {
       const { levelTotal, multiclasses } = ficha;
-      multiclasses?.map((multiclasse) => {
+      multiclasses?.forEach((multiclasse) => {
 
         let nivelClasse = 0;
         const niveisEscolhidos = multiclasse?.nivelEscolhido.sort((a, b) => a - b) ?? [];
 
         for (const nivel of niveisEscolhidos) {
+
           if (nivel <= (levelTotal || 0)) {
             nivelClasse++;
           } else {
@@ -441,7 +445,7 @@ export default function AbaMagias() {
   }
 
   function validarMagiaClasse(magia: string) {
-    let classe = [""];
+    let classe: string[] = [];
     let magiaAchada;
     if (!!magiasBardo.find(m => m.nome === magia)) {
       classe.push("Bardo");
@@ -556,17 +560,11 @@ export default function AbaMagias() {
 
       if (!atributoChave) return;
 
-      let valorBase = ficha.atributosPersonagem?.[atributoChave]?.valor ?? 10;
-
-      const efeitosDoAtributo = ficha.efeitos?.filter((e: any) => e.atributo === atributoChave);
-      if (efeitosDoAtributo) if (efeitosDoAtributo?.length > 0) {
-        const bonus = efeitosDoAtributo.reduce((acc: number, e: any) => acc + e.bonus, 0);
-        valorBase += bonus;
-      }
-
+      const valorBase = calcularValorAtributoFinal(ficha, atributoChave);
       const mod = calcularModificador(valorBase);
       const prof = ficha?.proeficiencia ?? 0;
-      const cd = 8 + mod + prof;
+      const bonusCD = calcularBonusMagiaPorClasse(ficha, "cd_magia", classeNome);
+      const cd = 8 + mod + prof + bonusCD;
 
       linhas.push(<p key={classeNome}>{classeNome} ({atributoChave}): {cd}</p>);
     });
@@ -633,6 +631,7 @@ export default function AbaMagias() {
                             animate="visible"
                             custom={i}
                             variants={variants}
+                            alt=""
                           />
                         ))}
                       </>
@@ -650,8 +649,8 @@ export default function AbaMagias() {
                           setMagiaInfo(magia.nome)
                         }}
                       >
-                        <img src={magiaIcon1} className="equipar" />
-                        <img src={magiaIcon1} className="equipar-hover" />
+                        <img src={magiaIcon1} className="equipar" alt="Ver detalhes da magia" />
+                        <img src={magiaIcon1} className="equipar-hover" alt="Ver detalhes da magia" />
                       </button>
                     </div>
                     <div className="magia-coluna3">
@@ -659,8 +658,8 @@ export default function AbaMagias() {
                         className="botao-equipar"
                         onClick={() => handleUsarMagia(index)}
                       >
-                        <img src={magiaIcon1} className="equipar" />
-                        <img src={magiaIcon1} className="equipar-hover" />
+                        <img src={magiaIcon1} className="equipar" alt="Ativar magia" />
+                        <img src={magiaIcon1} className="equipar-hover" alt="Ativar magia" />
                       </button>
                       <button
                         className="botao-excluir"
@@ -719,8 +718,9 @@ export default function AbaMagias() {
             <ModalSelecaoMagias
               onSelect={(magia) => {
                 const magiaClasse = validarMagiaClasse(magia);
+                if (!magiaClasse.magiaAchada) return;
                 const valida = validarMagiaEscolhida(magiaClasse.magiaAchada, magiaClasse.classe);
-                if (valida.valida) ficha?.setMagiaEscolhidas({ classe: valida.classeValida, magia: magiaClasse.magiaAchada.nome });
+                if (valida.valida && valida.classeValida) ficha?.setMagiaEscolhidas({ classe: valida.classeValida, magia: magiaClasse.magiaAchada.nome });
               }}
               magiaSelect=""
               onClose={() => setModalMagiasAberta(false)}

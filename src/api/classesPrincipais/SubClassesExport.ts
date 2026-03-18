@@ -1,4 +1,3 @@
-import { SubClasses } from "../classesPrincipais/SubClasses.ts";
 export { CaminhoFurioso } from "../classesClassesNetos/CaminhoFurioso.ts"
 export { LinhagemDraconica } from "../classesClassesNetos/AncestralDraconico.ts"
 export { Assassino } from "../classesClassesNetos/Assassino.ts"

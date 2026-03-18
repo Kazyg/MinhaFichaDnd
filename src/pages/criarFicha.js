@@ -97,12 +97,16 @@ export default function CriarFicha() {
         )}
       {/* Modo Desktop: exibe todos os componentes */}
       {!isMobile && (
-        <>
-          <CriacaoFicha />
-          <InformacoesPersonagem />
-          <PericiasEOutros />
-          <InventarioMagiasDetalhes />
-        </>
+        <div className="desktop-layout">
+          <aside className="desktop-sidebar">
+            <CriacaoFicha />
+          </aside>
+          <main className="desktop-main">
+            <InformacoesPersonagem />
+            <PericiasEOutros />
+            <InventarioMagiasDetalhes />
+          </main>
+        </div>
       )}
 
       {/* Conteúdo das abas no Mobile */}

@@ -3,6 +3,7 @@ import { useFicha } from "../../../api/fichaPersonagem/FichaContext.tsx";
 import { Ficha } from "../../../api/fichaPersonagem/FichaPersonagem.ts";
 import { Portal } from "./Portal.tsx"
 import "../../css/popupVida.css"
+import { calcularValorAtributoFinal } from "../../../api/fichaPersonagem/fichaEfeitosUtils.ts";
 
 interface PopupVidaProps {
     onConfirmar: (novaVida: number, cura: number, dano: number) => void;
@@ -29,20 +30,14 @@ const PopupVida: React.FC<PopupVidaProps> = ({ onConfirmar, onCancelar, onRestau
         }
     };
 
-    const calcularModificador = (valor) => Math.floor((valor - 10) / 2);
+    const calcularModificador = (valor: number) => Math.floor((valor - 10) / 2);
 
     const calcularVida = (ficha: Ficha | null): number => {
-        debugger;
         let vidaTotal = 0;
         if (ficha) {
-            const { levelTotal, multiclasses, atributosPersonagem, efeitos } = ficha;
+            const { levelTotal, multiclasses, atributosPersonagem } = ficha;
             if (atributosPersonagem && levelTotal) {
-                // Soma todos os bônus de constituição, independentemente do nível
-                const bonusTotalConstituicao = efeitos
-                    ?.filter((e: any) => e.atributo === "constituição")
-                    .reduce((acc: number, e: any) => acc + e.bonus, 0) ?? 0;
-
-                const constituicaoTotal = atributosPersonagem.constituicao.valor + bonusTotalConstituicao;
+                const constituicaoTotal = calcularValorAtributoFinal(ficha, "constituicao");
                 const modificadorConstituicao = calcularModificador(constituicaoTotal);
 
                 for (let nivel = 1; nivel <= levelTotal; nivel++) {
@@ -146,24 +141,19 @@ const VidaComponente: React.FC = () => {
         setMostrarPopup(false);
     };
 
-    const calcularModificador = (valor) => Math.floor((valor - 10) / 2);
+    const calcularModificador = (valor: number) => Math.floor((valor - 10) / 2);
 
     const calcularVida = (ficha: Ficha | null): number => {
-        debugger;
         let vidaTotal = 0;
         if (ficha) {
-            const { levelTotal, multiclasses, atributosPersonagem, efeitos } = ficha;
+            const { levelTotal, multiclasses, atributosPersonagem } = ficha;
             if (atributosPersonagem && levelTotal) {
-                // Soma todos os bônus de constituição, independentemente do nível
-                const bonusTotalConstituicao = efeitos
-                    ?.filter((e: any) => e.atributo === "constituição")
-                    .reduce((acc: number, e: any) => acc + e.bonus, 0) ?? 0;
-
-                const constituicaoTotal = atributosPersonagem.constituicao.valor + bonusTotalConstituicao;
+                const constituicaoTotal = calcularValorAtributoFinal(ficha, "constituicao");
                 const modificadorConstituicao = calcularModificador(constituicaoTotal);
 
                 for (let nivel = 1; nivel <= levelTotal; nivel++) {
                     const classeNoNivel = multiclasses?.find((m: any) => m.nivelEscolhido.includes(nivel));
+
                     const dadoVida = classeNoNivel?.classe.dadosVida;
 
                     if (nivel === 1 && dadoVida) {

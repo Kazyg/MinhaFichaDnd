@@ -10,6 +10,7 @@ import { Armas } from "../equipamentos/Armas";
 import { Metamagica } from "../../bibliotecas/Metamagica.ts";
 import { Itens } from "../../bibliotecas/Itens.ts";
 import { Patronos } from "../classesEspeciais/Patronos.class.ts";
+import { extrairEfeitosDoItem } from "./fichaEfeitosUtils.ts";
 
 export class Ficha {
     id: string;
@@ -57,6 +58,8 @@ export class Ficha {
     prata: number;
     cobre: number;
     itensMochila: Itens[] | null;
+    itensEquipados: Itens[] | null;
+    limiteSintonizacao: number;
     patrono: Patronos | null | undefined;
 
     constructor(data: Partial<Ficha> = {}) {
@@ -78,11 +81,13 @@ export class Ficha {
         this.classeArmadura = data?.classeArmadura ?? null;
         this.speed = data?.speed ?? null;
         this.tamanho = data?.tamanho ?? null;
+        this.talentos = data?.talentos ?? null;
         this.idiomas = data?.idiomas ?? null;
         this.estiloLuta = data?.estiloLuta ?? null;
         this.animalSelecionado = data?.animalSelecionado ?? null;
         this.terrenoSelecionado = data?.terrenoSelecionado ?? null;
         this.efeitos = data?.efeitos ?? null;
+
         this.ArmadurasMochila = data?.ArmadurasMochila ?? null;
         this.ArmasMochila = data?.ArmasMochila ?? null;
         this.cA = data?.cA ?? null;
@@ -104,10 +109,12 @@ export class Ficha {
         this.prata = data?.prata ?? 0;
         this.cobre = data?.cobre ?? 0;
         this.itensMochila = data?.itensMochila ?? null;
+        this.itensEquipados = data?.itensEquipados ?? null;
+        this.limiteSintonizacao = data?.limiteSintonizacao ?? 3;
         this.patrono = data?.patrono ?? null;
     }
 
-    calcularModificador(valor) {
+    calcularModificador(valor: number): number {
         return Math.floor((valor - 10) / 2)
     };
 
@@ -165,6 +172,10 @@ export class Ficha {
     }
 
     setIniciativa(destreza: number | null) {
+        if (destreza === null) {
+            this.iniciativa = null;
+            return;
+        }
         this.iniciativa = this.calcularModificador(destreza)
     }
 
@@ -315,6 +326,11 @@ export class Ficha {
             this.efeitos = this.efeitos?.filter(e => e.level !== nivel);
         }
     }
+    excluirEfeitoPorOrigem(origemTipo: string, origemId: string) {
+        if (this.efeitos) {
+            this.efeitos = this.efeitos.filter(e => !(e.origemTipo === origemTipo && e.origemId === origemId));
+        }
+    }
     setArmaMochila(arma: Armas) {
         if (!this.ArmasMochila) {
             this.ArmasMochila = [arma];
@@ -443,6 +459,38 @@ export class Ficha {
     }
     excluirItem(idItem: string) {
         if (this.itensMochila) this.itensMochila = this.itensMochila.filter(s => s.id !== idItem);
+        if (this.itensEquipados?.some(item => item.id === idItem)) {
+            this.setDesequiparItem(idItem);
+        }
+    }
+    setLimiteSintonizacao(limite: number) {
+        this.limiteSintonizacao = limite;
+    }
+    getItensSintonizadosEquipados() {
+        return this.itensEquipados?.filter(item => item.sintonizavel) ?? [];
+    }
+    setEquiparItem(item: Itens) {
+        if (!this.itensEquipados) {
+            this.itensEquipados = [];
+        }
+        if (!this.itensEquipados.some(i => i.id === item.id)) {
+            this.itensEquipados.push(item);
+        }
+        this.sincronizarEfeitosItem(item);
+    }
+    setDesequiparItem(idItem: string) {
+        const item = this.itensEquipados?.find(i => i.id === idItem);
+        if (this.itensEquipados) {
+            this.itensEquipados = this.itensEquipados.filter(i => i.id !== idItem);
+        }
+        if (item) {
+            this.excluirEfeitoPorOrigem("item", item.id);
+        }
+    }
+    sincronizarEfeitosItem(item: Itens) {
+        this.excluirEfeitoPorOrigem("item", item.id);
+        const efeitosItem = extrairEfeitosDoItem(item);
+        efeitosItem.forEach((efeito) => this.setEfeitos(efeito));
     }
     setPatrono(patrono: Patronos | null | undefined) {
         this.patrono = patrono;

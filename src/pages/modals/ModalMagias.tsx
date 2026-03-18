@@ -138,7 +138,7 @@ const ModalSelecaoMagias: React.FC<ModalSelecaoProps> = ({ titulo, onClose, onSe
                             setFiltroClasse("");
                             setFiltroEscola("");
                         }}>
-                            <img src={iconNoFilter} className="imagem-nofiltro" />
+                            <img src={iconNoFilter} className="imagem-nofiltro" alt="Limpar filtros" />
                         </button>
                     </div>
                 </div>
@@ -154,7 +154,7 @@ const ModalSelecaoMagias: React.FC<ModalSelecaoProps> = ({ titulo, onClose, onSe
                             onChange={(e) => setFiltro(e.target.value)}
                         />
                         <button onClick={() => setFiltrosAbertos(!filtrosAbertos)}>
-                            <img src={iconFilter} className="imagem-filtro" />
+                            <img src={iconFilter} className="imagem-filtro" alt="Abrir filtros" />
                         </button>
                     </div>
                     <ul>

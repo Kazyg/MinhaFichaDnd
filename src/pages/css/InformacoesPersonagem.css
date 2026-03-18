@@ -1,20 +1,42 @@
 .informacoes-personagem {
-  position: absolute;
-  top: 17px;
-  left: 215px;
+  position: relative;
+  width: 100%;
   background-color: #2c2f33;
-  padding-bottom: 13px !important;
-  border-radius: 8px;
-  max-width: 1500px;
-  /* Aumentei a largura para caber tudo */
-  max-height: 190px;
-  transform: scale(0.8);
+  padding: 0.3rem;
+  padding-bottom: 0.3rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  max-height: 14.5rem;
 }
 
 .container-principal {
-  display: flex;
-  gap: 20px;
-  /* Espaço entre as colunas */
+  display: grid;
+  grid-template-columns:
+    minmax(10rem, 10.6rem)
+    minmax(13.1rem, 1fr)
+    minmax(13.1rem, 1fr)
+    minmax(13.8rem, 15rem)
+    minmax(8.8rem, 1fr);
+  gap: 0.4rem;
+  align-items: start;
+  width: 100%;
+  min-width: 0;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 1200px) {
+  .container-principal {
+    grid-template-columns: 1fr;
+  }
+  .informacoes-personagem {
+    max-height: none;
+  }
+}
+
+@media (max-width: 1400px) {
+  .container-principal {
+    grid-template-columns: minmax(10rem, 10.6rem) minmax(12.5rem, 1fr) minmax(12.5rem, 1fr) minmax(13.8rem, 15rem) minmax(7.5rem, 1fr);
+  }
 }
 
 .coluna-1,
@@ -22,50 +44,53 @@
 .coluna-3 {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.4rem;
+  min-width: 0;
+  font-size: 0.8rem;
 }
 
-.coluna-4 {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+.coluna-1 {
+  padding-left: 2px;
+}
+
+.coluna-1 h4 {
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+.coluna-1 input {
+  font-size: 0.75rem;
+  padding: 0.25rem;
+  height: 1.4rem;
 }
 
 .coluna-2,
 .coluna-3 {
   align-items: center;
-}
-
-.coluna-1 {
-  width: 170px;
-  /* Largura fixa para a coluna do nome, nível e XP */
-}
-
-.coluna-2,
-.coluna-3 {
-  width: 250px;
-  /* Largura fixa para as colunas de atributos e proficiências */
+  gap: 0.4rem;
+  font-size: 0.8rem;
 }
 
 .coluna-2 h4 {
   position: relative;
-  top: 0px;
-  margin-top: -10px;
+  margin: 0;
 }
 
 .coluna-3 h4 {
   position: relative;
-  top: 0px;
-  margin-top: -10px;
+  margin: 0;
 }
 
 .coluna-4 {
-  width: 250px;
-  /* Largura fixa para a coluna da CA e vida */
+  width: auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
 }
 
 .coluna-5 {
-  width: 230px;
+  min-width: 0;
 }
 
 .teste-morte {
@@ -77,13 +102,14 @@
 }
 
 .teste-morte img {
-  width: 40px;
-  height: 40px;
+  width: 2rem;
+  height: 2rem;
 }
 
 .teste-morte h3 {
-  margin-top: -10px;
-  margin-bottom: 30px;
+  margin-top: 0;
+  margin-bottom: 0.6rem;
+  font-size: 0.9rem;
 }
 
 .teste-morte-container {
@@ -92,7 +118,7 @@
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
-  margin-top: 10px;
+  margin-top: 0.4rem;
 }
 
 .teste-vida-container {
@@ -101,7 +127,7 @@
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
-  margin-top: 10px;
+  margin-top: 0.4rem;
 }
 
 .campo {
@@ -113,16 +139,16 @@
   background-color: #3b3f44;
   color: white;
   border: none;
-  padding: 5px;
-  border-radius: 5px;
+  padding: 0.2rem;
+  border-radius: 0.3rem;
 }
 
 .botao-nivel {
   background-color: #7289da;
   color: white;
   border: none;
-  padding: 5px;
-  border-radius: 5px;
+  padding: 0.3rem;
+  border-radius: 0.3rem;
   cursor: pointer;
 }
 
@@ -130,8 +156,7 @@
 .proficiencias-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* 3 colunas para atributos e proficiências */
-  gap: 5px;
+  gap: 0.3rem;
 }
 
 .atributo,
@@ -139,65 +164,77 @@
   background: #3b3f44;
   color: white;
   text-align: center;
-  border-radius: 5px;
-  padding: 5px;
-  font-size: 14px;
-  width: 60px;
+  border-radius: 0.3rem;
+  padding: 0.25rem;
+  font-size: 0.75rem;
+  width: auto;
+  min-width: 3.8rem;
 }
 
 .atributo-divisoria,
 .proficiencia-divisoria {
   height: 2px;
   background-color: white;
-  margin: 2px 0;
+  margin: 0.2rem 0;
 }
 
 .ca-container {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.6rem;
+  position: relative;
+  padding-left: 0;
 }
 
 .icon-ca {
-  width: 80px;
-  height: 80px;
+  width: 3.8rem;
+  height: 3.8rem;
 }
 
 .ca-text {
-  position: relative;
-  top: -7px;
-  left: -70px;
-  font-size: 40px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3.8rem;
+  height: 3.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.9rem;
 }
 
 .ca {
   position: relative;
-  margin-left: -55px;
   background: #3b3f44;
-  width: 140px !important;
-  padding: 5px;
-  border-radius: 5px;
+  width: min(17.5rem, 100%);
+  padding: 0.2rem;
+  border-radius: 0.3rem;
 }
 
 .ca-detalhes {
-  font-size: 12px;
-  margin-left: 5px;
+  font-size: 0.75rem;
+  margin-left: 0.3rem;
 }
 
 .vida {
   flex-grow: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 12px;
+  line-height: 1.1;
 }
 
 .vida h4 {
   text-align: center;
-  font-size: 14px;
-  margin-bottom: 5px;
-  margin-top: 5px;
+  font-size: 12px;
+  margin: 0;
 }
 
 .barra-vida {
   width: 100%;
-  height: 25px;
+  height: 6px;
   background-color: #3b3f44;
   border-radius: 25px;
   overflow: hidden;
@@ -210,16 +247,19 @@
   text-align: center;
   color: white;
   position: relative;
+  z-index: 1;
 }
 
 /* Traços pretos na barra de vida */
-.barra-vida::before {
+.barra-vida::after {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 2;
+  pointer-events: none;
   background: repeating-linear-gradient(to right,
       transparent,
       transparent 9%,
