@@ -8,6 +8,7 @@ import iconLife1 from "../../imagens/shield_with_heart_24dp_75FB4C_FILL0_wght400
 import iconLife2 from "../../imagens/shield_with_heart_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png"
 import { useFicha } from "../../api/fichaPersonagem/FichaContext.tsx"
 import VidaComponente from "./components_InformacoesPersonagem/ModalVida.tsx";
+import { calcularBonusCAItens, calcularValorAtributoFinal, listarEfeitosAtivos } from "../../api/fichaPersonagem/fichaEfeitosUtils.ts";
 
 declare global {
   interface Window {
@@ -47,7 +48,7 @@ export default function InformacoesPersonagem() {
     }, 1500);
   };
 
-  const calcularProeficiencia = (idAtributo) => {
+  const calcularProeficiencia = (idAtributo: number) => {
     let nomeTesteResistencia = atributosIniciais.find(a => a.id === idAtributo)?.nomeDesc;
 
     if (ficha?.classePrincipal?.testesResistencias?.includes(nomeTesteResistencia ?? "")) {
@@ -56,75 +57,24 @@ export default function InformacoesPersonagem() {
     return 0;
   }
 
-  const calcularModificador = (valor) => {
+  const calcularModificador = (valor: number) => {
     const num = Number(valor);
     if (isNaN(num)) return 0;
     return Math.floor((num - 10) / 2);
   }
 
   function calcularAtributo(dados: string) {
-    const efeitosDestreza = ficha?.efeitos?.filter((e: any) => e.level <= (ficha?.levelTotal || 0) && e.atributo === "destreza");
-    const efeitosConstituicao = ficha?.efeitos?.filter((e: any) => e.level <= (ficha.levelTotal || 0) && e.atributo === "constituição");
-    const efeitosSabedoria = ficha?.efeitos?.filter((e: any) => e.level <= (ficha.levelTotal || 0) && e.atributo === "sabedoria");
-    const efeitosInteligencia = ficha?.efeitos?.filter((e: any) => e.level <= (ficha.levelTotal || 0) && e.atributo === "inteligência");
-    const efeitosForca = ficha?.efeitos?.filter((e: any) => e.level <= (ficha.levelTotal || 0) && e.atributo === "força");
-    const efeitosCarisma = ficha?.efeitos?.filter((e: any) => e.level <= (ficha.levelTotal || 0) && e.atributo === "carisma");
-
-    let destrezaAtual = ficha?.atributosPersonagem?.destreza.valor;
-    let constituicaoAtual = ficha?.atributosPersonagem?.constituicao.valor;
-    let sabedoriaAtual = ficha?.atributosPersonagem?.sabedoria.valor;
-    let inteligenciaAtual = ficha?.atributosPersonagem?.inteligencia.valor;
-    let forcaAtual = ficha?.atributosPersonagem?.forca.valor;
-    let carismaAtual = ficha?.atributosPersonagem?.carisma.valor;
-
-    if (dados === "DES") {
-      if (efeitosDestreza) if (efeitosDestreza.length > 0) {
-        const bonusDestreza = efeitosDestreza.reduce((acc: number, e: any) => acc + e.bonus, 0);
-        if (destrezaAtual) destrezaAtual += bonusDestreza
-      }
-      return destrezaAtual;
-    }
-    if (dados === "CON") {
-      if (efeitosConstituicao) if (efeitosConstituicao.length > 0) {
-        const bonusConstituicao = efeitosConstituicao.reduce((acc: number, e: any) => acc + e.bonus, 0);
-        if (constituicaoAtual) constituicaoAtual += bonusConstituicao;
-      }
-      return constituicaoAtual;
-    }
-    if (dados === "SAB") {
-      if (efeitosSabedoria) if (efeitosSabedoria.length > 0) {
-        const bonusSabedoria = efeitosSabedoria.reduce((acc: number, e: any) => acc + e.bonus, 0);
-        if (sabedoriaAtual) sabedoriaAtual += bonusSabedoria;
-      }
-      return sabedoriaAtual;
-    }
-    if (dados === "INT") {
-      if (efeitosInteligencia) if (efeitosInteligencia.length > 0) {
-        const bonusInteligencia = efeitosInteligencia.reduce((acc: number, e: any) => acc + e.bonus, 0);
-        if (inteligenciaAtual) inteligenciaAtual += bonusInteligencia;
-      }
-      return inteligenciaAtual;
-    }
-    if (dados === "FOR") {
-      if (efeitosForca) if (efeitosForca.length > 0) {
-        const bonudForca = efeitosForca.reduce((acc: number, e: any) => acc + e.bonus, 0);
-        if (forcaAtual) forcaAtual += bonudForca;
-      }
-      return forcaAtual;
-    }
-    if (dados === "CAR") {
-      if (efeitosCarisma) if (efeitosCarisma.length > 0) {
-        const bonusCarisma = efeitosCarisma.reduce((acc: number, e: any) => acc + e.bonus, 0);
-        if (carismaAtual) carismaAtual += bonusCarisma;
-      }
-      return carismaAtual;
-    }
+    if (dados === "DES") return calcularValorAtributoFinal(ficha, "destreza");
+    if (dados === "CON") return calcularValorAtributoFinal(ficha, "constituicao");
+    if (dados === "SAB") return calcularValorAtributoFinal(ficha, "sabedoria");
+    if (dados === "INT") return calcularValorAtributoFinal(ficha, "inteligencia");
+    if (dados === "FOR") return calcularValorAtributoFinal(ficha, "forca");
+    if (dados === "CAR") return calcularValorAtributoFinal(ficha, "carisma");
+    return 10;
   }
 
   function explicacaoCA() {
-    const efeitosCA = ficha?.efeitos?.filter(
-      (e: any) => e.level <= (ficha?.levelTotal || 0) && e.ca === "CA"
-    );
+    const efeitosCA = listarEfeitosAtivos(ficha).filter((e: any) => e.ca === "CA");
     let explicacao: string[] = [];
 
     const getModStr = (atributo: string, descricao: string = "") => {
@@ -200,7 +150,6 @@ export default function InformacoesPersonagem() {
 
 
   function calcularCA() {
-    const efeitosCA = ficha?.efeitos?.filter((e: any) => e.level <= (ficha?.levelTotal || 0) && e.ca === "CA");
     let ca = 10;
     if (!ficha?.ArmaduraEquipada) {
       ca += calcularModificador(calcularAtributo("DES"));
@@ -242,34 +191,31 @@ export default function InformacoesPersonagem() {
     if (ficha?.escudoEquipado && proficienciaEscudos) {
       ca += ficha.escudoEquipado.ac;
     }
-    if (efeitosCA) {
-      const bonusCA = efeitosCA.reduce((acc: number, e: any) => acc + e.bonus, 0);
-      ca += bonusCA;
-    }
+    ca += calcularBonusCAItens(ficha);
     return ca;
   }
 
-  function coletarProeficiencias(efeitos) {
-    const proficienciasPersonagem = new Set();
+  function coletarProeficiencias(efeitos: any) {
+    const proficienciasPersonagem = new Set<string>();
     if (efeitos !== null) {
-      efeitos.forEach(efeito => {
+      efeitos.forEach((efeito: any) => {
         if (efeito.proeficienciasBackGround) {
-          efeito.proeficienciasBackGround.forEach(proficiencia => {
+          efeito.proeficienciasBackGround.forEach((proficiencia: string) => {
             proficienciasPersonagem.add(normalizarString(proficiencia));
           });
         }
         if (efeito.proeficienciasClasse) {
-          efeito.proeficienciasClasse.forEach(proficiencia => {
+          efeito.proeficienciasClasse.forEach((proficiencia: string) => {
             proficienciasPersonagem.add(normalizarString(proficiencia));
           });
         }
         if (efeito.proeficienciasRaca) {
-          efeito.proeficienciasRaca.forEach(proficiencia => {
+          efeito.proeficienciasRaca.forEach((proficiencia: string) => {
             proficienciasPersonagem.add(normalizarString(proficiencia));
           });
         }
         if (efeito.proficienciasMulticlasse) {
-          efeito.proficienciasMulticlasse.forEach(proficiencia => {
+          efeito.proficienciasMulticlasse.forEach((proficiencia: string) => {
             proficienciasPersonagem.add(normalizarString(proficiencia));
           });
         }
@@ -279,11 +225,11 @@ export default function InformacoesPersonagem() {
     return proficienciasPersonagem;
   }
 
-  function verificarProficiencias(armadura1, armadura2, proficienciasPersonagem) {
+  function verificarProficiencias(armadura1: string, armadura2: string, proficienciasPersonagem: Set<string>) {
     return proficienciasPersonagem.has(normalizarString(armadura1)) || proficienciasPersonagem.has(normalizarString(armadura2));
   }
 
-  function normalizarString(str) {
+  function normalizarString(str: string) {
     return str
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
@@ -294,11 +240,11 @@ export default function InformacoesPersonagem() {
     const [sucessos, setSucessos] = useState(0);
     const [falhas, setFalhas] = useState(0);
 
-    const toggleSucesso = (index) => {
+    const toggleSucesso = (index: number) => {
       setSucessos((prev) => (index < prev ? index : index + 1));
     };
 
-    const toggleFalha = (index) => {
+    const toggleFalha = (index: number) => {
       setFalhas((prev) => (index < prev ? index : index + 1));
     };
 
@@ -390,7 +336,7 @@ export default function InformacoesPersonagem() {
               <div key={atributo} className="atributo">
                 <span className="atributo-nome">{dados.nome}</span>
                 <span> / </span>
-                <span className="atributo-valor">{dados.valor}</span>
+                <span className="atributo-valor">{calcularAtributo(dados.nome)}</span>
                 <div className="atributo-divisoria" />
                 {(() => {
                   const mod = calcularModificador(calcularAtributo(dados.nome));
