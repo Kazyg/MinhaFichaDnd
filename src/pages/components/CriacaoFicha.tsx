@@ -150,7 +150,7 @@ export default function CriacaoFicha() {
           multiclasseAchada.nivelClasse -= 1;
           const niveisEscolhidos = multiclasseAchada.nivelEscolhido.sort((a, b) => a - b);
           const efeitosClasse = ficha?.efeitos?.filter(e => e.classeNome === multiclasseAchada.classe.nome);
-          efeitosClasse?.map((efeito, index) => {
+          efeitosClasse?.forEach((efeito, index) => {
             ficha?.efeitos?.find(e => e.id === efeito.id)?.setLevel(niveisEscolhidos[index]);
           })
           const nivelEstiloLutaClasse = multiclasseAchada.classe.niveis.find(n => n.caracteristicas.find(c => c.includes("Estilo de Luta")))?.nivel;
@@ -217,7 +217,7 @@ export default function CriacaoFicha() {
     }
   }
 
-  function validaSubClasse(classe, nivel) {
+  function validaSubClasse(classe: string, nivel: number): boolean {
     // Converte a classe para minúsculas para evitar problemas de case sensitivity
     classe = classe?.toLowerCase();
 
