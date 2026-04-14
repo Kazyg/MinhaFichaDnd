@@ -6,10 +6,12 @@ import PericiasEOutros from "./components/PericiasEOutros.tsx";
 import InventarioMagiasDetalhes from "./components/InventarioMagiasDetalhes.tsx";
 import "./css/criarFicha.css";
 import { useFicha } from "../api/fichaPersonagem/FichaContext.tsx";
+import { exportarFichaPdf, exportarMapaPdf } from "../utils/exportarFichaPdf.ts";
 
 export default function CriarFicha() {
   const { ficha, salvarFicha } = useFicha();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [abaAtiva, setAbaAtiva] = useState("criacao");
@@ -36,12 +38,29 @@ export default function CriarFicha() {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleExportarPDF = () => {
-    console.log('Exportar PDF');
+  const handleExportarPDF = async () => {
+    try {
+      await exportarFichaPdf(ficha);
+    } catch (error) {
+      console.error("Erro ao exportar PDF:", error);
+    } finally {
+      setIsMenuOpen(false);
+    }
+  };
+
+  const handleExportarMapaPDF = async () => {
+    try {
+      await exportarMapaPdf();
+    } catch (error) {
+      console.error("Erro ao exportar mapa PDF:", error);
+    } finally {
+      setIsMenuOpen(false);
+    }
   };
 
   const handleExportarJSON = () => {
     exportarFicha();
+    setIsMenuOpen(false);
   };
 
   const exportarFicha = () => {
@@ -59,6 +78,7 @@ export default function CriarFicha() {
 
   const handleExportarXML = () => {
     console.log('Exportar XML');
+    setIsMenuOpen(false);
   };
 
   return (
@@ -67,6 +87,16 @@ export default function CriarFicha() {
         <button className="hamburger-button" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           ☰
         </button>
+
+        {isMenuOpen && (
+          <div className="menu-options">
+            <button onClick={handleSalvarFicha}>Salvar Ficha</button>
+            <button onClick={handleExportarPDF}>Exportar PDF</button>
+            <button onClick={handleExportarMapaPDF}>Mapear PDF</button>
+            <button onClick={handleExportarJSON}>Exportar JSON</button>
+            <button onClick={handleExportarXML}>Exportar XML</button>
+          </div>
+        )}
 
         {isMobile && (
           <div className="menu-abas-criarFicha">
@@ -87,14 +117,6 @@ export default function CriarFicha() {
         </div>
         )}
       </div>
-      {isMenuOpen && (
-          <div className="menu-options">
-            <button onClick={handleSalvarFicha}>Salvar Ficha</button>
-            <button onClick={handleExportarPDF}>Exportar PDF</button>
-            <button onClick={handleExportarJSON}>Exportar JSON</button>
-            <button onClick={handleExportarXML}>Exportar XML</button>
-          </div>
-        )}
       {/* Modo Desktop: exibe todos os componentes */}
       {!isMobile && (
         <div className="desktop-layout">
