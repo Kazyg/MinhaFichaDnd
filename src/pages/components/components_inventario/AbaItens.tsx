@@ -64,11 +64,6 @@ export default function AbaItens({ setModalItemAberto }: AbaItensProps) {
         Sintonizados: {ficha?.getItensSintonizadosEquipados().length ?? 0}/{calcularLimiteSintonizacao(ficha)}
       </p>
 
-      <p>Sintonizar registra o vínculo após cumprir os requisitos e o descanso; desequipar mantém esse vínculo.</p>
-      <p><a href={ficha?.versaoRegras === 'DND_2024'
-        ? 'https://www.dndbeyond.com/sources/dnd/br-2024/equipment#Attunement'
-        : 'https://www.dndbeyond.com/sources/dnd/basic-rules-2014/magic-items#Attunement'}>
-        Regras de sintonização ({ficha?.versaoRegras === 'DND_2024' ? '2024' : '2014'})</a></p>
       <div className="controle-moedas">
         {botoesMoeda("ouro", ficha?.ouro)}
         {botoesMoeda("prata", ficha?.prata)}

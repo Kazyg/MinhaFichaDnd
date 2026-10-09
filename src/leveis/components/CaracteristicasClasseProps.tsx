@@ -112,29 +112,29 @@ const CaracteristicasClasse: React.FC<CaracteristicasClasseProps> = ({ classe, n
                 <p className="descricao p-2 border rounded-lg mt-2 texto-formatado">{descricao}</p>
               )}
             </div>
-            {modalSelecaoEstiloLutaAberto && (
-              <>
-                <div className="popup-overlay" onClick={() => setModalSelecaoEstiloLutaAberto(false)}></div>
-                <div className="popup">
-                  <ModalSelecaoEstiloLuta
-                    titulo="Escolha seu Estilo de luta"
-                    opcoes={filtrarEstilosDeLutaPorClasse(classe.nome, estilosDeLuta)}
-                    onClose={() => setModalSelecaoEstiloLutaAberto(false)}
-                    onSelect={(estilo) => {
-                      atribuirEfeito(estilo?.nome);
-                      ficha?.excluirEstiloLuta(classe.nome);
-                      if (estilo) ficha?.setEstiloLuta(estilo?.nome, classe.nome);
-                      setModalSelecaoEstiloLutaAberto(false);
-                      forceUpdate();
-                    }}
-                    EstiloInicial={EstilosLuta.find(e => e.nome === ficha?.estiloLuta?.find(e => e.classe === classe.nome)?.estilo) || null}
-                  />
-                </div>
-              </>
-            )}
           </React.Fragment>
         );
       })}
+      {modalSelecaoEstiloLutaAberto && (
+        <>
+          <div className="popup-overlay" onClick={() => setModalSelecaoEstiloLutaAberto(false)} />
+          <div className="popup">
+            <ModalSelecaoEstiloLuta
+              titulo="Escolha seu Estilo de luta"
+              opcoes={filtrarEstilosDeLutaPorClasse(classe.nome, estilosDeLuta)}
+              onClose={() => setModalSelecaoEstiloLutaAberto(false)}
+              onSelect={(estilo) => {
+                atribuirEfeito(estilo?.nome);
+                ficha?.excluirEstiloLuta(classe.nome);
+                if (estilo) ficha?.setEstiloLuta(estilo.nome, classe.nome);
+                setModalSelecaoEstiloLutaAberto(false);
+                forceUpdate();
+              }}
+              EstiloInicial={EstilosLuta.find(e => e.nome === ficha?.estiloLuta?.find(e => e.classe === classe.nome)?.estilo) || null}
+            />
+          </div>
+        </>
+      )}
       {
         ficha?.subClasse?.find((s) => s.classe.nome === classe.nome) && (
           <>

@@ -19,7 +19,7 @@ const ModalSelecaoEstiloLuta: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
         texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
     const opcoesFiltradas = opcoes.filter((opcao) =>
-        normalizar(opcao.nome).includes(filtro.toLowerCase())
+        normalizar(opcao.nome).includes(normalizar(filtro))
     );
 
     return (
@@ -29,12 +29,12 @@ const ModalSelecaoEstiloLuta: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
                 <div className="lista-racas">
                     <input
                         type="text"
-                        aria-label="Filtrar classes..." placeholder="Filtrar classes..."
+                        aria-label="Filtrar estilos de luta..." placeholder="Filtrar estilos de luta..."
                         value={filtro}
                         onChange={(e) => setFiltro(e.target.value)}
                     />
                     <ul>
-                        {opcoesFiltradas.filter(e => !ficha?.estiloLuta?.find(fe => fe.estilo === e.nome)).map((opcao) => (
+                        {opcoesFiltradas.filter(e => e.nome === EstiloInicial?.nome || !ficha?.estiloLuta?.find(fe => fe.estilo === e.nome)).map((opcao) => (
                             <li key={opcao.nome}><button type="button" className="selection-option" aria-pressed={selecionado?.nome === opcao.nome} onClick={() => {
                                 setSelecionado(opcao);
                             }}>

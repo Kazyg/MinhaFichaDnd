@@ -8,10 +8,10 @@ beforeEach(() => {
   window.history.replaceState({}, '', '/');
 });
 
-test('exibe a home e o estado de salvamento', () => {
+test('exibe a home sem faixa de salvamento quando não há pendências', () => {
   render(<App />);
   expect(screen.getByRole('heading', { name: /Criador de Fichas de RPG/i })).toBeInTheDocument();
-  expect(screen.getByRole('status')).toHaveTextContent('Salvo neste navegador');
+  expect(screen.queryByRole('status')).not.toBeInTheDocument();
 });
 
 test('fechar a seleção de edição não cria ficha', async () => {

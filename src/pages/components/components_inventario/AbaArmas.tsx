@@ -103,7 +103,6 @@ export default function AbaArmas({ setModalAberto }: AbaArmasProps) {
     return (
         <div  className="inventario-armas-container">
             <h3 className="inventario-titulo">Inventário de Armas</h3>
-            <p>Dano principal em uma mão para armas versáteis. Outros estilos e situações de combate exigem aplicação manual.</p>
             <div className="proficiencias-personagem-container">
                 <div className="proficiencias-personagem">
                     <img className="icon-proficiencia" alt="proficiencia" src={proficienciaArmaSimples ? proficienciaIcon : noProficienciaIcon} title={proficienciaArmaSimples ? "proficiente" : "não proficiente"}></img>

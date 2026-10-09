@@ -44,7 +44,9 @@ export function podeSelecionarClasse(ficha: Ficha, classe: Classes, nivel: numbe
   const anteriores = (ficha.multiclasses ?? []).filter(m => m.nivelEscolhido.some(n => n < nivel)).map(m => m.classe);
   if (!anteriores.length && ficha.classePrincipal) anteriores.push(ficha.classePrincipal);
   if (!anteriores.length) return false;
-  if (anteriores.every(c => chaveClasse(c) === chaveClasse(classe))) return true;
+  // Advancing an already acquired class is not entering a new multiclass.
+  // Recheck prerequisites only when acquiring the first level of a new class.
+  if (anteriores.some(c => chaveClasse(c) === chaveClasse(classe))) return true;
   const antes = { ...ficha, levelTotal: Math.min(nivel - 1, ficha.levelTotal ?? 0) } as Ficha;
   return [...anteriores, classe].every(c => cumpreRequisitosClasse(c, a => calcularValorAtributoFinal(antes, a)));
 }

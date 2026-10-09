@@ -9,6 +9,50 @@ button[aria-pressed="true"] { border-color: #ffdb70; box-shadow: inset 0 0 0 2px
 [role="dialog"] { box-sizing: border-box; overflow-wrap: anywhere; }
 .popup-content-modal[role="dialog"] { height: auto; max-height: 80dvh; overflow: auto; width: 100%; }
 [role="dialog"] .popup-body-modal { min-height: 0; width: 100%; }
+
+/* Selection lists share the dark, full-width rows used by the race picker. */
+[role="dialog"] .lista-racas > input {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 32px;
+  height: auto;
+  background: #333;
+  border: 1px solid #444;
+  border-radius: 5px;
+}
+[role="dialog"] .lista-racas ul {
+  box-sizing: border-box;
+  padding: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #333;
+}
+[role="dialog"] .lista-racas li {
+  padding: 10px;
+  margin-bottom: 5px;
+  background: #444;
+  border-radius: 5px;
+}
+[role="dialog"] .lista-racas li > .selection-option {
+  box-sizing: border-box;
+  min-height: 44px;
+  padding: 10px;
+  border-radius: 5px;
+  background: transparent;
+}
+[role="dialog"] .lista-racas li > .selection-option:not([aria-pressed="true"]):hover {
+  background: #555;
+}
+[role="dialog"] .lista-racas li > .selection-option[aria-pressed="true"] {
+  background: #e43d00;
+  color: #fff;
+  border: 2px solid #fff;
+  box-shadow: none;
+}
+[role="dialog"] .lista-racas ul::-webkit-scrollbar { width: 8px; }
+[role="dialog"] .lista-racas ul::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
 [role="dialog"] .detalhes-raca { min-width: 0; box-sizing: border-box; }
 [role="dialog"] .selects-filtros { width: 100%; margin-left: 0; flex-wrap: wrap; gap: 8px; }
 [role="dialog"] input, [role="dialog"] select { max-width: 100%; box-sizing: border-box; }

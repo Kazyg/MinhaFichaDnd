@@ -62,7 +62,8 @@ test('legado sem edição abre, preserva opções desconhecidas e autosalva muta
   });
   expect(screen.getByRole('status')).toHaveTextContent('Alterações não salvas');
   act(() => jest.advanceTimersByTime(300));
-  expect(screen.getByRole('status')).toHaveTextContent('Salvo neste navegador');
+  expect(api.status).toBe('salvo');
+  expect(screen.queryByRole('status')).not.toBeInTheDocument();
   expect(store.data.get(BACKUP_KEY)).toBe(raw);
   view.unmount();
   mount(store);

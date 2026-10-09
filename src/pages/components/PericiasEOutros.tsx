@@ -3,13 +3,9 @@ import "../css/PericiasEOutros.css";
 import { useFicha } from "../../api/fichaPersonagem/FichaContext"
 
 import { selecionarIniciativa, selecionarDeslocamento, selecionarPercepcaoPassiva, selecionarPericia, selecionarProficiencia, formatarBonus, explicarParcelas } from "../../api/fichaPersonagem/fichaSeletores";
-import { Efeitos } from "../../api/classesPrincipais/Efeitos";
-import EspecializacaoOficial from './EspecializacaoOficial';
-import RevisaoLegado from './RevisaoLegado';
-import { arquivarEscolha } from '../../api/fichaPersonagem/escolhasProgressao';
 
 export default function PericiasEOutros() {
-  const { ficha, refreshKey, forceUpdate } = useFicha();
+  const { ficha, refreshKey } = useFicha();
   const [pericias, setPericias] = useState<
     {
       modificador?: { id: number; nome: string; valor: number; tipo: string };
@@ -181,10 +177,7 @@ export default function PericiasEOutros() {
 
       {/* Quadro grande com perícias */}
       <div className="pericias-lista">
-        <RevisaoLegado />
         <h4>Perícias</h4>
-        <EspecializacaoOficial />
-        <p>As caixas abaixo são ajustes manuais, sem validação de fonte ou quantidade. Efeitos antigos permanecem preservados.</p>
         <ul>
           {pericias.map((pericia, index) => (
             <li key={index} className="pericia-item">
@@ -204,26 +197,6 @@ export default function PericiasEOutros() {
                   {pericia.nome}
                   {" "}
                   {pericia.atributo}
-                  <label title="Ajuste manual; não representa uma escolha oficial validada.">
-                    <input type="checkbox" aria-label={`Especialização em ${pericia.nome}`}
-                      checked={!!ficha?.efeitos?.some(e => e.origemTipo === 'manual' && e.tituloEfeito === `especializacao:${pericia.nome}`)}
-                      onChange={e => {
-                        if (ficha) {
-                          const anteriores = ficha.efeitos?.filter(e => e.origemTipo === 'manual' && e.tituloEfeito === `especializacao:${pericia.nome}`) ?? [];
-                          if (anteriores.length) arquivarEscolha(ficha, 'especializacao-manual', anteriores);
-                          ficha.efeitos = ficha.efeitos?.filter(e => !anteriores.includes(e)) ?? null;
-                        }
-                        if (e.target.checked) {
-                          const efeito = new Efeitos();
-                          efeito.setTituloEfeito(`especializacao:${pericia.nome}`);
-                          efeito.setTipoEfeito('especializacao');
-                          efeito.setPericia(pericia.nome);
-                          efeito.setOrigemTipo('manual');
-                          ficha?.setEfeitos(efeito);
-                        }
-                        forceUpdate();
-                      }} /> Especialização manual
-                  </label>
                 </span>
               </div>
             </li>

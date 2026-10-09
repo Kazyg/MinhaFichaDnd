@@ -77,6 +77,27 @@ test('atributos de avanço futuro não autorizam multiclasse anterior', () => {
   expect(ficha.selecionarClasseNoNivel(classe(ficha, 'mago'), 5)).toBe(false);
 });
 
+test.each(['DND_2014', 'DND_2024'])('classe já adquirida pode avançar sem revalidar entrada em multiclasse: %s', edicao => {
+  let ficha = fixture(edicao, 'guerreiro', 4);
+  const mago = classe(ficha, 'mago');
+  expect(ficha.selecionarClasseNoNivel(mago, 2)).toBe(true);
+  ficha.atributosPersonagem.forca.valor = 10;
+  ficha.atributosPersonagem.destreza.valor = 10;
+  ficha = reabrir(ficha);
+  expect(podeSelecionarClasse(ficha, classe(ficha, 'mago'), 4)).toBe(true);
+  expect(ficha.selecionarClasseNoNivel(classe(ficha, 'mago'), 4)).toBe(true);
+  expect(nivelDaClasse(reabrir(ficha), 'mago')).toBe(2);
+  expect(ficha.selecionarClasseNoNivel(classe(ficha, 'clerigo'), 3)).toBe(false);
+});
+
+test('aumento já adquirido libera nova classe, inclusive após reabrir', () => {
+  let ficha = fixture('DND_2024', 'guerreiro', 5);
+  ficha.atributosPersonagem.inteligencia.valor = 12;
+  expect(ficha.aplicarAumentoAtributos(4, ['inteligencia', 'carisma'])).toBe(true);
+  ficha = reabrir(ficha);
+  expect(ficha.selecionarClasseNoNivel(classe(ficha, 'mago'), 5)).toBe(true);
+});
+
 test.each(['DND_2014', 'DND_2024'])('ASI 19/20, atomicidade e reabertura %s', edicao => {
   let ficha = fixture(edicao); ficha.atributosPersonagem.forca.valor = 19;
   const before = exportFicha(ficha);

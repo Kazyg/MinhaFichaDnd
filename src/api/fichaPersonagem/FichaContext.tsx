@@ -212,8 +212,8 @@ export const FichaProvider = ({ children, storage }: React.PropsWithChildren<{ s
     tentarSalvar: flush, reler,
   };
   return <FichaContext.Provider value={value}>
-    <aside aria-label="Salvamento das fichas" style={{ padding: '8px 16px', background: '#17212b', color: '#fff' }}>
-      <span role="status" aria-live="polite">{({ carregando: 'Carregando fichas…', sujo: 'Alterações não salvas', salvando: 'Salvando…', salvo: 'Salvo neste navegador', erro: 'Erro: alterações não salvas' })[status]}</span>
+    <aside aria-label="Salvamento das fichas" hidden={status === 'salvo'} style={{ padding: '8px 16px', background: '#17212b', color: '#fff' }}>
+      <span role="status" aria-live="polite">{({ carregando: 'Carregando fichas…', sujo: 'Alterações não salvas', salvando: 'Salvando…', salvo: '', erro: 'Erro: alterações não salvas' })[status]}</span>
       {erro && <div role="alert">{erro}</div>}
       {status === 'erro' && !recuperacao && <button onClick={flush}>Tentar salvar novamente</button>}
       {status === 'erro' && <button onClick={reler}>Reler armazenamento</button>}

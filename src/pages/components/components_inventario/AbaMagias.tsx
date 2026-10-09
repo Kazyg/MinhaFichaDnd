@@ -1,4 +1,3 @@
-import { recuperarEspacos } from '../../../api/fichaPersonagem/fichaRecursos';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import ModalSelecaoMagias from '../../modals/ModalMagias';
@@ -26,9 +25,6 @@ export default function AbaMagias() {
         {fonte.categoria === 'livro' && ` Livro: ${escolhas.filter(e => e.fonte === fonte.id && e.categoria === 'livro').length} (progressão: ${fonte.livroPorProgressao}; cópias adicionais registradas separadamente).`}</p>
     </div>)}
     {!fontes.length && <p>Nenhuma fonte de conjuração ativa neste nível.</p>}
-    <p>Após concluir o descanso, registre apenas a recuperação de espaços. PV e outros recursos não são alterados.</p>
-    <button onClick={() => { if (ficha) { recuperarEspacos(ficha, 'curto'); forceUpdate(); } }}>Recuperar espaços: descanso curto</button>
-    <button onClick={() => { if (ficha) { recuperarEspacos(ficha, 'longo'); forceUpdate(); } }}>Recuperar espaços: descanso longo</button>
     <p><a href={ficha?.versaoRegras === 'DND_2024' ? 'https://www.dndbeyond.com/sources/dnd/br-2024/rules-glossary' : 'https://www.dndbeyond.com/sources/dnd/basic-rules-2014/adventuring'}>Regras de descanso da edição</a></p>
     {pools.map(pool => <section key={pool.id} aria-label={pool.nome}>
       <h4>{pool.nome}</h4><p>Recuperação: {pool.recuperacao}. Consumo salvo na ficha.</p>
@@ -43,7 +39,6 @@ export default function AbaMagias() {
         })}
       </div>)}
     </section>)}
-    <p>Espaços combinados permitem conjurar em círculos superiores, mas não aprender ou preparar magias acima do limite de cada fonte.</p>
     <h3>Magias registradas</h3>
     {escolhas.map(escolha => {
       const pendencias = pendenciasMagia(ficha, escolha);

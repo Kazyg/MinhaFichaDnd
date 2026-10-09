@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { PDFDocument, PDFPage } from 'pdf-lib';
 import fs from 'fs';
 import { Ficha } from './FichaPersonagem';
@@ -123,10 +123,13 @@ test('troca de linhagem 2014/2024 e raça preserva deslocamento manual', () => {
 
 test('UI usa valores finais, mantém especialização após exportar/reabrir', () => {
   mockFicha = fixture();
+  const especializacao = new Efeitos();
+  Object.assign(especializacao, { tipoEfeito: 'especializacao', pericia: 'Furtividade', origemTipo: 'manual', tituloEfeito: 'especializacao:Furtividade' });
+  mockFicha.setEfeitos(especializacao);
   render(<><InformacoesPersonagem /><PericiasEOutros /></>);
   expect(screen.getByText('0/44')).toBeInTheDocument();
   expect(screen.getByLabelText('Classe de armadura')).toHaveTextContent('12');
-  fireEvent.click(screen.getByLabelText('Especialização em Furtividade'));
+  expect(screen.queryByLabelText('Especialização em Furtividade')).not.toBeInTheDocument();
   const reaberta = parseImport(exportFicha(mockFicha));
   expect(selecionarPericia(reaberta, 'Furtividade', 'destreza').total).toBe(8);
 });

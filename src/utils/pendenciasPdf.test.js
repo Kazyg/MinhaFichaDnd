@@ -51,11 +51,11 @@ describe.each(['DND_2014', 'DND_2024'])('%s', edicao => {
     await gerarFichaPdf(mockFicha);
     expect(spy.mock.calls.map(c => c[0]).join('\n')).toContain('Testes de morte não informados.');
   });
-  test('link de sintonização identifica a edição', () => {
+  test('inventário mantém contador de sintonização sem explicação e link removidos', () => {
     mockFicha = new Ficha({ versaoRegras: edicao });
     render(<AbaItens setModalItemAberto={() => {}} />);
-    const ano = edicao.slice(-4);
-    expect(screen.getByRole('link', { name: `Regras de sintonização (${ano})` })).toHaveAttribute('href',
-      edicao === 'DND_2014' ? 'https://www.dndbeyond.com/sources/dnd/basic-rules-2014/magic-items#Attunement' : 'https://www.dndbeyond.com/sources/dnd/br-2024/equipment#Attunement');
+    expect(screen.getByText('Sintonizados: 0/3')).toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /Regras de sintonização/ })).not.toBeInTheDocument();
+    expect(screen.queryByText(/Sintonizar registra o vínculo/)).not.toBeInTheDocument();
   });
 });
