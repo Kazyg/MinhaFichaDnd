@@ -1,3 +1,4 @@
+import { Talentos2024 } from './Catalogo2024.ts';
 export const Talentos = [
     {
       nome: "ADEPTO ELEMENTAL",
@@ -459,3 +460,5 @@ export const Talentos = [
       `,
     },
   ];
+
+Talentos.push(...Talentos2024);

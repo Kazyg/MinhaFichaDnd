@@ -11,6 +11,7 @@ import { Metamagica } from "../../bibliotecas/Metamagica.ts";
 import { Itens } from "../../bibliotecas/Itens.ts";
 import { Patronos } from "../classesEspeciais/Patronos.class.ts";
 import { extrairEfeitosDoItem } from "./fichaEfeitosUtils.ts";
+import { criarConcessoesTalento } from './talentos2024Utils.ts';
 
 export class Ficha {
     id: string;
@@ -315,10 +316,13 @@ export class Ficha {
             this.efeitos = []
         }
         this.efeitos?.push(efeitos);
+        if (efeitos.talento?.startsWith('2024: ')) {
+            this.efeitos.push(...criarConcessoesTalento(efeitos, this));
+        }
     }
     excluirEfeitoPorTitulo(titulo: string) {
         if (this.efeitos) {
-            this.efeitos = this.efeitos?.filter(e => e.tituloEfeito !== titulo);
+            this.efeitos = this.efeitos?.filter(e => e.tituloEfeito !== titulo && !(e.origemTipo === 'talento2024' && e.origemId === titulo));
         }
     }
     excluirEfeitoPorNivel(nivel: number) {

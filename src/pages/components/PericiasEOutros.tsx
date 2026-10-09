@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "../css/PericiasEOutros.css";
 import { useFicha } from "../../api/fichaPersonagem/FichaContext.tsx"
+import { temPericia, temEspecializacao, bonusDeslocamentoTalentos, bonusIniciativaTalentos, proficiencia2024 } from '../../api/fichaPersonagem/talentos2024Utils.ts';
+import { calcularValorAtributoFinal } from '../../api/fichaPersonagem/fichaEfeitosUtils.ts';
 
 export default function PericiasEOutros() {
   const { ficha, refreshKey } = useFicha();
@@ -163,9 +165,9 @@ export default function PericiasEOutros() {
       {/* Quadro pequeno com informações básicas */}
       <div className="info-extra">
         <div className="info-coluna">
-          <div className="info-item"><strong>Iniciativa:</strong> +{ficha?.iniciativa || "0"}</div>
-          <div className="info-item"><strong>Speed:</strong> {ficha?.speed || "0"}ft</div>
-          <div className="info-item"><strong>Percepção:</strong> +{10 + calcularModificador(ficha?.atributosPersonagem?.sabedoria?.valor ?? 10) + (pericias.find(pericia => pericia.nome === "Percepção")?.treinado ? (ficha?.proeficiencia ?? 0) : 0)}</div>
+          <div className="info-item"><strong>Iniciativa:</strong> +{calcularModificador(calcularValorAtributoFinal(ficha,'destreza')) + bonusIniciativaTalentos(ficha)}</div>
+          <div className="info-item"><strong>Speed:</strong> {(ficha?.speed || 0) + bonusDeslocamentoTalentos(ficha)}ft</div>
+          <div className="info-item"><strong>Percepção:</strong> +{10 + calcularModificador(calcularValorAtributoFinal(ficha,'sabedoria')) + (temPericia(ficha,'Percepção') ? proficiencia2024(ficha) * (temEspecializacao(ficha,'Percepção')?2:1) : 0)}</div>
         </div>
         <div className="info-coluna">
           <div className="info-item"><strong>Proficiência:</strong> +{ficha?.proeficiencia || "0"}</div>
@@ -180,13 +182,13 @@ export default function PericiasEOutros() {
           {pericias.map((pericia, index) => (
             <li key={index} className="pericia-item">
               <div className="modificador">
-                {calcularModificador(pericia.modificador?.valor ?? 10) + (pericia.treinado ? (ficha?.proeficiencia ?? 0) : 0)}
+                {calcularModificador(calcularValorAtributoFinal(ficha,pericia.modificador?.nome || '')) + (temPericia(ficha,pericia.nome) ? proficiencia2024(ficha) * (temEspecializacao(ficha,pericia.nome)?2:1) : 0)}
               </div>
               <div className="checkbox">
                 <input
                   type="checkbox"
                   disabled
-                  checked={ficha?.pericias?.includes(pericia.nome)}
+                  checked={temPericia(ficha,pericia.nome)}
                   onChange={() => toggleTreinado(index)}
                 />
               </div>

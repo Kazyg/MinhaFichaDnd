@@ -1,3 +1,4 @@
+import { Magias2024 } from './Catalogo2024.ts';
 export const magiasBardo = [
   { nome: "Amizade", nivel: 0, tipo: "encantamento" },
   { nome: "Ataque Certeiro", nivel: 0, tipo: "adivinhação" },
@@ -8735,3 +8736,9 @@ A magia pode penetrar a maioria das barreiras, mas é bloqueada por 30 centímet
     descricao: "Estabelece elo telepático com besta (INT ≤3). Besta ganha vantagem em ataques contra criaturas próximas a você."
   }
 ];
+
+// Edition-qualified references preserve all existing saved spell names.
+Magias.push(...Magias2024);
+for (const [classe, lista] of Object.entries({ Bardo: magiasBardo, Bruxo: magiasBruxo, 'Clérigo': magiasClerigo, Druida: magiasDruida, Feiticeiro: magiasFeiticeiro, Mago: magiasMago, Paladino: magiasPaladino, Patrulheiro: magiasPatrulheiro })) {
+  lista.push(...Magias2024.filter(m => m.classes.includes(classe)).map(({nome,nivel,tipo}) => ({nome,nivel,tipo})));
+}

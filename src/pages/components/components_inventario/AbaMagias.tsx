@@ -24,6 +24,8 @@ import magiaIcon1 from "../../../imagens/local_fire_department_24dp_EA3323_FILL0
 import { magiasBardo, magiasBruxo, magiasClerigo, magiasDruida, magiasFeiticeiro, magiasMago, magiasPaladino, magiasPatrulheiro } from "../../../bibliotecas/Magia.ts"
 import { Classes } from "../../../api/classesPrincipais/Classes.class.ts";
 import { calcularBonusMagiaPorClasse, calcularValorAtributoFinal } from "../../../api/fichaPersonagem/fichaEfeitosUtils.ts";
+import { magiasConcedidas, proficiencia2024, usarMagiaTalento, restaurarMagiasTalento } from '../../../api/fichaPersonagem/talentos2024Utils.ts';
+import { nomeExibicao } from '../../../bibliotecas/Catalogo2024.ts';
 
 export default function AbaMagias() {
   const [modalMagiasAberta, setModalMagiasAberta] = useState(false);
@@ -227,7 +229,7 @@ export default function AbaMagias() {
   }
 
   const agruparMagiasPorNivel = () => {
-    const magiasAgrupadas: Record<number, { nome: string, classe: string }[]> = {};
+    const magiasAgrupadas: Record<number, { nome: string, classe: string, concedida?: boolean }[]> = {};
 
     ficha?.magiasEscolhidas?.forEach(magiaEscolhida => {
       let classe: keyof typeof todasMagiasPorClasse | undefined;
@@ -265,6 +267,11 @@ export default function AbaMagias() {
       });
     });
 
+    for (const registro of magiasConcedidas(ficha)) {
+      const nivel=registro.magia.nivel;
+      if (!magiasAgrupadas[nivel]) magiasAgrupadas[nivel]=[];
+      magiasAgrupadas[nivel].push({nome:registro.magia.nome,classe:`${nomeExibicao(registro.talento)} (${registro.atributo})`,concedida:true});
+    }
     return magiasAgrupadas;
   };
 
@@ -639,7 +646,8 @@ export default function AbaMagias() {
                   </div>
                   <div className="dados-magia-container">
                     <div className="magia-coluna1">
-                      <p>{magia.nome} ({magia.classe})</p>
+                      <p>{nomeExibicao(magia.nome)} ({magia.classe})</p>
+                      {magia.concedida && <small>Sempre preparada pelo talento</small>}
                     </div>
                     <div className="magia-coluna2">
                       <button
@@ -663,6 +671,7 @@ export default function AbaMagias() {
                       </button>
                       <button
                         className="botao-excluir"
+                        disabled={magia.concedida}
                         onClick={() => {
                           ficha?.excluirMagiaEscolhidas(magia.nome);
                           forceUpdate();
@@ -696,6 +705,13 @@ export default function AbaMagias() {
           </div>
         </div>
         {renderMagiasPorNivel()}
+        {!!magiasConcedidas(ficha).length && <section aria-label="Conjuração por talentos"><h3>Magias dos Talentos</h3>
+          {magiasConcedidas(ficha).map(r=><div key={`${r.origem}-${r.magia.nome}`}>
+            <p>{nomeExibicao(r.magia.nome)} — {nomeExibicao(r.talento)} ({r.atributo}); CD {8 + proficiencia2024(ficha) + calcularModificador(calcularValorAtributoFinal(ficha,r.atributo||''))}</p>
+            {r.usosSemEspaco>0 && r.magia.nivel>0 && <button disabled={(ficha?.efeitos?.find(e=>e.tituloEfeito===r.origem)?.usosMagiaTalento?.[r.chaveUso]||0)>=r.usosSemEspaco} onClick={()=>{if(ficha) usarMagiaTalento(ficha,r.origem,r.magia.nome);forceUpdate();}}>{r.chaveUso==='ritualRapido'?'Ritual Rápido':'Conjurar sem espaço'} (1 por Descanso Longo)</button>}
+          </div>)}
+          <button onClick={()=>{if(ficha) restaurarMagiasTalento(ficha);forceUpdate();}}>Restaurar usos de magias dos talentos — Descanso Longo</button>
+        </section>}
       </div>
       {modalInfoMagiasAberta && (
         <>
@@ -706,7 +722,7 @@ export default function AbaMagias() {
               }}
               magiaSelect={magiaInfo}
               onClose={() => setModalInfoMagiasAberta(false)}
-              titulo={"Info " + magiaInfo}
+              titulo={"Info " + nomeExibicao(magiaInfo)}
             />
           </div>
         </>
@@ -720,7 +736,10 @@ export default function AbaMagias() {
                 const magiaClasse = validarMagiaClasse(magia);
                 if (!magiaClasse.magiaAchada) return;
                 const valida = validarMagiaEscolhida(magiaClasse.magiaAchada, magiaClasse.classe);
-                if (valida.valida && valida.classeValida) ficha?.setMagiaEscolhidas({ classe: valida.classeValida, magia: magiaClasse.magiaAchada.nome });
+                if (valida.valida && valida.classeValida) {
+                  ficha?.setMagiaEscolhidas({ classe: valida.classeValida, magia: magiaClasse.magiaAchada.nome });
+                  forceUpdate();
+                }
               }}
               magiaSelect=""
               onClose={() => setModalMagiasAberta(false)}

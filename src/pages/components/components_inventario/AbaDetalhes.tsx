@@ -2,6 +2,8 @@ import React, { useMemo, useState } from "react";
 import { useFicha } from "../../../api/fichaPersonagem/FichaContext.tsx";
 import { Talentos } from "../../../bibliotecas/Talentos.ts";
 import { Magias } from "../../../bibliotecas/Magia.ts";
+import { nomeExibicao } from '../../../bibliotecas/Catalogo2024.ts';
+import { magiasConcedidas } from '../../../api/fichaPersonagem/talentos2024Utils.ts';
 
 type DetalheItem = {
   nome: string;
@@ -149,6 +151,7 @@ export default function AbaDetalhes() {
     ficha?.magiasEscolhidas?.forEach((grupo) => {
       grupo.magia.forEach((magia) => magiasDaFicha.add(magia));
     });
+    magiasConcedidas(ficha).forEach(registro=>magiasDaFicha.add(registro.magia.nome));
 
     return Array.from(magiasDaFicha)
       .map((nome) => {
@@ -208,7 +211,7 @@ export default function AbaDetalhes() {
                 className="detalhes-linha"
                 onClick={() => setDetalheSelecionado(item)}
               >
-                <strong>{item.nome}</strong>
+                <strong>{nomeExibicao(item.nome)}</strong>
               </button>
             ))}
           </div>
@@ -230,7 +233,7 @@ export default function AbaDetalhes() {
                 className="detalhes-linha"
                 onClick={() => setDetalheSelecionado(item)}
               >
-                <strong>{item.nome}</strong>
+                <strong>{nomeExibicao(item.nome)}</strong>
               </button>
             ))}
           </div>
@@ -244,7 +247,8 @@ export default function AbaDetalhes() {
           <div className="popup-overlay" onClick={() => setDetalheSelecionado(null)}></div>
           <div className="popup popup-detalhes-item">
             <div className="popup-content-modal">
-              <h2>{detalheSelecionado.nome}</h2>
+              <h2>{nomeExibicao(detalheSelecionado.nome)}</h2>
+              {detalheSelecionado.tipo === 'talento' && ficha?.efeitos?.filter(e=>e.talento===detalheSelecionado.nome).map(e=><div key={e.id}><p>Nível {e.level}</p>{Object.entries(e.escolhasTalento||{}).map(([chave,valores])=><p key={chave}>{chave}: {valores.map(nomeExibicao).join(', ')}</p>)}</div>)}
               {detalheSelecionado.subtitulo && (
                 <p className="detalhes-popup-subtitulo">{detalheSelecionado.subtitulo}</p>
               )}

@@ -447,13 +447,18 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
                           <div className="popup">
                             <ModalSelecaoTalento
                               titulo="Escolha um Talento"
+                              nivel={1}
+                              tituloEfeito="TalentoEscolhidoHumanoVariante"
                               opcoes={talentos}
                               onClose={() => setModalHumanoVarianteAberto(false)}
                               onSelect={(talento) => {
                                 setModalHumanoVarianteAberto(false);
+                                const anterior = ficha?.efeitos?.find(e => e.tituloEfeito === "TalentoEscolhidoHumanoVariante");
                                 ficha?.excluirEfeitoPorTitulo(`TalentoEscolhidoHumanoVariante`);
                                 let efeito = new Efeitos();
                                 efeito.setTalento(talento.nome);
+                                efeito.escolhasTalento = talento.escolhasTalento;
+                                if (anterior?.talento === talento.nome) efeito.usosMagiaTalento = anterior.usosMagiaTalento;
                                 efeito.setLevel(1);
                                 efeito.setTituloEfeito(`TalentoEscolhidoHumanoVariante`);
                                 ficha?.setEfeitos(efeito);

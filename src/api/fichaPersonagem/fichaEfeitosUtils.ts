@@ -232,8 +232,11 @@ export const calcularValorAtributoFinal = (ficha: Ficha | null | undefined, atri
   const valorBase = ficha?.atributosPersonagem?.[atributoChave]?.valor ?? 10;
   const efeitos = listarEfeitosAtivos(ficha).filter((efeito) => normalizarAtributo(efeito.atributo ?? "") === atributoChave);
 
-  const bonusTotal = efeitos.reduce((acc, efeito) => acc + (efeito.bonus ?? 0), 0);
-  const valorComBonus = valorBase + bonusTotal;
+  const efeitosNormais = efeitos.filter(e => !e.limiteAtributo);
+  let valorComBonus = valorBase + efeitosNormais.reduce((acc, e) => acc + (e.bonus ?? 0), 0);
+  for (const efeito of efeitos.filter(e => e.limiteAtributo)) {
+    valorComBonus += Math.max(0, Math.min(efeito.bonus ?? 0, (efeito.limiteAtributo || 20) - valorComBonus));
+  }
   const valoresFixos = efeitos
     .map((efeito) => efeito.valorFixo ?? null)
     .filter((valor): valor is number => typeof valor === "number");
@@ -247,7 +250,7 @@ export const calcularValorAtributoFinal = (ficha: Ficha | null | undefined, atri
 
 export const calcularBonusCAItens = (ficha: Ficha | null | undefined): number => {
   return listarEfeitosAtivos(ficha)
-    .filter((efeito) => efeito.ca === "CA" || efeito.tipoEfeito === "ca_item")
+    .filter((efeito) => efeito.ca === "CA" || efeito.tipoEfeito === "ca_item" || (efeito.tipoEfeito === 'defensivo' && !!ficha?.ArmaduraEquipada))
     .reduce((acc, efeito) => acc + (efeito.bonus ?? 0), 0);
 };
 

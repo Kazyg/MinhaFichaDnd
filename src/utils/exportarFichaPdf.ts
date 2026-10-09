@@ -1,6 +1,7 @@
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import type { Ficha } from "../api/fichaPersonagem/FichaPersonagem.ts";
 import { calcularBonusCAItens, calcularValorAtributoFinal } from "../api/fichaPersonagem/fichaEfeitosUtils.ts";
+import { magiasConcedidas, temPericia, temEspecializacao, temSalvaguarda, proficiencia2024, bonusVidaTalentos, bonusDeslocamentoTalentos, bonusIniciativaTalentos, limiteDestrezaArmaduraMedia } from '../api/fichaPersonagem/talentos2024Utils.ts';
 
 const TEMPLATE_PATH = `${process.env.PUBLIC_URL || ""}/ficha-de-personagem-dd-5e.pdf`;
 
@@ -165,7 +166,11 @@ const obterNivelClasses = (ficha: Ficha) => {
 const obterTalentos = (ficha: Ficha) => {
   const talentos = new Set<string>();
   ficha.talentos?.forEach((talento) => talento && talentos.add(talento));
-  ficha.efeitos?.forEach((efeito) => efeito.talento && talentos.add(efeito.talento));
+  ficha.efeitos?.forEach((efeito) => {
+    if (!efeito.talento || efeito.level > (ficha.levelTotal || 1)) return;
+    const escolhas=Object.values(efeito.escolhasTalento||{}).flat().join(', ');
+    talentos.add(`${efeito.talento}${escolhas?` (${escolhas})`:''}`);
+  });
   return Array.from(talentos);
 };
 
@@ -189,7 +194,7 @@ const calcularCA = (ficha: Ficha) => {
       ca += des;
     }
     if (armadura.categoria === "Armadura Média") {
-      ca += Math.min(des, 2);
+      ca += Math.min(des, limiteDestrezaArmaduraMedia(ficha));
     }
   }
 
@@ -317,8 +322,8 @@ const drawTextInBox = (
 const calcularSalvaguarda = (ficha: Ficha, atributo: string, nomeResistencia: string) => {
   const valor = calcularValorAtributoFinal(ficha, atributo as any);
   const mod = calcularModificador(valor);
-  const bonus = ficha.classePrincipal?.testesResistencias?.includes(nomeResistencia)
-    ? ficha.proeficiencia ?? 0
+  const bonus = temSalvaguarda(ficha, nomeResistencia)
+    ? ficha.proeficiencia ?? proficiencia2024(ficha)
     : 0;
   return mod + bonus;
 };
@@ -326,7 +331,7 @@ const calcularSalvaguarda = (ficha: Ficha, atributo: string, nomeResistencia: st
 const calcularPericia = (ficha: Ficha, nome: string, atributo: string) => {
   const valor = calcularValorAtributoFinal(ficha, atributo as any);
   const mod = calcularModificador(valor);
-  const treinado = ficha.pericias?.includes(nome) ? ficha.proeficiencia ?? 0 : 0;
+  const treinado = temPericia(ficha,nome) ? (ficha.proeficiencia ?? proficiencia2024(ficha)) * (temEspecializacao(ficha,nome)?2:1) : 0;
   return mod + treinado;
 };
 
@@ -614,7 +619,7 @@ export const exportarFichaPdf = async (ficha: Ficha) => {
     align: "center",
     valign: "middle",
   });
-  drawTextInBox(page1, formatBonus(ficha.iniciativa ?? 0), PAGE_1_MAP.iniciativa, font, fontBold, {
+  drawTextInBox(page1, formatBonus(calcularModificador(calcularValorAtributoFinal(ficha,'destreza')) + bonusIniciativaTalentos(ficha)), PAGE_1_MAP.iniciativa, font, fontBold, {
     bold: true,
     minSize: 10,
     maxSize: 16,
@@ -622,7 +627,7 @@ export const exportarFichaPdf = async (ficha: Ficha) => {
     align: "center",
     valign: "middle",
   });
-  drawTextInBox(page1, String(ficha.speed ?? 0), PAGE_1_MAP.deslocamento, font, fontBold, {
+  drawTextInBox(page1, String((ficha.speed ?? 0) + bonusDeslocamentoTalentos(ficha)), PAGE_1_MAP.deslocamento, font, fontBold, {
     bold: true,
     minSize: 10,
     maxSize: 16,
@@ -638,7 +643,7 @@ export const exportarFichaPdf = async (ficha: Ficha) => {
     align: "center",
     valign: "middle",
   });
-  drawTextInBox(page1, String(ficha.vidaTotal ?? 0), PAGE_1_MAP.hpMax, font, fontBold, {
+  drawTextInBox(page1, String((ficha.vidaTotal ?? 0) + bonusVidaTalentos(ficha)), PAGE_1_MAP.hpMax, font, fontBold, {
     bold: true,
     minSize: 10,
     maxSize: 16,
@@ -722,7 +727,7 @@ export const exportarFichaPdf = async (ficha: Ficha) => {
   yPage2 -= 14;
   yPage2 = drawTextBlock(
     page2,
-    ficha.magiasEscolhidas?.flatMap((grupo) => grupo.magia.map((magia) => `${grupo.classe}: ${magia}`)).join("\n") || "Nenhuma magia.",
+    [...(ficha.magiasEscolhidas?.flatMap((grupo) => grupo.magia.map((magia) => `${grupo.classe}: ${magia}`))||[]), ...magiasConcedidas(ficha).map(r=>`${r.talento} (${r.atributo}): ${r.magia.nome}`)].join("\n") || "Nenhuma magia.",
     40,
     yPage2,
     font,

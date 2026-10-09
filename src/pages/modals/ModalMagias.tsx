@@ -3,6 +3,7 @@ import { magiasBardo, magiasBruxo, magiasClerigo, magiasDruida, magiasFeiticeiro
 import iconFilter from "../../imagens/filter_alt_24dp_CCCCCC_FILL0_wght400_GRAD0_opsz24.png"
 import iconNoFilter from "../../imagens/filter_alt_off_24dp_CCCCCC_FILL0_wght400_GRAD0_opsz24.png"
 import { useFicha } from "../../api/fichaPersonagem/FichaContext.tsx";
+import { nomeExibicao } from '../../bibliotecas/Catalogo2024.ts';
 
 interface ModalSelecaoProps {
     titulo: string;
@@ -35,6 +36,7 @@ const ModalSelecaoMagias: React.FC<ModalSelecaoProps> = ({ titulo, onClose, onSe
     ];
     const listaNiveisFiltro = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     const [filtro, setFiltro] = useState("");
+    const [edicao, setEdicao] = useState(magiaSelect && !magiaSelect.startsWith('2024: ') ? 'legado' : '2024');
     const [filtrosAbertos, setFiltrosAbertos] = useState(false);
     const [filtrosSelecionado, setFiltrosSelecionado] = useState(false);
     const listaGrupoMagia = ["Magias de Bardo", "Magias de Bruxo", "Magias de Clerigo", "Magias de Druida", "Magias de Feiticeiro", "Magias de Mago", "Magias de Paladino", "Magias de Patrulheiro"];
@@ -53,13 +55,14 @@ const ModalSelecaoMagias: React.FC<ModalSelecaoProps> = ({ titulo, onClose, onSe
         texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
     const opcoesFiltradas = magiasUnicas.filter((opcao) =>
-        normalizar(opcao.nome).includes(filtro.toLowerCase())
+        normalizar(nomeExibicao(opcao.nome)).includes(normalizar(filtro)) && (edicao === '2024' ? opcao.nome.startsWith('2024: ') : !opcao.nome.startsWith('2024: '))
     );
 
     const opcoesFiltros = () => {
         let opcoesFiltros = opcoesFiltradas;
         if (filtroClasse !== "") {
-            opcoesFiltros = listaParaFiltrar.find(l => l.classe === filtroClasse)?.magias || opcoesFiltradas;
+            const nomes = new Set(listaParaFiltrar.find(l => l.classe === filtroClasse)?.magias.map(m=>m.nome));
+            opcoesFiltros = opcoesFiltros.filter(m=>nomes.has(m.nome));
         }
         if (filtroEscola !== "") {
             opcoesFiltros = opcoesFiltros.filter(o => o.tipo === filtroEscola);
@@ -73,6 +76,7 @@ const ModalSelecaoMagias: React.FC<ModalSelecaoProps> = ({ titulo, onClose, onSe
     return (
         <div key={refreshKey} className="popup-content-modal">
             <h2>{titulo}</h2>
+            <label>Edição <select aria-label="Edição das magias" value={edicao} onChange={e=>{setEdicao(e.target.value);setSelecionado(null);}}><option value="2024">Livro do Jogador 2024</option><option value="legado">Legado</option></select></label>
             {filtrosAbertos && (
                 <div className="filtros-magias">
                     <h5>Filtro de Magias</h5>
@@ -114,9 +118,9 @@ const ModalSelecaoMagias: React.FC<ModalSelecaoProps> = ({ titulo, onClose, onSe
                             ))}
                         </select>
                         <select
-                            value={filtroNivel || "--"}
+                            value={filtroNivel ?? ""}
                             onChange={(e) => {
-                                setFiltroNivel(parseInt(e.target.value));
+                                setFiltroNivel(e.target.value === '' ? null : Number(e.target.value));
                                 setFiltrosSelecionado(true);
                                 forceUpdate();
                             }}
@@ -164,7 +168,7 @@ const ModalSelecaoMagias: React.FC<ModalSelecaoProps> = ({ titulo, onClose, onSe
                                     <li key={opcao.nome} onClick={() => {
                                         setSelecionado(opcao.nome);
                                     }}>
-                                        {opcao.nome}
+                                        {nomeExibicao(opcao.nome)}
                                     </li>
                                 ))}
                             </>
@@ -174,7 +178,7 @@ const ModalSelecaoMagias: React.FC<ModalSelecaoProps> = ({ titulo, onClose, onSe
                                     <li key={opcao.nome} onClick={() => {
                                         setSelecionado(opcao.nome);
                                     }}>
-                                        {opcao.nome}
+                                        {nomeExibicao(opcao.nome)}
                                     </li>
                                 ))}
                             </>
@@ -185,13 +189,13 @@ const ModalSelecaoMagias: React.FC<ModalSelecaoProps> = ({ titulo, onClose, onSe
                 <div className="detalhes-raca">
                     {selecionado && (
                         <>
-                            <h3>{selecionado}</h3>
+                            <h3>{nomeExibicao(selecionado)}</h3>
                             <p><strong>Nivel: </strong>{listaMagias.find(l => normalizar(l.nome) === normalizar(selecionado))?.nivel}º</p>
                             <p><strong>Escola: </strong>{listaMagias.find(l => normalizar(l.nome) === normalizar(selecionado))?.tipo}</p>
                             <p><strong>Tempo de Conjuração: </strong>{magiasCompletas.find(m => normalizar(m.nome) === normalizar(selecionado))?.conjuracao}</p>
                             <p><strong>Alcance: </strong>{magiasCompletas.find(m => normalizar(m.nome) === normalizar(selecionado))?.alcance.tipo}
                                 {(magiasCompletas.find(m => normalizar(m.nome) === normalizar(selecionado))?.alcance.distancia || 0) > 1 && (<> {magiasCompletas.find(m => normalizar(m.nome) === normalizar(selecionado))?.alcance.distancia + " metros"}</>)}</p>
-                            <p><strong>Componentes: </strong>{magiasCompletas.find(m => normalizar(m.nome) === normalizar(selecionado))?.componentes.componentes.map(comp => <>{comp} </>)}
+                            <p><strong>Componentes: </strong>{magiasCompletas.find(m => normalizar(m.nome) === normalizar(selecionado))?.componentes.componentes.join(', ')}
                                 {magiasCompletas.find(m => normalizar(m.nome) === normalizar(selecionado))?.componentes.material && (<>({magiasCompletas.find(m => normalizar(m.nome) === normalizar(selecionado))?.componentes.material})</>)}</p>
                             <p><strong>Duração: </strong>{magiasCompletas.find(m => normalizar(m.nome) === normalizar(selecionado))?.concentracao && (<>concentração, </>)}{magiasCompletas.find(m => normalizar(m.nome) === normalizar(selecionado))?.duracao}</p>
                             <p><strong>Descricao: </strong>{magiasCompletas.find(m => normalizar(m.nome) === normalizar(selecionado))?.descricao}</p>
@@ -205,7 +209,7 @@ const ModalSelecaoMagias: React.FC<ModalSelecaoProps> = ({ titulo, onClose, onSe
                     onClick={() => {
                         onSelect(selecionado);
                         onClose()
-                    }}>Escolher {selecionado}</button>)}
+                    }}>Escolher {nomeExibicao(selecionado)}</button>)}
                 <button className="escolher-button" onClick={() => { onClose() }}>Fechar</button>
             </div>
         </div >

@@ -60,7 +60,7 @@ export const FichaProvider = ({ children }: React.PropsWithChildren<{}>) => {
   useEffect(() => {
     if (!isHydrated) return;
     localStorage.setItem(STORAGE_KEYS.fichas, JSON.stringify(fichas));
-  }, [fichas, isHydrated]);
+  }, [fichas, isHydrated, refreshKey]);
 
   useEffect(() => {
     if (!isHydrated) return;

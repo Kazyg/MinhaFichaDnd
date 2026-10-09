@@ -17,6 +17,9 @@ export class Efeitos {
     bonus: number;
     valorFixo: number;
     level: number;
+    escolhasTalento?: Record<string, string[]>;
+    limiteAtributo?: number;
+    usosMagiaTalento?: Record<string, number>;
     constructor() {
         this.id = this.gerarIdUnico();
         this.tituloEfeito = "";

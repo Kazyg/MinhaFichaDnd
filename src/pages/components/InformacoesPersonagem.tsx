@@ -9,6 +9,7 @@ import iconLife2 from "../../imagens/shield_with_heart_24dp_E3E3E3_FILL0_wght400
 import { useFicha } from "../../api/fichaPersonagem/FichaContext.tsx"
 import VidaComponente from "./components_InformacoesPersonagem/ModalVida.tsx";
 import { calcularBonusCAItens, calcularValorAtributoFinal, listarEfeitosAtivos } from "../../api/fichaPersonagem/fichaEfeitosUtils.ts";
+import { temSalvaguarda, proficiencia2024, limiteDestrezaArmaduraMedia } from '../../api/fichaPersonagem/talentos2024Utils.ts';
 
 declare global {
   interface Window {
@@ -51,8 +52,8 @@ export default function InformacoesPersonagem() {
   const calcularProeficiencia = (idAtributo: number) => {
     let nomeTesteResistencia = atributosIniciais.find(a => a.id === idAtributo)?.nomeDesc;
 
-    if (ficha?.classePrincipal?.testesResistencias?.includes(nomeTesteResistencia ?? "")) {
-      return ficha?.proeficiencia ?? 0;
+    if (temSalvaguarda(ficha,nomeTesteResistencia ?? '')) {
+      return ficha?.proeficiencia ?? proficiencia2024(ficha);
     }
     return 0;
   }
@@ -115,8 +116,8 @@ export default function InformacoesPersonagem() {
       } else if (armadura.categoria === "Armadura Média") {
         if (proficienciaArmaduraMedia) {
           explicacao.push(formatValor(armadura.ac, "Armadura Média"));
-          if (modDexValid > 2) {
-            explicacao.push("+2 Destreza (limite da armadura)");
+          if (modDexValid > limiteDestrezaArmaduraMedia(ficha)) {
+            explicacao.push(`+${limiteDestrezaArmaduraMedia(ficha)} Destreza (limite da armadura)`);
           } else {
             explicacao.push(`${modDexValid >= 0 ? "+" : ""}${modDexValid} Destreza`);
           }
@@ -163,8 +164,8 @@ export default function InformacoesPersonagem() {
         if (proficienciaArmaduraMedia) {
           ca = ficha.ArmaduraEquipada.ac
           let bonusDestreza = calcularAtributo("DES")
-          if (calcularModificador(bonusDestreza) > 2) {
-            ca += 2;
+          if (calcularModificador(bonusDestreza) > limiteDestrezaArmaduraMedia(ficha)) {
+            ca += limiteDestrezaArmaduraMedia(ficha);
           } else {
             ca += calcularModificador(bonusDestreza);
           }

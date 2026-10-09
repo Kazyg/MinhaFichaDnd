@@ -4,6 +4,7 @@ import { Ficha } from "../../../api/fichaPersonagem/FichaPersonagem.ts";
 import { Portal } from "./Portal.tsx"
 import "../../css/popupVida.css"
 import { calcularValorAtributoFinal } from "../../../api/fichaPersonagem/fichaEfeitosUtils.ts";
+import { bonusVidaTalentos } from '../../../api/fichaPersonagem/talentos2024Utils.ts';
 
 interface PopupVidaProps {
     onConfirmar: (novaVida: number, cura: number, dano: number) => void;
@@ -53,7 +54,7 @@ const PopupVida: React.FC<PopupVidaProps> = ({ onConfirmar, onCancelar, onRestau
                 }
             }
         }
-        return vidaTotal;
+        return vidaTotal + bonusVidaTalentos(ficha);
     };
 
 
@@ -165,7 +166,7 @@ const VidaComponente: React.FC = () => {
                 }
             }
         }
-        return vidaTotal;
+        return vidaTotal + bonusVidaTalentos(ficha);
     };
 
     return (

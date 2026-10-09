@@ -710,12 +710,17 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
                     <div className="popup">
                         <ModalSelecaoTalento
                             titulo="Escolha um Talento"
+                            nivel={nivel}
+                            tituloEfeito={`TalentoEscolhido${nivel}`}
                             opcoes={talentos}
                             onClose={() => setModalTalentoAberto(false)}
                             onSelect={(talento) => {
+                                const anterior = ficha?.efeitos?.find(e => e.tituloEfeito === `TalentoEscolhido${nivel}`);
                                 ficha?.excluirEfeitoPorTitulo(`TalentoEscolhido${nivel}`);
                                 let efeito = new Efeitos();
                                 efeito.setTalento(talento.nome);
+                                efeito.escolhasTalento = talento.escolhasTalento;
+                                if (anterior?.talento === talento.nome) efeito.usosMagiaTalento = anterior.usosMagiaTalento;
                                 efeito.setLevel(nivel);
                                 efeito.setTituloEfeito(`TalentoEscolhido${nivel}`);
                                 ficha?.setEfeitos(efeito);
