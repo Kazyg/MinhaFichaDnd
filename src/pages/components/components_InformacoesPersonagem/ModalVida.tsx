@@ -35,7 +35,6 @@ const PopupVida: React.FC<PopupVidaProps> = ({ onConfirmar, onCancelar, onRestau
         <div>
             <div>
                 <h3>Ajustar Vida</h3>
-                <p>Restaurar Vida altera apenas PV atuais; não realiza descanso.</p>
                 <div className="barra-deslizante-mobile">
                     {vidaEditada}
                     <input

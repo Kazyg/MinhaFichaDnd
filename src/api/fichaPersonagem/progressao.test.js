@@ -1,5 +1,5 @@
 import React from 'react';
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import { Ficha } from './FichaPersonagem';
 import { FichaProvider, useFicha } from './FichaContext';
 import { Atributos } from '../classesPrincipais/Atributos.class';
@@ -207,6 +207,46 @@ function mount(ficha, children) {
   return render(<FichaProvider storage={{ getItem: k => values.get(k) ?? null, setItem: (k, v) => values.set(k, v) }}><Probe />{children}</FichaProvider>);
 }
 const tick = fn => act(async () => { fn(); await Promise.resolve(); });
+test.each(['DND_2014', 'DND_2024'])('UI permite entrar em outra classe no nível 2 com atributos válidos: %s', async edicao => {
+  const ficha = fixture(edicao, 'paladino', 2);
+  mount(ficha, <NivelBlock nivel={2} classesDisponiveis={getRulesetData(edicao).classes}
+    selecionarMulticlasse={(c, n) => api.ficha.selecionarClasseNoNivel(c, n)} />);
+  await tick(() => fireEvent.click(screen.getByRole('button', { name: /Selecionar Classe/ })));
+  const dialog = screen.getByRole('dialog');
+  expect(within(dialog).getByRole('button', { name: 'Mago', exact: true })).toBeInTheDocument();
+  await tick(() => fireEvent.click(within(dialog).getByRole('button', { name: 'Mago', exact: true })));
+  await tick(() => fireEvent.click(within(dialog).getByRole('button', { name: 'Escolher Mago' })));
+  expect(nivelDaClasse(api.ficha, 'mago')).toBe(1);
+});
+test.each(['DND_2014', 'DND_2024'])('UI de talento no nível 4 exibe opções: %s', async edicao => {
+  const ficha = fixture(edicao, 'paladino', 4);
+  mount(ficha, <NivelBlock nivel={4} classesDisponiveis={getRulesetData(edicao).classes} selecionarMulticlasse={() => {}} />);
+  await tick(() => fireEvent.click(screen.getByRole('checkbox', { name: 'Talento', exact: true })));
+  await tick(() => fireEvent.click(screen.getByRole('button', { name: 'Selecionar Talento' })));
+  expect(within(screen.getByRole('dialog')).getByRole('button', { name: /^Alerta$/i })).toBeInTheDocument();
+  await tick(() => fireEvent.click(screen.getByRole('button', { name: /^Alerta$/i })));
+  await tick(() => fireEvent.click(screen.getByRole('button', { name: /^Escolher Alerta$/i })));
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(api.ficha.efeitos.some(e => /^alerta$/i.test(e.talento))).toBe(true);
+});
+test('modal mantém classes visíveis e explica requisitos da classe de origem', async () => {
+  const ficha = fixture('DND_2014', 'paladino', 2);
+  ficha.atributosPersonagem.carisma.valor = 12;
+  mount(ficha, <NivelBlock nivel={2} classesDisponiveis={getRulesetData('DND_2014').classes} selecionarMulticlasse={() => {}} />);
+  await tick(() => fireEvent.click(screen.getByRole('button', { name: /Selecionar Classe/ })));
+  await tick(() => fireEvent.click(screen.getByRole('button', { name: 'Mago', exact: true })));
+  expect(screen.getByRole('button', { name: 'Escolher Mago' })).toBeDisabled();
+  expect(screen.getByText(/Paladino exige Força 13 e Carisma 13/)).toHaveTextContent('carisma: 12');
+});
+test.each(['DND_2014', 'DND_2024'])('paladino só exibe seleção de subclasse no nível de entrada: %s', edicao => {
+  const ficha = fixture(edicao, 'paladino', 5);
+  const props = { classesDisponiveis: getRulesetData(edicao).classes, selecionarMulticlasse: () => {} };
+  const view = mount(ficha, <NivelBlock {...props} nivel={3} />);
+  expect(screen.getByRole('button', { name: /Selecionar.*Juramento|Selecionar.*Subclasse/ })).toBeInTheDocument();
+  view.unmount();
+  mount(ficha, <><NivelBlock {...props} nivel={4} /><NivelBlock {...props} nivel={5} /></>);
+  expect(screen.queryByRole('button', { name: /Selecionar.*Juramento|Selecionar.*Subclasse/ })).not.toBeInTheDocument();
+});
 test('UI ASI só aplica distribuição completa e válida', async () => {
   const ficha = fixture(); ficha.atributosPersonagem.forca.valor = 19;
   mount(ficha, <AvancoAtributos nivel={4} />);

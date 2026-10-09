@@ -25,7 +25,6 @@ export default function AbaMagias() {
         {fonte.categoria === 'livro' && ` Livro: ${escolhas.filter(e => e.fonte === fonte.id && e.categoria === 'livro').length} (progressão: ${fonte.livroPorProgressao}; cópias adicionais registradas separadamente).`}</p>
     </div>)}
     {!fontes.length && <p>Nenhuma fonte de conjuração ativa neste nível.</p>}
-    <p><a href={ficha?.versaoRegras === 'DND_2024' ? 'https://www.dndbeyond.com/sources/dnd/br-2024/rules-glossary' : 'https://www.dndbeyond.com/sources/dnd/basic-rules-2014/adventuring'}>Regras de descanso da edição</a></p>
     {pools.map(pool => <section key={pool.id} aria-label={pool.nome}>
       <h4>{pool.nome}</h4><p>Recuperação: {pool.recuperacao}. Consumo salvo na ficha.</p>
       {pool.espacos.map((total, i) => total > 0 && <div key={i} className="espacos-magia">

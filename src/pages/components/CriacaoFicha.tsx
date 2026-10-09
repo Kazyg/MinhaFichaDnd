@@ -54,9 +54,10 @@ export default function CriacaoFicha() {
     }
   };
 
-  function selecionarMulticlasse(classeEscolhida: Classes, nivelAtual: number): void {
-    ficha?.selecionarClasseNoNivel(classeEscolhida, nivelAtual);
+  function selecionarMulticlasse(classeEscolhida: Classes, nivelAtual: number): boolean {
+    const sucesso = ficha?.selecionarClasseNoNivel(classeEscolhida, nivelAtual) ?? false;
     forceUpdate();
+    return sucesso;
   }
 
   return (

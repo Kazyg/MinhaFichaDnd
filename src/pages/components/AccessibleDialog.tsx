@@ -19,7 +19,7 @@ export default function AccessibleDialog({ onClose, children, ...props }: Props)
     const controls = () => Array.from(dialog.querySelectorAll<HTMLElement>(focusable))
       .filter(el => !el.closest('[hidden], [inert]') && getComputedStyle(el).display !== 'none' && getComputedStyle(el).visibility !== 'hidden');
     stack.push(dialog);
-    initial.focus();
+    initial.focus({ preventScroll: true });
     const isolated: { element: Element; inert: boolean; hidden: string | null }[] = [];
     let branch: Element = dialog;
     while (branch.parentElement) {
@@ -48,7 +48,7 @@ export default function AccessibleDialog({ onClose, children, ...props }: Props)
       }
     };
     const contain = () => {
-      if (active() && !dialog.contains(document.activeElement)) initial.focus();
+      if (active() && !dialog.contains(document.activeElement)) initial.focus({ preventScroll: true });
     };
     document.addEventListener('keydown', keydown, true);
     document.addEventListener('focusin', contain);
@@ -65,7 +65,7 @@ export default function AccessibleDialog({ onClose, children, ...props }: Props)
         if (hidden === null) element.removeAttribute('aria-hidden');
         else element.setAttribute('aria-hidden', hidden);
       });
-      if (opener?.isConnected && !opener.closest('[inert]')) opener.focus();
+      if (opener?.isConnected && !opener.closest('[inert]')) opener.focus({ preventScroll: true });
       else {
         // Wait for route/tab replacement to mount its logical destination.
         queueMicrotask(() => {

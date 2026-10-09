@@ -1,9 +1,10 @@
 import { erroTalento } from '../api/fichaPersonagem/talentosConteudo';
-import { efeitosDoAvanco, talentosElegiveis } from '../api/fichaPersonagem/escolhasProgressao';
+import { efeitosDoAvanco } from '../api/fichaPersonagem/escolhasProgressao';
+import { getTalentosConteudo } from '../api/rulesets/conteudo';
 import AvancoAtributos from './components/AvancoAtributos';
 import EscolhasMetamagia from './components/EscolhasMetamagia';
-import { chaveClasse, nivelDaClasse, podeSelecionarClasse, recursosNoNivel } from '../api/rulesets/progressao';
-import { podeTerSubclasse } from '../api/fichaPersonagem/subclasseElegibilidade';
+import { chaveClasse, erroSelecaoClasse, nivelDaClasse, podeSelecionarClasse } from '../api/rulesets/progressao';
+import { nivelEntradaSubclasse } from '../api/fichaPersonagem/subclasseElegibilidade';
 import React, { useState } from "react";
 import iconClass from "../imagens/icon_class.png"
 import "../pages/css/CriacaoFicha.css";
@@ -34,7 +35,7 @@ import { getRulesetVersion } from "../api/rulesets/regras";
 interface NivelBlockProps {
     nivel: number;
     classesDisponiveis: Classes[];
-    selecionarMulticlasse: (classeEscolhida: Classes, nivelAtual: number) => void;
+    selecionarMulticlasse: (classeEscolhida: Classes, nivelAtual: number) => boolean | void;
 }
 
 const NivelBlock: React.FC<NivelBlockProps> = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
@@ -69,7 +70,7 @@ const NivelBlock: React.FC<NivelBlockProps> = ({ nivel, classesDisponiveis, sele
         new LaminaMaldita(),
         new Celestial()
     ]
-    const talentos = ficha ? talentosElegiveis(ficha, nivel) : [];
+    const talentos = getTalentosConteudo(versaoRegras);
     const pericias = [
         "Atletismo",
         "Acrobacia",
@@ -181,7 +182,7 @@ const NivelBlock: React.FC<NivelBlockProps> = ({ nivel, classesDisponiveis, sele
     }
 
   function validaSubClasse(classe?: string, nivel?: number) {
-    return !!classe && !!nivel && podeTerSubclasse(classe, nivel, versaoRegras);
+    return !!classe && !!nivel && nivel === nivelEntradaSubclasse(classe, versaoRegras);
   }
 
     const classeBonus = nivel !== 1 && calcularNivelClasse(nivel) === 1 && ['Ladino', 'Patrulheiro', 'Bardo'].includes(classeNoNivel?.classe.nome ?? '');
@@ -228,11 +229,7 @@ const NivelBlock: React.FC<NivelBlockProps> = ({ nivel, classesDisponiveis, sele
                                 </button>
                             </>
                         )}
-                        <AvancoAtributos key={`${classeNoNivel?.classe.nome}:${calcularNivelClasse(nivel)}`} nivel={nivel} />
-                        {classeNoNivel && recursosNoNivel(classeNoNivel.classe, calcularNivelClasse(nivel), versaoRegras).length > 0 && <>
-                            <button onClick={() => setModalTalentoAberto(true)}>Selecionar Talento</button>
-                            <p>Catálogo parcial: apenas talentos com escolhas implementadas podem ser selecionados. Registros antigos são preservados; opções ausentes permanecem pendentes.</p>
-                        </>}
+                        <AvancoAtributos key={`${classeNoNivel?.classe.nome}:${calcularNivelClasse(nivel)}`} nivel={nivel} onSelecionarTalento={() => setModalTalentoAberto(true)} />
                         {classeBonus && (
                             <>
                                 {classeNoNivel?.classe.nome === "Bardo" && (
@@ -454,12 +451,14 @@ const NivelBlock: React.FC<NivelBlockProps> = ({ nivel, classesDisponiveis, sele
                     <div className="popup">
                         <ModalSelecaoClasse
                             titulo="Escolha sua Classe"
-                            opcoes={classesPermitidas}
+                            opcoes={classesDisponiveis}
+                            validar={classe => ficha ? erroSelecaoClasse(ficha, classe, nivel) : 'Ficha indisponível.'}
                             onClose={() => setModalClasseAberto(false)}
                             onSelect={(classe) => {
-                                classe && selecionarMulticlasse(classe, nivel);
+                                if (!classe || !ficha || !podeSelecionarClasse(ficha, classe, nivel) || selecionarMulticlasse(classe, nivel) === false) return false;
                                 setModalClasseAberto(false);
                                 forceUpdate();
+                                return true;
                             }}
                             classeInicial={classeNoNivel?.classe || null}
                         />

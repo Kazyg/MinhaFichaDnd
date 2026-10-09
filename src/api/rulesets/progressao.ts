@@ -38,17 +38,30 @@ export function cumpreRequisitosClasse(classe: string | Classes, valor: (atribut
   }
 }
 
-export function podeSelecionarClasse(ficha: Ficha, classe: Classes, nivel: number): boolean {
-  if (!Number.isInteger(nivel) || nivel < 1 || nivel > 20) return false;
-  if (nivel === 1) return true;
+export function erroSelecaoClasse(ficha: Ficha, classe: Classes, nivel: number): string | null {
+  if (!Number.isInteger(nivel) || nivel < 1 || nivel > 20) return 'Nível inválido.';
+  if (nivel === 1) return null;
   const anteriores = (ficha.multiclasses ?? []).filter(m => m.nivelEscolhido.some(n => n < nivel)).map(m => m.classe);
   if (!anteriores.length && ficha.classePrincipal) anteriores.push(ficha.classePrincipal);
-  if (!anteriores.length) return false;
+  if (!anteriores.length) return 'Selecione primeiro a classe do nível 1.';
   // Advancing an already acquired class is not entering a new multiclass.
   // Recheck prerequisites only when acquiring the first level of a new class.
-  if (anteriores.some(c => chaveClasse(c) === chaveClasse(classe))) return true;
+  if (anteriores.some(c => chaveClasse(c) === chaveClasse(classe))) return null;
   const antes = { ...ficha, levelTotal: Math.min(nivel - 1, ficha.levelTotal ?? 0) } as Ficha;
-  return [...anteriores, classe].every(c => cumpreRequisitosClasse(c, a => calcularValorAtributoFinal(antes, a)));
+  const requisitos: Record<string, string> = {
+    barbaro: 'Força 13', bardo: 'Carisma 13', bruxo: 'Carisma 13', feiticeiro: 'Carisma 13',
+    clerigo: 'Sabedoria 13', druida: 'Sabedoria 13', guerreiro: 'Força 13 ou Destreza 13',
+    ladino: 'Destreza 13', mago: 'Inteligência 13', monge: 'Destreza 13 e Sabedoria 13',
+    patrulheiro: 'Destreza 13 e Sabedoria 13', paladino: 'Força 13 e Carisma 13',
+  };
+  const invalidas = [...anteriores, classe].filter(c => !cumpreRequisitosClasse(c, a => calcularValorAtributoFinal(antes, a)));
+  if (!invalidas.length) return null;
+  const valores = atributosChaves.map(a => `${a}: ${calcularValorAtributoFinal(antes, a)}`).join(', ');
+  return `Requisitos de multiclasse: ${invalidas.map(c => `${c.nome} exige ${requisitos[chaveClasse(c)] ?? 'uma classe reconhecida'}`).join('; ')}. Atributos antes do nível ${nivel}: ${valores}. Conclua a distribuição de atributos se ainda não foi aplicada.`;
+}
+
+export function podeSelecionarClasse(ficha: Ficha, classe: Classes, nivel: number): boolean {
+  return erroSelecaoClasse(ficha, classe, nivel) === null;
 }
 
 export const niveisMetamagia = (edicao: string) => edicao === 'DND_2024' ? [2, 2, 10, 10, 17, 17] : [3, 3, 10, 17];

@@ -44,12 +44,16 @@ substituirTalento({ ...meta('Habilidoso', 'DND_2024', 'Origin', true), nome: 'Ha
 substituirTalento({ ...meta('Imobilizador', 'DND_2024', 'General', true), nome: 'Imobilizador', repetivel: false, suportado: true,
   requisito: { tipo: 'atributo', requisito: ['forca', 'destreza'], valor: 13 }, bonus: bonusVazio, escolha: 'atributo-agarrador',
   descricao: 'Requer nível 4 e Força ou Destreza 13. Aumente Força ou Destreza em 1, até 20. Uma vez por turno, ao acertar um ataque desarmado na ação Atacar, pode causar dano e agarrar. Tem vantagem contra quem agarra e move alvos de seu tamanho ou menores sem custo extra de movimento. Benefícios de combate são resolvidos pela mesa.' });
+const catalogoTalentos2024 = talentosPhb2024.map(t => talentos2024.find(a => a.nome === t.nome && a.suportado) ?? t);
+const catalogoTalentos = (edicao: RulesetVersion) => edicao === 'DND_2014' ? talentos2014 : catalogoTalentos2024;
 export function getTalentosConteudo(edicao: RulesetVersion): TalentoConteudo[] {
-  edicaoValida(edicao); return copia(edicao === 'DND_2014' ? talentos2014 : talentosPhb2024.map(t => talentos2024.find(a => a.nome === t.nome && a.suportado) ?? t));
+  edicaoValida(edicao); return copia(catalogoTalentos(edicao));
 }
 export function buscarTalentoConteudo(edicao: RulesetVersion, nome: string) {
   const canonico = nome.startsWith('Iniciado em Magia (') ? 'Iniciado em Magia' : nome;
-  return getTalentosConteudo(edicao).find(t => chaveConteudo(t.nome) === chaveConteudo(canonico));
+  edicaoValida(edicao);
+  const talento = catalogoTalentos(edicao).find(t => chaveConteudo(t.nome) === chaveConteudo(canonico));
+  return talento ? copia(talento) : undefined;
 }
 
 export const listasLegadas = { bardo: magiasBardo, bruxo: magiasBruxo, clerigo: magiasClerigo, druida: magiasDruida,
@@ -91,15 +95,23 @@ const magias2024: MagiaConteudo[] = [curar('DND_2024'), ...indices2024.map(([nom
   fonte: { titulo: 'SRD 5.2.1', url: SRD521, localizador: ingles, consultadoEm: '2026-10-07' },
   descricao: `${ingles} — índice verificado de 2024. Consulte a descrição no SRD 5.2.1; esta entrada não automatiza seus efeitos.`,
 }))];
+const catalogoMagias2024 = magiasPhb2024.map(m => m.nome === 'Curar Ferimentos' ? curar('DND_2024') : m);
+const catalogoMagias = (edicao: RulesetVersion) => edicao === 'DND_2014' ? magias2014 : catalogoMagias2024;
 export function getMagiasConteudo(edicao: RulesetVersion): MagiaConteudo[] {
-  edicaoValida(edicao); return copia(edicao === 'DND_2014' ? magias2014 : magiasPhb2024.map(m => m.nome === 'Curar Ferimentos' ? curar('DND_2024') : m));
+  edicaoValida(edicao); return copia(catalogoMagias(edicao));
 }
-export const buscarMagiaConteudo = (edicao: RulesetVersion, nome: string) => getMagiasConteudo(edicao).find(m => m.nome === nome);
+export function buscarMagiaConteudo(edicao: RulesetVersion, nome: string) {
+  edicaoValida(edicao);
+  const magia = catalogoMagias(edicao).find(m => m.nome === nome);
+  return magia ? copia(magia) : undefined;
+}
 export const referenciaConteudo = ({ id, edicao, revisao }: ReferenciaConteudo): ReferenciaConteudo => ({ id, edicao, revisao });
 export function resolverConteudo(ref: ReferenciaConteudo): MagiaConteudo | TalentoConteudo | undefined {
   // Referência desconhecida nunca vira uma revisão atual nem outra edição.
   if (!ref || !['DND_2014', 'DND_2024'].includes(ref.edicao)) return undefined;
-  return copia([...getMagiasConteudo(ref.edicao), ...getTalentosConteudo(ref.edicao), ...magiasLegadas, ...magias2024, ...talentos2024].find(c => c.id === ref.id && c.edicao === ref.edicao && c.revisao === ref.revisao) ?? null) ?? undefined;
+  // Resolve first, then clone only the requested entry. Cloning both complete
+  // catalogs for every derived attribute makes selecting a feat stall the UI.
+  return copia([...catalogoMagias(ref.edicao), ...catalogoTalentos(ref.edicao), ...magiasLegadas, ...magias2024, ...talentos2024].find(c => c.id === ref.id && c.edicao === ref.edicao && c.revisao === ref.revisao) ?? null) ?? undefined;
 }
 export function resolverMagiaSalva(escolha: { nome: string; catalogo: string; conteudo?: ReferenciaConteudo; snapshot?: MagiaConteudo }) {
   if (escolha.conteudo) {
