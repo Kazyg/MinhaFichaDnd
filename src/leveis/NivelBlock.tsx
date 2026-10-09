@@ -1,40 +1,48 @@
+import { erroTalento } from '../api/fichaPersonagem/talentosConteudo';
+import { efeitosDoAvanco, talentosElegiveis } from '../api/fichaPersonagem/escolhasProgressao';
+import AvancoAtributos from './components/AvancoAtributos';
+import EscolhasMetamagia from './components/EscolhasMetamagia';
+import { chaveClasse, nivelDaClasse, podeSelecionarClasse, recursosNoNivel } from '../api/rulesets/progressao';
+import { podeTerSubclasse } from '../api/fichaPersonagem/subclasseElegibilidade';
 import React, { useState } from "react";
 import iconClass from "../imagens/icon_class.png"
-import iconRaca from "../imagens/icon_ancestry.png"
 import "../pages/css/CriacaoFicha.css";
 import "../pages/css/ModalRacas.css";
-import ModalSelecaoClasse from "../pages/modals/ModalSelecaoClasse.tsx";
-import ModalSelecaoSubClasse from "../pages/modals/ModalSelecaoSubClasse.tsx";
-import { useFicha } from "../api/fichaPersonagem/FichaContext.tsx";
-import CaracteristicasClasse from "./components/CaracteristicasClasseProps.tsx";
-import { SubClasses } from "../api/classesPrincipais/SubClasses.ts";
-import { CaminhoGuerreiroTotemico } from "../api/classesClassesNetos/CaminhoGuerreiroTotemico.ts"
-import { CirculoDaTerra } from "../api/classesClassesNetos/CirculoDaTerra.ts";
-import { Classes } from "../api/classesPrincipais/Classes.class.ts";
-import { Efeitos } from "../api/classesPrincipais/Efeitos.ts";
-import { Ranger } from "../api/classesClassesFilhos/Ranger.class.ts"
-import { Rogue } from "../api/classesClassesFilhos/Rogue.class.ts"
-import { Talentos } from "../bibliotecas/Talentos.ts";
-import ModalSelecaoTalento from "../pages/modals/ModalSelecaoTalento.tsx";
-import TalentoDescricao from "./components/TalendoDescricao.tsx";
-import { Metamagica } from "../bibliotecas/Metamagica.ts"
-import ModalSelecaoMetamagica from "../pages/modals/ModalSelecaoMetamagica.tsx";
-import ModalSelecaoPatrono from "../pages/modals/ModalSelecaoPatrono.tsx";
-import { Patronos } from "../api/classesEspeciais/Patronos.class.ts";
-import { Corruptor } from "../api/classesEspeciais/Corruptor.class.ts";
-import { Arquifada } from "../api/classesEspeciais/Arquifada.class.ts";
-import { Celestial } from "../api/classesEspeciais/OCelestial.ts";
-import { GrandeAntigo } from "../api/classesEspeciais/GrandeAntigo.class.ts";
-import { LaminaMaldita } from "../api/classesEspeciais/LaminaMaldita.ts";
-import CaracteristicasPatrono from "./components/CaracteristicasPatronoProps.tsx";
+import ModalSelecaoClasse from "../pages/modals/ModalSelecaoClasse";
+import ModalSelecaoSubClasse from "../pages/modals/ModalSelecaoSubClasse";
+import { useFicha } from "../api/fichaPersonagem/FichaContext";
+import CaracteristicasClasse from "./components/CaracteristicasClasseProps";
+import { SubClasses } from "../api/classesPrincipais/SubClasses";
+import { CaminhoGuerreiroTotemico } from "../api/classesClassesNetos/CaminhoGuerreiroTotemico"
+import { CirculoDaTerra } from "../api/classesClassesNetos/CirculoDaTerra";
+import { Classes } from "../api/classesPrincipais/Classes.class";
+import { Efeitos } from "../api/classesPrincipais/Efeitos";
+import { Ranger } from "../api/classesClassesFilhos/Ranger.class"
+import { Rogue } from "../api/classesClassesFilhos/Rogue.class"
+import ModalSelecaoTalento from "../pages/modals/ModalSelecaoTalento";
+import TalentoDescricao from "./components/TalendoDescricao";
+import ModalSelecaoPatrono from "../pages/modals/ModalSelecaoPatrono";
+import { Patronos } from "../api/classesEspeciais/Patronos.class";
+import { Corruptor } from "../api/classesEspeciais/Corruptor.class";
+import { Arquifada } from "../api/classesEspeciais/Arquifada.class";
+import { Celestial } from "../api/classesEspeciais/OCelestial";
+import { GrandeAntigo } from "../api/classesEspeciais/GrandeAntigo.class";
+import { LaminaMaldita } from "../api/classesEspeciais/LaminaMaldita";
+import CaracteristicasPatrono from "./components/CaracteristicasPatronoProps";
+import { getRulesetVersion } from "../api/rulesets/regras";
 
-const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
+interface NivelBlockProps {
+    nivel: number;
+    classesDisponiveis: Classes[];
+    selecionarMulticlasse: (classeEscolhida: Classes, nivelAtual: number) => void;
+}
+
+const NivelBlock: React.FC<NivelBlockProps> = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
     const [modalClasseAberto, setModalClasseAberto] = useState(false);
     const [modalPatronoAberto, setModalPatronoAberto] = useState(false);
-    const [isExpanded, setIsExpanded] = useState(false);
-    const [indexMetamagica, setIndexMetamagica] = useState(1);
-    const { ficha, refreshKey, forceUpdate } = useFicha();
-    const [patronoSelecionado, setPatronoSelecionado] = useState<Patronos | null | undefined>(ficha?.patrono);
+    const { ficha, forceUpdate } = useFicha();
+    const patronoSelecionado = ficha?.patrono;
+    const versaoRegras = getRulesetVersion(ficha?.versaoRegras);
     const [nivelExpandido, setNivelExpandido] = useState(true);
     const [secoesExpandidas, setSecoesExpandidas] = useState({
         atributos: true,
@@ -44,25 +52,16 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
     });
     const [subGrupoAberto, setSubGrupoAberto] = useState(false);
     const [modalTalentoAberta, setModalTalentoAberto] = useState(false);
-    const [modalMetamagicaAberta, setModalMetamagicaAberto] = useState(false);
     const [subClasses, setSubClasses] = useState<SubClasses[] | null>([]);
     const caminhoGuerreiroTotemico = new CaminhoGuerreiroTotemico();
     const circuloDaTerra = new CirculoDaTerra();
     const [descricaoExpandida, setDescricaoExpandida] = useState<boolean>(false);
-    const [classeBonus, setClasseBonus] = useState(false);
-    const [periciaBardo, setPericiaBardo] = useState("");
-    const [periciaPatrulheiro, setPericiaPatrulheiro] = useState("");
-    const [periciaLadino, setPericiaLadino] = useState("");
-    const [instrumentoSelecionado, setInstrumentoSelecionado] = useState("");
-    const [selecionado, setSelecionado] = useState("");
+    const periciaBardo = ficha?.efeitos?.find(e => e.tituloEfeito === 'periciaBardoMulticlasse')?.pericia ?? '';
+    const periciaPatrulheiro = ficha?.efeitos?.find(e => e.tituloEfeito === 'periciaPatrulheiroMulticlasse')?.pericia ?? '';
+    const periciaLadino = ficha?.efeitos?.find(e => e.tituloEfeito === 'periciaLadinoMulticlasse')?.pericia ?? '';
+    const instrumentoSelecionado = ficha?.efeitos?.find(e => e.tituloEfeito === 'instrumentoBardoMulticlasse')?.proeficienciasBackGround?.[0] ?? '';
     const ranger = new Ranger();
     const rogue = new Rogue();
-    type Talento = {
-        nome: string;
-        requisito: { tipo: string | null, requisito: string[] | null, valor: number | null }
-        bonus: { tipo: string | null, condicao: string | null, bonus: string[] | null; valor: number | null }[]
-        descricao: string;
-    };
     const patronos: Patronos[] = [
         new Corruptor(),
         new Arquifada(),
@@ -70,8 +69,7 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
         new LaminaMaldita(),
         new Celestial()
     ]
-    const talentos: Talento[] = Talentos;
-    const atributos = ["força", "destreza", "constituição", "inteligência", "sabedoria", "carisma"];
+    const talentos = ficha ? talentosElegiveis(ficha, nivel) : [];
     const pericias = [
         "Atletismo",
         "Acrobacia",
@@ -107,7 +105,7 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
     ];
 
     const toggleNivel = () => setNivelExpandido(!nivelExpandido);
-    const toggleSecao = (secao) => {
+    const toggleSecao = (secao: keyof typeof secoesExpandidas) => {
         setSecoesExpandidas((prev) => ({
             ...prev,
             [secao]: !prev[secao],
@@ -121,23 +119,7 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
 
     const classeNoNivel = ficha?.multiclasses?.find(m => m.nivelEscolhido.includes(nivel));
 
-    const getAtributo = (atributo) => atributo ? atributo.valor ?? 0 : 0;
-
-    const classesPermitidas = classesDisponiveis.filter(c => {
-        if (c.nome === ficha?.classePrincipal?.nome) return true;
-        switch (c.nome) {
-            case "Bárbaro": return getAtributo(ficha?.atributosPersonagem?.forca) >= 13;
-            case "Bardo": case "Bruxo": case "Feiticeiro": return getAtributo(ficha?.atributosPersonagem?.carisma) >= 13;
-            case "Clérigo": case "Druida": return getAtributo(ficha?.atributosPersonagem?.sabedoria) >= 13;
-            case "Guerreiro": return getAtributo(ficha?.atributosPersonagem?.forca) >= 13 || getAtributo(ficha?.atributosPersonagem?.destreza) >= 13;
-            case "Ladino": return getAtributo(ficha?.atributosPersonagem?.destreza) >= 13;
-            case "Mago": return getAtributo(ficha?.atributosPersonagem?.inteligencia) >= 13;
-            case "Monge": return getAtributo(ficha?.atributosPersonagem?.destreza) >= 13 && getAtributo(ficha?.atributosPersonagem?.sabedoria) >= 13;
-            case "Paladino": return getAtributo(ficha?.atributosPersonagem?.forca) >= 13 && getAtributo(ficha?.atributosPersonagem?.carisma) >= 13;
-            case "Patrulheiro": return getAtributo(ficha?.atributosPersonagem?.destreza) >= 13 && getAtributo(ficha?.atributosPersonagem?.sabedoria) >= 13;
-            default: return false;
-        }
-    });
+    const classesPermitidas = classesDisponiveis.filter(c => ficha && podeSelecionarClasse(ficha, c, nivel));
 
     const opcoesAmbientes = [
         "Ártico",
@@ -150,20 +132,7 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
         "Subterrâneo",
     ];
 
-    const calcularNivelClasse = (nivelAtual: number): number => {
-        let nivelClasse = 0;
-        const niveisEscolhidos = ficha?.multiclasses?.find(m => m.classe.nome === classeNoNivel?.classe.nome)?.nivelEscolhido.sort((a, b) => a - b) ?? [];
-
-        for (const nivel of niveisEscolhidos) {
-            if (nivel <= nivelAtual) {
-                nivelClasse++;
-            } else {
-                break;
-            }
-        }
-
-        return nivelClasse;
-    };
+    const calcularNivelClasse = (nivelAtual: number): number => ficha && classeNoNivel ? nivelDaClasse(ficha, classeNoNivel.classe, nivelAtual) : 0;
 
     const abrirSubGrupo = () => {
         if (classeNoNivel?.classe?.subClasse) {
@@ -191,7 +160,7 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
             case "bardo":
                 return "seu Colégio de Bardo";
             case "bruxo":
-                return "sua Dádiva do Pacto"
+                return versaoRegras === 'DND_2024' ? 'seu Patrono' : 'sua Dádiva do Pacto';
             case "druida":
                 return "seu Círculo Druídico";
             case "feiticeiro":
@@ -211,25 +180,19 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
         }
     }
 
-    function validaSubClasse(classe, nivel) {
-        // Converte a classe para minúsculas para evitar problemas de case sensitivity
-        classe = classe?.toLowerCase();
+  function validaSubClasse(classe?: string, nivel?: number) {
+    return !!classe && !!nivel && podeTerSubclasse(classe, nivel, versaoRegras);
+  }
 
-        // Verifica as condições
-        const condicao1 = (classe === "feiticeiro" || classe === "clerigo") && nivel === 1;
-        const condicao2 = (classe === "druida" || classe === "mago") && nivel === 2;
-        const condicao3 = nivel === 3 && !["feiticeiro", "clerigo", "druida", "mago"].includes(classe);
-
-        // Retorna true se qualquer uma das condições for verdadeira
-        return condicao1 || condicao2 || condicao3;
-    }
-
-    function verificarBonusClasse(classe: Classes) {
-        if (ficha?.multiclasses?.find(m => m.classe.nome === classe.nome)?.nivelClasse === 1 &&
-            (classe.nome === "Ladino" || classe.nome === "Patrulheiro" || classe.nome === "Bardo")) {
-            setClasseBonus(true);
-        }
-    }
+    const classeBonus = nivel !== 1 && calcularNivelClasse(nivel) === 1 && ['Ladino', 'Patrulheiro', 'Bardo'].includes(classeNoNivel?.classe.nome ?? '');
+    const criarEfeitoNivel = () => {
+        const efeito = new Efeitos();
+        efeito.origemTipo = 'nivel';
+        efeito.origemId = `${classeNoNivel?.classe.nome}:${calcularNivelClasse(nivel)}`;
+        efeito.classeNome = classeNoNivel?.classe.nome ?? '';
+        efeito.nivelClasseOrigem = calcularNivelClasse(nivel);
+        return efeito;
+    };
 
     function validaClasseNoNivel(classe: Classes | undefined) {
         if (classe !== undefined) {
@@ -239,21 +202,9 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
         }
     }
 
-    function validaIncrementoAtributo(classe: Classes | undefined) {
-        if (!classe) return false;
-
-        const nivelAtual = calcularNivelClasse(nivel);
-        const nivelComIncremento = classe.niveis.find(c =>
-            c.nivel === nivelAtual &&
-            c.caracteristicas.includes("Incremento no Valor de Habilidade")
-        );
-
-        return !!nivelComIncremento;
-    }
-
     return (
         <>
-            <div id="div-level-container" key={refreshKey} className={`level-container ${validaClasseNoNivel(classeNoNivel?.classe) ? "" : "incorreto"}`}>
+            <div id="div-level-container"  className={`level-container ${validaClasseNoNivel(classeNoNivel?.classe) ? "" : "incorreto"}`}>
                 <button className="secao-toggle" onClick={toggleNivel}>
                     <h2 className="tituloh2">Nível {nivel}{nivelExpandido ? "▲" : "▼"}</h2>
                 </button>
@@ -277,100 +228,11 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
                                 </button>
                             </>
                         )}
-                        {validaIncrementoAtributo(classeNoNivel?.classe) && (
-                            <>
-                                <label className="flex items-center gap-2 cursor-pointer">
-                                    <input
-                                        type="checkbox"
-                                        checked={!!ficha?.efeitos?.find(e => e.tituloEfeito === `selecionadoAtributo${nivel}`)}
-                                        onChange={() => {
-                                            setSelecionado(selecionado === "Atributo" ? "" : "Atributo");
-                                            ficha?.excluirEfeitoPorTitulo(`TalentoEscolhido${nivel}`);
-                                            ficha?.excluirEfeitoPorTitulo(`selecionadoTalento${nivel}`)
-                                            let efeito = new Efeitos();
-                                            efeito.setTituloEfeito(`selecionadoAtributo${nivel}`);
-                                            efeito.setLevel(nivel);
-                                            ficha?.setEfeitos(efeito);
-                                        }}
-                                    />
-                                    Atributo
-                                </label>
-                                <label className="flex items-center gap-2 cursor-pointer">
-                                    <input
-                                        type="checkbox"
-                                        checked={!!ficha?.efeitos?.find(e => e.tituloEfeito === `selecionadoTalento${nivel}`)}
-                                        onChange={() => {
-                                            setSelecionado(selecionado === "Talento" ? "" : "Talento");
-                                            ficha?.excluirEfeitoPorTitulo(`selecionadoAtributo${nivel}`)
-                                            let efeito = new Efeitos();
-                                            efeito.setTituloEfeito(`selecionadoTalento${nivel}`);
-                                            efeito.setLevel(nivel);
-                                            ficha?.setEfeitos(efeito);
-                                            ficha?.excluirEfeitoPorTitulo(`atributo1Classe${classeNoNivel?.classe.nome}${nivel}`);
-                                            ficha?.excluirEfeitoPorTitulo(`atributo2Classe${classeNoNivel?.classe.nome}${nivel}`);
-                                        }}
-                                    />
-                                    Talento
-                                </label>
-                                {!!ficha?.efeitos?.find(e => e.tituloEfeito === `selecionadoAtributo${nivel}`) && (
-                                    <>
-                                        <select
-                                            value={ficha.efeitos.find(e => e.tituloEfeito === `atributo1Classe${classeNoNivel?.classe.nome}${nivel}`)?.atributo}
-                                            onChange={(e) => {
-                                                ficha?.excluirEfeitoPorTitulo(`atributo1Classe${classeNoNivel?.classe.nome}${nivel}`);
-                                                let efeito = new Efeitos();
-                                                efeito.setAtributo(e.target.value);
-                                                efeito.setBonus(1);
-                                                efeito.setLevel(nivel);
-                                                efeito.setTituloEfeito(`atributo1Classe${classeNoNivel?.classe.nome}${nivel}`);
-                                                efeito.setClasseNome(classeNoNivel?.classe.nome ?? "");
-                                                ficha?.setEfeitos(efeito);
-                                                forceUpdate();
-                                            }}
-                                        >
-                                            <option value="">Selecione um atributo</option>
-                                            {atributos.map((atributo) => (
-                                                <option key={atributo} value={atributo}>
-                                                    {atributo}
-                                                </option>
-                                            ))}
-                                        </select>
-                                        <select
-                                            value={ficha.efeitos.find(e => e.tituloEfeito === `atributo2Classe${classeNoNivel?.classe.nome}${nivel}`)?.atributo}
-                                            onChange={(e) => {
-                                                ficha?.excluirEfeitoPorTitulo(`atributo2Classe${classeNoNivel?.classe.nome}${nivel}`);
-                                                let efeito = new Efeitos();
-                                                efeito.setAtributo(e.target.value);
-                                                efeito.setBonus(1);
-                                                efeito.setLevel(nivel);
-                                                efeito.setTituloEfeito(`atributo2Classe${classeNoNivel?.classe.nome}${nivel}`);
-                                                efeito.setClasseNome(classeNoNivel?.classe.nome ?? "");
-                                                ficha?.setEfeitos(efeito);
-                                                forceUpdate();
-                                            }}
-                                        >
-                                            <option value="">Selecione um atributo</option>
-                                            {atributos.map((atributo) => (
-                                                <option key={atributo} value={atributo}>
-                                                    {atributo}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </>
-                                )}
-                                {!!ficha?.efeitos?.find(e => e.tituloEfeito === `selecionadoTalento${nivel}`) && (
-                                    <>
-                                        <button className="botao-selecao-talento" onClick={() => setModalTalentoAberto(true)}>
-                                            <img src={iconRaca} className="button-icon" alt="HumanoFeat" />
-                                            <div className="botao-texto">
-                                                <span>Selecionar Talento</span>
-                                                <strong>{ficha?.efeitos?.find(e => e.tituloEfeito === `TalentoEscolhido${nivel}`) ? ficha?.efeitos?.find(e => e.tituloEfeito === `TalentoEscolhido${nivel}`)?.talento : "Selecionar Talento"}</strong>
-                                            </div>
-                                        </button>
-                                    </>
-                                )}
-                            </>
-                        )}
+                        <AvancoAtributos key={`${classeNoNivel?.classe.nome}:${calcularNivelClasse(nivel)}`} nivel={nivel} />
+                        {classeNoNivel && recursosNoNivel(classeNoNivel.classe, calcularNivelClasse(nivel), versaoRegras).length > 0 && <>
+                            <button onClick={() => setModalTalentoAberto(true)}>Selecionar Talento</button>
+                            <p>Catálogo parcial: apenas talentos com escolhas implementadas podem ser selecionados. Registros antigos são preservados; opções ausentes permanecem pendentes.</p>
+                        </>}
                         {classeBonus && (
                             <>
                                 {classeNoNivel?.classe.nome === "Bardo" && (
@@ -378,9 +240,8 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
                                         <select
                                             value={periciaBardo}
                                             onChange={(e) => {
-                                                setPericiaBardo(e.target.value);
                                                 ficha?.excluirEfeitoPorTitulo("periciaBardoMulticlasse");
-                                                let efeito = new Efeitos();
+                                                let efeito = criarEfeitoNivel();
                                                 efeito.setPericia(e.target.value);
                                                 efeito.setLevel(nivel);
                                                 efeito.setTituloEfeito("periciaBardoMulticlasse");
@@ -398,9 +259,8 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
                                         <select
                                             value={instrumentoSelecionado}
                                             onChange={(e) => {
-                                                setInstrumentoSelecionado(e.target.value)
                                                 ficha?.excluirEfeitoPorTitulo("instrumentoBardoMulticlasse");
-                                                let efeito = new Efeitos();
+                                                let efeito = criarEfeitoNivel();
                                                 efeito.setProeficienciasBackGround([e.target.value]);
                                                 efeito.setLevel(nivel);
                                                 efeito.setTituloEfeito("instrumentoBardoMulticlasse");
@@ -422,9 +282,8 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
                                         <select
                                             value={periciaPatrulheiro}
                                             onChange={(e) => {
-                                                setPericiaPatrulheiro(e.target.value);
                                                 ficha?.excluirEfeitoPorTitulo("periciaPatrulheiroMulticlasse");
-                                                let efeito = new Efeitos();
+                                                let efeito = criarEfeitoNivel();
                                                 efeito.setPericia(e.target.value);
                                                 efeito.setLevel(nivel);
                                                 efeito.setTituloEfeito("periciaPatrulheiroMulticlasse");
@@ -446,9 +305,8 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
                                         <select
                                             value={periciaLadino}
                                             onChange={(e) => {
-                                                setPericiaLadino(e.target.value);
                                                 ficha?.excluirEfeitoPorTitulo("periciaLadinoMulticlasse");
-                                                let efeito = new Efeitos();
+                                                let efeito = criarEfeitoNivel();
                                                 efeito.setPericia(e.target.value);
                                                 efeito.setLevel(nivel);
                                                 efeito.setTituloEfeito("periciaLadinoMulticlasse");
@@ -480,7 +338,6 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
                                                     <div key={opcao.nome} className="skills-container">
                                                         <label className="flex items-center p-2 border rounded-lg">
                                                             <input
-                                                                key={refreshKey}
                                                                 type="checkbox"
                                                                 checked={ficha?.animalSelecionado?.find((a) => a.nivel === calcularNivelClasse(nivel))?.animal === opcao.nome}
                                                                 onChange={() => handleSelecionarOpcao(opcao.nome)}
@@ -529,55 +386,7 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
                                                     </div>
                                                 </>
                                             )}
-                                        {classeNoNivel.classe.nome === "Feiticeiro" &&
-                                            (calcularNivelClasse(nivel) === 3 || calcularNivelClasse(nivel) === 10 || calcularNivelClasse(nivel) === 17) && (
-                                                <>
-                                                    {calcularNivelClasse(nivel) === 3 && (
-                                                        <button className="botao-distribuir" onClick={() => { setModalMetamagicaAberto(true); setIndexMetamagica(1) }}>
-                                                            <img src={iconClass} className="button-icon" alt="Classe" />
-                                                            <div className="botao-texto">
-                                                                <span>Selecionar Metamagica</span>
-                                                                <strong>{
-                                                                    ficha?.metamagica1?.nome ?? "Selecionar Metamagica"
-                                                                }</strong>
-                                                            </div>
-                                                        </button>
-                                                    )}
-                                                    {calcularNivelClasse(nivel) === 3 && (
-                                                        <button className="botao-distribuir" onClick={() => { setModalMetamagicaAberto(true); setIndexMetamagica(3) }}>
-                                                            <img src={iconClass} className="button-icon" alt="Classe" />
-                                                            <div className="botao-texto">
-                                                                <span>Selecionar Metamagica</span>
-                                                                <strong>{
-                                                                    ficha?.metamagica2?.nome ?? "Selecionar Metamagica"
-                                                                }</strong>
-                                                            </div>
-                                                        </button>
-                                                    )}
-                                                    {calcularNivelClasse(nivel) === 10 && (
-                                                        <button className="botao-distribuir" onClick={() => { setModalMetamagicaAberto(true); setIndexMetamagica(10) }}>
-                                                            <img src={iconClass} className="button-icon" alt="Classe" />
-                                                            <div className="botao-texto">
-                                                                <span>Selecionar Metamagica</span>
-                                                                <strong>{
-                                                                    ficha?.metamagica3?.nome ?? "Selecionar Metamagica"
-                                                                }</strong>
-                                                            </div>
-                                                        </button>
-                                                    )}
-                                                    {calcularNivelClasse(nivel) === 17 && (
-                                                        <button className="botao-distribuir" onClick={() => { setModalMetamagicaAberto(true); setIndexMetamagica(17) }}>
-                                                            <img src={iconClass} className="button-icon" alt="Classe" />
-                                                            <div className="botao-texto">
-                                                                <span>Selecionar Metamagica</span>
-                                                                <strong>{
-                                                                    ficha?.metamagica4?.nome ?? "Selecionar Metamagica"
-                                                                }</strong>
-                                                            </div>
-                                                        </button>
-                                                    )}
-                                                </>
-                                            )}
+                                        {chaveClasse(classeNoNivel.classe) === 'feiticeiro' && <EscolhasMetamagia nivelClasse={calcularNivelClasse(nivel)} />}
                                         {ficha?.terrenoSelecionado &&
                                             [3, 5, 7, 9].includes(calcularNivelClasse(nivel)) && classeNoNivel.classe.nome === "Druida" && (
                                                 <>
@@ -596,7 +405,7 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
                                                 </>
                                             )
                                         }
-                                        {classeNoNivel.classe.nome === "Bruxo" && calcularNivelClasse(nivel) === 1 && (
+                                        {versaoRegras === "DND_2014" && chaveClasse(classeNoNivel.classe) === "bruxo" && calcularNivelClasse(nivel) === 1 && (
                                             <>
                                                 <button className="botao-selecao-talento" onClick={() => setModalPatronoAberto(true)}>
                                                     <img src={iconClass} className="button-icon" alt="Patrono" />
@@ -614,9 +423,9 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
                                                                 opcoes={patronos}
                                                                 onClose={() => setModalPatronoAberto(false)}
                                                                 onSelect={(patrono) => {
-                                                                    setPatronoSelecionado(patrono);
+                                                                    ficha?.setPatrono(patrono);
                                                                     setModalPatronoAberto(false);
-                                                                    ficha?.setPatrono(patronoSelecionado)
+                                                                    forceUpdate();
                                                                 }}
                                                                 patronoInicial={ficha?.patrono}
                                                             />
@@ -631,33 +440,7 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
                                             </>
                                         )}
                                         <CaracteristicasClasse classe={classeNoNivel?.classe} nivel={calcularNivelClasse(nivel)} />
-                                        {classeNoNivel.classe.nome === "Feiticeiro" && [3, 10, 17].includes(calcularNivelClasse(nivel)) && (
-                                            <div className="skills-container">
-                                                <button
-                                                    onClick={() => setIsExpanded(!isExpanded)}
-                                                    className="w-full text-left p-2 border rounded-lg focus:outline-none"
-                                                >
-                                                    Metamágicas de Feiticeiro{isExpanded ? "▲" : "▼"}
-                                                </button>
-
-                                                {isExpanded && (
-                                                    <div className="p-4 space-y-4">
-                                                        <div>
-                                                            <p className="font-semibold">{ficha?.getMetamagica(calcularNivelClasse(nivel))}</p>
-                                                            <p className="text-sm">{Metamagica.find(m => m.nome === ficha?.getMetamagica(calcularNivelClasse(nivel)))?.descricao}</p>
-                                                        </div>
-
-                                                        {calcularNivelClasse(nivel) === 3 && (
-                                                            <div>
-                                                                <p className="font-semibold">{ficha?.getMetamagica(1)}</p>
-                                                                <p className="text-sm">{Metamagica.find(m => m.nome === ficha?.getMetamagica(1))?.descricao}</p>
-                                                            </div>
-                                                        )}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        )}
-                                        {!!ficha?.efeitos?.find(e => e.tituloEfeito === `selecionadoTalento${nivel}`) && <TalentoDescricao talento={ficha?.efeitos?.find(e => e.tituloEfeito === `TalentoEscolhido${nivel}`)?.talento ?? ""} />}
+                                        {!!ficha?.efeitos?.find(e => e.tituloEfeito === `TalentoEscolhido${nivel}`) && <TalentoDescricao efeito={ficha?.efeitos?.find(e => e.tituloEfeito === `TalentoEscolhido${nivel}`)} talento={ficha?.efeitos?.find(e => e.tituloEfeito === `TalentoEscolhido${nivel}`)?.talento ?? ""} />}
                                     </div>
                                 )}
                             </div>
@@ -677,7 +460,6 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
                                 classe && selecionarMulticlasse(classe, nivel);
                                 setModalClasseAberto(false);
                                 forceUpdate();
-                                classe && verificarBonusClasse(classe);
                             }}
                             classeInicial={classeNoNivel?.classe || null}
                         />
@@ -699,7 +481,7 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
                                 setSubGrupoAberto(false);
                                 forceUpdate();
                             }}
-                            subClasseInicial={ficha?.subClasse?.find(s => s.classe === classeNoNivel?.classe)?.subclasse ?? null}
+                            subClasseInicial={ficha?.subClasse?.find(s => s.classe.nome === classeNoNivel?.classe.nome)?.subclasse ?? null}
                         />
                     </div>
                 </>
@@ -712,36 +494,19 @@ const NivelBlock = ({ nivel, classesDisponiveis, selecionarMulticlasse }) => {
                             titulo="Escolha um Talento"
                             opcoes={talentos}
                             onClose={() => setModalTalentoAberto(false)}
-                            onSelect={(talento) => {
-                                ficha?.excluirEfeitoPorTitulo(`TalentoEscolhido${nivel}`);
-                                let efeito = new Efeitos();
-                                efeito.setTalento(talento.nome);
-                                efeito.setLevel(nivel);
-                                efeito.setTituloEfeito(`TalentoEscolhido${nivel}`);
-                                ficha?.setEfeitos(efeito);
-                                forceUpdate();
+                            onSelect={(talento, escolhas) => {
+                                const sucesso = ficha?.selecionarTalentoAvanco(nivel, talento.nome, escolhas);
+                                if (sucesso) forceUpdate();
+                                return !!sucesso;
                             }}
+                            validar={(t, escolhas) => ficha ? erroTalento(ficha, nivel, t, escolhas, undefined, efeitosDoAvanco(ficha, nivel)) : "Ficha indisponível"}
+                            escolhasIniciais={ficha?.efeitos?.find(e => e.tituloEfeito === `TalentoEscolhido${nivel}`)?.escolhasTalento}
                             talentoInicial={talentos.find(t => t.nome === ficha?.efeitos?.find(e => e.tituloEfeito === `TalentoEscolhido${nivel}`)?.talento) ?? null}
                         />
                     </div>
                 </>
             )}
-            {modalMetamagicaAberta && (
-                <>
-                    <div className="popup-overlay" onClick={() => setModalMetamagicaAberto(false)}></div>
-                    <div className="popup">
-                        <ModalSelecaoMetamagica
-                            titulo="Escolher Metamagica"
-                            opcoes={Metamagica}
-                            onClose={() => setModalMetamagicaAberto(false)}
-                            onSelect={(Metamagica) => {
-                                ficha?.setMetamagicaSelecionada(Metamagica || "", indexMetamagica);
-                                forceUpdate();
-                            }}
-                        />
-                    </div>
-                </>
-            )}
+
         </>
     );
 };

@@ -1,6 +1,6 @@
-import { Classes } from "../classesPrincipais/Classes.class.ts";
-import { SubClasses } from "../classesPrincipais/SubClasses.ts";
-import { EscolaDeAbjuracao, EscolaDeConjuracao, EscolaDeAdivinhacao, EscolaDeEncantamento, EscolaDeEvocacao, EscolaDeIlusao, EscolaDeNecromancia, EscolaDeTransmutacao, MagoDeGuerra } from "../classesPrincipais/SubClassesExport.ts";
+import { Classes } from "../classesPrincipais/Classes.class";
+import { SubClasses } from "../classesPrincipais/SubClasses";
+import { EscolaDeAbjuracao, EscolaDeConjuracao, EscolaDeAdivinhacao, EscolaDeEncantamento, EscolaDeEvocacao, EscolaDeIlusao, EscolaDeNecromancia, EscolaDeTransmutacao, MagoDeGuerra } from "../classesPrincipais/SubClassesExport";
 
 export class Mago extends Classes {
   level: number;

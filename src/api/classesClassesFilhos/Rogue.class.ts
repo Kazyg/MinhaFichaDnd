@@ -1,6 +1,6 @@
-import { Classes } from "../classesPrincipais/Classes.class.ts";
-import { SubClasses } from "../classesPrincipais/SubClasses.ts";
-import { Assassino, Batedor, Espadachim, Inquiridor, Ladrao, Mentor, TrapaceiroArcano } from "../classesPrincipais/SubClassesExport.ts";
+import { Classes } from "../classesPrincipais/Classes.class";
+import { SubClasses } from "../classesPrincipais/SubClasses";
+import { Assassino, Batedor, Espadachim, Inquiridor, Ladrao, Mentor, TrapaceiroArcano } from "../classesPrincipais/SubClassesExport";
 
 export class Rogue extends Classes {
   level: number;

@@ -1,13 +1,13 @@
 export class SubClasses {
     id: string;
     nome: string;
-    magias: string[];
+    magias: string[] = [];
     descricao: string;
     niveis: {
         nome: string;
         nivel: number;
         descricao: string;
-      }[];
+      }[] = [];
 
     constructor(
         nome: string,

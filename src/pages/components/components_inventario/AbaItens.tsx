@@ -1,15 +1,15 @@
 import React from "react";
-import { useFicha } from "../../../api/fichaPersonagem/FichaContext.tsx";
-import { Itens } from "../../../bibliotecas/Itens.ts";
+import { useFicha } from "../../../api/fichaPersonagem/FichaContext";
+import { Itens } from "../../../bibliotecas/Itens";
 import { toast } from "react-toastify";
-import { calcularLimiteSintonizacao } from "../../../api/fichaPersonagem/fichaEfeitosUtils.ts";
+import { calcularLimiteSintonizacao } from "../../../api/fichaPersonagem/fichaEfeitosUtils";
 
 interface AbaItensProps {
   setModalItemAberto: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function AbaItens({ setModalItemAberto }: AbaItensProps) {
-  const { ficha, refreshKey, forceUpdate } = useFicha();
+  const { ficha, forceUpdate } = useFicha();
 
   const alterarMoeda = (tipo: string, quantidade: number) => {
     switch (tipo) {
@@ -39,22 +39,6 @@ export default function AbaItens({ setModalItemAberto }: AbaItensProps) {
       return;
     }
 
-    if (item.sintonizavel) {
-      const limiteSintonizacao = calcularLimiteSintonizacao(ficha);
-      const quantidadeSintonizados = ficha.getItensSintonizadosEquipados().length;
-      if (quantidadeSintonizados >= limiteSintonizacao) {
-        toast.error(`Você já atingiu o limite de ${limiteSintonizacao} itens sintonizados.`, {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
-        return;
-      }
-    }
-
     ficha.setEquiparItem(item);
     forceUpdate();
   };
@@ -74,12 +58,17 @@ export default function AbaItens({ setModalItemAberto }: AbaItensProps) {
   );
 
   return (
-    <div key={refreshKey} className="inventario-itens-container">
+    <div  className="inventario-itens-container">
       <h3 className="inventario-titulo">Inventário de Itens</h3>
       <p className="resumo-sintonizacao">
         Sintonizados: {ficha?.getItensSintonizadosEquipados().length ?? 0}/{calcularLimiteSintonizacao(ficha)}
       </p>
 
+      <p>Sintonizar registra o vínculo após cumprir os requisitos e o descanso; desequipar mantém esse vínculo.</p>
+      <p><a href={ficha?.versaoRegras === 'DND_2024'
+        ? 'https://www.dndbeyond.com/sources/dnd/br-2024/equipment#Attunement'
+        : 'https://www.dndbeyond.com/sources/dnd/basic-rules-2014/magic-items#Attunement'}>
+        Regras de sintonização ({ficha?.versaoRegras === 'DND_2024' ? '2024' : '2014'})</a></p>
       <div className="controle-moedas">
         {botoesMoeda("ouro", ficha?.ouro)}
         {botoesMoeda("prata", ficha?.prata)}
@@ -101,6 +90,11 @@ export default function AbaItens({ setModalItemAberto }: AbaItensProps) {
               </div>
             </div>
             <div className="acoes-item">
+              {item.sintonizavel && <button onClick={() => {
+                if (!ficha.setSintonizarItem(item.id, !ficha.itensSintonizados?.includes(item.id))) toast.error('Limite de sintonização atingido.');
+                forceUpdate();
+              }}>{ficha.itensSintonizados?.includes(item.id) ? 'Encerrar sintonização' : 'Sintonizar'}</button>}
+
               <button
                 className="botao-equipar-item"
                 onClick={() => alternarEquipamentoItem(item)}

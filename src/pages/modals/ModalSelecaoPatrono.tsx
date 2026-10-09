@@ -1,5 +1,6 @@
+import AccessibleDialog from "../components/AccessibleDialog";
 import React, { useState } from "react";
-import { Patronos } from "../../api/classesEspeciais/Patronos.class.ts";
+import { Patronos } from "../../api/classesEspeciais/Patronos.class";
 
 interface ModalSelecaoProps {
     opcoes: Patronos[];
@@ -21,23 +22,23 @@ const ModalSelecaoPatrono: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo,
     );
 
     return (
-        <div className="popup-content-modal">
+        <AccessibleDialog className="popup-content-modal" onClose={onClose} aria-label={titulo}>
             <h2>{titulo}</h2>
             <div className="popup-body-modal">
                 <div className="lista-racas">
                     <input
                         type="text"
-                        placeholder="Filtrar classes..."
+                        aria-label="Filtrar classes..." placeholder="Filtrar classes..."
                         value={filtro}
                         onChange={(e) => setFiltro(e.target.value)}
                     />
                     <ul>
                         {opcoesFiltradas.map((opcao) => (
-                            <li key={opcao.nome} onClick={() => {
+                            <li key={opcao.nome}><button type="button" className="selection-option" aria-pressed={selecionado?.nome === opcao.nome} onClick={() => {
                                 setSelecionado(opcao);
                             }}>
                                 {opcao.nome}
-                            </li>
+                            </button></li>
                         ))}
                     </ul>
                 </div>
@@ -64,7 +65,7 @@ const ModalSelecaoPatrono: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo,
                 {selecionado && (<button className="escolher-button" onClick={() => { onSelect(selecionado); onClose() }}>Escolher {selecionado.nome}</button>)}
                 <button className="escolher-button" onClick={() => { onClose() }}>Fechar</button>
             </div>
-        </div>
+        </AccessibleDialog>
     );
 };
 

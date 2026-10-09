@@ -1,6 +1,8 @@
-import { Efeitos } from "../classesPrincipais/Efeitos.ts";
-import { Itens } from "../../bibliotecas/Itens.ts";
-import type { Ficha } from "./FichaPersonagem.ts";
+import { resolverConteudo } from '../rulesets/conteudo';
+import { Efeitos } from "../classesPrincipais/Efeitos";
+import { Itens } from "../../bibliotecas/Itens";
+import type { Ficha } from "./FichaPersonagem";
+import { chaveClasse, nivelDaClasse } from '../rulesets/progressao';
 
 export type AtributoChave = "forca" | "destreza" | "constituicao" | "inteligencia" | "sabedoria" | "carisma";
 
@@ -64,12 +66,8 @@ const criarEfeitoBaseDoItem = (item: Itens) => {
 };
 
 const extrairClasseRelacionada = (textoNormalizado: string): string | null => {
-  const entradas = Object.entries(MAPA_CLASSES);
-  for (const [termo, classe] of entradas) {
-    if (textoNormalizado.includes(termo)) {
-      return classe;
-    }
-  }
+  const match = textoNormalizado.match(/(?:magias|feiticos) de ([a-z]+)|your ([a-z]+) spells/);
+  if (match) return MAPA_CLASSES[match[1] ?? match[2]] ?? null;
   return null;
 };
 
@@ -84,6 +82,7 @@ const extrairBonusPorRegex = (textoNormalizado: string, regexes: RegExp[]) => {
 };
 
 export const extrairEfeitosDoItem = (item: Itens): Efeitos[] => {
+  if (item.efeitosExplicitos) return item.efeitosExplicitos.map((e, i) => Object.assign(criarEfeitoBaseDoItem(item), e, { id: `item:${item.id}:${i}`, origemTipo: 'item', origemId: item.id }));
   const efeitos: Efeitos[] = [];
   const descricaoNormalizada = normalizarTexto(item.descricao ?? "");
   const nomeNormalizado = normalizarTexto(item.nome ?? "");
@@ -120,8 +119,9 @@ export const extrairEfeitosDoItem = (item: Itens): Efeitos[] => {
   regexBonusAtributo.forEach((regex) => {
     const match = descricaoNormalizada.match(regex);
     if (match) {
-      const bonus = Number(match[1]);
-      const atributo = MAPA_ATRIBUTOS[match[2]];
+      const ingles = regex.source.startsWith("your ");
+      const bonus = Number(match[ingles ? 2 : 1]);
+      const atributo = MAPA_ATRIBUTOS[match[ingles ? 1 : 2]];
       if (atributo && !Number.isNaN(bonus)) {
         const efeito = criarEfeitoBaseDoItem(item);
         efeito.setTipoEfeito("bonus_atributo");
@@ -136,8 +136,7 @@ export const extrairEfeitosDoItem = (item: Itens): Efeitos[] => {
     /bonus de \+(\d+) na ca/,
     /recebe um bonus de \+(\d+) na ca/,
     /gain a \+(\d+) bonus to ac/,
-    /\+(\d+) shield/,
-    /\+(\d+) armor/,
+
   ]);
 
   if (bonusCA !== null) {
@@ -179,25 +178,8 @@ export const extrairEfeitosDoItem = (item: Itens): Efeitos[] => {
     efeitos.push(efeito);
   }
 
-  const bonusAtaqueArma = extrairBonusPorRegex(`${nomeNormalizado} ${descricaoNormalizada}`, [
-    /bonus de \+(\d+) nas jogadas de ataque e de dano/,
-    /bonus de \+(\d+) nas jogadas de ataque/,
-    /\+(\d+) weapon/,
-  ]);
-
-  if (bonusAtaqueArma !== null) {
-    const efeitoAtaque = criarEfeitoBaseDoItem(item);
-    efeitoAtaque.setTipoEfeito("ataque_arma");
-    efeitoAtaque.setArma("ataque_arma");
-    efeitoAtaque.setBonus(bonusAtaqueArma);
-    efeitos.push(efeitoAtaque);
-
-    const efeitoDano = criarEfeitoBaseDoItem(item);
-    efeitoDano.setTipoEfeito("dano_arma");
-    efeitoDano.setArma("dano_arma");
-    efeitoDano.setBonus(bonusAtaqueArma);
-    efeitos.push(efeitoDano);
-  }
+  // Weapon-local attack/damage requires explicit, scoped data; never grant
+  // a global benefit from a weapon name or an isolated attack phrase.
 
   if (
     descricaoNormalizada.includes("se sintonizar com ate quatro itens magicos") ||
@@ -209,12 +191,14 @@ export const extrairEfeitosDoItem = (item: Itens): Efeitos[] => {
     efeitos.push(efeito);
   }
 
-  return efeitos;
+  return efeitos.map((e, i) => Object.assign(e, { id: `item:${item.id}:${i}` }));
 };
 
 export const listarEfeitosAtivos = (ficha: Ficha | null | undefined): Efeitos[] => {
   if (!ficha?.efeitos) return [];
   return ficha.efeitos.filter((efeito) => {
+    if (efeito.conteudo && (efeito.conteudo.edicao !== ficha.versaoRegras || !resolverConteudo(efeito.conteudo))) return false;
+    if (efeito.nivelClasseOrigem && efeito.classeNome && nivelDaClasse(ficha, chaveClasse(efeito.classeNome)) < efeito.nivelClasseOrigem) return false;
     if (efeito.level === undefined || efeito.level === null) return true;
     return efeito.level <= (ficha.levelTotal || 0);
   });
@@ -225,9 +209,9 @@ const normalizarAtributo = (atributo: string): AtributoChave | null => {
   return MAPA_ATRIBUTOS[atributoNormalizado] ?? MAPA_SIGLAS[atributo.toUpperCase()] ?? null;
 };
 
-export const calcularValorAtributoFinal = (ficha: Ficha | null | undefined, atributo: string): number => {
+export const selecionarAtributo = (ficha: Ficha | null | undefined, atributo: string) => {
   const atributoChave = normalizarAtributo(atributo);
-  if (!atributoChave) return 10;
+  if (!atributoChave) return { base: 10, total: 10, explicacao: 'Atributo não informado' };
 
   const valorBase = ficha?.atributosPersonagem?.[atributoChave]?.valor ?? 10;
   const efeitos = listarEfeitosAtivos(ficha).filter((efeito) => normalizarAtributo(efeito.atributo ?? "") === atributoChave);
@@ -238,18 +222,12 @@ export const calcularValorAtributoFinal = (ficha: Ficha | null | undefined, atri
     .map((efeito) => efeito.valorFixo ?? null)
     .filter((valor): valor is number => typeof valor === "number");
 
-  if (valoresFixos.length === 0) {
-    return valorComBonus;
-  }
-
-  return Math.max(valorComBonus, ...valoresFixos);
+  const total = Math.max(valorComBonus, ...valoresFixos);
+  const fontes = efeitos.map(e => `${e.tituloEfeito || e.origemTipo || 'Efeito sem fonte informada'}: ${e.valorFixo > 0 ? `mínimo ${e.valorFixo}` : `${e.bonus >= 0 ? '+' : ''}${e.bonus || 0}`}`);
+  return { base: valorBase, total, explicacao: `Base ${valorBase}; ${fontes.join('; ')}; final ${total}` };
 };
 
-export const calcularBonusCAItens = (ficha: Ficha | null | undefined): number => {
-  return listarEfeitosAtivos(ficha)
-    .filter((efeito) => efeito.ca === "CA" || efeito.tipoEfeito === "ca_item")
-    .reduce((acc, efeito) => acc + (efeito.bonus ?? 0), 0);
-};
+export const calcularValorAtributoFinal = (ficha: Ficha | null | undefined, atributo: string): number => selecionarAtributo(ficha, atributo).total;
 
 const classeCorresponde = (efeito: Efeitos, classeNome?: string) => {
   const classeEfeito = normalizarTexto(efeito.classeNome ?? "todas");

@@ -1,27 +1,29 @@
-import React, { useState, useEffect } from "react";
+import TalentoOrigem from './components/TalentoOrigem';
+import { erroTalento, selecionarTalentoInicial, talentosDisponiveis } from '../api/fichaPersonagem/talentosConteudo';
+import { podeTerSubclasse } from '../api/fichaPersonagem/subclasseElegibilidade';
+import React, { useState } from "react";
 import iconClasse from "../imagens/icon_class.png"
 import iconRaca from "../imagens/icon_ancestry.png"
-import { Classes } from "../api/classesPrincipais/Classes.class.ts"
-import { Raca } from "../api/classesPrincipais/Raca.class.ts"
+import { Classes } from "../api/classesPrincipais/Classes.class"
+import { Raca } from "../api/classesPrincipais/Raca.class"
 import "../pages/css/LevelOneSetup.css"
-import CaracteristicasClasse from "./components/CaracteristicasClasseProps.tsx";
-import CaracteristicasPatrono from "./components/CaracteristicasPatronoProps.tsx";
-import TalentoDescricao from "./components/TalendoDescricao.tsx";
-import ModalSelecaoPatrono from "../pages/modals/ModalSelecaoPatrono.tsx";
-import ModalSelecaoTalento from "../pages/modals/ModalSelecaoTalento.tsx";
-import { Patronos } from "../api/classesEspeciais/Patronos.class.ts";
-import { Corruptor } from "../api/classesEspeciais/Corruptor.class.ts";
-import { Arquifada } from "../api/classesEspeciais/Arquifada.class.ts";
-import { Celestial } from "../api/classesEspeciais/OCelestial.ts";
-import { LaminaMaldita } from "../api/classesEspeciais/LaminaMaldita.ts";
-import { GrandeAntigo } from "../api/classesEspeciais/GrandeAntigo.class.ts";
-import { Talentos } from "../bibliotecas/Talentos.ts";
-import { useFicha } from "../api/fichaPersonagem/FichaContext.tsx"
-import { Atributos } from "../api/classesPrincipais/Atributos.class.ts";
-import { SubClasses } from "../api/classesPrincipais/SubClasses.ts";
-import ModalSelecaoSubClasse from "../pages/modals/ModalSelecaoSubClasse.tsx";
-import { Draconato, dracoes } from "../api/classesFilhos/Draconato.class.ts";
-import { Efeitos } from "../api/classesPrincipais/Efeitos.ts";
+import CaracteristicasClasse from "./components/CaracteristicasClasseProps";
+import CaracteristicasPatrono from "./components/CaracteristicasPatronoProps";
+import TalentoDescricao from "./components/TalendoDescricao";
+import ModalSelecaoPatrono from "../pages/modals/ModalSelecaoPatrono";
+import ModalSelecaoTalento from "../pages/modals/ModalSelecaoTalento";
+import { Patronos } from "../api/classesEspeciais/Patronos.class";
+import { Corruptor } from "../api/classesEspeciais/Corruptor.class";
+import { Arquifada } from "../api/classesEspeciais/Arquifada.class";
+import { Celestial } from "../api/classesEspeciais/OCelestial";
+import { LaminaMaldita } from "../api/classesEspeciais/LaminaMaldita";
+import { GrandeAntigo } from "../api/classesEspeciais/GrandeAntigo.class";
+import { useFicha } from "../api/fichaPersonagem/FichaContext"
+import { erroDistribuicao } from "../api/rulesets/progressao";
+import { SubClasses } from "../api/classesPrincipais/SubClasses";
+import ModalSelecaoSubClasse from "../pages/modals/ModalSelecaoSubClasse";
+import { Draconato, dracoes } from "../api/classesFilhos/Draconato.class";
+import { getRulesetConfig } from "../api/rulesets/regras";
 
 interface LevelOneSetupProps {
   raca: Raca;
@@ -31,28 +33,50 @@ interface LevelOneSetupProps {
 const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
   const { ficha, forceUpdate } = useFicha();
   const [modalPatronoAberto, setModalPatronoAberto] = useState(false);
-  const [patronoSelecionado, setPatronoSelecionado] = useState<Patronos | null | undefined>(ficha?.patrono);
+  const patronoSelecionado = ficha?.patrono;
   const [modalHumanoVarianteAberto, setModalHumanoVarianteAberto] = useState(false);
   const [subGrupoAberto, setSubGrupoAberto] = useState(false);
   const [subClasses, setSubClasses] = useState<SubClasses[] | null>([]);
-  const [proeficienciasEscolhidas, setProeficienciasEscolhidas] = useState<string[]>([]);
+  const fixas = [...(ficha?.backGround?.proeficienciasHabilidades ?? []), ...(ficha?.racaPrincipal?.pericia ?? [])];
+  const proeficienciasEscolhidas = (ficha?.pericias ?? []).filter(p => classe.habilidades.includes(p) && !fixas.includes(p));
   const [tracosExpandidos, setTracosExpandidos] = useState<Record<string, boolean>>({});
   const [mostrarPopupAtributos, setMostrarPopupAtributos] = useState(false);
-  const [valoresDisponiveis, setValoresDisponiveis] = useState<number[]>([]);
-  const [pontosDisponiveis, setPontosDisponiveis] = useState(27);
-  const listaDracoes = dracoes;
-
-  useEffect(() => {
-    const novasProeficiencias = [];
-    setProeficienciasEscolhidas(novasProeficiencias);
-  }, [ficha?.backGround]);
-
-  type Talento = {
-    nome: string;
-    descricao: string;
+  const [erroConclusao, setErroConclusao] = useState('');
+  const [modalTalentoOrigemHumanoAberto, setModalTalentoOrigemHumanoAberto] = useState(false);
+  const padrao = {
+    metodo: null as string | null,
+    atributos: Object.fromEntries(['forca', 'destreza', 'constituicao', 'inteligencia', 'sabedoria', 'carisma'].map(k => [k, (ficha?.atributosPersonagem as any)?.[k]?.valor ?? 8])),
+    valores: [] as number[], pontos: 27, modo: "todos" as "todos" | "dois", maior: "", menor: "",
   };
+  const distribuicao = ficha?.distribuicaoAtributos ?? padrao;
+  function campo<K extends keyof typeof padrao>(key: K): [typeof padrao[K], React.Dispatch<React.SetStateAction<typeof padrao[K]>>] {
+    return [distribuicao[key], value => {
+      if (!ficha) return;
+      const atual = ficha.distribuicaoAtributos ?? padrao;
+      ficha.distribuicaoAtributos = { ...atual, [key]: typeof value === 'function' ? (value as (prev: typeof padrao[K]) => typeof padrao[K])(atual[key]) : value };
+      forceUpdate();
+    }];
+  }
+  const [valoresDisponiveis, setValoresDisponiveis] = campo('valores');
+  const [pontosDisponiveis, setPontosDisponiveis] = campo('pontos');
+  const [modoBonusOrigem, setModoBonusOrigem] = campo('modo');
+  const [atributoOrigemBonusMaior, setAtributoOrigemBonusMaior] = campo('maior');
+  const [atributoOrigemBonusMenor, setAtributoOrigemBonusMenor] = campo('menor');
+  const [atributoMetodo, setAtributoMetodo] = campo('metodo');
+  const [atributos, setAtributos] = campo('atributos');
+  const listaDracoes = dracoes;
+  const rulesetData = getRulesetConfig(ficha?.versaoRegras);
+  const origemComAtributos = ficha?.backGround as { atributos?: { atributo: string[]; bonus: number[] } } | null | undefined;
+  const atributosOrigem = origemComAtributos?.atributos?.atributo ?? [];
+  const bonusOrigemValido = !rulesetData.regras.backgroundConcedeAtributos ||
+    !rulesetData.regras.backgroundPermiteEscolhaBonusAtributo ||
+    modoBonusOrigem === "todos" ||
+    (!!atributoOrigemBonusMaior && !!atributoOrigemBonusMenor && atributoOrigemBonusMaior !== atributoOrigemBonusMenor);
 
-  const talentos: Talento[] = Talentos;
+  const tituloTalentoHumano = rulesetData.version === "DND_2024" ? "TalentoOrigemHumano" : "TalentoEscolhidoHumanoVariante";
+  const efeitosTalentoHumano = ficha?.efeitos?.filter(e => e.tituloEfeito === tituloTalentoHumano) ?? [];
+  const talentos = ficha ? talentosDisponiveis(ficha, 1, rulesetData.version === 'DND_2024' ? 'Origin' : undefined, efeitosTalentoHumano) : [];
+  const humanoComTalento = raca.nome === "Humano Variante" || (rulesetData.version === "DND_2024" && raca.nome === "Humano");
 
   const patronos: Patronos[] = [
     new Corruptor(),
@@ -62,35 +86,18 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
     new Celestial()
   ]
 
-  const [atributoMetodo, setAtributoMetodo] = useState<string | null>(null);
-  const [atributos, setAtributos] = useState({
-    forca: 8,
-    destreza: 8,
-    constituicao: 8,
-    inteligencia: 8,
-    sabedoria: 8,
-    carisma: 8
-  });
+  const chavesAtributos = Object.keys(atributos);
 
   const toggleTraco = (nome: string) => {
     setTracosExpandidos((prev) => ({ ...prev, [nome]: !prev[nome] }));
   };
 
   const toggleProeficiencia = (habilidade: string) => {
-    setProeficienciasEscolhidas((prev) => {
-      let novaLista;
-
-      if (prev.includes(habilidade)) {
-        novaLista = prev.filter((h) => h !== habilidade);
-      } else if (prev.length < classe.habilidade) {
-        novaLista = [...prev, habilidade];
-      } else {
-        return prev;
-      }
-      ficha?.setPericias(novaLista);
-      forceUpdate();
-      return novaLista;
-    });
+    const prev = proeficienciasEscolhidas;
+    if (!ficha) return;
+    if (prev.includes(habilidade)) ficha.pericias = (ficha.pericias ?? []).filter(p => p !== habilidade);
+    else if (prev.length < classe.habilidade) ficha.pericias = [...new Set([...(ficha.pericias ?? []), habilidade])];
+    forceUpdate();
   };
 
   const gerarArrayPadrao = () => [15, 14, 13, 12, 10, 8];
@@ -129,6 +136,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
           valores = [];
       }
       setValoresDisponiveis(valores);
+      if (ficha?.distribuicaoAtributos) ficha.distribuicaoAtributos.gerados = valores.slice();
       if (metodo === "Point Buy") {
         setAtributos({
           forca: 8,
@@ -183,29 +191,15 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
     }));
   };
 
-  const aplicarAtributosDaRaca = (raca: { atributos?: { atributo: string[]; bonus: number[] } }) => {
-    if (raca.atributos) {
-      const { atributo, bonus } = raca.atributos;
-
-      for (let i = 0; i < atributo.length; i++) {
-        const atributoAtual = atributo[i].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        const bonusAtual = bonus[i];
-
-        ficha?.atributosPersonagem?.somarAtributo(atributoAtual, bonusAtual);
-      }
-    }
-    console.log(ficha?.atributosPersonagem);
-  }
-
   const atualizarValoresDisponiveis = (valor: number, valorAntigo: number | null) => {
     let array = valoresDisponiveis
     const index = array.indexOf(valor);
 
     if (index !== -1) {
-      const novoArray = array.map((v, i) => (i === index ? valorAntigo : v)).filter(v => v !== null);
+      const novoArray = array.map((v, i) => (i === index ? valorAntigo : v)).filter((v): v is number => v !== null && v !== 0);
       setValoresDisponiveis(novoArray)
     } else {
-      const novoArray = [...array, valorAntigo].filter(v => v !== null);
+      const novoArray = [...array, valorAntigo].filter((v): v is number => v !== null && v !== 0);
       setValoresDisponiveis(novoArray)
     }
   }
@@ -251,17 +245,8 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
     }
   }
 
-  function validaSubClasse(classe, nivel) {
-    // Converte a classe para minúsculas para evitar problemas de case sensitivity
-    classe = classe?.toLowerCase();
-
-    // Verifica as condições
-    const condicao1 = (classe === "feiticeiro" || classe === "clerigo") && nivel === 1;
-    const condicao2 = (classe === "druida" || classe === "mago") && nivel === 2;
-    const condicao3 = nivel === 3 && !["feiticeiro", "clerigo", "bruxo", "druida", "mago"].includes(classe);
-
-    // Retorna true se qualquer uma das condições for verdadeira
-    return condicao1 || condicao2 || condicao3;
+  function validaSubClasse(classe?: string, nivel?: number) {
+    return !!classe && !!nivel && podeTerSubclasse(classe, nivel, rulesetData.version);
   }
 
   const renderPopupAtributos = () => {
@@ -270,102 +255,87 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
     return (
       <div className="monta-atributos-container-distribuicao">
         <div className="monta-atributos-distribuicao">
-          <h3 className="tituloh3">Distribuição de Atributos</h3>
-          {atributoMetodo === "Array Padrão" && (
-            <div className="atributos-container-distribuicao">
-              {Object.keys(atributos).map((atributo) => (
-                <div key={atributo} className="atributo-item-distribuicao">
-                  <label>{atributo.toUpperCase()}</label>
-                  <select
-                    name={atributos[atributo]}
-                    value={atributos[atributo as keyof typeof atributos] || 0}
-                    onChange={(e) => {
-                      if (atributos[atributo] === 0) {
-                        atualizarValoresDisponiveis(parseInt(e.target.value), null);
-                      } else {
-                        atualizarValoresDisponiveis(parseInt(e.target.value), atributos[atributo]);
-                      }
-                      atualizarAtributo(atributo as keyof typeof atributos, parseInt(e.target.value, 10));
-                    }}
-                  >
-                    <option value={atributos[atributo]} disabled hidden>{atributos[atributo]}</option>
-                    <option value="0">--</option>
-                    {valoresDisponiveis.map((valor) => (
-                      <option key={valor} value={valor}>
-                        {valor}
-                      </option>
-                    ))}
-                  </select>
+          <div className="atributos-popup-grid">
+            <div className="atributos-popup-coluna">
+              <h3 className="tituloh3">Distribuição de Atributos</h3>
+              {atributoMetodo === "Array Padrão" && (
+                <div className="atributos-container-distribuicao">
+                  {chavesAtributos.map((atributo) => (
+                    <div key={atributo} className="atributo-item-distribuicao">
+                      <label>{atributo.toUpperCase()}</label>
+                      <select name={String(atributos[atributo])} value={atributos[atributo as keyof typeof atributos] || 0} onChange={(e) => {
+                        if (atributos[atributo] === 0) atualizarValoresDisponiveis(parseInt(e.target.value), null);
+                        else atualizarValoresDisponiveis(parseInt(e.target.value), atributos[atributo]);
+                        atualizarAtributo(atributo as keyof typeof atributos, parseInt(e.target.value, 10));
+                      }}>
+                        <option value={atributos[atributo]} disabled hidden>{atributos[atributo]}</option>
+                        <option value="0">--</option>
+                        {valoresDisponiveis.map((valor, index) => <option key={index} value={valor}>{valor}</option>)}
+                      </select>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          )}
-          {atributoMetodo === "Point Buy" && (
-            <div className="atributos-container-distribuicao">
-              {Object.keys(atributos).map((atributo) => (
-                <div key={atributo} className="atributo-item-distribuicao">
-                  <label>{atributo.toUpperCase()}</label>
-                  <div className="point-buy-controls">
-                    <button onClick={() => ajustarAtributo(atributo as keyof typeof atributos, "decrementar")}>
-                      -
-                    </button>
-                    <span>{atributos[atributo as keyof typeof atributos]}</span>
-                    <button onClick={() => ajustarAtributo(atributo as keyof typeof atributos, "incrementar")}>
-                      +
-                    </button>
-                  </div>
+              )}
+              {atributoMetodo === "Point Buy" && (
+                <div className="atributos-container-distribuicao">
+                  {chavesAtributos.map((atributo) => (
+                    <div key={atributo} className="atributo-item-distribuicao">
+                      <label>{atributo.toUpperCase()}</label>
+                      <div className="point-buy-controls">
+                        <button onClick={() => ajustarAtributo(atributo as keyof typeof atributos, "decrementar")}>-</button>
+                        <span>{atributos[atributo as keyof typeof atributos]}</span>
+                        <button onClick={() => ajustarAtributo(atributo as keyof typeof atributos, "incrementar")}>+</button>
+                      </div>
+                    </div>
+                  ))}
+                  <p>Pontos disponíveis: {pontosDisponiveis}</p>
                 </div>
-              ))}
-              <p>Pontos disponíveis: {pontosDisponiveis}</p>
-            </div>
-          )}
-          {atributoMetodo === "Rolagem de Dados" && (
-            <div className="atributos-container-distribuicao">
-              <p>Valores rolados: {valoresDisponiveis.join(", ")}</p>
-              {Object.keys(atributos).map((atributo) => (
-                <div key={atributo} className="atributo-item-distribuicao">
-                  <label>{atributo.toUpperCase()}</label>
-                  <select
-                    name={atributos[atributo]}
-                    value={atributos[atributo as keyof typeof atributos] || 0}
-                    onChange={(e) => {
-                      if (atributos[atributo] === 0) {
-                        atualizarValoresDisponiveis(parseInt(e.target.value), null);
-                      } else {
-                        atualizarValoresDisponiveis(parseInt(e.target.value), atributos[atributo]);
-                      }
-                      atualizarAtributo(atributo as keyof typeof atributos, parseInt(e.target.value, 10));
-                    }}
-                  >
-                    <option value={atributos[atributo]} disabled hidden>{atributos[atributo]}</option>
-                    <option value='0'>--</option>
-                    {valoresDisponiveis.map((valor) => (
-                      <option key={valor} value={valor}>
-                        {valor}
-                      </option>
-                    ))}
-                  </select>
+              )}
+              {atributoMetodo === "Rolagem de Dados" && (
+                <div className="atributos-container-distribuicao">
+                  <p>Valores rolados: {valoresDisponiveis.join(", ")}</p>
+                  {chavesAtributos.map((atributo) => (
+                    <div key={atributo} className="atributo-item-distribuicao">
+                      <label>{atributo.toUpperCase()}</label>
+                      <select name={String(atributos[atributo])} value={atributos[atributo as keyof typeof atributos] || 0} onChange={(e) => {
+                        if (atributos[atributo] === 0) atualizarValoresDisponiveis(parseInt(e.target.value), null);
+                        else atualizarValoresDisponiveis(parseInt(e.target.value), atributos[atributo]);
+                        atualizarAtributo(atributo as keyof typeof atributos, parseInt(e.target.value, 10));
+                      }}>
+                        <option value={atributos[atributo]} disabled hidden>{atributos[atributo]}</option>
+                        <option value='0'>--</option>
+                        {valoresDisponiveis.map((valor, index) => <option key={index} value={valor}>{valor}</option>)}
+                      </select>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              )}
             </div>
-          )}
-          <button onClick={() => {
-            fecharPopup();
-            const atributosConcluidos = new Atributos(
-              atributos.forca,
-              atributos.destreza,
-              atributos.constituicao,
-              atributos.inteligencia,
-              atributos.sabedoria,
-              atributos.carisma
-            );
-            ficha?.setAtributosPersonagem(
-              atributosConcluidos
-            );
-            console.log(ficha?.atributosPersonagem);
-            aplicarAtributosDaRaca(raca);
-            console.log(ficha?.atributosPersonagem);
-            forceUpdate();
+            {rulesetData.regras.backgroundConcedeAtributos && rulesetData.regras.backgroundPermiteEscolhaBonusAtributo && atributosOrigem.length > 0 && (
+              <div className="atributos-container-distribuicao atributos-popup-coluna">
+                <h4>Bônus de atributos da {rulesetData.regras.labelBackgroundOuOrigem}</h4>
+                <label><input type="radio" checked={modoBonusOrigem === "todos"} onChange={() => setModoBonusOrigem("todos")} />+1 em cada atributo sugerido</label>
+                <label><input type="radio" checked={modoBonusOrigem === "dois"} onChange={() => setModoBonusOrigem("dois")} />+2 em um atributo e +1 em outro</label>
+                {modoBonusOrigem === "dois" && (
+                  <>
+                    <select value={atributoOrigemBonusMaior} onChange={(e) => setAtributoOrigemBonusMaior(e.target.value)}>
+                      <option value="">Atributo +2</option>
+                      {atributosOrigem.map((atributo) => <option key={atributo} value={atributo} disabled={atributo === atributoOrigemBonusMenor}>{atributo}</option>)}
+                    </select>
+                    <select value={atributoOrigemBonusMenor} onChange={(e) => setAtributoOrigemBonusMenor(e.target.value)}>
+                      <option value="">Atributo +1</option>
+                      {atributosOrigem.map((atributo) => <option key={atributo} value={atributo} disabled={atributo === atributoOrigemBonusMaior}>{atributo}</option>)}
+                    </select>
+                  </>
+                )}
+              </div>
+            )}
+            </div>
+          {ficha && erroDistribuicao(ficha) && <p role="status">{erroDistribuicao(ficha)}</p>}
+          {erroConclusao && <p role="alert">{erroConclusao}</p>}
+          <button disabled={!bonusOrigemValido || !ficha || !!erroDistribuicao(ficha)} onClick={() => {
+            if (ficha?.concluirAtributos()) { fecharPopup(); forceUpdate(); }
+            else setErroConclusao('Revise os bônus da origem e os aumentos posteriores antes de concluir.');
           }}>Concluir</button>
         </div>
       </div>
@@ -381,7 +351,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
   });
 
   const toggleNivel = () => setNivelExpandido(!nivelExpandido);
-  const toggleSecao = (secao) => {
+  const toggleSecao = (secao: keyof typeof secoesExpandidas) => {
     setSecoesExpandidas((prev) => ({
       ...prev,
       [secao]: !prev[secao],
@@ -428,43 +398,46 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
             {/* Traços raciais */}
             <div>
               <button className="secao-toggle" onClick={() => toggleSecao("tracos")}>
-                <h3 className="tituloh3">Traços Raciais{secoesExpandidas.tracos ? "▲" : "▼"}</h3>
+                <h3 className="tituloh3">Traços de {rulesetData.regras.labelRacaOuEspecie}{secoesExpandidas.tracos ? "▲" : "▼"}</h3>
               </button>
               {secoesExpandidas.tracos && (
                 <div>
-                  {raca.nome === "Humano Variante" &&
+                  <TalentoOrigem />
+                  {humanoComTalento &&
                     <>
-                      <button className="botao-selecao-talento" onClick={() => setModalHumanoVarianteAberto(true)}>
+                      <button className="botao-selecao-talento" onClick={() => rulesetData.version === "DND_2024" ? setModalTalentoOrigemHumanoAberto(true) : setModalHumanoVarianteAberto(true)}>
                         <img src={iconRaca} className="button-icon" alt="HumanoFeat" />
                         <div className="botao-texto">
-                          <span>Selecionar Talento</span>
-                          <strong>{ficha?.efeitos?.find(e => e.tituloEfeito === "TalentoEscolhidoHumanoVariante") ? ficha?.efeitos?.find(e => e.tituloEfeito === "TalentoEscolhidoHumanoVariante")?.talento : "Selecionar Talento"}</strong>
+                          <span>{rulesetData.version === "DND_2024" ? "Selecionar Talento de Origem" : "Selecionar Talento"}</span>
+                          <strong>{ficha?.efeitos?.find(e => e.tituloEfeito === tituloTalentoHumano) ? ficha?.efeitos?.find(e => e.tituloEfeito === tituloTalentoHumano)?.talento : rulesetData.version === "DND_2024" ? "Selecionar Talento de Origem" : "Selecionar Talento"}</strong>
                         </div>
                       </button>
-                      {modalHumanoVarianteAberto && (
+                      {(modalHumanoVarianteAberto || modalTalentoOrigemHumanoAberto) && (
                         <>
-                          <div className="popup-overlay" onClick={() => setModalHumanoVarianteAberto(false)}></div>
+                          <div className="popup-overlay" onClick={() => {
+                            setModalHumanoVarianteAberto(false);
+                            setModalTalentoOrigemHumanoAberto(false);
+                          }}></div>
                           <div className="popup">
                             <ModalSelecaoTalento
-                              titulo="Escolha um Talento"
+                              titulo={rulesetData.version === "DND_2024" ? "Escolha um Talento de Origem" : "Escolha um Talento"}
                               opcoes={talentos}
-                              onClose={() => setModalHumanoVarianteAberto(false)}
-                              onSelect={(talento) => {
+                              onClose={() => {
                                 setModalHumanoVarianteAberto(false);
-                                ficha?.excluirEfeitoPorTitulo(`TalentoEscolhidoHumanoVariante`);
-                                let efeito = new Efeitos();
-                                efeito.setTalento(talento.nome);
-                                efeito.setLevel(1);
-                                efeito.setTituloEfeito(`TalentoEscolhidoHumanoVariante`);
-                                ficha?.setEfeitos(efeito);
-                                forceUpdate();
+                                setModalTalentoOrigemHumanoAberto(false);
                               }}
-                              talentoInicial={talentos.find(t => t.nome === ficha?.efeitos?.find(e => e.tituloEfeito === "TalentoEscolhidoHumanoVariante")?.talento) ?? null}
+                              onSelect={(talento, escolhas) => {
+                                if (!ficha || selecionarTalentoInicial(ficha, tituloTalentoHumano, talento.nome, escolhas)) return false;
+                                forceUpdate(); return true;
+                              }}
+                              validar={(t, escolhas) => ficha ? erroTalento(ficha, 1, t, escolhas, rulesetData.version === 'DND_2024' ? 'Origin' : undefined, efeitosTalentoHumano) : 'Ficha indisponível'}
+                              escolhasIniciais={efeitosTalentoHumano[0]?.escolhasTalento}
+                              talentoInicial={talentos.find(t => t.nome === ficha?.efeitos?.find(e => e.tituloEfeito === tituloTalentoHumano)?.talento) ?? null}
                             />
                           </div>
                         </>
                       )}
-                      {!!ficha?.efeitos?.find(e => e.tituloEfeito === "TalentoEscolhidoHumanoVariante") && <TalentoDescricao talento={ficha?.efeitos?.find(e => e.tituloEfeito === "TalentoEscolhidoHumanoVariante")?.talento ?? ""} />}
+                      {!!ficha?.efeitos?.find(e => e.tituloEfeito === tituloTalentoHumano) && <TalentoDescricao efeito={efeitosTalentoHumano[0]} talento={ficha?.efeitos?.find(e => e.tituloEfeito === tituloTalentoHumano)?.talento ?? ""} />}
                     </>
                   }
                   {raca.tracos?.map((traco) => (
@@ -539,7 +512,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
               </button>
               {secoesExpandidas.caracteristicas && (
                 <div>
-                  {classe.nome === "Bruxo" &&
+                  {rulesetData.version === "DND_2014" && classe.nome === "Bruxo" &&
                     <>
                       <button className="botao-selecao-talento" onClick={() => setModalPatronoAberto(true)}>
                         <img src={iconClasse} className="button-icon" alt="Patrono" />
@@ -557,9 +530,9 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
                               opcoes={patronos}
                               onClose={() => setModalPatronoAberto(false)}
                               onSelect={(patrono) => {
-                                setPatronoSelecionado(patrono);
+                                ficha?.setPatrono(patrono);
                                 setModalPatronoAberto(false);
-                                ficha?.setPatrono(patronoSelecionado);
+                                forceUpdate();
                               }}
                               patronoInicial={ficha?.patrono}
                             />
@@ -606,7 +579,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
                 setSubGrupoAberto(false);
                 forceUpdate();
               }}
-              subClasseInicial={ficha?.subClasse?.find(s => s.classe === classe)?.subclasse ?? null}
+              subClasseInicial={ficha?.subClasse?.find(s => s.classe.nome === classe.nome)?.subclasse ?? null}
             />
           </div>
         </>

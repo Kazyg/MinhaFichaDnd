@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useFicha } from "../../../api/fichaPersonagem/FichaContext.tsx";
-import { Ficha } from "../../../api/fichaPersonagem/FichaPersonagem.ts";
-import { Portal } from "./Portal.tsx"
+import AccessibleDialog from "../AccessibleDialog";
+import React, { useState } from "react";
+import { useFicha } from "../../../api/fichaPersonagem/FichaContext";
+import { Portal } from "./Portal"
 import "../../css/popupVida.css"
-import { calcularValorAtributoFinal } from "../../../api/fichaPersonagem/fichaEfeitosUtils.ts";
+import { selecionarVida, explicarParcelas } from "../../../api/fichaPersonagem/fichaSeletores";
+const calcularVida = (ficha: Parameters<typeof selecionarVida>[0]) => selecionarVida(ficha).total;
 
 interface PopupVidaProps {
     onConfirmar: (novaVida: number, cura: number, dano: number) => void;
@@ -13,63 +14,37 @@ interface PopupVidaProps {
 
 const PopupVida: React.FC<PopupVidaProps> = ({ onConfirmar, onCancelar, onRestaurar }) => {
     const { ficha } = useFicha();
-    const [vidaTemporaria, setVidaTemporaria] = useState(ficha?.vidaAtual || 0);
+    const [vidaEditada, setVidaEditada] = useState(ficha?.vidaAtual || 0);
     const [cura, setCura] = useState(0);
     const [dano, setDano] = useState(0);
 
     const handleChangeCura = (e: React.ChangeEvent<HTMLInputElement>) => {
         const valor = parseInt(e.target.value, 10);
         if (!isNaN(valor)) {
-            setCura(valor);
+            setCura(Math.max(0, valor));
         }
     };
     const handleChangeDano = (e: React.ChangeEvent<HTMLInputElement>) => {
         const valor = parseInt(e.target.value, 10);
         if (!isNaN(valor)) {
-            setDano(valor);
+            setDano(Math.max(0, valor));
         }
     };
-
-    const calcularModificador = (valor: number) => Math.floor((valor - 10) / 2);
-
-    const calcularVida = (ficha: Ficha | null): number => {
-        let vidaTotal = 0;
-        if (ficha) {
-            const { levelTotal, multiclasses, atributosPersonagem } = ficha;
-            if (atributosPersonagem && levelTotal) {
-                const constituicaoTotal = calcularValorAtributoFinal(ficha, "constituicao");
-                const modificadorConstituicao = calcularModificador(constituicaoTotal);
-
-                for (let nivel = 1; nivel <= levelTotal; nivel++) {
-                    const classeNoNivel = multiclasses?.find((m: any) => m.nivelEscolhido.includes(nivel));
-                    const dadoVida = classeNoNivel?.classe.dadosVida;
-
-                    if (nivel === 1 && dadoVida) {
-                        vidaTotal += dadoVida + modificadorConstituicao;
-                    } else if (dadoVida) {
-                        const vidaAdicional = Math.ceil((dadoVida + 1) / 2) + modificadorConstituicao;
-                        vidaTotal += vidaAdicional;
-                    }
-                }
-            }
-        }
-        return vidaTotal;
-    };
-
-
 
     return (
         <div>
             <div>
                 <h3>Ajustar Vida</h3>
+                <p>Restaurar Vida altera apenas PV atuais; não realiza descanso.</p>
                 <div className="barra-deslizante-mobile">
-                    {vidaTemporaria}
+                    {vidaEditada}
                     <input
+                        aria-label="Pontos de vida atuais"
                         type="range"
                         min={0}
                         max={calcularVida(ficha)}
-                        value={vidaTemporaria}
-                        onChange={(e) => setVidaTemporaria(parseInt(e.target.value, 10))}
+                        value={vidaEditada}
+                        onChange={(e) => setVidaEditada(parseInt(e.target.value, 10))}
                         style={{ width: "100%" }}
                     />
                 </div>
@@ -79,6 +54,7 @@ const PopupVida: React.FC<PopupVidaProps> = ({ onConfirmar, onCancelar, onRestau
                         <input
                             type="number"
                             max={calcularVida(ficha)}
+                            aria-label="Dano"
                             onChange={handleChangeDano}
                         />
                     </div>
@@ -87,13 +63,14 @@ const PopupVida: React.FC<PopupVidaProps> = ({ onConfirmar, onCancelar, onRestau
                         <input
                             type="number"
                             max={calcularVida(ficha)}
+                            aria-label="Cura"
                             onChange={handleChangeCura}
                         />
                     </div>
                 </div>
                 <div className="botoes">
                     <button onClick={() => {
-                        onConfirmar(vidaTemporaria, cura, dano)
+                        onConfirmar(vidaEditada, cura, dano)
                     }}>Confirmar</button>
                     <button onClick={onCancelar}>Cancelar</button>
                     <button onClick={onRestaurar}>Restaurar Vida</button>
@@ -104,24 +81,9 @@ const PopupVida: React.FC<PopupVidaProps> = ({ onConfirmar, onCancelar, onRestau
 };
 
 const VidaComponente: React.FC = () => {
-    const { ficha } = useFicha();
+    const { ficha, forceUpdate } = useFicha();
     const [mostrarPopup, setMostrarPopup] = useState(false);
-    useEffect(() => {
-        if (mostrarPopup) {
-            const popup = document.createElement('div');
-            popup.className = 'popup-vida-global';
-            popup.innerHTML = `
-            <div class="popup-vida-content">
-              <!-- Seu conteúdo do PopupVida aqui -->
-            </div>
-          `;
-            document.body.appendChild(popup);
 
-            return () => {
-                document.body.removeChild(popup);
-            };
-        }
-    }, [mostrarPopup]);
 
     const handleConfirmar = (novaVida: number, cura: number, dano: number) => {
         novaVida += cura;
@@ -133,62 +95,37 @@ const VidaComponente: React.FC = () => {
             novaVida = 0
         }
         ficha?.setVidaAtual(novaVida);
+        forceUpdate();
         setMostrarPopup(false);
     };
 
     const handleRestaurar = () => {
         ficha?.setVidaAtual(calcularVida(ficha));
+        forceUpdate();
         setMostrarPopup(false);
     };
 
-    const calcularModificador = (valor: number) => Math.floor((valor - 10) / 2);
-
-    const calcularVida = (ficha: Ficha | null): number => {
-        let vidaTotal = 0;
-        if (ficha) {
-            const { levelTotal, multiclasses, atributosPersonagem } = ficha;
-            if (atributosPersonagem && levelTotal) {
-                const constituicaoTotal = calcularValorAtributoFinal(ficha, "constituicao");
-                const modificadorConstituicao = calcularModificador(constituicaoTotal);
-
-                for (let nivel = 1; nivel <= levelTotal; nivel++) {
-                    const classeNoNivel = multiclasses?.find((m: any) => m.nivelEscolhido.includes(nivel));
-
-                    const dadoVida = classeNoNivel?.classe.dadosVida;
-
-                    if (nivel === 1 && dadoVida) {
-                        vidaTotal += dadoVida + modificadorConstituicao;
-                    } else if (dadoVida) {
-                        const vidaAdicional = Math.ceil((dadoVida + 1) / 2) + modificadorConstituicao;
-                        vidaTotal += vidaAdicional;
-                    }
-                }
-            }
-        }
-        return vidaTotal;
-    };
-
     return (
-        <div className="vida">
+        <div className="vida" title={`${selecionarVida(ficha).manual ? 'Máximo manual salvo. Referência: ' : ''}${explicarParcelas(selecionarVida(ficha).parcelas)}`}>
             <h4>Vida</h4>
             {ficha?.vidaAtual ?? 0}/{calcularVida(ficha)}
-            <div className="barra-vida" onClick={() => setMostrarPopup(true)}>
-                <div
+            <button type="button" className="barra-vida" aria-label="Ajustar vida" aria-haspopup="dialog" onClick={() => setMostrarPopup(true)}>
+                <span
                     className="vida-atual"
-                    style={{ width: `${((ficha?.vidaAtual || 0) / calcularVida(ficha)) * 100}%` }}
+                    style={{ width: `${((ficha?.vidaAtual || 0) / Math.max(1, calcularVida(ficha))) * 100}%` }}
                 >
-                </div>
-            </div>
+                </span>
+            </button>
             {mostrarPopup && (
                 <Portal>
                     <div className="popup-vida-global">
-                        <div className="popup-vida-content">
+                        <AccessibleDialog className="popup-vida-content" aria-label="Ajustar Vida" onClose={() => setMostrarPopup(false)}>
                             <PopupVida
                                 onConfirmar={handleConfirmar}
                                 onCancelar={() => setMostrarPopup(false)}
                                 onRestaurar={handleRestaurar}
                             />
-                        </div>
+                        </AccessibleDialog>
                     </div>
                 </Portal>
             )}

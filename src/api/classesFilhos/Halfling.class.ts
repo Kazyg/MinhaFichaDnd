@@ -1,4 +1,4 @@
-import { Raca } from "../classesPrincipais/Raca.class.ts";
+import { Raca } from "../classesPrincipais/Raca.class";
 
 export class Halfling extends Raca {
   constructor(subOpcoes: Raca[] = []) {

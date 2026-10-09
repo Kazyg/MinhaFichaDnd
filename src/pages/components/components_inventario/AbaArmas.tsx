@@ -1,18 +1,20 @@
 import React from "react";
-import { useFicha } from "../../../api/fichaPersonagem/FichaContext.tsx";
+import { useFicha } from "../../../api/fichaPersonagem/FichaContext";
 import noProficienciaIcon from "../../../imagens/swords_24dp_B7B7B7_FILL0_wght400_GRAD0_opsz24.png"
 import proficienciaIcon from "../../../imagens/swords_24dp_EA3323_FILL0_wght400_GRAD0_opsz24.png"
 import "../../css/ArmaInventario.css"
 import { toast } from "react-toastify";
-import { Armas } from "../../../api/equipamentos/Armas.ts";
-import { calcularValorAtributoFinal, listarEfeitosAtivos } from "../../../api/fichaPersonagem/fichaEfeitosUtils.ts";
+import { Armas } from "../../../api/equipamentos/Armas";
+import { listarEfeitosAtivos } from "../../../api/fichaPersonagem/fichaEfeitosUtils";
+
+import { selecionarArma, selecionarProficiencias, formatarBonus as bonusAtaque } from "../../../api/fichaPersonagem/fichaSeletores";
 
 interface AbaArmasProps {
     setModalAberto: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function AbaArmas({ setModalAberto }: AbaArmasProps) {
-    const { ficha, refreshKey, forceUpdate } = useFicha();
+    const { ficha, forceUpdate } = useFicha();
     const proficienciaArmaSimples = verificarProficiencias("armas simples", coletarProeficiencias(ficha?.efeitos));
     const proficienciaArmaMarciais = verificarProficiencias("armas marciais", coletarProeficiencias(ficha?.efeitos));
     const proficienciaArmaExoticas = verificarProficiencias("armas exoticas", coletarProeficiencias(ficha?.efeitos));
@@ -33,35 +35,7 @@ export default function AbaArmas({ setModalAberto }: AbaArmasProps) {
         especial: "Possui uma regra especial que depende da descrição completa do item.",
     };
 
-    function coletarProeficiencias(efeitos: any[] | null | undefined) {
-        const proficienciasPersonagem = new Set<string>();
-        if (efeitos) {
-            efeitos.forEach(efeito => {
-                if (efeito.proeficienciasBackGround) {
-                    efeito.proeficienciasBackGround.forEach((proficiencia: string) => {
-                        proficienciasPersonagem.add(normalizarString(proficiencia));
-                    });
-                }
-                if (efeito.proeficienciasClasse) {
-                    efeito.proeficienciasClasse.forEach((proficiencia: string) => {
-                        proficienciasPersonagem.add(normalizarString(proficiencia));
-                    });
-                }
-                if (efeito.proeficienciasRaca) {
-                    efeito.proeficienciasRaca.forEach((proficiencia: string) => {
-                        proficienciasPersonagem.add(normalizarString(proficiencia));
-                    });
-                }
-                if (efeito.proficienciasMulticlasse) {
-                    efeito.proficienciasMulticlasse.forEach((proficiencia: string) => {
-                        proficienciasPersonagem.add(normalizarString(proficiencia));
-                    });
-                }
-            });
-        }
-
-        return proficienciasPersonagem;
-    }
+    function coletarProeficiencias(_efeitos: unknown) { return selecionarProficiencias(ficha); }
 
     function verificarProficiencias(arma: string, proficienciasPersonagem: Set<string>) {
 
@@ -75,46 +49,17 @@ export default function AbaArmas({ setModalAberto }: AbaArmasProps) {
             .toLowerCase();
     }
 
-    function calcularModificador(valor: number) {
-        const num = Number(valor);
-        if (Number.isNaN(num)) return 0;
-        return Math.floor((num - 10) / 2);
-    }
-
-    function obterMelhorAtributo(arma: Armas) {
-        const atributos = arma.dano_atributo.map((atributo) => {
-            const atributoNormalizado = normalizarString(atributo);
-            const valor = calcularValorAtributoFinal(ficha, atributoNormalizado);
-            return {
-                nome: atributo,
-                modificador: calcularModificador(valor),
-            };
-        });
-
-        return atributos.sort((a, b) => b.modificador - a.modificador)[0] ?? { nome: "Força", modificador: 0 };
-    }
-
     function formatarBonus(valor: number) {
         if (!valor) return "";
         return valor > 0 ? ` +${valor}` : ` ${valor}`;
     }
 
     function obterResumoDano(arma: Armas) {
-        const atributo = obterMelhorAtributo(arma);
-        const danoBase = arma.dano.dano_1 || "0";
-        const bonusAtributo = atributo.modificador;
-        const totalBonus = bonusAtributo + bonusDanoItens;
-        const dadoMatch = danoBase.match(/d(\d+)/i);
-        const dadoIcone = dadoMatch ? `/icon_d${dadoMatch[1]}.png` : "/icon_d4.png";
-
-        return {
-            formula: `${danoBase}${formatarBonus(totalBonus)}`,
-            atributo: atributo.nome,
-            detalhe: `${danoBase}${formatarBonus(bonusAtributo)}${bonusDanoItens ? formatarBonus(bonusDanoItens) : ""}`,
-            tipo: arma.dano_tipo,
-            base: danoBase,
-            dadoIcone,
-        };
+        const resumo = selecionarArma(ficha, arma);
+        const base = arma.dano.dano_1 || '0';
+        return { formula: resumo.formula, atributo: resumo.atributo, detalhe: resumo.explicacao,
+            ataque: resumo.ataque, tipo: arma.dano_tipo, base,
+            dadoIcone: `/icon_d${base.match(/d(\d+)/i)?.[1] ?? 4}.png` };
     }
 
     function obterBadgesPropriedades(propriedades: string) {
@@ -151,29 +96,14 @@ export default function AbaArmas({ setModalAberto }: AbaArmasProps) {
     }
 
     function equiparDesequiparArmadura(equipamento: Armas) {
-        if (!!ficha?.ArmaEquipada?.find(a => a.id === equipamento.id)) {
-            ficha?.setDesequiparArma(equipamento.id);
-            ficha?.setMaosOcupadas(-1);
-        } else {
-            if ((ficha?.maosOcupadas ?? 0) >= 2) {
-                toast.error('Você não tem mão sobrando para equipar este item!', {
-                    position: "top-right",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                });
-            } else {
-                ficha?.setEquiparArma(equipamento);
-                ficha?.setMaosOcupadas(1);
-            }
-        }
+        if (ficha?.ArmaEquipada?.some(a => a.id === equipamento.id)) ficha.setDesequiparArma(equipamento.id);
+        else if (!ficha?.setEquiparArma(equipamento)) toast.error('Você não tem mãos livres suficientes.');
     }
 
     return (
-        <div key={refreshKey} className="inventario-armas-container">
+        <div  className="inventario-armas-container">
             <h3 className="inventario-titulo">Inventário de Armas</h3>
+            <p>Dano principal em uma mão para armas versáteis. Outros estilos e situações de combate exigem aplicação manual.</p>
             <div className="proficiencias-personagem-container">
                 <div className="proficiencias-personagem">
                     <img className="icon-proficiencia" alt="proficiencia" src={proficienciaArmaSimples ? proficienciaIcon : noProficienciaIcon} title={proficienciaArmaSimples ? "proficiente" : "não proficiente"}></img>
@@ -232,7 +162,7 @@ export default function AbaArmas({ setModalAberto }: AbaArmasProps) {
                                             )}
                                         </div>
                                         <div className="destaque-equipamento" title={`${danoResumo.detalhe} ${danoResumo.tipo}`}>
-                                            <span className="destaque-label">Dano</span>
+                                            <span className="destaque-label">Ataque {bonusAtaque(danoResumo.ataque)} / Dano</span>
                                             <strong>{danoResumo.formula}</strong>
                                             <span>{`(${danoResumo.atributo}) ${danoResumo.tipo}`}</span>
                                         </div>

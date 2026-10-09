@@ -1,6 +1,6 @@
-import { Classes } from "../classesPrincipais/Classes.class.ts";
-import { SubClasses } from "../classesPrincipais/SubClasses.ts";
-import { CaminhoDaMaoAberta, CaminhoDaSombra, CaminhoDosQuatroElementos, EstiloDaAlmaSolar, EstiloDoKensei, EstiloDoMestreBebado } from "../classesPrincipais/SubClassesExport.ts";
+import { Classes } from "../classesPrincipais/Classes.class";
+import { SubClasses } from "../classesPrincipais/SubClasses";
+import { CaminhoDaMaoAberta, CaminhoDaSombra, CaminhoDosQuatroElementos, EstiloDaAlmaSolar, EstiloDoKensei, EstiloDoMestreBebado } from "../classesPrincipais/SubClassesExport";
 
 export class Monge extends Classes {
   level: number;

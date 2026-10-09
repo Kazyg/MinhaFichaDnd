@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { bibliotecaPrincipal } from "../../bibliotecas/bibliotecaPrincipal.ts";
+import { descricaoCaracteristica } from "../../bibliotecas/bibliotecaPrincipal";
+import { useFicha } from '../../api/fichaPersonagem/FichaContext';
 
 interface CaracteristicasPatronoProps {
   patrono: {
@@ -11,10 +12,8 @@ interface CaracteristicasPatronoProps {
   nivel: number;
 }
 
-const normalizar = (texto: string) =>
-        texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-
 const CaracteristicasPatrono: React.FC<CaracteristicasPatronoProps> = ({ patrono, nivel }) => {
+  const { ficha } = useFicha();
   // Estado para controlar quais características estão expandidas
   const [caracteristicasExpandidas, setCaracteristicasExpandidas] = useState<{ [key: string]: boolean }>({});
 
@@ -29,10 +28,7 @@ const CaracteristicasPatrono: React.FC<CaracteristicasPatronoProps> = ({ patrono
   return (
     <div>
       {patrono.niveis.find((n) => n.nivel === nivel)?.caracteristicas.map((caracteristica) => {
-        // Busca a descrição da característica na biblioteca principal
-        const descricao =
-          bibliotecaPrincipal.caracteristicasDeClasse.find((item) => normalizar(item.nome).toLowerCase() === normalizar(caracteristica).toLowerCase())?.descricao ||
-          "Descrição não encontrada.";
+        const descricao = descricaoCaracteristica(caracteristica, ficha?.versaoRegras);
 
         return (
           <div key={caracteristica} className="skills-container">

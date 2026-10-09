@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "../css/PericiasEOutros.css";
-import { useFicha } from "../../api/fichaPersonagem/FichaContext.tsx"
+import { useFicha } from "../../api/fichaPersonagem/FichaContext"
+
+import { selecionarIniciativa, selecionarDeslocamento, selecionarPercepcaoPassiva, selecionarPericia, selecionarProficiencia, formatarBonus, explicarParcelas } from "../../api/fichaPersonagem/fichaSeletores";
+import { Efeitos } from "../../api/classesPrincipais/Efeitos";
+import EspecializacaoOficial from './EspecializacaoOficial';
+import RevisaoLegado from './RevisaoLegado';
+import { arquivarEscolha } from '../../api/fichaPersonagem/escolhasProgressao';
 
 export default function PericiasEOutros() {
-  const { ficha, refreshKey } = useFicha();
+  const { ficha, refreshKey, forceUpdate } = useFicha();
   const [pericias, setPericias] = useState<
     {
       modificador?: { id: number; nome: string; valor: number; tipo: string };
@@ -148,7 +154,7 @@ export default function PericiasEOutros() {
   }, [ficha, refreshKey]);
 
   // Função para alternar o status de treinado
-  const toggleTreinado = (index) => {
+  const toggleTreinado = (index: number) => {
     setPericias((prev) =>
       prev.map((p, i) =>
         i === index ? { ...p, treinado: !p.treinado } : p
@@ -156,45 +162,68 @@ export default function PericiasEOutros() {
     );
   };
 
-  const calcularModificador = (valor) => Math.floor((valor - 10) / 2);
+
 
   return (
-    <div key={refreshKey} className="pericias-container">
+    <div  className="pericias-container">
       {/* Quadro pequeno com informações básicas */}
       <div className="info-extra">
         <div className="info-coluna">
-          <div className="info-item"><strong>Iniciativa:</strong> +{ficha?.iniciativa || "0"}</div>
-          <div className="info-item"><strong>Speed:</strong> {ficha?.speed || "0"}ft</div>
-          <div className="info-item"><strong>Percepção:</strong> +{10 + calcularModificador(ficha?.atributosPersonagem?.sabedoria?.valor ?? 10) + (pericias.find(pericia => pericia.nome === "Percepção")?.treinado ? (ficha?.proeficiencia ?? 0) : 0)}</div>
+          <div className="info-item" title={explicarParcelas(selecionarIniciativa(ficha).parcelas)}><strong>Iniciativa:</strong> {formatarBonus(selecionarIniciativa(ficha).total)}</div>
+          <div className="info-item" title={explicarParcelas(selecionarDeslocamento(ficha).parcelas)}><strong>Speed:</strong> {selecionarDeslocamento(ficha).total}ft</div>
+          <div className="info-item"><strong>Percepção:</strong> {selecionarPercepcaoPassiva(ficha)}</div>
         </div>
         <div className="info-coluna">
-          <div className="info-item"><strong>Proficiência:</strong> +{ficha?.proeficiencia || "0"}</div>
+          <div className="info-item"><strong>Proficiência:</strong> +{selecionarProficiencia(ficha)}</div>
           <div className="info-item"><strong>Tamanho:</strong>{ficha?.tamanho || ""}</div>
         </div>
       </div>
 
       {/* Quadro grande com perícias */}
       <div className="pericias-lista">
+        <RevisaoLegado />
         <h4>Perícias</h4>
+        <EspecializacaoOficial />
+        <p>As caixas abaixo são ajustes manuais, sem validação de fonte ou quantidade. Efeitos antigos permanecem preservados.</p>
         <ul>
           {pericias.map((pericia, index) => (
             <li key={index} className="pericia-item">
               <div className="modificador">
-                {calcularModificador(pericia.modificador?.valor ?? 10) + (pericia.treinado ? (ficha?.proeficiencia ?? 0) : 0)}
+                {selecionarPericia(ficha, pericia.nome, pericia.atributo.slice(1, -1)).total}
               </div>
               <div className="checkbox">
                 <input
                   type="checkbox"
                   disabled
-                  checked={ficha?.pericias?.includes(pericia.nome)}
+                  checked={selecionarPericia(ficha, pericia.nome, pericia.atributo.slice(1, -1)).treinada}
                   onChange={() => toggleTreinado(index)}
                 />
               </div>
               <div className="pericia">
-                <span title={pericia.descricao}>
+                <span title={`${pericia.descricao} ${explicarParcelas(selecionarPericia(ficha, pericia.nome, pericia.atributo.slice(1, -1)).parcelas)}`}>
                   {pericia.nome}
                   {" "}
                   {pericia.atributo}
+                  <label title="Ajuste manual; não representa uma escolha oficial validada.">
+                    <input type="checkbox" aria-label={`Especialização em ${pericia.nome}`}
+                      checked={!!ficha?.efeitos?.some(e => e.origemTipo === 'manual' && e.tituloEfeito === `especializacao:${pericia.nome}`)}
+                      onChange={e => {
+                        if (ficha) {
+                          const anteriores = ficha.efeitos?.filter(e => e.origemTipo === 'manual' && e.tituloEfeito === `especializacao:${pericia.nome}`) ?? [];
+                          if (anteriores.length) arquivarEscolha(ficha, 'especializacao-manual', anteriores);
+                          ficha.efeitos = ficha.efeitos?.filter(e => !anteriores.includes(e)) ?? null;
+                        }
+                        if (e.target.checked) {
+                          const efeito = new Efeitos();
+                          efeito.setTituloEfeito(`especializacao:${pericia.nome}`);
+                          efeito.setTipoEfeito('especializacao');
+                          efeito.setPericia(pericia.nome);
+                          efeito.setOrigemTipo('manual');
+                          ficha?.setEfeitos(efeito);
+                        }
+                        forceUpdate();
+                      }} /> Especialização manual
+                  </label>
                 </span>
               </div>
             </li>

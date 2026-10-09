@@ -41,7 +41,7 @@ export class Armas {
 }
 
 // Exemplo de utilização: 
-// import { Armas, armas } from "./equipamentos/Armas.ts";
+// import { Armas, armas } from "./equipamentos/Armas";
 
 // Armas Simples Melee por órdem alfabética
 

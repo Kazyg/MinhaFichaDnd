@@ -1,0 +1,31 @@
+{
+  "node": "v24.14.0",
+  "files": [
+    {
+      "file": "static/js/105.8aceebe9.chunk.js",
+      "initial": false,
+      "bytes": 429236,
+      "gzip": 176698
+    },
+    {
+      "file": "static/js/488.13f461bb.chunk.js",
+      "initial": false,
+      "bytes": 7316,
+      "gzip": 2672
+    },
+    {
+      "file": "static/js/714.5189856b.chunk.js",
+      "initial": false,
+      "bytes": 15002,
+      "gzip": 5476
+    },
+    {
+      "file": "static/js/main.17d228e4.js",
+      "initial": true,
+      "bytes": 4699591,
+      "gzip": 1106564
+    }
+  ],
+  "initialGzip": 1106564,
+  "totalGzip": 1291410
+}

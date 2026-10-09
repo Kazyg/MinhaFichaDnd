@@ -1,0 +1,21 @@
+[22172:23828:1008/110132.065:ERROR:components\os_crypt\async\browser\os_crypt_win.cc:63] Failed to encrypt: O sistema não pode encontrar o arquivo especificado. (0x2)
+[22172:22692:1008/110132.094:ERROR:chrome\installer\util\google_update_settings_win.cc:544] Failed opening key Software\Microsoft\EdgeUpdate\ClientStateMedium\{56EB18F8-B008-4CBD-B6D2-8C97FE7E9062} to set usagestats; result: 5
+[22172:22692:1008/110132.096:ERROR:chrome\installer\util\google_update_settings_win.cc:587] Failed opening key Software\Microsoft\EdgeUpdate\ClientStateMedium\{56EB18F8-B008-4CBD-B6D2-8C97FE7E9062} to set urlstats; result: 5
+
+DevTools listening on ws://127.0.0.1:50704/devtools/browser/b56fc37f-9bc9-427b-83bc-c353c06f4e4b
+[22172:16844:1008/110137.591:ERROR:components\password_manager\core\browser\password_store\login_database_async_helper.cc:229] Encryption is not available.
+[22172:35348:1008/110137.600:ERROR:components\password_manager\core\browser\password_store\login_database_async_helper.cc:229] Encryption is not available.
+[22172:12048:1008/110137.681:ERROR:chrome\installer\util\google_update_settings_win.cc:544] Failed opening key Software\Microsoft\EdgeUpdate\ClientStateMedium\{56EB18F8-B008-4CBD-B6D2-8C97FE7E9062} to set usagestats; result: 5
+[22172:23828:1008/110137.683:ERROR:chrome\browser\ui\edge_window_tab_manager\api\wtm_interface_impl.cc:463] Failed to open registry key
+[22172:23828:1008/110137.687:ERROR:content\browser\gpu\gpu_process_host.cc:1190] GPU process exited unexpectedly: exit_code=-1073741790
+[22172:22692:1008/110137.691:ERROR:components\viz\host\persistent_cache_sandboxed_file_factory.cc:153] Failed to open persistent cache files in directory "C:\Users\GUILHE~1\AppData\Local\Temp\minhaficha-review-browser-7ad01ccb5fb44f97812685a9bf847330\GPUPersistentCache\DawnGraphiteCache\H6POMLZSBZPTMTLBCTMXRDH27BAKUDTA", error: 0: O arquivo já está sendo usado por outro processo. (0x20)
+[22172:23828:1008/110137.745:ERROR:content\browser\gpu\gpu_process_host.cc:1190] GPU process exited unexpectedly: exit_code=-1073741790
+[22172:23828:1008/110137.774:ERROR:content\browser\gpu\gpu_process_host.cc:1190] GPU process exited unexpectedly: exit_code=-1073741790
+[22172:8804:1008/110137.778:ERROR:components\viz\host\persistent_cache_sandboxed_file_factory.cc:153] Failed to open persistent cache files in directory "C:\Users\GUILHE~1\AppData\Local\Temp\minhaficha-review-browser-7ad01ccb5fb44f97812685a9bf847330\GPUPersistentCache\DawnGraphiteCache\H6POMLZSBZPTMTLBCTMXRDH27BAKUDTA", error: 0: O arquivo já está sendo usado por outro processo. (0x20)
+[22172:23828:1008/110137.790:ERROR:content\browser\gpu\gpu_process_host.cc:1190] GPU process exited unexpectedly: exit_code=-1073741790
+[22172:8804:1008/110137.797:ERROR:components\viz\host\persistent_cache_sandboxed_file_factory.cc:153] Failed to open persistent cache files in directory "C:\Users\GUILHE~1\AppData\Local\Temp\minhaficha-review-browser-7ad01ccb5fb44f97812685a9bf847330\GPUPersistentCache\DawnGraphiteCache\H6POMLZSBZPTMTLBCTMXRDH27BAKUDTA", error: 0: O arquivo já está sendo usado por outro processo. (0x20)
+[22172:6176:1008/110137.799:ERROR:services\device\public\cpp\geolocation\system_geolocation_source_win.cc:124] Failed to create IAppCapability: Acesso negado. (0x80070005)
+[22172:23828:1008/110137.805:ERROR:content\browser\gpu\gpu_process_host.cc:1190] GPU process exited unexpectedly: exit_code=-1073741790
+[22172:8804:1008/110137.815:ERROR:components\viz\host\persistent_cache_sandboxed_file_factory.cc:153] Failed to open persistent cache files in directory "C:\Users\GUILHE~1\AppData\Local\Temp\minhaficha-review-browser-7ad01ccb5fb44f97812685a9bf847330\GPUPersistentCache\DawnGraphiteCache\H6POMLZSBZPTMTLBCTMXRDH27BAKUDTA", error: 0: O arquivo já está sendo usado por outro processo. (0x20)
+[22172:23828:1008/110137.831:ERROR:content\browser\gpu\gpu_process_host.cc:1190] GPU process exited unexpectedly: exit_code=-1073741790
+[22172:23828:1008/110137.835:FATAL:content\browser\gpu\gpu_data_manager_impl_private.cc:436] GPU process isn't usable. Goodbye.

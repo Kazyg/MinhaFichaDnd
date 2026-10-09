@@ -1,10 +1,14 @@
-import React, { useMemo, useState } from "react";
-import { useFicha } from "../../../api/fichaPersonagem/FichaContext.tsx";
-import { Talentos } from "../../../bibliotecas/Talentos.ts";
-import { Magias } from "../../../bibliotecas/Magia.ts";
+import AccessibleDialog from "../AccessibleDialog";
+import React, { useState } from "react";
+import { useFicha } from "../../../api/fichaPersonagem/FichaContext";
+import { selecionarEscolhasMagia } from '../../../api/fichaPersonagem/fichaConjuracao';
+import { getTalentosConteudo, resolverMagiaSalva, rotuloConteudo } from '../../../api/rulesets/conteudo';
+import { descreverTalentoSalvo } from '../../../api/fichaPersonagem/talentosConteudo';
+
 
 type DetalheItem = {
   nome: string;
+  id?: string;
   tipo: "talento" | "magia";
   descricao: string;
   subtitulo?: string;
@@ -19,7 +23,7 @@ const adicionarItemUnico = (
   item: DetalheItem | null
 ) => {
   if (!item?.nome?.trim()) return;
-  const chave = `${item.tipo}-${normalizar(item.nome)}`;
+  const chave = `${item.tipo}-${item.id ?? normalizar(item.nome)}`;
   if (!mapa.has(chave)) {
     mapa.set(chave, item);
   }
@@ -29,41 +33,16 @@ export default function AbaDetalhes() {
   const { ficha } = useFicha();
   const [detalheSelecionado, setDetalheSelecionado] = useState<DetalheItem | null>(null);
 
-  const talentosSelecionados = useMemo(() => {
+  const talentosSelecionados = (() => {
     const itens = new Map<string, DetalheItem>();
+    const Talentos = getTalentosConteudo(ficha?.versaoRegras ?? "DND_2014");
 
-    ficha?.talentos?.forEach((nome) => {
-      if (!nome) return;
-
-      const talentoEncontrado = Talentos.find(
-        (talento) => normalizar(talento.nome) === normalizar(nome)
-      );
-
-      adicionarItemUnico(itens, {
-        nome,
-        tipo: "talento",
-        descricao: talentoEncontrado?.descricao?.trim() || "Descrição não encontrada.",
-        subtitulo: talentoEncontrado?.requisito?.requisito?.length
-          ? `Pré-requisito: ${talentoEncontrado.requisito.requisito.join(", ")}`
-          : undefined,
-      });
-    });
-
-    ficha?.efeitos?.forEach((efeito) => {
+    ficha?.talentos?.forEach(nome => adicionarItemUnico(itens, {
+      nome, tipo: 'talento', descricao: `Talento legado sem revisão identificada: ${nome}. Referência original preservada; revisão manual pendente.`,
+    }));
+    ficha?.efeitos?.forEach(efeito => {
       if (!efeito.talento) return;
-
-      const talentoEncontrado = Talentos.find(
-        (talento) => normalizar(talento.nome) === normalizar(efeito.talento)
-      );
-
-      adicionarItemUnico(itens, {
-        nome: efeito.talento,
-        tipo: "talento",
-        descricao: talentoEncontrado?.descricao?.trim() || "Descrição não encontrada.",
-        subtitulo: talentoEncontrado?.requisito?.requisito?.length
-          ? `Pré-requisito: ${talentoEncontrado.requisito.requisito.join(", ")}`
-          : undefined,
-      });
+      adicionarItemUnico(itens, { nome: efeito.talento, id: efeito.id, tipo: 'talento', descricao: descreverTalentoSalvo(efeito) });
     });
 
     ficha?.racaPrincipal?.tracos?.forEach((traco) => {
@@ -141,20 +120,13 @@ export default function AbaDetalhes() {
 
     return Array.from(itens.values())
       .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"));
-  }, [ficha]);
+  })();
 
-  const magiasSelecionadas = useMemo(() => {
-    const magiasDaFicha = new Set<string>();
-
-    ficha?.magiasEscolhidas?.forEach((grupo) => {
-      grupo.magia.forEach((magia) => magiasDaFicha.add(magia));
-    });
-
-    return Array.from(magiasDaFicha)
-      .map((nome) => {
-        const magiaEncontrada = Magias.find(
-          (magia) => normalizar(magia.nome) === normalizar(nome)
-        );
+  const magiasSelecionadas = (() => {
+    return selecionarEscolhasMagia(ficha)
+      .map((escolha) => {
+        const nome = escolha.nome;
+        const magiaEncontrada = resolverMagiaSalva(escolha);
 
         const alcanceBase = magiaEncontrada?.alcance?.tipo
           ? `${magiaEncontrada.alcance.tipo}${
@@ -173,9 +145,9 @@ export default function AbaDetalhes() {
           : undefined;
 
         return {
-          nome,
+          nome, id: escolha.id,
           tipo: "magia" as const,
-          descricao: magiaEncontrada?.descricao?.trim() || "Descrição não encontrada.",
+          descricao: magiaEncontrada ? `${!escolha.conteudo ? 'Registro legado catalogo-2014 preservado. ' : ''}${rotuloConteudo(magiaEncontrada)}\n${magiaEncontrada.descricao}` : `Revisão desconhecida, sem fallback. Snapshot preservado: ${escolha.snapshot?.descricao ?? 'indisponível'}`,
           subtitulo:
             magiaEncontrada?.nivel !== undefined && magiaEncontrada?.tipo
               ? `Nível ${magiaEncontrada.nivel} • ${magiaEncontrada.tipo}`
@@ -191,7 +163,7 @@ export default function AbaDetalhes() {
         };
       })
       .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"));
-  }, [ficha]);
+  })();
 
   return (
     <div className="detalhes-personagem-container">
@@ -204,7 +176,7 @@ export default function AbaDetalhes() {
           <div className="detalhes-lista">
             {talentosSelecionados.map((item) => (
               <button
-                key={`talento-${item.nome}`}
+                key={`talento-${item.id ?? item.nome}`}
                 className="detalhes-linha"
                 onClick={() => setDetalheSelecionado(item)}
               >
@@ -226,7 +198,7 @@ export default function AbaDetalhes() {
           <div className="detalhes-lista">
             {magiasSelecionadas.map((item) => (
               <button
-                key={`magia-${item.nome}`}
+                key={`magia-${item.id}`}
                 className="detalhes-linha"
                 onClick={() => setDetalheSelecionado(item)}
               >
@@ -243,7 +215,7 @@ export default function AbaDetalhes() {
         <>
           <div className="popup-overlay" onClick={() => setDetalheSelecionado(null)}></div>
           <div className="popup popup-detalhes-item">
-            <div className="popup-content-modal">
+            <AccessibleDialog className="popup-content-modal" aria-label={detalheSelecionado.nome} onClose={() => setDetalheSelecionado(null)}>
               <h2>{detalheSelecionado.nome}</h2>
               {detalheSelecionado.subtitulo && (
                 <p className="detalhes-popup-subtitulo">{detalheSelecionado.subtitulo}</p>
@@ -269,7 +241,7 @@ export default function AbaDetalhes() {
                   Fechar
                 </button>
               </div>
-            </div>
+            </AccessibleDialog>
           </div>
         </>
       )}

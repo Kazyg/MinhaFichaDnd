@@ -1,4 +1,4 @@
-const manobras = [
+export const manobras = [
     {
       nome: "Aparar",
       descricao: "Quando outra criatura causar dano a você com um ataque corpo a corpo, você pode usar sua reação e gastar um dado de superioridade para reduzir o dano pelo número rolado no dado de superioridade + seu modificador de Destreza."
@@ -64,4 +64,3 @@ const manobras = [
       descricao: "Quando você se mover, você pode gastar um dado de superioridade, rolar o dado e adicionar o número rolado à sua CA até você terminar seu deslocamento."
     }
   ];
-  

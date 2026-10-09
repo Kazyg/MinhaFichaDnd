@@ -1,0 +1,277 @@
+{
+  "nota": "Wall time inclui polling e UI/importação. CPU amostrada exclui apenas (idle); não é contagem de commits React, nem prova de gargalo. Frio = cache HTTP limpo/desabilitado, não processo/JIT frio.",
+  "rows": [
+    {
+      "variant": "plain",
+      "ed": "DND_2014",
+      "cache": "frio-desabilitado",
+      "etapa": "A25-importar-reabrir",
+      "n": 3,
+      "wallMs": {
+        "min": 567.8097000000007,
+        "median": 694.7498999999998,
+        "max": 774.0990000000011
+      },
+      "sampledNonIdleMs": {
+        "min": 345.685,
+        "median": 349.93,
+        "max": 358.133
+      }
+    },
+    {
+      "variant": "plain",
+      "ed": "DND_2014",
+      "cache": "frio-desabilitado",
+      "etapa": "A25-nivel1-3",
+      "n": 3,
+      "wallMs": {
+        "min": 87.23379999999997,
+        "median": 94.88580000000002,
+        "max": 102.54009999999926
+      },
+      "sampledNonIdleMs": {
+        "min": 85.655,
+        "median": 96.393,
+        "max": 99.969
+      }
+    },
+    {
+      "variant": "plain",
+      "ed": "DND_2014",
+      "cache": "quente",
+      "etapa": "A25-importar-reabrir",
+      "n": 3,
+      "wallMs": {
+        "min": 676.0504999999994,
+        "median": 680.4310000000005,
+        "max": 704.5188999999991
+      },
+      "sampledNonIdleMs": {
+        "min": 333.458,
+        "median": 333.561,
+        "max": 370.439
+      }
+    },
+    {
+      "variant": "plain",
+      "ed": "DND_2014",
+      "cache": "quente",
+      "etapa": "A25-nivel1-3",
+      "n": 3,
+      "wallMs": {
+        "min": 105.83690000000024,
+        "median": 116.08979999999974,
+        "max": 138.70919999999933
+      },
+      "sampledNonIdleMs": {
+        "min": 106.325,
+        "median": 116.775,
+        "max": 138.587
+      }
+    },
+    {
+      "variant": "plain",
+      "ed": "DND_2024",
+      "cache": "frio-desabilitado",
+      "etapa": "A25-importar-reabrir",
+      "n": 3,
+      "wallMs": {
+        "min": 617.400599999999,
+        "median": 701.7205999999987,
+        "max": 760.2178000000004
+      },
+      "sampledNonIdleMs": {
+        "min": 357.526,
+        "median": 373.38,
+        "max": 388.69
+      }
+    },
+    {
+      "variant": "plain",
+      "ed": "DND_2024",
+      "cache": "frio-desabilitado",
+      "etapa": "A25-nivel1-3",
+      "n": 3,
+      "wallMs": {
+        "min": 74.17059999999947,
+        "median": 83.66769999999815,
+        "max": 94.27529999999933
+      },
+      "sampledNonIdleMs": {
+        "min": 75.444,
+        "median": 83.884,
+        "max": 95.248
+      }
+    },
+    {
+      "variant": "plain",
+      "ed": "DND_2024",
+      "cache": "quente",
+      "etapa": "A25-importar-reabrir",
+      "n": 3,
+      "wallMs": {
+        "min": 661.3486000000012,
+        "median": 687.9912000000004,
+        "max": 723.5204999999987
+      },
+      "sampledNonIdleMs": {
+        "min": 309.954,
+        "median": 351.189,
+        "max": 362.89
+      }
+    },
+    {
+      "variant": "plain",
+      "ed": "DND_2024",
+      "cache": "quente",
+      "etapa": "A25-nivel1-3",
+      "n": 3,
+      "wallMs": {
+        "min": 50.3718000000008,
+        "median": 75.97340000000258,
+        "max": 92.79520000000048
+      },
+      "sampledNonIdleMs": {
+        "min": 51.043,
+        "median": 76.453,
+        "max": 93.745
+      }
+    },
+    {
+      "variant": "obfuscated",
+      "ed": "DND_2014",
+      "cache": "frio-desabilitado",
+      "etapa": "A25-importar-reabrir",
+      "n": 3,
+      "wallMs": {
+        "min": 665.9710000000005,
+        "median": 817.3898000000008,
+        "max": 893.9853999999996
+      },
+      "sampledNonIdleMs": {
+        "min": 427.758,
+        "median": 428.964,
+        "max": 476.953
+      }
+    },
+    {
+      "variant": "obfuscated",
+      "ed": "DND_2014",
+      "cache": "frio-desabilitado",
+      "etapa": "A25-nivel1-3",
+      "n": 3,
+      "wallMs": {
+        "min": 145.79120000000057,
+        "median": 190.5540000000001,
+        "max": 213.40689999999995
+      },
+      "sampledNonIdleMs": {
+        "min": 143.83,
+        "median": 191.999,
+        "max": 215.46
+      }
+    },
+    {
+      "variant": "obfuscated",
+      "ed": "DND_2014",
+      "cache": "quente",
+      "etapa": "A25-importar-reabrir",
+      "n": 3,
+      "wallMs": {
+        "min": 800.7177999999985,
+        "median": 869.7792000000009,
+        "max": 909.3130000000001
+      },
+      "sampledNonIdleMs": {
+        "min": 424.166,
+        "median": 483.224,
+        "max": 518.81
+      }
+    },
+    {
+      "variant": "obfuscated",
+      "ed": "DND_2014",
+      "cache": "quente",
+      "etapa": "A25-nivel1-3",
+      "n": 3,
+      "wallMs": {
+        "min": 183.16489999999976,
+        "median": 190.9349000000002,
+        "max": 243.95669999999882
+      },
+      "sampledNonIdleMs": {
+        "min": 183.982,
+        "median": 194.311,
+        "max": 246.482
+      }
+    },
+    {
+      "variant": "obfuscated",
+      "ed": "DND_2024",
+      "cache": "frio-desabilitado",
+      "etapa": "A25-importar-reabrir",
+      "n": 3,
+      "wallMs": {
+        "min": 739.7379000000001,
+        "median": 889.9751999999971,
+        "max": 924.9573999999993
+      },
+      "sampledNonIdleMs": {
+        "min": 477.057,
+        "median": 509.749,
+        "max": 555.736
+      }
+    },
+    {
+      "variant": "obfuscated",
+      "ed": "DND_2024",
+      "cache": "frio-desabilitado",
+      "etapa": "A25-nivel1-3",
+      "n": 3,
+      "wallMs": {
+        "min": 116.23189999999886,
+        "median": 180.7584999999999,
+        "max": 185.52080000000205
+      },
+      "sampledNonIdleMs": {
+        "min": 119.064,
+        "median": 182.009,
+        "max": 186.077
+      }
+    },
+    {
+      "variant": "obfuscated",
+      "ed": "DND_2024",
+      "cache": "quente",
+      "etapa": "A25-importar-reabrir",
+      "n": 3,
+      "wallMs": {
+        "min": 811.8989000000001,
+        "median": 815.7596999999987,
+        "max": 845.3044000000009
+      },
+      "sampledNonIdleMs": {
+        "min": 441.44,
+        "median": 441.537,
+        "max": 469.747
+      }
+    },
+    {
+      "variant": "obfuscated",
+      "ed": "DND_2024",
+      "cache": "quente",
+      "etapa": "A25-nivel1-3",
+      "n": 3,
+      "wallMs": {
+        "min": 139.63170000000173,
+        "median": 163.39559999999983,
+        "max": 175.07250000000204
+      },
+      "sampledNonIdleMs": {
+        "min": 141.891,
+        "median": 164.243,
+        "max": 176.561
+      }
+    }
+  ]
+}

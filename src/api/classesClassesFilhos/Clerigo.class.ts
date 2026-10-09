@@ -1,6 +1,6 @@
-import { Classes } from "../classesPrincipais/Classes.class.ts";
-import { SubClasses } from "../classesPrincipais/SubClasses.ts";
-import { DominioDaLuz, DominioDoConhecimento, DominioDaVida, DominioDaTempestade, DominioDaEnganacao, DominioDaGuerra, DominioDaNatureza, DominioDaForja, DominioDaSepultura } from "../classesPrincipais/SubClassesExport.ts";
+import { Classes } from "../classesPrincipais/Classes.class";
+import { SubClasses } from "../classesPrincipais/SubClasses";
+import { DominioDaLuz, DominioDoConhecimento, DominioDaVida, DominioDaTempestade, DominioDaEnganacao, DominioDaGuerra, DominioDaNatureza, DominioDaForja, DominioDaSepultura } from "../classesPrincipais/SubClassesExport";
 
 export class Clerigo extends Classes {
   level: number;

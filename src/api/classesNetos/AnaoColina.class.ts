@@ -1,4 +1,4 @@
-import { Anao } from "../classesFilhos/Anao.class.ts";
+import { Anao } from "../classesFilhos/Anao.class";
 
 export class AnaoColina extends Anao {
   constructor() {

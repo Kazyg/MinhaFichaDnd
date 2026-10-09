@@ -1,18 +1,19 @@
 import React from "react";
 import noProficienciaIcon from "../../../imagens/security_24dp_B7B7B7_FILL0_wght400_GRAD0_opsz24.png"
 import proficienciaIcon from "../../../imagens/security_24dp_EA3323_FILL0_wght400_GRAD0_opsz24.png"
-import { useFicha } from "../../../api/fichaPersonagem/FichaContext.tsx";
+import { useFicha } from "../../../api/fichaPersonagem/FichaContext";
 import "../../css/ArmaInventario.css"
-import { Armaduras_equip } from "../../../api/equipamentos/Armaduras.ts";
+import { Armaduras_equip } from "../../../api/equipamentos/Armaduras";
 import { toast } from "react-toastify";
-import { calcularBonusCAItens, calcularValorAtributoFinal } from "../../../api/fichaPersonagem/fichaEfeitosUtils.ts";
+import { selecionarCA, selecionarProficiencias } from "../../../api/fichaPersonagem/fichaSeletores";
+import type { Ficha } from "../../../api/fichaPersonagem/FichaPersonagem";
 
 interface AbaArmadurasProps {
   setModalEquipamentoAberto: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function AbaArmaduras({ setModalEquipamentoAberto }: AbaArmadurasProps) {
-  const { ficha, refreshKey, forceUpdate } = useFicha();
+  const { ficha, forceUpdate } = useFicha();
   const proficienciaArmaduraLeve = verificarProficiencias("armadura leve", "Todas as armaduras", coletarProeficiencias(ficha?.efeitos));
   const proficienciaArmaduraMedia = verificarProficiencias("armadura media", "Todas as armaduras", coletarProeficiencias(ficha?.efeitos));
   const proficienciaArmaduraPesada = verificarProficiencias("armadura pesada", "Todas as armaduras", coletarProeficiencias(ficha?.efeitos));
@@ -22,38 +23,10 @@ export default function AbaArmaduras({ setModalEquipamentoAberto }: AbaArmaduras
     "armadura leve": "Permite somar todo o modificador de Destreza à CA.",
     "armadura media": "Permite somar no máximo +2 de Destreza à CA.",
     "armadura pesada": "Não adiciona Destreza à CA base da armadura.",
-    escudos: "Concede bônus adicional de CA quando equipado com proficiência.",
+    escudos: "2014: concede CA mesmo sem treino, com penalidades. 2024: exige treino.",
   };
 
-  function coletarProeficiencias(efeitos: any[] | null | undefined) {
-    const proficienciasPersonagem = new Set<string>();
-    if (efeitos) {
-      efeitos.forEach(efeito => {
-        if (efeito.proeficienciasBackGround) {
-          efeito.proeficienciasBackGround.forEach((proficiencia: string) => {
-            proficienciasPersonagem.add(normalizarString(proficiencia));
-          });
-        }
-        if (efeito.proeficienciasClasse) {
-          efeito.proeficienciasClasse.forEach((proficiencia: string) => {
-            proficienciasPersonagem.add(normalizarString(proficiencia));
-          });
-        }
-        if (efeito.proeficienciasRaca) {
-          efeito.proeficienciasRaca.forEach((proficiencia: string) => {
-            proficienciasPersonagem.add(normalizarString(proficiencia));
-          });
-        }
-        if (efeito.proficienciasMulticlasse) {
-          efeito.proficienciasMulticlasse.forEach((proficiencia: string) => {
-            proficienciasPersonagem.add(normalizarString(proficiencia));
-          });
-        }
-      });
-    }
-
-    return proficienciasPersonagem;
-  }
+  function coletarProeficiencias(_efeitos: unknown) { return selecionarProficiencias(ficha); }
 
   function verificarProficiencias(armadura1: string, armadura2: string, proficienciasPersonagem: Set<string>) {
     return proficienciasPersonagem.has(normalizarString(armadura1)) || proficienciasPersonagem.has(normalizarString(armadura2));
@@ -66,39 +39,11 @@ export default function AbaArmaduras({ setModalEquipamentoAberto }: AbaArmaduras
       .toLowerCase();
   }
 
-  function calcularModificador(valor: number) {
-    const num = Number(valor);
-    if (Number.isNaN(num)) return 0;
-    return Math.floor((num - 10) / 2);
-  }
-
   function calcularCaExibida(equipamento: Armaduras_equip) {
-    const categoria = normalizarString(equipamento.categoria);
-    const bonusItens = calcularBonusCAItens(ficha);
-    const dexMod = calcularModificador(calcularValorAtributoFinal(ficha, "destreza"));
-
-    if (categoria === "armadura leve") {
-      return {
-        base: equipamento.ac,
-        total: equipamento.ac + dexMod + bonusItens,
-        detalhe: `Base ${equipamento.ac} + DES ${dexMod >= 0 ? `+${dexMod}` : dexMod}${bonusItens ? ` + itens ${bonusItens >= 0 ? `+${bonusItens}` : bonusItens}` : ""}`,
-      };
-    }
-
-    if (categoria === "armadura media") {
-      const bonusDexLimitado = Math.min(dexMod, 2);
-      return {
-        base: equipamento.ac,
-        total: equipamento.ac + bonusDexLimitado + bonusItens,
-        detalhe: `Base ${equipamento.ac} + DES ${bonusDexLimitado >= 0 ? `+${bonusDexLimitado}` : bonusDexLimitado} (máx. +2)${bonusItens ? ` + itens ${bonusItens >= 0 ? `+${bonusItens}` : bonusItens}` : ""}`,
-      };
-    }
-
-    return {
-      base: equipamento.ac,
-      total: equipamento.ac + bonusItens,
-      detalhe: `Base ${equipamento.ac}${bonusItens ? ` + itens ${bonusItens >= 0 ? `+${bonusItens}` : bonusItens}` : ""}`,
-    };
+    const escudo = normalizarString(equipamento.categoria) === 'escudos';
+    const previa = { ...ficha, ...(escudo ? { escudoEquipado: equipamento } : { ArmaduraEquipada: equipamento }) } as Ficha;
+    const ca = selecionarCA(previa);
+    return { total: ca.total, detalhe: `CA ao equipar: ${ca.explicacao}` };
   }
 
   function obterBadgeCategoria(categoria: string) {
@@ -117,37 +62,15 @@ export default function AbaArmaduras({ setModalEquipamentoAberto }: AbaArmaduras
   }
 
   function equiparDesequiparArmadura(equipamento: Armaduras_equip) {
-    const isEscudo = normalizarString(equipamento.categoria) === "escudos" || normalizarString(equipamento.nome) === "escudo";
-    if (isEscudo) {
-      if (ficha?.escudoEquipado?.id === equipamento.id) {
-        ficha.setDesequiparEscudo()
-        ficha.setMaosOcupadas(-1);
-      } else {
-        if ((ficha?.maosOcupadas ?? 0) >= 2) {
-          toast.error('Você não tem mão sobrando para equipar este item!', {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-          });
-        } else {
-          ficha?.setEscudoEquipado(equipamento);
-          ficha?.setMaosOcupadas(1);
-        }
-      }
-    } else {
-      if (ficha?.ArmaduraEquipada?.id === equipamento.id) {
-        ficha.setDesequiparArmadura()
-      } else {
-        ficha?.setArmaduraEquipada(equipamento);
-      }
-    }
+    if (normalizarString(equipamento.categoria) === 'escudos') {
+      if (ficha?.escudoEquipado?.id === equipamento.id) ficha.setDesequiparEscudo();
+      else if (!ficha?.setEscudoEquipado(equipamento)) toast.error('Você não tem mãos livres suficientes.');
+    } else if (ficha?.ArmaduraEquipada?.id === equipamento.id) ficha.setDesequiparArmadura();
+    else ficha?.setArmaduraEquipada(equipamento);
   }
 
   return (
-    <div key={refreshKey} className="inventario-armas-container">
+    <div  className="inventario-armas-container">
       <h3 className="inventario-titulo">Inventário de Armaduras</h3>
       <div className="proficiencias-personagem-container">
         <div className="proficiencias-personagem">
@@ -173,7 +96,7 @@ export default function AbaArmaduras({ setModalEquipamentoAberto }: AbaArmaduras
         {ficha?.ArmadurasMochila?.map((equipamento) => {
           const proficiente =
             verificarProficiencias(equipamento.nome, equipamento.categoria, coletarProeficiencias(ficha?.efeitos)) ||
-            verificarProficiencias("todas as armaduras", "", coletarProeficiencias(ficha?.efeitos));
+            (normalizarString(equipamento.categoria) !== 'escudos' && verificarProficiencias("todas as armaduras", "", coletarProeficiencias(ficha?.efeitos)));
           const equipada = ficha?.ArmaduraEquipada?.id === equipamento.id || ficha?.escudoEquipado?.id === equipamento.id;
           const badgeCategoria = obterBadgeCategoria(equipamento.categoria);
           const badgeFurtividade = obterBadgeFurtividade(equipamento.furtividade);
@@ -203,7 +126,7 @@ export default function AbaArmaduras({ setModalEquipamentoAberto }: AbaArmaduras
                       <strong>{equipamento.forca > 0 ? equipamento.forca : "-"}</strong>
                     </div>
                     <div className="destaque-equipamento" title={caResumo.detalhe}>
-                      <span className="destaque-label">CA</span>
+                      <span className="destaque-label">CA ao equipar</span>
                       <strong>{caResumo.total}</strong>
                       <span>{isEscudo ? `Bônus base ${equipamento.ac}` : `Base ${equipamento.ac}`}</span>
                     </div>

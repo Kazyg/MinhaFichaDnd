@@ -1,6 +1,6 @@
-import { Classes } from "../classesPrincipais/Classes.class.ts";
-import { SubClasses } from "../classesPrincipais/SubClasses.ts";
-import { JuramentoDaConquista, JuramentoDaRedencao, JuramentoDeDevoção, JuramentoDeVingança, JuramentoDosAnciões } from "../classesPrincipais/SubClassesExport.ts";
+import { Classes } from "../classesPrincipais/Classes.class";
+import { SubClasses } from "../classesPrincipais/SubClasses";
+import { JuramentoDaConquista, JuramentoDaRedencao, JuramentoDeDevoção, JuramentoDeVingança, JuramentoDosAnciões } from "../classesPrincipais/SubClassesExport";
 
 export class Paladino extends Classes {
   level: number;

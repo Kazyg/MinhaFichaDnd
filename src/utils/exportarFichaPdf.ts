@@ -1,14 +1,13 @@
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
-import type { Ficha } from "../api/fichaPersonagem/FichaPersonagem.ts";
-import { calcularBonusCAItens, calcularValorAtributoFinal } from "../api/fichaPersonagem/fichaEfeitosUtils.ts";
+import type { Ficha } from "../api/fichaPersonagem/FichaPersonagem";
+import { selecionarEscolhasMagia } from '../api/fichaPersonagem/fichaConjuracao';
+import { resolverMagiaSalva, rotuloConteudo } from '../api/rulesets/conteudo';
+import { talentoDoEfeito } from '../api/fichaPersonagem/talentosConteudo';
+import { calcularValorAtributoFinal, listarEfeitosAtivos, selecionarAtributo } from "../api/fichaPersonagem/fichaEfeitosUtils";
+
+import { selecionarCA, selecionarArma, selecionarClassesAtivas, selecionarNiveis, selecionarVida, selecionarIniciativa, selecionarDeslocamento, selecionarPericia, selecionarPercepcaoPassiva, selecionarProficiencia, explicarParcelas } from '../api/fichaPersonagem/fichaSeletores';
 
 const TEMPLATE_PATH = `${process.env.PUBLIC_URL || ""}/ficha-de-personagem-dd-5e.pdf`;
-
-type DrawOptions = {
-  size?: number;
-  maxWidth?: number;
-  lineHeight?: number;
-};
 
 type PdfFont = Awaited<ReturnType<PDFDocument["embedFont"]>>;
 
@@ -75,134 +74,69 @@ type Pagina1Map = {
   caracteristicas: Rect;
 };
 
+// Coordinates measured on the bundled 612 × 792 template (reference render: 816 × 1056).
+const templateRect = (left: number, right: number, top: number, bottom: number): Rect => ({
+  xMin: left * .75, xMax: right * .75, yMin: (1056 - bottom) * .75, yMax: (1056 - top) * .75,
+});
 const PAGE_1_MAP: Pagina1Map = {
-  nome: { xMin: 50, xMax: 170, yMin: 710, yMax: 730 },
-  classeNivel: { xMin: 280, xMax: 360, yMin: 710, yMax: 730 },
-  antecedente: { xMin: 380, xMax: 460, yMin: 710, yMax: 730 },
-  jogador: { xMin: 470, xMax: 560, yMin: 710, yMax: 730 },
-  raca: { xMin: 270, xMax: 340, yMin: 700, yMax: 710 },
-  alinhamento: { xMin: 350, xMax: 420, yMin: 700, yMax: 710 },
-  xp: { xMin: 480, xMax: 540, yMin: 700, yMax: 710 },
-  forca: { xMin: 40, xMax: 60, yMin: 610, yMax: 630 },
-  forcaMod: { xMin: 45, xMax: 65, yMin: 590, yMax: 600 },
-  destreza: { xMin: 40, xMax: 60, yMin: 560, yMax: 580 },
-  destrezaMod: { xMin: 45, xMax: 65, yMin: 540, yMax: 550 },
-  constituicao: { xMin: 40, xMax: 60, yMin: 510, yMax: 530 },
-  constituicaoMod: { xMin: 45, xMax: 65, yMin: 490, yMax: 500 },
-  inteligencia: { xMin: 40, xMax: 60, yMin: 460, yMax: 480 },
-  inteligenciaMod: { xMin: 45, xMax: 65, yMin: 440, yMax: 450 },
-  sabedoria: { xMin: 40, xMax: 60, yMin: 410, yMax: 430 },
-  sabedoriaMod: { xMin: 45, xMax: 65, yMin: 390, yMax: 400 },
-  carisma: { xMin: 40, xMax: 60, yMin: 360, yMax: 380 },
-  carismaMod: { xMin: 45, xMax: 65, yMin: 340, yMax: 350 },
+  nome: templateRect(65, 325, 85, 113),
+  classeNivel: templateRect(362, 503, 94, 112),
+  antecedente: templateRect(510, 637, 94, 112),
+  jogador: templateRect(642, 752, 94, 112),
+  raca: templateRect(362, 465, 111, 123),
+  alinhamento: templateRect(470, 632, 111, 123),
+  xp: templateRect(638, 752, 111, 123),
+  forca: templateRect(48, 104, 214, 245), forcaMod: templateRect(61, 95, 247, 267),
+  destreza: templateRect(48, 104, 310, 341), destrezaMod: templateRect(61, 95, 342, 362),
+  constituicao: templateRect(48, 104, 405, 436), constituicaoMod: templateRect(61, 95, 438, 458),
+  inteligencia: templateRect(48, 104, 500, 531), inteligenciaMod: templateRect(61, 95, 533, 553),
+  sabedoria: templateRect(48, 104, 595, 626), sabedoriaMod: templateRect(61, 95, 628, 648),
+  carisma: templateRect(48, 104, 690, 721), carismaMod: templateRect(61, 95, 723, 743),
   salvaguardas: {
-    forca: { xMin: 90, xMax: 140, yMin: 620, yMax: 630 },
-    destreza: { xMin: 90, xMax: 140, yMin: 600, yMax: 610 },
-    constituicao: { xMin: 90, xMax: 140, yMin: 580, yMax: 590 },
-    inteligencia: { xMin: 90, xMax: 140, yMin: 560, yMax: 570 },
-    sabedoria: { xMin: 90, xMax: 140, yMin: 540, yMax: 550 },
-    carisma: { xMin: 90, xMax: 140, yMin: 520, yMax: 530 },
+    forca: templateRect(144, 163, 276, 289), destreza: templateRect(144, 163, 294, 307),
+    constituicao: templateRect(144, 163, 312, 325), inteligencia: templateRect(144, 163, 330, 343),
+    sabedoria: templateRect(144, 163, 348, 361), carisma: templateRect(144, 163, 366, 379),
   },
-  pericias: {
-    acrobacia: { xMin: 90, xMax: 140, yMin: 500, yMax: 510 },
-    arcanismo: { xMin: 90, xMax: 140, yMin: 480, yMax: 490 },
-    atletismo: { xMin: 90, xMax: 140, yMin: 460, yMax: 470 },
-    atuacao: { xMin: 90, xMax: 140, yMin: 440, yMax: 450 },
-    furtividade: { xMin: 90, xMax: 140, yMin: 420, yMax: 430 },
-    historia: { xMin: 90, xMax: 140, yMin: 400, yMax: 410 },
-    intimidacao: { xMin: 90, xMax: 140, yMin: 380, yMax: 390 },
-    intuicao: { xMin: 90, xMax: 140, yMin: 360, yMax: 370 },
-    investigacao: { xMin: 90, xMax: 140, yMin: 340, yMax: 350 },
-    medicina: { xMin: 90, xMax: 140, yMin: 320, yMax: 330 },
-    natureza: { xMin: 90, xMax: 140, yMin: 300, yMax: 310 },
-    percepcao: { xMin: 90, xMax: 140, yMin: 280, yMax: 290 },
-    persuasao: { xMin: 90, xMax: 140, yMin: 260, yMax: 270 },
-    religiao: { xMin: 90, xMax: 140, yMin: 240, yMax: 250 },
-    sobrevivencia: { xMin: 90, xMax: 140, yMin: 220, yMax: 230 },
-  },
-  ca: { xMin: 200, xMax: 240, yMin: 600, yMax: 630 },
-  iniciativa: { xMin: 250, xMax: 290, yMin: 600, yMax: 630 },
-  deslocamento: { xMin: 300, xMax: 360, yMin: 600, yMax: 630 },
-  proficiencia: { xMin: 200, xMax: 240, yMin: 550, yMax: 570 },
-  inspiracao: { xMin: 250, xMax: 290, yMin: 550, yMax: 570 },
-  hpMax: { xMin: 400, xMax: 460, yMin: 600, yMax: 630 },
-  hpAtual: { xMin: 400, xMax: 460, yMin: 560, yMax: 590 },
-  hpTemp: { xMin: 400, xMax: 460, yMin: 520, yMax: 550 },
-  dadosVida: { xMin: 480, xMax: 540, yMin: 560, yMax: 590 },
-  deathSuccess1: { xMin: 480, xMax: 490, yMin: 520, yMax: 530 },
-  deathSuccess2: { xMin: 500, xMax: 510, yMin: 520, yMax: 530 },
-  deathSuccess3: { xMin: 520, xMax: 530, yMin: 520, yMax: 530 },
-  deathFail1: { xMin: 480, xMax: 490, yMin: 500, yMax: 510 },
-  deathFail2: { xMin: 500, xMax: 510, yMin: 500, yMax: 510 },
-  deathFail3: { xMin: 520, xMax: 530, yMin: 500, yMax: 510 },
-  percepcaoPassiva: { xMin: 200, xMax: 260, yMin: 250, yMax: 270 },
-  ataques: { xMin: 200, xMax: 550, yMin: 350, yMax: 500 },
-  equipamento: { xMin: 200, xMax: 550, yMin: 150, yMax: 340 },
-  proficiencias: { xMin: 40, xMax: 180, yMin: 150, yMax: 300 },
-  caracteristicas: { xMin: 380, xMax: 550, yMin: 50, yMax: 140 },
+  pericias: Object.fromEntries(['acrobacia', 'arcanismo', 'atletismo', 'atuacao', 'enganacao', 'furtividade', 'historia', 'intimidacao', 'intuicao', 'investigacao', 'adestrarAnimais', 'medicina', 'natureza', 'percepcao', 'persuasao', 'prestidigitacao', 'religiao', 'sobrevivencia'].map((chave, i) => [chave, templateRect(145, 163, 428 + i * 18, 441 + i * 18)])),
+  ca: templateRect(307, 352, 189, 220), iniciativa: templateRect(382, 432, 191, 224),
+  deslocamento: templateRect(450, 508, 191, 224), proficiencia: templateRect(132, 159, 222, 250),
+  inspiracao: templateRect(130, 159, 176, 200),
+  hpMax: templateRect(353, 511, 263, 284), hpAtual: templateRect(311, 509, 291, 323),
+  hpTemp: templateRect(311, 509, 357, 389), dadosVida: templateRect(309, 396, 438, 463),
+  deathSuccess1: templateRect(462, 474, 430, 440), deathSuccess2: templateRect(478, 490, 430, 440),
+  deathSuccess3: templateRect(494, 506, 430, 440), deathFail1: templateRect(462, 474, 449, 459),
+  deathFail2: templateRect(478, 490, 449, 459), deathFail3: templateRect(494, 506, 449, 459),
+  percepcaoPassiva: templateRect(43, 75, 788, 812), ataques: templateRect(305, 516, 530, 746),
+  equipamento: templateRect(357, 519, 800, 1001), proficiencias: templateRect(47, 263, 838, 1001),
+  caracteristicas: templateRect(548, 773, 520, 1001),
 };
 
 const formatBonus = (value: number) => `${value >= 0 ? "+" : ""}${value}`;
 
 const calcularModificador = (valor: number) => Math.floor((valor - 10) / 2);
 
-const normalizarLista = (valores: Array<string | null | undefined>) =>
-  valores.filter((valor): valor is string => Boolean(valor && valor.trim()));
-
-const obterNomeClasses = (ficha: Ficha) => {
-  const classes = [ficha.classePrincipal?.nome, ...(ficha.multiclasses?.map((item) => item.classe.nome) ?? [])];
-  return Array.from(new Set(normalizarLista(classes))).join(" / ");
-};
-
-const obterNivelClasses = (ficha: Ficha) => {
-  const classes = [
-    ficha.classePrincipal ? `${ficha.classePrincipal.nome} ${ficha.levelTotal ?? 1}` : null,
-    ...(ficha.multiclasses?.map((item) => `${item.classe.nome} ${item.nivelClasse}`) ?? []),
-  ];
-  return Array.from(new Set(normalizarLista(classes))).join(" | ");
-};
+export const obterNivelClasses = (ficha: Ficha) => selecionarClassesAtivas(ficha).map(c => `${c.nome} ${c.nivel}`).join(' | ');
 
 const obterTalentos = (ficha: Ficha) => {
   const talentos = new Set<string>();
   ficha.talentos?.forEach((talento) => talento && talentos.add(talento));
-  ficha.efeitos?.forEach((efeito) => efeito.talento && talentos.add(efeito.talento));
+  listarEfeitosAtivos(ficha).forEach((efeito) => efeito.talento && talentos.add(efeito.talento));
   return Array.from(talentos);
 };
 
-const calcularCA = (ficha: Ficha) => {
-  let ca = 10;
-  const des = calcularModificador(calcularValorAtributoFinal(ficha, "destreza"));
-  const con = calcularModificador(calcularValorAtributoFinal(ficha, "constituicao"));
-  const sab = calcularModificador(calcularValorAtributoFinal(ficha, "sabedoria"));
-
-  if (!ficha.ArmaduraEquipada) {
-    ca += des;
-    if (ficha.multiclasses?.some((m) => m.classe.nome === "barbaro")) {
-      ca += con;
-    } else if (ficha.multiclasses?.some((m) => m.classe.nome === "Monge")) {
-      ca += sab;
-    }
-  } else {
-    const armadura = ficha.ArmaduraEquipada;
-    ca = armadura.ac;
-    if (armadura.categoria === "Armadura Leve") {
-      ca += des;
-    }
-    if (armadura.categoria === "Armadura Média") {
-      ca += Math.min(des, 2);
-    }
-  }
-
-  if (ficha.escudoEquipado) {
-    ca += ficha.escudoEquipado.ac;
-  }
-
-  ca += calcularBonusCAItens(ficha);
-  return ca;
-};
+const calcularCA = (ficha: Ficha) => selecionarCA(ficha).total;
 
 const wrapText = (text: string, maxWidth: number, font: any, size: number) => {
-  const palavras = text.split(/\s+/);
+  const palavras = text.split(/\s+/).flatMap((palavra) => {
+    const partes: string[] = [];
+    let parte = '';
+    for (const letra of palavra) {
+      if (parte && font.widthOfTextAtSize(parte + letra, size) > maxWidth) { partes.push(parte); parte = ''; }
+      parte += letra;
+    }
+    if (parte) partes.push(parte);
+    return partes;
+  });
   const linhas: string[] = [];
   let linhaAtual = "";
 
@@ -276,14 +210,17 @@ const drawTextInBox = (
   boldFont: PdfFont,
   options: BoxDrawOptions = {}
 ) => {
-  const texto = text?.trim();
+  const texto = textoSeguro(text?.trim() || '', options.bold ? boldFont : regularFont);
   if (!texto) return;
 
   const font = options.bold ? boldFont : regularFont;
   const { width, height, paddingX, paddingY } = obterDimensoesRect(rect, options);
   const { size, linhas } = calcularTamanhoFonteParaBox(texto, rect, font, options);
   const lineHeight = size * (options.lineHeightFactor ?? 1.1);
-  const totalHeight = linhas.length * lineHeight;
+  const limite = Math.max(1, Math.floor(height / lineHeight));
+  const excede = linhas.length > limite || linhas.some(l => font.widthOfTextAtSize(l, size) > width);
+  const visiveis = excede ? [...linhas.slice(0, Math.min(limite - 1, linhas.length - 1)), 'Ver anexo'] : linhas;
+  const totalHeight = visiveis.length * lineHeight;
 
   let startY = rect.yMax - paddingY - size;
   if (options.valign === "middle") {
@@ -293,7 +230,7 @@ const drawTextInBox = (
     startY = rect.yMin + paddingY + totalHeight - lineHeight;
   }
 
-  linhas.forEach((linha, index) => {
+  visiveis.forEach((linha, index) => {
     const larguraLinha = font.widthOfTextAtSize(linha || " ", size);
     let x = rect.xMin + paddingX;
 
@@ -318,22 +255,17 @@ const calcularSalvaguarda = (ficha: Ficha, atributo: string, nomeResistencia: st
   const valor = calcularValorAtributoFinal(ficha, atributo as any);
   const mod = calcularModificador(valor);
   const bonus = ficha.classePrincipal?.testesResistencias?.includes(nomeResistencia)
-    ? ficha.proeficiencia ?? 0
+    ? selecionarProficiencia(ficha)
     : 0;
   return mod + bonus;
 };
 
-const calcularPericia = (ficha: Ficha, nome: string, atributo: string) => {
-  const valor = calcularValorAtributoFinal(ficha, atributo as any);
-  const mod = calcularModificador(valor);
-  const treinado = ficha.pericias?.includes(nome) ? ficha.proeficiencia ?? 0 : 0;
-  return mod + treinado;
-};
+const calcularPericia = (ficha: Ficha, nome: string, atributo: string) => selecionarPericia(ficha, nome, atributo).total;
 
 const obterCaracteristicasPagina1 = (ficha: Ficha) => {
   const caracteristicas = new Set<string>();
   ficha.talentos?.forEach((talento) => talento && caracteristicas.add(talento));
-  ficha.efeitos?.forEach((efeito) => efeito.talento && caracteristicas.add(efeito.talento));
+  listarEfeitosAtivos(ficha).forEach((efeito) => efeito.talento && caracteristicas.add(efeito.talento));
   ficha.racaPrincipal?.tracos?.forEach((traco) => traco.traco && caracteristicas.add(traco.traco));
   ficha.subRaca?.tracos?.forEach((traco) => traco.traco && caracteristicas.add(traco.traco));
   if (ficha.backGround?.caracteristicas?.nome) {
@@ -342,30 +274,10 @@ const obterCaracteristicasPagina1 = (ficha: Ficha) => {
   return Array.from(caracteristicas).join("\n");
 };
 
-const drawTextBlock = (
-  page: any,
-  text: string,
-  x: number,
-  startY: number,
-  font: any,
-  options: DrawOptions = {}
-) => {
-  const size = options.size ?? 10;
-  const lineHeight = options.lineHeight ?? size + 2;
-  const linhas = wrapText(text, options.maxWidth ?? 180, font, size);
-
-  linhas.forEach((linha, index) => {
-    page.drawText(linha, {
-      x,
-      y: startY - index * lineHeight,
-      size,
-      font,
-      color: rgb(0, 0, 0),
-    });
-  });
-
-  return startY - linhas.length * lineHeight;
-};
+const textoSeguro = (texto: string, font: PdfFont) => [...texto.normalize('NFC')].map(c => {
+  if (c === '\n') return c;
+  try { font.encodeText(c); return c; } catch { return '?'; }
+}).join('');
 
 const baixarArquivo = (bytes: Uint8Array, nome: string) => {
   const arrayBuffer = new ArrayBuffer(bytes.byteLength);
@@ -449,21 +361,21 @@ export const exportarMapaPdf = async () => {
   baixarArquivo(pdfBytes, "mapa_coordenadas_ficha_dnd.pdf");
 };
 
-export const exportarFichaPdf = async (ficha: Ficha) => {
+export const gerarFichaPdf = async (ficha: Ficha) => {
   const pdfDoc = await carregarTemplatePdf();
   const pages = pdfDoc.getPages();
-  const [page1, page2, page3] = pages;
+  const [page1] = pages;
+  while (pdfDoc.getPageCount() > 1) pdfDoc.removePage(1);
   const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
   const fontBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
 
   const nome = ficha.nomePersonagem || "Personagem sem nome";
-  const classe = obterNomeClasses(ficha);
   const niveis = obterNivelClasses(ficha);
-  const classeNivel = niveis || classe;
+  const classeNivel = niveis || "Classes não informadas";
   const raca = [ficha.racaPrincipal?.nome, ficha.subRaca?.nome].filter(Boolean).join(" / ");
-  const background = ficha.backGround?.nome || "";
-  const alinhamento = "";
-  const experiencia = "0";
+  const background = ficha.backGround?.nome || "Não informado";
+  const alinhamento = "Não informado";
+  const experiencia = "Não informado";
   const forca = calcularValorAtributoFinal(ficha, "forca");
   const destreza = calcularValorAtributoFinal(ficha, "destreza");
   const constituicao = calcularValorAtributoFinal(ficha, "constituicao");
@@ -472,14 +384,14 @@ export const exportarFichaPdf = async (ficha: Ficha) => {
   const carisma = calcularValorAtributoFinal(ficha, "carisma");
   const idiomas = (ficha.idiomas ?? []).join(", ");
   const pericias = (ficha.pericias ?? []).join(", ");
-  const ataques = (ficha.ArmaEquipada ?? []).map((arma) => `${arma.nome} ${arma.dano?.dano_1 ?? ""}`).join(" | ");
+  const ataques = (ficha.ArmaEquipada ?? []).map((arma) => { const a = selecionarArma(ficha, arma); return `${arma.nome}: ataque ${formatBonus(a.ataque)}, dano ${a.formula}`; }).join(" | ");
   const equipamentos = [
     ...(ficha.ArmadurasMochila?.map((item) => item.nome) ?? []),
     ...(ficha.ArmasMochila?.map((item) => item.nome) ?? []),
     ...(ficha.itensMochila?.map((item) => item.nome) ?? []),
   ].join(", ");
   const caracteristicas = obterCaracteristicasPagina1(ficha);
-  const percepcaoPassiva = 10 + calcularModificador(sabedoria) + (ficha.pericias?.includes("Percepção") ? (ficha.proeficiencia ?? 0) : 0);
+  const percepcaoPassiva = selecionarPercepcaoPassiva(ficha);
 
   const atributosPagina1 = {
     forca: { valor: forca, mod: calcularModificador(forca) },
@@ -576,6 +488,9 @@ export const exportarFichaPdf = async (ficha: Ficha) => {
   });
 
   const periciasPagina1: Record<string, number> = {
+    adestrarAnimais: calcularPericia(ficha, "Adestrar Animais", "sabedoria"),
+    enganacao: calcularPericia(ficha, "Enganação", "carisma"),
+    prestidigitacao: calcularPericia(ficha, "Prestidigitação", "destreza"),
     acrobacia: calcularPericia(ficha, "Acrobacia", "destreza"),
     arcanismo: calcularPericia(ficha, "Arcanismo", "inteligencia"),
     atletismo: calcularPericia(ficha, "Atletismo", "forca"),
@@ -614,7 +529,7 @@ export const exportarFichaPdf = async (ficha: Ficha) => {
     align: "center",
     valign: "middle",
   });
-  drawTextInBox(page1, formatBonus(ficha.iniciativa ?? 0), PAGE_1_MAP.iniciativa, font, fontBold, {
+  drawTextInBox(page1, formatBonus(selecionarIniciativa(ficha).total), PAGE_1_MAP.iniciativa, font, fontBold, {
     bold: true,
     minSize: 10,
     maxSize: 16,
@@ -622,7 +537,7 @@ export const exportarFichaPdf = async (ficha: Ficha) => {
     align: "center",
     valign: "middle",
   });
-  drawTextInBox(page1, String(ficha.speed ?? 0), PAGE_1_MAP.deslocamento, font, fontBold, {
+  drawTextInBox(page1, String(selecionarDeslocamento(ficha).total), PAGE_1_MAP.deslocamento, font, fontBold, {
     bold: true,
     minSize: 10,
     maxSize: 16,
@@ -630,7 +545,7 @@ export const exportarFichaPdf = async (ficha: Ficha) => {
     align: "center",
     valign: "middle",
   });
-  drawTextInBox(page1, formatBonus(ficha.proeficiencia ?? 0), PAGE_1_MAP.proficiencia, font, fontBold, {
+  drawTextInBox(page1, formatBonus(selecionarProficiencia(ficha)), PAGE_1_MAP.proficiencia, font, fontBold, {
     bold: true,
     minSize: 10,
     maxSize: 16,
@@ -638,7 +553,7 @@ export const exportarFichaPdf = async (ficha: Ficha) => {
     align: "center",
     valign: "middle",
   });
-  drawTextInBox(page1, String(ficha.vidaTotal ?? 0), PAGE_1_MAP.hpMax, font, fontBold, {
+  drawTextInBox(page1, String(selecionarVida(ficha).total), PAGE_1_MAP.hpMax, font, fontBold, {
     bold: true,
     minSize: 10,
     maxSize: 16,
@@ -646,7 +561,7 @@ export const exportarFichaPdf = async (ficha: Ficha) => {
     align: "center",
     valign: "middle",
   });
-  drawTextInBox(page1, String(ficha.vidaAtual ?? ficha.vidaTotal ?? 0), PAGE_1_MAP.hpAtual, font, fontBold, {
+  drawTextInBox(page1, String(ficha.vidaAtual ?? 0), PAGE_1_MAP.hpAtual, font, fontBold, {
     bold: true,
     minSize: 10,
     maxSize: 16,
@@ -654,7 +569,7 @@ export const exportarFichaPdf = async (ficha: Ficha) => {
     align: "center",
     valign: "middle",
   });
-  drawTextInBox(page1, "0", PAGE_1_MAP.hpTemp, font, fontBold, {
+  drawTextInBox(page1, "N/I", PAGE_1_MAP.hpTemp, font, fontBold, {
     bold: true,
     minSize: 10,
     maxSize: 16,
@@ -662,7 +577,7 @@ export const exportarFichaPdf = async (ficha: Ficha) => {
     align: "center",
     valign: "middle",
   });
-  drawTextInBox(page1, String(ficha.levelTotal ?? 1), PAGE_1_MAP.dadosVida, font, fontBold, {
+  drawTextInBox(page1, selecionarClassesAtivas(ficha).map(c => { const dado = selecionarNiveis(ficha).find(n => n.classe && n.classe.nome === c.nome)?.classe?.dadosVida; return dado ? `${c.nivel}d${dado}` : 'N/I'; }).join(' + '), PAGE_1_MAP.dadosVida, font, fontBold, {
     bold: true,
     minSize: 10,
     maxSize: 14,
@@ -704,89 +619,62 @@ export const exportarFichaPdf = async (ficha: Ficha) => {
     lineHeightFactor: 1.15,
   });
 
-  let yPage2 = 740;
-  page2.drawText(`Nome: ${nome}`, { x: 40, y: yPage2, size: 14, font: fontBold, color: rgb(0, 0, 0) });
-  yPage2 -= 28;
-  page2.drawText(`Classes e níveis: ${niveis}`, { x: 40, y: yPage2, size: 10, font, color: rgb(0, 0, 0) });
-  yPage2 -= 24;
-  page2.drawText("Talentos", { x: 40, y: yPage2, size: 12, font: fontBold, color: rgb(0, 0, 0) });
-  yPage2 -= 14;
-  yPage2 = drawTextBlock(page2, obterTalentos(ficha).join("\n") || "Nenhum talento.", 40, yPage2, font, {
-    size: 10,
-    maxWidth: 240,
-    lineHeight: 12,
+  // The full appendix flows onto fresh pages; nothing is silently dropped in fixed boxes.
+  let pagina = pdfDoc.addPage();
+  let y = pagina.getHeight() - 40;
+  const linha = (texto: string) => {
+    for (const l of wrapParagraphs(textoSeguro(texto, font), pagina.getWidth() - 80, font, 10)) {
+      if (y < 40) { pagina = pdfDoc.addPage(); y = pagina.getHeight() - 40; }
+      pagina.drawText(l, { x: 40, y, size: 10, font });
+      y -= 14;
+    }
+    y -= 7;
+  };
+  linha(`Ficha de ${nome} - D&D ${ficha.versaoRegras === 'DND_2024' ? '2024' : '2014'}`);
+  linha(`Classes e níveis ativos: ${classeNivel}`);
+  const faltantes = selecionarNiveis(ficha).filter(n => !n.classe).map(n => n.nivel);
+  if (faltantes.length) linha(`Classe não informada nos níveis: ${faltantes.join(', ')}`);
+  linha(`Raça/espécie e linhagem: ${raca || 'Não informada'}. Origem: ${background}`);
+  Object.keys(atributosPagina1).forEach(a => linha(`${a}: ${selecionarAtributo(ficha, a).explicacao}`));
+  linha('Não representados neste PDF: jogador, alinhamento, XP, inspiração, PV temporários e dados de vida gastos. Caracteres não suportados pela fonte aparecem como ?.');
+  const morte = ficha.recursos?.morte;
+  linha(morte == null ? 'Testes de morte não informados.'
+    : `Testes de morte: ${morte.sucessos ?? 'não informados'} sucessos; ${morte.falhas ?? 'não informadas'} falhas.`);
+  linha(`CA: ${selecionarCA(ficha).total}. ${selecionarCA(ficha).explicacao}`);
+  linha(`Alternativas de CA: ${selecionarCA(ficha).alternativas.map(a => `${a.fonte} = ${a.valor} (${a.aplicada ? 'disponível' : 'indisponível'})`).join('; ')}`);
+  const vida = selecionarVida(ficha);
+  linha(`PV atuais: ${ficha.vidaAtual ?? 'Não informados'}; máximos: ${vida.total}${vida.manual ? ' (máximo salvo manualmente)' : ' (média fixa)'}. ${explicarParcelas(vida.parcelas)}`);
+  if (vida.ausentes.length) linha(`PV incompletos: dado de vida ausente nos níveis ${vida.ausentes.join(', ')}`);
+  linha(`Iniciativa: ${formatBonus(selecionarIniciativa(ficha).total)}. ${explicarParcelas(selecionarIniciativa(ficha).parcelas)}`);
+  linha(`Deslocamento: ${selecionarDeslocamento(ficha).total} ft. ${explicarParcelas(selecionarDeslocamento(ficha).parcelas)}`);
+  linha(`Percepção passiva: ${percepcaoPassiva}. Proficiência: ${formatBonus(selecionarProficiencia(ficha))}`);
+  const todasPericias = [['Acrobacia','destreza'],['Adestrar Animais','sabedoria'],['Arcanismo','inteligencia'],['Atletismo','forca'],['Atuação','carisma'],['Enganação','carisma'],['Furtividade','destreza'],['História','inteligencia'],['Intimidação','carisma'],['Intuição','sabedoria'],['Investigação','inteligencia'],['Medicina','sabedoria'],['Natureza','inteligencia'],['Percepção','sabedoria'],['Persuasão','carisma'],['Prestidigitação','destreza'],['Religião','inteligencia'],['Sobrevivência','sabedoria']];
+  linha('Todas as perícias e fontes dos bônus:');
+  todasPericias.forEach(([nome, atributo]) => { const p = selecionarPericia(ficha, nome, atributo); linha(`${nome}: ${formatBonus(p.total)}. ${explicarParcelas(p.parcelas)}`); });
+  linha(`Armas: ${ataques || 'Nenhuma equipada'}`);
+  (ficha.ArmaEquipada ?? []).forEach(a => linha(`${a.nome}: ${selecionarArma(ficha, a).explicacao}`));
+  linha('Outros estilos e situações de combate exigem aplicação manual; arma versátil usa aqui o dano principal em uma mão.');
+  linha(`Inventário: ${equipamentos || 'Não informado'}`);
+  linha(`Itens equipados: ${(ficha.itensEquipados ?? []).map(i => i.nome).join(', ') || 'Nenhum'}`);
+  linha(`Idiomas: ${idiomas || 'Não informados'}`);
+  linha(`Características: ${caracteristicas || 'Não informadas'}`);
+  linha(`Talentos: ${obterTalentos(ficha).join(', ') || 'Não informados'}`);
+  (ficha.efeitos ?? []).filter(e => e.talento).forEach(e => {
+    const t = talentoDoEfeito(e);
+    linha(`${e.talento}: ${t ? `${t.id} | ${rotuloConteudo(t)}` : e.conteudo ? 'Revisão desconhecida, snapshot preservado no JSON' : 'Legado sem referência individual; efeitos salvos preservados'}. Escolhas: ${e.escolhasTalento?.join(', ') || 'nenhuma registrada'}`);
   });
+  linha(`Estilos selecionados: ${(ficha.estiloLuta ?? []).map(e => e.estilo + ' (' + e.classe + ')').join(', ') || 'Nenhum'}`);
+  linha('Magias:');
+  selecionarEscolhasMagia(ficha).forEach(m => {
+    const c = resolverMagiaSalva(m);
+    linha(`${m.classe}: ${m.nome} (${m.categoria}${m.preparada ? ', preparada' : ''}; fonte ${m.edicao}). Conteúdo: ${c ? `${c.id} | ${rotuloConteudo(c)}` : 'revisão desconhecida, snapshot preservado no JSON'}${!m.conteudo ? '; registro legado sem revisão individual' : ''}`);
+  });
+  linha(`Ouro: ${ficha.ouro} | Prata: ${ficha.prata} | Cobre: ${ficha.cobre}`);
+  page1.drawText(`D&D ${ficha.versaoRegras === 'DND_2024' ? '2024' : '2014'} - valores e detalhes completos no anexo`, { x: 40, y: 8, size: 7, font });
+  return pdfDoc.save();
+};
 
-  yPage2 -= 16;
-  page2.drawText("Magias", { x: 40, y: yPage2, size: 12, font: fontBold, color: rgb(0, 0, 0) });
-  yPage2 -= 14;
-  yPage2 = drawTextBlock(
-    page2,
-    ficha.magiasEscolhidas?.flatMap((grupo) => grupo.magia.map((magia) => `${grupo.classe}: ${magia}`)).join("\n") || "Nenhuma magia.",
-    40,
-    yPage2,
-    font,
-    { size: 9, maxWidth: 250, lineHeight: 11 }
-  );
-
-  let yColunaDireita = 712;
-  page2.drawText("Inventário", { x: 330, y: yColunaDireita, size: 12, font: fontBold, color: rgb(0, 0, 0) });
-  yColunaDireita -= 14;
-  yColunaDireita = drawTextBlock(page2, equipamentos || "Sem equipamentos.", 330, yColunaDireita, font, {
-    size: 9,
-    maxWidth: 230,
-    lineHeight: 11,
-  });
-  yColunaDireita -= 16;
-  page2.drawText("Idiomas", { x: 330, y: yColunaDireita, size: 12, font: fontBold, color: rgb(0, 0, 0) });
-  yColunaDireita -= 14;
-  yColunaDireita = drawTextBlock(page2, idiomas || "Nenhum idioma.", 330, yColunaDireita, font, {
-    size: 9,
-    maxWidth: 230,
-    lineHeight: 11,
-  });
-  yColunaDireita -= 16;
-  page2.drawText("Perícias", { x: 330, y: yColunaDireita, size: 12, font: fontBold, color: rgb(0, 0, 0) });
-  yColunaDireita -= 14;
-  drawTextBlock(page2, pericias || "Nenhuma perícia.", 330, yColunaDireita, font, {
-    size: 9,
-    maxWidth: 230,
-    lineHeight: 11,
-  });
-
-  let yPage3 = 740;
-  page3.drawText(`Resumo de ${nome}`, { x: 40, y: yPage3, size: 14, font: fontBold, color: rgb(0, 0, 0) });
-  yPage3 -= 28;
-  const resumo = [
-    `Raça: ${raca || "-"}`,
-    `Background: ${background || "-"}`,
-    `CA: ${calcularCA(ficha)}`,
-    `PV: ${ficha.vidaAtual ?? ficha.vidaTotal ?? 0}/${ficha.vidaTotal ?? 0}`,
-    `Proficiência: ${formatBonus(ficha.proeficiencia ?? 0)}`,
-    `Iniciativa: ${formatBonus(ficha.iniciativa ?? 0)}`,
-    `Ouro: ${ficha.ouro} | Prata: ${ficha.prata} | Cobre: ${ficha.cobre}`,
-  ].join("\n");
-  yPage3 = drawTextBlock(page3, resumo, 40, yPage3, font, { size: 11, maxWidth: 250, lineHeight: 14 });
-  yPage3 -= 20;
-  page3.drawText("Armas equipadas", { x: 40, y: yPage3, size: 12, font: fontBold, color: rgb(0, 0, 0) });
-  yPage3 -= 14;
-  yPage3 = drawTextBlock(
-    page3,
-    (ficha.ArmaEquipada ?? []).map((arma) => `${arma.nome} - ${arma.dano?.dano_1 ?? "sem dano"}`).join("\n") || "Nenhuma arma equipada.",
-    40,
-    yPage3,
-    font,
-    { size: 10, maxWidth: 250, lineHeight: 12 }
-  );
-  yPage3 -= 20;
-  page3.drawText("Itens equipados", { x: 40, y: yPage3, size: 12, font: fontBold, color: rgb(0, 0, 0) });
-  yPage3 -= 14;
-  drawTextBlock(page3, (ficha.itensEquipados ?? []).map((item) => item.nome).join("\n") || "Nenhum item equipado.", 40, yPage3, font, {
-    size: 10,
-    maxWidth: 250,
-    lineHeight: 12,
-  });
-
-  const pdfBytes = await pdfDoc.save();
-  baixarArquivo(pdfBytes, `${nome.replace(/\s+/g, "_").toLowerCase()}_ficha_dnd.pdf`);
+export const exportarFichaPdf = async (ficha: Ficha) => {
+  const bytes = await gerarFichaPdf(ficha);
+  baixarArquivo(bytes, `${(ficha.nomePersonagem || 'personagem').replace(/\s+/g, '_').toLowerCase()}_ficha_dnd.pdf`);
 };

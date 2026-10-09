@@ -1,0 +1,10 @@
+﻿src/api/classesNetos/AnaoMontanha.class.ts(9,31): error TS2488: Type 'string[] | undefined' must have a '[Symbol.iterator]()' method that returns an iterator.
+src/api/classesPrincipais/Classes.class.ts(14,5): error TS2564: Property 'niveis' has no initializer and is not definitely assigned in the constructor.
+src/api/classesPrincipais/Classes.class.ts(18,5): error TS2564: Property 'subClasse' has no initializer and is not definitely assigned in the constructor.
+src/api/classesPrincipais/SubClasses.ts(4,5): error TS2564: Property 'magias' has no initializer and is not definitely assigned in the constructor.
+src/api/classesPrincipais/SubClasses.ts(6,5): error TS2564: Property 'niveis' has no initializer and is not definitely assigned in the constructor.
+src/api/fichaPersonagem/fichaStorage.ts(194,26): error TS7006: Parameter 'f' implicitly has an 'any' type.
+src/api/fichaPersonagem/fichaStorage.ts(196,63): error TS7006: Parameter 'f' implicitly has an 'any' type.
+src/pages/components/components_InformacoesPersonagem/Portal.tsx(4,26): error TS7031: Binding element 'children' implicitly has an 'any' type.
+src/pages/components/PericiasEOutros.tsx(154,27): error TS7006: Parameter 'index' implicitly has an 'any' type.
+

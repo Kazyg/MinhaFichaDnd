@@ -1,7 +1,8 @@
+import AccessibleDialog from "../components/AccessibleDialog";
 import React, { useState } from "react";
-import { Itens } from "../../bibliotecas/Itens.ts";
+import { Itens } from "../../bibliotecas/Itens";
 import { toast } from "react-toastify";
-import { useFicha } from "../../api/fichaPersonagem/FichaContext.tsx";
+import { useFicha } from "../../api/fichaPersonagem/FichaContext";
 import iconFilter from "../../imagens/filter_alt_24dp_CCCCCC_FILL0_wght400_GRAD0_opsz24.png";
 import iconNoFilter from "../../imagens/filter_alt_off_24dp_CCCCCC_FILL0_wght400_GRAD0_opsz24.png";
 import "../css/ModalInventarioItens.css";
@@ -165,7 +166,7 @@ export default function ModalEscolherItem({
   };
 
   return (
-    <div className="popup-content-modal">
+    <AccessibleDialog className="popup-content-modal" onClose={onClose} aria-label="Selecione um Item">
       <h2>Selecione um Item</h2>
       {filtrosAbertos && (
         <div className="filtros-itens-modal">
@@ -174,14 +175,14 @@ export default function ModalEscolherItem({
             <input
               className="lista-itens-input filtro-descricao-input"
               type="text"
-              placeholder="Buscar na descrição..."
+              aria-label="Buscar na descrição..." placeholder="Buscar na descrição..."
               value={filtroDescricao}
               onChange={(e) => {
                 setFiltroDescricao(e.target.value);
                 setFiltrosSelecionados(true);
               }}
             />
-            <select
+            <select aria-label="Filtrar por tipo"
               value={filtroTipo}
               onChange={(e) => {
                 setFiltroTipo(e.target.value);
@@ -195,7 +196,7 @@ export default function ModalEscolherItem({
                 </option>
               ))}
             </select>
-            <select
+            <select aria-label="Filtrar por raridade"
               value={filtroRaridade}
               onChange={(e) => {
                 setFiltroRaridade(e.target.value);
@@ -209,7 +210,7 @@ export default function ModalEscolherItem({
                 </option>
               ))}
             </select>
-            <select
+            <select aria-label="Filtrar por sintonização"
               value={filtroSintonizavel}
               onChange={(e) => {
                 setFiltroSintonizavel(e.target.value);
@@ -220,7 +221,7 @@ export default function ModalEscolherItem({
               <option value="sim">Sintonizável</option>
               <option value="nao">Não Sintonizável</option>
             </select>
-            <button onClick={() => {
+            <button aria-label="Limpar filtros de itens" onClick={() => {
               setFiltrosAbertos(false);
               setFiltrosSelecionados(false);
               setFiltroDescricao("");
@@ -239,11 +240,11 @@ export default function ModalEscolherItem({
             <input
               className="lista-itens-input"
               type="text"
-              placeholder="Filtrar itens..."
+              aria-label="Filtrar itens..." placeholder="Filtrar itens..."
               value={filtro}
               onChange={(e) => setFiltro(e.target.value)}
             />
-            <button className="botao-filtro-itens" onClick={() => setFiltrosAbertos(!filtrosAbertos)}>
+            <button aria-label="Filtros de itens" aria-expanded={filtrosAbertos} className="botao-filtro-itens" onClick={() => setFiltrosAbertos(!filtrosAbertos)}>
               <img src={iconFilter} className="imagem-filtro-itens" alt="" />
             </button>
           </div>
@@ -251,9 +252,9 @@ export default function ModalEscolherItem({
             {(filtrosSelecionados ? opcoesComFiltros() : opcoesFiltradas)
               .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"))
               .map((item) => (
-              <li key={item.nome} onClick={() => setEscolhido(item)}>
+              <li key={item.nome}><button type="button" className="selection-option" aria-pressed={escolhido?.nome === item.nome} onClick={() => setEscolhido(item)}>
                 <strong>{item.nome}</strong>
-              </li>
+              </button></li>
             ))}
           </ul>
         </div>
@@ -287,6 +288,6 @@ export default function ModalEscolherItem({
         )}
         <button className="escolher-button" onClick={onClose}>Fechar</button>
       </div>
-    </div>
+    </AccessibleDialog>
   );
 }

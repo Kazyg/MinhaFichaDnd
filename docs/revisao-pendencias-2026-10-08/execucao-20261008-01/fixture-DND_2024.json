@@ -1,0 +1,1776 @@
+{
+  "format": "minhafichadnd",
+  "version": 1,
+  "kind": "ficha",
+  "data": {
+    "itensSintonizados": [],
+    "recursos": {
+      "slots": {},
+      "morte": {
+        "sucessos": 2,
+        "falhas": 1
+      }
+    },
+    "idiomasLivres": [
+      "Élfico",
+      "Anão"
+    ],
+    "id": "browser-DND_2024",
+    "nomePersonagem": "A25 DND_2024",
+    "racaPrincipal": {
+      "nome": "Humano",
+      "tamanho": "Médio ou Pequeno",
+      "velocidade": 30,
+      "idiomas": [],
+      "atributos": {
+        "atributo": [],
+        "bonus": []
+      },
+      "tracos": [
+        {
+          "traco": "Tipo de Criatura",
+          "descricao": "Você é Humanoide."
+        },
+        {
+          "traco": "Eficiente",
+          "descricao": "Você adquire Inspiração Heroica sempre que completa um Descanso Longo."
+        },
+        {
+          "traco": "Hábil",
+          "descricao": "Você adquire proficiência em uma perícia à sua escolha."
+        },
+        {
+          "traco": "Versátil",
+          "descricao": "Você adquire um talento de Origem à sua escolha. Habilidoso é recomendado."
+        }
+      ],
+      "proeficiencias": [],
+      "subOpcoes": [],
+      "pericia": [
+        "Escolha uma perícia"
+      ]
+    },
+    "subRaca": null,
+    "classePrincipal": {
+      "niveis": [
+        {
+          "nivel": 1,
+          "proeficiencia": 2,
+          "recuperarFolego": 2,
+          "maestriaArma": 3,
+          "caracteristicas": [
+            "Estilo de Luta",
+            "Maestria em Arma",
+            "Recuperar Fôlego"
+          ]
+        },
+        {
+          "nivel": 2,
+          "proeficiencia": 2,
+          "recuperarFolego": 2,
+          "maestriaArma": 3,
+          "caracteristicas": [
+            "Mente Tática",
+            "Surto de Ação"
+          ]
+        },
+        {
+          "nivel": 3,
+          "proeficiencia": 2,
+          "recuperarFolego": 2,
+          "maestriaArma": 3,
+          "caracteristicas": [
+            "Subclasse de Guerreiro"
+          ]
+        },
+        {
+          "nivel": 4,
+          "proeficiencia": 2,
+          "recuperarFolego": 3,
+          "maestriaArma": 4,
+          "caracteristicas": [
+            "Aumento no Valor de Atributo"
+          ]
+        },
+        {
+          "nivel": 5,
+          "proeficiencia": 3,
+          "recuperarFolego": 3,
+          "maestriaArma": 4,
+          "caracteristicas": [
+            "Ajuste Tático",
+            "Ataque Extra"
+          ]
+        },
+        {
+          "nivel": 6,
+          "proeficiencia": 3,
+          "recuperarFolego": 3,
+          "maestriaArma": 4,
+          "caracteristicas": [
+            "Aumento no Valor de Atributo"
+          ]
+        },
+        {
+          "nivel": 7,
+          "proeficiencia": 3,
+          "recuperarFolego": 3,
+          "maestriaArma": 4,
+          "caracteristicas": [
+            "Característica de Subclasse"
+          ]
+        },
+        {
+          "nivel": 8,
+          "proeficiencia": 3,
+          "recuperarFolego": 3,
+          "maestriaArma": 4,
+          "caracteristicas": [
+            "Aumento no Valor de Atributo"
+          ]
+        },
+        {
+          "nivel": 9,
+          "proeficiencia": 4,
+          "recuperarFolego": 3,
+          "maestriaArma": 4,
+          "caracteristicas": [
+            "Indomável",
+            "Mestre Tático"
+          ]
+        },
+        {
+          "nivel": 10,
+          "proeficiencia": 4,
+          "recuperarFolego": 4,
+          "maestriaArma": 5,
+          "caracteristicas": [
+            "Característica de Subclasse"
+          ]
+        },
+        {
+          "nivel": 11,
+          "proeficiencia": 4,
+          "recuperarFolego": 4,
+          "maestriaArma": 5,
+          "caracteristicas": [
+            "Dois Ataques Extras"
+          ]
+        },
+        {
+          "nivel": 12,
+          "proeficiencia": 4,
+          "recuperarFolego": 4,
+          "maestriaArma": 5,
+          "caracteristicas": [
+            "Aumento no Valor de Atributo"
+          ]
+        },
+        {
+          "nivel": 13,
+          "proeficiencia": 5,
+          "recuperarFolego": 4,
+          "maestriaArma": 5,
+          "caracteristicas": [
+            "Ataques Estudados",
+            "Indomável"
+          ]
+        },
+        {
+          "nivel": 14,
+          "proeficiencia": 5,
+          "recuperarFolego": 4,
+          "maestriaArma": 5,
+          "caracteristicas": [
+            "Aumento no Valor de Atributo"
+          ]
+        },
+        {
+          "nivel": 15,
+          "proeficiencia": 5,
+          "recuperarFolego": 4,
+          "maestriaArma": 5,
+          "caracteristicas": [
+            "Característica de Subclasse"
+          ]
+        },
+        {
+          "nivel": 16,
+          "proeficiencia": 5,
+          "recuperarFolego": 4,
+          "maestriaArma": 6,
+          "caracteristicas": [
+            "Aumento no Valor de Atributo"
+          ]
+        },
+        {
+          "nivel": 17,
+          "proeficiencia": 6,
+          "recuperarFolego": 4,
+          "maestriaArma": 6,
+          "caracteristicas": [
+            "Indomável",
+            "Surto de Ação"
+          ]
+        },
+        {
+          "nivel": 18,
+          "proeficiencia": 6,
+          "recuperarFolego": 4,
+          "maestriaArma": 6,
+          "caracteristicas": [
+            "Característica de Subclasse"
+          ]
+        },
+        {
+          "nivel": 19,
+          "proeficiencia": 6,
+          "recuperarFolego": 4,
+          "maestriaArma": 6,
+          "caracteristicas": [
+            "Dádiva Épica"
+          ]
+        },
+        {
+          "nivel": 20,
+          "proeficiencia": 6,
+          "recuperarFolego": 4,
+          "maestriaArma": 6,
+          "caracteristicas": [
+            "Três Ataques Extras"
+          ]
+        }
+      ],
+      "subClasse": [
+        {
+          "magias": [],
+          "niveis": [
+            {
+              "nome": "Atleta Extraordinário",
+              "nivel": 3,
+              "descricao": "Você tem Vantagem em jogadas de Iniciativa e testes de Força (Atletismo). Além disso, imediatamente após obter um Acerto Crítico, você pode se mover até metade do seu Deslocamento sem provocar Ataques de Oportunidade."
+            },
+            {
+              "nome": "Crítico Aprimorado",
+              "nivel": 3,
+              "descricao": "Suas jogadas de ataque com armas e Ataques Desarmados obtêm Acerto Crítico em resultados 19 ou 20 no d20."
+            },
+            {
+              "nome": "Estilo de Luta Adicional",
+              "nivel": 7,
+              "descricao": "Você adquire outro talento de Estilo de Luta à sua escolha."
+            },
+            {
+              "nome": "Combatente Heroico",
+              "nivel": 10,
+              "descricao": "Durante o combate, você pode se conceder Inspiração Heroica sempre que começar seu turno sem ela."
+            },
+            {
+              "nome": "Crítico Superior",
+              "nivel": 15,
+              "descricao": "Suas jogadas de ataque com armas e Ataques Desarmados obtêm Acerto Crítico em resultados 18 a 20 no d20."
+            },
+            {
+              "nome": "Sobrevivente",
+              "nivel": 18,
+              "descricao": "Você tem Vantagem em Salvaguardas Contra Morte e, ao obter 18–20 nelas, obtém 20 como resultado. No início de cada um dos seus turnos, você recupera Pontos de Vida iguais a 5 + seu modificador de Constituição se estiver Sangrando e tiver ao menos 1 Ponto de Vida."
+            }
+          ],
+          "id": "muzm9q66-bf8",
+          "nome": "Campeão",
+          "descricao": "Um Campeão foca no desenvolvimento de habilidades marciais em sua busca incessante pela vitória."
+        },
+        {
+          "magias": [],
+          "niveis": [
+            {
+              "nome": "Conjuração",
+              "nivel": 3,
+              "descricao": "Você conhece dois truques de Mago e aprende outro no nível 10 de Guerreiro. Você prepara magias de Mago conforme a tabela de Conjuração de Cavaleiro Místico, recupera espaços gastos ao completar Descanso Longo, usa Inteligência como atributo de conjuração e pode usar um Foco Arcano como Foco de Conjuração."
+            },
+            {
+              "nome": "Vínculo com Arma",
+              "nivel": 3,
+              "descricao": "Você aprende um ritual de 1 hora para criar vínculo com uma arma ao seu alcance. A arma vinculada não pode ser desarmada de você enquanto não estiver Incapacitado e, se estiver no mesmo plano, você pode invocá-la como Ação Bônus. Você pode ter até dois vínculos com armas."
+            },
+            {
+              "nome": "Magia de Guerra",
+              "nivel": 7,
+              "descricao": "Ao executar a ação Atacar no seu turno, você pode substituir um dos ataques pela conjuração de um truque de Mago que tenha tempo de conjuração de uma ação."
+            },
+            {
+              "nome": "Golpe Místico",
+              "nivel": 10,
+              "descricao": "Ao atingir uma criatura com um ataque usando uma arma, ela sofre Desvantagem na próxima salvaguarda que realizar contra uma magia que você conjurar antes do final do seu próximo turno."
+            },
+            {
+              "nome": "Investida Mística",
+              "nivel": 15,
+              "descricao": "Ao usar Surto de Ação, você pode se teleportar até 9 metros para um espaço desocupado à sua vista, antes ou depois da ação adicional."
+            },
+            {
+              "nome": "Magia de Guerra Aprimorada",
+              "nivel": 18,
+              "descricao": "Ao executar a ação Atacar no seu turno, você pode substituir dois ataques pela conjuração de uma das suas magias de Mago de 1º ou 2º círculo que tenha tempo de conjuração de uma ação."
+            }
+          ],
+          "id": "muzm9q66-wgy",
+          "nome": "Cavaleiro Místico",
+          "descricao": "Cavaleiros Místicos unem habilidades marciais de Guerreiros a um estudo aprofundado da magia arcana.",
+          "magiasEspacos": [
+            {
+              "nivel": 3,
+              "truques": 2,
+              "magias": 3,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 2
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 0
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 0
+                },
+                {
+                  "nivel": 4,
+                  "espacos": 0
+                }
+              ]
+            },
+            {
+              "nivel": 4,
+              "truques": 2,
+              "magias": 4,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 0
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 0
+                },
+                {
+                  "nivel": 4,
+                  "espacos": 0
+                }
+              ]
+            },
+            {
+              "nivel": 5,
+              "truques": 2,
+              "magias": 4,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 0
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 0
+                },
+                {
+                  "nivel": 4,
+                  "espacos": 0
+                }
+              ]
+            },
+            {
+              "nivel": 6,
+              "truques": 2,
+              "magias": 4,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 0
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 0
+                },
+                {
+                  "nivel": 4,
+                  "espacos": 0
+                }
+              ]
+            },
+            {
+              "nivel": 7,
+              "truques": 2,
+              "magias": 5,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 2
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 0
+                },
+                {
+                  "nivel": 4,
+                  "espacos": 0
+                }
+              ]
+            },
+            {
+              "nivel": 8,
+              "truques": 2,
+              "magias": 6,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 2
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 0
+                },
+                {
+                  "nivel": 4,
+                  "espacos": 0
+                }
+              ]
+            },
+            {
+              "nivel": 9,
+              "truques": 2,
+              "magias": 6,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 2
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 0
+                },
+                {
+                  "nivel": 4,
+                  "espacos": 0
+                }
+              ]
+            },
+            {
+              "nivel": 10,
+              "truques": 3,
+              "magias": 7,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 0
+                },
+                {
+                  "nivel": 4,
+                  "espacos": 0
+                }
+              ]
+            },
+            {
+              "nivel": 11,
+              "truques": 3,
+              "magias": 8,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 0
+                },
+                {
+                  "nivel": 4,
+                  "espacos": 0
+                }
+              ]
+            },
+            {
+              "nivel": 12,
+              "truques": 3,
+              "magias": 8,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 0
+                },
+                {
+                  "nivel": 4,
+                  "espacos": 0
+                }
+              ]
+            },
+            {
+              "nivel": 13,
+              "truques": 3,
+              "magias": 9,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 2
+                },
+                {
+                  "nivel": 4,
+                  "espacos": 0
+                }
+              ]
+            },
+            {
+              "nivel": 14,
+              "truques": 3,
+              "magias": 10,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 2
+                },
+                {
+                  "nivel": 4,
+                  "espacos": 0
+                }
+              ]
+            },
+            {
+              "nivel": 15,
+              "truques": 3,
+              "magias": 10,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 2
+                },
+                {
+                  "nivel": 4,
+                  "espacos": 0
+                }
+              ]
+            },
+            {
+              "nivel": 16,
+              "truques": 3,
+              "magias": 11,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 4,
+                  "espacos": 0
+                }
+              ]
+            },
+            {
+              "nivel": 17,
+              "truques": 3,
+              "magias": 11,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 4,
+                  "espacos": 0
+                }
+              ]
+            },
+            {
+              "nivel": 18,
+              "truques": 3,
+              "magias": 11,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 4,
+                  "espacos": 0
+                }
+              ]
+            },
+            {
+              "nivel": 19,
+              "truques": 3,
+              "magias": 12,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 4,
+                  "espacos": 1
+                }
+              ]
+            },
+            {
+              "nivel": 20,
+              "truques": 3,
+              "magias": 13,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 4,
+                  "espacos": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "magias": [],
+          "niveis": [
+            {
+              "nome": "Poder Psiônico",
+              "nivel": 3,
+              "descricao": "Você possui Dados de Energia Psiônica que alimentam seus poderes: no nível 3, 4d6; nível 5, 6d8; nível 9, 8d8; nível 11, 8d10; nível 13, 10d10; nível 17, 12d12. Você recupera um dado gasto ao completar Descanso Curto e todos ao completar Descanso Longo. Seus poderes incluem Golpe Psiônico, Movimento Telecinético e Vínculo Protetivo."
+            },
+            {
+              "nome": "Adepto Telecinético",
+              "nivel": 7,
+              "descricao": "Ao causar dano com Golpe Psiônico, você pode forçar salvaguarda de Força contra CD 8 + Inteligência + Proficiência; em falha, impõe Caído ou move o alvo horizontalmente até 3 metros. Como Ação Bônus, você também pode adquirir Deslocamento de Voo igual ao dobro do seu Deslocamento até o fim do turno, recuperando o uso em descanso ou gastando Dado de Energia Psiônica."
+            },
+            {
+              "nome": "Resguardo Mental",
+              "nivel": 10,
+              "descricao": "Você tem Resistência a dano Psíquico. Além disso, ao iniciar seu turno Amedrontado ou Enfeitiçado, pode gastar um Dado de Energia Psiônica para encerrar todos os efeitos em você que imponham essas condições."
+            },
+            {
+              "nome": "Baluarte de Energia",
+              "nivel": 15,
+              "descricao": "Como Ação Bônus, escolha criaturas a até 9 metros, incluindo você, em número até seu modificador de Inteligência, mínimo uma. Cada criatura escolhida tem Cobertura Parcial por 1 minuto ou até você ficar Incapacitado. Você recupera o uso em Descanso Longo ou gastando Dado de Energia Psiônica."
+            },
+            {
+              "nome": "Mestre Telecinético",
+              "nivel": 18,
+              "descricao": "Você sempre tem Telecinese preparada e pode conjurá-la sem espaço de magia ou componentes, usando Inteligência como atributo de conjuração. Em cada turno enquanto mantém Concentração nela, incluindo o turno em que a conjura, você pode realizar um ataque com arma como Ação Bônus. Você recupera o uso em Descanso Longo ou gastando Dado de Energia Psiônica."
+            }
+          ],
+          "id": "muzm9q66-ks7",
+          "nome": "Combatente Psíquico",
+          "descricao": "Você desperta o poder da mente para aprimorar suas habilidades físicas com energia psiônica, telecinesia e barreiras mentais."
+        },
+        {
+          "magias": [],
+          "niveis": [
+            {
+              "nome": "Estudioso da Guerra",
+              "nivel": 3,
+              "descricao": "Você adquire proficiência com um tipo de Ferramentas de Artesão à sua escolha e proficiência em uma perícia à sua escolha das perícias disponíveis para Guerreiros no nível 1."
+            },
+            {
+              "nome": "Superioridade em Combate",
+              "nivel": 3,
+              "descricao": "Você aprende três manobras e usa Dados de Superioridade d8 para alimentá-las. Você tem quatro dados, recuperados ao completar Descanso Curto ou Longo. Aprende duas manobras adicionais nos níveis 7, 10 e 15, podendo substituir manobras conhecidas. A CD das manobras é 8 + modificador de Força ou Destreza + Bônus de Proficiência."
+            },
+            {
+              "nome": "Conheça Seu Inimigo",
+              "nivel": 7,
+              "descricao": "Como Ação Bônus, examine uma criatura à sua vista a até 9 metros; você sabe se ela tem Imunidades, Resistências ou Vulnerabilidades e quais são. Você recupera o uso ao completar Descanso Longo ou gastando um Dado de Superioridade."
+            },
+            {
+              "nome": "Superioridade em Combate Aprimorada",
+              "nivel": 10,
+              "descricao": "Seu Dado de Superioridade se torna um d10."
+            },
+            {
+              "nome": "Implacável",
+              "nivel": 15,
+              "descricao": "Uma vez por turno, ao usar uma manobra, você pode jogar 1d8 e usar o resultado em vez de gastar um Dado de Superioridade."
+            },
+            {
+              "nome": "Superioridade em Combate Suprema",
+              "nivel": 18,
+              "descricao": "Seu Dado de Superioridade se torna um d12."
+            },
+            {
+              "nome": "Opções de Manobra",
+              "nivel": 3,
+              "descricao": "As manobras incluem Aparar, Ataque Ameaçador, Ataque de Varredura, Ataque Estendido, Ataque para Distrair, Ataque Preciso, Ataque Provocante, Avaliação Tática, Contra-ataque, Desarme, Emboscada, Encontrão, Finta, Gato Por Lebre, Golpe do Comandante, Manobrar, Movimentação Evasiva, Presença de Autoridade, Prostrar e Recuperar Energia."
+            }
+          ],
+          "id": "muzm9q66-46x",
+          "nome": "Mestre de Batalha",
+          "descricao": "Você domina manobras sofisticadas, equilibrando habilidades marciais com estudos em história, teoria e artes."
+        }
+      ],
+      "nome": "Guerreiro",
+      "chave": "guerreiro",
+      "dadosVida": 10,
+      "armaduras": [
+        "Todas as armaduras",
+        "escudos"
+      ],
+      "armas": [
+        "Armas simples",
+        "armas marciais"
+      ],
+      "ferramentas": [
+        ""
+      ],
+      "testesResistencias": [
+        "Força",
+        "Constituição"
+      ],
+      "habilidade": 2,
+      "habilidades": [
+        "Acrobacia",
+        "Atletismo",
+        "Adestrar Animais",
+        "História",
+        "Intimidação",
+        "Intuição",
+        "Percepção",
+        "Sobrevivência"
+      ],
+      "proficienciaMulticlasse": [
+        "Armadura leve",
+        "armadura média",
+        "escudos",
+        "armas marciais"
+      ],
+      "level": 0
+    },
+    "subClasse": null,
+    "backGround": {
+      "nome": "Acólito",
+      "proeficienciasHabilidades": [
+        "Intuição",
+        "Religião"
+      ],
+      "idiomas": 0,
+      "equipamentos": [
+        "Suprimentos de Calígrafo",
+        "Livro (orações)",
+        "Símbolo Sagrado",
+        "Pergaminho (10 folhas)",
+        "Túnica",
+        "8 PO",
+        "ou 50 PO"
+      ],
+      "proeficienciaFerramentas": [
+        "Suprimentos de Calígrafo"
+      ],
+      "caracteristicas": {
+        "nome": "Talento de Origem",
+        "descricao": "Iniciado em Magia (Clérigo). A origem também sugere os atributos inteligencia, sabedoria, carisma."
+      },
+      "atributos": {
+        "atributo": [
+          "inteligencia",
+          "sabedoria",
+          "carisma"
+        ],
+        "bonus": [
+          1,
+          1,
+          1
+        ]
+      },
+      "talentoOrigem": "Iniciado em Magia (Clérigo)"
+    },
+    "multiclasses": [
+      {
+        "id": "muzm9q67-hc0",
+        "classe": {
+          "niveis": [
+            {
+              "nivel": 1,
+              "proeficiencia": 2,
+              "recuperarFolego": 2,
+              "maestriaArma": 3,
+              "caracteristicas": [
+                "Estilo de Luta",
+                "Maestria em Arma",
+                "Recuperar Fôlego"
+              ]
+            },
+            {
+              "nivel": 2,
+              "proeficiencia": 2,
+              "recuperarFolego": 2,
+              "maestriaArma": 3,
+              "caracteristicas": [
+                "Mente Tática",
+                "Surto de Ação"
+              ]
+            },
+            {
+              "nivel": 3,
+              "proeficiencia": 2,
+              "recuperarFolego": 2,
+              "maestriaArma": 3,
+              "caracteristicas": [
+                "Subclasse de Guerreiro"
+              ]
+            },
+            {
+              "nivel": 4,
+              "proeficiencia": 2,
+              "recuperarFolego": 3,
+              "maestriaArma": 4,
+              "caracteristicas": [
+                "Aumento no Valor de Atributo"
+              ]
+            },
+            {
+              "nivel": 5,
+              "proeficiencia": 3,
+              "recuperarFolego": 3,
+              "maestriaArma": 4,
+              "caracteristicas": [
+                "Ajuste Tático",
+                "Ataque Extra"
+              ]
+            },
+            {
+              "nivel": 6,
+              "proeficiencia": 3,
+              "recuperarFolego": 3,
+              "maestriaArma": 4,
+              "caracteristicas": [
+                "Aumento no Valor de Atributo"
+              ]
+            },
+            {
+              "nivel": 7,
+              "proeficiencia": 3,
+              "recuperarFolego": 3,
+              "maestriaArma": 4,
+              "caracteristicas": [
+                "Característica de Subclasse"
+              ]
+            },
+            {
+              "nivel": 8,
+              "proeficiencia": 3,
+              "recuperarFolego": 3,
+              "maestriaArma": 4,
+              "caracteristicas": [
+                "Aumento no Valor de Atributo"
+              ]
+            },
+            {
+              "nivel": 9,
+              "proeficiencia": 4,
+              "recuperarFolego": 3,
+              "maestriaArma": 4,
+              "caracteristicas": [
+                "Indomável",
+                "Mestre Tático"
+              ]
+            },
+            {
+              "nivel": 10,
+              "proeficiencia": 4,
+              "recuperarFolego": 4,
+              "maestriaArma": 5,
+              "caracteristicas": [
+                "Característica de Subclasse"
+              ]
+            },
+            {
+              "nivel": 11,
+              "proeficiencia": 4,
+              "recuperarFolego": 4,
+              "maestriaArma": 5,
+              "caracteristicas": [
+                "Dois Ataques Extras"
+              ]
+            },
+            {
+              "nivel": 12,
+              "proeficiencia": 4,
+              "recuperarFolego": 4,
+              "maestriaArma": 5,
+              "caracteristicas": [
+                "Aumento no Valor de Atributo"
+              ]
+            },
+            {
+              "nivel": 13,
+              "proeficiencia": 5,
+              "recuperarFolego": 4,
+              "maestriaArma": 5,
+              "caracteristicas": [
+                "Ataques Estudados",
+                "Indomável"
+              ]
+            },
+            {
+              "nivel": 14,
+              "proeficiencia": 5,
+              "recuperarFolego": 4,
+              "maestriaArma": 5,
+              "caracteristicas": [
+                "Aumento no Valor de Atributo"
+              ]
+            },
+            {
+              "nivel": 15,
+              "proeficiencia": 5,
+              "recuperarFolego": 4,
+              "maestriaArma": 5,
+              "caracteristicas": [
+                "Característica de Subclasse"
+              ]
+            },
+            {
+              "nivel": 16,
+              "proeficiencia": 5,
+              "recuperarFolego": 4,
+              "maestriaArma": 6,
+              "caracteristicas": [
+                "Aumento no Valor de Atributo"
+              ]
+            },
+            {
+              "nivel": 17,
+              "proeficiencia": 6,
+              "recuperarFolego": 4,
+              "maestriaArma": 6,
+              "caracteristicas": [
+                "Indomável",
+                "Surto de Ação"
+              ]
+            },
+            {
+              "nivel": 18,
+              "proeficiencia": 6,
+              "recuperarFolego": 4,
+              "maestriaArma": 6,
+              "caracteristicas": [
+                "Característica de Subclasse"
+              ]
+            },
+            {
+              "nivel": 19,
+              "proeficiencia": 6,
+              "recuperarFolego": 4,
+              "maestriaArma": 6,
+              "caracteristicas": [
+                "Dádiva Épica"
+              ]
+            },
+            {
+              "nivel": 20,
+              "proeficiencia": 6,
+              "recuperarFolego": 4,
+              "maestriaArma": 6,
+              "caracteristicas": [
+                "Três Ataques Extras"
+              ]
+            }
+          ],
+          "subClasse": [
+            {
+              "magias": [],
+              "niveis": [
+                {
+                  "nome": "Atleta Extraordinário",
+                  "nivel": 3,
+                  "descricao": "Você tem Vantagem em jogadas de Iniciativa e testes de Força (Atletismo). Além disso, imediatamente após obter um Acerto Crítico, você pode se mover até metade do seu Deslocamento sem provocar Ataques de Oportunidade."
+                },
+                {
+                  "nome": "Crítico Aprimorado",
+                  "nivel": 3,
+                  "descricao": "Suas jogadas de ataque com armas e Ataques Desarmados obtêm Acerto Crítico em resultados 19 ou 20 no d20."
+                },
+                {
+                  "nome": "Estilo de Luta Adicional",
+                  "nivel": 7,
+                  "descricao": "Você adquire outro talento de Estilo de Luta à sua escolha."
+                },
+                {
+                  "nome": "Combatente Heroico",
+                  "nivel": 10,
+                  "descricao": "Durante o combate, você pode se conceder Inspiração Heroica sempre que começar seu turno sem ela."
+                },
+                {
+                  "nome": "Crítico Superior",
+                  "nivel": 15,
+                  "descricao": "Suas jogadas de ataque com armas e Ataques Desarmados obtêm Acerto Crítico em resultados 18 a 20 no d20."
+                },
+                {
+                  "nome": "Sobrevivente",
+                  "nivel": 18,
+                  "descricao": "Você tem Vantagem em Salvaguardas Contra Morte e, ao obter 18–20 nelas, obtém 20 como resultado. No início de cada um dos seus turnos, você recupera Pontos de Vida iguais a 5 + seu modificador de Constituição se estiver Sangrando e tiver ao menos 1 Ponto de Vida."
+                }
+              ],
+              "id": "muzm9q66-bf8",
+              "nome": "Campeão",
+              "descricao": "Um Campeão foca no desenvolvimento de habilidades marciais em sua busca incessante pela vitória."
+            },
+            {
+              "magias": [],
+              "niveis": [
+                {
+                  "nome": "Conjuração",
+                  "nivel": 3,
+                  "descricao": "Você conhece dois truques de Mago e aprende outro no nível 10 de Guerreiro. Você prepara magias de Mago conforme a tabela de Conjuração de Cavaleiro Místico, recupera espaços gastos ao completar Descanso Longo, usa Inteligência como atributo de conjuração e pode usar um Foco Arcano como Foco de Conjuração."
+                },
+                {
+                  "nome": "Vínculo com Arma",
+                  "nivel": 3,
+                  "descricao": "Você aprende um ritual de 1 hora para criar vínculo com uma arma ao seu alcance. A arma vinculada não pode ser desarmada de você enquanto não estiver Incapacitado e, se estiver no mesmo plano, você pode invocá-la como Ação Bônus. Você pode ter até dois vínculos com armas."
+                },
+                {
+                  "nome": "Magia de Guerra",
+                  "nivel": 7,
+                  "descricao": "Ao executar a ação Atacar no seu turno, você pode substituir um dos ataques pela conjuração de um truque de Mago que tenha tempo de conjuração de uma ação."
+                },
+                {
+                  "nome": "Golpe Místico",
+                  "nivel": 10,
+                  "descricao": "Ao atingir uma criatura com um ataque usando uma arma, ela sofre Desvantagem na próxima salvaguarda que realizar contra uma magia que você conjurar antes do final do seu próximo turno."
+                },
+                {
+                  "nome": "Investida Mística",
+                  "nivel": 15,
+                  "descricao": "Ao usar Surto de Ação, você pode se teleportar até 9 metros para um espaço desocupado à sua vista, antes ou depois da ação adicional."
+                },
+                {
+                  "nome": "Magia de Guerra Aprimorada",
+                  "nivel": 18,
+                  "descricao": "Ao executar a ação Atacar no seu turno, você pode substituir dois ataques pela conjuração de uma das suas magias de Mago de 1º ou 2º círculo que tenha tempo de conjuração de uma ação."
+                }
+              ],
+              "id": "muzm9q66-wgy",
+              "nome": "Cavaleiro Místico",
+              "descricao": "Cavaleiros Místicos unem habilidades marciais de Guerreiros a um estudo aprofundado da magia arcana.",
+              "magiasEspacos": [
+                {
+                  "nivel": 3,
+                  "truques": 2,
+                  "magias": 3,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 2
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 0
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 0
+                    },
+                    {
+                      "nivel": 4,
+                      "espacos": 0
+                    }
+                  ]
+                },
+                {
+                  "nivel": 4,
+                  "truques": 2,
+                  "magias": 4,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 0
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 0
+                    },
+                    {
+                      "nivel": 4,
+                      "espacos": 0
+                    }
+                  ]
+                },
+                {
+                  "nivel": 5,
+                  "truques": 2,
+                  "magias": 4,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 0
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 0
+                    },
+                    {
+                      "nivel": 4,
+                      "espacos": 0
+                    }
+                  ]
+                },
+                {
+                  "nivel": 6,
+                  "truques": 2,
+                  "magias": 4,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 0
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 0
+                    },
+                    {
+                      "nivel": 4,
+                      "espacos": 0
+                    }
+                  ]
+                },
+                {
+                  "nivel": 7,
+                  "truques": 2,
+                  "magias": 5,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 2
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 0
+                    },
+                    {
+                      "nivel": 4,
+                      "espacos": 0
+                    }
+                  ]
+                },
+                {
+                  "nivel": 8,
+                  "truques": 2,
+                  "magias": 6,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 2
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 0
+                    },
+                    {
+                      "nivel": 4,
+                      "espacos": 0
+                    }
+                  ]
+                },
+                {
+                  "nivel": 9,
+                  "truques": 2,
+                  "magias": 6,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 2
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 0
+                    },
+                    {
+                      "nivel": 4,
+                      "espacos": 0
+                    }
+                  ]
+                },
+                {
+                  "nivel": 10,
+                  "truques": 3,
+                  "magias": 7,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 0
+                    },
+                    {
+                      "nivel": 4,
+                      "espacos": 0
+                    }
+                  ]
+                },
+                {
+                  "nivel": 11,
+                  "truques": 3,
+                  "magias": 8,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 0
+                    },
+                    {
+                      "nivel": 4,
+                      "espacos": 0
+                    }
+                  ]
+                },
+                {
+                  "nivel": 12,
+                  "truques": 3,
+                  "magias": 8,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 0
+                    },
+                    {
+                      "nivel": 4,
+                      "espacos": 0
+                    }
+                  ]
+                },
+                {
+                  "nivel": 13,
+                  "truques": 3,
+                  "magias": 9,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 2
+                    },
+                    {
+                      "nivel": 4,
+                      "espacos": 0
+                    }
+                  ]
+                },
+                {
+                  "nivel": 14,
+                  "truques": 3,
+                  "magias": 10,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 2
+                    },
+                    {
+                      "nivel": 4,
+                      "espacos": 0
+                    }
+                  ]
+                },
+                {
+                  "nivel": 15,
+                  "truques": 3,
+                  "magias": 10,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 2
+                    },
+                    {
+                      "nivel": 4,
+                      "espacos": 0
+                    }
+                  ]
+                },
+                {
+                  "nivel": 16,
+                  "truques": 3,
+                  "magias": 11,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 4,
+                      "espacos": 0
+                    }
+                  ]
+                },
+                {
+                  "nivel": 17,
+                  "truques": 3,
+                  "magias": 11,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 4,
+                      "espacos": 0
+                    }
+                  ]
+                },
+                {
+                  "nivel": 18,
+                  "truques": 3,
+                  "magias": 11,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 4,
+                      "espacos": 0
+                    }
+                  ]
+                },
+                {
+                  "nivel": 19,
+                  "truques": 3,
+                  "magias": 12,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 4,
+                      "espacos": 1
+                    }
+                  ]
+                },
+                {
+                  "nivel": 20,
+                  "truques": 3,
+                  "magias": 13,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 4,
+                      "espacos": 1
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "magias": [],
+              "niveis": [
+                {
+                  "nome": "Poder Psiônico",
+                  "nivel": 3,
+                  "descricao": "Você possui Dados de Energia Psiônica que alimentam seus poderes: no nível 3, 4d6; nível 5, 6d8; nível 9, 8d8; nível 11, 8d10; nível 13, 10d10; nível 17, 12d12. Você recupera um dado gasto ao completar Descanso Curto e todos ao completar Descanso Longo. Seus poderes incluem Golpe Psiônico, Movimento Telecinético e Vínculo Protetivo."
+                },
+                {
+                  "nome": "Adepto Telecinético",
+                  "nivel": 7,
+                  "descricao": "Ao causar dano com Golpe Psiônico, você pode forçar salvaguarda de Força contra CD 8 + Inteligência + Proficiência; em falha, impõe Caído ou move o alvo horizontalmente até 3 metros. Como Ação Bônus, você também pode adquirir Deslocamento de Voo igual ao dobro do seu Deslocamento até o fim do turno, recuperando o uso em descanso ou gastando Dado de Energia Psiônica."
+                },
+                {
+                  "nome": "Resguardo Mental",
+                  "nivel": 10,
+                  "descricao": "Você tem Resistência a dano Psíquico. Além disso, ao iniciar seu turno Amedrontado ou Enfeitiçado, pode gastar um Dado de Energia Psiônica para encerrar todos os efeitos em você que imponham essas condições."
+                },
+                {
+                  "nome": "Baluarte de Energia",
+                  "nivel": 15,
+                  "descricao": "Como Ação Bônus, escolha criaturas a até 9 metros, incluindo você, em número até seu modificador de Inteligência, mínimo uma. Cada criatura escolhida tem Cobertura Parcial por 1 minuto ou até você ficar Incapacitado. Você recupera o uso em Descanso Longo ou gastando Dado de Energia Psiônica."
+                },
+                {
+                  "nome": "Mestre Telecinético",
+                  "nivel": 18,
+                  "descricao": "Você sempre tem Telecinese preparada e pode conjurá-la sem espaço de magia ou componentes, usando Inteligência como atributo de conjuração. Em cada turno enquanto mantém Concentração nela, incluindo o turno em que a conjura, você pode realizar um ataque com arma como Ação Bônus. Você recupera o uso em Descanso Longo ou gastando Dado de Energia Psiônica."
+                }
+              ],
+              "id": "muzm9q66-ks7",
+              "nome": "Combatente Psíquico",
+              "descricao": "Você desperta o poder da mente para aprimorar suas habilidades físicas com energia psiônica, telecinesia e barreiras mentais."
+            },
+            {
+              "magias": [],
+              "niveis": [
+                {
+                  "nome": "Estudioso da Guerra",
+                  "nivel": 3,
+                  "descricao": "Você adquire proficiência com um tipo de Ferramentas de Artesão à sua escolha e proficiência em uma perícia à sua escolha das perícias disponíveis para Guerreiros no nível 1."
+                },
+                {
+                  "nome": "Superioridade em Combate",
+                  "nivel": 3,
+                  "descricao": "Você aprende três manobras e usa Dados de Superioridade d8 para alimentá-las. Você tem quatro dados, recuperados ao completar Descanso Curto ou Longo. Aprende duas manobras adicionais nos níveis 7, 10 e 15, podendo substituir manobras conhecidas. A CD das manobras é 8 + modificador de Força ou Destreza + Bônus de Proficiência."
+                },
+                {
+                  "nome": "Conheça Seu Inimigo",
+                  "nivel": 7,
+                  "descricao": "Como Ação Bônus, examine uma criatura à sua vista a até 9 metros; você sabe se ela tem Imunidades, Resistências ou Vulnerabilidades e quais são. Você recupera o uso ao completar Descanso Longo ou gastando um Dado de Superioridade."
+                },
+                {
+                  "nome": "Superioridade em Combate Aprimorada",
+                  "nivel": 10,
+                  "descricao": "Seu Dado de Superioridade se torna um d10."
+                },
+                {
+                  "nome": "Implacável",
+                  "nivel": 15,
+                  "descricao": "Uma vez por turno, ao usar uma manobra, você pode jogar 1d8 e usar o resultado em vez de gastar um Dado de Superioridade."
+                },
+                {
+                  "nome": "Superioridade em Combate Suprema",
+                  "nivel": 18,
+                  "descricao": "Seu Dado de Superioridade se torna um d12."
+                },
+                {
+                  "nome": "Opções de Manobra",
+                  "nivel": 3,
+                  "descricao": "As manobras incluem Aparar, Ataque Ameaçador, Ataque de Varredura, Ataque Estendido, Ataque para Distrair, Ataque Preciso, Ataque Provocante, Avaliação Tática, Contra-ataque, Desarme, Emboscada, Encontrão, Finta, Gato Por Lebre, Golpe do Comandante, Manobrar, Movimentação Evasiva, Presença de Autoridade, Prostrar e Recuperar Energia."
+                }
+              ],
+              "id": "muzm9q66-46x",
+              "nome": "Mestre de Batalha",
+              "descricao": "Você domina manobras sofisticadas, equilibrando habilidades marciais com estudos em história, teoria e artes."
+            }
+          ],
+          "nome": "Guerreiro",
+          "chave": "guerreiro",
+          "dadosVida": 10,
+          "armaduras": [
+            "Todas as armaduras",
+            "escudos"
+          ],
+          "armas": [
+            "Armas simples",
+            "armas marciais"
+          ],
+          "ferramentas": [
+            ""
+          ],
+          "testesResistencias": [
+            "Força",
+            "Constituição"
+          ],
+          "habilidade": 2,
+          "habilidades": [
+            "Acrobacia",
+            "Atletismo",
+            "Adestrar Animais",
+            "História",
+            "Intimidação",
+            "Intuição",
+            "Percepção",
+            "Sobrevivência"
+          ],
+          "proficienciaMulticlasse": [
+            "Armadura leve",
+            "armadura média",
+            "escudos",
+            "armas marciais"
+          ],
+          "level": 0
+        },
+        "nivelClasse": 1,
+        "nivelEscolhido": [
+          1
+        ]
+      }
+    ],
+    "atributosPersonagem": null,
+    "iniciativa": null,
+    "proeficiencia": null,
+    "percepcao": null,
+    "vidaTotal": null,
+    "pericias": null,
+    "levelTotal": 1,
+    "classeArmadura": null,
+    "speed": null,
+    "tamanho": null,
+    "talentos": null,
+    "idiomas": [
+      "Comum",
+      "Élfico",
+      "Anão"
+    ],
+    "estiloLuta": null,
+    "animalSelecionado": null,
+    "terrenoSelecionado": null,
+    "efeitos": [
+      {
+        "id": "muzm9q67-rlx",
+        "tituloEfeito": "Guerreiro",
+        "tipoEfeito": "",
+        "origemTipo": "classe",
+        "origemId": "Guerreiro",
+        "classeNome": "Guerreiro",
+        "proeficienciasRaca": [],
+        "proeficienciasBackGround": [],
+        "proeficienciasClasse": [],
+        "proficienciasMulticlasse": [
+          "Armadura leve",
+          "armadura média",
+          "escudos",
+          "armas marciais"
+        ],
+        "atributo": "",
+        "talento": "",
+        "pericia": "",
+        "arma": "",
+        "ca": "",
+        "bonus": 0,
+        "valorFixo": 0,
+        "level": 1
+      }
+    ],
+    "ArmadurasMochila": null,
+    "ArmasMochila": null,
+    "cA": null,
+    "vidaAtual": null,
+    "ArmaduraEquipada": null,
+    "ArmaEquipada": null,
+    "escudoEquipado": null,
+    "maosOcupadas": null,
+    "magiasConhecidas": null,
+    "espacosMagiaDisponiveis": null,
+    "espacosMagiaTotais": null,
+    "truquesConhecidos": null,
+    "magiasEscolhidas": null,
+    "metamagica1": null,
+    "metamagica2": null,
+    "metamagica3": null,
+    "metamagica4": null,
+    "ouro": 0,
+    "prata": 0,
+    "cobre": 0,
+    "itensMochila": [
+      {
+        "id": "item-sintetico",
+        "nome": "Item sintético de ensaio",
+        "sintonizavel": true,
+        "efeitosExplicitos": [],
+        "descricao": "Fixture sem efeitos de catálogo",
+        "peso": 0
+      }
+    ],
+    "itensEquipados": null,
+    "limiteSintonizacao": 3,
+    "patrono": null,
+    "versaoRegras": "DND_2024"
+  }
+}

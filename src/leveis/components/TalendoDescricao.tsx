@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import { bibliotecaPrincipal } from "../../bibliotecas/bibliotecaPrincipal.ts";
+import { descreverTalentoSalvo } from '../../api/fichaPersonagem/talentosConteudo';
+import type { Efeitos } from '../../api/classesPrincipais/Efeitos';
+import { useFicha } from "../../api/fichaPersonagem/FichaContext";
 
 interface CaracteristicasClasseProps {
     talento: string;
+    efeito?: Efeitos;
 }
 
-const TalentoDescricao: React.FC<CaracteristicasClasseProps> = ({ talento }) => {
+const TalentoDescricao: React.FC<CaracteristicasClasseProps> = ({ talento, efeito }) => {
+    const { ficha } = useFicha();
     // Estado para controlar quais características estão expandidas
     const [caracteristicasExpandidas, setCaracteristicasExpandidas] = useState<{ [key: string]: boolean }>({});
 
@@ -16,9 +20,8 @@ const TalentoDescricao: React.FC<CaracteristicasClasseProps> = ({ talento }) => 
             [caracteristica]: !prev[caracteristica],
         }));
     };
-    const descricao =
-          bibliotecaPrincipal.Talentos.find((item) => item.nome.toLowerCase() === talento.toLowerCase())?.descricao ||
-          "Descrição não encontrada.";
+    const salvo = efeito ?? ficha?.efeitos?.find(e => e.talento === talento);
+    const descricao = salvo ? descreverTalentoSalvo(salvo) : `Talento legado sem revisão identificada: ${talento}. Nenhuma descrição de outra edição foi aplicada.`;
 
     return (
         <div key={talento} className="skills-container">

@@ -1,0 +1,1567 @@
+{
+  "format": "minhafichadnd",
+  "version": 1,
+  "kind": "ficha",
+  "data": {
+    "itensSintonizados": [],
+    "recursos": {
+      "slots": {},
+      "morte": {
+        "sucessos": 2,
+        "falhas": 1
+      }
+    },
+    "idiomasLivres": [
+      "Élfico",
+      "Anão"
+    ],
+    "id": "browser-DND_2014",
+    "nomePersonagem": "A25 DND_2014",
+    "racaPrincipal": {
+      "nome": "Humano",
+      "tamanho": "Médio",
+      "velocidade": 30,
+      "idiomas": [
+        "Comum",
+        "Outro Idioma à Escolha"
+      ],
+      "atributos": {
+        "atributo": [
+          "constituicao",
+          "forca",
+          "carisma",
+          "inteligencia",
+          "sabedoria",
+          "destreza"
+        ],
+        "bonus": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "tracos": [],
+      "proeficiencias": [],
+      "subOpcoes": [],
+      "pericia": []
+    },
+    "subRaca": null,
+    "classePrincipal": {
+      "niveis": [
+        {
+          "nivel": 1,
+          "proeficiencia": 2,
+          "caracteristicas": [
+            "Estilo de Luta Guerreiro",
+            "Retomar o Fôlego"
+          ]
+        },
+        {
+          "nivel": 2,
+          "proeficiencia": 2,
+          "caracteristicas": [
+            "Surto de Ação (um uso)"
+          ]
+        },
+        {
+          "nivel": 3,
+          "proeficiencia": 2,
+          "caracteristicas": [
+            "Arquétipo Marcial"
+          ]
+        },
+        {
+          "nivel": 4,
+          "proeficiencia": 2,
+          "caracteristicas": [
+            "Incremento no Valor de Habilidade"
+          ]
+        },
+        {
+          "nivel": 5,
+          "proeficiencia": 3,
+          "caracteristicas": [
+            "Ataque Extra Guerreiro"
+          ]
+        },
+        {
+          "nivel": 6,
+          "proeficiencia": 3,
+          "caracteristicas": [
+            "Incremento no Valor de Habilidade"
+          ]
+        },
+        {
+          "nivel": 7,
+          "proeficiencia": 3,
+          "caracteristicas": [
+            "Característica de Arquétipo Marcial"
+          ]
+        },
+        {
+          "nivel": 8,
+          "proeficiencia": 3,
+          "caracteristicas": [
+            "Incremento no Valor de Habilidade"
+          ]
+        },
+        {
+          "nivel": 9,
+          "proeficiencia": 4,
+          "caracteristicas": [
+            "Indomável (um uso)"
+          ]
+        },
+        {
+          "nivel": 10,
+          "proeficiencia": 4,
+          "caracteristicas": [
+            "Característica de Arquétipo Marcial"
+          ]
+        },
+        {
+          "nivel": 11,
+          "proeficiencia": 4,
+          "caracteristicas": [
+            "Ataque Extra Guerreiro"
+          ]
+        },
+        {
+          "nivel": 12,
+          "proeficiencia": 4,
+          "caracteristicas": [
+            "Incremento no Valor de Habilidade"
+          ]
+        },
+        {
+          "nivel": 13,
+          "proeficiencia": 5,
+          "caracteristicas": [
+            "Indomável (dois usos)"
+          ]
+        },
+        {
+          "nivel": 14,
+          "proeficiencia": 5,
+          "caracteristicas": [
+            "Incremento no Valor de Habilidade"
+          ]
+        },
+        {
+          "nivel": 15,
+          "proeficiencia": 5,
+          "caracteristicas": [
+            "Característica de Arquétipo Marcial"
+          ]
+        },
+        {
+          "nivel": 16,
+          "proeficiencia": 5,
+          "caracteristicas": [
+            "Incremento no Valor de Habilidade"
+          ]
+        },
+        {
+          "nivel": 17,
+          "proeficiencia": 6,
+          "caracteristicas": [
+            "Surto de Ação (dois usos)",
+            "Indomável (três usos)"
+          ]
+        },
+        {
+          "nivel": 18,
+          "proeficiencia": 6,
+          "caracteristicas": [
+            "Característica de Arquétipo Marcial"
+          ]
+        },
+        {
+          "nivel": 19,
+          "proeficiencia": 6,
+          "caracteristicas": [
+            "Incremento no Valor de Habilidade"
+          ]
+        },
+        {
+          "nivel": 20,
+          "proeficiencia": 6,
+          "caracteristicas": [
+            "Ataque Extra Guerreiro"
+          ]
+        }
+      ],
+      "subClasse": [
+        {
+          "magias": [],
+          "niveis": [
+            {
+              "nome": "Crítico Aprimorado",
+              "nivel": 3,
+              "descricao": "\n                    A partir do 3º nível, seus ataques com armas adquirem uma margem de acerto crítico de 19 a 20 nas jogadas de ataque.\n                "
+            },
+            {
+              "nome": "Atletismo Extraordinário",
+              "nivel": 7,
+              "descricao": "\n                    A partir do 7º nível, você adiciona metade de seu bônus de proficiência (arredondado para cima) em qualquer teste de Força, Destreza ou Constituição que você já não aplique seu bônus de proficiência. Além disso, quando você fizer um salto longo com corrida, o alcance em metros que poderá saltar aumenta em 0,3 vezes o seu modificador de Força.\n                "
+            },
+            {
+              "nome": "Estilo de Luta Adicional",
+              "nivel": 10,
+              "descricao": "\n                    No 10º nível, você pode escolher um segundo Estilo de Combate da sua característica de classe.\n                "
+            },
+            {
+              "nome": "Crítico Superior",
+              "nivel": 15,
+              "descricao": "\n                    A partir do 15º nível, seus ataques com armas adquirem uma margem de acerto crítico de 18 a 20 nas jogadas de ataque.\n                "
+            },
+            {
+              "nome": "Sobrevivente",
+              "nivel": 18,
+              "descricao": "\n                    No 18º nível, você alcança o topo da resiliência em batalha. No começo de cada um de seus turnos, você recupera uma quantidade de pontos de vida igual a 5 + seu modificador de Constituição se não estiver com mais que metade de seus pontos de vida. Você não recebe esse benefício se estiver com 0 pontos de vida.\n                "
+            }
+          ],
+          "id": "muzm9q5z-ep8",
+          "nome": "Campeão",
+          "descricao": "O arquétipo Campeão foca no desenvolvimento da pura força física acompanhada por uma perfeição mortal. Aqueles que trilham o caminho desse arquétipo combinam rigorosos treinamentos com excelência física para desferir golpes devastadores."
+        },
+        {
+          "magias": [],
+          "niveis": [
+            {
+              "nome": "Conjuração",
+              "nivel": 3,
+              "descricao": "\n                    Quando você alcançar o 3° nível, você amplia o seu poderio marcial com a habilidade de conjurar magias. Veja o capítulo 10 para as regras gerais de conjuração e o capítulo 11 para a lista de magias de mago.\n\n                    **Truques.** Você aprende dois truques, à sua escolha, da lista de magias de mago. Você aprende um truque de mago adicional, à sua escolha, no 10° nível.\n\n                    **Espaços de Magia.** A tabela Conjuração de Cavaleiro Arcano mostra quantos espaços de magia de 1° nível e superiores você possui disponíveis para conjuração. Para conjurar uma dessas magias, você deve gastar um espaço de magia do nível da magia ou superior. Você recobra todos os espaços de magia gastos quando você completa um descanso longo.\n\n                    **Magias Conhecidas de 1° Nível e Superiores.** Você conhece três magias de 1° nível, à sua escolha, as quais duas delas você deve escolher das magias de abjuração e evocação da lista de magias de mago.\n\n                    **Habilidade de Conjuração.** Sua habilidade de conjuração é Inteligência para suas magias de mago, portanto, você usa sua Inteligência sempre que alguma magia se referir à sua habilidade de conjurar magias. Além disso, você usa o seu modificador de Inteligência para definir a CD dos testes de resistência para as magias de mago que você conjura e quando você realiza uma jogada de ataque com uma magia.\n\n                    **CD para suas magias = 8 + bônus de proficiência + seu modificador de Inteligência**\n\n                    **Modificador de ataque de magia = seu bônus de proficiência + seu modificador de Inteligência**\n                "
+            },
+            {
+              "nome": "Vínculo com Arma",
+              "nivel": 3,
+              "descricao": "\n                    No 3° nível, você aprende um ritual que cria um vínculo mágico entre você e uma arma. Você realiza esse ritual no curso de 1 hora, que pode ser realizada durante um descanso curto. A arma deve estar ao seu alcance ao decorrer do ritual, ao concluí-lo, você toca a arma e forja o elo.\n\n                    Uma vez que você tenha vinculado uma arma a você, você não pode ser desarmado dessa arma, a menos que você esteja incapacitado. Se ela estiver no mesmo plano de existência, você pode invocar essa arma com uma ação bônus, no seu turno, fazendo-a se teletransportar instantaneamente para a sua mão.\n\n                    Você pode ter até duas armas vinculadas, mas só pode invocar uma por vez com sua ação bônus. Se você quiser criar um elo com uma terceira arma, você deve quebrar o vínculo com uma das outras duas.\n                "
+            },
+            {
+              "nome": "Magia de Guerra",
+              "nivel": 7,
+              "descricao": "\n                    A partir do 7° nível, quando você usar sua ação para conjurar um truque, você pode realizar um ataque com arma, com uma ação bônus.\n                "
+            },
+            {
+              "nome": "Golpe Místico",
+              "nivel": 10,
+              "descricao": "\n                    No 10° nível, você aprende como fazer com que os seus golpes com arma penetrem a resistência de uma criatura às suas magias. Quando você atingir uma criatura com um ataque com arma, aquela criatura terá desvantagem no próximo teste de resistência que ela fizer contra uma magia que você conjurar antes do final do seu próximo turno.\n                "
+            },
+            {
+              "nome": "Investida Arcana",
+              "nivel": 15,
+              "descricao": "\n                    No 15° nível, você ganha a capacidade de se teletransportar até 9 metros para um espaço desocupado que você possa ver, quando você usar seu Surto de Ação. Você pode se teletransportar antes ou depois da ação adicional.\n                "
+            },
+            {
+              "nome": "Magia de Guerra Aprimorada",
+              "nivel": 18,
+              "descricao": "\n                    A partir do 18° nível, quando você usar sua ação para conjurar uma magia, você pode realizar um ataque com arma, com uma ação bônus.\n                "
+            }
+          ],
+          "id": "muzm9q5z-9y5",
+          "nome": "Cavaleiro Arcano",
+          "descricao": "O arquétipo de Cavaleiro Arcano combina a maestria marcial comum a todos os guerreiros, com um cuidadoso estudo de magia. Os cavaleiros arcanos usam técnicas mágicas similares as praticadas pelos magos. Eles focam seu estudo em duas das oito escolas: abjuração e evocação. As magias de abjuração concedem proteção adicional em batalha ao Cavaleiro Arcano, e as magias de evocação causam dano a vários oponentes de uma vez, estendendo o alcance do guerreiro em combate. Esses cavaleiros aprendem, comparativamente, um pequeno número de magias, guardando-as na memória ao invés de mantê-las em um grimório.",
+          "magiasEspacos": [
+            {
+              "nivel": 3,
+              "truques": 2,
+              "magias": 3,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 2
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 0
+                }
+              ]
+            },
+            {
+              "nivel": 4,
+              "truques": 2,
+              "magias": 4,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 0
+                }
+              ]
+            },
+            {
+              "nivel": 5,
+              "truques": 2,
+              "magias": 4,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 0
+                }
+              ]
+            },
+            {
+              "nivel": 6,
+              "truques": 2,
+              "magias": 4,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 0
+                }
+              ]
+            },
+            {
+              "nivel": 7,
+              "truques": 2,
+              "magias": 5,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 2
+                }
+              ]
+            },
+            {
+              "nivel": 8,
+              "truques": 2,
+              "magias": 6,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 2
+                }
+              ]
+            },
+            {
+              "nivel": 9,
+              "truques": 2,
+              "magias": 6,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 2
+                }
+              ]
+            },
+            {
+              "nivel": 10,
+              "truques": 3,
+              "magias": 7,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 3
+                }
+              ]
+            },
+            {
+              "nivel": 11,
+              "truques": 3,
+              "magias": 8,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 3
+                }
+              ]
+            },
+            {
+              "nivel": 12,
+              "truques": 3,
+              "magias": 8,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 3
+                }
+              ]
+            },
+            {
+              "nivel": 13,
+              "truques": 3,
+              "magias": 9,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 2
+                }
+              ]
+            },
+            {
+              "nivel": 14,
+              "truques": 3,
+              "magias": 10,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 2
+                }
+              ]
+            },
+            {
+              "nivel": 15,
+              "truques": 3,
+              "magias": 10,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 2
+                }
+              ]
+            },
+            {
+              "nivel": 16,
+              "truques": 3,
+              "magias": 11,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 3
+                }
+              ]
+            },
+            {
+              "nivel": 17,
+              "truques": 3,
+              "magias": 11,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 3
+                }
+              ]
+            },
+            {
+              "nivel": 18,
+              "truques": 3,
+              "magias": 11,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 3
+                }
+              ]
+            },
+            {
+              "nivel": 19,
+              "truques": 3,
+              "magias": 12,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 4,
+                  "espacos": 1
+                }
+              ]
+            },
+            {
+              "nivel": 20,
+              "truques": 3,
+              "magias": 13,
+              "espacosMagia": [
+                {
+                  "nivel": 1,
+                  "espacos": 4
+                },
+                {
+                  "nivel": 2,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 3,
+                  "espacos": 3
+                },
+                {
+                  "nivel": 4,
+                  "espacos": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "magias": [],
+          "niveis": [
+            {
+              "nome": "Superioridade em Combate",
+              "nivel": 3,
+              "descricao": "\n                    Quando você escolhe esse arquétipo, no 3° nível, você aprende manobras que são abastecidas com dados especiais chamados dados de superioridade.\n\n                    **Manobras.** Você aprende três manobras, à sua escolha, que são detalhadas em “Manobras”, a seguir. Muitas manobras aprimoram um ataque de várias formas. Você só pode usar uma manobra por ataque. Você aprende duas manobras adicionais, à sua escolha, no 7°, 10° e 15° nível. A cada vez que você aprende uma nova manobra, você pode substituir uma manobra conhecida por uma diferente.\n\n                    **Dados de Superioridade.** Você tem quatro dados de superioridade, que são d8s. Um dado de superioridade é gasto quando você o usa. Você recupera todos os dados de superioridade gastos quando terminar um descanso curto ou longo. Você adquire outro dado de superioridade no 7° nível e mais um no 15° nível.\n\n                    **Teste de Resistência.** Algumas das suas manobras exigem que o alvo realize um teste de resistência contra o efeito da manobra. A CD do teste de resistência é calculada a seguir:\n\n                    **CD para suas manobras = 8 + bônus de proficiência + seu modificador de Força ou Destreza (à sua escolha)**\n                "
+            },
+            {
+              "nome": "Estudioso da Guerra",
+              "nivel": 3,
+              "descricao": "\n                    No 3° nível, você ganha proficiência com um tipo de ferramenta de artesão, à sua escolha.\n                "
+            },
+            {
+              "nome": "Conheça Seu Inimigo",
+              "nivel": 7,
+              "descricao": "\n                    A partir do 7° nível, se você gastar, pelo menos, 1 minuto observando ou interagindo com outra criatura fora de combate, você pode aprender certas informações sobre as capacidades dela comparadas às suas. O Mestre conta a você se a criatura é igual, superior ou inferior a você a respeito de duas das seguintes características, à sua escolha:\n                    - Valor de Força\n                    - Valor de Destreza\n                    - Valor de Constituição\n                    - Classe de Armadura\n                    - Pontos de Vida atuais\n                    - Nível total de classe (se possuir)\n                    - Níveis da classe guerreiro (se possuir)\n                "
+            },
+            {
+              "nome": "Superioridade em Combate Aprimorada",
+              "nivel": 10,
+              "descricao": "\n                    No 10° nível, seus dados de superioridade se tornam d10s. No 18° nível, eles se tornam d12s.\n                "
+            },
+            {
+              "nome": "Implacável",
+              "nivel": 15,
+              "descricao": "\n                    No 15° nível, quando você rolar iniciativa e não tiver nenhum dado de superioridade restante, você recupera um dado de superioridade.\n                "
+            }
+          ],
+          "id": "muzm9q5z-gvf",
+          "nome": "Mestre de Batalha",
+          "descricao": "Aqueles que emulam o arquétipo de Mestre de Batalha empregam técnicas marciais passadas de geração em geração. Para um Mestre de Batalha, o combate é um campo acadêmico, às vezes, incluindo assuntos além da batalha, como forjaria e caligrafia. Nem todo guerreiro absorve as lições de história, teoria e arte que são refletidas no arquétipo de Mestre de Batalha, mas aqueles que conseguem, tornam-se guerreiros bem-sucedidos de grande perícia e conhecimento."
+        },
+        {
+          "magias": [],
+          "niveis": [
+            {
+              "nome": "Tradição do Arqueiro Arcano e Disparo Arcano (2 opções)",
+              "nivel": 3,
+              "descricao": "\n                    Tradição do Arqueiro Arcano:\n                    - Proficiência em Arcanismo ou Natureza\n                    - Aprende truque Prestidigitação ou Druidismo\n                    \n                    Disparo Arcano:\n                    - 2 opções de Disparo Arcano\n                    - 2 usos por descanso curto/longo\n                    - 1x/turno ao acertar com arco curto/longo\n                "
+            },
+            {
+              "nome": "Tiro Curvado, Flecha Mágica e Disparo Arcano (3 opções)",
+              "nivel": 7,
+              "descricao": "\n                    Tiro Curvado: Ação bônus para rerrolar ataque errado contra novo alvo a 18m\n                    \n                    Flecha Mágica: Flechas não-mágicas tornam-se mágicas para superar resistências\n                    \n                    Disparo Arcano: Ganha 1 opção adicional (total 3)\n                "
+            },
+            {
+              "nome": "Disparo Arcano (4 opções)",
+              "nivel": 10,
+              "descricao": "\n                    Disparo Arcano: Ganha 1 opção adicional (total 4)\n                "
+            },
+            {
+              "nome": "Disparo Sempre Pronto e Disparo Arcano (5 opções)",
+              "nivel": 15,
+              "descricao": "\n                    Disparo Sempre Pronto: Se iniciar combate sem usos, recupera 1 uso\n                    \n                    Disparo Arcano: Ganha 1 opção adicional (total 5)\n                "
+            },
+            {
+              "nome": "Disparo Arcano (6 opções, disparos aperfeiçoados)",
+              "nivel": 18,
+              "descricao": "\n                    Disparo Arcano: Ganha 1 opção adicional (total 6) e todas opções são aprimoradas\n                "
+            }
+          ],
+          "id": "muzm9q5z-uhe",
+          "nome": "Arqueiro Arcano",
+          "descricao": "Guerreiros élficos que combinam arquearia com magia, criando efeitos sobrenaturais em seus disparos. Guardiões das fronteiras élficas, seus métodos foram adotados por outras raças capazes de unir precisão arcana ao arco e flecha."
+        },
+        {
+          "magias": [],
+          "niveis": [
+            {
+              "nome": "Bônus de Proficiência, Nascido Para a Sela, Marca Inabalável",
+              "nivel": 3,
+              "descricao": "\n                    Bônus de Proficiência: Ganha proficiência em uma habilidade (Lidar com Animais, História, Intuição, Atuação ou Persuasão) ou um idioma.\n                    \n                    Nascido Para a Sela:\n                    - Vantagem em testes para não cair da montaria\n                    - Cair de até 3m = cair em pé (se não incapacitado)\n                    - Montar/desmontar custa apenas 1.5m de movimento\n                    \n                    Marca Inabalável:\n                    - Ao acertar ataque corpo-a-corpo, marca criatura até seu próximo turno\n                    - Marcado tem desvantagem para atacar outros\n                    - Se marcado ferir aliado: ação bônus para atacar com vantagem + dano extra (metade do nível)\n                    - Usos = mod. Força (mínimo 1), recarrega em descanso longo\n                "
+            },
+            {
+              "nome": "Manobra de Proteção",
+              "nivel": 7,
+              "descricao": "\n                    Reação quando você ou aliado a 1.5m for atingido:\n                    - Role 1d8 para aumentar CA contra o ataque\n                    - Se ainda acertar, resistência ao dano\n                    - Usos = mod. Constituição (mínimo 1), recarrega em descanso longo\n                "
+            },
+            {
+              "nome": "Mantenha a Formação",
+              "nivel": 10,
+              "descricao": "\n                    - Inimigos provocam ataque de oportunidade ao mover 1.5m+ dentro do seu alcance\n                    - Ataque de oportunidade bem-sucedido reduz velocidade do alvo para 0 até fim do turno\n                "
+            },
+            {
+              "nome": "Investida Feroz",
+              "nivel": 15,
+              "descricao": "\n                    Ao mover 3m+ em linha reta e acertar ataque:\n                    - Alvo faz teste de Força (CD 8 + proficiência + Força) ou cai no chão\n                    - 1x/turno\n                "
+            },
+            {
+              "nome": "Defensor Vigilante",
+              "nivel": 18,
+              "descricao": "\n                    Reação especial em cada turno (exceto o seu):\n                    - Pode fazer 1 ataque de oportunidade por turno de inimigo\n                    - Não conta como reação normal\n                "
+            }
+          ],
+          "id": "muzm9q5z-1dd",
+          "nome": "Cavaleiro",
+          "descricao": "Guerreiros nobres especializados em combate montado e proteção de aliados. Mestres em controle de campo de batalha, usam táticas de cavalaria mesmo quando desmontados, marcando inimigos e protegendo os mais fracos."
+        },
+        {
+          "magias": [],
+          "niveis": [
+            {
+              "nome": "Bônus de Proficiência e Espírito Guerreiro (5 PV Temp)",
+              "nivel": 3,
+              "descricao": "\n                    Bônus de Proficiência: Ganha proficiência em História, Intuição, Atuação ou Persuasão, ou um idioma.\n                    \n                    Espírito Guerreiro:\n                    - Ação bônus: vantagem em ataques com armas até fim do turno + 5 PV temporários\n                    - 3 usos, recarrega em descanso longo\n                    - PV temporários aumentam para 10 (10° nível) e 15 (15° nível)\n                "
+            },
+            {
+              "nome": "Cortesão Elegante",
+              "nivel": 7,
+              "descricao": "\n                    - Bônus em Persuasão = mod. Sabedoria\n                    - Proficiência em testes de resistência de Sabedoria (ou Inteligência/Carisma se já tiver)\n                "
+            },
+            {
+              "nome": "Espírito Incansável e Espírito Guerreiro (10 PV Temp)",
+              "nivel": 10,
+              "descricao": "\n                    Espírito Incansável: Se iniciar combate sem usos de Espírito Guerreiro, recupera 1 uso\n                    \n                    Espírito Guerreiro: Agora concede 10 PV temporários\n                "
+            },
+            {
+              "nome": "Golpe Rápido e Espírito Guerreiro (15 PV Temp)",
+              "nivel": 15,
+              "descricao": "\n                    Golpe Rápido: Ao fazer Ataque com vantagem, pode renunciar à vantagem para fazer 1 ataque adicional (1x/turno)\n                    \n                    Espírito Guerreiro: Agora concede 15 PV temporários\n                "
+            },
+            {
+              "nome": "Força Diante da Morte",
+              "nivel": 18,
+              "descricao": "\n                    Reação ao ser reduzido a 0 PV (sem morrer):\n                    - Ganha 1 turno extra imediatamente\n                    - Durante turno extra em 0 PV: dano = falha automática em teste contra morte\n                    - 3 falhas ainda podem matar\n                    - Após turno extra, cai inconsciente se ainda com 0 PV\n                    - Recarrega em descanso longo\n                "
+            }
+          ],
+          "id": "muzm9q5z-oqv",
+          "nome": "Samurai",
+          "descricao": "Guerreiros de espírito indomável que combinam disciplina marcial com elegância social. Sua determinação inabalável lhes permite superar desafios que derrubariam guerreiros comuns."
+        }
+      ],
+      "nome": "Guerreiro",
+      "chave": "guerreiro",
+      "dadosVida": 10,
+      "armaduras": [
+        "Todas as armaduras",
+        "escudos"
+      ],
+      "armas": [
+        "Armas simples",
+        "armas marciais"
+      ],
+      "ferramentas": [
+        ""
+      ],
+      "testesResistencias": [
+        "Força",
+        "Constituição"
+      ],
+      "habilidade": 2,
+      "habilidades": [
+        "Acrobacia",
+        "Atletismo",
+        "Adestrar Animais",
+        "História",
+        "Intimidação",
+        "Intuição",
+        "Percepção",
+        "Sobrevivência"
+      ],
+      "proficienciaMulticlasse": [
+        "Armadura leve",
+        "armadura média",
+        "escudos",
+        "armas simples",
+        "armas marciais"
+      ],
+      "level": 0
+    },
+    "subClasse": null,
+    "backGround": {
+      "nome": "soldado",
+      "proeficienciasHabilidades": [
+        "Atletismo",
+        "Intimidação"
+      ],
+      "idiomas": 0,
+      "equipamentos": [
+        "insígnia de patente",
+        "fetiche obtido de um inimigo caído",
+        "conjunto de dados de osso ou baralho",
+        " conjunto de roupas comuns",
+        "algibeira contendo 10 po"
+      ],
+      "proeficienciaFerramentas": [
+        "kit de jogo",
+        "veículos (terrestres)"
+      ],
+      "caracteristicas": {
+        "nome": "PATENTE MILITAR",
+        "descricao": "\n                  Você possui uma patente militar da sua época como soldado. Soldados leais à sua antiga organização reconhecem sua autoridade e influência, e o prestam deferência se forem de uma patente mais baixa. Você pode invocar sua patente para exercer influência sobre soldados, e requisitar equipamentos simples ou cavalos para uso temporário. Você também pode ganhar acesso a acampamentos militares aliados, e fortalezas onde sua patente é reconhecida.\n                "
+      }
+    },
+    "multiclasses": [
+      {
+        "id": "muzm9q61-xfd",
+        "classe": {
+          "niveis": [
+            {
+              "nivel": 1,
+              "proeficiencia": 2,
+              "caracteristicas": [
+                "Estilo de Luta Guerreiro",
+                "Retomar o Fôlego"
+              ]
+            },
+            {
+              "nivel": 2,
+              "proeficiencia": 2,
+              "caracteristicas": [
+                "Surto de Ação (um uso)"
+              ]
+            },
+            {
+              "nivel": 3,
+              "proeficiencia": 2,
+              "caracteristicas": [
+                "Arquétipo Marcial"
+              ]
+            },
+            {
+              "nivel": 4,
+              "proeficiencia": 2,
+              "caracteristicas": [
+                "Incremento no Valor de Habilidade"
+              ]
+            },
+            {
+              "nivel": 5,
+              "proeficiencia": 3,
+              "caracteristicas": [
+                "Ataque Extra Guerreiro"
+              ]
+            },
+            {
+              "nivel": 6,
+              "proeficiencia": 3,
+              "caracteristicas": [
+                "Incremento no Valor de Habilidade"
+              ]
+            },
+            {
+              "nivel": 7,
+              "proeficiencia": 3,
+              "caracteristicas": [
+                "Característica de Arquétipo Marcial"
+              ]
+            },
+            {
+              "nivel": 8,
+              "proeficiencia": 3,
+              "caracteristicas": [
+                "Incremento no Valor de Habilidade"
+              ]
+            },
+            {
+              "nivel": 9,
+              "proeficiencia": 4,
+              "caracteristicas": [
+                "Indomável (um uso)"
+              ]
+            },
+            {
+              "nivel": 10,
+              "proeficiencia": 4,
+              "caracteristicas": [
+                "Característica de Arquétipo Marcial"
+              ]
+            },
+            {
+              "nivel": 11,
+              "proeficiencia": 4,
+              "caracteristicas": [
+                "Ataque Extra Guerreiro"
+              ]
+            },
+            {
+              "nivel": 12,
+              "proeficiencia": 4,
+              "caracteristicas": [
+                "Incremento no Valor de Habilidade"
+              ]
+            },
+            {
+              "nivel": 13,
+              "proeficiencia": 5,
+              "caracteristicas": [
+                "Indomável (dois usos)"
+              ]
+            },
+            {
+              "nivel": 14,
+              "proeficiencia": 5,
+              "caracteristicas": [
+                "Incremento no Valor de Habilidade"
+              ]
+            },
+            {
+              "nivel": 15,
+              "proeficiencia": 5,
+              "caracteristicas": [
+                "Característica de Arquétipo Marcial"
+              ]
+            },
+            {
+              "nivel": 16,
+              "proeficiencia": 5,
+              "caracteristicas": [
+                "Incremento no Valor de Habilidade"
+              ]
+            },
+            {
+              "nivel": 17,
+              "proeficiencia": 6,
+              "caracteristicas": [
+                "Surto de Ação (dois usos)",
+                "Indomável (três usos)"
+              ]
+            },
+            {
+              "nivel": 18,
+              "proeficiencia": 6,
+              "caracteristicas": [
+                "Característica de Arquétipo Marcial"
+              ]
+            },
+            {
+              "nivel": 19,
+              "proeficiencia": 6,
+              "caracteristicas": [
+                "Incremento no Valor de Habilidade"
+              ]
+            },
+            {
+              "nivel": 20,
+              "proeficiencia": 6,
+              "caracteristicas": [
+                "Ataque Extra Guerreiro"
+              ]
+            }
+          ],
+          "subClasse": [
+            {
+              "magias": [],
+              "niveis": [
+                {
+                  "nome": "Crítico Aprimorado",
+                  "nivel": 3,
+                  "descricao": "\n                    A partir do 3º nível, seus ataques com armas adquirem uma margem de acerto crítico de 19 a 20 nas jogadas de ataque.\n                "
+                },
+                {
+                  "nome": "Atletismo Extraordinário",
+                  "nivel": 7,
+                  "descricao": "\n                    A partir do 7º nível, você adiciona metade de seu bônus de proficiência (arredondado para cima) em qualquer teste de Força, Destreza ou Constituição que você já não aplique seu bônus de proficiência. Além disso, quando você fizer um salto longo com corrida, o alcance em metros que poderá saltar aumenta em 0,3 vezes o seu modificador de Força.\n                "
+                },
+                {
+                  "nome": "Estilo de Luta Adicional",
+                  "nivel": 10,
+                  "descricao": "\n                    No 10º nível, você pode escolher um segundo Estilo de Combate da sua característica de classe.\n                "
+                },
+                {
+                  "nome": "Crítico Superior",
+                  "nivel": 15,
+                  "descricao": "\n                    A partir do 15º nível, seus ataques com armas adquirem uma margem de acerto crítico de 18 a 20 nas jogadas de ataque.\n                "
+                },
+                {
+                  "nome": "Sobrevivente",
+                  "nivel": 18,
+                  "descricao": "\n                    No 18º nível, você alcança o topo da resiliência em batalha. No começo de cada um de seus turnos, você recupera uma quantidade de pontos de vida igual a 5 + seu modificador de Constituição se não estiver com mais que metade de seus pontos de vida. Você não recebe esse benefício se estiver com 0 pontos de vida.\n                "
+                }
+              ],
+              "id": "muzm9q5z-ep8",
+              "nome": "Campeão",
+              "descricao": "O arquétipo Campeão foca no desenvolvimento da pura força física acompanhada por uma perfeição mortal. Aqueles que trilham o caminho desse arquétipo combinam rigorosos treinamentos com excelência física para desferir golpes devastadores."
+            },
+            {
+              "magias": [],
+              "niveis": [
+                {
+                  "nome": "Conjuração",
+                  "nivel": 3,
+                  "descricao": "\n                    Quando você alcançar o 3° nível, você amplia o seu poderio marcial com a habilidade de conjurar magias. Veja o capítulo 10 para as regras gerais de conjuração e o capítulo 11 para a lista de magias de mago.\n\n                    **Truques.** Você aprende dois truques, à sua escolha, da lista de magias de mago. Você aprende um truque de mago adicional, à sua escolha, no 10° nível.\n\n                    **Espaços de Magia.** A tabela Conjuração de Cavaleiro Arcano mostra quantos espaços de magia de 1° nível e superiores você possui disponíveis para conjuração. Para conjurar uma dessas magias, você deve gastar um espaço de magia do nível da magia ou superior. Você recobra todos os espaços de magia gastos quando você completa um descanso longo.\n\n                    **Magias Conhecidas de 1° Nível e Superiores.** Você conhece três magias de 1° nível, à sua escolha, as quais duas delas você deve escolher das magias de abjuração e evocação da lista de magias de mago.\n\n                    **Habilidade de Conjuração.** Sua habilidade de conjuração é Inteligência para suas magias de mago, portanto, você usa sua Inteligência sempre que alguma magia se referir à sua habilidade de conjurar magias. Além disso, você usa o seu modificador de Inteligência para definir a CD dos testes de resistência para as magias de mago que você conjura e quando você realiza uma jogada de ataque com uma magia.\n\n                    **CD para suas magias = 8 + bônus de proficiência + seu modificador de Inteligência**\n\n                    **Modificador de ataque de magia = seu bônus de proficiência + seu modificador de Inteligência**\n                "
+                },
+                {
+                  "nome": "Vínculo com Arma",
+                  "nivel": 3,
+                  "descricao": "\n                    No 3° nível, você aprende um ritual que cria um vínculo mágico entre você e uma arma. Você realiza esse ritual no curso de 1 hora, que pode ser realizada durante um descanso curto. A arma deve estar ao seu alcance ao decorrer do ritual, ao concluí-lo, você toca a arma e forja o elo.\n\n                    Uma vez que você tenha vinculado uma arma a você, você não pode ser desarmado dessa arma, a menos que você esteja incapacitado. Se ela estiver no mesmo plano de existência, você pode invocar essa arma com uma ação bônus, no seu turno, fazendo-a se teletransportar instantaneamente para a sua mão.\n\n                    Você pode ter até duas armas vinculadas, mas só pode invocar uma por vez com sua ação bônus. Se você quiser criar um elo com uma terceira arma, você deve quebrar o vínculo com uma das outras duas.\n                "
+                },
+                {
+                  "nome": "Magia de Guerra",
+                  "nivel": 7,
+                  "descricao": "\n                    A partir do 7° nível, quando você usar sua ação para conjurar um truque, você pode realizar um ataque com arma, com uma ação bônus.\n                "
+                },
+                {
+                  "nome": "Golpe Místico",
+                  "nivel": 10,
+                  "descricao": "\n                    No 10° nível, você aprende como fazer com que os seus golpes com arma penetrem a resistência de uma criatura às suas magias. Quando você atingir uma criatura com um ataque com arma, aquela criatura terá desvantagem no próximo teste de resistência que ela fizer contra uma magia que você conjurar antes do final do seu próximo turno.\n                "
+                },
+                {
+                  "nome": "Investida Arcana",
+                  "nivel": 15,
+                  "descricao": "\n                    No 15° nível, você ganha a capacidade de se teletransportar até 9 metros para um espaço desocupado que você possa ver, quando você usar seu Surto de Ação. Você pode se teletransportar antes ou depois da ação adicional.\n                "
+                },
+                {
+                  "nome": "Magia de Guerra Aprimorada",
+                  "nivel": 18,
+                  "descricao": "\n                    A partir do 18° nível, quando você usar sua ação para conjurar uma magia, você pode realizar um ataque com arma, com uma ação bônus.\n                "
+                }
+              ],
+              "id": "muzm9q5z-9y5",
+              "nome": "Cavaleiro Arcano",
+              "descricao": "O arquétipo de Cavaleiro Arcano combina a maestria marcial comum a todos os guerreiros, com um cuidadoso estudo de magia. Os cavaleiros arcanos usam técnicas mágicas similares as praticadas pelos magos. Eles focam seu estudo em duas das oito escolas: abjuração e evocação. As magias de abjuração concedem proteção adicional em batalha ao Cavaleiro Arcano, e as magias de evocação causam dano a vários oponentes de uma vez, estendendo o alcance do guerreiro em combate. Esses cavaleiros aprendem, comparativamente, um pequeno número de magias, guardando-as na memória ao invés de mantê-las em um grimório.",
+              "magiasEspacos": [
+                {
+                  "nivel": 3,
+                  "truques": 2,
+                  "magias": 3,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 2
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 0
+                    }
+                  ]
+                },
+                {
+                  "nivel": 4,
+                  "truques": 2,
+                  "magias": 4,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 0
+                    }
+                  ]
+                },
+                {
+                  "nivel": 5,
+                  "truques": 2,
+                  "magias": 4,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 0
+                    }
+                  ]
+                },
+                {
+                  "nivel": 6,
+                  "truques": 2,
+                  "magias": 4,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 0
+                    }
+                  ]
+                },
+                {
+                  "nivel": 7,
+                  "truques": 2,
+                  "magias": 5,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 2
+                    }
+                  ]
+                },
+                {
+                  "nivel": 8,
+                  "truques": 2,
+                  "magias": 6,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 2
+                    }
+                  ]
+                },
+                {
+                  "nivel": 9,
+                  "truques": 2,
+                  "magias": 6,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 2
+                    }
+                  ]
+                },
+                {
+                  "nivel": 10,
+                  "truques": 3,
+                  "magias": 7,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 3
+                    }
+                  ]
+                },
+                {
+                  "nivel": 11,
+                  "truques": 3,
+                  "magias": 8,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 3
+                    }
+                  ]
+                },
+                {
+                  "nivel": 12,
+                  "truques": 3,
+                  "magias": 8,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 3
+                    }
+                  ]
+                },
+                {
+                  "nivel": 13,
+                  "truques": 3,
+                  "magias": 9,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 2
+                    }
+                  ]
+                },
+                {
+                  "nivel": 14,
+                  "truques": 3,
+                  "magias": 10,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 2
+                    }
+                  ]
+                },
+                {
+                  "nivel": 15,
+                  "truques": 3,
+                  "magias": 10,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 2
+                    }
+                  ]
+                },
+                {
+                  "nivel": 16,
+                  "truques": 3,
+                  "magias": 11,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 3
+                    }
+                  ]
+                },
+                {
+                  "nivel": 17,
+                  "truques": 3,
+                  "magias": 11,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 3
+                    }
+                  ]
+                },
+                {
+                  "nivel": 18,
+                  "truques": 3,
+                  "magias": 11,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 3
+                    }
+                  ]
+                },
+                {
+                  "nivel": 19,
+                  "truques": 3,
+                  "magias": 12,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 4,
+                      "espacos": 1
+                    }
+                  ]
+                },
+                {
+                  "nivel": 20,
+                  "truques": 3,
+                  "magias": 13,
+                  "espacosMagia": [
+                    {
+                      "nivel": 1,
+                      "espacos": 4
+                    },
+                    {
+                      "nivel": 2,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 3,
+                      "espacos": 3
+                    },
+                    {
+                      "nivel": 4,
+                      "espacos": 1
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "magias": [],
+              "niveis": [
+                {
+                  "nome": "Superioridade em Combate",
+                  "nivel": 3,
+                  "descricao": "\n                    Quando você escolhe esse arquétipo, no 3° nível, você aprende manobras que são abastecidas com dados especiais chamados dados de superioridade.\n\n                    **Manobras.** Você aprende três manobras, à sua escolha, que são detalhadas em “Manobras”, a seguir. Muitas manobras aprimoram um ataque de várias formas. Você só pode usar uma manobra por ataque. Você aprende duas manobras adicionais, à sua escolha, no 7°, 10° e 15° nível. A cada vez que você aprende uma nova manobra, você pode substituir uma manobra conhecida por uma diferente.\n\n                    **Dados de Superioridade.** Você tem quatro dados de superioridade, que são d8s. Um dado de superioridade é gasto quando você o usa. Você recupera todos os dados de superioridade gastos quando terminar um descanso curto ou longo. Você adquire outro dado de superioridade no 7° nível e mais um no 15° nível.\n\n                    **Teste de Resistência.** Algumas das suas manobras exigem que o alvo realize um teste de resistência contra o efeito da manobra. A CD do teste de resistência é calculada a seguir:\n\n                    **CD para suas manobras = 8 + bônus de proficiência + seu modificador de Força ou Destreza (à sua escolha)**\n                "
+                },
+                {
+                  "nome": "Estudioso da Guerra",
+                  "nivel": 3,
+                  "descricao": "\n                    No 3° nível, você ganha proficiência com um tipo de ferramenta de artesão, à sua escolha.\n                "
+                },
+                {
+                  "nome": "Conheça Seu Inimigo",
+                  "nivel": 7,
+                  "descricao": "\n                    A partir do 7° nível, se você gastar, pelo menos, 1 minuto observando ou interagindo com outra criatura fora de combate, você pode aprender certas informações sobre as capacidades dela comparadas às suas. O Mestre conta a você se a criatura é igual, superior ou inferior a você a respeito de duas das seguintes características, à sua escolha:\n                    - Valor de Força\n                    - Valor de Destreza\n                    - Valor de Constituição\n                    - Classe de Armadura\n                    - Pontos de Vida atuais\n                    - Nível total de classe (se possuir)\n                    - Níveis da classe guerreiro (se possuir)\n                "
+                },
+                {
+                  "nome": "Superioridade em Combate Aprimorada",
+                  "nivel": 10,
+                  "descricao": "\n                    No 10° nível, seus dados de superioridade se tornam d10s. No 18° nível, eles se tornam d12s.\n                "
+                },
+                {
+                  "nome": "Implacável",
+                  "nivel": 15,
+                  "descricao": "\n                    No 15° nível, quando você rolar iniciativa e não tiver nenhum dado de superioridade restante, você recupera um dado de superioridade.\n                "
+                }
+              ],
+              "id": "muzm9q5z-gvf",
+              "nome": "Mestre de Batalha",
+              "descricao": "Aqueles que emulam o arquétipo de Mestre de Batalha empregam técnicas marciais passadas de geração em geração. Para um Mestre de Batalha, o combate é um campo acadêmico, às vezes, incluindo assuntos além da batalha, como forjaria e caligrafia. Nem todo guerreiro absorve as lições de história, teoria e arte que são refletidas no arquétipo de Mestre de Batalha, mas aqueles que conseguem, tornam-se guerreiros bem-sucedidos de grande perícia e conhecimento."
+            },
+            {
+              "magias": [],
+              "niveis": [
+                {
+                  "nome": "Tradição do Arqueiro Arcano e Disparo Arcano (2 opções)",
+                  "nivel": 3,
+                  "descricao": "\n                    Tradição do Arqueiro Arcano:\n                    - Proficiência em Arcanismo ou Natureza\n                    - Aprende truque Prestidigitação ou Druidismo\n                    \n                    Disparo Arcano:\n                    - 2 opções de Disparo Arcano\n                    - 2 usos por descanso curto/longo\n                    - 1x/turno ao acertar com arco curto/longo\n                "
+                },
+                {
+                  "nome": "Tiro Curvado, Flecha Mágica e Disparo Arcano (3 opções)",
+                  "nivel": 7,
+                  "descricao": "\n                    Tiro Curvado: Ação bônus para rerrolar ataque errado contra novo alvo a 18m\n                    \n                    Flecha Mágica: Flechas não-mágicas tornam-se mágicas para superar resistências\n                    \n                    Disparo Arcano: Ganha 1 opção adicional (total 3)\n                "
+                },
+                {
+                  "nome": "Disparo Arcano (4 opções)",
+                  "nivel": 10,
+                  "descricao": "\n                    Disparo Arcano: Ganha 1 opção adicional (total 4)\n                "
+                },
+                {
+                  "nome": "Disparo Sempre Pronto e Disparo Arcano (5 opções)",
+                  "nivel": 15,
+                  "descricao": "\n                    Disparo Sempre Pronto: Se iniciar combate sem usos, recupera 1 uso\n                    \n                    Disparo Arcano: Ganha 1 opção adicional (total 5)\n                "
+                },
+                {
+                  "nome": "Disparo Arcano (6 opções, disparos aperfeiçoados)",
+                  "nivel": 18,
+                  "descricao": "\n                    Disparo Arcano: Ganha 1 opção adicional (total 6) e todas opções são aprimoradas\n                "
+                }
+              ],
+              "id": "muzm9q5z-uhe",
+              "nome": "Arqueiro Arcano",
+              "descricao": "Guerreiros élficos que combinam arquearia com magia, criando efeitos sobrenaturais em seus disparos. Guardiões das fronteiras élficas, seus métodos foram adotados por outras raças capazes de unir precisão arcana ao arco e flecha."
+            },
+            {
+              "magias": [],
+              "niveis": [
+                {
+                  "nome": "Bônus de Proficiência, Nascido Para a Sela, Marca Inabalável",
+                  "nivel": 3,
+                  "descricao": "\n                    Bônus de Proficiência: Ganha proficiência em uma habilidade (Lidar com Animais, História, Intuição, Atuação ou Persuasão) ou um idioma.\n                    \n                    Nascido Para a Sela:\n                    - Vantagem em testes para não cair da montaria\n                    - Cair de até 3m = cair em pé (se não incapacitado)\n                    - Montar/desmontar custa apenas 1.5m de movimento\n                    \n                    Marca Inabalável:\n                    - Ao acertar ataque corpo-a-corpo, marca criatura até seu próximo turno\n                    - Marcado tem desvantagem para atacar outros\n                    - Se marcado ferir aliado: ação bônus para atacar com vantagem + dano extra (metade do nível)\n                    - Usos = mod. Força (mínimo 1), recarrega em descanso longo\n                "
+                },
+                {
+                  "nome": "Manobra de Proteção",
+                  "nivel": 7,
+                  "descricao": "\n                    Reação quando você ou aliado a 1.5m for atingido:\n                    - Role 1d8 para aumentar CA contra o ataque\n                    - Se ainda acertar, resistência ao dano\n                    - Usos = mod. Constituição (mínimo 1), recarrega em descanso longo\n                "
+                },
+                {
+                  "nome": "Mantenha a Formação",
+                  "nivel": 10,
+                  "descricao": "\n                    - Inimigos provocam ataque de oportunidade ao mover 1.5m+ dentro do seu alcance\n                    - Ataque de oportunidade bem-sucedido reduz velocidade do alvo para 0 até fim do turno\n                "
+                },
+                {
+                  "nome": "Investida Feroz",
+                  "nivel": 15,
+                  "descricao": "\n                    Ao mover 3m+ em linha reta e acertar ataque:\n                    - Alvo faz teste de Força (CD 8 + proficiência + Força) ou cai no chão\n                    - 1x/turno\n                "
+                },
+                {
+                  "nome": "Defensor Vigilante",
+                  "nivel": 18,
+                  "descricao": "\n                    Reação especial em cada turno (exceto o seu):\n                    - Pode fazer 1 ataque de oportunidade por turno de inimigo\n                    - Não conta como reação normal\n                "
+                }
+              ],
+              "id": "muzm9q5z-1dd",
+              "nome": "Cavaleiro",
+              "descricao": "Guerreiros nobres especializados em combate montado e proteção de aliados. Mestres em controle de campo de batalha, usam táticas de cavalaria mesmo quando desmontados, marcando inimigos e protegendo os mais fracos."
+            },
+            {
+              "magias": [],
+              "niveis": [
+                {
+                  "nome": "Bônus de Proficiência e Espírito Guerreiro (5 PV Temp)",
+                  "nivel": 3,
+                  "descricao": "\n                    Bônus de Proficiência: Ganha proficiência em História, Intuição, Atuação ou Persuasão, ou um idioma.\n                    \n                    Espírito Guerreiro:\n                    - Ação bônus: vantagem em ataques com armas até fim do turno + 5 PV temporários\n                    - 3 usos, recarrega em descanso longo\n                    - PV temporários aumentam para 10 (10° nível) e 15 (15° nível)\n                "
+                },
+                {
+                  "nome": "Cortesão Elegante",
+                  "nivel": 7,
+                  "descricao": "\n                    - Bônus em Persuasão = mod. Sabedoria\n                    - Proficiência em testes de resistência de Sabedoria (ou Inteligência/Carisma se já tiver)\n                "
+                },
+                {
+                  "nome": "Espírito Incansável e Espírito Guerreiro (10 PV Temp)",
+                  "nivel": 10,
+                  "descricao": "\n                    Espírito Incansável: Se iniciar combate sem usos de Espírito Guerreiro, recupera 1 uso\n                    \n                    Espírito Guerreiro: Agora concede 10 PV temporários\n                "
+                },
+                {
+                  "nome": "Golpe Rápido e Espírito Guerreiro (15 PV Temp)",
+                  "nivel": 15,
+                  "descricao": "\n                    Golpe Rápido: Ao fazer Ataque com vantagem, pode renunciar à vantagem para fazer 1 ataque adicional (1x/turno)\n                    \n                    Espírito Guerreiro: Agora concede 15 PV temporários\n                "
+                },
+                {
+                  "nome": "Força Diante da Morte",
+                  "nivel": 18,
+                  "descricao": "\n                    Reação ao ser reduzido a 0 PV (sem morrer):\n                    - Ganha 1 turno extra imediatamente\n                    - Durante turno extra em 0 PV: dano = falha automática em teste contra morte\n                    - 3 falhas ainda podem matar\n                    - Após turno extra, cai inconsciente se ainda com 0 PV\n                    - Recarrega em descanso longo\n                "
+                }
+              ],
+              "id": "muzm9q5z-oqv",
+              "nome": "Samurai",
+              "descricao": "Guerreiros de espírito indomável que combinam disciplina marcial com elegância social. Sua determinação inabalável lhes permite superar desafios que derrubariam guerreiros comuns."
+            }
+          ],
+          "nome": "Guerreiro",
+          "chave": "guerreiro",
+          "dadosVida": 10,
+          "armaduras": [
+            "Todas as armaduras",
+            "escudos"
+          ],
+          "armas": [
+            "Armas simples",
+            "armas marciais"
+          ],
+          "ferramentas": [
+            ""
+          ],
+          "testesResistencias": [
+            "Força",
+            "Constituição"
+          ],
+          "habilidade": 2,
+          "habilidades": [
+            "Acrobacia",
+            "Atletismo",
+            "Adestrar Animais",
+            "História",
+            "Intimidação",
+            "Intuição",
+            "Percepção",
+            "Sobrevivência"
+          ],
+          "proficienciaMulticlasse": [
+            "Armadura leve",
+            "armadura média",
+            "escudos",
+            "armas simples",
+            "armas marciais"
+          ],
+          "level": 0
+        },
+        "nivelClasse": 1,
+        "nivelEscolhido": [
+          1
+        ]
+      }
+    ],
+    "atributosPersonagem": null,
+    "iniciativa": null,
+    "proeficiencia": null,
+    "percepcao": null,
+    "vidaTotal": null,
+    "pericias": null,
+    "levelTotal": 1,
+    "classeArmadura": null,
+    "speed": null,
+    "tamanho": null,
+    "talentos": null,
+    "idiomas": [
+      "Comum",
+      "Élfico",
+      "Anão"
+    ],
+    "estiloLuta": null,
+    "animalSelecionado": null,
+    "terrenoSelecionado": null,
+    "efeitos": [
+      {
+        "id": "muzm9q61-46b",
+        "tituloEfeito": "Guerreiro",
+        "tipoEfeito": "",
+        "origemTipo": "classe",
+        "origemId": "Guerreiro",
+        "classeNome": "Guerreiro",
+        "proeficienciasRaca": [],
+        "proeficienciasBackGround": [],
+        "proeficienciasClasse": [],
+        "proficienciasMulticlasse": [
+          "Armadura leve",
+          "armadura média",
+          "escudos",
+          "armas simples",
+          "armas marciais"
+        ],
+        "atributo": "",
+        "talento": "",
+        "pericia": "",
+        "arma": "",
+        "ca": "",
+        "bonus": 0,
+        "valorFixo": 0,
+        "level": 1
+      }
+    ],
+    "ArmadurasMochila": null,
+    "ArmasMochila": null,
+    "cA": null,
+    "vidaAtual": null,
+    "ArmaduraEquipada": null,
+    "ArmaEquipada": null,
+    "escudoEquipado": null,
+    "maosOcupadas": null,
+    "magiasConhecidas": null,
+    "espacosMagiaDisponiveis": null,
+    "espacosMagiaTotais": null,
+    "truquesConhecidos": null,
+    "magiasEscolhidas": null,
+    "metamagica1": null,
+    "metamagica2": null,
+    "metamagica3": null,
+    "metamagica4": null,
+    "ouro": 0,
+    "prata": 0,
+    "cobre": 0,
+    "itensMochila": [
+      {
+        "id": "item-sintetico",
+        "nome": "Item sintético de ensaio",
+        "sintonizavel": true,
+        "efeitosExplicitos": [],
+        "descricao": "Fixture sem efeitos de catálogo",
+        "peso": 0
+      }
+    ],
+    "itensEquipados": null,
+    "limiteSintonizacao": 3,
+    "patrono": null,
+    "versaoRegras": "DND_2014"
+  }
+}

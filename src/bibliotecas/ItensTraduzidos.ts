@@ -1,4 +1,4 @@
-import { itensIngles } from "./ItensIngles.ts";
+import { itensIngles } from "./ItensIngles";
 
 export class ItensTraduzidos {
     id: string;

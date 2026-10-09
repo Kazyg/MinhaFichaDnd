@@ -1,6 +1,6 @@
-import { Classes } from "../classesPrincipais/Classes.class.ts";
-import { SubClasses } from "../classesPrincipais/SubClasses.ts";
-import { ArqueiroArcano, Campeao, Cavaleiro, CavaleiroArcano, MestreDeBatalha, Samurai } from "../classesPrincipais/SubClassesExport.ts";
+import { Classes } from "../classesPrincipais/Classes.class";
+import { SubClasses } from "../classesPrincipais/SubClasses";
+import { ArqueiroArcano, Campeao, Cavaleiro, CavaleiroArcano, MestreDeBatalha, Samurai } from "../classesPrincipais/SubClassesExport";
 
 export class Lutador extends Classes {
   level: number;

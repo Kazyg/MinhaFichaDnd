@@ -1,6 +1,7 @@
- import { traduzirNomeItem } from "./ItensTraduzidos.ts";
+ import { traduzirNomeItem } from "./ItensTraduzidos";
 
 export class Itens {
+ efeitosExplicitos?: import('../api/classesPrincipais/Efeitos').Efeitos[];
  id: string;
  nome: string;
  nomeIngles: string;

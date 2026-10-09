@@ -1,9 +1,10 @@
+import AccessibleDialog from "../components/AccessibleDialog";
 import React, { useState, useRef } from "react";
 import { Raca } from "../../api/classesPrincipais/Raca.class";
-import { MeioElfo } from "../../api/classesFilhos/MeioElfo.class.ts";
-import { HumanoVariante } from "../../api/classesFilhos/HumanoVariante.class.ts";
-import { Draconato } from "../../api/classesFilhos/Draconato.class.ts";
-import { MeioOrc } from "../../api/classesFilhos/MeioOrc.class.ts";
+import { MeioElfo } from "../../api/classesFilhos/MeioElfo.class";
+import { HumanoVariante } from "../../api/classesFilhos/HumanoVariante.class";
+import { Draconato } from "../../api/classesFilhos/Draconato.class";
+import { MeioOrc } from "../../api/classesFilhos/MeioOrc.class";
 
 interface ModalSelecaoProps {
     opcoes: Raca[];
@@ -14,9 +15,10 @@ interface ModalSelecaoProps {
     onFerramentaSelect: (ferramentaSelect: string | null) => void;
     racaInicial: Raca | null;
     atributosIniciais: string[] | null;
+    usarRegrasEspeciais2014?: boolean;
 }
 
-const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClose, onSelect, racaInicial, onAtributeSelect, atributosIniciais, onFerramentaSelect }) => {
+const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClose, onSelect, racaInicial, onAtributeSelect, atributosIniciais, onFerramentaSelect, usarRegrasEspeciais2014 = true }) => {
     const [filtro, setFiltro] = useState("");
     const [selecionado, setSelecionado] = useState<Raca | null>(racaInicial || null);
     const [atributosSelecionados, setAtributosSelecionados] = useState<string[]>(atributosIniciais || []);
@@ -71,7 +73,9 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
     const atribuirAtributos = (escolhidos: string[], raca: Raca, ancestralidade: string) => {
         let novoSelecionado;
 
-        if (raca.nome === "Humano Variante") {
+        if (!usarRegrasEspeciais2014) {
+            novoSelecionado = selecionado;
+        } else if (raca.nome === "Humano Variante") {
             novoSelecionado = new HumanoVariante(escolhidos[0], escolhidos[1], periciaHumano);
         } else if (raca.nome === "Meio-Elfo") {
             novoSelecionado = new MeioElfo(escolhidos[0], escolhidos[1], periciaMeioElfo1, periciaMeioElfo2);
@@ -97,37 +101,37 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
     function verificarCondicoes(
         selecionado: { nome: string },
         atributosSelecionados: string[],
-        ferramentaSelecionada: any,
-        ancestralidadeSelecionada: any
+        ferramentaSelecionada: string | null,
+        ancestralidadeSelecionada: string
     ): boolean {
         return (
-            ((selecionado.nome === "Humano Variante" || selecionado.nome === "Meio-Elfo") && atributosSelecionados.length !== 2) ||
+            (usarRegrasEspeciais2014 && (((selecionado.nome === "Humano Variante" || selecionado.nome === "Meio-Elfo") && atributosSelecionados.length !== 2) ||
             (selecionado.nome === "Meio-Elfo" && atributosSelecionados.includes("carisma")) ||
             (selecionado.nome === "Anão" && ferramentaSelecionada === null) ||
-            (selecionado.nome === "Draconato" && ancestralidadeSelecionada === null) ||
+            (selecionado.nome === "Draconato" && ancestralidadeSelecionada === "") ||
             (selecionado.nome === "Humano Variante" && periciaHumano === "") ||
-            (selecionado.nome === "Meio-Elfo" && (periciaMeioElfo1 === "" || periciaMeioElfo2 === ""))
+            (selecionado.nome === "Meio-Elfo" && (periciaMeioElfo1 === "" || periciaMeioElfo2 === ""))))
         );
     }
 
     return (
-        <div className="popup-content-modal">
+        <AccessibleDialog className="popup-content-modal" onClose={onClose} aria-label={titulo}>
             <h2>{titulo}</h2>
             <div className="popup-body-modal">
                 <div className="lista-racas">
                     <input
                         type="text"
-                        placeholder="Filtrar raças..."
+                        aria-label="Filtrar raças..." placeholder="Filtrar raças..."
                         value={filtro}
                         onChange={(e) => setFiltro(e.target.value)}
                     />
                     <ul>
                         {opcoesFiltradas.map((opcao) => (
-                            <li key={opcao.nome} onClick={() => {
+                            <li key={opcao.nome}><button type="button" className="selection-option" aria-pressed={selecionado?.nome === opcao.nome} onClick={() => {
                                 setSelecionado(opcao);
                             }}>
                                 {opcao.nome}
-                            </li>
+                            </button></li>
                         ))}
                     </ul>
                 </div>
@@ -139,7 +143,9 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
                             <p><strong>Tamanho:</strong> {selecionado.tamanho}</p>
                             <p><strong>Velocidade:</strong> {selecionado.velocidade} pés</p>
                             <p><strong>Idiomas:</strong> {selecionado.idiomas?.join(", ")}</p>
-                            <p><strong>Atributos:</strong> {selecionado.atributos?.atributo.map((a, i) => `${a} +${selecionado.atributos?.bonus[i]}`).join(", ")}</p>
+                            {selecionado.atributos && selecionado.atributos.atributo.length > 0 && (
+                                <p><strong>Atributos:</strong> {selecionado.atributos.atributo.map((a, i) => `${a} +${selecionado.atributos?.bonus[i]}`).join(", ")}</p>
+                            )}
                             <p><strong>Traços:</strong> {selecionado.tracos?.map((t, index) => (
                                 <span key={index}>
                                     <strong>{t.traco + ": "}</strong>{t.descricao}
@@ -147,11 +153,11 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
                                     <br />
                                 </span>
                             ))}</p>
-                            {(selecionado.nome === "Humano Variante" || selecionado.nome === "Meio-Elfo") && (
+                            {usarRegrasEspeciais2014 && (selecionado.nome === "Humano Variante" || selecionado.nome === "Meio-Elfo") && (
                                 <div>
                                     <h3>Escolha sua perícia</h3>
                                     {selecionado.nome === "Humano Variante" && (
-                                        <select
+                                        <select aria-label="Perícia humana"
                                             value={periciaHumano}
                                             onChange={(e) => setPericiaHumano(e.target.value)}
                                         >
@@ -165,7 +171,7 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
                                     )}
                                     {selecionado.nome === "Meio-Elfo" && (
                                         <div>
-                                            <select
+                                            <select aria-label="Primeira perícia"
                                                 value={periciaMeioElfo1}
                                                 onChange={(e) => setPericiaMeioElfo1(e.target.value)}
                                             >
@@ -181,7 +187,7 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
                                                 ))}
                                             </select>
 
-                                            <select
+                                            <select aria-label="Segunda perícia"
                                                 value={periciaMeioElfo2}
                                                 onChange={(e) => setPericiaMeioElfo2(e.target.value)}
                                             >
@@ -200,7 +206,7 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
                                     )}
                                 </div>
                             )}
-                            {(selecionado.nome === "Humano Variante" || selecionado.nome === "Meio-Elfo") && (
+                            {usarRegrasEspeciais2014 && (selecionado.nome === "Humano Variante" || selecionado.nome === "Meio-Elfo") && (
                                 <div className="selecao-atributos-container">
                                     <h3>Escolha 2 Atributos</h3>
                                     <div className="selecao-atributos">
@@ -229,7 +235,7 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
                                     </div>
                                 </div>
                             )}
-                            {selecionado.nome === "Anão" && (
+                            {usarRegrasEspeciais2014 && selecionado.nome === "Anão" && (
                                 <div className="selecao-atributos-container">
                                     <h3>Escolha uma ferramenta</h3>
                                     <div className="selecao-atributos">
@@ -249,7 +255,7 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
                                     </div>
                                 </div>
                             )}
-                            {selecionado.nome === "Draconato" && (
+                            {usarRegrasEspeciais2014 && selecionado.nome === "Draconato" && (
                                 <div className="selecao-atributos-container">
                                     <h3>Escolha uma Ancestralidade</h3>
                                     <div className="selecao-atributos-ancestral">
@@ -286,7 +292,7 @@ const ModalSelecao: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClos
                 </button>)}
                 <button className="escolher-button" onClick={() => { onClose() }}>Fechar</button>
             </div>
-        </div>
+        </AccessibleDialog>
     );
 };
 

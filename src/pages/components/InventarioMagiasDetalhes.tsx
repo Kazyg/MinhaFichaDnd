@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import "../css/InventarioMagiasDetalhes.css";
-import { useFicha } from "../../api/fichaPersonagem/FichaContext.tsx";
-import ModalInventarioArma from "../modals/ModalInventarioArma.tsx";
-import ModalInventarioEquipamentos from "../modals/ModalInventarioEquipamentos.tsx";
-import AbaArmas from "./components_inventario/AbaArmas.tsx";
-import AbaArmaduras from "./components_inventario/AbaArmaduras.tsx";
-import AbaItens from "./components_inventario/AbaItens.tsx";
-import AbaMagias from "./components_inventario/AbaMagias.tsx";
-import AbaDetalhes from "./components_inventario/AbaDetalhes.tsx";
-import { armaduras_equip } from "../../api/equipamentos/Armaduras.ts";
-import { armas } from "../../api/equipamentos/Armas.ts";
-import ModalInventarioItens from "../modals/ModalInventarioItens.tsx";
-import { itens } from "../../bibliotecas/Itens.ts";
+import { useFicha } from "../../api/fichaPersonagem/FichaContext";
+import ModalInventarioArma from "../modals/ModalInventarioArma";
+import ModalInventarioEquipamentos from "../modals/ModalInventarioEquipamentos";
+import AbaArmas from "./components_inventario/AbaArmas";
+import AbaArmaduras from "./components_inventario/AbaArmaduras";
+import AbaItens from "./components_inventario/AbaItens";
+import AbaMagias from "./components_inventario/AbaMagias";
+import AbaDetalhes from "./components_inventario/AbaDetalhes";
+import { armaduras_equip } from "../../api/equipamentos/Armaduras";
+import { armas } from "../../api/equipamentos/Armas";
+import ModalInventarioItens from "../modals/ModalInventarioItens";
+import { itens } from "../../bibliotecas/Itens";
 
 export default function InventarioMagiasDetalhes() {
   const [abaAtiva, setAbaAtiva] = useState("armas");
@@ -27,6 +27,7 @@ export default function InventarioMagiasDetalhes() {
         {["armas", "armaduras", "itens", "magias", "detalhes"].map((aba) => (
           <button
             key={aba}
+            aria-pressed={abaAtiva === aba}
             className={`aba-botao ${abaAtiva === aba ? "ativa" : ""}`}
             onClick={() => setAbaAtiva(aba)}
           >

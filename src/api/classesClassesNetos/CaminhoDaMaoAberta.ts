@@ -1,4 +1,4 @@
-import { SubClasses } from "../classesPrincipais/SubClasses.ts";
+import { SubClasses } from "../classesPrincipais/SubClasses";
 
 export class CaminhoDaMaoAberta extends SubClasses {
     niveis: {

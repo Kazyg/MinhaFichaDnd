@@ -75,6 +75,44 @@
     text-align: center;
   }
   
+  .modal-criar-ficha {
+    color: #1f1f1f;
+    width: min(420px, 90vw);
+  }
+
+  .modal-criar-ficha p {
+    margin: 0 0 16px;
+    color: #555;
+  }
+
+  .versao-regras-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .versao-regras-button {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px;
+    border: 1px solid #c9a45c;
+    border-radius: 8px;
+    background: #fff8ec;
+    color: #1f1f1f;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .versao-regras-button:hover {
+    background: #f1dfbd;
+  }
+
+  .versao-regras-button span {
+    font-size: 0.875rem;
+    color: #555;
+  }
+  
   .ficha-list {
     list-style: none;
     padding: 0;
