@@ -229,14 +229,28 @@ test.each(['DND_2014', 'DND_2024'])('UI de talento no nível 4 exibe opções: %
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   expect(api.ficha.efeitos.some(e => /^alerta$/i.test(e.talento))).toBe(true);
 });
-test('modal mantém classes visíveis e explica requisitos da classe de origem', async () => {
+test('modal oculta novas classes quando a classe de origem não cumpre os requisitos', async () => {
   const ficha = fixture('DND_2014', 'paladino', 2);
   ficha.atributosPersonagem.carisma.valor = 12;
   mount(ficha, <NivelBlock nivel={2} classesDisponiveis={getRulesetData('DND_2014').classes} selecionarMulticlasse={() => {}} />);
   await tick(() => fireEvent.click(screen.getByRole('button', { name: /Selecionar Classe/ })));
-  await tick(() => fireEvent.click(screen.getByRole('button', { name: 'Mago', exact: true })));
-  expect(screen.getByRole('button', { name: 'Escolher Mago' })).toBeDisabled();
-  expect(screen.getByText(/Paladino exige Força 13 e Carisma 13/)).toHaveTextContent('carisma: 12');
+  expect(within(screen.getByRole('dialog')).queryByRole('button', { name: 'Mago', exact: true })).not.toBeInTheDocument();
+  expect(within(screen.getByRole('dialog')).getByRole('button', { name: 'Paladino', exact: true })).toBeInTheDocument();
+});
+test.each(['DND_2014', 'DND_2024'])('modal mostra somente classes novas elegíveis pelos atributos: %s', async edicao => {
+  const ficha = fixture(edicao, 'guerreiro', 2);
+  ficha.atributosPersonagem.inteligencia.valor = 12;
+  ficha.atributosPersonagem.sabedoria.valor = 12;
+  ficha.atributosPersonagem.carisma.valor = 12;
+  mount(ficha, <NivelBlock nivel={2} classesDisponiveis={getRulesetData(edicao).classes} selecionarMulticlasse={() => {}} />);
+  await tick(() => fireEvent.click(screen.getByRole('button', { name: /Selecionar Classe/ })));
+  const dialog = within(screen.getByRole('dialog'));
+  for (const classe of getRulesetData(edicao).classes) {
+    const opcao = dialog.queryByRole('button', { name: classe.nome, exact: true });
+    if (['guerreiro', 'barbaro', 'ladino'].includes(classe.chave)) expect(opcao).toBeInTheDocument();
+    else expect(opcao).not.toBeInTheDocument();
+  }
+  expect(ficha.selecionarClasseNoNivel(getRulesetData(edicao).classes.find(c => c.chave === 'mago'), 2)).toBe(false);
 });
 test.each(['DND_2014', 'DND_2024'])('paladino só exibe seleção de subclasse no nível de entrada: %s', edicao => {
   const ficha = fixture(edicao, 'paladino', 5);

@@ -37,3 +37,11 @@ As alterações são commitadas na branch `feature/dnd2024` a pedido do usuário
 Conferência com Chromium e uma cópia da ficha enviada: catálogo 2014 com 42 opções visíveis, Alerta selecionado e persistido, requisito de multiclasse explicado e zero eventos de rolagem da página na confirmação da modal. O arquivo enviado não foi incluído no repositório.
 
 Verificação final desta revisão: **252 testes passaram e as mesmas 3 falhas preexistentes permaneceram**, em 16 suítes. Lint, TypeScript e build com ofuscação passaram. Commit e push para `feature/dnd2024` autorizados pelo usuário; `main` permanece inalterada.
+
+## Terceira revisão — links de licença e filtro de multiclasse
+
+Removidos os links “Atribuições e licenças do conteúdo” das interfaces de talentos e magias. Os arquivos de atribuição e licença continuam preservados no projeto.
+
+A modal de multiclasse voltou a listar somente classes elegíveis. Na segunda revisão, todas estavam visíveis para consulta, mas a confirmação das inválidas permanecia bloqueada; agora elas também são ocultadas, conforme solicitado. Os requisitos da tabela (13, Guerreiro com OU, Monge/Paladino/Patrulheiro com E) continuam aplicados no domínio e na confirmação. Avançar uma classe já adquirida não exige uma nova entrada em multiclasse.
+
+Testes de interface verificam o filtro nas duas edições, incluindo bloqueio pelo requisito da classe de origem e rejeição de uma classe inválida pela operação do modelo.

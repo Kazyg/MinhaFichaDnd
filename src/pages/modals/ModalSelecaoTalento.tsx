@@ -60,7 +60,6 @@ const ModalSelecaoTalento: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo,
                             <p>{rotuloConteudo(selecionado)} · {selecionado.categoria} · {selecionado.repetivel ? 'Repetível' : 'Não repetível'}</p>
                             <p>Requisito: {selecionado.requisito.requisito?.join(' ou ') ?? 'Nenhum'} {selecionado.requisito.valor ?? ''}</p>
                             {selecionado.fonte.url && <a href={selecionado.fonte.url} target="_blank" rel="noreferrer">{selecionado.fonte.titulo}</a>}
-                            <p><a href={`${process.env.PUBLIC_URL}/CONTEUDO-LICENCAS.txt`} target="_blank" rel="noreferrer">Atribuições e licenças do conteúdo</a></p>
                             {Array.from({ length: quantidade }, (_, i) => <label key={i}>Escolha adicional {i + 1}
                                 <select aria-invalid={!!erro} aria-describedby={erro ? "erro-talento" : undefined} value={escolhas[i] ?? ''} onChange={e => setEscolhas(Array.from({ length: quantidade }, (_, j) => j === i ? e.target.value : escolhas[j] ?? ''))}>
                                     <option value="">Selecione...</option>
