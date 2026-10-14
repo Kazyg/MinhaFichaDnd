@@ -21,6 +21,135 @@ function stored(store) { return parseCollection(store.getItem('fichas')); }
 
 afterEach(() => { jest.useRealTimers(); });
 
+function editableStore() {
+  const store = memory(JSON.stringify([fixture(), fixture({ id: 'segunda', nomePersonagem: 'Outra' })]));
+  store.data.set('ficha', 'sintetica-1');
+  return store;
+}
+function writes(store) { return store.setItem.mock.calls.filter(([key]) => key === 'fichas').length; }
+async function edit(name) {
+  await act(async () => { api.ficha.nomePersonagem = name; api.forceUpdate(); });
+}
+
+test('uma alteração espera exatamente cinco segundos', async () => {
+  jest.useFakeTimers();
+  const store = editableStore();
+  mount(store);
+  await edit('Atual');
+  expect(screen.getByText('Atual')).toBeInTheDocument();
+  act(() => jest.advanceTimersByTime(4999));
+  expect(writes(store)).toBe(0);
+  act(() => jest.advanceTimersByTime(1));
+  expect(writes(store)).toBe(1);
+  expect(stored(store).fichas[0].nomePersonagem).toBe('Atual');
+  act(() => jest.advanceTimersByTime(15000));
+  expect(writes(store)).toBe(1);
+  expect(jest.getTimerCount()).toBe(0);
+});
+
+test.each([2, 10])('%s alterações reiniciam um único timer e salvam o estado mais recente', async count => {
+  jest.useFakeTimers();
+  const store = editableStore();
+  mount(store);
+  for (let i = 0; i < count; i++) {
+    await edit(`Nome ${i}`);
+    expect(jest.getTimerCount()).toBe(1);
+    act(() => jest.advanceTimersByTime(2000));
+    expect(writes(store)).toBe(0);
+  }
+  act(() => jest.advanceTimersByTime(2999));
+  expect(writes(store)).toBe(0);
+  act(() => jest.advanceTimersByTime(1));
+  expect(writes(store)).toBe(1);
+  expect(stored(store).fichas[0].nomePersonagem).toBe(`Nome ${count - 1}`);
+});
+
+test.each(['pagehide', 'visibilitychange', 'beforeunload', 'unmount'])('%s salva pendências sincronicamente e cancela o timer', async event => {
+  jest.useFakeTimers();
+  const store = editableStore();
+  const view = mount(store);
+  await edit('Ao sair');
+  const visibility = jest.spyOn(document, 'visibilityState', 'get').mockReturnValue('hidden');
+  act(() => {
+    if (event === 'unmount') view.unmount();
+    else (event === 'visibilitychange' ? document : window).dispatchEvent(new Event(event));
+  });
+  visibility.mockRestore();
+  expect(stored(store).fichas[0].nomePersonagem).toBe('Ao sair');
+  expect(writes(store)).toBe(1);
+  act(() => jest.advanceTimersByTime(10000));
+  expect(writes(store)).toBe(1);
+  act(() => window.dispatchEvent(new Event('pagehide')));
+  expect(writes(store)).toBe(1);
+});
+
+test('trocar personagem persiste pendências na ficha correta', async () => {
+  jest.useFakeTimers();
+  const store = editableStore();
+  mount(store);
+  await edit('Primeira editada');
+  act(() => api.setFicha(api.fichas[1]));
+  expect(stored(store).selectedId).toBe('segunda');
+  expect(stored(store).fichas.map(f => f.nomePersonagem)).toEqual(['Primeira editada', 'Outra']);
+  await edit('Segunda editada');
+  act(() => jest.advanceTimersByTime(5000));
+  expect(stored(store).fichas.map(f => f.nomePersonagem)).toEqual(['Primeira editada', 'Segunda editada']);
+  expect(writes(store)).toBe(2);
+});
+
+test('salvamento manual é imediato e cancela autosave', async () => {
+  jest.useFakeTimers();
+  const store = editableStore();
+  mount(store);
+  await edit('Manual');
+  act(() => expect(api.salvarFicha(api.ficha)).toBe(true));
+  expect(writes(store)).toBe(1);
+  act(() => jest.advanceTimersByTime(10000));
+  expect(writes(store)).toBe(1);
+});
+
+test('falha ao salvar imediatamente preserva pendências e o timer para nova tentativa', async () => {
+  jest.useFakeTimers();
+  const store = editableStore();
+  mount(store);
+  await edit('Pendente');
+  store.setItem.mockImplementation(() => { throw new Error('Quota'); });
+  act(() => expect(api.salvarPendentes()).toBe(false));
+  expect(api.status).toBe('erro');
+  expect(jest.getTimerCount()).toBe(1);
+  store.setItem.mockImplementation((k, v) => store.data.set(k, v));
+  act(() => jest.advanceTimersByTime(5000));
+  expect(stored(store).fichas[0].nomePersonagem).toBe('Pendente');
+});
+
+test('menus e eventos visuais não iniciam autosave; sair do editor salva pendências', async () => {
+  jest.useFakeTimers();
+  const store = editableStore();
+  function Editor({ open }) {
+    api = useFicha();
+    return open ? <CriarFicha /> : <div>Outra página</div>;
+  }
+  const tree = open => <FichaProvider storage={store}><MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><Editor open={open} /></MemoryRouter></FichaProvider>;
+  const view = render(tree(true));
+  fireEvent.click(screen.getByRole('button', { name: 'Menu da ficha' }));
+  fireEvent.scroll(window);
+  fireEvent.mouseOver(screen.getByRole('button', { name: 'Salvar Ficha' }));
+  await act(async () => {});
+  act(() => jest.advanceTimersByTime(10000));
+  expect(writes(store)).toBe(0);
+  await edit('Botão manual');
+  fireEvent.click(screen.getByRole('button', { name: 'Salvar Ficha' }));
+  expect(stored(store).fichas.find(f => f.id === 'sintetica-1').nomePersonagem).toBe('Botão manual');
+  expect(writes(store)).toBe(1);
+  expect(screen.queryByRole('button', { name: 'Salvar Ficha' })).not.toBeInTheDocument();
+  act(() => jest.advanceTimersByTime(10000));
+  expect(writes(store)).toBe(1);
+  await edit('Navegação');
+  view.rerender(tree(false));
+  expect(stored(store).fichas.find(f => f.id === 'sintetica-1').nomePersonagem).toBe('Navegação');
+  expect(jest.getTimerCount()).toBe(0);
+});
+
 test.each(['[{broken', '{}', 'null', '[null]', '[42]', '{"format":"minhafichadnd","version":99,"kind":"colecao","data":[]}'])('preserva leitura inválida %s e bloqueia gravação', raw => {
   const store = memory(raw);
   mount(store);
@@ -60,8 +189,9 @@ test('legado sem edição abre, preserva opções desconhecidas e autosalva muta
     api.ficha.idiomas = ['Comum'];
     api.ficha.idiomas.push('Idioma antigo');
   });
-  expect(screen.getByRole('status')).toHaveTextContent('Alterações não salvas');
-  act(() => jest.advanceTimersByTime(300));
+  expect(api.status).toBe('sujo');
+  expect(screen.queryByRole('status')).not.toBeInTheDocument();
+  act(() => jest.advanceTimersByTime(5000));
   expect(api.status).toBe('salvo');
   expect(screen.queryByRole('status')).not.toBeInTheDocument();
   expect(store.data.get(BACKUP_KEY)).toBe(raw);
@@ -82,7 +212,7 @@ test.each(['quota', 'acesso negado'])('falha de %s preserva bytes e permite tent
   mount(store);
   store.setItem.mockImplementation(() => { throw new Error(reason); });
   await act(async () => { api.ficha.nomePersonagem = 'Pendente'; api.forceUpdate(); });
-  act(() => jest.advanceTimersByTime(300));
+  act(() => jest.advanceTimersByTime(5000));
   expect(api.status).toBe('erro');
   expect(store.data.get('fichas')).toBe(raw);
   expect(api.ficha.nomePersonagem).toBe('Pendente');
@@ -167,7 +297,7 @@ test('detecta conflito com outra aba sem sobrescrever', async () => {
   mount(store);
   await act(async () => { api.fichas[0].nomePersonagem = 'Minha edição'; });
   store.data.set('fichas', 'dados de outra aba');
-  act(() => jest.advanceTimersByTime(300));
+  act(() => jest.advanceTimersByTime(5000));
   expect(api.erro).toMatch(/outra aba/);
   expect(store.data.get('fichas')).toBe('dados de outra aba');
 });
@@ -189,8 +319,8 @@ test('edição pela página real salva nome após pausa na digitação e reabre'
   expect(screen.queryByRole('status')).not.toBeInTheDocument();
   act(() => jest.advanceTimersByTime(800));
   await act(async () => { await Promise.resolve(); });
-  expect(screen.getByRole('status')).toHaveTextContent('Alterações não salvas');
-  act(() => jest.advanceTimersByTime(300));
+  expect(screen.queryByRole('status')).not.toBeInTheDocument();
+  act(() => jest.advanceTimersByTime(5000));
   expect(stored(store).fichas[0].nomePersonagem).toBe('Nome pela tela');
   view.unmount();
   mount(store);
@@ -207,7 +337,7 @@ test('restaura métodos de atributos e efeitos para editar fichas reabertas', as
     api.ficha.efeitos[0].setLevel(2);
     api.ficha.atributosPersonagem.somarAtributo('forca', 1);
   });
-  act(() => jest.advanceTimersByTime(300));
+  act(() => jest.advanceTimersByTime(5000));
   expect(stored(store).fichas[0].efeitos[0].level).toBe(2);
   expect(stored(store).fichas[0].atributosPersonagem.forca.valor).toBe(9);
 });
@@ -237,7 +367,7 @@ test('seleção nula no envelope não reativa o ponteiro legado', async () => {
   store.data.set('ficha', 'sintetica-1');
   const view = mount(store);
   await act(async () => { api.setFicha(null); });
-  act(() => jest.advanceTimersByTime(300));
+  act(() => jest.advanceTimersByTime(5000));
   view.unmount();
   mount(store);
   expect(api.ficha).toBeNull();

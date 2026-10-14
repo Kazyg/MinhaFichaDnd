@@ -1,4 +1,5 @@
 import { getRulesetConfig } from "../regras";
+import { equipamentoBackground } from '../equipamentoBackground';
 import { Anao } from "../../classesFilhos/Anao.class";
 import { Draconato } from "../../classesFilhos/Draconato.class";
 import { Elfo } from "../../classesFilhos/Elfo.class";
@@ -93,7 +94,7 @@ export const createDnd2014Ruleset = (): RulesetData => ({
     new Sabio(),
     new Pirata(),
     new Orfao()
-  ],
+  ].map(background => Object.assign(background, { equipamentoInicial: equipamentoBackground('DND_2014', background.nome) })),
   // Content APIs return independent copies only when the caller requests them.
   get talentos() { return getTalentosConteudo("DND_2014"); },
   armas: [],

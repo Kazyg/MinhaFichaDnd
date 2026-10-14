@@ -164,15 +164,11 @@ export default function PericiasEOutros() {
     <div  className="pericias-container">
       {/* Quadro pequeno com informações básicas */}
       <div className="info-extra">
-        <div className="info-coluna">
           <div className="info-item" title={explicarParcelas(selecionarIniciativa(ficha).parcelas)}><strong>Iniciativa:</strong> {formatarBonus(selecionarIniciativa(ficha).total)}</div>
+          <div className="info-item"><strong>Proficiência:</strong> +{selecionarProficiencia(ficha)}</div>
           <div className="info-item" title={explicarParcelas(selecionarDeslocamento(ficha).parcelas)}><strong>Speed:</strong> {selecionarDeslocamento(ficha).total}ft</div>
           <div className="info-item"><strong>Percepção:</strong> {selecionarPercepcaoPassiva(ficha)}</div>
-        </div>
-        <div className="info-coluna">
-          <div className="info-item"><strong>Proficiência:</strong> +{selecionarProficiencia(ficha)}</div>
-          <div className="info-item"><strong>Tamanho:</strong>{ficha?.tamanho || ""}</div>
-        </div>
+          <div className="info-item info-item-tamanho"><strong>Tamanho:</strong> {ficha?.tamanho || ""}</div>
       </div>
 
       {/* Quadro grande com perícias */}

@@ -43,7 +43,7 @@ test('edições e revisões desconhecidas não caem no catálogo legado nem na r
   expect(resolverConteudo({ ...referenciaConteudo(magia), revisao: 'futura' })).toBeUndefined();
   expect(resolverConteudo({ ...referenciaConteudo(magia), edicao: 'DND_2014' })).toBeUndefined();
   const raio2024 = buscarMagiaConteudo('DND_2024', 'Raio de Fogo');
-  expect(raio2024).toMatchObject({ edicao: 'DND_2024', revisao: 'phb2024-ha6-20250813-1', licenca: 'pendente' });
+  expect(raio2024).toMatchObject({ edicao: 'DND_2024', revisao: 'srd-magias-20261014-1', licenca: 'CC-BY-4.0' });
   expect(raio2024.id).not.toBe(buscarMagiaConteudo('DND_2014', 'Raio de Fogo').id);
   expect(buscarMagiaConteudo('DND_2024', 'Magia inexistente de teste')).toBeUndefined();
   expect(buscarMagiaConteudo('DND_2014', 'Raio de Fogo')).toBeDefined();
@@ -251,14 +251,14 @@ test('talento de origem com escolhas obrigatórias pode ser concluído na UI e r
 });
 
 test('modal de magia 2024 exibe a versão correta e calcula a fórmula escolhida', () => {
-  mockFicha = ficha('DND_2024', 1, 'Clerigo');
+  mockFicha = ficha('DND_2024', 5, 'Clerigo');
   render(<ModalMagias titulo="Magias" magiaSelect="" onSelect={jest.fn()} onClose={jest.fn()} />);
   fireEvent.click(screen.getByText('Curar Ferimentos'));
-  expect(screen.getByText('Nível 1 · abjuração')).toBeInTheDocument();
-  expect(screen.getByText(/Uma criatura tocada recupera 2d8/)).toBeInTheDocument();
-  fireEvent.change(screen.getByLabelText('Círculo de conjuração'), { target: { value: '3' } });
-  fireEvent.change(screen.getByLabelText('Modificador de conjuração'), { target: { value: '4' } });
-  expect(screen.getByText(/Fórmula de cura: 6d8\+4/)).toBeInTheDocument();
+  expect(screen.getByRole('button', { name:'Escola: abjuração' })).toBeInTheDocument();
+  expect(screen.getByText('2d8 + 3')).toBeInTheDocument();
+  fireEvent.change(screen.getByLabelText('Conjurar no círculo'), { target: { value:'3' } });
+  expect(screen.getByText('6d8 + 3')).toBeInTheDocument();
+  expect(screen.queryByLabelText('Modificador de conjuração')).not.toBeInTheDocument();
 });
 
 test('detalhes de uma escolha legada mostram texto 2014; edição da ficha não a substitui', () => {
@@ -266,9 +266,10 @@ test('detalhes de uma escolha legada mostram texto 2014; edição da ficha não 
   mockFicha.magiasEscolhidas = [{ classe: 'Clerigo', magia: ['Curar Ferimentos'] }];
   mockFicha = reabrir(mockFicha);
   render(<ModalMagias titulo="Registro salvo" magiaSelect="Curar Ferimentos" escolhaSalva={mockFicha.magiasConjuracao[0]} onSelect={jest.fn()} onClose={jest.fn()} />);
-  expect(screen.getByText('Nível 1 · evocação')).toBeInTheDocument();
-  expect(screen.queryByLabelText('Círculo de conjuração')).not.toBeInTheDocument();
-  expect(screen.getByText(/Registro legado catalogo-2014/)).toBeInTheDocument();
+  expect(screen.getByRole('button', { name:'Escola: evocação' })).toBeInTheDocument();
+  expect(screen.queryByLabelText('Conjurar no círculo')).not.toBeInTheDocument();
+  expect(screen.queryByText(/Registro legado catalogo-2014/)).not.toBeInTheDocument();
+  expect(screen.getByRole('article', { name:'Curar Ferimentos' }).textContent).toContain('2014');
 });
 
 test('aba de detalhes e descrição de talento não usam Alerta 2014 em escolha 2024', () => {

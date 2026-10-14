@@ -92,11 +92,13 @@
   /* Container de traços e habilidades */
   .skills-container {
     margin-bottom: 0.75rem;
-    padding: 5px;
-    border-radius: 5px;
-    background: #444;
-    width: 110%;
-    margin-left: -15px;
+    padding: 6px 12px;
+    border: 1px solid #4f545c;
+    border-radius: 10px;
+    background: #303438;
+    width: 100%;
+    box-sizing: border-box;
+    margin-left: 0;
   }
   
   .skills-container button {
@@ -298,3 +300,12 @@
       padding: 5px;
     }
   }
+
+.level-container .skills-container > button { font-size: 0.95rem; font-weight: 650; line-height: 1.35; padding: 4px 0; margin: 0; min-height: 32px; height: auto; gap: 8px; }
+.level-container .skills-container .descricao { color: #d5d8dc; line-height: 1.7; overflow-wrap: anywhere; text-align: left; direction: ltr; }
+.level-container .skills-container .descricao p { color: inherit; line-height: inherit; margin: 0 0 12px; }
+.descricao-caracteristica ul { padding-left: 20px; margin: 0; }
+.descricao-caracteristica li + li { margin-top: 12px; }
+.descricao-caracteristica details { margin-top: 16px; padding-top: 12px; border-top: 1px solid #50565e; }
+.descricao-caracteristica summary { cursor: pointer; color: #f0f1f3; margin-bottom: 12px; }
+.skills-container button:focus-visible, .descricao-caracteristica summary:focus-visible { outline: 2px solid #a8bbff; outline-offset: 3px; }

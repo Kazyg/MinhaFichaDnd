@@ -21,6 +21,10 @@ const shape = (required: Record<string, Check>, optional: Record<string, Check> 
   object(v) && Object.entries(required).every(([k, check]) => check(v[k])) &&
   Object.entries(optional).every(([k, check]) => v[k] === undefined || v[k] === null || check(v[k]));
 const strings = array(string);
+const grantAmount = (v: any) => number(v) && v >= 0;
+const grantCoins = shape({ ouro: grantAmount, prata: grantAmount, cobre: grantAmount });
+const coinBalance = shape({ ouro: number, prata: number, cobre: number });
+const initialEquipment = shape({ itens: array(shape({ nome: string, quantidade: v => Number.isInteger(v) && v > 0 && v <= 1000 })), moedas: grantCoins }, { alternativa: grantCoins });
 const named = shape({ nome: string });
 const level = shape({ nivel: number }, { caracteristicas: strings, nome: string, descricao: string });
 const classe = shape({ nome: string }, {
@@ -35,6 +39,7 @@ const race = shape({ nome: string }, {
   tracos: array(shape({ traco: string, descricao: string })), subOpcoes: array(named),
 });
 const equipment = shape({ id, nome: string }, {
+  origemConcessao: shape({ tipo: v => v === 'background', id, concessao: string }),
   registroCatalogo: v => Number.isInteger(v) && v >= 0,
   magica: v => typeof v === 'boolean',
   equipamentoMagico: shape({ tipo: v => ['arma', 'armadura', 'escudo'].includes(v), modo: v => ['melhoria', 'especifico'].includes(v), exigeSintonizacao: v => typeof v === 'boolean' }, {
@@ -72,6 +77,7 @@ const attributes = shape(Object.fromEntries(
 ));
 const nonnegative = (v: any) => Number.isInteger(v) && v >= 0;
 const fields: Record<string, Check> = {
+  concessoesIniciais: shape({ origem: string, assinatura: string, instancias: array(shape({ tipo: v => ['item', 'arma', 'armadura'].includes(v), id })), restante: grantCoins, gasto: grantCoins, saldo: coinBalance }, { revisao: string }),
   especializacoesOficiais: array(shape({ fonte: string, pericia: string, nivelAquisicao: number, edicao: string })),
   itensSintonizados: strings,
   recursos: shape({ slots: v => object(v) && Object.values(v).every(nonnegative) }, { morte: shape({}, { sucessos: v => nonnegative(v) && v <= 3, falhas: v => nonnegative(v) && v <= 3 }) }),
@@ -89,6 +95,7 @@ const fields: Record<string, Check> = {
   subClasse: array(shape({ classe, subclasse: shape({ id, nome: string }, { niveis: array(level), magias: strings }) })),
   multiclasses: array(shape({ id, classe, nivelClasse: number, nivelEscolhido: array(number) })),
   backGround: shape({ nome: string }, { proeficienciasHabilidades: strings, idiomas: number,
+    equipamentoInicial: initialEquipment, escolhaEquipamento: v => ['equipamentos', 'dinheiro'].includes(v),
     equipamentos: strings, proeficienciaFerramentas: strings, caracteristicas: shape({ nome: string, descricao: string }) }),
   atributosPersonagem: attributes, efeitos: array(effect),
   estiloLuta: array(shape({ estilo: string, classe: string })),

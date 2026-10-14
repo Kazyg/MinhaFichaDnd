@@ -12,7 +12,7 @@ type FichaContextType = {
   importarFicha: (text: string, collision?: Collision) => Ficha | null;
   refreshKey: number; forceUpdate: () => void;
   status: Status; erro: string | null; recuperacao: boolean;
-  tentarSalvar: () => boolean; reler: () => void;
+  tentarSalvar: () => boolean; salvarPendentes: () => boolean; reler: () => void;
 };
 const FichaContext = createContext<FichaContextType | null>(null);
 
@@ -89,12 +89,12 @@ export const FichaProvider = ({ children, storage }: React.PropsWithChildren<{ s
     return observed;
   };
   const flush = () => {
-    cancel();
     if (blocked.current) return error(new Error('Resolva a recuperação antes de salvar. Os dados originais estão preservados.'));
     setStatus('salvando');
     try {
       const next = serializeCollection(models.current, selected.current?.id ?? null);
       persist(getStorage(), original.current, next);
+      cancel();
       original.current = next;
       dirty.current = false;
       setErro(null);
@@ -111,7 +111,10 @@ export const FichaProvider = ({ children, storage }: React.PropsWithChildren<{ s
     Promise.resolve().then(() => {
       if (mounted.current && dirty.current) { setStatus('sujo'); update(); }
     });
-    timer.current = setTimeout(() => actions.current.flush(), 300);
+    timer.current = setTimeout(() => {
+      timer.current = null;
+      if (dirty.current) actions.current.flush();
+    }, 5000);
   };
   const load = () => {
     cancel();
@@ -144,22 +147,28 @@ export const FichaProvider = ({ children, storage }: React.PropsWithChildren<{ s
     const unload = (event: BeforeUnloadEvent) => {
       if (dirty.current && !actions.current.flush()) { event.preventDefault(); event.returnValue = ''; }
     };
+    const savePending = () => { if (dirty.current) actions.current.flush(); };
+    const visibility = () => { if (document.visibilityState === 'hidden') savePending(); };
+    window.addEventListener('pagehide', savePending);
+    document.addEventListener('visibilitychange', visibility);
     window.addEventListener('beforeunload', unload);
     return () => {
       if (dirty.current) actions.current.flush();
       mounted.current = false;
       if (timer.current !== null) clearTimeout(timer.current);
       window.removeEventListener('beforeunload', unload);
+      window.removeEventListener('pagehide', savePending);
+      document.removeEventListener('visibilitychange', visibility);
     };
   }, [storage]);
 
   const commit = (next: Ficha[], active: Ficha | null) => {
     if (blocked.current) return error(new Error('Resolva a recuperação antes de alterar a coleção.'));
-    cancel();
     setStatus('salvando');
     try {
       const raw = serializeCollection(next, active?.id ?? null);
       persist(getStorage(), original.current, raw);
+      cancel();
       original.current = raw;
       models.current = next;
       selected.current = active;
@@ -205,15 +214,16 @@ export const FichaProvider = ({ children, storage }: React.PropsWithChildren<{ s
     setFicha: f => {
       if (blocked.current) return;
       if (f && !models.current.includes(f)) { salvarFicha(f); return; }
-      selected.current = f; update(); changed();
+      if (selected.current === f) return;
+      commit(models.current, f);
     },
     deletarFicha: id => commit(models.current.filter(f => f.id !== id), selected.current?.id === id ? null : selected.current),
     refreshKey, forceUpdate: () => { update(); changed(); }, status, erro, recuperacao,
-    tentarSalvar: flush, reler,
+    tentarSalvar: flush, salvarPendentes: () => !dirty.current || actions.current.flush(), reler,
   };
   return <FichaContext.Provider value={value}>
-    <aside aria-label="Salvamento das fichas" hidden={status === 'salvo'} style={{ position: 'fixed', top: 8, right: 16, zIndex: 1100, maxWidth: 'min(480px, 90vw)', maxHeight: '85vh', overflowY: 'auto', padding: '8px 16px', background: '#17212b', color: '#fff' }}>
-      <span role="status" aria-live="polite">{({ carregando: 'Carregando fichas…', sujo: 'Alterações não salvas', salvando: 'Salvando…', salvo: '', erro: 'Erro: alterações não salvas' })[status]}</span>
+    <aside aria-label="Salvamento das fichas" hidden={status === 'salvo' || status === 'sujo'} style={{ position: 'fixed', top: 8, right: 16, zIndex: 1100, maxWidth: 'min(480px, 90vw)', maxHeight: '85vh', overflowY: 'auto', padding: '8px 16px', background: '#17212b', color: '#fff' }}>
+      <span role="status" aria-live="polite">{({ carregando: 'Carregando fichas…', sujo: '', salvando: 'Salvando…', salvo: '', erro: 'Erro: alterações não salvas' })[status]}</span>
       {erro && <div role="alert">{erro}</div>}
       {status === 'erro' && !recuperacao && <button onClick={flush}>Tentar salvar novamente</button>}
       {status === 'erro' && <button onClick={reler}>Reler armazenamento</button>}

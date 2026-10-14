@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { act, render, screen, fireEvent } from "@testing-library/react";
 import { FichaProvider, useFicha } from "./FichaContext";
 import { Ficha } from "./FichaPersonagem";
 import { Efeitos } from "../classesPrincipais/Efeitos";
@@ -36,6 +36,7 @@ function Editor() {
 }
 
 test("a saved character persists new talent choices after refresh and browser reload", async () => {
+  jest.useFakeTimers();
   localStorage.clear();
   const ficha = new Ficha({
     id: "persistencia",
@@ -51,12 +52,11 @@ test("a saved character persists new talent choices after refresh and browser re
     </FichaProvider>,
   );
   fireEvent.click(await screen.findByRole("button", { name: "Adquirir" }));
-  await waitFor(() =>
+  act(() => jest.advanceTimersByTime(5000));
     expect(
       JSON.parse(localStorage.getItem("fichas")!).data[0].efeitos[0].escolhasTalento2024
         .lista,
-    ).toEqual(["Mago"]),
-  );
+    ).toEqual(["Mago"]);
   view.unmount();
   render(
     <FichaProvider>
@@ -70,4 +70,5 @@ test("a saved character persists new talent choices after refresh and browser re
     { classe: "Mago", magia: ["Bola de Fogo"] },
   ]);
   localStorage.clear();
+  jest.useRealTimers();
 });

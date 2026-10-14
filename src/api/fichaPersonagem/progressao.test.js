@@ -1,3 +1,4 @@
+import { bonusVidaTalentos } from './talentos2024Utils';
 import React from 'react';
 import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import { Ficha } from './FichaPersonagem';
@@ -112,9 +113,9 @@ test.each(['DND_2014', 'DND_2024'])('ASI 19/20, atomicidade e reabertura %s', ed
   expect(ficha.aplicarAumentoAtributos(4, ['forca', 'forca'])).toBe(false);
   ficha.setLevelTotal(3);
   expect(calcularValorAtributoFinal(ficha, 'forca')).toBe(19);
-  expect(ficha.aplicarAumentoAtributos(4, ['destreza', 'destreza'])).toBe(false);
+  expect(ficha.aplicarAumentoAtributos(4, ['destreza', 'destreza'])).toBe(edicao === 'DND_2024');
   ficha = reabrir(ficha); ficha.setLevelTotal(4);
-  expect(calcularValorAtributoFinal(ficha, 'forca')).toBe(20);
+  expect(calcularValorAtributoFinal(ficha, 'forca')).toBe(edicao === 'DND_2024' ? 19 : 20);
 });
 test('ASI retroativo considera aumentos posteriores e mantém exceções de outras fontes', () => {
   const ficha = fixture('DND_2024', 'guerreiro', 8); ficha.atributosPersonagem.forca.valor = 18;
@@ -238,7 +239,7 @@ test('modal oculta novas classes quando a classe de origem não cumpre os requis
   expect(within(screen.getByRole('dialog')).queryByRole('button', { name: 'Mago', exact: true })).not.toBeInTheDocument();
   expect(within(screen.getByRole('dialog')).getByRole('button', { name: 'Paladino', exact: true })).toBeInTheDocument();
 });
-test.each(['DND_2014', 'DND_2024'])('modal mostra somente classes novas elegíveis pelos atributos: %s', async edicao => {
+test.each(['DND_2014', 'DND_2024'])('modal preserva visibilidade por edição e valida requisitos: %s', async edicao => {
   const ficha = fixture(edicao, 'guerreiro', 2);
   ficha.atributosPersonagem.inteligencia.valor = 12;
   ficha.atributosPersonagem.sabedoria.valor = 12;
@@ -248,8 +249,9 @@ test.each(['DND_2014', 'DND_2024'])('modal mostra somente classes novas elegíve
   const dialog = within(screen.getByRole('dialog'));
   for (const classe of getRulesetData(edicao).classes) {
     const opcao = dialog.queryByRole('button', { name: classe.nome, exact: true });
-    expect(Boolean(opcao)).toBe(['guerreiro', 'barbaro', 'ladino'].includes(classe.chave));
+    expect(Boolean(opcao)).toBe(edicao === 'DND_2024' || ['guerreiro', 'barbaro', 'ladino'].includes(classe.chave));
   }
+
   expect(ficha.selecionarClasseNoNivel(getRulesetData(edicao).classes.find(c => c.chave === 'mago'), 2)).toBe(false);
 });
 test.each(['DND_2014', 'DND_2024'])('paladino só exibe seleção de subclasse no nível de entrada: %s', edicao => {
@@ -392,4 +394,39 @@ test('trocar origem preserva perícias de classe e dados da origem anterior', ()
   ficha.setBackGround({ nome: 'Outra origem', proeficienciasHabilidades: ['Atuação'] });
   expect(ficha.pericias).toEqual(expect.arrayContaining(['Atletismo', 'Perícia manual', 'Atuação']));
   expect(ficha.escolhasAnteriores.some(e => e.tipo === 'origem')).toBe(true);
+});
+
+
+test('planejar ASI e talento em 2024 persiste sem aplicar beneficios antes da aquisicao', () => {
+  let ficha = fixture('DND_2024', 'guerreiro', 8);
+  ficha.setLevelTotal(1);
+  expect(ficha.aplicarAumentoAtributos(4, ['forca', 'forca'])).toBe(true);
+  expect(ficha.selecionarTalentoAvanco(8, 'Vigoroso', {})).toBe(true);
+  ficha = reabrir(ficha);
+  expect(ficha.levelTotal).toBe(1);
+  expect(calcularValorAtributoFinal(ficha, 'forca')).toBe(13);
+  expect(bonusVidaTalentos(ficha)).toBe(0);
+  ficha.setLevelTotal(4);
+  expect(calcularValorAtributoFinal(ficha, 'forca')).toBe(15);
+  expect(bonusVidaTalentos(ficha)).toBe(0);
+  ficha.setLevelTotal(8);
+  expect(bonusVidaTalentos(ficha)).toBe(16);
+  ficha.setLevelTotal(1);
+  expect(calcularValorAtributoFinal(ficha, 'forca')).toBe(13);
+  expect(bonusVidaTalentos(ficha)).toBe(0);
+  expect(ficha.aplicarAumentoAtributos(3, ['forca', 'forca'])).toBe(false);
+});
+
+
+test('modal 2024 mostra doze classes e explica requisito da multiclasse', async () => {
+  const ficha = fixture('DND_2024', 'guerreiro', 2);
+  ficha.atributosPersonagem.inteligencia.valor = 12;
+  const classes = getRulesetData('DND_2024').classes;
+  expect(classes).toHaveLength(12);
+  mount(ficha, <NivelBlock nivel={2} classesDisponiveis={classes} selecionarMulticlasse={() => {}} />);
+  await tick(() => fireEvent.click(screen.getByRole('button', { name: /Selecionar Classe/ })));
+  const dialog = within(screen.getByRole('dialog'));
+  await tick(() => fireEvent.click(dialog.getByRole('button', { name: 'Mago' })));
+  expect(dialog.getByRole('button', { name: 'Escolher Mago' })).toBeDisabled();
+  expect(dialog.getByRole('status')).toHaveTextContent('Requisitos de multiclasse');
 });

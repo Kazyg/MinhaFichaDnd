@@ -1,3 +1,5 @@
+import { estruturarEquipamentos } from '../../api/classesPrincipais/concessoesEquipamento';
+import "../css/TalentoEscolhas.css";
 import AccessibleDialog from "../components/AccessibleDialog";
 import React, { useState } from "react";
 import { BackGround } from "../../api/classesPrincipais/BackGrounds.class";
@@ -6,15 +8,15 @@ interface ModalSelecaoProps {
     opcoes: BackGround[];
     titulo: string;
     onClose: () => void;
-    onInstrumentoSelect: (intrumento: string) => void
-    onItemSelect: (item: string) => void
     onSelect: (opcao: BackGround | null) => void;
     backGroundInicial: BackGround | null;
 }
 
-const ModalSelecaoBackGround: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClose, onSelect, backGroundInicial, onInstrumentoSelect, onItemSelect }) => {
+const ModalSelecaoBackGround: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClose, onSelect, backGroundInicial }) => {
+    const [escolhaEquipamento, setEscolhaEquipamento] = useState<'equipamentos' | 'dinheiro'>(backGroundInicial?.escolhaEquipamento ?? 'equipamentos');
     const [filtro, setFiltro] = useState("");
     const [selecionado, setSelecionado] = useState<BackGround | null>(backGroundInicial || null);
+    const equipamentoSelecionado = selecionado?.equipamentoInicial ?? estruturarEquipamentos(selecionado?.equipamentos ?? []);
     const [instrumentoSelecionado, setInstrumentoSelecionado] = useState("");
     const [itemSelecionado, setItemSelecionado] = useState("");
 
@@ -64,6 +66,9 @@ const ModalSelecaoBackGround: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
                         {opcoesFiltradas.map((opcao) => (
                             <li key={opcao.nome}><button type="button" className="selection-option" aria-pressed={selecionado?.nome === opcao.nome} onClick={() => {
                                 setSelecionado(opcao);
+                                setInstrumentoSelecionado("");
+                                setItemSelecionado("");
+                                setEscolhaEquipamento("equipamentos");
                             }}>
                                 {opcao.nome}
                             </button></li>
@@ -84,10 +89,16 @@ const ModalSelecaoBackGround: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
                             )}
                             <p><strong>Idiomas:</strong> {selecionado.idiomas} {selecionado.nome === "Heroi Injustiçado" && (<> Idioma do povo que o traiu.</>)}</p>
                             <p><strong>Proeficiencias em ferramentas:</strong> {selecionado.proeficienciaFerramentas.join(", ")}</p>
+                            {(selecionado.equipamentoInicial?.alternativa ?? estruturarEquipamentos(selecionado.equipamentos).alternativa) && (
+                                <div className="background-equipamento-escolhas" role="group" aria-label="Equipamento ou dinheiro inicial">
+                                    <button type="button" className="selection-option" aria-pressed={escolhaEquipamento === 'equipamentos'} onClick={() => setEscolhaEquipamento('equipamentos')}>Equipamentos iniciais</button>
+                                    <button type="button" className="selection-option" aria-label="Receber ouro" aria-pressed={escolhaEquipamento === 'dinheiro'} onClick={() => setEscolhaEquipamento('dinheiro')}>Receber ouro <small>{equipamentoSelecionado.alternativa?.ouro ?? 0} PO</small></button>
+                                </div>
+                            )}
                             <p><strong>Equipamentos:</strong> {selecionado.equipamentos.join(", ")}</p>
                             <p><strong>Caracteristicas: {selecionado.caracteristicas.nome}:</strong> {selecionado.caracteristicas.descricao}</p>
 
-                            {nomeSelecionadoNormalizado === "artista" && (
+                            {escolhaEquipamento !== "dinheiro" && nomeSelecionadoNormalizado === "artista" && (
                                 <select aria-label="Instrumento musical"
                                     value={instrumentoSelecionado}
                                     onChange={(e) => setInstrumentoSelecionado(e.target.value)}
@@ -100,7 +111,7 @@ const ModalSelecaoBackGround: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
                                     ))}
                                 </select>
                             )}
-                            {exigeItemCharlatao && (
+                            {escolhaEquipamento !== "dinheiro" && exigeItemCharlatao && (
                                 <select aria-label="Item do antecedente"
                                     value={itemSelecionado}
                                     onChange={(e) => setItemSelecionado(e.target.value)}
@@ -119,14 +130,21 @@ const ModalSelecaoBackGround: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
             </div>
 
             <div className="popup-footer">
-                {selecionado && (<button disabled={(nomeSelecionadoNormalizado === "artista" && instrumentoSelecionado === "") ||
-                    (exigeItemCharlatao && itemSelecionado === "")}
+                {selecionado && (<button disabled={escolhaEquipamento !== "dinheiro" && ((nomeSelecionadoNormalizado === "artista" && instrumentoSelecionado === "") ||
+                    (exigeItemCharlatao && itemSelecionado === ""))}
                     className="escolher-button"
                     onClick={() => {
-                        onSelect(selecionado);
+                        const copia = Object.assign(Object.create(Object.getPrototypeOf(selecionado)), selecionado);
+                        copia.equipamentoInicial = JSON.parse(JSON.stringify(selecionado.equipamentoInicial ?? estruturarEquipamentos(selecionado.equipamentos)));
+                        copia.escolhaEquipamento = escolhaEquipamento;
+                        copia.equipamentoInicial!.itens = copia.equipamentoInicial!.itens.map((item: { nome: string; quantidade: number }) => {
+                            if (instrumentoSelecionado && /instrumento musical/i.test(item.nome)) return { nome: instrumentoSelecionado, quantidade: 1 };
+                            if (itemSelecionado && /ferramentas de trapaça/i.test(item.nome)) return estruturarEquipamentos([itemSelecionado.replace(/^dez /, '10 ')]).itens[0];
+                            return item;
+                        });
+                        onSelect(copia);
                         onClose();
-                        if (instrumentoSelecionado) onInstrumentoSelect(instrumentoSelecionado);
-                        if (itemSelecionado) onItemSelect(itemSelecionado)
+
                     }}>Escolher {selecionado.nome}</button>)}
                 <button className="escolher-button" onClick={() => { onClose() }}>Fechar</button>
             </div>

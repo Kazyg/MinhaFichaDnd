@@ -1,3 +1,4 @@
+import DescricaoCaracteristica from "./DescricaoCaracteristica";
 import React, { useState } from "react";
 import { descricaoCaracteristica } from "../../bibliotecas/bibliotecaPrincipal";
 import { EstilosLuta } from "../../bibliotecas/EstilosLuta"
@@ -106,10 +107,10 @@ const CaracteristicasClasse: React.FC<CaracteristicasClasseProps> = ({ classe, n
                 onClick={() => { toggleCaracteristica(caracteristica) }}
                 className="w-full text-left p-2 border rounded-lg focus:outline-none"
               >
-                {caracteristica.toLowerCase()} {caracteristicasExpandidas[caracteristica] ? "▲" : "▼"}
+                {caracteristica} {caracteristicasExpandidas[caracteristica] ? "▲" : "▼"}
               </button>
               {caracteristicasExpandidas[caracteristica] && (
-                <p className="descricao p-2 border rounded-lg mt-2 texto-formatado">{descricao}</p>
+                <DescricaoCaracteristica nome={caracteristica} descricao={descricao} versao={ficha?.versaoRegras} />
               )}
             </div>
           </React.Fragment>
@@ -150,12 +151,10 @@ const CaracteristicasClasse: React.FC<CaracteristicasClasseProps> = ({ classe, n
                         }}
                         className="w-full text-left p-2 border rounded-lg focus:outline-none"
                       >
-                        {nivelSubClasse.nome.toLowerCase()} {caracteristicasExpandidas[nivelSubClasse.nome] ? "▲" : "▼"}
+                        {nivelSubClasse.nome} {caracteristicasExpandidas[nivelSubClasse.nome] ? "▲" : "▼"}
                       </button>
                       {caracteristicasExpandidas[nivelSubClasse.nome] && (
-                        <p className="descricao p-2 border rounded-lg mt-2 texto-formatado">
-                          {nivelSubClasse.descricao}
-                        </p>
+                        <DescricaoCaracteristica nome={nivelSubClasse.nome} descricao={nivelSubClasse.descricao} versao={ficha?.versaoRegras} />
                       )}
                     </div>
                   );

@@ -122,7 +122,7 @@ test.each(['DND_2014', 'DND_2024'])('consumo persistente e recuperação especí
 test('abas de slots e morte conservam marcações após desmontar e importar', () => {
   mockFicha = conjurador('DND_2024');
   let view = render(<AbaMagias />);
-  const label = 'Conjuração, círculo 1, espaço 1';
+  const label = /Conjuração, círculo 1, espaço 1:/;
   fireEvent.click(screen.getByRole('button', { name: label })); view.unmount();
   mockFicha = roundtrip(mockFicha); view = render(<AbaMagias />);
   expect(screen.getByRole('button', { name: label })).toHaveAttribute('aria-pressed', 'true'); view.unmount();

@@ -43,7 +43,14 @@ export type MagiaConteudo = MetadadosConteudo & {
   componentes: { componentes: string[]; material: string | null };
   concentracao: boolean | null; duracao: string; ritual: boolean | null;
   cura?: { dadosBase: number; dadosPorCirculo: number; dado: number; exclui: string[] };
+  selecionavel?: boolean;
+  resumoVerificado?: string;
+  combate?: { fonte: string; ataque?: 'distancia' | 'corpo-a-corpo'; resistencia?: string;
+    propriedades?: string[]; notas?: string[]; alvos?: { rotulo: string; base: number; porCirculo?: number; niveisPersonagem?: number[] };
+    dano?: FormulaMagia; danosAdicionais?: FormulaMagia[]; cura?: FormulaMagia };
 };
+export type FormulaMagia = { dadosBase: number; dado: number; dadosPorCirculo?: number; intervaloCirculos?: number;
+  niveisPersonagem?: number[]; modificador?: boolean; bonusFixo?: number; tipo?: string; rotulo?: string };
 
 export type AtributoPersonagem = "forca" | "destreza" | "constituicao" | "inteligencia" | "sabedoria" | "carisma";
 

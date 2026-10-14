@@ -185,7 +185,7 @@ test('fluxo mobile real restaura idiomas, perícias e distribuição ao alternar
   await tick(() => fireEvent.click(within(modal).getByRole('button', { name: `Escolher ${language}` })));
   expect(api.ficha.idiomas).toContain(language); expect(api.ficha.idiomas).not.toContain('Élfico');
   await tick(() => api.setFicha(api.fichas.find(f => f.id === second.id)));
-  expect(screen.queryByRole('heading', { name: /Método de distribuição/ })).not.toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: /Método de distribuição/ })).toBeInTheDocument();
   await tick(() => api.setFicha(api.fichas.find(f => f.id === first.id)));
   expect(screen.getByRole('checkbox', { name: 'Atletismo' })).toBeChecked();
   await tick(() => api.tentarSalvar());

@@ -1,8 +1,8 @@
-﻿# MinhaFichaDnd
+# MinhaFichaDnd
 
 Aplicação web para criar e gerenciar fichas de personagens de Dungeons & Dragons 5e, com regras de 2014 e 2024.
 
-[Aplicação publicada](https://minhafichadnd.com.br/) · [Repositório](https://github.com/Kazyg/MinhaFichaDnd) · [Revisão técnica atual](docs/revisao-portfolio-2026-10-13/RELATORIO.md)
+[Aplicação publicada](https://minhafichadnd.com.br/) · [Repositório](https://github.com/Kazyg/MinhaFichaDnd) · [Arquitetura e documentação](docs/arquiteture.md)
 
 O projeto reúne criação, progressão e consulta da ficha em uma interface para desktop e dispositivos móveis. Seu objetivo técnico é desenvolver e manter uma aplicação React com regras de domínio, persistência local e compatibilidade com documentos existentes, por meio de melhorias incrementais.
 
@@ -59,7 +59,7 @@ O build usa `javascript-obfuscator`. Ofuscação não substitui segurança ou li
 | `src/utils` | Utilitários e exportação PDF |
 | `public` | Recursos estáticos, template PDF e atribuições |
 | `scripts` | Inicialização local e build |
-| `docs` | Auditorias, decisões e evidências |
+| `docs` | Documentação central em `arquiteture.md`, auditorias e evidências |
 
 ## Persistência e compatibilidade
 

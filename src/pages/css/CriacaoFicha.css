@@ -150,11 +150,15 @@
   width: 300px;
 }
 
-.criacao-ficha::-webkit-scrollbar {
+.criacao-ficha::-webkit-scrollbar,
+.rolagem-progressao::-webkit-scrollbar,
+.atalhos-progressao::-webkit-scrollbar {
   width: 8px;
 }
 
-.criacao-ficha::-webkit-scrollbar-thumb {
+.criacao-ficha::-webkit-scrollbar-thumb,
+.rolagem-progressao::-webkit-scrollbar-thumb,
+.atalhos-progressao::-webkit-scrollbar-thumb {
   background: gray;
   border-radius: 4px;
 }

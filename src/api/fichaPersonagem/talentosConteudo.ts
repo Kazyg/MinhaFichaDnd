@@ -27,7 +27,7 @@ export function descreverTalentoSalvo(e: Efeitos) {
   return e.talentoSnapshot?.descricao ?? '';
 }
 export function erroTalento(f: Ficha, nivel: number, t: TalentoConteudo, escolhas?: EscolhasSelecaoTalento, categoria?: string, ignorar: Efeitos[] = []): string | null {
-  if (!Number.isInteger(nivel) || nivel < 1 || nivel > (f.levelTotal ?? 0)) return 'Nível de aquisição inválido.';
+  if (!Number.isInteger(nivel) || nivel < 1 || nivel > (f.versaoRegras === 'DND_2024' ? 20 : (f.levelTotal ?? 0))) return 'Nível de aquisição inválido.';
   const atual = buscarTalentoConteudo(f.versaoRegras, t.nome);
   if (!atual || atual.id !== t.id || atual.revisao !== t.revisao || (f.versaoRegras !== 'DND_2014' && !atual.suportado)) return 'Talento sem implementação verificada nesta edição; seleção pendente.';
   if (categoria && t.categoria !== categoria) return `Esta escolha exige a categoria ${categoria}.`;
@@ -78,11 +78,14 @@ export function registrarTalento(e: Efeitos, t: TalentoConteudo, escolhas: Escol
 export function selecionarTalentoInicial(f: Ficha, titulo: string, nome: string, escolhas: EscolhasSelecaoTalento = []): string | null {
   const humano = titulo === 'TalentoOrigemHumano' && f.versaoRegras === 'DND_2024' && f.racaPrincipal?.nome === 'Humano';
   const variante = titulo === 'TalentoEscolhidoHumanoVariante' && f.versaoRegras === 'DND_2014' && f.racaPrincipal?.nome === 'Humano Variante';
-  const origem = titulo === 'TalentoOrigem' && f.versaoRegras === 'DND_2024' && (f.backGround as unknown as { talentoOrigem?: string })?.talentoOrigem === nome;
-  if (!humano && !variante && !origem) return 'Esta origem/espécie não concede a escolha solicitada.';
+  const origem = titulo === 'TalentoOrigem' && f.versaoRegras === 'DND_2024' && (f.backGround as unknown as { talentoOrigem?: string })?.talentoOrigem;
+  const origemCompativel = origem && buscarTalentoConteudo(f.versaoRegras, origem)?.nome === buscarTalentoConteudo(f.versaoRegras, nome)?.nome;
+  if (!humano && !variante && !origemCompativel) return 'Esta origem/espécie não concede a escolha solicitada.';
   const t = buscarTalentoConteudo(f.versaoRegras, nome);
   if (!t) return 'Talento indisponível.';
   const antigos = (f.efeitos ?? []).filter(e => e.tituloEfeito === titulo);
+  const listaOrigem = origem && /^Iniciado em Magia \((.+)\)$/.exec(origem)?.[1];
+  if (listaOrigem && (Array.isArray(escolhas) || escolhas.lista?.[0] !== listaOrigem)) return 'A origem define a lista de magias.';
   const erro = erroTalento(f, 1, t, escolhas, f.versaoRegras === 'DND_2024' ? 'Origin' : undefined, antigos);
   if (erro) return erro;
   if (antigos.length) f.escolhasAnteriores = [...(f.escolhasAnteriores ?? []), { tipo: titulo, valor: JSON.parse(JSON.stringify(antigos)) }];

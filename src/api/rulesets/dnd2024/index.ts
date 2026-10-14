@@ -1,4 +1,5 @@
 import { getRulesetConfig } from "../regras";
+import { equipamentoBackground } from '../equipamentoBackground';
 import { getTalentosConteudo, getMagiasConteudo } from '../conteudo';
 import { BackGround } from "../../classesPrincipais/BackGrounds.class";
 import { Raca } from "../../classesPrincipais/Raca.class";
@@ -40,6 +41,7 @@ const criarOrigem = (
 
   origem.atributos = { atributo: atributos, bonus: atributos.map(() => 1) };
   origem.talentoOrigem = talentoOrigem;
+  origem.equipamentoInicial = equipamentoBackground('DND_2024', nome);
   return origem;
 };
 

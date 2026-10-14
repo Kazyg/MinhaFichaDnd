@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import { Ficha } from './FichaPersonagem';
 import { Atributos } from '../classesPrincipais/Atributos.class';
 import { Efeitos } from '../classesPrincipais/Efeitos';
@@ -85,16 +85,23 @@ test('Mago2014 INT16/SAB10 prepara4: livro, cópias e truques independentes', ()
   const s = fonte(f, 'mago');
   expect(s).toMatchObject({ magias: 4, truques: 3, livroPorProgressao: 6, cd: 13, ataque: 5 });
   const magias = listasMagias.mago.filter(m => m.nivel === 1).slice(0,7);
-  magias.slice(0,6).forEach(m => expect(adicionarMagia(f,s.id,m.nome)).toBeNull());
-  expect(adicionarMagia(f,s.id,magias[6].nome)).toMatch(/Limite de 6/);
-  expect(adicionarMagia(f,s.id,magias[6].nome,'copia')).toBeNull();
-  f.magiasConjuracao.slice(0,4).forEach(m => expect(prepararMagia(f,m.id,true)).toBeNull());
-  expect(prepararMagia(f,f.magiasConjuracao[4].id,true)).toMatch(/Limite de 4/);
+  magias.slice(0,4).forEach(m => expect(adicionarMagia(f,s.id,m.nome)).toBeNull());
+  expect(f.magiasConjuracao.every(m => m.preparada)).toBe(true);
+  const cheio = exportFicha(f);
+  expect(adicionarMagia(f,s.id,magias[4].nome)).toMatch(/limite de 4 magias/);
+  expect(adicionarMagia(f,s.id,magias[4].nome,'copia')).toMatch(/limite de 4 magias/);
+  expect(exportFicha(f)).toBe(cheio);
   expect(adicionarMagia(f,s.id,'Luz')).toBeNull();
-  expect(adicionarMagia(f,s.id,'Desejo')).toMatch(/círculo 1/);
+  expect(adicionarMagia(f,s.id,'Desejo')).toMatch(/1º círculo/);
   expect(resumo(roundtrip(f))).toEqual(resumo(f));
-  expect(prepararMagia(f,f.magiasConjuracao[0].id,false)).toBeNull();
-  expect(prepararMagia(f,f.magiasConjuracao[4].id,true)).toBeNull();
+  f.magiasConjuracao[0].preparada = false;
+  expect(adicionarMagia(f,s.id,magias[4].nome,'copia')).toBeNull();
+  expect(adicionarMagia(f,s.id,magias[0].nome)).toMatch(/limite de 4/);
+  f.magiasConjuracao[1].preparada = false;
+  const quantidadeLivro = f.magiasConjuracao.length;
+  expect(adicionarMagia(f,s.id,magias[0].nome)).toBeNull();
+  expect(f.magiasConjuracao).toHaveLength(quantidadeLivro);
+  expect(f.magiasConjuracao[0].preparada).toBe(true);
 });
 
 test('atributos finais F5 e nível ativo F4 definem preparação/CD; consultas não alteram ordem', () => {
@@ -114,8 +121,8 @@ test('mesma magia em duas fontes; exclusão por origem; slots altos não liberam
   expect(f.setMagiaEscolhidas({ classe: 'Mago', magia: 'Luz' })).toBeNull();
   expect(f.setMagiaEscolhidas({ classe: 'Clerigo', magia: 'Luz' })).toBeNull();
   expect(f.magiasConjuracao).toHaveLength(2);
-  expect(f.setMagiaEscolhidas({ classe: 'Mago', magia: 'Desejo' })).toMatch(/círculo 1/);
-  expect(f.setMagiaEscolhidas({ classe: 'Mago', magia: 'Luz' })).toMatch(/já está/);
+  expect(f.setMagiaEscolhidas({ classe: 'Mago', magia: 'Desejo' })).toMatch(/1º círculo/);
+  expect(f.setMagiaEscolhidas({ classe: 'Mago', magia: 'Luz' })).toMatch(/já escolheu/);
   expect(f.excluirMagiaEscolhidas('Luz')).toBe(false);
   const reaberta = roundtrip(f);
   removerMagia(reaberta, reaberta.magiasConjuracao[0].id);
@@ -137,8 +144,8 @@ test('migração não apaga ilegais, desconhecidas ou fonte ambígua; mantém sn
   const apenas = fixture('DND_2014', [['mago',1]]);
   apenas.magiasEscolhidas = f.magiasEscolhidas;
   migrarMagias(apenas);
-  expect(pendenciasMagia(apenas,apenas.magiasConjuracao[1]).join()).toMatch(/círculo 1/);
-  expect(pendenciasMagia(apenas,apenas.magiasConjuracao[2]).join()).toMatch(/ausente/);
+  expect(pendenciasMagia(apenas,apenas.magiasConjuracao[1]).join()).toMatch(/1º círculo/);
+  expect(pendenciasMagia(apenas,apenas.magiasConjuracao[2]).join()).toMatch(/ainda não está disponível no catálogo/);
 });
 
 test('persistência cria backup permanente F6 e rejeita formato inválido sem descartá-lo', () => {
@@ -166,7 +173,7 @@ test('revisão explícita de fonte mantém ID, arquiva origem anterior e rejeita
   expect(revisarFonteMagia(f, original.id, fonte(f,'guerreiro').id)).toBeNull();
   expect(f.magiasConjuracao[0]).toMatchObject({ id: original.id, categoria: 'truque', classe: 'Guerreiro', fonte: fonte(f,'guerreiro').id });
   expect(f.escolhasAnteriores[0].valor).toEqual(original);
-  expect(revisarFonteMagia(f, f.magiasConjuracao[1].id, fonte(f,'mago').id)).toMatch(/círculo 1/);
+  expect(revisarFonteMagia(f, f.magiasConjuracao[1].id, fonte(f,'mago').id)).toMatch(/1º círculo/);
   expect(resumo(roundtrip(f))).toEqual(resumo(f));
 });
 
@@ -212,7 +219,7 @@ test('subclasses 2014 limitam escolas; 2024 não; Mãos Mágicas tem vaga reserv
   const s = fonte(f,'ladino');
   const truques = getMagiasConteudo('DND_2024').filter(m => m.listas.includes('mago') && m.nivel === 0 && m.nome !== 'Mãos Mágicas');
   truques.slice(0,2).forEach(m => expect(adicionarMagia(f,s.id,m.nome)).toBeNull());
-  expect(adicionarMagia(f,s.id,truques[2].nome)).toMatch(/reservado/);
+  expect(adicionarMagia(f,s.id,truques[2].nome)).toMatch(/precisa escolher Mãos Mágicas/);
   expect(adicionarMagia(f,s.id,'Mãos Mágicas')).toBeNull();
 });
 
@@ -232,7 +239,7 @@ test('UI exibe espaços sem magias escolhidas e Pacto separado; render não grav
   render(<AbaMagias />);
   expect(screen.getByRole('region', { name: 'Conjuração' })).toBeInTheDocument();
   expect(screen.getByRole('region', { name: 'Magia de Pacto — Bruxo' })).toBeInTheDocument();
-  expect(screen.getByText('Círculo 3: 2 espaços')).toBeInTheDocument();
+  expect(screen.getAllByRole('button', { name: /Conjuração, círculo 3, espaço/ })).toHaveLength(2);
   expect(JSON.stringify(mockFicha)).toBe(antes);
 });
 
@@ -242,13 +249,121 @@ test('modal bloqueia Desejo no nível1, preserva filtro de truque e permite font
   const antes = JSON.stringify(listasMagias);
   render(<ModalMagias titulo="Seleção" magiaSelect="" onClose={jest.fn()} onSelect={onSelect} />);
   expect(screen.queryByText(/Catálogo parcial|Fonte de conjuração/)).not.toBeInTheDocument();
-  fireEvent.click(screen.getByText('Desejo'));
-  expect(screen.getByRole('button', { name: 'Escolher Desejo' })).toBeDisabled();
+  expect(screen.queryByRole('button', { name: 'Desejo' })).not.toBeInTheDocument();
   fireEvent.click(screen.getByText('Luz'));
   fireEvent.change(screen.getByLabelText('Aprender por'), { target: { value: fonte(mockFicha,'clerigo').id } });
   fireEvent.click(screen.getByRole('button', { name: 'Escolher Luz' }));
   expect(onSelect).toHaveBeenCalledWith('Luz',fonte(mockFicha,'clerigo').id,'progressao');
   expect(JSON.stringify(listasMagias)).toBe(antes);
   expect(buscarMagia('Desejo').nivel).toBe(9);
-  expect(validarEscolhaMagia(mockFicha,fonte(mockFicha,'mago').id,'Desejo')).toMatch(/círculo 1/);
+  expect(validarEscolhaMagia(mockFicha,fonte(mockFicha,'mago').id,'Desejo')).toMatch(/1º círculo/);
+});
+
+
+test.each(['DND_2014', 'DND_2024'])('cards %s: fontes, círculos, ataque, dano e preparação', edicao => {
+  mockFicha = fixture(edicao, [['mago', 5]]);
+  const mago = fonte(mockFicha, 'mago');
+  expect(adicionarMagia(mockFicha, mago.id, 'Raio de Fogo')).toBeNull();
+  expect(adicionarMagia(mockFicha, mago.id, 'Bola de Fogo')).toBeNull();
+  render(<AbaMagias />);
+  const truques = screen.getByRole('region', { name: 'Conjuração, Truques' });
+  expect(within(truques).queryByRole('button', { name: /espaço/ })).not.toBeInTheDocument();
+  const raio = within(truques).getByRole('article', { name: 'Raio de Fogo' });
+  expect(within(raio).getByText('Ataque +6')).toBeInTheDocument();
+  expect(within(raio).getByText('2d10')).toBeInTheDocument();
+  const bola = within(screen.getByRole('region', { name: 'Conjuração, Círculo 3' })).getByRole('article', { name: 'Bola de Fogo' });
+  expect(within(bola).getByText('8d6')).toBeInTheDocument();
+  expect(within(bola).getByText('CD 14 · Destreza')).toBeInTheDocument();
+  expect(within(bola).queryByText(/Ataque/)).not.toBeInTheDocument();
+  expect(selecionarEscolhasMagia(mockFicha).find(e => e.nome === 'Bola de Fogo').preparada).toBe(true);
+  expect(within(bola).queryByRole('button', { name: /Preparar|Despreparar|Arquivar|Consultar catálogo/, hidden:true })).not.toBeInTheDocument();
+  expect(bola.textContent).not.toMatch(/licença|legado-local|Revisão pendente|Dados de combate|Fonte:/);
+});
+
+test.each([['DND_2014', '1d8', '2d8'], ['DND_2024', '2d8', '4d8']])('cura %s respeita edição e círculo escolhido', (edicao, base, acima) => {
+  mockFicha = fixture(edicao, [['clerigo', 3]]);
+  expect(adicionarMagia(mockFicha, fonte(mockFicha, 'clerigo').id, 'Curar Ferimentos')).toBeNull();
+  render(<AbaMagias />);
+  const card = screen.getByRole('article', { name: 'Curar Ferimentos' });
+  expect(within(card).getByText(base)).toBeInTheDocument();
+  fireEvent.change(within(card).getByLabelText('Conjurar no círculo'), { target: { value: '2' } });
+  expect(within(card).getByText(acima)).toBeInTheDocument();
+  expect(within(card).queryByText(/Ataque/)).not.toBeInTheDocument();
+});
+
+test('cards preservam registros inativos e desconhecidos sem inventar fórmulas', () => {
+  mockFicha = fixture('DND_2024', [['mago', 4]]);
+  mockFicha.magiasConjuracao = [
+    { id: 'desconhecida', nome: 'Registro antigo', fonte: 'legado', classe: 'Antiga', nivel: null, categoria: 'pendente', edicao: 'DND_2014', catalogo: 'catalogo-2014' },
+    { id: 'alta', nome: 'Desejo', fonte: 'legado', classe: 'Antiga', nivel: 9, categoria: 'livro', edicao: 'DND_2014', catalogo: 'catalogo-2014' },
+  ];
+  const antes = JSON.stringify(mockFicha);
+  render(<AbaMagias />);
+  expect(within(screen.getByRole('region', { name: 'Magias pendentes de revisão' })).getByRole('article', { name: 'Registro antigo' })).toBeInTheDocument();
+  expect(within(screen.getByRole('region', { name: 'Conjuração, Círculo 9' })).getByRole('article', { name: 'Desejo' })).toBeInTheDocument();
+  expect(document.querySelector('.magia-card-valores strong')).toBeNull();
+  expect(JSON.stringify(mockFicha)).toBe(antes);
+});
+
+test.each(['DND_2014','DND_2024'])('Mísseis Mágicos %s aparece preparado, com dano por dardo e contador consistente', edicao => {
+  mockFicha = fixture(edicao,[['mago',4]]);
+  const mago = fonte(mockFicha,'mago');
+  expect(adicionarMagia(mockFicha,mago.id,'Mísseis Mágicos')).toBeNull();
+  render(<AbaMagias />);
+  expect(screen.getByText(`Preparadas 1/${mago.magias}`)).toBeInTheDocument();
+  const card = screen.getByRole('article',{ name:'Mísseis Mágicos' });
+  expect(within(card).getByText('1d4 + 1')).toBeInTheDocument();
+  expect(within(card).getByText('Energia')).toBeInTheDocument();
+  expect(within(card).getByRole('button',{ name:'Dardos: 3' })).toBeInTheDocument();
+  expect(within(card).getByRole('button',{ name:'Acerto automático' })).toBeInTheDocument();
+  expect(within(card).queryByText(/Ataque \+|CD \d/)).not.toBeInTheDocument();
+  expect(within(card).queryByRole('button',{ name:/Preparar|Despreparar|Consultar catálogo|Arquivar/, hidden:true })).not.toBeInTheDocument();
+  expect(card.textContent).not.toMatch(/F7|licença|Revisão pendente|catalogo-|consulta 20|Dados de combate/);
+  fireEvent.change(within(card).getByLabelText('Conjurar no círculo'),{ target:{ value:'2' } });
+  expect(within(card).getByRole('button',{ name:'Dardos: 4' })).toBeInTheDocument();
+  expect(within(card).getByText('1d4 + 1')).toBeInTheDocument();
+  expect(mockFicha.recursos.slots).toEqual({});
+});
+
+
+test.each(['DND_2014', 'DND_2024'])('mensagens simples distinguem catálogo, classe e limites em %s', edicao => {
+  const f = fixture(edicao, [['mago',1]]);
+  const s = fonte(f, 'mago');
+  const catalogo = getMagiasConteudo(edicao);
+  const incompat = catalogo.find(m => m.selecionavel !== false && !m.listas.includes('mago'));
+  expect(incompat).toBeDefined();
+  expect(validarEscolhaMagia(f,s.id,incompat.nome)).toBe('Esta magia não está disponível para sua classe.');
+  expect(validarEscolhaMagia(f,s.id,'Magia inexistente')).toBe(`Esta magia ainda não está disponível no catálogo da versão ${edicao.replace('DND_', '')}.`);
+  expect(validarEscolhaMagia(f,'inativa','Luz')).toBe('Não foi possível identificar a origem desta magia.');
+  expect(validarEscolhaMagia(f,s.id,'Desejo')).toBe('Você só pode escolher magias até o 1º círculo.');
+  const truques = catalogo.filter(m => m.selecionavel !== false && m.listas.includes('mago') && m.nivel === 0);
+  truques.slice(0,s.truques).forEach(m => expect(adicionarMagia(f,s.id,m.nome)).toBeNull());
+  expect(validarEscolhaMagia(f,s.id,truques[0].nome)).toBe('Você já escolheu esta magia.');
+  expect(validarEscolhaMagia(f,s.id,truques[s.truques].nome)).toBe(`Você já atingiu o limite de ${s.truques} truques.`);
+  const magias = catalogo.filter(m => m.selecionavel !== false && m.listas.includes('mago') && m.nivel === 1);
+  magias.slice(0,s.magias).forEach(m => expect(adicionarMagia(f,s.id,m.nome)).toBeNull());
+  expect(validarEscolhaMagia(f,s.id,magias[s.magias].nome)).toBe(`Você já atingiu o limite de ${s.magias} magias.`);
+});
+
+test.each(['DND_2014', 'DND_2024'])('modal filtra por fonte e círculo sem esconder validação em %s', edicao => {
+  mockFicha = fixture(edicao, [['mago',1],['clerigo',4]]);
+  render(<ModalMagias titulo="Escolher magia" onClose={jest.fn()} onSelect={jest.fn()} magiaSelect="" />);
+  const s = fonte(mockFicha,'mago');
+  const catalogo = getMagiasConteudo(edicao);
+  const nomesVisiveis = screen.getAllByRole('button').map(b => b.textContent);
+  catalogo.filter(m => m.selecionavel !== false).forEach(m => {
+    expect(nomesVisiveis.includes(m.nome)).toBe(m.listas.includes(s.lista) && m.nivel <= s.circuloMaximo);
+  });
+  expect(adicionarMagia(mockFicha,s.id,'Luz')).toBeNull();
+  fireEvent.click(screen.getByRole('button',{name:'Luz'}));
+  const aviso = screen.getByRole('status');
+  expect(aviso).toHaveTextContent('Você já escolheu esta magia.');
+  expect(screen.getByRole('button',{name:'Escolher Luz'})).toHaveAttribute('aria-describedby', 'erro-magia');
+  expect(screen.getByRole('button',{name:'Escolher Luz'})).toBeDisabled();
+  fireEvent.change(screen.getByRole('combobox',{name:'Aprender por'}), {target:{value:fonte(mockFicha,'clerigo').id}});
+  expect(screen.getByRole('button',{name:'Escolher Luz'})).toBeEnabled();
+  const nomesClerigo = screen.getAllByRole('button').map(b => b.textContent);
+  catalogo.filter(m => m.selecionavel !== false).forEach(m => {
+    expect(nomesClerigo.includes(m.nome)).toBe(m.listas.includes('clerigo') && m.nivel <= 2);
+  });
 });

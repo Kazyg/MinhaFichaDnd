@@ -1,4 +1,7 @@
+import { EquipamentoInicial, estruturarEquipamentos } from './concessoesEquipamento';
 export class BackGround{
+    equipamentoInicial?: EquipamentoInicial;
+    escolhaEquipamento?: 'equipamentos' | 'dinheiro';
     nome: string;
     proeficienciasHabilidades: string[];
     idiomas: number;
@@ -18,6 +21,7 @@ export class BackGround{
         this.proeficienciasHabilidades = proeficienciasHabilidades;
         this.idiomas = idiomas;
         this.equipamentos = equipamentos;
+        this.equipamentoInicial = estruturarEquipamentos(equipamentos);
         this.proeficienciaFerramentas = proeficienciasFerramentas;
         this.caracteristicas = caracteristicas;
     }

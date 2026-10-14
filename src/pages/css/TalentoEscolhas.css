@@ -1,0 +1,100 @@
+.talento-escolhas { display: grid; gap: 16px; margin: 20px 0; }
+.talento-escolha { min-width: 0; border: 1px solid #555; border-radius: 12px; padding: 16px; background: #222; }
+.talento-escolha legend { padding: 0 8px; color: #ffa34c; font-weight: 600; }
+.talento-escolha label { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+.talento-escolha select { width: 100%; padding: 12px; border: 1px solid #666; border-radius: 8px; background: #303030; color: #eee; }
+.talento-configurar { display: block; width: 100%; padding: 14px 18px; border: 1px solid #ed922f; border-radius: 10px; background: #382a1e; color: #ffb76c; font: inherit; font-weight: 600; text-align: left; cursor: pointer; line-height: 1.5; }
+.talento-configurar:hover { background: #4c3521; }
+.talento-configurar:focus-visible, .background-equipamento-escolhas button:focus-visible { outline: 2px solid #ffa34c; outline-offset: 3px; }
+.talento-configurar:disabled { opacity: .5; cursor: default; }
+.talento-origem { padding: 16px; margin: 16px 0; border: 1px solid #555; border-radius: 12px; }
+.talento-campo-fixo { color: #ffc187; padding: 12px; border-radius: 8px; background: #30271e; }
+.background-equipamento-escolhas { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.background-equipamento-escolhas button { flex: 1 1 180px; padding: 10px 14px; min-height: 40px; box-sizing: border-box; white-space: nowrap; border: 1px solid #666; border-radius: 10px; background: #282828; color: #eee; cursor: pointer; }
+.background-equipamento-escolhas button:hover { border-color: #ffa34c; }
+.background-equipamento-escolhas button[aria-pressed="true"] { border-color: #ffa34c; background: #47301f; color: #ffc187; }
+
+.popup.talento-magia-popup { z-index: 1100; background: #222; }
+
+.background-equipamento-escolhas small { display: inline; margin-left: 4px; font-size: inherit; white-space: nowrap; }
+
+.level-container .talento-origem.skills-container { padding: 12px; margin: 12px 0; text-align: left; }
+.talento-origem h4 { font-size: .95rem; line-height: 1.35; margin: 0 0 12px; }
+
+.modal-magias-header { flex-shrink: 0; }
+.modal-magias-dirigida.popup-content-modal[role="dialog"] { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr) auto; align-items: stretch; justify-content: stretch; height: min(32rem, calc(100dvh - 4rem)); max-height: none; min-height: 0; overflow: hidden; gap: 12px; }
+.modal-magias-dirigida .modal-magias-header { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.modal-magias-dirigida .modal-magias-header h2 { margin: 0; font-size: 1.3rem; line-height: 1.3; }
+.modal-magias-dirigida .talento-campo-fixo { margin: 0; padding: 6px 10px; font-size: .875rem; line-height: 1.4; }
+.modal-magias-dirigida[role="dialog"] > .popup-body-modal { display: grid; grid-template-columns: minmax(0, 28fr) minmax(0, 72fr); height: 100%; min-height: 0; overflow: hidden; gap: 16px; }
+.modal-magias-dirigida[role="dialog"] > .popup-body-modal > .lista-racas,
+.modal-magias-dirigida[role="dialog"] > .popup-body-modal > .detalhes-raca { width: 100%; height: 100%; min-height: 0; min-width: 0; margin: 0; }
+.modal-magias-dirigida[role="dialog"] .lista-racas ul { flex: 1; min-height: 0; overflow-y: auto; }
+.modal-magias-dirigida[role="dialog"] .lista-racas .filtros { flex-shrink: 0; }
+.modal-magias-dirigida[role="dialog"] > .popup-footer { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 0; padding-top: 12px; border-top: 1px solid #555; }
+.modal-magias-dirigida[role="dialog"] > .popup-footer button { width: auto !important; margin: 0; min-height: 44px; padding: 10px 16px; }
+@media (max-width: 768px) {
+  .modal-magias-dirigida[role="dialog"] > .popup-body-modal { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+  .modal-magias-dirigida[role="dialog"] .popup-body-modal > .lista-racas,
+  .modal-magias-dirigida[role="dialog"] .popup-body-modal > .detalhes-raca { height: 100%; min-height: 0; }
+}
+
+.level-container .talento-origem.skills-container > .talento-toggle { padding: 4px 0; margin: 0; font-size: .95rem; line-height: 1.35; font-weight: 650; color: white; background: transparent; border: 0; }
+.level-container .talento-origem.skills-container > .talento-configurar,
+.modal-talentos[role="dialog"] .talento-configurar,
+.modal-talentos[role="dialog"] .popup-footer .escolher-button,
+.modal-magias[role="dialog"] .popup-footer .escolher-button { display: flex; align-items: center; box-sizing: border-box; background: #ff4500; color: white; border: 0; border-radius: 5px; padding: 12px 16px; min-height: 40px; height: auto; margin: 0; font-size: .875rem; font-weight: 600; line-height: 1.4; text-align: left; cursor: pointer; }
+.level-container .talento-origem.skills-container > .talento-configurar { margin-top: 12px; width: 100%; }
+.modal-talentos[role="dialog"] .talento-configurar { width: 100%; }
+.level-container .talento-origem.skills-container > .talento-configurar:hover,
+.modal-talentos[role="dialog"] .talento-configurar:hover,
+.modal-talentos[role="dialog"] .popup-footer .escolher-button:hover,
+.modal-magias[role="dialog"] .popup-footer .escolher-button:hover { background: #e03e00; color: white; }
+.modal-talentos[role="dialog"] button:disabled, .modal-magias[role="dialog"] .escolher-button:disabled { opacity: .5; cursor: not-allowed; }
+
+.talento-origem > .talento-configurar { gap: 8px; }
+.talento-origem > .talento-configurar .button-icon { width: 35px; height: 35px; flex-shrink: 0; }
+.talento-origem > .talento-configurar .botao-texto { min-width: 0; }
+.talento-origem > .talento-configurar .botao-texto span { color: white; font-size: 12px; font-weight: 400; }
+.talento-origem > .talento-configurar .botao-texto strong { font-size: 14px; }
+
+.modal-magias[role="dialog"] > .popup-footer {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  gap: 8px;
+  margin: 0;
+  padding: 8px 0 0;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+.modal-magias[role="dialog"] > .popup-footer .escolher-button {
+  width: auto !important;
+  min-width: 0;
+  height: 40px;
+  min-height: 40px;
+  max-height: 40px;
+  flex: 0 0 auto;
+  padding: 0 12px;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+.modal-magias[role="dialog"] > .popup-footer .magia-confirmar {
+  flex: 0 1 auto;
+  width: max-content !important;
+  max-width: calc(100% - 80px);
+}
+.magia-selecao-texto {
+  display: block;
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}

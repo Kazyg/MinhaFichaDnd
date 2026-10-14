@@ -23,7 +23,7 @@ import { Efeitos } from "../../api/classesPrincipais/Efeitos";
 import { getRulesetData } from "../../api/rulesets/getRulesetData";
 
 
-export default function CriacaoFicha() {
+export default function CriacaoFicha({ exibirTitulo = true }: { exibirTitulo?: boolean }) {
   const [modalRacaAberto, setModalRacaAberto] = useState(false);
   const [modalClasseAberto, setModalClasseAberto] = useState(false);
   const [modalBackGroundsAberto, setModalBackGroundsAberto] = useState(false);
@@ -45,7 +45,7 @@ export default function CriacaoFicha() {
   const classes: Classes[] = rulesetData.classes;
   const backGrounds: BackGround[] = rulesetData.backgroundsOuOrigens;
   const quantidadeSelecoesIdioma = rulesetData.regras.quantidadeIdiomasLivres || ficha?.backGround?.idiomas || 0;
-  const idiomasObrigatoriosSelecionados = quantidadeSelecoesIdioma === 0 || (idiomasSelecionado?.filter(Boolean).length ?? 0) >= quantidadeSelecoesIdioma;
+
 
   const abrirSubGrupo = () => {
     if (ficha?.racaPrincipal?.subOpcoes && ficha?.racaPrincipal?.subOpcoes.length > 0) {
@@ -62,7 +62,7 @@ export default function CriacaoFicha() {
 
   return (
     <div className="criacao-ficha">
-      <h2>Escolha seu Personagem</h2>
+      {exibirTitulo && <h2>Escolha seu Personagem</h2>}
 
       <button className="botao-selecao" onClick={() => setModalRacaAberto(true)}>
         <img src={iconRaca} className="button-icon" alt={rulesetData.regras.labelRacaOuEspecie} />
@@ -254,20 +254,16 @@ export default function CriacaoFicha() {
               opcoes={backGrounds}
               onClose={() => setModalBackGroundsAberto(false)}
               onSelect={(backGrounds) => {
+                const mesmaOrigem = ficha?.backGround?.nome === backGrounds?.nome;
                 ficha?.setBackGround(backGrounds)
                 ficha?.excluirEfeitoPorTitulo("background")
-                if (rulesetData.regras.backgroundConcedeAtributos) {
-                  if (ficha) arquivarEscolha(ficha, 'atributos-antes-da-origem', ficha.atributosPersonagem);
-                  ficha?.setAtributosPersonagem(null);
-                  ficha?.setIniciativa(null);
-                }
                 setModalBackGroundsAberto(false)
                 let efeito = new Efeitos();
                 backGrounds?.proeficienciaFerramentas && efeito.setProeficienciasBackGround(backGrounds?.proeficienciaFerramentas);
                 efeito.setLevel(1);
                 efeito.setTituloEfeito("background");
                 ficha?.setEfeitos(efeito);
-                if (rulesetData.regras.backgroundConcedeTalentoOrigem) {
+                if (rulesetData.regras.backgroundConcedeTalentoOrigem && !mesmaOrigem) {
                   const origem2024 = backGrounds as BackGround & { talentoOrigem?: string };
                   const antigos = ficha?.efeitos?.filter(e => e.tituloEfeito === 'TalentoOrigem') ?? [];
                   if (ficha && antigos.length) ficha.escolhasAnteriores = [...(ficha.escolhasAnteriores ?? []), { tipo: 'talento-origem', valor: JSON.parse(JSON.stringify(antigos)) }];
@@ -284,12 +280,6 @@ export default function CriacaoFicha() {
                   }
                 }
                 forceUpdate();
-              }}
-              onInstrumentoSelect={(instrumento) => {
-                if (instrumento) ficha?.backGround?.equipamentos.push(instrumento);
-              }}
-              onItemSelect={(item) => {
-                if (item) ficha?.backGround?.equipamentos.push(item);
               }}
               backGroundInicial={ficha?.backGround ? ficha.backGround : null}
             />
@@ -327,7 +317,7 @@ export default function CriacaoFicha() {
             {ficha?.racaPrincipal &&
               ficha?.classePrincipal &&
               (rulesetData.version === "DND_2014" || ficha?.backGround) &&
-              (rulesetData.version === "DND_2014" || idiomasObrigatoriosSelecionados) &&
+
               (ficha.racaPrincipal.subOpcoes && ficha.racaPrincipal.subOpcoes.length > 0 ? ficha.subRaca : true) ? (
               <LevelOneSetup key={`${ficha.id}-${ficha.classePrincipal.nome}-${rulesetData.version === "DND_2014" ? "" : ficha.backGround?.nome}`} raca={ficha.subRaca ? ficha.subRaca : ficha.racaPrincipal} classe={ficha.classePrincipal} />
             ) : "Nivel 1"}
@@ -341,7 +331,7 @@ export default function CriacaoFicha() {
               {ficha?.racaPrincipal &&
                 ficha?.classePrincipal &&
                 (rulesetData.version === "DND_2014" || ficha?.backGround) &&
-                (rulesetData.version === "DND_2014" || idiomasObrigatoriosSelecionados) &&
+
                 (ficha.racaPrincipal.subOpcoes && ficha.racaPrincipal.subOpcoes.length > 0 ? ficha.subRaca : true) ? (
                 <NivelBlock
                   key={i + 2}

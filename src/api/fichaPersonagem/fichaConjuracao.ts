@@ -86,35 +86,41 @@ export function categoriaNaFonte(fonte: FonteConjuracao, nome: string): Categori
 }
 export function validarEscolhaMagia(f: Documento, fonteIdEscolhida: string, nome: string, aquisicao: EscolhaMagia['aquisicao'] = 'progressao', ignorarId?: string): string | null {
   const fonte = selecionarFontesConjuracao(f).find(s => s.id === fonteIdEscolhida);
-  if (!fonte) return 'Fonte de conjuração inativa ou não identificada.';
-  const magia = getMagiasConteudo(fonte.edicao).find(m => m.nome === nome && m.listas.includes(fonte.lista));
-  if (!magia) return 'Magia ausente da lista desta fonte no catálogo disponível.';
-  if (magia.nivel > fonte.circuloMaximo) return `Esta fonte permite no máximo o círculo ${fonte.circuloMaximo}. Espaços combinados não ampliam esse limite.`;
-  const escolhas = selecionarEscolhasMagia(f).filter(e => e.fonte === fonte.id && e.id !== ignorarId);
-  if (escolhas.some(e => e.nome === nome)) return 'Esta magia já está registrada nesta fonte.';
+  if (!fonte) return 'Não foi possível identificar a origem desta magia.';
+  const magia = getMagiasConteudo(fonte.edicao).find(m => m.nome === nome);
+  if (!magia || magia.selecionavel === false) return `Esta magia ainda não está disponível no catálogo da versão ${fonte.edicao.replace('DND_', '')}.`;
+  if (!magia.listas.includes(fonte.lista)) return 'Esta magia não está disponível para sua classe.';
+  if (magia.nivel > fonte.circuloMaximo) return `Você só pode escolher magias até o ${fonte.circuloMaximo}º círculo.`;
+  const registrada = selecionarEscolhasMagia(f).find(e => e.fonte === fonte.id && e.nome === nome && e.categoria === 'livro' && !e.preparada);
+  const idIgnorado = ignorarId ?? registrada?.id;
+  const escolhas = selecionarEscolhasMagia(f).filter(e => e.fonte === fonte.id && e.id !== idIgnorado);
+  if (escolhas.some(e => e.nome === nome)) return 'Você já escolheu esta magia.';
   const categoria = categoriaNaFonte(fonte, nome);
   const atuais = escolhas.filter(e => e.categoria === categoria);
+  if (categoria === 'livro' && escolhas.filter(e => e.nivel !== 0 && e.preparada).length >= fonte.magias) return `Você já atingiu o limite de ${fonte.magias} magias.`;
   const limite = categoria === 'truque' ? fonte.truques : categoria === 'livro' ? fonte.livroPorProgressao : fonte.magias;
   const contagem = categoria === 'livro' ? atuais.filter(e => e.aquisicao !== 'copia').length : atuais.length;
-  if (!(categoria === 'livro' && aquisicao === 'copia') && contagem >= limite) return `Limite de ${limite} para ${categoria === 'livro' ? 'magias de livro por progressão' : categoria + 's'} nesta fonte.`;
-  if (aquisicao === 'copia' && categoria !== 'livro') return 'Cópia só se aplica ao livro do Mago.';
+  if (!(categoria === 'livro' && aquisicao === 'copia') && contagem >= limite) return `Você já atingiu o limite de ${limite} ${categoria === 'truque' ? 'truques' : 'magias'}.`;
+  if (aquisicao === 'copia' && categoria !== 'livro') return 'Apenas Magos podem copiar magias para o grimório.';
   if (fonte.progressao === 'terco' && fonte.edicao === 'DND_2014' && magia.nivel > 0) {
     const escolas = fonte.chave === 'guerreiro' ? ['abjuração', 'evocação'] : ['encantamento', 'ilusão'];
     const livres = [3,8,14,20].filter(n => fonte.nivel >= n).length;
     if (!escolas.includes(magia.tipo) && atuais.filter(e => !escolas.includes(buscarMagia(e.nome)?.tipo ?? '')).length >= livres) return `Limite de ${livres} escolhas fora das escolas da subclasse.`;
   }
   // Arcane Trickster has Mage Hand and two free choices, not three free choices.
-  if (fonte.chave === 'ladino' && categoria === 'truque' && nome !== 'Mãos Mágicas' && atuais.filter(e => e.nome !== 'Mãos Mágicas').length >= fonte.truques - 1) return 'Um dos truques é reservado a Mãos Mágicas.';
+  if (fonte.chave === 'ladino' && categoria === 'truque' && nome !== 'Mãos Mágicas' && atuais.filter(e => e.nome !== 'Mãos Mágicas').length >= fonte.truques - 1) return 'Você precisa escolher Mãos Mágicas como um dos seus truques.';
   return null;
 }
 export function adicionarMagia(f: Ficha, fonteIdEscolhida: string, nome: string, aquisicao: EscolhaMagia['aquisicao'] = 'progressao'): string | null {
   const erro = validarEscolhaMagia(f, fonteIdEscolhida, nome, aquisicao);
   if (erro) return erro;
+  const registrada = selecionarEscolhasMagia(f).find(e => e.fonte === fonteIdEscolhida && e.nome === nome && e.categoria === 'livro' && !e.preparada);
+  if (registrada) return prepararMagia(f, registrada.id, true);
   const fonte = selecionarFontesConjuracao(f).find(s => s.id === fonteIdEscolhida)!;
   migrarMagias(f);
   const categoria = categoriaNaFonte(fonte, nome);
   const escolha: EscolhaMagia = { id: f.gerarIdUnico(), nome, fonte: fonte.id, classe: fonte.classe, edicao: fonte.edicao,
-    catalogo: fonte.edicao, conteudo: referenciaConteudo(buscarMagiaConteudo(fonte.edicao, nome)!), snapshot: buscarMagiaConteudo(fonte.edicao, nome), nivel: buscarMagiaConteudo(fonte.edicao, nome)!.nivel, categoria, preparada: categoria === 'preparada', aquisicao };
+    catalogo: fonte.edicao, conteudo: referenciaConteudo(buscarMagiaConteudo(fonte.edicao, nome)!), snapshot: buscarMagiaConteudo(fonte.edicao, nome), nivel: buscarMagiaConteudo(fonte.edicao, nome)!.nivel, categoria, preparada: categoria !== 'truque', aquisicao };
   f.magiasConjuracao = [...f.magiasConjuracao!, escolha];
   return null;
 }
@@ -128,7 +134,7 @@ export function prepararMagia(f: Ficha, id: string, preparada: boolean): string 
     if (escolha.conteudo && (!magia || magia.edicao !== fonte.edicao)) return 'Revisão de conteúdo desconhecida ou de outra edição; revise a escolha.';
     if (!escolha.conteudo && fonte.edicao === 'DND_2024') return 'Catálogo legado 2014: revise explicitamente o conteúdo antes de preparar em 2024.';
     if (!magia || magia.nome !== escolha.nome || !magia.listas.includes(fonte.lista) || magia.nivel === 0 || magia.nivel !== escolha.nivel || escolha.edicao !== fonte.edicao) return 'Revise a lista, o círculo e a edição desta escolha antes de preparar.';
-    if (selecionarEscolhasMagia(f).filter(e => e.fonte === fonte.id && e.id !== id && e.preparada).length >= fonte.magias) return `Limite de ${fonte.magias} magias preparadas.`;
+    if (selecionarEscolhasMagia(f).filter(e => e.fonte === fonte.id && e.id !== id && e.preparada).length >= fonte.magias) return `Você já atingiu o limite de ${fonte.magias} magias.`;
   }
   migrarMagias(f);
   f.magiasConjuracao = f.magiasConjuracao!.map(e => e.id === id ? { ...e, preparada, aviso: undefined } : e);
