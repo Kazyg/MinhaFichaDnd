@@ -1,7 +1,7 @@
-import { CirculoDosSonhos } from "../classesClassesNetos/CirculoDosSonhos.ts";
-import { Classes } from "../classesPrincipais/Classes.class.ts";
-import { SubClasses } from "../classesPrincipais/SubClasses.ts";
-import { CirculoDaLua, CirculoDaTerra, CirculoDoPastor } from "../classesPrincipais/SubClassesExport.ts";
+import { CirculoDosSonhos } from "../classesClassesNetos/CirculoDosSonhos";
+import { Classes } from "../classesPrincipais/Classes.class";
+import { SubClasses } from "../classesPrincipais/SubClasses";
+import { CirculoDaLua, CirculoDaTerra, CirculoDoPastor } from "../classesPrincipais/SubClassesExport";
 
 export class Druida extends Classes {
   level: number;

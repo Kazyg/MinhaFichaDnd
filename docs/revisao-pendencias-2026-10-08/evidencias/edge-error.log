@@ -1,0 +1,22 @@
+﻿[16388:26492:1008/061344.935:ERROR:components\os_crypt\async\browser\os_crypt_win.cc:63] Failed to encrypt: O sistema nÃ£o pode encontrar o arquivo especificado. (0x2)
+[16388:23932:1008/061344.964:ERROR:chrome\installer\util\google_update_settings_win.cc:544] Failed opening key Software\Microsoft\EdgeUpdate\ClientStateMedium\{56EB18F8-B008-4CBD-B6D2-8C97FE7E9062} to set usagestats; result: 5
+[16388:23932:1008/061344.965:ERROR:chrome\installer\util\google_update_settings_win.cc:587] Failed opening key Software\Microsoft\EdgeUpdate\ClientStateMedium\{56EB18F8-B008-4CBD-B6D2-8C97FE7E9062} to set urlstats; result: 5
+
+DevTools listening on ws://127.0.0.1:57166/devtools/browser/6333d192-a3f9-4194-abc9-26abd1d99982
+[16388:16152:1008/061350.407:ERROR:components\password_manager\core\browser\password_store\login_database_async_helper.cc:229] Encryption is not available.
+[16388:28176:1008/061350.420:ERROR:components\password_manager\core\browser\password_store\login_database_async_helper.cc:229] Encryption is not available.
+[16388:17212:1008/061350.470:ERROR:chrome\installer\util\google_update_settings_win.cc:544] Failed opening key Software\Microsoft\EdgeUpdate\ClientStateMedium\{56EB18F8-B008-4CBD-B6D2-8C97FE7E9062} to set usagestats; result: 5
+[16388:26492:1008/061350.471:ERROR:chrome\browser\ui\edge_window_tab_manager\api\wtm_interface_impl.cc:463] Failed to open registry key
+[16388:26492:1008/061350.478:ERROR:content\browser\gpu\gpu_process_host.cc:1190] GPU process exited unexpectedly: exit_code=-1073741790
+[16388:17212:1008/061350.481:ERROR:components\viz\host\persistent_cache_sandboxed_file_factory.cc:153] Failed to open persistent cache files in directory "C:\Users\GUILHE~1\AppData\Local\Temp\minhaficha-revisao-d201d0b3c2e9485fb1604c0e8f8feec8\edge-profile-3\GPUPersistentCache\DawnGraphiteCache\H6POMLZSBZPTMTLBCTMXRDH27BAKUDTA", error: 0: O arquivo jÃ¡ estÃ¡ sendo usado por outro processo. (0x20)
+[16388:26492:1008/061350.552:ERROR:content\browser\gpu\gpu_process_host.cc:1190] GPU process exited unexpectedly: exit_code=-1073741790
+[16388:26492:1008/061350.585:ERROR:content\browser\gpu\gpu_process_host.cc:1190] GPU process exited unexpectedly: exit_code=-1073741790
+[16388:23932:1008/061350.589:ERROR:components\viz\host\persistent_cache_sandboxed_file_factory.cc:153] Failed to open persistent cache files in directory "C:\Users\GUILHE~1\AppData\Local\Temp\minhaficha-revisao-d201d0b3c2e9485fb1604c0e8f8feec8\edge-profile-3\GPUPersistentCache\DawnGraphiteCache\H6POMLZSBZPTMTLBCTMXRDH27BAKUDTA", error: 0: O arquivo jÃ¡ estÃ¡ sendo usado por outro processo. (0x20)
+[16388:23932:1008/061350.592:ERROR:components\viz\host\persistent_cache_sandboxed_file_factory.cc:153] Failed to open persistent cache files in directory "C:\Users\GUILHE~1\AppData\Local\Temp\minhaficha-revisao-d201d0b3c2e9485fb1604c0e8f8feec8\edge-profile-3\GPUPersistentCache\DawnGraphiteCache\H6POMLZSBZPTMTLBCTMXRDH27BAKUDTA", error: 0: O arquivo jÃ¡ estÃ¡ sendo usado por outro processo. (0x20)
+[16388:26492:1008/061350.601:ERROR:content\browser\gpu\gpu_process_host.cc:1190] GPU process exited unexpectedly: exit_code=-1073741790
+[16388:34184:1008/061350.606:ERROR:services\device\public\cpp\geolocation\system_geolocation_source_win.cc:124] Failed to create IAppCapability: Acesso negado. (0x80070005)
+[16388:26492:1008/061350.622:ERROR:content\browser\gpu\gpu_process_host.cc:1190] GPU process exited unexpectedly: exit_code=-1073741790
+[16388:9560:1008/061350.627:ERROR:components\viz\host\persistent_cache_sandboxed_file_factory.cc:153] Failed to open persistent cache files in directory "C:\Users\GUILHE~1\AppData\Local\Temp\minhaficha-revisao-d201d0b3c2e9485fb1604c0e8f8feec8\edge-profile-3\GPUPersistentCache\DawnGraphiteCache\H6POMLZSBZPTMTLBCTMXRDH27BAKUDTA", error: 0: O arquivo jÃ¡ estÃ¡ sendo usado por outro processo. (0x20)
+[16388:26492:1008/061350.634:ERROR:content\browser\gpu\gpu_process_host.cc:1190] GPU process exited unexpectedly: exit_code=-1073741790
+[16388:26492:1008/061350.636:FATAL:content\browser\gpu\gpu_data_manager_impl_private.cc:436] GPU process isn't usable. Goodbye.
+

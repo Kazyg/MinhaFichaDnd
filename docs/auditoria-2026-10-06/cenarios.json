@@ -1,0 +1,587 @@
+[
+  {
+    "id": "V01-modificadores-proficiencia",
+    "actual": [
+      -1,
+      -1,
+      0,
+      2,
+      5
+    ],
+    "proficiency": [
+      2,
+      2,
+      3,
+      4,
+      5,
+      6,
+      6
+    ],
+    "expected": [
+      -1,
+      -1,
+      0,
+      2,
+      5
+    ]
+  },
+  {
+    "id": "V02-edicao-roundtrip-prototipos",
+    "edition": "DND_2024",
+    "legacyDefault": "DND_2014",
+    "invalidEdition": "INVALID",
+    "attributeMethod": "undefined",
+    "effectMethod": "undefined",
+    "subclassInstance": false
+  },
+  {
+    "id": "V03-espacos-DND_2014-[[\"Guerreiro\",3]]",
+    "actual": [
+      {
+        "nivelMagia": 0,
+        "espaco": 0
+      }
+    ],
+    "expected": []
+  },
+  {
+    "id": "V03-espacos-DND_2024-[[\"Paladino\",1]]",
+    "actual": [
+      {
+        "nivelMagia": 0,
+        "espaco": 0
+      }
+    ],
+    "expected": [
+      2
+    ]
+  },
+  {
+    "id": "V03-espacos-DND_2014-[[\"Paladino\",3]]",
+    "actual": [
+      {
+        "nivelMagia": 1,
+        "espaco": 2
+      },
+      {
+        "nivelMagia": 2,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 3,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 4,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 5,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 6,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 7,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 8,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 9,
+        "espaco": 0
+      }
+    ],
+    "expected": [
+      3
+    ]
+  },
+  {
+    "id": "V03-espacos-DND_2024-[[\"Paladino\",3]]",
+    "actual": [
+      {
+        "nivelMagia": 1,
+        "espaco": 2
+      },
+      {
+        "nivelMagia": 2,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 3,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 4,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 5,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 6,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 7,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 8,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 9,
+        "espaco": 0
+      }
+    ],
+    "expected": [
+      3
+    ]
+  },
+  {
+    "id": "V03-espacos-DND_2024-[[\"Mago\",1],[\"Paladino\",1]]",
+    "actual": [
+      {
+        "nivelMagia": 1,
+        "espaco": 2
+      },
+      {
+        "nivelMagia": 2,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 3,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 4,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 5,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 6,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 7,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 8,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 9,
+        "espaco": 0
+      }
+    ],
+    "expected": [
+      3
+    ]
+  },
+  {
+    "id": "V03-espacos-DND_2014-[[\"Mago\",1],[\"Paladino\",2]]",
+    "actual": [
+      {
+        "nivelMagia": 1,
+        "espaco": 3
+      },
+      {
+        "nivelMagia": 2,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 3,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 4,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 5,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 6,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 7,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 8,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 9,
+        "espaco": 0
+      }
+    ],
+    "expected": [
+      3
+    ]
+  },
+  {
+    "id": "V03-espacos-DND_2024-[[\"Bruxo\",3]]",
+    "actual": [
+      {
+        "nivelMagia": 0,
+        "espaco": 0
+      }
+    ],
+    "expected": [
+      "pacto: 2 espaços de nível 2"
+    ]
+  },
+  {
+    "id": "V03-espacos-DND_2014-[[\"Mago\",5]]",
+    "actual": [
+      {
+        "nivelMagia": 1,
+        "espaco": 4
+      },
+      {
+        "nivelMagia": 2,
+        "espaco": 3
+      },
+      {
+        "nivelMagia": 3,
+        "espaco": 2
+      },
+      {
+        "nivelMagia": 4,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 5,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 6,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 7,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 8,
+        "espaco": 0
+      },
+      {
+        "nivelMagia": 9,
+        "espaco": 0
+      }
+    ],
+    "expected": [
+      4,
+      3,
+      2
+    ]
+  },
+  {
+    "id": "V04-ASI-DND_2014",
+    "classes": [
+      {
+        "name": "Paladino",
+        "level4": [
+          "Incremento no Valor de Habilidade"
+        ],
+        "uiRecognizes": true
+      },
+      {
+        "name": "barbaro",
+        "level4": [
+          "Incremento no Valor de Habilidade"
+        ],
+        "uiRecognizes": true
+      },
+      {
+        "name": "Bardo",
+        "level4": [
+          "Incremento no Valor de Habilidade"
+        ],
+        "uiRecognizes": true
+      },
+      {
+        "name": "Bruxo",
+        "level4": [
+          "Incremento no Valor de Habilidade"
+        ],
+        "uiRecognizes": true
+      },
+      {
+        "name": "Clerigo",
+        "level4": [
+          "Incremento no Valor de Habilidade"
+        ],
+        "uiRecognizes": true
+      },
+      {
+        "name": "Druida",
+        "level4": [
+          "Aprimoramento de Forma Selvagem",
+          "Incremento no Valor de Habilidade"
+        ],
+        "uiRecognizes": true
+      },
+      {
+        "name": "Feiticeiro",
+        "level4": [
+          "Incremento no Valor de Habilidade"
+        ],
+        "uiRecognizes": true
+      },
+      {
+        "name": "Mago",
+        "level4": [
+          "Incremento no Valor de Habilidade"
+        ],
+        "uiRecognizes": true
+      },
+      {
+        "name": "Guerreiro",
+        "level4": [
+          "Incremento no Valor de Habilidade"
+        ],
+        "uiRecognizes": true
+      },
+      {
+        "name": "Monge",
+        "level4": [
+          "Incremento no Valor de Habilidade",
+          "Queda Lenta"
+        ],
+        "uiRecognizes": true
+      },
+      {
+        "name": "Patrulheiro",
+        "level4": [
+          "Incremento no Valor de Habilidade"
+        ],
+        "uiRecognizes": true
+      },
+      {
+        "name": "Ladino",
+        "level4": [
+          "Incremento no Valor de Habilidade"
+        ],
+        "uiRecognizes": true
+      }
+    ]
+  },
+  {
+    "id": "V04-ASI-DND_2024",
+    "classes": [
+      {
+        "name": "Paladino",
+        "level4": [
+          "Aumento no Valor de Atributo"
+        ],
+        "uiRecognizes": false
+      },
+      {
+        "name": "barbaro",
+        "level4": [
+          "Aumento no Valor de Atributo"
+        ],
+        "uiRecognizes": false
+      },
+      {
+        "name": "Bardo",
+        "level4": [
+          "Aumento no Valor de Atributo"
+        ],
+        "uiRecognizes": false
+      },
+      {
+        "name": "Bruxo",
+        "level4": [
+          "Aumento no Valor de Atributo"
+        ],
+        "uiRecognizes": false
+      },
+      {
+        "name": "Clerigo",
+        "level4": [
+          "Aumento no Valor de Atributo"
+        ],
+        "uiRecognizes": false
+      },
+      {
+        "name": "Druida",
+        "level4": [
+          "Aumento no Valor de Atributo"
+        ],
+        "uiRecognizes": false
+      },
+      {
+        "name": "Feiticeiro",
+        "level4": [
+          "Aumento no Valor de Atributo"
+        ],
+        "uiRecognizes": false
+      },
+      {
+        "name": "Mago",
+        "level4": [
+          "Aumento no Valor de Atributo"
+        ],
+        "uiRecognizes": false
+      },
+      {
+        "name": "Guerreiro",
+        "level4": [
+          "Aumento no Valor de Atributo"
+        ],
+        "uiRecognizes": false
+      },
+      {
+        "name": "Monge",
+        "level4": [
+          "Aumento no Valor de Atributo",
+          "Queda Lenta"
+        ],
+        "uiRecognizes": false
+      },
+      {
+        "name": "Patrulheiro",
+        "level4": [
+          "Aumento no Valor de Atributo"
+        ],
+        "uiRecognizes": false
+      },
+      {
+        "name": "Ladino",
+        "level4": [
+          "Aumento no Valor de Atributo"
+        ],
+        "uiRecognizes": false
+      }
+    ]
+  },
+  {
+    "id": "V05-preparacao-mago2014",
+    "actual": [
+      {
+        "classe": "Mago",
+        "magias": 1
+      }
+    ],
+    "expected": 4
+  },
+  {
+    "id": "V06-magia-nivel9-no-nivel1",
+    "actual": {
+      "valida": true,
+      "classeValida": "Mago"
+    },
+    "expected": "rejeitar"
+  },
+  {
+    "id": "V07-truques-contam-magias",
+    "actual": {
+      "valida": false
+    },
+    "expected": "permitir primeiro truque"
+  },
+  {
+    "id": "V08-iniciativa-apos-bonus",
+    "dex": 16,
+    "initiative": 2,
+    "expected": 3
+  },
+  {
+    "id": "V09-PV-guerreiro5-pdf",
+    "display": 44,
+    "pdfField": 0,
+    "expected": 44
+  },
+  {
+    "id": "V10-multiclasse-nomes",
+    "available": [
+      "Paladino",
+      "Bardo",
+      "Bruxo",
+      "Druida",
+      "Feiticeiro",
+      "Mago",
+      "Guerreiro",
+      "Monge",
+      "Patrulheiro",
+      "Ladino"
+    ],
+    "missing": [
+      "barbaro",
+      "Clerigo"
+    ]
+  },
+  {
+    "id": "V11-CA-sem-treino",
+    "ui": 10,
+    "pdf": 18,
+    "expected2014": 18
+  },
+  {
+    "id": "V12-subclasse-duplicada",
+    "stored": [
+      "Campeão",
+      "Cavaleiro Místico"
+    ],
+    "display": "Campeão"
+  },
+  {
+    "id": "V13-remocao-nivel5-perde-subclasse",
+    "fighterLevel": 4,
+    "subclasses": [],
+    "expected": "manter subclasse de Guerreiro nível 4"
+  },
+  {
+    "id": "V14-regex-atributo-ingles",
+    "effects": [],
+    "expected": [
+      {
+        "attribute": "forca",
+        "bonus": 2
+      }
+    ]
+  },
+  {
+    "id": "V15-pdf-niveis",
+    "actual": "Guerreiro 5 | Guerreiro 3 | Mago 2",
+    "expected": "Guerreiro 3 | Mago 2"
+  },
+  {
+    "id": "V16-storage-corrompido",
+    "before": "[{broken",
+    "after": "[]",
+    "expected": "preservar original"
+  },
+  {
+    "id": "V17-salvamento-mutacao",
+    "afterEdit": "Antes",
+    "afterExplicitSave": "Depois"
+  },
+  {
+    "id": "V18-idiomas-reabertura-dom",
+    "stored": [
+      "Comum",
+      "Élfico",
+      "Anão"
+    ],
+    "asksAgain": true,
+    "levelOneSetupVisible": false,
+    "expected": "idiomas e edição restaurados"
+  }
+]

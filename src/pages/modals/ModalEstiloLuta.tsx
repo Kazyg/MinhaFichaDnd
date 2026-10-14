@@ -1,5 +1,6 @@
+import AccessibleDialog from "../components/AccessibleDialog";
 import React, { useState } from "react";
-import { useFicha } from "../../api/fichaPersonagem/FichaContext.tsx";
+import { useFicha } from "../../api/fichaPersonagem/FichaContext";
 
 interface ModalSelecaoProps {
     opcoes: { classe: string[], nome: string, descricao: string }[];
@@ -18,27 +19,27 @@ const ModalSelecaoEstiloLuta: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
         texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
     const opcoesFiltradas = opcoes.filter((opcao) =>
-        normalizar(opcao.nome).includes(filtro.toLowerCase())
+        normalizar(opcao.nome).includes(normalizar(filtro))
     );
 
     return (
-        <div className="popup-content-modal">
+        <AccessibleDialog className="popup-content-modal" onClose={onClose} aria-label={titulo}>
             <h2>{titulo}</h2>
             <div className="popup-body-modal">
                 <div className="lista-racas">
                     <input
                         type="text"
-                        placeholder="Filtrar classes..."
+                        aria-label="Filtrar estilos de luta..." placeholder="Filtrar estilos de luta..."
                         value={filtro}
                         onChange={(e) => setFiltro(e.target.value)}
                     />
                     <ul>
-                        {opcoesFiltradas.filter(e => !ficha?.estiloLuta?.find(fe => fe.estilo === e.nome)).map((opcao) => (
-                            <li key={opcao.nome} onClick={() => {
+                        {opcoesFiltradas.filter(e => e.nome === EstiloInicial?.nome || !ficha?.estiloLuta?.find(fe => fe.estilo === e.nome)).map((opcao) => (
+                            <li key={opcao.nome}><button type="button" className="selection-option" aria-pressed={selecionado?.nome === opcao.nome} onClick={() => {
                                 setSelecionado(opcao);
                             }}>
                                 {opcao.nome}
-                            </li>
+                            </button></li>
                         ))}
                     </ul>
                 </div>
@@ -61,7 +62,7 @@ const ModalSelecaoEstiloLuta: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
                     }}>Escolher {selecionado.nome}</button>)}
                 <button className="escolher-button" onClick={() => { onClose() }}>Fechar</button>
             </div>
-        </div>
+        </AccessibleDialog>
     );
 };
 

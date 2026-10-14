@@ -1,0 +1,18 @@
+MinhaFichaDnd — atribuições do subconjunto versionado F7
+Revisão: 2026-10-07
+
+This work includes material taken from the System Reference Document 5.1 (“SRD 5.1”) by Wizards of the Coast LLC and available at https://dnd.wizards.com/resources/systems-reference-document. The SRD 5.1 is licensed under the Creative Commons Attribution 4.0 International License available at https://creativecommons.org/licenses/by/4.0/legalcode.
+
+This work includes material from the System Reference Document 5.2.1 (“SRD 5.2.1”) by Wizards of the Coast LLC, available at https://www.dndbeyond.com/srd. The SRD 5.2.1 is licensed under the Creative Commons Attribution 4.0 International License, available at https://creativecommons.org/licenses/by/4.0/legalcode.
+
+Alterações locais: resumos e nomes em português, representação de requisitos, escolhas, listas, escolas e fórmulas em dados de software. Estes resumos não são traduções oficiais.
+
+Escopo confirmado nesta revisão:
+- SRD 5.1: resumo e fórmula de Cure Wounds (Curar Ferimentos).
+- SRD 5.2.1: resumos de Alert, Skilled, Grappler e Cure Wounds; índice de Light, Mage Hand, Wish, Minor Illusion, Prestidigitation, Detect Magic e Disguise Self.
+- Consulta 2026-10-08: dez resumos locais de Metamagic Options 2024, SRD 5.2.1 pp. 66–67. Revisão srd-5.2.1-pt-resumo-1; aplicação e gasto manuais. Snapshots anteriores não são substituídos.
+- Validação de especialização em perícias: Bard/Rogue (SRD 5.1) e Bard/Ranger/Rogue/Wizard (SRD 5.2.1), conforme as fontes e limitações no relatório de implementação de 08/10/2026.
+
+As atribuições acima se referem ao subconjunto indicado e não certificam os demais registros locais, traduções antigas, ilustrações, logotipos ou modelos PDF. Nesses registros a procedência, revisão e licença permanecem pendentes de documentação. Acesso gratuito a uma página não foi tratado como licença de redistribuição. Nenhum material legado foi removido por suposição.
+
+Os registros identificam conteúdo de origem oficial, compatível, homebrew ou não verificado separadamente. “Oficial” descreve a origem da regra, não autoria/endosso do aplicativo ou de seus resumos. Não foram adicionados registros homebrew ou compatíveis nesta revisão.

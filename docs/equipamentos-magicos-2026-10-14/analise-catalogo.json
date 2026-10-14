@@ -1,0 +1,4164 @@
+{
+  "registrosLocais": 2812,
+  "registrosIngles": 2812,
+  "candidatos": [
+    {
+      "nome": "+1 Ammunition",
+      "nomeLocal": "+1 Ammunition",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "+1 Armor",
+      "nomeLocal": "+1 Armor",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "+1 Moon Sickle",
+      "nomeLocal": "+1 Moon Sickle",
+      "tipo": "M, simple, Attunement",
+      "raridade": "uncommon",
+      "sintonizavel": true
+    },
+    {
+      "nome": "+1 Shield (*)",
+      "nomeLocal": "+1 Shield (*)",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "+1 Weapon",
+      "nomeLocal": "+1 Weapon",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "+1 Weapon (no damage)",
+      "nomeLocal": "+1 Weapon (no damage)",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "+2 Ammunition",
+      "nomeLocal": "+2 Ammunition",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "+2 Armor",
+      "nomeLocal": "+2 Armor",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "+2 Moon Sickle",
+      "nomeLocal": "+2 Moon Sickle",
+      "tipo": "M, simple, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "+2 Shield (*)",
+      "nomeLocal": "+2 Shield (*)",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "+2 Weapon",
+      "nomeLocal": "+2 Weapon",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "+2 Weapon (no damage)",
+      "nomeLocal": "+2 Weapon (no damage)",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "+3 Ammunition",
+      "nomeLocal": "+3 Ammunition",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "+3 Armor",
+      "nomeLocal": "+3 Armor",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "+3 Moon Sickle",
+      "nomeLocal": "+3 Moon Sickle",
+      "tipo": "M, simple, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "+3 Shield (*)",
+      "nomeLocal": "+3 Shield (*)",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "+3 Weapon",
+      "nomeLocal": "+3 Weapon",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "+3 Weapon (no damage)",
+      "nomeLocal": "+3 Weapon (no damage)",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Acheron Blade",
+      "nomeLocal": "Acheron Blade",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Adamantine Ammunition",
+      "nomeLocal": "Adamantine Ammunition",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Adamantine Armor",
+      "nomeLocal": "Adamantine Armor",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Adamantine Weapon",
+      "nomeLocal": "Adamantine Weapon",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Adze of Annam",
+      "nomeLocal": "Adze of Annam",
+      "tipo": "M, martial, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Akmon, Hammer of Purphoros",
+      "nomeLocal": "Akmon, Hammer of Purphoros",
+      "tipo": "M, martial, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Ammunition of Slaying",
+      "nomeLocal": "Ammunition of Slaying",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Animated Shield",
+      "nomeLocal": "Animated Shield",
+      "tipo": "S, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Animated Shield",
+      "nomeLocal": "Animated Shield",
+      "tipo": "S|XPHB, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Antimagic Armor",
+      "nomeLocal": "Antimagic Armor",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Antimatter Rifle",
+      "nomeLocal": "Antimatter Rifle",
+      "tipo": "R, martial, futuristic, Ammo: energy cell",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Antimatter Rifle",
+      "nomeLocal": "Antimatter Rifle",
+      "tipo": "R|XPHB, martial, futuristic, Ammo: energy cell|xdmg",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Armblade",
+      "nomeLocal": "Armblade",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Armor of Acid Resistance",
+      "nomeLocal": "Armor of Acid Resistance",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Armor of Cold Resistance",
+      "nomeLocal": "Armor of Cold Resistance",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Armor of Fire Resistance",
+      "nomeLocal": "Armor of Fire Resistance",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Armor of Force Resistance",
+      "nomeLocal": "Armor of Force Resistance",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Armor of Fungal Spores",
+      "nomeLocal": "Armor of Fungal Spores",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Armor of Gleaming",
+      "nomeLocal": "Armor of Gleaming",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Armor of Invulnerability",
+      "nomeLocal": "Armor of Invulnerability",
+      "tipo": "HA, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Armor of Invulnerability",
+      "nomeLocal": "Armor of Invulnerability",
+      "tipo": "HA|XPHB, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Armor of Lightning Resistance",
+      "nomeLocal": "Armor of Lightning Resistance",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Armor of Necrotic Resistance",
+      "nomeLocal": "Armor of Necrotic Resistance",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Armor of Poison Resistance",
+      "nomeLocal": "Armor of Poison Resistance",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Armor of Psychic Resistance",
+      "nomeLocal": "Armor of Psychic Resistance",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Armor of Radiant Resistance",
+      "nomeLocal": "Armor of Radiant Resistance",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Armor of Safeguarding",
+      "nomeLocal": "Armor of Safeguarding",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Armor of the Fallen",
+      "nomeLocal": "Armor of the Fallen",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Armor of Thunder Resistance",
+      "nomeLocal": "Armor of Thunder Resistance",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Armor of Vulnerability (Bludgeoning)",
+      "nomeLocal": "Armor of Vulnerability (Bludgeoning)",
+      "tipo": "HA, Cursed, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Armor of Vulnerability (Bludgeoning)",
+      "nomeLocal": "Armor of Vulnerability (Bludgeoning)",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Armor of Vulnerability (Piercing)",
+      "nomeLocal": "Armor of Vulnerability (Piercing)",
+      "tipo": "HA, Cursed, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Armor of Vulnerability (Piercing)",
+      "nomeLocal": "Armor of Vulnerability (Piercing)",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Armor of Vulnerability (Slashing)",
+      "nomeLocal": "Armor of Vulnerability (Slashing)",
+      "tipo": "HA, Cursed, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Armor of Vulnerability (Slashing)",
+      "nomeLocal": "Armor of Vulnerability (Slashing)",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Armor of Weightlessness",
+      "nomeLocal": "Armor of Weightlessness",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Arrow of Slaying (*)",
+      "nomeLocal": "Arrow of Slaying (*)",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Arrow-Catching Shield",
+      "nomeLocal": "Arrow-Catching Shield",
+      "tipo": "S, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Arrow-Catching Shield",
+      "nomeLocal": "Arrow-Catching Shield",
+      "tipo": "S|XPHB, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Ascendant Dragon's Wrath Weapon",
+      "nomeLocal": "Ascendant Dragon's Wrath Weapon",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Automatic Pistol",
+      "nomeLocal": "Automatic Pistol",
+      "tipo": "R, martial, modern, Ammo: modern bullet",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Automatic Rifle",
+      "nomeLocal": "Automatic Rifle",
+      "tipo": "R, martial, modern, Ammo: modern bullet",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Automatic Rifle",
+      "nomeLocal": "Automatic Rifle",
+      "tipo": "R|XPHB, martial, modern, Ammo: firearm bullet|xphb",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Axe of the Dwarvish Lords",
+      "nomeLocal": "Axe of the Dwarvish Lords",
+      "tipo": "M, martial, Cursed, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Axe of the Dwarvish Lords",
+      "nomeLocal": "Axe of the Dwarvish Lords",
+      "tipo": "M|XPHB, martial, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Azuredge",
+      "nomeLocal": "Azuredge",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Baba Yaga's Pestle",
+      "nomeLocal": "Baba Yaga's Pestle",
+      "tipo": "M, simple, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Baleful Talon",
+      "nomeLocal": "Baleful Talon",
+      "tipo": "M, simple",
+      "raridade": "very rare",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Barding",
+      "nomeLocal": "Barding",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Battering Shield",
+      "nomeLocal": "Battering Shield",
+      "tipo": "S, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Battleaxe",
+      "nomeLocal": "Battleaxe",
+      "tipo": "M, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Battleaxe",
+      "nomeLocal": "Battleaxe",
+      "tipo": "M|XPHB, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Berserker Axe",
+      "nomeLocal": "Berserker Axe",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Black Dragon Scale Mail",
+      "nomeLocal": "Black Dragon Scale Mail",
+      "tipo": "MA, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Black Dragon Scale Mail",
+      "nomeLocal": "Black Dragon Scale Mail",
+      "tipo": "MA|XPHB, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Blackrazor",
+      "nomeLocal": "Blackrazor",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Blackrazor",
+      "nomeLocal": "Blackrazor",
+      "tipo": "M|XPHB, martial, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Blackstaff",
+      "nomeLocal": "Blackstaff",
+      "tipo": "simple, Staff, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Blade of Avernus",
+      "nomeLocal": "Blade of Avernus",
+      "tipo": "M, martial, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Blade of Broken Mirrors (Dormant)",
+      "nomeLocal": "Blade of Broken Mirrors (Dormant)",
+      "tipo": "M, simple, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Blade of the Medusa",
+      "nomeLocal": "Blade of the Medusa",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Blood Spear",
+      "nomeLocal": "Blood Spear",
+      "tipo": "M, simple, Attunement",
+      "raridade": "uncommon",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Bloodaxe",
+      "nomeLocal": "Bloodaxe",
+      "tipo": "M, martial, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Bloodrage Greataxe",
+      "nomeLocal": "Bloodrage Greataxe",
+      "tipo": "M, martial",
+      "raridade": "uncommon",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Bloodseeker Ammunition",
+      "nomeLocal": "Bloodseeker Ammunition",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Bloodshed Blade",
+      "nomeLocal": "Bloodshed Blade",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Blowgun",
+      "nomeLocal": "Blowgun",
+      "tipo": "R, martial, Ammo: blowgun needle|phb",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Blowgun",
+      "nomeLocal": "Blowgun",
+      "tipo": "R|XPHB, martial, Ammo: needle|xphb",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Blue Dragon Scale Mail",
+      "nomeLocal": "Blue Dragon Scale Mail",
+      "tipo": "MA, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Blue Dragon Scale Mail",
+      "nomeLocal": "Blue Dragon Scale Mail",
+      "tipo": "MA|XPHB, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Bob",
+      "nomeLocal": "Bob",
+      "tipo": "M, martial",
+      "raridade": "unknown (magic)",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Bonecounter",
+      "nomeLocal": "Bonecounter",
+      "tipo": "M, simple",
+      "raridade": "rare",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Bookmark",
+      "nomeLocal": "Bookmark",
+      "tipo": "M, simple, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Boomerang Shield",
+      "nomeLocal": "Boomerang Shield",
+      "tipo": "S, Attunement",
+      "raridade": "uncommon",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Bow of Conflagration",
+      "nomeLocal": "Bow of Conflagration",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Bow of Melodies",
+      "nomeLocal": "Bow of Melodies",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Brass Dragon Scale Mail",
+      "nomeLocal": "Brass Dragon Scale Mail",
+      "tipo": "MA, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Brass Dragon Scale Mail",
+      "nomeLocal": "Brass Dragon Scale Mail",
+      "tipo": "MA|XPHB, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Breastplate",
+      "nomeLocal": "Breastplate",
+      "tipo": "MA",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Breastplate",
+      "nomeLocal": "Breastplate",
+      "tipo": "MA|XPHB",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Breastplate of Balance",
+      "nomeLocal": "Breastplate of Balance",
+      "tipo": "MA, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Bronze Dragon Scale Mail",
+      "nomeLocal": "Bronze Dragon Scale Mail",
+      "tipo": "MA, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Bronze Dragon Scale Mail",
+      "nomeLocal": "Bronze Dragon Scale Mail",
+      "tipo": "MA|XPHB, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Candle Mace",
+      "nomeLocal": "Candle Mace",
+      "tipo": "M, simple",
+      "raridade": "unknown (magic)",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Canian Fork",
+      "nomeLocal": "Canian Fork",
+      "tipo": "M, martial, Cursed, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Cast-Off Armor",
+      "nomeLocal": "Cast-Off Armor",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Chain Mail",
+      "nomeLocal": "Chain Mail",
+      "tipo": "HA",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Chain Mail",
+      "nomeLocal": "Chain Mail",
+      "tipo": "HA|XPHB",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Chain Shirt",
+      "nomeLocal": "Chain Shirt",
+      "tipo": "MA",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Chain Shirt",
+      "nomeLocal": "Chain Shirt",
+      "tipo": "MA|XPHB",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Clockwork Armor",
+      "nomeLocal": "Clockwork Armor",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Club",
+      "nomeLocal": "Club",
+      "tipo": "M, simple",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Club",
+      "nomeLocal": "Club",
+      "tipo": "M|XPHB, simple",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Copper Dragon Scale Mail",
+      "nomeLocal": "Copper Dragon Scale Mail",
+      "tipo": "MA, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Copper Dragon Scale Mail",
+      "nomeLocal": "Copper Dragon Scale Mail",
+      "tipo": "MA|XPHB, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Corpse Slayer",
+      "nomeLocal": "Corpse Slayer",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Crusader's Shortsword",
+      "nomeLocal": "Crusader's Shortsword",
+      "tipo": "M, martial, Attunement",
+      "raridade": "unknown (magic)",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Crystal Blade",
+      "nomeLocal": "Crystal Blade",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Dagger",
+      "nomeLocal": "Dagger",
+      "tipo": "M, simple",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Dagger",
+      "nomeLocal": "Dagger",
+      "tipo": "M|XPHB, simple",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Dagger of Blindsight",
+      "nomeLocal": "Dagger of Blindsight",
+      "tipo": "M, simple, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Dagger of Guitar Solos",
+      "nomeLocal": "Dagger of Guitar Solos",
+      "tipo": "M, simple",
+      "raridade": "unknown (magic)",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Dagger of Venom",
+      "nomeLocal": "Dagger of Venom",
+      "tipo": "M, simple",
+      "raridade": "rare",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Dagger of Venom",
+      "nomeLocal": "Dagger of Venom",
+      "tipo": "M|XPHB, simple",
+      "raridade": "rare",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Dancing Sword",
+      "nomeLocal": "Dancing Sword",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Dart",
+      "nomeLocal": "Dart",
+      "tipo": "R, simple",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Dart",
+      "nomeLocal": "Dart",
+      "tipo": "R|XPHB, simple",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Dawnbringer",
+      "nomeLocal": "Dawnbringer",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Dazzling Weapon",
+      "nomeLocal": "Dazzling Weapon",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Defender",
+      "nomeLocal": "Defender",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Dekella, Bident of Thassa",
+      "nomeLocal": "Dekella, Bident of Thassa",
+      "tipo": "M, martial, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Demon Armor",
+      "nomeLocal": "Demon Armor",
+      "tipo": "HA, Cursed, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Demon Armor",
+      "nomeLocal": "Demon Armor",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Demon Skin",
+      "nomeLocal": "Demon Skin",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Demonbone Polearm",
+      "nomeLocal": "Demonbone Polearm",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Devotee's Censer",
+      "nomeLocal": "Devotee's Censer",
+      "tipo": "M, martial, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Double-Bladed Scimitar",
+      "nomeLocal": "Double-Bladed Scimitar",
+      "tipo": "M, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Draconic Longsword",
+      "nomeLocal": "Draconic Longsword",
+      "tipo": "M, martial",
+      "raridade": "unknown (magic)",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Dragon Sensing Longsword",
+      "nomeLocal": "Dragon Sensing Longsword",
+      "tipo": "M, martial",
+      "raridade": "unknown (magic)",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Dragon Slayer",
+      "nomeLocal": "Dragon Slayer",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Dragon Thighbone Club",
+      "nomeLocal": "Dragon Thighbone Club",
+      "tipo": "M, simple, Attunement",
+      "raridade": "unknown (magic)",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Dragon Wing Bow",
+      "nomeLocal": "Dragon Wing Bow",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Dragongleam",
+      "nomeLocal": "Dragongleam",
+      "tipo": "M, simple",
+      "raridade": "unknown (magic)",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Dragonguard",
+      "nomeLocal": "Dragonguard",
+      "tipo": "MA",
+      "raridade": "rare",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Dragonguard",
+      "nomeLocal": "Dragonguard",
+      "tipo": "MA",
+      "raridade": "rare",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Dragonlance",
+      "nomeLocal": "Dragonlance",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Dragonstaff of Ahghairon",
+      "nomeLocal": "Dragonstaff of Ahghairon",
+      "tipo": "simple, Staff, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Dragontooth Dagger",
+      "nomeLocal": "Dragontooth Dagger",
+      "tipo": "M, simple",
+      "raridade": "rare",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Dried Leech",
+      "nomeLocal": "Dried Leech",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Drow +1 Armor",
+      "nomeLocal": "Drow +1 Armor",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Drow +1 Weapon",
+      "nomeLocal": "Drow +1 Weapon",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Drow +2 Armor",
+      "nomeLocal": "Drow +2 Armor",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Drow +2 Weapon",
+      "nomeLocal": "Drow +2 Weapon",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Drow +3 Armor",
+      "nomeLocal": "Drow +3 Armor",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Drow +3 Weapon",
+      "nomeLocal": "Drow +3 Weapon",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Drown",
+      "nomeLocal": "Drown",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Duskcrusher",
+      "nomeLocal": "Duskcrusher",
+      "tipo": "M, martial, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Dwarven Plate",
+      "nomeLocal": "Dwarven Plate",
+      "tipo": "HA",
+      "raridade": "very rare",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Dwarven Plate",
+      "nomeLocal": "Dwarven Plate",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Dwarven Thrower",
+      "nomeLocal": "Dwarven Thrower",
+      "tipo": "M, martial, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Dwarven Thrower",
+      "nomeLocal": "Dwarven Thrower",
+      "tipo": "M|XPHB, martial, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Dyrrn's Tentacle Whip",
+      "nomeLocal": "Dyrrn's Tentacle Whip",
+      "tipo": "M, martial, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Efreeti Chain",
+      "nomeLocal": "Efreeti Chain",
+      "tipo": "HA, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Efreeti Chain",
+      "nomeLocal": "Efreeti Chain",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Eldritch Staff",
+      "nomeLocal": "Eldritch Staff",
+      "tipo": "M, simple, Staff, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Elven Chain",
+      "nomeLocal": "Elven Chain",
+      "tipo": "MA",
+      "raridade": "rare",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Elven Chain",
+      "nomeLocal": "Elven Chain",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Elven Thrower",
+      "nomeLocal": "Elven Thrower",
+      "tipo": "M, simple, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Energy Bow",
+      "nomeLocal": "Energy Bow",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Enspelled Armor (Cantrip)",
+      "nomeLocal": "Enspelled Armor (Cantrip)",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Enspelled Armor (Level 1)",
+      "nomeLocal": "Enspelled Armor (Level 1)",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Enspelled Armor (Level 2)",
+      "nomeLocal": "Enspelled Armor (Level 2)",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Enspelled Armor (Level 3)",
+      "nomeLocal": "Enspelled Armor (Level 3)",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Enspelled Armor (Level 4)",
+      "nomeLocal": "Enspelled Armor (Level 4)",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Enspelled Armor (Level 5)",
+      "nomeLocal": "Enspelled Armor (Level 5)",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Enspelled Armor (Level 6)",
+      "nomeLocal": "Enspelled Armor (Level 6)",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Enspelled Armor (Level 7)",
+      "nomeLocal": "Enspelled Armor (Level 7)",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Enspelled Armor (Level 8)",
+      "nomeLocal": "Enspelled Armor (Level 8)",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Enspelled Staff (Cantrip)",
+      "nomeLocal": "Enspelled Staff (Cantrip)",
+      "tipo": "M|XPHB, simple, Staff, Attunement",
+      "raridade": "uncommon",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Enspelled Staff (Level 1)",
+      "nomeLocal": "Enspelled Staff (Level 1)",
+      "tipo": "M|XPHB, simple, Staff, Attunement",
+      "raridade": "uncommon",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Enspelled Staff (Level 2)",
+      "nomeLocal": "Enspelled Staff (Level 2)",
+      "tipo": "M|XPHB, simple, Staff, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Enspelled Staff (Level 3)",
+      "nomeLocal": "Enspelled Staff (Level 3)",
+      "tipo": "M|XPHB, simple, Staff, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Enspelled Staff (Level 4)",
+      "nomeLocal": "Enspelled Staff (Level 4)",
+      "tipo": "M|XPHB, simple, Staff, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Enspelled Staff (Level 5)",
+      "nomeLocal": "Enspelled Staff (Level 5)",
+      "tipo": "M|XPHB, simple, Staff, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Enspelled Staff (Level 6)",
+      "nomeLocal": "Enspelled Staff (Level 6)",
+      "tipo": "M|XPHB, simple, Staff, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Enspelled Staff (Level 7)",
+      "nomeLocal": "Enspelled Staff (Level 7)",
+      "tipo": "M|XPHB, simple, Staff, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Enspelled Staff (Level 8)",
+      "nomeLocal": "Enspelled Staff (Level 8)",
+      "tipo": "M|XPHB, simple, Staff, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Enspelled Weapon (Cantrip)",
+      "nomeLocal": "Enspelled Weapon (Cantrip)",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Enspelled Weapon (Level 1)",
+      "nomeLocal": "Enspelled Weapon (Level 1)",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Enspelled Weapon (Level 2)",
+      "nomeLocal": "Enspelled Weapon (Level 2)",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Enspelled Weapon (Level 3)",
+      "nomeLocal": "Enspelled Weapon (Level 3)",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Enspelled Weapon (Level 4)",
+      "nomeLocal": "Enspelled Weapon (Level 4)",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Enspelled Weapon (Level 5)",
+      "nomeLocal": "Enspelled Weapon (Level 5)",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Enspelled Weapon (Level 6)",
+      "nomeLocal": "Enspelled Weapon (Level 6)",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Enspelled Weapon (Level 7)",
+      "nomeLocal": "Enspelled Weapon (Level 7)",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Enspelled Weapon (Level 8)",
+      "nomeLocal": "Enspelled Weapon (Level 8)",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Ephixis, Bow of Nylea",
+      "nomeLocal": "Ephixis, Bow of Nylea",
+      "tipo": "R, simple, Attunement, Ammo: arrow|phb",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Euryale's Aegis",
+      "nomeLocal": "Euryale's Aegis",
+      "tipo": "S, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Executioner's Axe",
+      "nomeLocal": "Executioner's Axe",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Fane-Eater",
+      "nomeLocal": "Fane-Eater",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Fate Cutter Shears",
+      "nomeLocal": "Fate Cutter Shears",
+      "tipo": "M, simple, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Feywrought Armor",
+      "nomeLocal": "Feywrought Armor",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Flail",
+      "nomeLocal": "Flail",
+      "tipo": "M, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Flail",
+      "nomeLocal": "Flail",
+      "tipo": "M|XPHB, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Flail of Tiamat",
+      "nomeLocal": "Flail of Tiamat",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Flame Tongue",
+      "nomeLocal": "Flame Tongue",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Flame Tongue Shortsword of Greed",
+      "nomeLocal": "Flame Tongue Shortsword of Greed",
+      "tipo": "M, martial, Attunement",
+      "raridade": "unknown (magic)",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Flayer Slayer",
+      "nomeLocal": "Flayer Slayer",
+      "tipo": "M, martial, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Fool's Blade",
+      "nomeLocal": "Fool's Blade",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Forcebreaker Weapon",
+      "nomeLocal": "Forcebreaker Weapon",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Frost Brand",
+      "nomeLocal": "Frost Brand",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Gambler's Blade",
+      "nomeLocal": "Gambler's Blade",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Giant Slayer",
+      "nomeLocal": "Giant Slayer",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Glaive",
+      "nomeLocal": "Glaive",
+      "tipo": "M, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Glaive",
+      "nomeLocal": "Glaive",
+      "tipo": "M|XPHB, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Glamoured Studded Leather",
+      "nomeLocal": "Glamoured Studded Leather",
+      "tipo": "LA",
+      "raridade": "rare",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Glamoured Studded Leather",
+      "nomeLocal": "Glamoured Studded Leather",
+      "tipo": "LA|XPHB",
+      "raridade": "rare",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Glimmering Moonbow",
+      "nomeLocal": "Glimmering Moonbow",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Gloomwrought Armor",
+      "nomeLocal": "Gloomwrought Armor",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Gold Dragon Scale Mail",
+      "nomeLocal": "Gold Dragon Scale Mail",
+      "tipo": "MA, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Gold Dragon Scale Mail",
+      "nomeLocal": "Gold Dragon Scale Mail",
+      "tipo": "MA|XPHB, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Grasping Whip",
+      "nomeLocal": "Grasping Whip",
+      "tipo": "M, martial",
+      "raridade": "rare",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Greataxe",
+      "nomeLocal": "Greataxe",
+      "tipo": "M, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Greataxe",
+      "nomeLocal": "Greataxe",
+      "tipo": "M|XPHB, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Greatclub",
+      "nomeLocal": "Greatclub",
+      "tipo": "M, simple",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Greatclub",
+      "nomeLocal": "Greatclub",
+      "tipo": "M|XPHB, simple",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Greater Silver Sword",
+      "nomeLocal": "Greater Silver Sword",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Greatsword",
+      "nomeLocal": "Greatsword",
+      "tipo": "M, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Greatsword",
+      "nomeLocal": "Greatsword",
+      "tipo": "M|XPHB, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Green Dragon Scale Mail",
+      "nomeLocal": "Green Dragon Scale Mail",
+      "tipo": "MA, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Green Dragon Scale Mail",
+      "nomeLocal": "Green Dragon Scale Mail",
+      "tipo": "MA|XPHB, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Grovelthrash (Dormant)",
+      "nomeLocal": "Grovelthrash (Dormant)",
+      "tipo": "M, martial, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Gulthias Staff",
+      "nomeLocal": "Gulthias Staff",
+      "tipo": "simple, Staff, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Gurt's Greataxe",
+      "nomeLocal": "Gurt's Greataxe",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Halberd",
+      "nomeLocal": "Halberd",
+      "tipo": "M, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Halberd",
+      "nomeLocal": "Halberd",
+      "tipo": "M|XPHB, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Half Plate Armor",
+      "nomeLocal": "Half Plate Armor",
+      "tipo": "MA",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Half Plate Armor",
+      "nomeLocal": "Half Plate Armor",
+      "tipo": "MA|XPHB",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Hammer of Runic Focus",
+      "nomeLocal": "Hammer of Runic Focus",
+      "tipo": "M, martial, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Hammer of Thunderbolts",
+      "nomeLocal": "Hammer of Thunderbolts",
+      "tipo": "M, martial",
+      "raridade": "legendary",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Hammer of Thunderbolts",
+      "nomeLocal": "Hammer of Thunderbolts",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Hand Crossbow",
+      "nomeLocal": "Hand Crossbow",
+      "tipo": "R, martial, Ammo: crossbow bolt|phb",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Hand Crossbow",
+      "nomeLocal": "Hand Crossbow",
+      "tipo": "R|XPHB, martial, Ammo: bolt|xphb",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Handaxe",
+      "nomeLocal": "Handaxe",
+      "tipo": "M, simple",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Handaxe",
+      "nomeLocal": "Handaxe",
+      "tipo": "M|XPHB, simple",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Hazirawn",
+      "nomeLocal": "Hazirawn",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Heavy Crossbow",
+      "nomeLocal": "Heavy Crossbow",
+      "tipo": "R, martial, Ammo: crossbow bolt|phb",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Heavy Crossbow",
+      "nomeLocal": "Heavy Crossbow",
+      "tipo": "R|XPHB, martial, Ammo: bolt|xphb",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Hellfire Weapon",
+      "nomeLocal": "Hellfire Weapon",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Heretic",
+      "nomeLocal": "Heretic",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Hew",
+      "nomeLocal": "Hew",
+      "tipo": "M, martial",
+      "raridade": "unknown (magic)",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Hew",
+      "nomeLocal": "Hew",
+      "tipo": "M, martial",
+      "raridade": "uncommon",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Heward's Hireling Armor",
+      "nomeLocal": "Heward's Hireling Armor",
+      "tipo": "LA, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Hide Armor",
+      "nomeLocal": "Hide Armor",
+      "tipo": "MA",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Hide Armor",
+      "nomeLocal": "Hide Armor",
+      "tipo": "MA|XPHB",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Hide of the Feral Guardian (Dormant)",
+      "nomeLocal": "Hide of the Feral Guardian (Dormant)",
+      "tipo": "LA, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Hither-Thither Staff",
+      "nomeLocal": "Hither-Thither Staff",
+      "tipo": "M, simple, Staff",
+      "raridade": "legendary",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Holy Avenger",
+      "nomeLocal": "Holy Avenger",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Hooked Shortspear",
+      "nomeLocal": "Hooked Shortspear",
+      "tipo": "M, martial",
+      "raridade": "unknown",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Hoopak",
+      "nomeLocal": "Hoopak",
+      "tipo": "M, martial, Ammo: sling bullet|phb",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Hunter's Coat",
+      "nomeLocal": "Hunter's Coat",
+      "tipo": "LA, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Hunting Rifle",
+      "nomeLocal": "Hunting Rifle",
+      "tipo": "R, martial, modern, Ammo: modern bullet",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Hunting Rifle",
+      "nomeLocal": "Hunting Rifle",
+      "tipo": "R|XPHB, martial, modern, Ammo: firearm bullet|xphb",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Imbued Wood (Fernian Ash)",
+      "nomeLocal": "Imbued Wood (Fernian Ash)",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Imbued Wood (Irian Rosewood)",
+      "nomeLocal": "Imbued Wood (Irian Rosewood)",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Imbued Wood (Kythrian Manchineel)",
+      "nomeLocal": "Imbued Wood (Kythrian Manchineel)",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Imbued Wood (Lamannian Oak)",
+      "nomeLocal": "Imbued Wood (Lamannian Oak)",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Imbued Wood (Mabaran Ebony)",
+      "nomeLocal": "Imbued Wood (Mabaran Ebony)",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Imbued Wood (Risian Pine)",
+      "nomeLocal": "Imbued Wood (Risian Pine)",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Imbued Wood (Shavarran Birch)",
+      "nomeLocal": "Imbued Wood (Shavarran Birch)",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Imbued Wood (Xorian Wenge)",
+      "nomeLocal": "Imbued Wood (Xorian Wenge)",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Infernal Plate Armor",
+      "nomeLocal": "Infernal Plate Armor",
+      "tipo": "HA, Cursed, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Iron Ball",
+      "nomeLocal": "Iron Ball",
+      "tipo": "R, simple",
+      "raridade": "unknown",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Ironfang",
+      "nomeLocal": "Ironfang",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Javelin",
+      "nomeLocal": "Javelin",
+      "tipo": "M, simple",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Javelin",
+      "nomeLocal": "Javelin",
+      "tipo": "M|XPHB, simple",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Javelin of Backbiting",
+      "nomeLocal": "Javelin of Backbiting",
+      "tipo": "M, simple, Cursed, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Javelin of Lightning",
+      "nomeLocal": "Javelin of Lightning",
+      "tipo": "M, simple",
+      "raridade": "uncommon",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Javelin of Lightning",
+      "nomeLocal": "Javelin of Lightning",
+      "tipo": "M|XPHB, simple",
+      "raridade": "uncommon",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Junky +1 Dagger",
+      "nomeLocal": "Junky +1 Dagger",
+      "tipo": "M, simple",
+      "raridade": "unknown (magic)",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Khrusor, Spear of Heliod",
+      "nomeLocal": "Khrusor, Spear of Heliod",
+      "tipo": "M, simple, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Knife of Stolen Resistance",
+      "nomeLocal": "Knife of Stolen Resistance",
+      "tipo": "M, simple",
+      "raridade": "rare",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Korolnor Scepter",
+      "nomeLocal": "Korolnor Scepter",
+      "tipo": "M, simple, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Lance",
+      "nomeLocal": "Lance",
+      "tipo": "M, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Lance",
+      "nomeLocal": "Lance",
+      "tipo": "M|XPHB, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Laser Pistol",
+      "nomeLocal": "Laser Pistol",
+      "tipo": "R, martial, futuristic, Ammo: energy cell",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Laser Pistol",
+      "nomeLocal": "Laser Pistol",
+      "tipo": "R|XPHB, martial, futuristic, Ammo: energy cell|xdmg",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Laser Rifle",
+      "nomeLocal": "Laser Rifle",
+      "tipo": "R, martial, futuristic, Ammo: energy cell",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Laser Rifle",
+      "nomeLocal": "Laser Rifle",
+      "tipo": "R|XPHB, martial, futuristic, Ammo: energy cell|xdmg",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Lash of Immolation",
+      "nomeLocal": "Lash of Immolation",
+      "tipo": "M, martial",
+      "raridade": "rare",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Lash of Shadows (Dormant)",
+      "nomeLocal": "Lash of Shadows (Dormant)",
+      "tipo": "M, martial, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Last Stand Armor",
+      "nomeLocal": "Last Stand Armor",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Leather Armor",
+      "nomeLocal": "Leather Armor",
+      "tipo": "LA",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Leather Armor",
+      "nomeLocal": "Leather Armor",
+      "tipo": "LA|XPHB",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Leather Golem Armor",
+      "nomeLocal": "Leather Golem Armor",
+      "tipo": "LA, Cursed, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Light Crossbow",
+      "nomeLocal": "Light Crossbow",
+      "tipo": "R, simple, Ammo: crossbow bolt|phb",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Light Crossbow",
+      "nomeLocal": "Light Crossbow",
+      "tipo": "R|XPHB, simple, Ammo: bolt|xphb",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Light Hammer",
+      "nomeLocal": "Light Hammer",
+      "tipo": "M, simple",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Light Hammer",
+      "nomeLocal": "Light Hammer",
+      "tipo": "M|XPHB, simple",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Light Repeating Crossbow",
+      "nomeLocal": "Light Repeating Crossbow",
+      "tipo": "R, simple, Ammo: crossbow bolt|phb",
+      "raridade": "unknown",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Lightbringer",
+      "nomeLocal": "Lightbringer",
+      "tipo": "M, simple",
+      "raridade": "uncommon",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Lightbringer",
+      "nomeLocal": "Lightbringer",
+      "tipo": "M, simple",
+      "raridade": "uncommon",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Living Armor",
+      "nomeLocal": "Living Armor",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Longbow",
+      "nomeLocal": "Longbow",
+      "tipo": "R, martial, Ammo: arrow|phb",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Longbow",
+      "nomeLocal": "Longbow",
+      "tipo": "R|XPHB, martial, Ammo: arrow|xphb",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Longbow of the Healing Hearth",
+      "nomeLocal": "Longbow of the Healing Hearth",
+      "tipo": "R, martial, Attunement, Ammo: arrow|phb",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Longsword",
+      "nomeLocal": "Longsword",
+      "tipo": "M, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Longsword",
+      "nomeLocal": "Longsword",
+      "tipo": "M|XPHB, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Lucent Destroyer",
+      "nomeLocal": "Lucent Destroyer",
+      "tipo": "R, martial, renaissance, Attunement, Ammo: renaissance bullet",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Luck Blade",
+      "nomeLocal": "Luck Blade",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Luminous War Pick",
+      "nomeLocal": "Luminous War Pick",
+      "tipo": "M, martial, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Lute of Thunderous Thumping",
+      "nomeLocal": "Lute of Thunderous Thumping",
+      "tipo": "M|XPHB, simple",
+      "raridade": "very rare",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Mace",
+      "nomeLocal": "Mace",
+      "tipo": "M, simple",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Mace",
+      "nomeLocal": "Mace",
+      "tipo": "M|XPHB, simple",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Mace of Disruption",
+      "nomeLocal": "Mace of Disruption",
+      "tipo": "M, simple, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Mace of Disruption",
+      "nomeLocal": "Mace of Disruption",
+      "tipo": "M|XPHB, simple, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Mace of Smiting",
+      "nomeLocal": "Mace of Smiting",
+      "tipo": "M, simple",
+      "raridade": "rare",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Mace of Smiting",
+      "nomeLocal": "Mace of Smiting",
+      "tipo": "M|XPHB, simple",
+      "raridade": "rare",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Mace of Terror",
+      "nomeLocal": "Mace of Terror",
+      "tipo": "M, simple, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Mace of Terror",
+      "nomeLocal": "Mace of Terror",
+      "tipo": "M|XPHB, simple, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Mace of the Black Crown (Dormant)",
+      "nomeLocal": "Mace of the Black Crown (Dormant)",
+      "tipo": "M, simple, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Macuahuitl",
+      "nomeLocal": "Macuahuitl",
+      "tipo": "M, martial",
+      "raridade": "unknown (magic)",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Mariner's Armor",
+      "nomeLocal": "Mariner's Armor",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Mastix, Whip of Erebos",
+      "nomeLocal": "Mastix, Whip of Erebos",
+      "tipo": "M, martial, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Matalotok",
+      "nomeLocal": "Matalotok",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Maul",
+      "nomeLocal": "Maul",
+      "tipo": "M, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Maul",
+      "nomeLocal": "Maul",
+      "tipo": "M|XPHB, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Mind Blade",
+      "nomeLocal": "Mind Blade",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Mind Carapace Armor",
+      "nomeLocal": "Mind Carapace Armor",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Mind Lash",
+      "nomeLocal": "Mind Lash",
+      "tipo": "M, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Mithral +1 Armor",
+      "nomeLocal": "Mithral +1 Armor",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Mithral Armor",
+      "nomeLocal": "Mithral Armor",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Mizzium Armor",
+      "nomeLocal": "Mizzium Armor",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Molten Bronze Skin",
+      "nomeLocal": "Molten Bronze Skin",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Moonblade",
+      "nomeLocal": "Moonblade",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Moonblade",
+      "nomeLocal": "Moonblade",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Moon-Touched Sword",
+      "nomeLocal": "Moon-Touched Sword",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Morningstar",
+      "nomeLocal": "Morningstar",
+      "tipo": "M, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Morningstar",
+      "nomeLocal": "Morningstar",
+      "tipo": "M|XPHB, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Musket",
+      "nomeLocal": "Musket",
+      "tipo": "R, martial, renaissance, Ammo: renaissance bullet",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Musket",
+      "nomeLocal": "Musket",
+      "tipo": "R|XPHB, martial, Ammo: firearm bullet|xphb",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Needle of Mending",
+      "nomeLocal": "Needle of Mending",
+      "tipo": "M, simple, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Nepenthe",
+      "nomeLocal": "Nepenthe",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Net",
+      "nomeLocal": "Net",
+      "tipo": "R, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Nightbringer",
+      "nomeLocal": "Nightbringer",
+      "tipo": "M, simple, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Niko's Mace",
+      "nomeLocal": "Niko's Mace",
+      "tipo": "M, simple, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Nine Lives Stealer",
+      "nomeLocal": "Nine Lives Stealer",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Oathbow",
+      "nomeLocal": "Oathbow",
+      "tipo": "R, martial, Attunement, Ammo: arrow|phb",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Oathbow",
+      "nomeLocal": "Oathbow",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Obsidian Flint Dragon Plate",
+      "nomeLocal": "Obsidian Flint Dragon Plate",
+      "tipo": "HA",
+      "raridade": "legendary",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Orb of Shielding (Fernian Basalt)",
+      "nomeLocal": "Orb of Shielding (Fernian Basalt)",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Orb of Shielding (Irian Quartz)",
+      "nomeLocal": "Orb of Shielding (Irian Quartz)",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Orb of Shielding (Kythrian Skarn)",
+      "nomeLocal": "Orb of Shielding (Kythrian Skarn)",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Orb of Shielding (Lamannian Flint)",
+      "nomeLocal": "Orb of Shielding (Lamannian Flint)",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Orb of Shielding (Mabaran Obsidian)",
+      "nomeLocal": "Orb of Shielding (Mabaran Obsidian)",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Orb of Shielding (Risian Shale)",
+      "nomeLocal": "Orb of Shielding (Risian Shale)",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Orb of Shielding (Shavarran Chert)",
+      "nomeLocal": "Orb of Shielding (Shavarran Chert)",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Orb of Shielding (Xorian Marble)",
+      "nomeLocal": "Orb of Shielding (Xorian Marble)",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Orcsplitter",
+      "nomeLocal": "Orcsplitter",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Oversized Longbow",
+      "nomeLocal": "Oversized Longbow",
+      "tipo": "R, martial, Ammo: arrow|phb",
+      "raridade": "unknown",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Padded Armor",
+      "nomeLocal": "Padded Armor",
+      "tipo": "LA",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Padded Armor",
+      "nomeLocal": "Padded Armor",
+      "tipo": "LA|XPHB",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Pariah's Shield",
+      "nomeLocal": "Pariah's Shield",
+      "tipo": "S, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Pathfinder's Greataxe",
+      "nomeLocal": "Pathfinder's Greataxe",
+      "tipo": "M, martial",
+      "raridade": "unknown (magic)",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Piercer",
+      "nomeLocal": "Piercer",
+      "tipo": "M, martial, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Pike",
+      "nomeLocal": "Pike",
+      "tipo": "M, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Pike",
+      "nomeLocal": "Pike",
+      "tipo": "M|XPHB, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Pistol",
+      "nomeLocal": "Pistol",
+      "tipo": "R, martial, renaissance, Ammo: renaissance bullet",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Pistol",
+      "nomeLocal": "Pistol",
+      "tipo": "R|XPHB, martial, Ammo: firearm bullet|xphb",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Plate Armor",
+      "nomeLocal": "Plate Armor",
+      "tipo": "HA",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Plate Armor",
+      "nomeLocal": "Plate Armor",
+      "tipo": "HA|XPHB",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Plate Armor of Etherealness",
+      "nomeLocal": "Plate Armor of Etherealness",
+      "tipo": "HA, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Plate Armor of Etherealness (*)",
+      "nomeLocal": "Plate Armor of Etherealness (*)",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Plate of Knight's Fellowship",
+      "nomeLocal": "Plate of Knight's Fellowship",
+      "tipo": "HA, Attunement",
+      "raridade": "uncommon",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Poison Soaked Kukri",
+      "nomeLocal": "Poison Soaked Kukri",
+      "tipo": "M|XPHB, simple, Attunement",
+      "raridade": "uncommon",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Polymorph Blade",
+      "nomeLocal": "Polymorph Blade",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Powered Armor",
+      "nomeLocal": "Powered Armor",
+      "tipo": "HA, futuristic, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Powered Armor",
+      "nomeLocal": "Powered Armor",
+      "tipo": "HA, futuristic",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Psychic Blade",
+      "nomeLocal": "Psychic Blade",
+      "tipo": "M, simple",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Quarterstaff",
+      "nomeLocal": "Quarterstaff",
+      "tipo": "M, simple",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Quarterstaff",
+      "nomeLocal": "Quarterstaff",
+      "tipo": "M|XPHB, simple",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Quarterstaff of the Acrobat",
+      "nomeLocal": "Quarterstaff of the Acrobat",
+      "tipo": "M|XPHB, simple, Staff, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Rakdos Riteknife",
+      "nomeLocal": "Rakdos Riteknife",
+      "tipo": "M, simple, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Ranseur of Torture",
+      "nomeLocal": "Ranseur of Torture",
+      "tipo": "M, martial, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Rapier",
+      "nomeLocal": "Rapier",
+      "tipo": "M, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Rapier",
+      "nomeLocal": "Rapier",
+      "tipo": "M|XPHB, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Reaper's Scream",
+      "nomeLocal": "Reaper's Scream",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Red Dragon Scale Mail",
+      "nomeLocal": "Red Dragon Scale Mail",
+      "tipo": "MA, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Red Dragon Scale Mail",
+      "nomeLocal": "Red Dragon Scale Mail",
+      "tipo": "MA|XPHB, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Red Wizard Blade",
+      "nomeLocal": "Red Wizard Blade",
+      "tipo": "M, simple",
+      "raridade": "legendary",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Repeating Shot",
+      "nomeLocal": "Repeating Shot",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Repulsion Shield",
+      "nomeLocal": "Repulsion Shield",
+      "tipo": "S|XPHB",
+      "raridade": "uncommon",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Reszur",
+      "nomeLocal": "Reszur",
+      "tipo": "M, simple",
+      "raridade": "uncommon",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Returning Weapon",
+      "nomeLocal": "Returning Weapon",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Revolver",
+      "nomeLocal": "Revolver",
+      "tipo": "R, martial, modern, Ammo: modern bullet",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Revolver",
+      "nomeLocal": "Revolver",
+      "tipo": "R|XPHB, martial, modern, Ammo: firearm bullet|xphb",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Ring Mail",
+      "nomeLocal": "Ring Mail",
+      "tipo": "HA",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Ring Mail",
+      "nomeLocal": "Ring Mail",
+      "tipo": "HA|XPHB",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Rod of Lordly Might",
+      "nomeLocal": "Rod of Lordly Might",
+      "tipo": "RD|DMG, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Rod of Lordly Might",
+      "nomeLocal": "Rod of Lordly Might",
+      "tipo": "RD|XDMG, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Ruidium Armor",
+      "nomeLocal": "Ruidium Armor",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Ruidium Shield",
+      "nomeLocal": "Ruidium Shield",
+      "tipo": "S, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Ruidium Weapon",
+      "nomeLocal": "Ruidium Weapon",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Ruinblade",
+      "nomeLocal": "Ruinblade",
+      "tipo": "M, martial, Cursed, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Ruinous Flail",
+      "nomeLocal": "Ruinous Flail",
+      "tipo": "M, martial, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Ruin's Wake (Dormant)",
+      "nomeLocal": "Ruin's Wake (Dormant)",
+      "tipo": "M, simple, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Saint Markovia's Thighbone",
+      "nomeLocal": "Saint Markovia's Thighbone",
+      "tipo": "M, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Sapphire Buckler",
+      "nomeLocal": "Sapphire Buckler",
+      "tipo": "S, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Scale Mail",
+      "nomeLocal": "Scale Mail",
+      "tipo": "MA",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Scale Mail",
+      "nomeLocal": "Scale Mail",
+      "tipo": "MA|XPHB",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Scimitar",
+      "nomeLocal": "Scimitar",
+      "tipo": "M, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Scimitar",
+      "nomeLocal": "Scimitar",
+      "tipo": "M|XPHB, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Scimitar of Speed",
+      "nomeLocal": "Scimitar of Speed",
+      "tipo": "M, martial, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Scimitar of Speed",
+      "nomeLocal": "Scimitar of Speed",
+      "tipo": "M|XPHB, martial, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Scorpion Armor",
+      "nomeLocal": "Scorpion Armor",
+      "tipo": "HA, Cursed, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Scourge of Shadow",
+      "nomeLocal": "Scourge of Shadow",
+      "tipo": "M, martial, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Seeker Dart",
+      "nomeLocal": "Seeker Dart",
+      "tipo": "R, simple",
+      "raridade": "uncommon",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Semiautomatic Pistol",
+      "nomeLocal": "Semiautomatic Pistol",
+      "tipo": "R|XPHB, martial, modern, Ammo: firearm bullet|xphb",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Sentinel Shield",
+      "nomeLocal": "Sentinel Shield",
+      "tipo": "S",
+      "raridade": "uncommon",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Sentinel Shield",
+      "nomeLocal": "Sentinel Shield",
+      "tipo": "S|XPHB",
+      "raridade": "uncommon",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Serpent Scale Armor",
+      "nomeLocal": "Serpent Scale Armor",
+      "tipo": "MA",
+      "raridade": "uncommon",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Serpent's Fang",
+      "nomeLocal": "Serpent's Fang",
+      "tipo": "M, martial",
+      "raridade": "rare",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Shatterspike",
+      "nomeLocal": "Shatterspike",
+      "tipo": "M, martial, Attunement",
+      "raridade": "uncommon",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Shield",
+      "nomeLocal": "Shield",
+      "tipo": "S",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Shield",
+      "nomeLocal": "Shield",
+      "tipo": "S|XPHB",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Shield of Expression",
+      "nomeLocal": "Shield of Expression",
+      "tipo": "S|XPHB",
+      "raridade": "common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Shield of Expression",
+      "nomeLocal": "Shield of Expression",
+      "tipo": "S",
+      "raridade": "common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Shield of Far Sight",
+      "nomeLocal": "Shield of Far Sight",
+      "tipo": "S",
+      "raridade": "rare",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Shield of Missile Attraction",
+      "nomeLocal": "Shield of Missile Attraction",
+      "tipo": "S, Cursed, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Shield of Missile Attraction",
+      "nomeLocal": "Shield of Missile Attraction",
+      "tipo": "S|XPHB, Cursed, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Shield of Shouting",
+      "nomeLocal": "Shield of Shouting",
+      "tipo": "S",
+      "raridade": "unknown (magic)",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Shield of the Blazing Dreadnought",
+      "nomeLocal": "Shield of the Blazing Dreadnought",
+      "tipo": "S, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Shield of the Cavalier",
+      "nomeLocal": "Shield of the Cavalier",
+      "tipo": "S|XPHB, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Shield of the Hidden Lord",
+      "nomeLocal": "Shield of the Hidden Lord",
+      "tipo": "S, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Shield of the Silver Dragon",
+      "nomeLocal": "Shield of the Silver Dragon",
+      "tipo": "S",
+      "raridade": "rare",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Shield of the Tortoise",
+      "nomeLocal": "Shield of the Tortoise",
+      "tipo": "S, Cursed, Attunement",
+      "raridade": "uncommon",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Shield of the Uven Rune",
+      "nomeLocal": "Shield of the Uven Rune",
+      "tipo": "S, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Shortbow",
+      "nomeLocal": "Shortbow",
+      "tipo": "R, simple, Ammo: arrow|phb",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Shortbow",
+      "nomeLocal": "Shortbow",
+      "tipo": "R|XPHB, simple, Ammo: arrow|xphb",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Shortsword",
+      "nomeLocal": "Shortsword",
+      "tipo": "M, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Shortsword",
+      "nomeLocal": "Shortsword",
+      "tipo": "M|XPHB, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Shotgun",
+      "nomeLocal": "Shotgun",
+      "tipo": "R, martial, modern, Ammo: modern bullet",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Shotgun",
+      "nomeLocal": "Shotgun",
+      "tipo": "R|XPHB, martial, modern, Ammo: firearm bullet|xphb",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Sickle",
+      "nomeLocal": "Sickle",
+      "tipo": "M, simple",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Sickle",
+      "nomeLocal": "Sickle",
+      "tipo": "M|XPHB, simple",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Silken Spite (Dormant)",
+      "nomeLocal": "Silken Spite (Dormant)",
+      "tipo": "M, martial, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Silver Dragon Scale Mail",
+      "nomeLocal": "Silver Dragon Scale Mail",
+      "tipo": "MA, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Silver Dragon Scale Mail",
+      "nomeLocal": "Silver Dragon Scale Mail",
+      "tipo": "MA|XPHB, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Silver Sword",
+      "nomeLocal": "Silver Sword",
+      "tipo": "M, martial, Attunement",
+      "raridade": "unknown (magic)",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Silvered Ammunition",
+      "nomeLocal": "Silvered Ammunition",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Silvered Weapon",
+      "nomeLocal": "Silvered Weapon",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Skyblinder Staff",
+      "nomeLocal": "Skyblinder Staff",
+      "tipo": "simple, Staff, Attunement",
+      "raridade": "uncommon",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Sling",
+      "nomeLocal": "Sling",
+      "tipo": "R, simple, Ammo: sling bullet|phb",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Sling",
+      "nomeLocal": "Sling",
+      "tipo": "R|XPHB, simple, Ammo: sling bullet|xphb",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Sling of Giant Felling",
+      "nomeLocal": "Sling of Giant Felling",
+      "tipo": "R, simple, Ammo: sling bullet|phb",
+      "raridade": "uncommon",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Slumbering Dragon's Wrath Weapon",
+      "nomeLocal": "Slumbering Dragon's Wrath Weapon",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Smoldering Armor",
+      "nomeLocal": "Smoldering Armor",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Snicker-Snack",
+      "nomeLocal": "Snicker-Snack",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Spear",
+      "nomeLocal": "Spear",
+      "tipo": "M, simple",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Spear",
+      "nomeLocal": "Spear",
+      "tipo": "M|XPHB, simple",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Spear of Backbiting",
+      "nomeLocal": "Spear of Backbiting",
+      "tipo": "M, simple, Cursed, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Spellguard Shield",
+      "nomeLocal": "Spellguard Shield",
+      "tipo": "S, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Spellguard Shield",
+      "nomeLocal": "Spellguard Shield",
+      "tipo": "S|XPHB, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Spider Staff",
+      "nomeLocal": "Spider Staff",
+      "tipo": "simple, Staff, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Spider Staff",
+      "nomeLocal": "Spider Staff",
+      "tipo": "M, simple, Staff, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Spiked Armor",
+      "nomeLocal": "Spiked Armor",
+      "tipo": "MA",
+      "raridade": "unknown",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Spiked Shield",
+      "nomeLocal": "Spiked Shield",
+      "tipo": "S|XPHB, Attunement",
+      "raridade": "uncommon",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Splint Armor",
+      "nomeLocal": "Splint Armor",
+      "tipo": "HA",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Splint Armor",
+      "nomeLocal": "Splint Armor",
+      "tipo": "HA|XPHB",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Staff",
+      "nomeLocal": "Staff",
+      "tipo": "SCF, simple, Staff",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Staff",
+      "nomeLocal": "Staff",
+      "tipo": "SCF|XPHB, simple, Staff",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Staff of Adornment",
+      "nomeLocal": "Staff of Adornment",
+      "tipo": "M|XPHB, simple, Staff",
+      "raridade": "common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Staff of Adornment",
+      "nomeLocal": "Staff of Adornment",
+      "tipo": "simple, Staff",
+      "raridade": "common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Staff of Birdcalls",
+      "nomeLocal": "Staff of Birdcalls",
+      "tipo": "M|XPHB, simple, Staff",
+      "raridade": "common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Staff of Birdcalls",
+      "nomeLocal": "Staff of Birdcalls",
+      "tipo": "simple, Staff",
+      "raridade": "common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Staff of Charming",
+      "nomeLocal": "Staff of Charming",
+      "tipo": "simple, Staff, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of Charming",
+      "nomeLocal": "Staff of Charming",
+      "tipo": "M|XPHB, simple, Staff, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of Defense",
+      "nomeLocal": "Staff of Defense",
+      "tipo": "simple, Staff, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of Defense",
+      "nomeLocal": "Staff of Defense",
+      "tipo": "M, simple, Staff, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of Dunamancy",
+      "nomeLocal": "Staff of Dunamancy",
+      "tipo": "simple, Staff, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of Fate",
+      "nomeLocal": "Staff of Fate",
+      "tipo": "M, simple, Staff, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of Fire",
+      "nomeLocal": "Staff of Fire",
+      "tipo": "simple, Staff, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of Fire",
+      "nomeLocal": "Staff of Fire",
+      "tipo": "M|XPHB, simple, Staff, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of Flowers",
+      "nomeLocal": "Staff of Flowers",
+      "tipo": "M|XPHB, simple, Staff",
+      "raridade": "common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Staff of Flowers",
+      "nomeLocal": "Staff of Flowers",
+      "tipo": "simple, Staff",
+      "raridade": "common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Staff of Frost",
+      "nomeLocal": "Staff of Frost",
+      "tipo": "simple, Staff, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of Frost",
+      "nomeLocal": "Staff of Frost",
+      "tipo": "M|XPHB, simple, Staff, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of Healing",
+      "nomeLocal": "Staff of Healing",
+      "tipo": "simple, Staff, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of Healing",
+      "nomeLocal": "Staff of Healing",
+      "tipo": "M|XPHB, simple, Staff, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of Power",
+      "nomeLocal": "Staff of Power",
+      "tipo": "simple, Staff, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of Power",
+      "nomeLocal": "Staff of Power",
+      "tipo": "M|XPHB, simple, Staff, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of Ruling",
+      "nomeLocal": "Staff of Ruling",
+      "tipo": "M, simple, Staff, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of Striking",
+      "nomeLocal": "Staff of Striking",
+      "tipo": "simple, Staff, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of Striking",
+      "nomeLocal": "Staff of Striking",
+      "tipo": "M|XPHB, simple, Staff, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of Swarming Insects",
+      "nomeLocal": "Staff of Swarming Insects",
+      "tipo": "simple, Staff, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of Swarming Insects",
+      "nomeLocal": "Staff of Swarming Insects",
+      "tipo": "M|XPHB, simple, Staff, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of the Adder",
+      "nomeLocal": "Staff of the Adder",
+      "tipo": "simple, Staff, Attunement",
+      "raridade": "uncommon",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of the Adder",
+      "nomeLocal": "Staff of the Adder",
+      "tipo": "M|XPHB, simple, Staff, Attunement",
+      "raridade": "uncommon",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of the Forgotten One",
+      "nomeLocal": "Staff of the Forgotten One",
+      "tipo": "simple, Staff, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of the Ivory Claw",
+      "nomeLocal": "Staff of the Ivory Claw",
+      "tipo": "simple, Staff, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of the Magi",
+      "nomeLocal": "Staff of the Magi",
+      "tipo": "simple, Staff, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of the Magi",
+      "nomeLocal": "Staff of the Magi",
+      "tipo": "M|XPHB, simple, Staff, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of the Python",
+      "nomeLocal": "Staff of the Python",
+      "tipo": "simple, Staff, Attunement",
+      "raridade": "uncommon",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of the Python",
+      "nomeLocal": "Staff of the Python",
+      "tipo": "M|XPHB, simple, Staff, Attunement",
+      "raridade": "uncommon",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of the Rooted Hills",
+      "nomeLocal": "Staff of the Rooted Hills",
+      "tipo": "M, simple, Staff, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of the Woodlands",
+      "nomeLocal": "Staff of the Woodlands",
+      "tipo": "simple, Staff, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of the Woodlands",
+      "nomeLocal": "Staff of the Woodlands",
+      "tipo": "M|XPHB, simple, Staff, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of Thunder and Lightning",
+      "nomeLocal": "Staff of Thunder and Lightning",
+      "tipo": "simple, Staff, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of Thunder and Lightning",
+      "nomeLocal": "Staff of Thunder and Lightning",
+      "tipo": "M|XPHB, simple, Staff, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of Withering",
+      "nomeLocal": "Staff of Withering",
+      "tipo": "simple, Staff, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Staff of Withering",
+      "nomeLocal": "Staff of Withering",
+      "tipo": "M|XPHB, simple, Staff, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Starshot Crossbow",
+      "nomeLocal": "Starshot Crossbow",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Steel",
+      "nomeLocal": "Steel",
+      "tipo": "M, martial, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Stirring Dragon's Wrath Weapon",
+      "nomeLocal": "Stirring Dragon's Wrath Weapon",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Stonebreaker's Breastplate",
+      "nomeLocal": "Stonebreaker's Breastplate",
+      "tipo": "MA, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Stonemaker War Pick",
+      "nomeLocal": "Stonemaker War Pick",
+      "tipo": "M, martial, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Storm Boomerang",
+      "nomeLocal": "Storm Boomerang",
+      "tipo": "R, simple",
+      "raridade": "uncommon",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Studded Leather Armor",
+      "nomeLocal": "Studded Leather Armor",
+      "tipo": "LA",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Studded Leather Armor",
+      "nomeLocal": "Studded Leather Armor",
+      "tipo": "LA|XPHB",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Stygian Spear",
+      "nomeLocal": "Stygian Spear",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Sun Blade",
+      "nomeLocal": "Sun Blade",
+      "tipo": "M, martial, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Sun Blade",
+      "nomeLocal": "Sun Blade",
+      "tipo": "M|XPHB, martial, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Sun Staff",
+      "nomeLocal": "Sun Staff",
+      "tipo": "M, simple, Staff, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Sunforger",
+      "nomeLocal": "Sunforger",
+      "tipo": "M, martial, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Sunsword",
+      "nomeLocal": "Sunsword",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Survival Mantle",
+      "nomeLocal": "Survival Mantle",
+      "tipo": "MA",
+      "raridade": "unknown",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Sword of Answering",
+      "nomeLocal": "Sword of Answering",
+      "tipo": "M|XPHB, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Sword of Answering (Answerer)",
+      "nomeLocal": "Sword of Answering (Answerer)",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Sword of Answering (Back Talker)",
+      "nomeLocal": "Sword of Answering (Back Talker)",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Sword of Answering (Concluder)",
+      "nomeLocal": "Sword of Answering (Concluder)",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Sword of Answering (Last Quip)",
+      "nomeLocal": "Sword of Answering (Last Quip)",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Sword of Answering (Rebutter)",
+      "nomeLocal": "Sword of Answering (Rebutter)",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Sword of Answering (Replier)",
+      "nomeLocal": "Sword of Answering (Replier)",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Sword of Answering (Retorter)",
+      "nomeLocal": "Sword of Answering (Retorter)",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Sword of Answering (Scather)",
+      "nomeLocal": "Sword of Answering (Scather)",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Sword of Answering (Squelcher)",
+      "nomeLocal": "Sword of Answering (Squelcher)",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Sword of Kas",
+      "nomeLocal": "Sword of Kas",
+      "tipo": "M, martial, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Sword of Kas",
+      "nomeLocal": "Sword of Kas",
+      "tipo": "M|XPHB, martial, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Sword of Life Stealing",
+      "nomeLocal": "Sword of Life Stealing",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Sword of Retribution",
+      "nomeLocal": "Sword of Retribution",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Sword of Sharpness",
+      "nomeLocal": "Sword of Sharpness",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Sword of the Paruns",
+      "nomeLocal": "Sword of the Paruns",
+      "tipo": "M, martial, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Sword of the Planes",
+      "nomeLocal": "Sword of the Planes",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Sword of Vengeance",
+      "nomeLocal": "Sword of Vengeance",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Sword of Wounding",
+      "nomeLocal": "Sword of Wounding",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Sword of Zariel",
+      "nomeLocal": "Sword of Zariel",
+      "tipo": "M, martial, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Sylvan Talon",
+      "nomeLocal": "Sylvan Talon",
+      "tipo": "GV|XDMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Tearulai",
+      "nomeLocal": "Tearulai",
+      "tipo": "M, martial, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "The Bloody End (Dormant)",
+      "nomeLocal": "The Bloody End (Dormant)",
+      "tipo": "M, martial, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Thunderbuss",
+      "nomeLocal": "Thunderbuss",
+      "tipo": "R, martial, renaissance, Ammo: renaissance bullet",
+      "raridade": "very rare",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Thunderous Greatclub",
+      "nomeLocal": "Thunderous Greatclub",
+      "tipo": "M|XPHB, simple, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Tidecaller Trident",
+      "nomeLocal": "Tidecaller Trident",
+      "tipo": "M, martial, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Tinderstrike",
+      "nomeLocal": "Tinderstrike",
+      "tipo": "M, simple, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Topaz Annihilator",
+      "nomeLocal": "Topaz Annihilator",
+      "tipo": "R, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Trident",
+      "nomeLocal": "Trident",
+      "tipo": "M, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Trident",
+      "nomeLocal": "Trident",
+      "tipo": "M|XPHB, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Trident of Fish Command",
+      "nomeLocal": "Trident of Fish Command",
+      "tipo": "M, martial, Attunement",
+      "raridade": "uncommon",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Trident of Fish Command",
+      "nomeLocal": "Trident of Fish Command",
+      "tipo": "M|XPHB, martial, Attunement",
+      "raridade": "uncommon",
+      "sintonizavel": true
+    },
+    {
+      "nome": "True-Ice Shards (Dagger)",
+      "nomeLocal": "True-Ice Shards (Dagger)",
+      "tipo": "M, simple, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "True-Ice Shards (Rapier)",
+      "nomeLocal": "True-Ice Shards (Rapier)",
+      "tipo": "M, martial, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Two-Birds Sling",
+      "nomeLocal": "Two-Birds Sling",
+      "tipo": "R, simple, Ammo: sling bullet|phb",
+      "raridade": "rare",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Vanrak's Mithral Shirt",
+      "nomeLocal": "Vanrak's Mithral Shirt",
+      "tipo": "MA",
+      "raridade": "uncommon",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Vicious +1 Weapon",
+      "nomeLocal": "Vicious +1 Weapon",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Vicious Weapon",
+      "nomeLocal": "Vicious Weapon",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Voidwalker Armor",
+      "nomeLocal": "Voidwalker Armor",
+      "tipo": "LA, Cursed, Attunement",
+      "raridade": "rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Vorpal Sword",
+      "nomeLocal": "Vorpal Sword",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Voyager Staff",
+      "nomeLocal": "Voyager Staff",
+      "tipo": "simple, Staff, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Wakened Dragon's Wrath Weapon",
+      "nomeLocal": "Wakened Dragon's Wrath Weapon",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Walloping Ammunition",
+      "nomeLocal": "Walloping Ammunition",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "War Pick",
+      "nomeLocal": "War Pick",
+      "tipo": "M, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "War Pick",
+      "nomeLocal": "War Pick",
+      "tipo": "M|XPHB, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Warhammer",
+      "nomeLocal": "Warhammer",
+      "tipo": "M, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Warhammer",
+      "nomeLocal": "Warhammer",
+      "tipo": "M|XPHB, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Wave",
+      "nomeLocal": "Wave",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Wave",
+      "nomeLocal": "Wave",
+      "tipo": "M|XPHB, martial, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Waythe",
+      "nomeLocal": "Waythe",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Weapon of Agonizing Paralysis",
+      "nomeLocal": "Weapon of Agonizing Paralysis",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Weapon of Certain Death",
+      "nomeLocal": "Weapon of Certain Death",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Weapon of Throne's Command",
+      "nomeLocal": "Weapon of Throne's Command",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Weapon of Warning",
+      "nomeLocal": "Weapon of Warning",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Whelm",
+      "nomeLocal": "Whelm",
+      "tipo": "M, martial, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Whelm",
+      "nomeLocal": "Whelm",
+      "tipo": "M|XPHB, martial, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Whip",
+      "nomeLocal": "Whip",
+      "tipo": "M, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Whip",
+      "nomeLocal": "Whip",
+      "tipo": "M|XPHB, martial",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "White Dragon Scale Mail",
+      "nomeLocal": "White Dragon Scale Mail",
+      "tipo": "MA, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "White Dragon Scale Mail",
+      "nomeLocal": "White Dragon Scale Mail",
+      "tipo": "MA|XPHB, Attunement",
+      "raridade": "very rare",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Will of the Talon (Dormant)",
+      "nomeLocal": "Will of the Talon (Dormant)",
+      "tipo": "M, martial, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Windvane",
+      "nomeLocal": "Windvane",
+      "tipo": "M, simple, Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Winged Ammunition",
+      "nomeLocal": "Winged Ammunition",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Winter's Dark Bite",
+      "nomeLocal": "Winter's Dark Bite",
+      "tipo": "M, martial",
+      "raridade": "uncommon",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Witchlight Vane",
+      "nomeLocal": "Witchlight Vane",
+      "tipo": "Attunement",
+      "raridade": "legendary",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Woodcutter's Axe",
+      "nomeLocal": "Woodcutter's Axe",
+      "tipo": "M, martial",
+      "raridade": "rare",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Wrought-Iron Tower",
+      "nomeLocal": "Wrought-Iron Tower",
+      "tipo": "M, martial, Attunement",
+      "raridade": "artifact",
+      "sintonizavel": true
+    },
+    {
+      "nome": "Yester Hill Axe",
+      "nomeLocal": "Yester Hill Axe",
+      "tipo": "M, martial",
+      "raridade": "unknown (magic)",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Yklwa",
+      "nomeLocal": "Yklwa",
+      "tipo": "M, simple",
+      "raridade": "none",
+      "sintonizavel": false
+    },
+    {
+      "nome": "Zephyr Armor",
+      "nomeLocal": "Zephyr Armor",
+      "tipo": "GV|DMG",
+      "raridade": "Common",
+      "sintonizavel": false
+    }
+  ]
+}

@@ -1,5 +1,6 @@
+import AccessibleDialog from "../components/AccessibleDialog";
 import React, { useState } from "react";
-import { BackGround } from "../../api/classesPrincipais/BackGrounds.class.ts";
+import { BackGround } from "../../api/classesPrincipais/BackGrounds.class";
 
 interface ModalSelecaoProps {
     opcoes: BackGround[];
@@ -44,24 +45,28 @@ const ModalSelecaoBackGround: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
         normalizar(opcao.nome).includes(filtro.toLowerCase())
     );
 
+    const origemSelecionada = selecionado as BackGround & { atributos?: { atributo: string[]; bonus: number[] }; talentoOrigem?: string };
+    const nomeSelecionadoNormalizado = selecionado ? normalizar(selecionado.nome) : "";
+    const exigeItemCharlatao = nomeSelecionadoNormalizado === "charlatao" && !origemSelecionada.talentoOrigem;
+
     return (
-        <div className="popup-content-modal">
+        <AccessibleDialog className="popup-content-modal" onClose={onClose} aria-label={titulo}>
             <h2>{titulo}</h2>
             <div className="popup-body-modal">
                 <div className="lista-racas">
                     <input
                         type="text"
-                        placeholder="Filtrar classes..."
+                        aria-label="Filtrar opções..." placeholder="Filtrar opções..."
                         value={filtro}
                         onChange={(e) => setFiltro(e.target.value)}
                     />
                     <ul>
                         {opcoesFiltradas.map((opcao) => (
-                            <li key={opcao.nome} onClick={() => {
+                            <li key={opcao.nome}><button type="button" className="selection-option" aria-pressed={selecionado?.nome === opcao.nome} onClick={() => {
                                 setSelecionado(opcao);
                             }}>
                                 {opcao.nome}
-                            </li>
+                            </button></li>
                         ))}
                     </ul>
                 </div>
@@ -71,13 +76,19 @@ const ModalSelecaoBackGround: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
                         <>
                             <h3>{selecionado.nome}</h3>
                             <p><strong>Proeficiencias em pericias:</strong> {selecionado.proeficienciasHabilidades.join(", ")}</p>
+                            {origemSelecionada.atributos && origemSelecionada.atributos.atributo.length > 0 && (
+                                <p><strong>Atributos sugeridos:</strong> {origemSelecionada.atributos.atributo.join(", ")}</p>
+                            )}
+                            {origemSelecionada.talentoOrigem && (
+                                <p><strong>Talento de origem:</strong> {origemSelecionada.talentoOrigem}</p>
+                            )}
                             <p><strong>Idiomas:</strong> {selecionado.idiomas} {selecionado.nome === "Heroi Injustiçado" && (<> Idioma do povo que o traiu.</>)}</p>
                             <p><strong>Proeficiencias em ferramentas:</strong> {selecionado.proeficienciaFerramentas.join(", ")}</p>
                             <p><strong>Equipamentos:</strong> {selecionado.equipamentos.join(", ")}</p>
                             <p><strong>Caracteristicas: {selecionado.caracteristicas.nome}:</strong> {selecionado.caracteristicas.descricao}</p>
 
-                            {selecionado.nome === "artista" && (
-                                <select
+                            {nomeSelecionadoNormalizado === "artista" && (
+                                <select aria-label="Instrumento musical"
                                     value={instrumentoSelecionado}
                                     onChange={(e) => setInstrumentoSelecionado(e.target.value)}
                                 >
@@ -89,8 +100,8 @@ const ModalSelecaoBackGround: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
                                     ))}
                                 </select>
                             )}
-                            {selecionado.nome === "Charlatao" && (
-                                <select
+                            {exigeItemCharlatao && (
+                                <select aria-label="Item do antecedente"
                                     value={itemSelecionado}
                                     onChange={(e) => setItemSelecionado(e.target.value)}
                                 >
@@ -108,18 +119,18 @@ const ModalSelecaoBackGround: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
             </div>
 
             <div className="popup-footer">
-                {selecionado && (<button disabled={(selecionado.nome === "artista" && instrumentoSelecionado === "") ||
-                    (selecionado.nome === "Charlatao" && itemSelecionado === "")}
+                {selecionado && (<button disabled={(nomeSelecionadoNormalizado === "artista" && instrumentoSelecionado === "") ||
+                    (exigeItemCharlatao && itemSelecionado === "")}
                     className="escolher-button"
                     onClick={() => {
                         onSelect(selecionado);
                         onClose();
-                        onInstrumentoSelect(instrumentoSelecionado);
-                        onItemSelect(itemSelecionado)
+                        if (instrumentoSelecionado) onInstrumentoSelect(instrumentoSelecionado);
+                        if (itemSelecionado) onItemSelect(itemSelecionado)
                     }}>Escolher {selecionado.nome}</button>)}
                 <button className="escolher-button" onClick={() => { onClose() }}>Fechar</button>
             </div>
-        </div>
+        </AccessibleDialog>
     );
 };
 

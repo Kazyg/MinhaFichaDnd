@@ -36,12 +36,27 @@
 }
 
 .pericias-lista {
+  color: white;
   background-color: #3b3f44;
   padding: 0.4rem;
   border-radius: 0.3rem;
   flex: 1;
   min-height: 0;
   overflow-y: auto;
+}
+
+.pericias-lista details label {
+  display: block;
+  margin-block: 0.5rem;
+}
+
+.pericias-lista details select,
+.pericias-lista details input,
+.pericias-lista details button {
+  max-width: 100%;
+  box-sizing: border-box;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .pericias-lista::-webkit-scrollbar {

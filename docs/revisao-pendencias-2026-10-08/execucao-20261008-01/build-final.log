@@ -1,0 +1,39 @@
+(node:11396) [DEP0176] DeprecationWarning: fs.F_OK is deprecated, use fs.constants.F_OK instead
+    at C:\Users\Guilherme\Documents\GitHub\MinhaFichaDnd\node_modules\react-dev-utils\checkRequiredFiles.js:19:34
+    at Array.forEach (<anonymous>)
+    at checkRequiredFiles (C:\Users\Guilherme\Documents\GitHub\MinhaFichaDnd\node_modules\react-dev-utils\checkRequiredFiles.js:17:11)
+    at Object.<anonymous> (C:\Users\Guilherme\Documents\GitHub\MinhaFichaDnd\node_modules\react-scripts\scripts\build.js:50:6)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Object..js (node:internal/modules/cjs/loader:1943:10)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+Creating an optimized production build...
+Compiled successfully.
+
+File sizes after gzip:
+
+  1.1 MB     minhaficha-pendencias-final-T48oLZ\static\js\main.17d228e4.js
+  176.42 kB  minhaficha-pendencias-final-T48oLZ\static\js\105.8aceebe9.chunk.js
+  10.17 kB   minhaficha-pendencias-final-T48oLZ\static\css\main.377b22be.css
+  5.48 kB    minhaficha-pendencias-final-T48oLZ\static\js\714.5189856b.chunk.js
+  2.67 kB    minhaficha-pendencias-final-T48oLZ\static\js\488.13f461bb.chunk.js
+
+The bundle size is significantly larger than recommended.
+Consider reducing it with code splitting: https://goo.gl/9VhYWB
+You can also analyze the project dependencies: https://goo.gl/LeUzfb
+
+The project was built assuming it is hosted at /.
+You can control this with the homepage field in your package.json.
+
+The ..\..\..\..\GUILHE~1\AppData\Local\Temp\minhaficha-pendencias-final-T48oLZ folder is ready to be deployed.
+You may serve it with a static server:
+
+  npm install -g serve
+  serve -s ..\..\..\..\GUILHE~1\AppData\Local\Temp\minhaficha-pendencias-final-T48oLZ
+
+Find out more about deployment here:
+
+  https://cra.link/deployment
+

@@ -1,4 +1,4 @@
-import { Patronos } from "./Patronos.class.ts";
+import { Patronos } from "./Patronos.class";
 
 export class Celestial extends Patronos {
     constructor() {

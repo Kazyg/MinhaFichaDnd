@@ -1,0 +1,11 @@
+{
+  "missingFromStatus": [],
+  "oldDeletions": [
+    " D .github/workflows/auto-pr.yml",
+    " D src/declarations.d.ts"
+  ],
+  "currentDeletions": [
+    " D .github/workflows/auto-pr.yml",
+    " D src/declarations.d.ts"
+  ]
+}

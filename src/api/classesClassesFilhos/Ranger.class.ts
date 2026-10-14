@@ -1,6 +1,6 @@
-import { Classes } from "../classesPrincipais/Classes.class.ts";
-import { SubClasses } from "../classesPrincipais/SubClasses.ts";
-import { AndarilhoDoHorizonte, ConclaveDaBesta, ConclaveDoCaçador, ConclaveDoRastreadorSubterrâneo, PerseguidorObscuro } from "../classesPrincipais/SubClassesExport.ts";
+import { Classes } from "../classesPrincipais/Classes.class";
+import { SubClasses } from "../classesPrincipais/SubClasses";
+import { AndarilhoDoHorizonte, ConclaveDaBesta, ConclaveDoCaçador, ConclaveDoRastreadorSubterrâneo, PerseguidorObscuro } from "../classesPrincipais/SubClassesExport";
 
 export class Ranger extends Classes {
   level: number;

@@ -1,6 +1,6 @@
-import { Classes } from "../classesPrincipais/Classes.class.ts";
-import { SubClasses } from "../classesPrincipais/SubClasses.ts";
-import { AdeptoDasSombras, AlmaFavorecida, FeiticeiroDaTempestade, LinhagemDraconica, MagiaSelvagem } from "../classesPrincipais/SubClassesExport.ts";
+import { Classes } from "../classesPrincipais/Classes.class";
+import { SubClasses } from "../classesPrincipais/SubClasses";
+import { AdeptoDasSombras, AlmaFavorecida, FeiticeiroDaTempestade, LinhagemDraconica, MagiaSelvagem } from "../classesPrincipais/SubClassesExport";
 
 export class Feiticeiro extends Classes {
   level: number;

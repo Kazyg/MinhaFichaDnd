@@ -1,0 +1,650 @@
+{
+  "tag": "plain4",
+  "root": "C:\\Users\\GUILHE~1\\AppData\\Local\\Temp\\minhaficha-pendencias-final-T48oLZ",
+  "profile": "C:\\Users\\GUILHE~1\\AppData\\Local\\Temp\\minhaficha-browser-final-tIavPO",
+  "checks": [
+    {
+      "name": "Tab inicial",
+      "ok": true
+    },
+    {
+      "name": "Foco inicial do diálogo",
+      "ok": true
+    },
+    {
+      "name": "Shift+Tab contido",
+      "ok": true
+    },
+    {
+      "name": "Retorno do foco",
+      "ok": true
+    },
+    {
+      "name": "Morte após recarregar 2014",
+      "ok": true
+    },
+    {
+      "name": "PDF ausente antes da ação",
+      "ok": true
+    },
+    {
+      "name": "Falha de chunk oferece JSON",
+      "ok": true
+    },
+    {
+      "name": "PDF sem alerta após tentativa 2014",
+      "ok": true
+    },
+    {
+      "name": "Morte após recarregar 2024",
+      "ok": true
+    },
+    {
+      "name": "PDF sem alerta após tentativa 2024",
+      "ok": true
+    },
+    {
+      "name": "Alternância sem vazamento",
+      "ok": true
+    },
+    {
+      "name": "Mobile largura",
+      "details": {
+        "viewport": 390,
+        "scroll": 390
+      }
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:54548/",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/css/main.377b22be.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/manifest.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/js/main.17d228e4.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon-fixa-salva.ca232e99e55b5517b66d.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon-fixa-criar-nova.75aad4da4e1212001a41.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/background-home.62767f80230d1bf33658.jpg",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/favicon.ico.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/logo192.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon_ancestry.b36507b7da6641c45e80.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon_class.262968ed500b320d093f.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon_background.2f9f75eb45952c617b92.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon_ac.bb2815e02e61dedb16e9.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/criar-ficha",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/css/main.377b22be.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/manifest.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/js/main.17d228e4.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon_class.262968ed500b320d093f.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon_ancestry.b36507b7da6641c45e80.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon_background.2f9f75eb45952c617b92.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon_ac.bb2815e02e61dedb16e9.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/favicon.ico.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/logo192.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/js/714.5189856b.chunk.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/js/105.8aceebe9.chunk.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/ficha-de-personagem-dd-5e.pdf",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/css/main.377b22be.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/manifest.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/js/main.17d228e4.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon-fixa-salva.ca232e99e55b5517b66d.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon-fixa-criar-nova.75aad4da4e1212001a41.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/background-home.62767f80230d1bf33658.jpg",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/logo192.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon_ancestry.b36507b7da6641c45e80.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon_class.262968ed500b320d093f.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon_background.2f9f75eb45952c617b92.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon_ac.bb2815e02e61dedb16e9.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/criar-ficha",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/css/main.377b22be.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/manifest.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/js/main.17d228e4.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon_background.2f9f75eb45952c617b92.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon_class.262968ed500b320d093f.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon_ancestry.b36507b7da6641c45e80.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon_ac.bb2815e02e61dedb16e9.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/favicon.ico.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/logo192.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/js/714.5189856b.chunk.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/js/105.8aceebe9.chunk.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/ficha-de-personagem-dd-5e.pdf",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/css/main.377b22be.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/manifest.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/js/main.17d228e4.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon-fixa-salva.ca232e99e55b5517b66d.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon-fixa-criar-nova.75aad4da4e1212001a41.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/background-home.62767f80230d1bf33658.jpg",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/logo192.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon_ancestry.b36507b7da6641c45e80.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon_class.262968ed500b320d093f.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon_background.2f9f75eb45952c617b92.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:54548/static/media/icon_ac.bb2815e02e61dedb16e9.png",
+      "status": 200
+    }
+  ],
+  "timings": [
+    {
+      "etapa": "criação-nome-autosave",
+      "ed": "2014",
+      "ms": 490.4670000000001,
+      "nota": "Ensaio único, inclui polling/autosave, não comparação A25."
+    },
+    {
+      "etapa": "criação-nome-autosave",
+      "ed": "2024",
+      "ms": 371.8207000000002,
+      "nota": "Ensaio único, inclui polling/autosave, não comparação A25."
+    }
+  ],
+  "version": {
+    "protocolVersion": "1.3",
+    "product": "Edg/154.0.4258.62",
+    "revision": "@49f7c5590dad654f33b924537ccc8be227c5a43a",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36 Edg/154.0.0.0",
+    "jsVersion": "15.4.11.9"
+  },
+  "manifest": {
+    "files": {
+      "main.css": "/static/css/main.377b22be.css",
+      "main.js": "/static/js/main.17d228e4.js",
+      "static/js/714.5189856b.chunk.js": "/static/js/714.5189856b.chunk.js",
+      "static/js/488.13f461bb.chunk.js": "/static/js/488.13f461bb.chunk.js",
+      "static/js/105.8aceebe9.chunk.js": "/static/js/105.8aceebe9.chunk.js",
+      "static/media/icon-fixa-salva.png": "/static/media/icon-fixa-salva.ca232e99e55b5517b66d.png",
+      "static/media/icon_background.png": "/static/media/icon_background.2f9f75eb45952c617b92.png",
+      "static/media/icon-fixa-criar-nova.png": "/static/media/icon-fixa-criar-nova.75aad4da4e1212001a41.png",
+      "static/media/icon_ancestry.png": "/static/media/icon_ancestry.b36507b7da6641c45e80.png",
+      "static/media/icon_class.png": "/static/media/icon_class.262968ed500b320d093f.png",
+      "static/media/background-home.jpg": "/static/media/background-home.62767f80230d1bf33658.jpg",
+      "static/media/icon_ac.png": "/static/media/icon_ac.bb2815e02e61dedb16e9.png",
+      "index.html": "/index.html",
+      "main.377b22be.css.map": "/static/css/main.377b22be.css.map",
+      "main.17d228e4.js.map": "/static/js/main.17d228e4.js.map",
+      "714.5189856b.chunk.js.map": "/static/js/714.5189856b.chunk.js.map",
+      "488.13f461bb.chunk.js.map": "/static/js/488.13f461bb.chunk.js.map",
+      "105.8aceebe9.chunk.js.map": "/static/js/105.8aceebe9.chunk.js.map"
+    },
+    "entrypoints": [
+      "static/css/main.377b22be.css",
+      "static/js/main.17d228e4.js"
+    ]
+  },
+  "zoomAttempt": {
+    "before": {
+      "width": 756,
+      "dpr": 1
+    },
+    "after": {
+      "width": 756,
+      "dpr": 1
+    },
+    "method": "Ctrl+plus real via Input; não usar deviceScaleFactor como zoom."
+  },
+  "metrics": {
+    "metrics": [
+      {
+        "name": "Timestamp",
+        "value": 1519726.78058
+      },
+      {
+        "name": "AudioHandlers",
+        "value": 0
+      },
+      {
+        "name": "AudioWorkletProcessors",
+        "value": 0
+      },
+      {
+        "name": "Documents",
+        "value": 3
+      },
+      {
+        "name": "Frames",
+        "value": 3
+      },
+      {
+        "name": "JSEventListeners",
+        "value": 570
+      },
+      {
+        "name": "LayoutObjects",
+        "value": 2114
+      },
+      {
+        "name": "MediaKeySessions",
+        "value": 0
+      },
+      {
+        "name": "MediaKeys",
+        "value": 0
+      },
+      {
+        "name": "Nodes",
+        "value": 2603
+      },
+      {
+        "name": "Resources",
+        "value": 28
+      },
+      {
+        "name": "ContextLifecycleStateObservers",
+        "value": 22
+      },
+      {
+        "name": "V8PerContextDatas",
+        "value": 2
+      },
+      {
+        "name": "WorkerGlobalScopes",
+        "value": 0
+      },
+      {
+        "name": "UACSSResources",
+        "value": 0
+      },
+      {
+        "name": "RTCPeerConnections",
+        "value": 0
+      },
+      {
+        "name": "ResourceFetchers",
+        "value": 3
+      },
+      {
+        "name": "AdSubframes",
+        "value": 0
+      },
+      {
+        "name": "DetachedScriptStates",
+        "value": 2
+      },
+      {
+        "name": "ArrayBufferContents",
+        "value": 204
+      },
+      {
+        "name": "LayoutCount",
+        "value": 20
+      },
+      {
+        "name": "RecalcStyleCount",
+        "value": 36
+      },
+      {
+        "name": "LayoutDuration",
+        "value": 0.031076
+      },
+      {
+        "name": "RecalcStyleDuration",
+        "value": 0.011878
+      },
+      {
+        "name": "DevToolsCommandDuration",
+        "value": 0.003348
+      },
+      {
+        "name": "ScriptDuration",
+        "value": 0.24233
+      },
+      {
+        "name": "V8CompileDuration",
+        "value": 0.000777
+      },
+      {
+        "name": "TaskDuration",
+        "value": 0.322336
+      },
+      {
+        "name": "TaskOtherDuration",
+        "value": 0.032927
+      },
+      {
+        "name": "ThreadTime",
+        "value": 0.319606
+      },
+      {
+        "name": "ProcessTime",
+        "value": 3.277185
+      },
+      {
+        "name": "JSHeapUsedSize",
+        "value": 28611924
+      },
+      {
+        "name": "JSHeapTotalSize",
+        "value": 52658176
+      },
+      {
+        "name": "FirstMeaningfulPaint",
+        "value": 1519726.21985
+      },
+      {
+        "name": "DomContentLoaded",
+        "value": 1519726.040677
+      },
+      {
+        "name": "NavigationStart",
+        "value": 1519725.72366
+      }
+    ]
+  },
+  "storage": {
+    "format": "minhafichadnd",
+    "version": 1,
+    "kind": "colecao",
+    "selectedId": "muzm82o8-43i",
+    "data": [
+      {
+        "itensSintonizados": [],
+        "recursos": {
+          "slots": {},
+          "morte": {
+            "sucessos": 2,
+            "falhas": 1
+          }
+        },
+        "id": "muzm82o8-43i",
+        "nomePersonagem": "Sintética 2014",
+        "racaPrincipal": null,
+        "subRaca": null,
+        "classePrincipal": null,
+        "subClasse": null,
+        "multiclasses": null,
+        "backGround": null,
+        "atributosPersonagem": null,
+        "iniciativa": null,
+        "proeficiencia": 2,
+        "percepcao": null,
+        "vidaTotal": null,
+        "vidaAtual": null,
+        "pericias": null,
+        "levelTotal": 1,
+        "classeArmadura": null,
+        "speed": null,
+        "tamanho": null,
+        "talentos": null,
+        "idiomas": null,
+        "estiloLuta": null,
+        "animalSelecionado": null,
+        "terrenoSelecionado": null,
+        "efeitos": null,
+        "ArmadurasMochila": null,
+        "ArmasMochila": null,
+        "cA": null,
+        "ArmaduraEquipada": null,
+        "escudoEquipado": null,
+        "ArmaEquipada": null,
+        "maosOcupadas": null,
+        "espacosMagiaDisponiveis": null,
+        "espacosMagiaTotais": null,
+        "magiasConhecidas": null,
+        "truquesConhecidos": null,
+        "magiasEscolhidas": null,
+        "metamagica1": null,
+        "metamagica2": null,
+        "metamagica3": null,
+        "metamagica4": null,
+        "ouro": 0,
+        "prata": 0,
+        "cobre": 0,
+        "itensMochila": null,
+        "itensEquipados": null,
+        "limiteSintonizacao": 3,
+        "patrono": null,
+        "versaoRegras": "DND_2014"
+      },
+      {
+        "itensSintonizados": [],
+        "recursos": {
+          "slots": {},
+          "morte": {
+            "sucessos": 2,
+            "falhas": 1
+          }
+        },
+        "id": "muzm84br-7l5",
+        "nomePersonagem": "Sintética 2024",
+        "racaPrincipal": null,
+        "subRaca": null,
+        "classePrincipal": null,
+        "subClasse": null,
+        "multiclasses": null,
+        "backGround": null,
+        "atributosPersonagem": null,
+        "iniciativa": null,
+        "proeficiencia": 2,
+        "percepcao": null,
+        "vidaTotal": null,
+        "vidaAtual": null,
+        "pericias": null,
+        "levelTotal": 1,
+        "classeArmadura": null,
+        "speed": null,
+        "tamanho": null,
+        "talentos": null,
+        "idiomas": null,
+        "estiloLuta": null,
+        "animalSelecionado": null,
+        "terrenoSelecionado": null,
+        "efeitos": null,
+        "ArmadurasMochila": null,
+        "ArmasMochila": null,
+        "cA": null,
+        "ArmaduraEquipada": null,
+        "escudoEquipado": null,
+        "ArmaEquipada": null,
+        "maosOcupadas": null,
+        "espacosMagiaDisponiveis": null,
+        "espacosMagiaTotais": null,
+        "magiasConhecidas": null,
+        "truquesConhecidos": null,
+        "magiasEscolhidas": null,
+        "metamagica1": null,
+        "metamagica2": null,
+        "metamagica3": null,
+        "metamagica4": null,
+        "ouro": 0,
+        "prata": 0,
+        "cobre": 0,
+        "itensMochila": null,
+        "itensEquipados": null,
+        "limiteSintonizacao": 3,
+        "patrono": null,
+        "versaoRegras": "DND_2024"
+      }
+    ]
+  },
+  "downloads": [
+    "ficha_personagem.json",
+    "sintética_2014_ficha_dnd.pdf",
+    "sintética_2024_ficha_dnd.pdf"
+  ]
+}

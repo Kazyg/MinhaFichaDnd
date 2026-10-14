@@ -1,0 +1,19 @@
+{
+  "node": "v24.14.0",
+  "files": [
+    {
+      "file": "static/js/488.13f461bb.chunk.js",
+      "initial": false,
+      "bytes": 7316,
+      "gzip": 2672
+    },
+    {
+      "file": "static/js/main.352dd4ee.js",
+      "initial": true,
+      "bytes": 5128762,
+      "gzip": 1282995
+    }
+  ],
+  "initialGzip": 1282995,
+  "totalGzip": 1285667
+}

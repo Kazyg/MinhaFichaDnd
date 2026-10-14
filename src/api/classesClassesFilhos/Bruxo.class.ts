@@ -1,13 +1,13 @@
-import { PactoCorrente } from "../classesClassesNetos/PactoCorrente.ts";
-import { PactoLamina } from "../classesClassesNetos/PactoLamina.ts";
-import { PactoTomo } from "../classesClassesNetos/PactoTomo.ts";
-import { Arquifada } from "../classesEspeciais/Arquifada.class.ts";
-import { Celestial } from "../classesEspeciais/OCelestial.ts";
-import { Corruptor } from "../classesEspeciais/Corruptor.class.ts";
-import { GrandeAntigo } from "../classesEspeciais/GrandeAntigo.class.ts";
-import { Patronos } from "../classesEspeciais/Patronos.class.ts";
-import { Classes } from "../classesPrincipais/Classes.class.ts";
-import { SubClasses } from "../classesPrincipais/SubClasses.ts";
+import { PactoCorrente } from "../classesClassesNetos/PactoCorrente";
+import { PactoLamina } from "../classesClassesNetos/PactoLamina";
+import { PactoTomo } from "../classesClassesNetos/PactoTomo";
+import { Arquifada } from "../classesEspeciais/Arquifada.class";
+import { Celestial } from "../classesEspeciais/OCelestial";
+import { Corruptor } from "../classesEspeciais/Corruptor.class";
+import { GrandeAntigo } from "../classesEspeciais/GrandeAntigo.class";
+import { Patronos } from "../classesEspeciais/Patronos.class";
+import { Classes } from "../classesPrincipais/Classes.class";
+import { SubClasses } from "../classesPrincipais/SubClasses";
 
 export class Bruxo extends Classes {
   level: number;

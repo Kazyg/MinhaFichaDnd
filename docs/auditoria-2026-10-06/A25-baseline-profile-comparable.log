@@ -1,0 +1,91 @@
+  console.warn
+    ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+
+      29 |   const values = new Map();
+      30 |   const storage = { getItem: k => values.get(k) ?? null, setItem: (k, v) => values.set(k, v) };
+    > 31 |   const view = render(<MemoryRouter><FichaProvider storage={storage}><Probe /></FichaProvider></MemoryRouter>);
+         |                      ^
+      32 |   await tick(() => api.setFicha(ficha));
+      33 |   expect(screen.getByPlaceholderText('Nome do Personagem')).toHaveValue('Perfil');
+      34 |   record('criacao');
+
+      at warnOnce (node_modules/react-router/lib/deprecations.ts:9:13)
+      at logDeprecation (node_modules/react-router/lib/deprecations.ts:14:3)
+      at logV6DeprecationWarnings (node_modules/react-router/lib/deprecations.ts:26:5)
+      at node_modules/react-router/lib/components.tsx:257:25
+      at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom.development.js:23189:26)
+      at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24970:11)
+      at commitPassiveMountEffects_complete (node_modules/react-dom/cjs/react-dom.development.js:24930:9)
+      at commitPassiveMountEffects_begin (node_modules/react-dom/cjs/react-dom.development.js:24917:7)
+      at commitPassiveMountEffects (node_modules/react-dom/cjs/react-dom.development.js:24905:3)
+      at flushPassiveEffectsImpl (node_modules/react-dom/cjs/react-dom.development.js:27078:3)
+      at flushPassiveEffects (node_modules/react-dom/cjs/react-dom.development.js:27023:14)
+      at node_modules/react-dom/cjs/react-dom.development.js:26808:9
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:271:10)
+      at src/api/rulesets/custos.test.js:31:22
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+  console.warn
+    ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+      29 |   const values = new Map();
+      30 |   const storage = { getItem: k => values.get(k) ?? null, setItem: (k, v) => values.set(k, v) };
+    > 31 |   const view = render(<MemoryRouter><FichaProvider storage={storage}><Probe /></FichaProvider></MemoryRouter>);
+         |                      ^
+      32 |   await tick(() => api.setFicha(ficha));
+      33 |   expect(screen.getByPlaceholderText('Nome do Personagem')).toHaveValue('Perfil');
+      34 |   record('criacao');
+
+      at warnOnce (node_modules/react-router/lib/deprecations.ts:9:13)
+      at logDeprecation (node_modules/react-router/lib/deprecations.ts:14:3)
+      at logV6DeprecationWarnings (node_modules/react-router/lib/deprecations.ts:37:5)
+      at node_modules/react-router/lib/components.tsx:257:25
+      at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom.development.js:23189:26)
+      at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24970:11)
+      at commitPassiveMountEffects_complete (node_modules/react-dom/cjs/react-dom.development.js:24930:9)
+      at commitPassiveMountEffects_begin (node_modules/react-dom/cjs/react-dom.development.js:24917:7)
+      at commitPassiveMountEffects (node_modules/react-dom/cjs/react-dom.development.js:24905:3)
+      at flushPassiveEffectsImpl (node_modules/react-dom/cjs/react-dom.development.js:27078:3)
+      at flushPassiveEffects (node_modules/react-dom/cjs/react-dom.development.js:27023:14)
+      at node_modules/react-dom/cjs/react-dom.development.js:26808:9
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:271:10)
+      at src/api/rulesets/custos.test.js:31:22
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+  console.log
+    A25 CONTAGEM DND_2014 [{"etapa":"criacao","magias":23,"talentos":43},{"etapa":"reabertura","magias":24,"talentos":44},{"etapa":"nivel-3","magias":21,"talentos":41}]
+
+      at src/api/rulesets/custos.test.js:42:11
+
+  console.log
+    A25 CONTAGEM DND_2024 [{"etapa":"criacao","magias":23,"talentos":43},{"etapa":"reabertura","magias":24,"talentos":44},{"etapa":"nivel-3","magias":21,"talentos":41}]
+
+      at src/api/rulesets/custos.test.js:42:11
+
+PASS src/api/rulesets/custos.test.js
+  √ contagem de catálogos em criação, reabertura e níveis: DND_2014 (671 ms)
+  √ contagem de catálogos em criação, reabertura e níveis: DND_2024 (185 ms)
+  ○ skipped duas fichas alternadas preservam escolhas, identidades e snapshots: DND_2014
+  ○ skipped duas fichas alternadas preservam escolhas, identidades e snapshots: DND_2024
+  ○ skipped configuração e conteúdo não compartilham escolhas mutáveis: DND_2014
+  ○ skipped configuração e conteúdo não compartilham escolhas mutáveis: DND_2024
+
+Test Suites: 1 passed, 1 total
+Tests:       4 skipped, 2 passed, 6 total
+Snapshots:   0 total
+Time:        3.611 s, estimated 4 s
+Ran all test suites within paths "src/api/rulesets/custos.test.js".

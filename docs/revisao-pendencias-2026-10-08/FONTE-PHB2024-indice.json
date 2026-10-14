@@ -1,0 +1,2884 @@
+{
+  "edicao": "DND_2024",
+  "traducao": "Heróis Anônimos",
+  "revisaoTraducao": "6ª edição, 13/08/2025",
+  "consultadoEm": "2026-10-08",
+  "sha256": "55f530ae733992d95cf6c7a000b86b40a2166e98292347e76db4693941f7236c",
+  "paginasPdf": 397,
+  "estado": "Índice de referência; não é catálogo implementado nem certificação de errata ou licença.",
+  "talentos": [
+    {
+      "nome": "Adepto Elemental",
+      "categoria": "Geral",
+      "repetivel": true,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Agressor",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Alerta",
+      "categoria": "Origem",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Analítico",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Arquearia",
+      "categoria": "Estilo de Luta",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Artifista",
+      "categoria": "Origem",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Atacante Selvagem",
+      "categoria": "Origem",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Atirador Arcano",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Atleta",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Ator",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Aumento no Valor de Atributo",
+      "categoria": "Geral",
+      "repetivel": true,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Chef",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Combate com Armas de Arremesso",
+      "categoria": "Estilo de Luta",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Combate com Armas Grandes",
+      "categoria": "Estilo de Luta",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Combate com Duas Armas",
+      "categoria": "Estilo de Luta",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Combate Desarmado",
+      "categoria": "Estilo de Luta",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Combatente Montado",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Conjurador Bélico",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Conjurador Ritualista",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Curandeiro",
+      "categoria": "Origem",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Dádiva da Fortitude",
+      "categoria": "Dádiva Épica",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Dádiva da Proeza em Combate",
+      "categoria": "Dádiva Épica",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Dádiva da Proficiência em Perícia",
+      "categoria": "Dádiva Épica",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Dádiva da Recordação de Magia",
+      "categoria": "Dádiva Épica",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Dádiva da Recuperação",
+      "categoria": "Dádiva Épica",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Dádiva da Resistência à Energia",
+      "categoria": "Dádiva Épica",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Dádiva da Velocidade",
+      "categoria": "Dádiva Épica",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Dádiva da Viagem Dimensional",
+      "categoria": "Dádiva Épica",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Dádiva da Visão Verdadeira",
+      "categoria": "Dádiva Épica",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Dádiva do Ataque Irresistível",
+      "categoria": "Dádiva Épica",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Dádiva do Destino",
+      "categoria": "Dádiva Épica",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Dádiva do Espírito da Noite",
+      "categoria": "Dádiva Épica",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Defensivo",
+      "categoria": "Estilo de Luta",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Duelismo",
+      "categoria": "Estilo de Luta",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Duelista Defensivo",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Envenenador",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Esmagador",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 199,
+      "paginaPdfIndice": 205
+    },
+    {
+      "nome": "Especialista Ambidestro",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Especialista em Armaduras Leves",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Especialista em Armaduras Médias",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Especialista em Armaduras Pesadas",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Especialista em Besta",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Especialista em Perícia",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Exterminador de Conjuradores",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Habilidoso",
+      "categoria": "Origem",
+      "repetivel": true,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Imobilizador",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Iniciado em Magia",
+      "categoria": "Origem",
+      "repetivel": true,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Interceptação",
+      "categoria": "Estilo de Luta",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Líder Inspirador",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Luta às Cegas",
+      "categoria": "Estilo de Luta",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Mente Aguçada",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Mestre das Armas",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Mestre em Armaduras Médias",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Mestre em Armaduras Pesadas",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Mestre em Armas de Haste",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Mestre em Armas Grandes",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Mestre em Escudos",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Mestre-Atirador",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Músico",
+      "categoria": "Origem",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Perfurador",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Protetivo",
+      "categoria": "Estilo de Luta",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Resiliente",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Resistente",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Sentinela",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Sorrateiro",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Sortudo",
+      "categoria": "Origem",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Talhador",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Telecinético",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Telepático",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Tocado pela Sombra",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Tocado pelas Fadas",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Treinamento com Armas Marciais",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Valentão de Taverna",
+      "categoria": "Origem",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Velocista",
+      "categoria": "Geral",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    },
+    {
+      "nome": "Vigoroso",
+      "categoria": "Origem",
+      "repetivel": false,
+      "paginaIndice": 200,
+      "paginaPdfIndice": 206
+    }
+  ],
+  "magias": [
+    {
+      "nome": "Acalmar Emoções",
+      "nivel": 2,
+      "pagina": 239,
+      "paginaPdf": 245
+    },
+    {
+      "nome": "Acudir os Moribundos",
+      "nivel": 0,
+      "pagina": 239,
+      "paginaPdf": 245
+    },
+    {
+      "nome": "Alarme",
+      "nivel": 1,
+      "pagina": 239,
+      "paginaPdf": 245
+    },
+    {
+      "nome": "Aliado Extraplanar",
+      "nivel": 6,
+      "pagina": 239,
+      "paginaPdf": 245
+    },
+    {
+      "nome": "Aljava Veloz",
+      "nivel": 5,
+      "pagina": 240,
+      "paginaPdf": 246
+    },
+    {
+      "nome": "Alterar-se",
+      "nivel": 2,
+      "pagina": 240,
+      "paginaPdf": 246
+    },
+    {
+      "nome": "Amigos",
+      "nivel": 0,
+      "pagina": 240,
+      "paginaPdf": 246
+    },
+    {
+      "nome": "Amizade Animal",
+      "nivel": 1,
+      "pagina": 240,
+      "paginaPdf": 246
+    },
+    {
+      "nome": "Âncora Planar",
+      "nivel": 5,
+      "pagina": 240,
+      "paginaPdf": 246
+    },
+    {
+      "nome": "Animar Mortos",
+      "nivel": 3,
+      "pagina": 241,
+      "paginaPdf": 247
+    },
+    {
+      "nome": "Animar Objetos",
+      "nivel": 5,
+      "pagina": 241,
+      "paginaPdf": 247
+    },
+    {
+      "nome": "Antipatia/Simpatia",
+      "nivel": 8,
+      "pagina": 242,
+      "paginaPdf": 248
+    },
+    {
+      "nome": "Aprimorar Atributo",
+      "nivel": 2,
+      "pagina": 242,
+      "paginaPdf": 248
+    },
+    {
+      "nome": "Aprisionamento",
+      "nivel": 9,
+      "pagina": 242,
+      "paginaPdf": 248
+    },
+    {
+      "nome": "Arca Secreta de Leomund",
+      "nivel": 4,
+      "pagina": 243,
+      "paginaPdf": 249
+    },
+    {
+      "nome": "Arma Elemental",
+      "nivel": 3,
+      "pagina": 243,
+      "paginaPdf": 249
+    },
+    {
+      "nome": "Arma Espiritual",
+      "nivel": 2,
+      "pagina": 243,
+      "paginaPdf": 249
+    },
+    {
+      "nome": "Arma Mágica",
+      "nivel": 2,
+      "pagina": 243,
+      "paginaPdf": 249
+    },
+    {
+      "nome": "Armadura Arcana",
+      "nivel": 1,
+      "pagina": 243,
+      "paginaPdf": 249
+    },
+    {
+      "nome": "Armadura de Agathys",
+      "nivel": 1,
+      "pagina": 244,
+      "paginaPdf": 250
+    },
+    {
+      "nome": "Arrombar",
+      "nivel": 2,
+      "pagina": 244,
+      "paginaPdf": 250
+    },
+    {
+      "nome": "Arte Druídica",
+      "nivel": 0,
+      "pagina": 244,
+      "paginaPdf": 250
+    },
+    {
+      "nome": "Assassino Fantasmagórico",
+      "nivel": 4,
+      "pagina": 245,
+      "paginaPdf": 251
+    },
+    {
+      "nome": "Augúrio",
+      "nivel": 2,
+      "pagina": 245,
+      "paginaPdf": 251
+    },
+    {
+      "nome": "Aumentar/Reduzir",
+      "nivel": 2,
+      "pagina": 245,
+      "paginaPdf": 251
+    },
+    {
+      "nome": "Aura de Pureza",
+      "nivel": 4,
+      "pagina": 246,
+      "paginaPdf": 252
+    },
+    {
+      "nome": "Aura de Vida",
+      "nivel": 4,
+      "pagina": 246,
+      "paginaPdf": 252
+    },
+    {
+      "nome": "Aura de Vitalidade",
+      "nivel": 3,
+      "pagina": 246,
+      "paginaPdf": 252
+    },
+    {
+      "nome": "Aura Mágica de Nystul",
+      "nivel": 2,
+      "pagina": 246,
+      "paginaPdf": 252
+    },
+    {
+      "nome": "Aura Sagrada",
+      "nivel": 8,
+      "pagina": 246,
+      "paginaPdf": 252
+    },
+    {
+      "nome": "Auxílio",
+      "nivel": 2,
+      "pagina": 246,
+      "paginaPdf": 252
+    },
+    {
+      "nome": "Badalar Fúnebre",
+      "nivel": 0,
+      "pagina": 246,
+      "paginaPdf": 252
+    },
+    {
+      "nome": "Banimento",
+      "nivel": 4,
+      "pagina": 247,
+      "paginaPdf": 253
+    },
+    {
+      "nome": "Banquete de Heróis",
+      "nivel": 6,
+      "pagina": 247,
+      "paginaPdf": 253
+    },
+    {
+      "nome": "Barreira de Lâminas",
+      "nivel": 6,
+      "pagina": 248,
+      "paginaPdf": 254
+    },
+    {
+      "nome": "Bênção",
+      "nivel": 1,
+      "pagina": 248,
+      "paginaPdf": 254
+    },
+    {
+      "nome": "Boca Encantada",
+      "nivel": 2,
+      "pagina": 248,
+      "paginaPdf": 254
+    },
+    {
+      "nome": "Bola de Fogo",
+      "nivel": 3,
+      "pagina": 248,
+      "paginaPdf": 254
+    },
+    {
+      "nome": "Bola de Fogo Adiável",
+      "nivel": 7,
+      "pagina": 248,
+      "paginaPdf": 254
+    },
+    {
+      "nome": "Bolha Ácida",
+      "nivel": 0,
+      "pagina": 249,
+      "paginaPdf": 255
+    },
+    {
+      "nome": "Bom Fruto",
+      "nivel": 1,
+      "pagina": 249,
+      "paginaPdf": 255
+    },
+    {
+      "nome": "Bordão Místico",
+      "nivel": 0,
+      "pagina": 249,
+      "paginaPdf": 255
+    },
+    {
+      "nome": "Braços de Hadar",
+      "nivel": 1,
+      "pagina": 250,
+      "paginaPdf": 256
+    },
+    {
+      "nome": "Caldeirão Borbulhante de Tasha",
+      "nivel": 6,
+      "pagina": 250,
+      "paginaPdf": 256
+    },
+    {
+      "nome": "Caminhar no Vento",
+      "nivel": 6,
+      "pagina": 251,
+      "paginaPdf": 257
+    },
+    {
+      "nome": "Caminhar Sobre as Águas",
+      "nivel": 3,
+      "pagina": 251,
+      "paginaPdf": 257
+    },
+    {
+      "nome": "Campo Antimagia",
+      "nivel": 8,
+      "pagina": 251,
+      "paginaPdf": 257
+    },
+    {
+      "nome": "Cão Fiel de Mordenkainen",
+      "nivel": 4,
+      "pagina": 252,
+      "paginaPdf": 258
+    },
+    {
+      "nome": "Cárcere de Energia",
+      "nivel": 7,
+      "pagina": 252,
+      "paginaPdf": 258
+    },
+    {
+      "nome": "Cativar",
+      "nivel": 2,
+      "pagina": 252,
+      "paginaPdf": 258
+    },
+    {
+      "nome": "Cegueira/Surdez",
+      "nivel": 2,
+      "pagina": 252,
+      "paginaPdf": 258
+    },
+    {
+      "nome": "Celeridade",
+      "nivel": 3,
+      "pagina": 253,
+      "paginaPdf": 259
+    },
+    {
+      "nome": "Chama Contínua",
+      "nivel": 2,
+      "pagina": 253,
+      "paginaPdf": 259
+    },
+    {
+      "nome": "Chama Sagrada",
+      "nivel": 0,
+      "pagina": 253,
+      "paginaPdf": 259
+    },
+    {
+      "nome": "Chicote de Espinhos",
+      "nivel": 0,
+      "pagina": 253,
+      "paginaPdf": 259
+    },
+    {
+      "nome": "Chuva de Meteoros",
+      "nivel": 9,
+      "pagina": 253,
+      "paginaPdf": 259
+    },
+    {
+      "nome": "Círculo da Morte",
+      "nivel": 6,
+      "pagina": 253,
+      "paginaPdf": 259
+    },
+    {
+      "nome": "Círculo de Poder",
+      "nivel": 5,
+      "pagina": 253,
+      "paginaPdf": 259
+    },
+    {
+      "nome": "Círculo de Teleporte",
+      "nivel": 5,
+      "pagina": 254,
+      "paginaPdf": 260
+    },
+    {
+      "nome": "Círculo Mágico",
+      "nivel": 3,
+      "pagina": 254,
+      "paginaPdf": 260
+    },
+    {
+      "nome": "Clarividência",
+      "nivel": 3,
+      "pagina": 254,
+      "paginaPdf": 260
+    },
+    {
+      "nome": "Clone",
+      "nivel": 8,
+      "pagina": 254,
+      "paginaPdf": 260
+    },
+    {
+      "nome": "Coluna de Chamas",
+      "nivel": 5,
+      "pagina": 255,
+      "paginaPdf": 261
+    },
+    {
+      "nome": "Comando",
+      "nivel": 1,
+      "pagina": 255,
+      "paginaPdf": 261
+    },
+    {
+      "nome": "Compreender Idiomas",
+      "nivel": 1,
+      "pagina": 255,
+      "paginaPdf": 261
+    },
+    {
+      "nome": "Compulsão",
+      "nivel": 4,
+      "pagina": 255,
+      "paginaPdf": 261
+    },
+    {
+      "nome": "Comunhão",
+      "nivel": 5,
+      "pagina": 255,
+      "paginaPdf": 261
+    },
+    {
+      "nome": "Comunhão com a Natureza",
+      "nivel": 5,
+      "pagina": 255,
+      "paginaPdf": 261
+    },
+    {
+      "nome": "Cone de Frio",
+      "nivel": 5,
+      "pagina": 256,
+      "paginaPdf": 262
+    },
+    {
+      "nome": "Confusão",
+      "nivel": 4,
+      "pagina": 256,
+      "paginaPdf": 262
+    },
+    {
+      "nome": "Consagrar",
+      "nivel": 5,
+      "pagina": 257,
+      "paginaPdf": 263
+    },
+    {
+      "nome": "Contágio",
+      "nivel": 5,
+      "pagina": 257,
+      "paginaPdf": 263
+    },
+    {
+      "nome": "Contato Extraplanar",
+      "nivel": 5,
+      "pagina": 257,
+      "paginaPdf": 263
+    },
+    {
+      "nome": "Contingência",
+      "nivel": 6,
+      "pagina": 258,
+      "paginaPdf": 264
+    },
+    {
+      "nome": "Contramagia",
+      "nivel": 3,
+      "pagina": 258,
+      "paginaPdf": 264
+    },
+    {
+      "nome": "Controlar Água",
+      "nivel": 4,
+      "pagina": 258,
+      "paginaPdf": 264
+    },
+    {
+      "nome": "Controlar o Clima",
+      "nivel": 8,
+      "pagina": 259,
+      "paginaPdf": 265
+    },
+    {
+      "nome": "Convocar Celestial",
+      "nivel": 5,
+      "pagina": 259,
+      "paginaPdf": 265
+    },
+    {
+      "nome": "Convocar Elemental",
+      "nivel": 4,
+      "pagina": 260,
+      "paginaPdf": 266
+    },
+    {
+      "nome": "Convocar Familiar",
+      "nivel": 1,
+      "pagina": 261,
+      "paginaPdf": 267
+    },
+    {
+      "nome": "Convocar Feérico",
+      "nivel": 3,
+      "pagina": 262,
+      "paginaPdf": 268
+    },
+    {
+      "nome": "Convocar Montaria",
+      "nivel": 2,
+      "pagina": 263,
+      "paginaPdf": 269
+    },
+    {
+      "nome": "Convocar Relâmpagos",
+      "nivel": 3,
+      "pagina": 263,
+      "paginaPdf": 269
+    },
+    {
+      "nome": "Corda Extradimensional",
+      "nivel": 2,
+      "pagina": 263,
+      "paginaPdf": 269
+    },
+    {
+      "nome": "Cordão de Flechas",
+      "nivel": 2,
+      "pagina": 264,
+      "paginaPdf": 270
+    },
+    {
+      "nome": "Coroa da Loucura",
+      "nivel": 2,
+      "pagina": 264,
+      "paginaPdf": 270
+    },
+    {
+      "nome": "Corrente de Relâmpagos",
+      "nivel": 6,
+      "pagina": 264,
+      "paginaPdf": 270
+    },
+    {
+      "nome": "Crescer Espinhos",
+      "nivel": 2,
+      "pagina": 264,
+      "paginaPdf": 270
+    },
+    {
+      "nome": "Crescimento de Plantas",
+      "nivel": 3,
+      "pagina": 264,
+      "paginaPdf": 270
+    },
+    {
+      "nome": "Criação",
+      "nivel": 5,
+      "pagina": 265,
+      "paginaPdf": 271
+    },
+    {
+      "nome": "Criar Chamas",
+      "nivel": 0,
+      "pagina": 265,
+      "paginaPdf": 271
+    },
+    {
+      "nome": "Criar Comida e Água",
+      "nivel": 3,
+      "pagina": 265,
+      "paginaPdf": 271
+    },
+    {
+      "nome": "Criar Mortos-Vivos",
+      "nivel": 6,
+      "pagina": 265,
+      "paginaPdf": 271
+    },
+    {
+      "nome": "Criar ou Destruir Água",
+      "nivel": 1,
+      "pagina": 266,
+      "paginaPdf": 272
+    },
+    {
+      "nome": "Criar Passagem",
+      "nivel": 5,
+      "pagina": 266,
+      "paginaPdf": 272
+    },
+    {
+      "nome": "Cúpula Antivida",
+      "nivel": 5,
+      "pagina": 266,
+      "paginaPdf": 272
+    },
+    {
+      "nome": "Cura Completa",
+      "nivel": 6,
+      "pagina": 266,
+      "paginaPdf": 272
+    },
+    {
+      "nome": "Cura Completa em Massa",
+      "nivel": 9,
+      "pagina": 266,
+      "paginaPdf": 272
+    },
+    {
+      "nome": "Curar Ferimentos",
+      "nivel": 1,
+      "pagina": 266,
+      "paginaPdf": 272
+    },
+    {
+      "nome": "Curar Ferimentos em Massa",
+      "nivel": 5,
+      "pagina": 267,
+      "paginaPdf": 273
+    },
+    {
+      "nome": "Danação",
+      "nivel": 1,
+      "pagina": 267,
+      "paginaPdf": 273
+    },
+    {
+      "nome": "Dança Irresistível de Otto",
+      "nivel": 6,
+      "pagina": 267,
+      "paginaPdf": 273
+    },
+    {
+      "nome": "De Carne para Pedra",
+      "nivel": 6,
+      "pagina": 267,
+      "paginaPdf": 273
+    },
+    {
+      "nome": "Dedo da Morte",
+      "nivel": 7,
+      "pagina": 267,
+      "paginaPdf": 273
+    },
+    {
+      "nome": "Defensor da Fé",
+      "nivel": 4,
+      "pagina": 267,
+      "paginaPdf": 273
+    },
+    {
+      "nome": "Desejo",
+      "nivel": 9,
+      "pagina": 268,
+      "paginaPdf": 274
+    },
+    {
+      "nome": "Desintegrar",
+      "nivel": 6,
+      "pagina": 269,
+      "paginaPdf": 275
+    },
+    {
+      "nome": "Despedaçar",
+      "nivel": 2,
+      "pagina": 269,
+      "paginaPdf": 275
+    },
+    {
+      "nome": "Despertar",
+      "nivel": 5,
+      "pagina": 269,
+      "paginaPdf": 275
+    },
+    {
+      "nome": "Despistar",
+      "nivel": 5,
+      "pagina": 270,
+      "paginaPdf": 276
+    },
+    {
+      "nome": "Destruição Atordoante",
+      "nivel": 4,
+      "pagina": 270,
+      "paginaPdf": 276
+    },
+    {
+      "nome": "Destruição Banidora",
+      "nivel": 5,
+      "pagina": 270,
+      "paginaPdf": 276
+    },
+    {
+      "nome": "Destruição Cauterizante",
+      "nivel": 1,
+      "pagina": 270,
+      "paginaPdf": 276
+    },
+    {
+      "nome": "Destruição Cegante",
+      "nivel": 3,
+      "pagina": 270,
+      "paginaPdf": 276
+    },
+    {
+      "nome": "Destruição Colérica",
+      "nivel": 1,
+      "pagina": 270,
+      "paginaPdf": 276
+    },
+    {
+      "nome": "Destruição Divina",
+      "nivel": 1,
+      "pagina": 271,
+      "paginaPdf": 277
+    },
+    {
+      "nome": "Destruição Estrondosa",
+      "nivel": 1,
+      "pagina": 271,
+      "paginaPdf": 277
+    },
+    {
+      "nome": "Destruição Radiante",
+      "nivel": 2,
+      "pagina": 271,
+      "paginaPdf": 277
+    },
+    {
+      "nome": "Detectar Magia",
+      "nivel": 1,
+      "pagina": 272,
+      "paginaPdf": 278
+    },
+    {
+      "nome": "Detectar o Bem e o Mal",
+      "nivel": 1,
+      "pagina": 272,
+      "paginaPdf": 278
+    },
+    {
+      "nome": "Detectar Pensamentos",
+      "nivel": 2,
+      "pagina": 272,
+      "paginaPdf": 278
+    },
+    {
+      "nome": "Detectar Veneno e Doença",
+      "nivel": 1,
+      "pagina": 272,
+      "paginaPdf": 278
+    },
+    {
+      "nome": "Disco Flutuante de Tenser",
+      "nivel": 1,
+      "pagina": 272,
+      "paginaPdf": 278
+    },
+    {
+      "nome": "Disfarçar-se",
+      "nivel": 1,
+      "pagina": 273,
+      "paginaPdf": 279
+    },
+    {
+      "nome": "Dissipar Magia",
+      "nivel": 3,
+      "pagina": 273,
+      "paginaPdf": 279
+    },
+    {
+      "nome": "Dissipar o Bem e o Mal",
+      "nivel": 5,
+      "pagina": 274,
+      "paginaPdf": 280
+    },
+    {
+      "nome": "Dominar Fera",
+      "nivel": 4,
+      "pagina": 274,
+      "paginaPdf": 280
+    },
+    {
+      "nome": "Dominar Monstro",
+      "nivel": 8,
+      "pagina": 275,
+      "paginaPdf": 281
+    },
+    {
+      "nome": "Dominar Pessoa",
+      "nivel": 5,
+      "pagina": 275,
+      "paginaPdf": 281
+    },
+    {
+      "nome": "Duelo Compelido",
+      "nivel": 1,
+      "pagina": 275,
+      "paginaPdf": 281
+    },
+    {
+      "nome": "Elementalismo",
+      "nivel": 0,
+      "pagina": 275,
+      "paginaPdf": 281
+    },
+    {
+      "nome": "Emaranhar",
+      "nivel": 1,
+      "pagina": 276,
+      "paginaPdf": 282
+    },
+    {
+      "nome": "Encarnação Fantasmagórica",
+      "nivel": 9,
+      "pagina": 276,
+      "paginaPdf": 282
+    },
+    {
+      "nome": "Encontrar Armadilhas",
+      "nivel": 2,
+      "pagina": 276,
+      "paginaPdf": 282
+    },
+    {
+      "nome": "Encontrar o Caminho",
+      "nivel": 6,
+      "pagina": 277,
+      "paginaPdf": 283
+    },
+    {
+      "nome": "Enfeitiçar Monstro",
+      "nivel": 4,
+      "pagina": 277,
+      "paginaPdf": 283
+    },
+    {
+      "nome": "Enfeitiçar Pessoa",
+      "nivel": 1,
+      "pagina": 277,
+      "paginaPdf": 283
+    },
+    {
+      "nome": "Escalada de Aranha",
+      "nivel": 2,
+      "pagina": 277,
+      "paginaPdf": 283
+    },
+    {
+      "nome": "Escrita Ilusória",
+      "nivel": 1,
+      "pagina": 277,
+      "paginaPdf": 283
+    },
+    {
+      "nome": "Escudo Arcano",
+      "nivel": 1,
+      "pagina": 277,
+      "paginaPdf": 283
+    },
+    {
+      "nome": "Escudo Ardente",
+      "nivel": 4,
+      "pagina": 278,
+      "paginaPdf": 284
+    },
+    {
+      "nome": "Escudo da Fé",
+      "nivel": 1,
+      "pagina": 278,
+      "paginaPdf": 284
+    },
+    {
+      "nome": "Escuridão",
+      "nivel": 2,
+      "pagina": 278,
+      "paginaPdf": 284
+    },
+    {
+      "nome": "Esfera Congelante de Otiluke",
+      "nivel": 6,
+      "pagina": 278,
+      "paginaPdf": 284
+    },
+    {
+      "nome": "Esfera Flamejante",
+      "nivel": 2,
+      "pagina": 278,
+      "paginaPdf": 284
+    },
+    {
+      "nome": "Esfera Resiliente de Otiluke",
+      "nivel": 4,
+      "pagina": 279,
+      "paginaPdf": 285
+    },
+    {
+      "nome": "Esfera Vitriólica",
+      "nivel": 4,
+      "pagina": 279,
+      "paginaPdf": 285
+    },
+    {
+      "nome": "Espada de Mordenkainen",
+      "nivel": 7,
+      "pagina": 280,
+      "paginaPdf": 286
+    },
+    {
+      "nome": "Espinho Mental",
+      "nivel": 2,
+      "pagina": 280,
+      "paginaPdf": 286
+    },
+    {
+      "nome": "Esquentar Metal",
+      "nivel": 2,
+      "pagina": 280,
+      "paginaPdf": 286
+    },
+    {
+      "nome": "Estática Sináptica",
+      "nivel": 5,
+      "pagina": 280,
+      "paginaPdf": 286
+    },
+    {
+      "nome": "Explosão Elemental",
+      "nivel": 0,
+      "pagina": 280,
+      "paginaPdf": 286
+    },
+    {
+      "nome": "Explosão Solar",
+      "nivel": 8,
+      "pagina": 281,
+      "paginaPdf": 287
+    },
+    {
+      "nome": "Fabricar",
+      "nivel": 4,
+      "pagina": 281,
+      "paginaPdf": 287
+    },
+    {
+      "nome": "Faca de Gelo",
+      "nivel": 1,
+      "pagina": 281,
+      "paginaPdf": 287
+    },
+    {
+      "nome": "Fagulha Estelar",
+      "nivel": 0,
+      "pagina": 281,
+      "paginaPdf": 287
+    },
+    {
+      "nome": "Falar com Animais",
+      "nivel": 1,
+      "pagina": 281,
+      "paginaPdf": 287
+    },
+    {
+      "nome": "Falar com Mortos",
+      "nivel": 3,
+      "pagina": 282,
+      "paginaPdf": 288
+    },
+    {
+      "nome": "Falar com Plantas",
+      "nivel": 3,
+      "pagina": 282,
+      "paginaPdf": 288
+    },
+    {
+      "nome": "Favor Divino",
+      "nivel": 1,
+      "pagina": 282,
+      "paginaPdf": 288
+    },
+    {
+      "nome": "Flecha Ácida de Melf",
+      "nivel": 2,
+      "pagina": 282,
+      "paginaPdf": 288
+    },
+    {
+      "nome": "Flecha Relâmpago",
+      "nivel": 3,
+      "pagina": 282,
+      "paginaPdf": 288
+    },
+    {
+      "nome": "Fogo das Fadas",
+      "nivel": 1,
+      "pagina": 283,
+      "paginaPdf": 289
+    },
+    {
+      "nome": "Fome de Hadar",
+      "nivel": 3,
+      "pagina": 283,
+      "paginaPdf": 289
+    },
+    {
+      "nome": "Fonte do Luar",
+      "nivel": 4,
+      "pagina": 284,
+      "paginaPdf": 290
+    },
+    {
+      "nome": "Força Espectral",
+      "nivel": 2,
+      "pagina": 284,
+      "paginaPdf": 290
+    },
+    {
+      "nome": "Forma Etérea",
+      "nivel": 7,
+      "pagina": 285,
+      "paginaPdf": 291
+    },
+    {
+      "nome": "Forma Gasosa",
+      "nivel": 3,
+      "pagina": 285,
+      "paginaPdf": 291
+    },
+    {
+      "nome": "Formas Animais",
+      "nivel": 8,
+      "pagina": 285,
+      "paginaPdf": 291
+    },
+    {
+      "nome": "Gargalhada Nefasta de Tasha",
+      "nivel": 1,
+      "pagina": 285,
+      "paginaPdf": 291
+    },
+    {
+      "nome": "Glifo de Proteção",
+      "nivel": 3,
+      "pagina": 286,
+      "paginaPdf": 292
+    },
+    {
+      "nome": "Globo de Invulnerabilidade",
+      "nivel": 6,
+      "pagina": 286,
+      "paginaPdf": 292
+    },
+    {
+      "nome": "Golpe Certeiro",
+      "nivel": 0,
+      "pagina": 286,
+      "paginaPdf": 292
+    },
+    {
+      "nome": "Golpe Constritor",
+      "nivel": 1,
+      "pagina": 287,
+      "paginaPdf": 293
+    },
+    {
+      "nome": "Golpe de Arço",
+      "nivel": 5,
+      "pagina": 287,
+      "paginaPdf": 293
+    },
+    {
+      "nome": "Graxa",
+      "nivel": 1,
+      "pagina": 287,
+      "paginaPdf": 293
+    },
+    {
+      "nome": "Guardiões Espirituais",
+      "nivel": 3,
+      "pagina": 287,
+      "paginaPdf": 293
+    },
+    {
+      "nome": "Heroísmo",
+      "nivel": 1,
+      "pagina": 287,
+      "paginaPdf": 293
+    },
+    {
+      "nome": "Identificar",
+      "nivel": 1,
+      "pagina": 287,
+      "paginaPdf": 293
+    },
+    {
+      "nome": "Ilusão Menor",
+      "nivel": 0,
+      "pagina": 288,
+      "paginaPdf": 294
+    },
+    {
+      "nome": "Ilusão Programada",
+      "nivel": 6,
+      "pagina": 288,
+      "paginaPdf": 294
+    },
+    {
+      "nome": "Imagem Maior",
+      "nivel": 3,
+      "pagina": 288,
+      "paginaPdf": 294
+    },
+    {
+      "nome": "Imagem Silenciosa",
+      "nivel": 1,
+      "pagina": 289,
+      "paginaPdf": 295
+    },
+    {
+      "nome": "Indetectável",
+      "nivel": 3,
+      "pagina": 289,
+      "paginaPdf": 295
+    },
+    {
+      "nome": "Infligir Ferimentos",
+      "nivel": 1,
+      "pagina": 289,
+      "paginaPdf": 295
+    },
+    {
+      "nome": "Inseto Gigante",
+      "nivel": 4,
+      "pagina": 289,
+      "paginaPdf": 295
+    },
+    {
+      "nome": "Inverter a Gravidade",
+      "nivel": 7,
+      "pagina": 290,
+      "paginaPdf": 296
+    },
+    {
+      "nome": "Invisibilidade",
+      "nivel": 2,
+      "pagina": 290,
+      "paginaPdf": 296
+    },
+    {
+      "nome": "Invisibilidade Maior",
+      "nivel": 4,
+      "pagina": 290,
+      "paginaPdf": 296
+    },
+    {
+      "nome": "Invocação Instantânea de Drawmij",
+      "nivel": 6,
+      "pagina": 290,
+      "paginaPdf": 296
+    },
+    {
+      "nome": "Invocar Aberração",
+      "nivel": 4,
+      "pagina": 290,
+      "paginaPdf": 296
+    },
+    {
+      "nome": "Invocar Animais",
+      "nivel": 3,
+      "pagina": 291,
+      "paginaPdf": 297
+    },
+    {
+      "nome": "Invocar Barragem",
+      "nivel": 3,
+      "pagina": 291,
+      "paginaPdf": 297
+    },
+    {
+      "nome": "Invocar Celestial",
+      "nivel": 7,
+      "pagina": 292,
+      "paginaPdf": 298
+    },
+    {
+      "nome": "Invocar Constructo",
+      "nivel": 4,
+      "pagina": 292,
+      "paginaPdf": 298
+    },
+    {
+      "nome": "Invocar Dragão",
+      "nivel": 5,
+      "pagina": 293,
+      "paginaPdf": 299
+    },
+    {
+      "nome": "Invocar Elementais Menores",
+      "nivel": 4,
+      "pagina": 293,
+      "paginaPdf": 299
+    },
+    {
+      "nome": "Invocar Elemental",
+      "nivel": 5,
+      "pagina": 294,
+      "paginaPdf": 300
+    },
+    {
+      "nome": "Invocar Feérico",
+      "nivel": 6,
+      "pagina": 294,
+      "paginaPdf": 300
+    },
+    {
+      "nome": "Invocar Fera",
+      "nivel": 2,
+      "pagina": 294,
+      "paginaPdf": 300
+    },
+    {
+      "nome": "Invocar Ínfero",
+      "nivel": 6,
+      "pagina": 294,
+      "paginaPdf": 300
+    },
+    {
+      "nome": "Invocar Morto-Vivo",
+      "nivel": 3,
+      "pagina": 296,
+      "paginaPdf": 302
+    },
+    {
+      "nome": "Invocar Saraivada",
+      "nivel": 5,
+      "pagina": 297,
+      "paginaPdf": 303
+    },
+    {
+      "nome": "Invocar Seres da Floresta",
+      "nivel": 4,
+      "pagina": 297,
+      "paginaPdf": 303
+    },
+    {
+      "nome": "Labirinto",
+      "nivel": 8,
+      "pagina": 297,
+      "paginaPdf": 303
+    },
+    {
+      "nome": "Lâmina Flamejante",
+      "nivel": 2,
+      "pagina": 297,
+      "paginaPdf": 303
+    },
+    {
+      "nome": "Lendas e Histórias",
+      "nivel": 5,
+      "pagina": 297,
+      "paginaPdf": 303
+    },
+    {
+      "nome": "Lentidão",
+      "nivel": 3,
+      "pagina": 297,
+      "paginaPdf": 303
+    },
+    {
+      "nome": "Leque Cromático",
+      "nivel": 1,
+      "pagina": 298,
+      "paginaPdf": 304
+    },
+    {
+      "nome": "Levitação",
+      "nivel": 2,
+      "pagina": 298,
+      "paginaPdf": 304
+    },
+    {
+      "nome": "Ligação Telepática de Rary",
+      "nivel": 5,
+      "pagina": 298,
+      "paginaPdf": 304
+    },
+    {
+      "nome": "Limpar a Mente",
+      "nivel": 8,
+      "pagina": 298,
+      "paginaPdf": 304
+    },
+    {
+      "nome": "Línguas",
+      "nivel": 3,
+      "pagina": 298,
+      "paginaPdf": 304
+    },
+    {
+      "nome": "Localizar Animais ou Plantas",
+      "nivel": 2,
+      "pagina": 299,
+      "paginaPdf": 305
+    },
+    {
+      "nome": "Localizar Criatura",
+      "nivel": 4,
+      "pagina": 299,
+      "paginaPdf": 305
+    },
+    {
+      "nome": "Localizar Objeto",
+      "nivel": 2,
+      "pagina": 299,
+      "paginaPdf": 305
+    },
+    {
+      "nome": "Loquacidade",
+      "nivel": 8,
+      "pagina": 299,
+      "paginaPdf": 305
+    },
+    {
+      "nome": "Lufada de Vento",
+      "nivel": 2,
+      "pagina": 299,
+      "paginaPdf": 305
+    },
+    {
+      "nome": "Luz",
+      "nivel": 0,
+      "pagina": 299,
+      "paginaPdf": 305
+    },
+    {
+      "nome": "Luz do Dia",
+      "nivel": 3,
+      "pagina": 300,
+      "paginaPdf": 306
+    },
+    {
+      "nome": "Luzes Dançantes",
+      "nivel": 0,
+      "pagina": 300,
+      "paginaPdf": 306
+    },
+    {
+      "nome": "Malogro",
+      "nivel": 4,
+      "pagina": 300,
+      "paginaPdf": 306
+    },
+    {
+      "nome": "Mansão Magnífica de Mordenkainen",
+      "nivel": 7,
+      "pagina": 301,
+      "paginaPdf": 307
+    },
+    {
+      "nome": "Manto do Cruzado",
+      "nivel": 3,
+      "pagina": 302,
+      "paginaPdf": 308
+    },
+    {
+      "nome": "Mão de Bigby",
+      "nivel": 5,
+      "pagina": 302,
+      "paginaPdf": 308
+    },
+    {
+      "nome": "Mãos Flamejantes",
+      "nivel": 1,
+      "pagina": 303,
+      "paginaPdf": 309
+    },
+    {
+      "nome": "Mãos Mágicas",
+      "nivel": 0,
+      "pagina": 303,
+      "paginaPdf": 309
+    },
+    {
+      "nome": "Marca do Predador",
+      "nivel": 1,
+      "pagina": 303,
+      "paginaPdf": 309
+    },
+    {
+      "nome": "Mau Olhado",
+      "nivel": 6,
+      "pagina": 303,
+      "paginaPdf": 309
+    },
+    {
+      "nome": "Medo",
+      "nivel": 3,
+      "pagina": 303,
+      "paginaPdf": 309
+    },
+    {
+      "nome": "Mensageiro Animal",
+      "nivel": 2,
+      "pagina": 304,
+      "paginaPdf": 310
+    },
+    {
+      "nome": "Mensagem",
+      "nivel": 0,
+      "pagina": 304,
+      "paginaPdf": 310
+    },
+    {
+      "nome": "Mesclar-se às Rochas",
+      "nivel": 3,
+      "pagina": 304,
+      "paginaPdf": 310
+    },
+    {
+      "nome": "Metamorfose",
+      "nivel": 9,
+      "pagina": 304,
+      "paginaPdf": 310
+    },
+    {
+      "nome": "Miragem Arcana",
+      "nivel": 7,
+      "pagina": 304,
+      "paginaPdf": 310
+    },
+    {
+      "nome": "Missão",
+      "nivel": 5,
+      "pagina": 305,
+      "paginaPdf": 311
+    },
+    {
+      "nome": "Mísseis Mágicos",
+      "nivel": 1,
+      "pagina": 306,
+      "paginaPdf": 312
+    },
+    {
+      "nome": "Modificar Memória",
+      "nivel": 5,
+      "pagina": 306,
+      "paginaPdf": 312
+    },
+    {
+      "nome": "Moldar Rochas",
+      "nivel": 4,
+      "pagina": 307,
+      "paginaPdf": 313
+    },
+    {
+      "nome": "Moléstia",
+      "nivel": 6,
+      "pagina": 307,
+      "paginaPdf": 313
+    },
+    {
+      "nome": "Montaria Fantasmagórica",
+      "nivel": 3,
+      "pagina": 307,
+      "paginaPdf": 313
+    },
+    {
+      "nome": "Mover Terra",
+      "nivel": 6,
+      "pagina": 308,
+      "paginaPdf": 314
+    },
+    {
+      "nome": "Movimentação Livre",
+      "nivel": 4,
+      "pagina": 308,
+      "paginaPdf": 314
+    },
+    {
+      "nome": "Muralha de Energia",
+      "nivel": 5,
+      "pagina": 308,
+      "paginaPdf": 314
+    },
+    {
+      "nome": "Muralha de Espinhos",
+      "nivel": 6,
+      "pagina": 308,
+      "paginaPdf": 314
+    },
+    {
+      "nome": "Muralha de Fogo",
+      "nivel": 4,
+      "pagina": 309,
+      "paginaPdf": 315
+    },
+    {
+      "nome": "Muralha de Gelo",
+      "nivel": 6,
+      "pagina": 309,
+      "paginaPdf": 315
+    },
+    {
+      "nome": "Muralha de Pedra",
+      "nivel": 5,
+      "pagina": 309,
+      "paginaPdf": 315
+    },
+    {
+      "nome": "Muralha de Vento",
+      "nivel": 3,
+      "pagina": 310,
+      "paginaPdf": 316
+    },
+    {
+      "nome": "Muralha Prismática",
+      "nivel": 9,
+      "pagina": 310,
+      "paginaPdf": 316
+    },
+    {
+      "nome": "Nevasca",
+      "nivel": 3,
+      "pagina": 311,
+      "paginaPdf": 317
+    },
+    {
+      "nome": "Névoa Mortal",
+      "nivel": 5,
+      "pagina": 311,
+      "paginaPdf": 317
+    },
+    {
+      "nome": "Névoa Obscurecente",
+      "nivel": 1,
+      "pagina": 311,
+      "paginaPdf": 317
+    },
+    {
+      "nome": "Nuvem de Adagas",
+      "nivel": 2,
+      "pagina": 311,
+      "paginaPdf": 317
+    },
+    {
+      "nome": "Nuvem Fétida",
+      "nivel": 3,
+      "pagina": 311,
+      "paginaPdf": 317
+    },
+    {
+      "nome": "Nuvem Incendiária",
+      "nivel": 8,
+      "pagina": 312,
+      "paginaPdf": 318
+    },
+    {
+      "nome": "Olho Arcano",
+      "nivel": 4,
+      "pagina": 312,
+      "paginaPdf": 318
+    },
+    {
+      "nome": "Onda Destrutiva",
+      "nivel": 5,
+      "pagina": 312,
+      "paginaPdf": 318
+    },
+    {
+      "nome": "Onda Trovejante",
+      "nivel": 1,
+      "pagina": 312,
+      "paginaPdf": 318
+    },
+    {
+      "nome": "Oração de Cura",
+      "nivel": 2,
+      "pagina": 312,
+      "paginaPdf": 318
+    },
+    {
+      "nome": "Orbe Cromático",
+      "nivel": 1,
+      "pagina": 312,
+      "paginaPdf": 318
+    },
+    {
+      "nome": "Orientação",
+      "nivel": 0,
+      "pagina": 313,
+      "paginaPdf": 319
+    },
+    {
+      "nome": "Padrão Hipnótico",
+      "nivel": 3,
+      "pagina": 313,
+      "paginaPdf": 319
+    },
+    {
+      "nome": "Palavra Curativa",
+      "nivel": 1,
+      "pagina": 313,
+      "paginaPdf": 319
+    },
+    {
+      "nome": "Palavra Curativa em Massa",
+      "nivel": 3,
+      "pagina": 314,
+      "paginaPdf": 320
+    },
+    {
+      "nome": "Palavra de Poder: Atordoar",
+      "nivel": 8,
+      "pagina": 314,
+      "paginaPdf": 320
+    },
+    {
+      "nome": "Palavra de Poder: Fortificar",
+      "nivel": 7,
+      "pagina": 314,
+      "paginaPdf": 320
+    },
+    {
+      "nome": "Palavra de Poder: Matar",
+      "nivel": 9,
+      "pagina": 314,
+      "paginaPdf": 320
+    },
+    {
+      "nome": "Palavra de Poder: Salvar",
+      "nivel": 9,
+      "pagina": 314,
+      "paginaPdf": 320
+    },
+    {
+      "nome": "Palavra de Radiância",
+      "nivel": 0,
+      "pagina": 314,
+      "paginaPdf": 320
+    },
+    {
+      "nome": "Palavra de Regresso",
+      "nivel": 6,
+      "pagina": 314,
+      "paginaPdf": 320
+    },
+    {
+      "nome": "Palavra Sagrada",
+      "nivel": 7,
+      "pagina": 314,
+      "paginaPdf": 320
+    },
+    {
+      "nome": "Paralisar Monstro",
+      "nivel": 5,
+      "pagina": 315,
+      "paginaPdf": 321
+    },
+    {
+      "nome": "Paralisar Pessoa",
+      "nivel": 2,
+      "pagina": 315,
+      "paginaPdf": 321
+    },
+    {
+      "nome": "Parar o Tempo",
+      "nivel": 9,
+      "pagina": 315,
+      "paginaPdf": 321
+    },
+    {
+      "nome": "Passo Arbóreo",
+      "nivel": 5,
+      "pagina": 315,
+      "paginaPdf": 321
+    },
+    {
+      "nome": "Passo Nebuloso",
+      "nivel": 2,
+      "pagina": 315,
+      "paginaPdf": 321
+    },
+    {
+      "nome": "Passo Sem Rastro",
+      "nivel": 2,
+      "pagina": 316,
+      "paginaPdf": 322
+    },
+    {
+      "nome": "Passos Largos",
+      "nivel": 1,
+      "pagina": 316,
+      "paginaPdf": 322
+    },
+    {
+      "nome": "Pele-Casca",
+      "nivel": 2,
+      "pagina": 316,
+      "paginaPdf": 322
+    },
+    {
+      "nome": "Pele-Rocha",
+      "nivel": 4,
+      "pagina": 316,
+      "paginaPdf": 322
+    },
+    {
+      "nome": "Pequeno Refúgio de Leomund",
+      "nivel": 3,
+      "pagina": 316,
+      "paginaPdf": 322
+    },
+    {
+      "nome": "Perdição",
+      "nivel": 1,
+      "pagina": 316,
+      "paginaPdf": 322
+    },
+    {
+      "nome": "Piscar",
+      "nivel": 3,
+      "pagina": 316,
+      "paginaPdf": 322
+    },
+    {
+      "nome": "Polimorfia",
+      "nivel": 4,
+      "pagina": 317,
+      "paginaPdf": 323
+    },
+    {
+      "nome": "Polimorfia Total",
+      "nivel": 9,
+      "pagina": 317,
+      "paginaPdf": 323
+    },
+    {
+      "nome": "Porta Dimensional",
+      "nivel": 4,
+      "pagina": 317,
+      "paginaPdf": 323
+    },
+    {
+      "nome": "Portais Arcanos",
+      "nivel": 6,
+      "pagina": 318,
+      "paginaPdf": 324
+    },
+    {
+      "nome": "Portal",
+      "nivel": 9,
+      "pagina": 318,
+      "paginaPdf": 324
+    },
+    {
+      "nome": "Praga de Insetos",
+      "nivel": 5,
+      "pagina": 319,
+      "paginaPdf": 325
+    },
+    {
+      "nome": "Presença Régia de Yolande",
+      "nivel": 5,
+      "pagina": 319,
+      "paginaPdf": 325
+    },
+    {
+      "nome": "Presságio",
+      "nivel": 4,
+      "pagina": 319,
+      "paginaPdf": 325
+    },
+    {
+      "nome": "Prestidigitação Arcana",
+      "nivel": 0,
+      "pagina": 319,
+      "paginaPdf": 325
+    },
+    {
+      "nome": "Proibição",
+      "nivel": 6,
+      "pagina": 319,
+      "paginaPdf": 325
+    },
+    {
+      "nome": "Projeção Astral",
+      "nivel": 9,
+      "pagina": 320,
+      "paginaPdf": 326
+    },
+    {
+      "nome": "Projetar Imagem",
+      "nivel": 7,
+      "pagina": 320,
+      "paginaPdf": 326
+    },
+    {
+      "nome": "Proteção Contra a Morte",
+      "nivel": 4,
+      "pagina": 320,
+      "paginaPdf": 326
+    },
+    {
+      "nome": "Proteção Contra Energia",
+      "nivel": 3,
+      "pagina": 320,
+      "paginaPdf": 326
+    },
+    {
+      "nome": "Proteção Contra Lâminas",
+      "nivel": 0,
+      "pagina": 321,
+      "paginaPdf": 327
+    },
+    {
+      "nome": "Proteção Contra o Bem e o Mal",
+      "nivel": 1,
+      "pagina": 321,
+      "paginaPdf": 327
+    },
+    {
+      "nome": "Proteção Contra Veneno",
+      "nivel": 2,
+      "pagina": 321,
+      "paginaPdf": 327
+    },
+    {
+      "nome": "Proteger Fortaleza",
+      "nivel": 6,
+      "pagina": 321,
+      "paginaPdf": 327
+    },
+    {
+      "nome": "Purificar Alimentos e Bebidas",
+      "nivel": 1,
+      "pagina": 321,
+      "paginaPdf": 327
+    },
+    {
+      "nome": "Queda Suave",
+      "nivel": 1,
+      "pagina": 322,
+      "paginaPdf": 328
+    },
+    {
+      "nome": "Raio Ardente",
+      "nivel": 2,
+      "pagina": 322,
+      "paginaPdf": 328
+    },
+    {
+      "nome": "Raio de Bruxa",
+      "nivel": 1,
+      "pagina": 322,
+      "paginaPdf": 328
+    },
+    {
+      "nome": "Raio de Fogo",
+      "nivel": 0,
+      "pagina": 323,
+      "paginaPdf": 329
+    },
+    {
+      "nome": "Raio de Gelo",
+      "nivel": 0,
+      "pagina": 323,
+      "paginaPdf": 329
+    },
+    {
+      "nome": "Raio do Enfraquecimento",
+      "nivel": 2,
+      "pagina": 323,
+      "paginaPdf": 329
+    },
+    {
+      "nome": "Raio Guia",
+      "nivel": 1,
+      "pagina": 323,
+      "paginaPdf": 329
+    },
+    {
+      "nome": "Raio Lunar",
+      "nivel": 2,
+      "pagina": 323,
+      "paginaPdf": 329
+    },
+    {
+      "nome": "Raio Místico",
+      "nivel": 0,
+      "pagina": 323,
+      "paginaPdf": 329
+    },
+    {
+      "nome": "Raio Nauseante",
+      "nivel": 1,
+      "pagina": 324,
+      "paginaPdf": 330
+    },
+    {
+      "nome": "Raio Solar",
+      "nivel": 6,
+      "pagina": 324,
+      "paginaPdf": 330
+    },
+    {
+      "nome": "Rajada de Veneno",
+      "nivel": 0,
+      "pagina": 324,
+      "paginaPdf": 330
+    },
+    {
+      "nome": "Rajada Prismática",
+      "nivel": 7,
+      "pagina": 324,
+      "paginaPdf": 330
+    },
+    {
+      "nome": "Receptáculo Arcano",
+      "nivel": 6,
+      "pagina": 325,
+      "paginaPdf": 331
+    },
+    {
+      "nome": "Reencarnar",
+      "nivel": 5,
+      "pagina": 325,
+      "paginaPdf": 331
+    },
+    {
+      "nome": "Reflexos",
+      "nivel": 2,
+      "pagina": 325,
+      "paginaPdf": 331
+    },
+    {
+      "nome": "Refugiar",
+      "nivel": 7,
+      "pagina": 326,
+      "paginaPdf": 332
+    },
+    {
+      "nome": "Regeneração",
+      "nivel": 7,
+      "pagina": 326,
+      "paginaPdf": 332
+    },
+    {
+      "nome": "Relâmpago",
+      "nivel": 3,
+      "pagina": 326,
+      "paginaPdf": 332
+    },
+    {
+      "nome": "Remeter",
+      "nivel": 3,
+      "pagina": 326,
+      "paginaPdf": 332
+    },
+    {
+      "nome": "Remover Maldição",
+      "nivel": 3,
+      "pagina": 326,
+      "paginaPdf": 332
+    },
+    {
+      "nome": "Reparar",
+      "nivel": 0,
+      "pagina": 326,
+      "paginaPdf": 332
+    },
+    {
+      "nome": "Repouso Tranquilo",
+      "nivel": 2,
+      "pagina": 327,
+      "paginaPdf": 333
+    },
+    {
+      "nome": "Repreensão Diabólica",
+      "nivel": 1,
+      "pagina": 327,
+      "paginaPdf": 333
+    },
+    {
+      "nome": "Resistência",
+      "nivel": 0,
+      "pagina": 327,
+      "paginaPdf": 333
+    },
+    {
+      "nome": "Respirar na Água",
+      "nivel": 3,
+      "pagina": 327,
+      "paginaPdf": 333
+    },
+    {
+      "nome": "Ressurreição",
+      "nivel": 7,
+      "pagina": 327,
+      "paginaPdf": 333
+    },
+    {
+      "nome": "Ressurreição Verdadeira",
+      "nivel": 9,
+      "pagina": 328,
+      "paginaPdf": 334
+    },
+    {
+      "nome": "Restauração Maior",
+      "nivel": 5,
+      "pagina": 328,
+      "paginaPdf": 334
+    },
+    {
+      "nome": "Restauração Menor",
+      "nivel": 2,
+      "pagina": 329,
+      "paginaPdf": 335
+    },
+    {
+      "nome": "Retirada Acelerada",
+      "nivel": 1,
+      "pagina": 329,
+      "paginaPdf": 335
+    },
+    {
+      "nome": "Reviver os Mortos",
+      "nivel": 5,
+      "pagina": 329,
+      "paginaPdf": 335
+    },
+    {
+      "nome": "Revivificar",
+      "nivel": 3,
+      "pagina": 330,
+      "paginaPdf": 336
+    },
+    {
+      "nome": "Rogar Maldição",
+      "nivel": 3,
+      "pagina": 330,
+      "paginaPdf": 336
+    },
+    {
+      "nome": "Salto",
+      "nivel": 1,
+      "pagina": 330,
+      "paginaPdf": 336
+    },
+    {
+      "nome": "Santuário",
+      "nivel": 1,
+      "pagina": 330,
+      "paginaPdf": 336
+    },
+    {
+      "nome": "Santuário Particular de Mordenkainen",
+      "nivel": 4,
+      "pagina": 330,
+      "paginaPdf": 336
+    },
+    {
+      "nome": "Saraivada de Espinhos",
+      "nivel": 1,
+      "pagina": 331,
+      "paginaPdf": 337
+    },
+    {
+      "nome": "Semiplano",
+      "nivel": 8,
+      "pagina": 331,
+      "paginaPdf": 337
+    },
+    {
+      "nome": "Sentido Feral",
+      "nivel": 2,
+      "pagina": 331,
+      "paginaPdf": 337
+    },
+    {
+      "nome": "Servo Invisível",
+      "nivel": 1,
+      "pagina": 331,
+      "paginaPdf": 337
+    },
+    {
+      "nome": "Sexto Sentido",
+      "nivel": 9,
+      "pagina": 331,
+      "paginaPdf": 337
+    },
+    {
+      "nome": "Silêncio",
+      "nivel": 2,
+      "pagina": 331,
+      "paginaPdf": 337
+    },
+    {
+      "nome": "Símbolo",
+      "nivel": 7,
+      "pagina": 332,
+      "paginaPdf": 338
+    },
+    {
+      "nome": "Similaridade",
+      "nivel": 5,
+      "pagina": 332,
+      "paginaPdf": 338
+    },
+    {
+      "nome": "Simulacro",
+      "nivel": 7,
+      "pagina": 332,
+      "paginaPdf": 338
+    },
+    {
+      "nome": "Simular Morte",
+      "nivel": 3,
+      "pagina": 333,
+      "paginaPdf": 339
+    },
+    {
+      "nome": "Sinal de Esperança",
+      "nivel": 3,
+      "pagina": 333,
+      "paginaPdf": 339
+    },
+    {
+      "nome": "Sonho",
+      "nivel": 5,
+      "pagina": 333,
+      "paginaPdf": 339
+    },
+    {
+      "nome": "Sono",
+      "nivel": 1,
+      "pagina": 333,
+      "paginaPdf": 339
+    },
+    {
+      "nome": "Sopro de Dragão",
+      "nivel": 2,
+      "pagina": 333,
+      "paginaPdf": 339
+    },
+    {
+      "nome": "Sugestão",
+      "nivel": 2,
+      "pagina": 334,
+      "paginaPdf": 340
+    },
+    {
+      "nome": "Sugestão em Massa",
+      "nivel": 6,
+      "pagina": 334,
+      "paginaPdf": 340
+    },
+    {
+      "nome": "Suplício",
+      "nivel": 8,
+      "pagina": 334,
+      "paginaPdf": 340
+    },
+    {
+      "nome": "Sussurros Dissonantes",
+      "nivel": 1,
+      "pagina": 334,
+      "paginaPdf": 340
+    },
+    {
+      "nome": "Talho Mental",
+      "nivel": 0,
+      "pagina": 334,
+      "paginaPdf": 340
+    },
+    {
+      "nome": "Taumaturgia",
+      "nivel": 0,
+      "pagina": 335,
+      "paginaPdf": 341
+    },
+    {
+      "nome": "Teia",
+      "nivel": 2,
+      "pagina": 335,
+      "paginaPdf": 341
+    },
+    {
+      "nome": "Telecinese",
+      "nivel": 5,
+      "pagina": 335,
+      "paginaPdf": 341
+    },
+    {
+      "nome": "Telepatia",
+      "nivel": 8,
+      "pagina": 335,
+      "paginaPdf": 341
+    },
+    {
+      "nome": "Teleporte",
+      "nivel": 7,
+      "pagina": 336,
+      "paginaPdf": 342
+    },
+    {
+      "nome": "Tempestade da Vingança",
+      "nivel": 9,
+      "pagina": 336,
+      "paginaPdf": 342
+    },
+    {
+      "nome": "Tempestade de Fogo",
+      "nivel": 7,
+      "pagina": 336,
+      "paginaPdf": 342
+    },
+    {
+      "nome": "Tempestade Glacial",
+      "nivel": 4,
+      "pagina": 337,
+      "paginaPdf": 343
+    },
+    {
+      "nome": "Tempestade Radiante de Jallarzi",
+      "nivel": 5,
+      "pagina": 337,
+      "paginaPdf": 343
+    },
+    {
+      "nome": "Tentáculos Negros de Evard",
+      "nivel": 4,
+      "pagina": 338,
+      "paginaPdf": 344
+    },
+    {
+      "nome": "Terremoto",
+      "nivel": 8,
+      "pagina": 338,
+      "paginaPdf": 344
+    },
+    {
+      "nome": "Terreno Alucinatório",
+      "nivel": 4,
+      "pagina": 339,
+      "paginaPdf": 345
+    },
+    {
+      "nome": "Toque Chocante",
+      "nivel": 0,
+      "pagina": 339,
+      "paginaPdf": 345
+    },
+    {
+      "nome": "Toque Necrótico",
+      "nivel": 0,
+      "pagina": 339,
+      "paginaPdf": 345
+    },
+    {
+      "nome": "Toque Vampírico",
+      "nivel": 3,
+      "pagina": 339,
+      "paginaPdf": 345
+    },
+    {
+      "nome": "Tranca Arcana",
+      "nivel": 2,
+      "pagina": 339,
+      "paginaPdf": 345
+    },
+    {
+      "nome": "Transição Planar",
+      "nivel": 7,
+      "pagina": 339,
+      "paginaPdf": 345
+    },
+    {
+      "nome": "Transporte via Plantas",
+      "nivel": 6,
+      "pagina": 340,
+      "paginaPdf": 346
+    },
+    {
+      "nome": "Trovão",
+      "nivel": 0,
+      "pagina": 340,
+      "paginaPdf": 346
+    },
+    {
+      "nome": "Tsunami",
+      "nivel": 8,
+      "pagina": 340,
+      "paginaPdf": 346
+    },
+    {
+      "nome": "Turvar",
+      "nivel": 2,
+      "pagina": 341,
+      "paginaPdf": 347
+    },
+    {
+      "nome": "Ver o Invisível",
+      "nivel": 2,
+      "pagina": 341,
+      "paginaPdf": 347
+    },
+    {
+      "nome": "Vidência",
+      "nivel": 5,
+      "pagina": 341,
+      "paginaPdf": 347
+    },
+    {
+      "nome": "Vigor Arcano",
+      "nivel": 2,
+      "pagina": 342,
+      "paginaPdf": 348
+    },
+    {
+      "nome": "Vínculo de Proteção",
+      "nivel": 2,
+      "pagina": 342,
+      "paginaPdf": 348
+    },
+    {
+      "nome": "Vinha Agarradora",
+      "nivel": 4,
+      "pagina": 342,
+      "paginaPdf": 348
+    },
+    {
+      "nome": "Visão da Verdade",
+      "nivel": 6,
+      "pagina": 342,
+      "paginaPdf": 348
+    },
+    {
+      "nome": "Visão no Escuro",
+      "nivel": 2,
+      "pagina": 342,
+      "paginaPdf": 348
+    },
+    {
+      "nome": "Vitalidade Vazia",
+      "nivel": 1,
+      "pagina": 342,
+      "paginaPdf": 348
+    },
+    {
+      "nome": "Voo",
+      "nivel": 3,
+      "pagina": 343,
+      "paginaPdf": 349
+    },
+    {
+      "nome": "Zombaria Perversa",
+      "nivel": 0,
+      "pagina": 343,
+      "paginaPdf": 349
+    },
+    {
+      "nome": "Zona da Verdade",
+      "nivel": 2,
+      "pagina": 343,
+      "paginaPdf": 349
+    }
+  ]
+}

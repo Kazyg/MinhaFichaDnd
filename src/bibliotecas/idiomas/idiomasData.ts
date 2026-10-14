@@ -42,6 +42,12 @@ export const idiomas: Idiomas[] = [
         informacoes: "Padrão. PHB 123"
     },
     {
+        nome: "Língua de Sinais Comum",
+        falantes_tipicos: "Sigil",
+        alfabeto: "Língua de Sinais",
+        informacoes: "Idioma comum. PHB 2024"
+    },
+    {
         nome: "Daelkyr",
         falantes_tipicos: "Aberrações, habitantes de Khyber",
         alfabeto: "Daelkyr",
@@ -96,8 +102,14 @@ export const idiomas: Idiomas[] = [
         informacoes: "Padrão. PHB 123"
     },
     {
-        nome: "Meioling",
-        falantes_tipicos: "Meiolings",
+        nome: "Pequenino",
+        falantes_tipicos: "Pequeninos",
+        alfabeto: "Comum",
+        informacoes: "Padrão. PHB 123"
+    },
+    {
+        nome: "Halfling",
+        falantes_tipicos: "Halflings",
         alfabeto: "Comum",
         informacoes: "Padrão. PHB 123"
     },

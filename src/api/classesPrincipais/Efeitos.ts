@@ -1,4 +1,12 @@
+import type { ReferenciaConteudo, TalentoConteudo, BeneficiosTalento, MagiaTalento } from '../rulesets/types';
+
 export class Efeitos {
+    conteudo?: ReferenciaConteudo;
+    talentoSnapshot?: TalentoConteudo;
+    escolhasTalento?: string[] | Record<string, string[]>;
+    beneficiosTalento?: BeneficiosTalento;
+    magiasTalento?: MagiaTalento[];
+    ultimaTrocaMagiaTalento?: number;
     id: string;
     tituloEfeito: string;
     tipoEfeito: string;
@@ -13,10 +21,16 @@ export class Efeitos {
     talento: string;
     pericia: string;
     arma: string;
+    armaId?: string;
+    armaCategoria?: string;
     ca: string;
     bonus: number;
     valorFixo: number;
+    nivelClasseOrigem?: number;
     level: number;
+    escolhasTalento2024?: Record<string, string[]>;
+    limiteAtributo?: number;
+    usosMagiaTalento?: Record<string, number>;
     constructor() {
         this.id = this.gerarIdUnico();
         this.tituloEfeito = "";

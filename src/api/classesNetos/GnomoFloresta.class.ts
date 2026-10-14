@@ -1,4 +1,4 @@
-import { Gnomo } from "../classesFilhos/Gnomo.class.ts";
+import { Gnomo } from "../classesFilhos/Gnomo.class";
 
 export class GnomoFloresta extends Gnomo {
     constructor() {

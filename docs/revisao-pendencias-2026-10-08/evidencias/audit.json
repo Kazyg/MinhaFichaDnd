@@ -1,0 +1,19 @@
+﻿node.exe : npm warn audit request to https://registry.npmjs.org/-/npm/v1/security/advisories/bulk failed, reason: 
+No linha:1 caractere:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (npm warn audit ...ailed, reason: :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+npm error audit endpoint returned an error
+{
+  "message": "request to https://registry.npmjs.org/-/npm/v1/security/advisories/bulk failed, reason: ",
+  "error": {
+    "summary": "",
+    "detail": ""
+  }
+}
+npm error Log files were not written due to an error writing to the directory: 
+C:\Users\Guilherme\AppData\Local\npm-cache\_logs
+npm error You can rerun the command with `--loglevel=verbose` to see the logs in your terminal
+

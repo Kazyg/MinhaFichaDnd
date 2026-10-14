@@ -1,0 +1,268 @@
+﻿ D .github/workflows/auto-pr.yml
+ M README.md
+ M my-app/README.md
+ M package-lock.json
+ M package.json
+ M src/App.js
+ M src/App.test.js
+ M src/api/backGroundsFilhos/Acolito.class.ts
+ M src/api/backGroundsFilhos/ArtesaoGuilda.class.ts
+ M src/api/backGroundsFilhos/Artista.class.ts
+ M src/api/backGroundsFilhos/Cavaleiro.class.ts
+ M src/api/backGroundsFilhos/Charlatao.class.ts
+ M src/api/backGroundsFilhos/Criminal.class.ts
+ M src/api/backGroundsFilhos/Eremita.class.ts
+ M src/api/backGroundsFilhos/Forasteiro.ts
+ M src/api/backGroundsFilhos/Heroi.class.ts
+ M src/api/backGroundsFilhos/LadraoDasSombras.ts
+ M src/api/backGroundsFilhos/Marinheiro.class.ts
+ M src/api/backGroundsFilhos/Nobre.class.ts
+ M src/api/backGroundsFilhos/Orfao.ts
+ M src/api/backGroundsFilhos/Pirata.class.ts
+ M src/api/backGroundsFilhos/Sabio.class.ts
+ M src/api/backGroundsFilhos/Soldado.class.ts
+ M src/api/classesClassesFilhos/Barbaro.class.ts
+ M src/api/classesClassesFilhos/Bardo.class.ts
+ M src/api/classesClassesFilhos/Bruxo.class.ts
+ M src/api/classesClassesFilhos/Clerigo.class.ts
+ M src/api/classesClassesFilhos/Druida.class.ts
+ M src/api/classesClassesFilhos/Feiticeiro.class.ts
+ M src/api/classesClassesFilhos/Lutador.class.ts
+ M src/api/classesClassesFilhos/Mago.class.ts
+ M src/api/classesClassesFilhos/Monge.class.ts
+ M src/api/classesClassesFilhos/Paladino.class.ts
+ M src/api/classesClassesFilhos/Ranger.class.ts
+ M src/api/classesClassesFilhos/Rogue.class.ts
+ M src/api/classesClassesNetos/AdeptoDasSombras.ts
+ M src/api/classesClassesNetos/AlmaFavorecida.ts
+ M src/api/classesClassesNetos/AncestralDraconico.ts
+ M src/api/classesClassesNetos/AndarilhoDoHorizonte.ts
+ M src/api/classesClassesNetos/ArqueiroArcano.ts
+ M src/api/classesClassesNetos/Assassino.ts
+ M src/api/classesClassesNetos/Batedor.ts
+ M src/api/classesClassesNetos/CaminhoDaMaoAberta.ts
+ M src/api/classesClassesNetos/CaminhoDaSombra.ts
+ M src/api/classesClassesNetos/CaminhoDoArautoDaTempestade.ts
+ M src/api/classesClassesNetos/CaminhoDoFanatico.ts
+ M src/api/classesClassesNetos/CaminhoDoGuardianAncestral.ts
+ M src/api/classesClassesNetos/CaminhoDosQuatroElementos.ts
+ M src/api/classesClassesNetos/CaminhoFurioso.ts
+ M src/api/classesClassesNetos/CaminhoGuerreiroTotemico.ts
+ M src/api/classesClassesNetos/Campeao.ts
+ M src/api/classesClassesNetos/Cavaleiro.ts
+ M src/api/classesClassesNetos/CavaleiroArcano.ts
+ M src/api/classesClassesNetos/CirculoDaLua.ts
+ M src/api/classesClassesNetos/CirculoDaTerra.ts
+ M src/api/classesClassesNetos/CirculoDoPastor.ts
+ M src/api/classesClassesNetos/CirculoDosSonhos.ts
+ M src/api/classesClassesNetos/ColegioDaBravura.ts
+ M src/api/classesClassesNetos/ColegioDasEspadas.ts
+ M src/api/classesClassesNetos/ColegioDoConhecimento.ts
+ M src/api/classesClassesNetos/ColegioDoGlamour.ts
+ M src/api/classesClassesNetos/ColegioDosSussurros.ts
+ M src/api/classesClassesNetos/ConclaveDaBesta.ts
+ M src/api/classesClassesNetos/ConclaveDoCacador.ts
+ M src/api/classesClassesNetos/ConclaveDoRastreadorSubterraneo.ts
+ M src/api/classesClassesNetos/DominioDaEnganacao.ts
+ M src/api/classesClassesNetos/DominioDaForja.ts
+ M src/api/classesClassesNetos/DominioDaGuerra.ts
+ M src/api/classesClassesNetos/DominioDaLuz.ts
+ M src/api/classesClassesNetos/DominioDaNatureza.ts
+ M src/api/classesClassesNetos/DominioDaSepultura.ts
+ M src/api/classesClassesNetos/DominioDaTempestade.ts
+ M src/api/classesClassesNetos/DominioDaVida.ts
+ M src/api/classesClassesNetos/DominioDoConhecimento.ts
+ M src/api/classesClassesNetos/EscolaDaIlusao.ts
+ M src/api/classesClassesNetos/EscolaDeAbjuracao.ts
+ M src/api/classesClassesNetos/EscolaDeAdvinhacao.ts
+ M src/api/classesClassesNetos/EscolaDeConjuracao.ts
+ M src/api/classesClassesNetos/EscolaDeEncantamento.ts
+ M src/api/classesClassesNetos/EscolaDeEvocacao.ts
+ M src/api/classesClassesNetos/EscolaDeNecromancia.ts
+ M src/api/classesClassesNetos/EscolaDeTransmutacao.ts
+ M src/api/classesClassesNetos/Espadachim.ts
+ M src/api/classesClassesNetos/EstiloDaAlmaSolar.ts
+ M src/api/classesClassesNetos/EstiloDoKensei.ts
+ M src/api/classesClassesNetos/EstiloDoMestreBebado.ts
+ M src/api/classesClassesNetos/ExterminadorDeMonstros.ts
+ M src/api/classesClassesNetos/FeiticeiroDaTempestade.ts
+ M src/api/classesClassesNetos/Inquiridor.ts
+ M src/api/classesClassesNetos/JuramentoDaConquista.ts
+ M src/api/classesClassesNetos/JuramentoDaDevocao.ts
+ M src/api/classesClassesNetos/JuramentoDaRedencao.ts
+ M "src/api/classesClassesNetos/JuramentoDaVingan\303\247a.ts"
+ M src/api/classesClassesNetos/JuramentoDosAncioes.ts
+ M src/api/classesClassesNetos/Ladrao.ts
+ M src/api/classesClassesNetos/MagiaSelvagem.ts
+ M src/api/classesClassesNetos/MagoDeGuerra.ts
+ M src/api/classesClassesNetos/Mentor.ts
+ M src/api/classesClassesNetos/MestreDeBatalha.ts
+ M src/api/classesClassesNetos/PactoCorrente.ts
+ M src/api/classesClassesNetos/PactoLamina.ts
+ M src/api/classesClassesNetos/PactoTomo.ts
+ M src/api/classesClassesNetos/PerseguidorObscuro.ts
+ M src/api/classesClassesNetos/Samurai.ts
+ M src/api/classesClassesNetos/TrapaceiroArcano.ts
+ M src/api/classesEspeciais/Arquifada.class.ts
+ M src/api/classesEspeciais/Corruptor.class.ts
+ M src/api/classesEspeciais/GrandeAntigo.class.ts
+ M src/api/classesEspeciais/LaminaMaldita.ts
+ M src/api/classesEspeciais/OCelestial.ts
+ M src/api/classesFilhos/Anao.class.ts
+ M src/api/classesFilhos/Draconato.class.ts
+ M src/api/classesFilhos/Elfo.class.ts
+ M src/api/classesFilhos/Gnomo.class.ts
+ M src/api/classesFilhos/Halfling.class.ts
+ M src/api/classesFilhos/Humano.class.ts
+ M src/api/classesFilhos/HumanoVariante.class.ts
+ M src/api/classesFilhos/MeioElfo.class.ts
+ M src/api/classesFilhos/MeioOrc.class.ts
+ M src/api/classesFilhos/Tiefling.class.ts
+ M src/api/classesNetos/AnaoColina.class.ts
+ M src/api/classesNetos/AnaoMontanha.class.ts
+ M src/api/classesNetos/ElfoAlto.class.ts
+ M src/api/classesNetos/ElfoFloresta.class.ts
+ M src/api/classesNetos/ElfoNegro.class.ts
+ M src/api/classesNetos/GnomoFloresta.class.ts
+ M src/api/classesNetos/GnomoRocha.class.ts
+ M src/api/classesNetos/HalflingLeve.class.ts
+ M src/api/classesNetos/HalflingRobusto.class.ts
+ M src/api/classesPrincipais/Classes.class.ts
+ M src/api/classesPrincipais/Efeitos.ts
+ M src/api/classesPrincipais/SubClassesExport.ts
+ M src/api/equipamentos/Armas.ts
+ M src/api/fichaPersonagem/FichaContext.tsx
+ M src/api/fichaPersonagem/FichaPersonagem.ts
+ M src/api/fichaPersonagem/fichaEfeitosUtils.ts
+ M src/bibliotecas/CaracteristicasClasse.ts
+ M src/bibliotecas/Itens.ts
+ M src/bibliotecas/ItensTraduzidos.ts
+ M src/bibliotecas/Manobras.ts
+ M src/bibliotecas/bibliotecaPrincipal.ts
+ M src/bibliotecas/idiomas/idiomasData.ts
+ D src/declarations.d.ts
+ M src/leveis/LevelUm.tsx
+ M src/leveis/NivelBlock.tsx
+ M src/leveis/components/CaracteristicasClasseProps.tsx
+ M src/leveis/components/CaracteristicasPatronoProps.tsx
+ M src/leveis/components/TalendoDescricao.tsx
+ M src/pages/components/CriacaoFicha.tsx
+ M src/pages/components/InformacoesPersonagem.tsx
+ M src/pages/components/InventarioMagiasDetalhes.tsx
+ M src/pages/components/PericiasEOutros.tsx
+ M src/pages/components/components_InformacoesPersonagem/ModalVida.tsx
+ M src/pages/components/components_inventario/AbaArmaduras.tsx
+ M src/pages/components/components_inventario/AbaArmas.tsx
+ M src/pages/components/components_inventario/AbaDetalhes.tsx
+ M src/pages/components/components_inventario/AbaItens.tsx
+ M src/pages/components/components_inventario/AbaMagias.tsx
+ M src/pages/criarFicha.js
+ M src/pages/css/Home.css
+ M src/pages/css/Magias.css
+ M src/pages/home.jsx
+ M src/pages/modals/ModalEstiloLuta.tsx
+ M src/pages/modals/ModalInventarioArma.tsx
+ M src/pages/modals/ModalInventarioEquipamentos.tsx
+ M src/pages/modals/ModalInventarioItens.tsx
+ M src/pages/modals/ModalMagias.tsx
+ M src/pages/modals/ModalSelecao.tsx
+ M src/pages/modals/ModalSelecaoBackGround.tsx
+ M src/pages/modals/ModalSelecaoClasse.tsx
+ M src/pages/modals/ModalSelecaoIdiomas.tsx
+ M src/pages/modals/ModalSelecaoMetamagica.tsx
+ M src/pages/modals/ModalSelecaoPatrono.tsx
+ M src/pages/modals/ModalSelecaoSubClasse.tsx
+ M src/pages/modals/ModalSelecaoTalento.tsx
+ M src/utils/exportarFichaPdf.ts
+?? .github/workflows/validate.yml
+?? docs/
+?? public/CONTEUDO-LICENCAS.txt
+?? scripts/
+?? src/api/classesClassesFilhos/Barbaro2024.class.ts
+?? src/api/classesClassesFilhos/Bardo2024.class.ts
+?? src/api/classesClassesFilhos/Bruxo2024.class.ts
+?? src/api/classesClassesFilhos/Clerigo2024.class.ts
+?? src/api/classesClassesFilhos/Druida2024.class.ts
+?? src/api/classesClassesFilhos/Feiticeiro2024.class.ts
+?? src/api/classesClassesFilhos/Ladino2024.class.ts
+?? src/api/classesClassesFilhos/Lutador2024.class.ts
+?? src/api/classesClassesFilhos/Mago2024.class.ts
+?? src/api/classesClassesFilhos/Monge2024.class.ts
+?? src/api/classesClassesFilhos/Paladino2024.class.ts
+?? src/api/classesClassesFilhos/Ranger2024.class.ts
+?? src/api/classesClassesNetos/Abjurador2024.ts
+?? src/api/classesClassesNetos/AdagaEspiritual2024.ts
+?? src/api/classesClassesNetos/Adivinhador2024.ts
+?? src/api/classesClassesNetos/AndarilhoFeerico2024.ts
+?? src/api/classesClassesNetos/Assassino2024.ts
+?? src/api/classesClassesNetos/Cacador2024.ts
+?? src/api/classesClassesNetos/Campeao2024.ts
+?? src/api/classesClassesNetos/CavaleiroMistico2024.ts
+?? src/api/classesClassesNetos/CirculoDaLua2024.ts
+?? src/api/classesClassesNetos/CirculoDaTerra2024.ts
+?? src/api/classesClassesNetos/CirculoDasEstrelas2024.ts
+?? src/api/classesClassesNetos/CirculoDoMar2024.ts
+?? src/api/classesClassesNetos/ColegioDaBravura2024.ts
+?? src/api/classesClassesNetos/ColegioDaDanca.ts
+?? src/api/classesClassesNetos/ColegioDoConhecimento2024.ts
+?? src/api/classesClassesNetos/ColegioDoGlamour2024.ts
+?? src/api/classesClassesNetos/CombatenteDaMaoEspalmada2024.ts
+?? src/api/classesClassesNetos/CombatenteDaMisericordia2024.ts
+?? src/api/classesClassesNetos/CombatenteDasSombras2024.ts
+?? src/api/classesClassesNetos/CombatenteDosElementos2024.ts
+?? src/api/classesClassesNetos/CombatentePsiquico2024.ts
+?? src/api/classesClassesNetos/DominioDaGuerra2024.ts
+?? src/api/classesClassesNetos/DominioDaLuz2024.ts
+?? src/api/classesClassesNetos/DominioDaTrapaca2024.ts
+?? src/api/classesClassesNetos/DominioDaVida2024.ts
+?? src/api/classesClassesNetos/Evocador2024.ts
+?? src/api/classesClassesNetos/FeiticariaAberrante2024.ts
+?? src/api/classesClassesNetos/FeiticariaDraconica2024.ts
+?? src/api/classesClassesNetos/FeiticariaMecanica2024.ts
+?? src/api/classesClassesNetos/FeiticariaSelvagem2024.ts
+?? src/api/classesClassesNetos/Ilusionista2024.ts
+?? src/api/classesClassesNetos/JuramentoDaDevocao2024.ts
+?? src/api/classesClassesNetos/JuramentoDaGloria2024.ts
+?? src/api/classesClassesNetos/JuramentoDaVinganca2024.ts
+?? src/api/classesClassesNetos/JuramentoDosAncioes2024.ts
+?? src/api/classesClassesNetos/Ladrao2024.ts
+?? src/api/classesClassesNetos/MestreDeBatalha2024.ts
+?? src/api/classesClassesNetos/PatronoArquifada2024.ts
+?? src/api/classesClassesNetos/PatronoCelestial2024.ts
+?? src/api/classesClassesNetos/PatronoGrandeAntigo2024.ts
+?? src/api/classesClassesNetos/PatronoInfero2024.ts
+?? src/api/classesClassesNetos/SenhorDasFeras2024.ts
+?? src/api/classesClassesNetos/TrapaceiroArcano2024.ts
+?? src/api/classesClassesNetos/TrilhaDaArvoreDoMundo.ts
+?? src/api/classesClassesNetos/TrilhaDoBerserker2024.ts
+?? src/api/classesClassesNetos/TrilhaDoCoracaoSelvagem.ts
+?? src/api/classesClassesNetos/TrilhaDoFanatico2024.ts
+?? src/api/classesClassesNetos/VigilanteDasSombras2024.ts
+?? src/api/fichaPersonagem/FichaContext.test.js
+?? src/api/fichaPersonagem/conteudoVersionado.test.js
+?? src/api/fichaPersonagem/escolhasProgressao.ts
+?? src/api/fichaPersonagem/fichaConjuracao.test.js
+?? src/api/fichaPersonagem/fichaConjuracao.ts
+?? src/api/fichaPersonagem/fichaInventario.test.js
+?? src/api/fichaPersonagem/fichaInventario.ts
+?? src/api/fichaPersonagem/fichaRecursos.ts
+?? src/api/fichaPersonagem/fichaRecursosPersistencia.test.js
+?? src/api/fichaPersonagem/fichaRestauracao.test.js
+?? src/api/fichaPersonagem/fichaRestauracao.ts
+?? src/api/fichaPersonagem/fichaSeletores.test.js
+?? src/api/fichaPersonagem/fichaSeletores.ts
+?? src/api/fichaPersonagem/fichaStorage.ts
+?? src/api/fichaPersonagem/progressao.test.js
+?? src/api/fichaPersonagem/subclasseElegibilidade.ts
+?? src/api/fichaPersonagem/talentosConteudo.ts
+?? src/api/rulesets/
+?? src/leveis/components/AvancoAtributos.tsx
+?? src/leveis/components/EscolhasMetamagia.tsx
+?? src/leveis/components/TalentoOrigem.tsx
+?? src/pages/accessibility.test.js
+?? src/pages/components/AccessibleDialog.tsx
+?? src/pages/components/ConteudoMagia.tsx
+?? src/pages/css/accessibility.css
+?? src/pages/exportacaoSobDemanda.test.js
+?? tsconfig.json
+

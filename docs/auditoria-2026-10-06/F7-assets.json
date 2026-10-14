@@ -1,0 +1,486 @@
+{
+  "consulta": "2026-10-07",
+  "criterio": "Inventario de arquivos locais; nao certifica autoria nem licenca.",
+  "arquivos": [
+    {
+      "caminho": "PDF/ficha-de-personagem-dd-5e.pdf",
+      "bytes": 2717085,
+      "sha256": "610bbf1bc1284b5393d38645b964ed48c20c688ffa45b8d1393b10ae2568f67c",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "public/favicon.ico",
+      "bytes": 3870,
+      "sha256": "3d10f7da6c603178340081668c4ac5b3ae9743ca9a262ab0fcd312fbb9f48bdd",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "public/favicon.ico.png",
+      "bytes": 362661,
+      "sha256": "3519772b8206949b756f400b25d09f008cac0b82019ea7431167dd08bc0a23c1",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "public/ficha-de-personagem-dd-5e.pdf",
+      "bytes": 2717085,
+      "sha256": "610bbf1bc1284b5393d38645b964ed48c20c688ffa45b8d1393b10ae2568f67c",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "public/icon_d10.png",
+      "bytes": 18266,
+      "sha256": "52de56bf6af953de786bc6012182e635b50ef726d9353392c349bcdff28ef49c",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "public/icon_d12.png",
+      "bytes": 18375,
+      "sha256": "ac434e1bf4f53cf1c55953c357390eeccc8e20ad30fdb70eee68ca8dee9ddfba",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "public/icon_d20.png",
+      "bytes": 18552,
+      "sha256": "6accf8c5c883ac4cef829f1c39da3afc1679478f0346f24017fb016eb24a4794",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "public/icon_d4.png",
+      "bytes": 17923,
+      "sha256": "0580947d6c8935eb73b361f7c56dcaa3193e907c2e7593636548c3ad10cb2ccc",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "public/icon_d6.png",
+      "bytes": 18165,
+      "sha256": "d09d5d3c8444a0be573daa3d8f1d53aeaefb473a5221fa8919f22ffb5947cdd5",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "public/icon_d8.png",
+      "bytes": 18132,
+      "sha256": "7dc3af1315c50cea94ab483d613546449f6a39098a337719b0d3f2f2c0b79602",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "public/logo192.png",
+      "bytes": 5347,
+      "sha256": "c386396ec70db3608075b5fbfaac4ab1ccaa86ba05a68ab393ec551eb66c3e00",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "public/logo512.png",
+      "bytes": 9664,
+      "sha256": "9ea4f4da7050c0cc408926f6a39c253624e9babb1d43c7977cd821445a60b461",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/add_moderator_24dp_75FB4C_FILL0_wght400_GRAD0_opsz24.png",
+      "bytes": 2703,
+      "sha256": "bae81b7c423af8034960206619305c2b3da691462920bfb24bb2ac9154e01746",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/add_moderator_24dp_D9D9D9_FILL0_wght400_GRAD0_opsz24.png",
+      "bytes": 2646,
+      "sha256": "7a0524c8ec1332202b71016c27f1c01618630b229cfcb4720302ec3f200a3fba",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/background-home.jpg",
+      "bytes": 19497,
+      "sha256": "57fe6a3fe49ef5330bddb0afd1188c6cd942e20f37596632298db6e7958ec954",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/blueFireMagia.png",
+      "bytes": 1098278,
+      "sha256": "d8a552b55934a7f2743b30fde389b3d70cd74fc1eb481131c152e25b330c04e6",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/brazaFireMagia.png",
+      "bytes": 5170447,
+      "sha256": "8619a01814b9f2e82eb6bfd2f6452cd31de2021e19b742be74be57eb97888830",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/darkFireMagia.png",
+      "bytes": 668499,
+      "sha256": "8c427764017730c91f832b4b17efe2ddf0c12db5b0c6dabcfe3f1659064bd0a8",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/delete_icon.png",
+      "bytes": 678,
+      "sha256": "572776028a24ee7f0bd7cc19a4e4b33b07df4698af031d35c3289d19bd5e47fc",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/emoji_people_24dp_75FB4C_FILL0_wght400_GRAD0_opsz24.png",
+      "bytes": 1791,
+      "sha256": "45531bc577240924e780a6bda0ed5a81bc1289bf01cfe9e218ed2b9a0170606f",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/emoji_people_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
+      "bytes": 2122,
+      "sha256": "942216fd66b57865f162a4a3e7450e0ef09d2a96422032bf3b6ae86349766640",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/filter_alt_24dp_CCCCCC_FILL0_wght400_GRAD0_opsz24.png",
+      "bytes": 1760,
+      "sha256": "6b1afe78f97fddc7975852f94853ff85dc00aa1075b10931318b3cc0b1af4721",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/filter_alt_off_24dp_CCCCCC_FILL0_wght400_GRAD0_opsz24.png",
+      "bytes": 1831,
+      "sha256": "d1d545339e0a89b3f9907fa46abfb63d4237a1dd50d20a6153007563f6907652",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/fire2Magia.png",
+      "bytes": 481836,
+      "sha256": "b7cad394ae50c7dfa4551c22c1ee038a8b5fac8b49c9b84fa72894eccf189ea9",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/fireMagia.png",
+      "bytes": 668499,
+      "sha256": "8c427764017730c91f832b4b17efe2ddf0c12db5b0c6dabcfe3f1659064bd0a8",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/fireMagiaRed.png",
+      "bytes": 884979,
+      "sha256": "5db99609812796f90adcef12aa94a98ec3dee3c42bdcbb432ee9aab101239239",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/gelomagia.png",
+      "bytes": 1796008,
+      "sha256": "eeb827ca3bf3e7717d81edb949f1390028c478b5df7bee1b979606bc854f6dbe",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/gold.png",
+      "bytes": 720182,
+      "sha256": "ba58088a11658f847d9041903b082194556d91aa37e32375e72da57043033b63",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/gramaMagia.png",
+      "bytes": 1279083,
+      "sha256": "9e6960f0fc2a86c353c0f1b4bfd3d80a31226a9724a49e90d3a099c024f818c3",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/icon-fixa-criar-nova-1.png",
+      "bytes": 4835,
+      "sha256": "473e4e03878558c98a8d7235d82da0f11870848ebf17c5f74bc62e6deb350f76",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/icon-fixa-criar-nova-2.png",
+      "bytes": 3079,
+      "sha256": "c16cb4aada0e729d1df05dc167cd06c9951b159652e44bc6c4b0367bce0271fe",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/icon-fixa-criar-nova.png",
+      "bytes": 24029,
+      "sha256": "4f725c2e2b4a68d91c4df1f987779d49a2820d580d79cc00805757c9592979c2",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/icon-fixa-salva-1.png",
+      "bytes": 3750,
+      "sha256": "94990e52ace169ce9117686b25ad998b25fdfa1baf1896bc085963be74f663fe",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/icon-fixa-salva.png",
+      "bytes": 26860,
+      "sha256": "ea344fc97686dbf51132132fa256c31d9a193c09c33a85ed8336b1ee70882d6e",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/icon.png",
+      "bytes": 1443,
+      "sha256": "ecb437de4fdf21d2ff1692f5e75671a15f18eaad9a9c1f9c3ee0fe35f3d36447",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/icon_ac.png",
+      "bytes": 18812,
+      "sha256": "bd887154cd149af2a9ea91acbd893c3ccb5ec9c7079e0d794e05ce10b072b639",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/icon_ancestry.png",
+      "bytes": 23679,
+      "sha256": "88db7e5b28d40e0092b96f619d5e8ba377d614f11677296c3430d5a99369f107",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/icon_background.png",
+      "bytes": 24988,
+      "sha256": "3382ca6e23b0d144a2dc15e01f542ac84c3e2d0774b5c5bed28c749f658b7e26",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/icon_class.png",
+      "bytes": 22566,
+      "sha256": "1d6bfce498162b10b6612c8ff00020f4276630fb55447759e3e27649aa6405cf",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/icon_d4.png",
+      "bytes": 17923,
+      "sha256": "0580947d6c8935eb73b361f7c56dcaa3193e907c2e7593636548c3ad10cb2ccc",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/iconDesequiparCinza.png",
+      "bytes": 1179,
+      "sha256": "acc913af7f92b9b80792cd72d341491272902e2aaf4498c53048d9c2c6e44698",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/iconDesequiparVermelho.png",
+      "bytes": 947,
+      "sha256": "ab5ca14004f9ae0d9f85679c08aab758bc29858251b58750db138dba53bc08cb",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/iconEquiparCinza.png",
+      "bytes": 1443,
+      "sha256": "48065391352c812e2df4a3e95680c386b73c729d5a666497d9c12da9f0886b37",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/iconEquiparVerde.png",
+      "bytes": 1070,
+      "sha256": "667e682b82f92a944b776650cf6c866ec98da1eac405efcb8f5018ef0d3a6134",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/local_fire_department_24dp_B7B7B7_FILL0_wght400_GRAD0_opsz24.png",
+      "bytes": 3548,
+      "sha256": "5518b5559fa2f2529e79f8e945acebd80788ba87025dd496fa215fae3b7be5e6",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/local_fire_department_24dp_EA3323_FILL0_wght400_GRAD0_opsz24.png",
+      "bytes": 3677,
+      "sha256": "6bd315ee7fdc3b6689936736fc2a21bde35c56da449372bf6d54b1704c591f59",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/pngwing.com.png",
+      "bytes": 362661,
+      "sha256": "3519772b8206949b756f400b25d09f008cac0b82019ea7431167dd08bc0a23c1",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/raioMagia.png",
+      "bytes": 359701,
+      "sha256": "f123c1e92c127173beddbefdbc13a8de89e39e58ae15d43ad41ccaf86b58390f",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/remove_moderator_24dp_D9D9D9_FILL0_wght400_GRAD0_opsz24.png",
+      "bytes": 2961,
+      "sha256": "2800ea0742c7da2762b3f6c51ad7eb6e83bff94fe89317a07225732cdec5bbd0",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/remove_moderator_24dp_EA3323_FILL0_wght400_GRAD0_opsz24.png",
+      "bytes": 3076,
+      "sha256": "7ec0af1b66457d5621f1b66e3f4a7b2cdff1a8e2d62574288a6012b45a69d04b",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/security_24dp_B7B7B7_FILL0_wght400_GRAD0_opsz24.png",
+      "bytes": 2167,
+      "sha256": "0380fd7aa6e9fe840f1c561fdd7305cca08cd8cb37c12087ff1be9c7f3b41639",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/security_24dp_EA3323_FILL0_wght400_GRAD0_opsz24.png",
+      "bytes": 2259,
+      "sha256": "d486bd8bc53ae41bf950a7ddce3dd8061c272b3db4bd42e7d7d52eeac777109d",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/shield_with_heart_24dp_75FB4C_FILL0_wght400_GRAD0_opsz24.png",
+      "bytes": 617,
+      "sha256": "2449442a8a925d10ff3bac00f4c0609dd9dc0b192ffc1de70cbeffcc205d7572",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/shield_with_heart_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
+      "bytes": 587,
+      "sha256": "60062aa67508abf7fba34587131a038aa7395d587896d97c8a6ba7685e6d041e",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/skull_24dp_000000_FILL0_wght400_GRAD0_opsz24.png",
+      "bytes": 478,
+      "sha256": "2ad0310d5c01a90d736bb18fa00294be44ebafad34e0c6d0461f4ccc5d5b2ddf",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/skull_24dp_CCCCCC_FILL0_wght400_GRAD0_opsz24.png",
+      "bytes": 641,
+      "sha256": "734fa6fc64276373bca5c14072f2ad5c60e47d5ca19a67c8a8fb0597e9c39456",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/skull_24dp_EA3323_FILL0_wght400_GRAD0_opsz24.png",
+      "bytes": 673,
+      "sha256": "b743c3ef48bc838dcb9b1acca535faada8cfaa437eac1e9b4c1fb8ddd49f945f",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/swords_24dp_434343_FILL0_wght400_GRAD0_opsz24.png",
+      "bytes": 3106,
+      "sha256": "6ae00d90fcf84e3c5eea99b76bc3ce7a47b42e2271bba7a57cafa7fd79637a80",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/swords_24dp_B7B7B7_FILL0_wght400_GRAD0_opsz24.png",
+      "bytes": 3119,
+      "sha256": "12a757d2fe1b10e6b4db857a1e998fe2c123e0f6e2ff9496a14dd5181a83ada3",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    },
+    {
+      "caminho": "src/imagens/swords_24dp_EA3323_FILL0_wght400_GRAD0_opsz24.png",
+      "bytes": 3240,
+      "sha256": "b0e393e278b51fdb38b33493b46addb2f018f70805b8b11fe30eb43089e119d2",
+      "natureza": "nao-verificado",
+      "licenca": "pendente",
+      "fonte": "arquivo local; atribuicao original a confirmar"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
-import { Classes } from "../classesPrincipais/Classes.class.ts";
-import { SubClasses } from "../classesPrincipais/SubClasses.ts";
-import { ColegioDoConhecimento, ColegioDaBravura, ColegioDoGlamour, ColegioDasEspadas, ColegioDosSussurros } from "../classesPrincipais/SubClassesExport.ts";
+import { Classes } from "../classesPrincipais/Classes.class";
+import { SubClasses } from "../classesPrincipais/SubClasses";
+import { ColegioDoConhecimento, ColegioDaBravura, ColegioDoGlamour, ColegioDasEspadas, ColegioDosSussurros } from "../classesPrincipais/SubClassesExport";
 
 export class Bardo extends Classes {
   level: number;

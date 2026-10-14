@@ -1,3 +1,4 @@
+import AccessibleDialog from "../components/AccessibleDialog";
 import React, { useState } from "react";
 import { Armas } from "../../api/equipamentos/Armas";
 
@@ -40,7 +41,7 @@ export default function ModalInventarioArma({
   );
 
   return (
-    <div className="popup-content-modal">
+    <AccessibleDialog className="popup-content-modal" onClose={onClose} aria-label="Selecione uma Arma">
       <h2>Selecione uma Arma</h2>
 
       {/* Mostra os botões de filtro ou a lista de armas */}
@@ -57,16 +58,16 @@ export default function ModalInventarioArma({
             <div className="lista-racas">
               <input
                 type="text"
-                placeholder={`Filtrar ${filtroCategoria}...`}
+                aria-label={`Filtrar ${filtroCategoria}...`} placeholder={`Filtrar ${filtroCategoria}...`}
                 value={filtro}
                 onChange={(e) => setFiltro(e.target.value)}
               />
               <ul>
                 {opcoesFiltradas.map((arma) => (
                   <>
-                    <li key={arma.nome} onClick={() => setArma(arma)}>
+                    <li key={arma.nome}><button type="button" className="selection-option" aria-pressed={armaSelecionada?.nome === arma.nome} onClick={() => setArma(arma)}>
                       <strong>{arma.nome}</strong>
-                    </li>
+                    </button></li>
                   </>
                 ))}
               </ul >
@@ -101,6 +102,6 @@ export default function ModalInventarioArma({
 
       {/* Botão para fechar o modal */}
       <button className="escolher-button" onClick={onClose}>Fechar</button>
-    </div >
+    </AccessibleDialog>
   );
 }

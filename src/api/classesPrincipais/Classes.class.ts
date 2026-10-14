@@ -1,6 +1,8 @@
-import { SubClasses } from "../classesPrincipais/SubClasses.ts";
+import { SubClasses } from "../classesPrincipais/SubClasses";
+import { chaveClasse } from '../rulesets/progressao';
 
 export class Classes {
+    chave: string;
     nome: string;
     dadosVida: number;
     armaduras: string[];
@@ -12,8 +14,8 @@ export class Classes {
     niveis: {
         nivel: number;
         caracteristicas: string[];
-      }[];
-    subClasse: SubClasses[];
+      }[] = [];
+    subClasse: SubClasses[] = [];
     proficienciaMulticlasse: string[];
 
     constructor(
@@ -28,6 +30,7 @@ export class Classes {
         proficienciaMulticlasse: string[]
     ){
         this.nome = nome;
+        this.chave = chaveClasse(nome);
         this.dadosVida = dadosVida;
         this.armaduras = armaduras;
         this.armas = armas;

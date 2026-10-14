@@ -1,4 +1,4 @@
-import { Halfling } from "../classesFilhos/Halfling.class.ts";
+import { Halfling } from "../classesFilhos/Halfling.class";
 
 export class HalflingLeve extends Halfling {
     constructor() {

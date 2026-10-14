@@ -193,3 +193,28 @@
 .botao-espaco-magia:hover .espaco-magia-icon {
   transform: scale(1.1);
 }
+
+.magias .espacos-magia {
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.magias .botao-espaco-magia {
+  padding: 6px 10px;
+  color: inherit;
+  border: 1px solid currentColor;
+  border-radius: 5px;
+}
+.magias .botao-espaco-magia[aria-pressed="true"] {
+  opacity: .6;
+  text-decoration: line-through;
+}
+.magias button:focus-visible { outline: 2px solid #eaa63b; outline-offset: 3px; }
+.magias .nivel-magia-container {
+  width: 100%;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 16px;
+}

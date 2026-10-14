@@ -1,0 +1,113 @@
+{
+  "tag": "plain3",
+  "root": "C:\\Users\\GUILHE~1\\AppData\\Local\\Temp\\minhaficha-pendencias-final-T48oLZ",
+  "profile": "C:\\Users\\GUILHE~1\\AppData\\Local\\Temp\\minhaficha-browser-final-FlyRHq",
+  "checks": [
+    {
+      "name": "Tab inicial",
+      "ok": true
+    },
+    {
+      "name": "Foco inicial do diálogo",
+      "ok": true
+    },
+    {
+      "name": "Shift+Tab contido",
+      "ok": true
+    },
+    {
+      "name": "Retorno do foco",
+      "ok": true
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:50697/",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:50697/static/css/main.377b22be.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:50697/manifest.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:50697/static/js/main.17d228e4.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:50697/static/media/icon-fixa-salva.ca232e99e55b5517b66d.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:50697/static/media/icon-fixa-criar-nova.75aad4da4e1212001a41.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:50697/static/media/background-home.62767f80230d1bf33658.jpg",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:50697/favicon.ico.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:50697/logo192.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:50697/static/media/icon_ancestry.b36507b7da6641c45e80.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:50697/static/media/icon_class.262968ed500b320d093f.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:50697/static/media/icon_background.2f9f75eb45952c617b92.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:50697/static/media/icon_ac.bb2815e02e61dedb16e9.png",
+      "status": 200
+    }
+  ],
+  "timings": [],
+  "version": {
+    "protocolVersion": "1.3",
+    "product": "Edg/154.0.4258.62",
+    "revision": "@49f7c5590dad654f33b924537ccc8be227c5a43a",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36 Edg/154.0.0.0",
+    "jsVersion": "15.4.11.9"
+  },
+  "manifest": {
+    "files": {
+      "main.css": "/static/css/main.377b22be.css",
+      "main.js": "/static/js/main.17d228e4.js",
+      "static/js/714.5189856b.chunk.js": "/static/js/714.5189856b.chunk.js",
+      "static/js/488.13f461bb.chunk.js": "/static/js/488.13f461bb.chunk.js",
+      "static/js/105.8aceebe9.chunk.js": "/static/js/105.8aceebe9.chunk.js",
+      "static/media/icon-fixa-salva.png": "/static/media/icon-fixa-salva.ca232e99e55b5517b66d.png",
+      "static/media/icon_background.png": "/static/media/icon_background.2f9f75eb45952c617b92.png",
+      "static/media/icon-fixa-criar-nova.png": "/static/media/icon-fixa-criar-nova.75aad4da4e1212001a41.png",
+      "static/media/icon_ancestry.png": "/static/media/icon_ancestry.b36507b7da6641c45e80.png",
+      "static/media/icon_class.png": "/static/media/icon_class.262968ed500b320d093f.png",
+      "static/media/background-home.jpg": "/static/media/background-home.62767f80230d1bf33658.jpg",
+      "static/media/icon_ac.png": "/static/media/icon_ac.bb2815e02e61dedb16e9.png",
+      "index.html": "/index.html",
+      "main.377b22be.css.map": "/static/css/main.377b22be.css.map",
+      "main.17d228e4.js.map": "/static/js/main.17d228e4.js.map",
+      "714.5189856b.chunk.js.map": "/static/js/714.5189856b.chunk.js.map",
+      "488.13f461bb.chunk.js.map": "/static/js/488.13f461bb.chunk.js.map",
+      "105.8aceebe9.chunk.js.map": "/static/js/105.8aceebe9.chunk.js.map"
+    },
+    "entrypoints": [
+      "static/css/main.377b22be.css",
+      "static/js/main.17d228e4.js"
+    ]
+  },
+  "error": "Error: Timeout: !!document.querySelector('[aria-label=\"Nome\"]')\n    at wait (C:\\Users\\Guilherme\\Documents\\GitHub\\MinhaFichaDnd\\docs\\revisao-pendencias-2026-10-08\\execucao-20261008-01\\browser-final.cjs:43:130)\n    at async C:\\Users\\Guilherme\\Documents\\GitHub\\MinhaFichaDnd\\docs\\revisao-pendencias-2026-10-08\\execucao-20261008-01\\browser-final.cjs:69:5"
+}

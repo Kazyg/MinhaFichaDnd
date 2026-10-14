@@ -1,19 +1,22 @@
+import AccessibleDialog from "../components/AccessibleDialog";
 import React, { useState } from "react";
-import { Classes } from "../../api/classesPrincipais/Classes.class.ts";
-import { useFicha } from "../../api/fichaPersonagem/FichaContext.tsx";
+import { Classes } from "../../api/classesPrincipais/Classes.class";
+import { useFicha } from "../../api/fichaPersonagem/FichaContext";
 
 interface ModalSelecaoProps {
     opcoes: Classes[];
     titulo: string;
     onClose: () => void;
-    onSelect: (opcao: Classes | null) => void;
+    onSelect: (opcao: Classes | null) => boolean | void;
+    validar?: (opcao: Classes) => string | null;
     classeInicial: Classes | null;
 }
 
-const ModalSelecaoClasse: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClose, onSelect, classeInicial }) => {
+const ModalSelecaoClasse: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, onClose, onSelect, classeInicial, validar }) => {
     const [filtro, setFiltro] = useState("");
     const [selecionado, setSelecionado] = useState<Classes | null>(classeInicial || null);
     const { ficha } = useFicha();
+    const erro = selecionado ? validar?.(selecionado) : null;
 
     const normalizar = (texto: string) =>
         texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
@@ -28,23 +31,23 @@ const ModalSelecaoClasse: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, 
         : opcoesFiltradas;
 
     return (
-        <div className="popup-content-modal">
+        <AccessibleDialog className="popup-content-modal" onClose={onClose} aria-label={titulo}>
             <h2>{titulo}</h2>
             <div className="popup-body-modal">
                 <div className="lista-racas">
                     <input
                         type="text"
-                        placeholder="Filtrar classes..."
+                        aria-label="Filtrar classes..." placeholder="Filtrar classes..."
                         value={filtro}
                         onChange={(e) => setFiltro(e.target.value)}
                     />
                     <ul>
                         {opcoesOrdenadas.map((opcao) => (
-                            <li key={opcao.nome} onClick={() => {
+                            <li key={opcao.nome}><button type="button" className="selection-option" aria-pressed={selecionado?.nome === opcao.nome} onClick={() => {
                                 setSelecionado(opcao);
                             }}>
                                 {opcao.nome}
-                            </li>
+                            </button></li>
                         ))}
                     </ul>
                 </div>
@@ -59,16 +62,17 @@ const ModalSelecaoClasse: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, 
                             <p><strong>Ferramentas:</strong> {selecionado.ferramentas.join(", ")}</p>
                             <p><strong>Testes de resistencias:</strong> {selecionado.testesResistencias.join(", ")}</p>
                             <p><strong>Proeficiencias: {selecionado.habilidade} Dentre: </strong>{selecionado.habilidades.join(", ")}</p>
+                            {erro && <p id="erro-classe" role="status">{erro}</p>}
                         </>
                     )}
                 </div>
             </div>
 
             <div className="popup-footer">
-                {selecionado && (<button className="escolher-button" onClick={() => { onSelect(selecionado); onClose() }}>Escolher {selecionado.nome}</button>)}
+                {selecionado && (<button className="escolher-button" disabled={!!erro} aria-describedby={erro ? 'erro-classe' : undefined} onClick={() => { if (!erro && onSelect(selecionado) !== false) onClose(); }}>Escolher {selecionado.nome}</button>)}
                 <button className="escolher-button" onClick={() => { onClose() }}>Fechar</button>
             </div>
-        </div>
+        </AccessibleDialog>
     );
 };
 

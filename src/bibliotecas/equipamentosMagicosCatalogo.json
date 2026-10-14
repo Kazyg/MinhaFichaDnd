@@ -1,0 +1,6660 @@
+[
+  {
+    "indice": 4,
+    "nomeIngles": "+1 Armor",
+    "nomeLocal": "+1 Armadura",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "melhoria",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:4",
+      "usarDescricaoCatalogo": false,
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 8,
+    "nomeIngles": "+1 Moon Sickle",
+    "nomeLocal": "+1 Foice Lunar",
+    "tipoOriginal": "M, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:8",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Foice Curta",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": [
+        "Foco de conjuração: Serve como foco para magias de druida e patrulheiro enquanto estiver segurando a foice.",
+        "Cura +1d4: Ao conjurar uma magia de cura segurando a foice, acrescente 1d4 aos pontos de vida recuperados."
+      ],
+      "bonusMagia": [
+        {
+          "classeNome": "druida",
+          "ataque": 1,
+          "cd": 1
+        },
+        {
+          "classeNome": "patrulheiro",
+          "ataque": 1,
+          "cd": 1
+        }
+      ],
+      "requisitoSintonizacao": "Sintonização por druida ou patrulheiro."
+    }
+  },
+  {
+    "indice": 12,
+    "nomeIngles": "+1 Shield (*)",
+    "nomeLocal": "+1 Escudo (*)",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "melhoria",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:12",
+      "usarDescricaoCatalogo": true,
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 15,
+    "nomeIngles": "+1 Weapon",
+    "nomeLocal": "+1 Arma",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "melhoria",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:15",
+      "usarDescricaoCatalogo": false,
+      "bonusAtaque": 1,
+      "bonusDano": 1
+    }
+  },
+  {
+    "indice": 23,
+    "nomeIngles": "+2 Armor",
+    "nomeLocal": "+2 Armadura",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "melhoria",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:23",
+      "usarDescricaoCatalogo": false,
+      "bonusCA": 2
+    }
+  },
+  {
+    "indice": 27,
+    "nomeIngles": "+2 Moon Sickle",
+    "nomeLocal": "+2 Foice Lunar",
+    "tipoOriginal": "M, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:27",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Foice Curta",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": [
+        "Foco de conjuração: Serve como foco para magias de druida e patrulheiro enquanto estiver segurando a foice.",
+        "Cura +1d4: Ao conjurar uma magia de cura segurando a foice, acrescente 1d4 aos pontos de vida recuperados."
+      ],
+      "bonusMagia": [
+        {
+          "classeNome": "druida",
+          "ataque": 2,
+          "cd": 2
+        },
+        {
+          "classeNome": "patrulheiro",
+          "ataque": 2,
+          "cd": 2
+        }
+      ],
+      "requisitoSintonizacao": "Sintonização por druida ou patrulheiro."
+    }
+  },
+  {
+    "indice": 31,
+    "nomeIngles": "+2 Shield (*)",
+    "nomeLocal": "+2 Escudo (*)",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "melhoria",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:31",
+      "usarDescricaoCatalogo": true,
+      "bonusCA": 2
+    }
+  },
+  {
+    "indice": 34,
+    "nomeIngles": "+2 Weapon",
+    "nomeLocal": "+2 Arma",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "melhoria",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:34",
+      "usarDescricaoCatalogo": false,
+      "bonusAtaque": 2,
+      "bonusDano": 2
+    }
+  },
+  {
+    "indice": 42,
+    "nomeIngles": "+3 Armor",
+    "nomeLocal": "+3 Armadura",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "melhoria",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:42",
+      "usarDescricaoCatalogo": false,
+      "bonusCA": 3
+    }
+  },
+  {
+    "indice": 46,
+    "nomeIngles": "+3 Moon Sickle",
+    "nomeLocal": "+3 Foice Lunar",
+    "tipoOriginal": "M, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:46",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Foice Curta",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": [
+        "Foco de conjuração: Serve como foco para magias de druida e patrulheiro enquanto estiver segurando a foice.",
+        "Cura +1d4: Ao conjurar uma magia de cura segurando a foice, acrescente 1d4 aos pontos de vida recuperados."
+      ],
+      "bonusMagia": [
+        {
+          "classeNome": "druida",
+          "ataque": 3,
+          "cd": 3
+        },
+        {
+          "classeNome": "patrulheiro",
+          "ataque": 3,
+          "cd": 3
+        }
+      ],
+      "requisitoSintonizacao": "Sintonização por druida ou patrulheiro."
+    }
+  },
+  {
+    "indice": 50,
+    "nomeIngles": "+3 Shield (*)",
+    "nomeLocal": "+3 Escudo (*)",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "melhoria",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:50",
+      "usarDescricaoCatalogo": true,
+      "bonusCA": 3
+    }
+  },
+  {
+    "indice": 53,
+    "nomeIngles": "+3 Weapon",
+    "nomeLocal": "+3 Arma",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "melhoria",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:53",
+      "usarDescricaoCatalogo": false,
+      "bonusAtaque": 3,
+      "bonusDano": 3
+    }
+  },
+  {
+    "indice": 65,
+    "nomeIngles": "Adamantine Armor",
+    "nomeLocal": "Adamantina Armadura",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:65",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Camisão de Malha",
+        "Brunea",
+        "Peitoral",
+        "Meia-Armadura",
+        "Cota de Anéis",
+        "Cota de Malha",
+        "Cota de Talas",
+        "Placas"
+      ],
+      "propriedadesEspeciais": [
+        "Adamantina: Transforma acertos críticos contra o portador em acertos normais."
+      ]
+    }
+  },
+  {
+    "indice": 70,
+    "nomeIngles": "Adze of Annam",
+    "nomeLocal": "Adze De Annam",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:70",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Machado Grande",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 74,
+    "nomeIngles": "Akmon, Hammer of Purphoros",
+    "nomeLocal": "Akmon, Martelo De Purphoros",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:74",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Martelo de Guerra",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 114,
+    "nomeIngles": "Animated Shield",
+    "nomeLocal": "Escudo Animado",
+    "tipoOriginal": "S, Attunement",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:114",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "propriedadesEspeciais": [
+        "Animação: Ativação por ação bônus: flutua por até 1 minuto e libera as mãos. O estado animado temporário é resolvido na sessão; equipado normalmente ocupa uma mão."
+      ]
+    }
+  },
+  {
+    "indice": 115,
+    "nomeIngles": "Animated Shield",
+    "nomeLocal": "Escudo Animado",
+    "tipoOriginal": "S|XPHB, Attunement",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:115",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "propriedadesEspeciais": [
+        "Animação: Ativação por ação bônus: flutua por até 1 minuto e libera as mãos. O estado animado temporário é resolvido na sessão; equipado normalmente ocupa uma mão."
+      ]
+    }
+  },
+  {
+    "indice": 132,
+    "nomeIngles": "Armor of Acid Resistance",
+    "nomeLocal": "Armadura De Acid Resistência",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:132",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Acolchoada",
+        "Couro",
+        "Couro Batido",
+        "Gibão de Peles",
+        "Camisão de Malha",
+        "Brunea",
+        "Peitoral",
+        "Meia-Armadura",
+        "Cota de Anéis",
+        "Cota de Malha",
+        "Cota de Talas",
+        "Placas"
+      ],
+      "propriedadesEspeciais": [
+        "Resistência: Oferece resistência ao tipo de dano Acid enquanto estiver equipada e sintonizada; não concede CA adicional."
+      ]
+    }
+  },
+  {
+    "indice": 133,
+    "nomeIngles": "Armor of Cold Resistance",
+    "nomeLocal": "Armadura De Cold Resistência",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:133",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Acolchoada",
+        "Couro",
+        "Couro Batido",
+        "Gibão de Peles",
+        "Camisão de Malha",
+        "Brunea",
+        "Peitoral",
+        "Meia-Armadura",
+        "Cota de Anéis",
+        "Cota de Malha",
+        "Cota de Talas",
+        "Placas"
+      ],
+      "propriedadesEspeciais": [
+        "Resistência: Oferece resistência ao tipo de dano Cold enquanto estiver equipada e sintonizada; não concede CA adicional."
+      ]
+    }
+  },
+  {
+    "indice": 134,
+    "nomeIngles": "Armor of Fire Resistance",
+    "nomeLocal": "Armadura De Fogo Resistência",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:134",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Acolchoada",
+        "Couro",
+        "Couro Batido",
+        "Gibão de Peles",
+        "Camisão de Malha",
+        "Brunea",
+        "Peitoral",
+        "Meia-Armadura",
+        "Cota de Anéis",
+        "Cota de Malha",
+        "Cota de Talas",
+        "Placas"
+      ],
+      "propriedadesEspeciais": [
+        "Resistência: Oferece resistência ao tipo de dano Fire enquanto estiver equipada e sintonizada; não concede CA adicional."
+      ]
+    }
+  },
+  {
+    "indice": 135,
+    "nomeIngles": "Armor of Force Resistance",
+    "nomeLocal": "Armadura De Força Resistência",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:135",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Acolchoada",
+        "Couro",
+        "Couro Batido",
+        "Gibão de Peles",
+        "Camisão de Malha",
+        "Brunea",
+        "Peitoral",
+        "Meia-Armadura",
+        "Cota de Anéis",
+        "Cota de Malha",
+        "Cota de Talas",
+        "Placas"
+      ],
+      "propriedadesEspeciais": [
+        "Resistência: Oferece resistência ao tipo de dano Force enquanto estiver equipada e sintonizada; não concede CA adicional."
+      ]
+    }
+  },
+  {
+    "indice": 137,
+    "nomeIngles": "Armor of Gleaming",
+    "nomeLocal": "Armadura De Gleaming",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:137",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Acolchoada",
+        "Couro",
+        "Couro Batido",
+        "Gibão de Peles",
+        "Camisão de Malha",
+        "Brunea",
+        "Peitoral",
+        "Meia-Armadura",
+        "Cota de Anéis",
+        "Cota de Malha",
+        "Cota de Talas",
+        "Placas"
+      ],
+      "propriedadesEspeciais": [
+        "Reluzente: Esta armadura não fica suja; não concede bônus adicional de CA."
+      ]
+    }
+  },
+  {
+    "indice": 138,
+    "nomeIngles": "Armor of Invulnerability",
+    "nomeLocal": "Armadura De Invulnerability",
+    "tipoOriginal": "HA, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:138",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Placas",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 139,
+    "nomeIngles": "Armor of Invulnerability",
+    "nomeLocal": "Armadura De Invulnerability",
+    "tipoOriginal": "HA|XPHB, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:139",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Placas",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 140,
+    "nomeIngles": "Armor of Lightning Resistance",
+    "nomeLocal": "Armadura De Relâmpago Resistência",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:140",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Acolchoada",
+        "Couro",
+        "Couro Batido",
+        "Gibão de Peles",
+        "Camisão de Malha",
+        "Brunea",
+        "Peitoral",
+        "Meia-Armadura",
+        "Cota de Anéis",
+        "Cota de Malha",
+        "Cota de Talas",
+        "Placas"
+      ],
+      "propriedadesEspeciais": [
+        "Resistência: Oferece resistência ao tipo de dano Lightning enquanto estiver equipada e sintonizada; não concede CA adicional."
+      ]
+    }
+  },
+  {
+    "indice": 141,
+    "nomeIngles": "Armor of Necrotic Resistance",
+    "nomeLocal": "Armadura De Necrotic Resistência",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:141",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Acolchoada",
+        "Couro",
+        "Couro Batido",
+        "Gibão de Peles",
+        "Camisão de Malha",
+        "Brunea",
+        "Peitoral",
+        "Meia-Armadura",
+        "Cota de Anéis",
+        "Cota de Malha",
+        "Cota de Talas",
+        "Placas"
+      ],
+      "propriedadesEspeciais": [
+        "Resistência: Oferece resistência ao tipo de dano Necrotic enquanto estiver equipada e sintonizada; não concede CA adicional."
+      ]
+    }
+  },
+  {
+    "indice": 142,
+    "nomeIngles": "Armor of Poison Resistance",
+    "nomeLocal": "Armadura De Poison Resistência",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:142",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Acolchoada",
+        "Couro",
+        "Couro Batido",
+        "Gibão de Peles",
+        "Camisão de Malha",
+        "Brunea",
+        "Peitoral",
+        "Meia-Armadura",
+        "Cota de Anéis",
+        "Cota de Malha",
+        "Cota de Talas",
+        "Placas"
+      ],
+      "propriedadesEspeciais": [
+        "Resistência: Oferece resistência ao tipo de dano Poison enquanto estiver equipada e sintonizada; não concede CA adicional."
+      ]
+    }
+  },
+  {
+    "indice": 143,
+    "nomeIngles": "Armor of Psychic Resistance",
+    "nomeLocal": "Armadura De Psychic Resistência",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:143",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Acolchoada",
+        "Couro",
+        "Couro Batido",
+        "Gibão de Peles",
+        "Camisão de Malha",
+        "Brunea",
+        "Peitoral",
+        "Meia-Armadura",
+        "Cota de Anéis",
+        "Cota de Malha",
+        "Cota de Talas",
+        "Placas"
+      ],
+      "propriedadesEspeciais": [
+        "Resistência: Oferece resistência ao tipo de dano Psychic enquanto estiver equipada e sintonizada; não concede CA adicional."
+      ]
+    }
+  },
+  {
+    "indice": 144,
+    "nomeIngles": "Armor of Radiant Resistance",
+    "nomeLocal": "Armadura De Radiant Resistência",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:144",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Acolchoada",
+        "Couro",
+        "Couro Batido",
+        "Gibão de Peles",
+        "Camisão de Malha",
+        "Brunea",
+        "Peitoral",
+        "Meia-Armadura",
+        "Cota de Anéis",
+        "Cota de Malha",
+        "Cota de Talas",
+        "Placas"
+      ],
+      "propriedadesEspeciais": [
+        "Resistência: Oferece resistência ao tipo de dano Radiant enquanto estiver equipada e sintonizada; não concede CA adicional."
+      ]
+    }
+  },
+  {
+    "indice": 147,
+    "nomeIngles": "Armor of Thunder Resistance",
+    "nomeLocal": "Armadura De Thunder Resistência",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:147",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Acolchoada",
+        "Couro",
+        "Couro Batido",
+        "Gibão de Peles",
+        "Camisão de Malha",
+        "Brunea",
+        "Peitoral",
+        "Meia-Armadura",
+        "Cota de Anéis",
+        "Cota de Malha",
+        "Cota de Talas",
+        "Placas"
+      ],
+      "propriedadesEspeciais": [
+        "Resistência: Oferece resistência ao tipo de dano Thunder enquanto estiver equipada e sintonizada; não concede CA adicional."
+      ]
+    }
+  },
+  {
+    "indice": 148,
+    "nomeIngles": "Armor of Vulnerability (Bludgeoning)",
+    "nomeLocal": "Armadura De Vulnerability (Bludgeoning)",
+    "tipoOriginal": "HA, Cursed, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:148",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Placas",
+      "propriedadesEspeciais": [
+        "Vulnerabilidade: Oferece resistência a um tipo de dano físico, mas sua maldição impõe vulnerabilidade aos outros dois; retirar a armadura não remove a maldição."
+      ]
+    }
+  },
+  {
+    "indice": 149,
+    "nomeIngles": "Armor of Vulnerability (Bludgeoning)",
+    "nomeLocal": "Armadura De Vulnerability (Bludgeoning)",
+    "tipoOriginal": "GV|XDMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:149",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Acolchoada",
+        "Couro",
+        "Couro Batido",
+        "Gibão de Peles",
+        "Camisão de Malha",
+        "Brunea",
+        "Peitoral",
+        "Meia-Armadura",
+        "Cota de Anéis",
+        "Cota de Malha",
+        "Cota de Talas",
+        "Placas"
+      ],
+      "propriedadesEspeciais": [
+        "Vulnerabilidade: Oferece resistência a um tipo de dano físico, mas sua maldição impõe vulnerabilidade aos outros dois; retirar a armadura não remove a maldição."
+      ]
+    }
+  },
+  {
+    "indice": 150,
+    "nomeIngles": "Armor of Vulnerability (Piercing)",
+    "nomeLocal": "Armadura De Vulnerability (Piercing)",
+    "tipoOriginal": "HA, Cursed, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:150",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Placas",
+      "propriedadesEspeciais": [
+        "Vulnerabilidade: Oferece resistência a um tipo de dano físico, mas sua maldição impõe vulnerabilidade aos outros dois; retirar a armadura não remove a maldição."
+      ]
+    }
+  },
+  {
+    "indice": 151,
+    "nomeIngles": "Armor of Vulnerability (Piercing)",
+    "nomeLocal": "Armadura De Vulnerability (Piercing)",
+    "tipoOriginal": "GV|XDMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:151",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Acolchoada",
+        "Couro",
+        "Couro Batido",
+        "Gibão de Peles",
+        "Camisão de Malha",
+        "Brunea",
+        "Peitoral",
+        "Meia-Armadura",
+        "Cota de Anéis",
+        "Cota de Malha",
+        "Cota de Talas",
+        "Placas"
+      ],
+      "propriedadesEspeciais": [
+        "Vulnerabilidade: Oferece resistência a um tipo de dano físico, mas sua maldição impõe vulnerabilidade aos outros dois; retirar a armadura não remove a maldição."
+      ]
+    }
+  },
+  {
+    "indice": 152,
+    "nomeIngles": "Armor of Vulnerability (Slashing)",
+    "nomeLocal": "Armadura De Vulnerability (Slashing)",
+    "tipoOriginal": "HA, Cursed, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:152",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Placas",
+      "propriedadesEspeciais": [
+        "Vulnerabilidade: Oferece resistência a um tipo de dano físico, mas sua maldição impõe vulnerabilidade aos outros dois; retirar a armadura não remove a maldição."
+      ]
+    }
+  },
+  {
+    "indice": 153,
+    "nomeIngles": "Armor of Vulnerability (Slashing)",
+    "nomeLocal": "Armadura De Vulnerability (Slashing)",
+    "tipoOriginal": "GV|XDMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:153",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Acolchoada",
+        "Couro",
+        "Couro Batido",
+        "Gibão de Peles",
+        "Camisão de Malha",
+        "Brunea",
+        "Peitoral",
+        "Meia-Armadura",
+        "Cota de Anéis",
+        "Cota de Malha",
+        "Cota de Talas",
+        "Placas"
+      ],
+      "propriedadesEspeciais": [
+        "Vulnerabilidade: Oferece resistência a um tipo de dano físico, mas sua maldição impõe vulnerabilidade aos outros dois; retirar a armadura não remove a maldição."
+      ]
+    }
+  },
+  {
+    "indice": 158,
+    "nomeIngles": "Arrow-Catching Shield",
+    "nomeLocal": "Escudo Atrai-Flechas",
+    "tipoOriginal": "S, Attunement",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:158",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "propriedadesEspeciais": [
+        "CA condicional: +2 de CA somente contra ataques à distância; pode atrair ataques próximos conforme a descrição."
+      ]
+    }
+  },
+  {
+    "indice": 159,
+    "nomeIngles": "Arrow-Catching Shield",
+    "nomeLocal": "Escudo Atrai-Flechas",
+    "tipoOriginal": "S|XPHB, Attunement",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:159",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "propriedadesEspeciais": [
+        "CA condicional: +2 de CA somente contra ataques à distância; pode atrair ataques próximos conforme a descrição."
+      ]
+    }
+  },
+  {
+    "indice": 176,
+    "nomeIngles": "Axe of the Dwarvish Lords",
+    "nomeLocal": "Machado De O Dwarvish Lords",
+    "tipoOriginal": "M, martial, Cursed, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:176",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Machado de Batalha",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 177,
+    "nomeIngles": "Axe of the Dwarvish Lords",
+    "nomeLocal": "Machado De O Dwarvish Lords",
+    "tipoOriginal": "M|XPHB, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:177",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Machado de Batalha",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 180,
+    "nomeIngles": "Azuredge",
+    "nomeLocal": "Azuredge",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:180",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Machado de Batalha",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 185,
+    "nomeIngles": "Baba Yaga's Pestle",
+    "nomeLocal": "Baba Yaga's Pestle",
+    "tipoOriginal": "M, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:185",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 206,
+    "nomeIngles": "Baleful Talon",
+    "nomeLocal": "Baleful Talon",
+    "tipoOriginal": "M, simple",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:206",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Adaga",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 228,
+    "nomeIngles": "Battering Shield",
+    "nomeLocal": "Battering Escudo",
+    "tipoOriginal": "S, Attunement",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:228",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "bonusCA": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 262,
+    "nomeIngles": "Berserker Axe",
+    "nomeLocal": "Berserker Machado",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:262",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Machadinha",
+        "Machado de Batalha",
+        "Machado Grande"
+      ],
+      "propriedadesEspeciais": [
+        "Berserker: Maldição e aumento dos pontos de vida por nível; os efeitos narrativos e de combate são resolvidos na sessão."
+      ],
+      "bonusDano": 1,
+      "bonusAtaque": 1
+    }
+  },
+  {
+    "indice": 270,
+    "nomeIngles": "Black Dragon Scale Mail",
+    "nomeLocal": "Negro Dragão Scale Mail",
+    "tipoOriginal": "MA, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:270",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Brunea",
+      "propriedadesEspeciais": [],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 271,
+    "nomeIngles": "Black Dragon Scale Mail",
+    "nomeLocal": "Negro Dragão Scale Mail",
+    "tipoOriginal": "MA|XPHB, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:271",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Brunea",
+      "propriedadesEspeciais": [],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 282,
+    "nomeIngles": "Blackrazor",
+    "nomeLocal": "Negrorazor",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:282",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Grande",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 283,
+    "nomeIngles": "Blackrazor",
+    "nomeLocal": "Negrorazor",
+    "tipoOriginal": "M|XPHB, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:283",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Grande",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 284,
+    "nomeIngles": "Blackstaff",
+    "nomeLocal": "Negrostaff",
+    "tipoOriginal": "simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:284",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "bonusCA": 2,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 287,
+    "nomeIngles": "Blade of Broken Mirrors (Dormant)",
+    "nomeLocal": "Lâmina De Broken Mirrors (Dormant)",
+    "tipoOriginal": "M, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:287",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Adaga",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 302,
+    "nomeIngles": "Blood Spear",
+    "nomeLocal": "Sangue Spear",
+    "tipoOriginal": "M, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:302",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Lança",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 303,
+    "nomeIngles": "Bloodaxe",
+    "nomeLocal": "Sangueaxe",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:303",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Machado Grande",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 304,
+    "nomeIngles": "Bloodrage Greataxe",
+    "nomeLocal": "Sanguerage Greataxe",
+    "tipoOriginal": "M, martial",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:304",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Machado Grande",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 315,
+    "nomeIngles": "Blue Dragon Scale Mail",
+    "nomeLocal": "Azul Dragão Scale Mail",
+    "tipoOriginal": "MA, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:315",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Brunea",
+      "propriedadesEspeciais": [],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 316,
+    "nomeIngles": "Blue Dragon Scale Mail",
+    "nomeLocal": "Azul Dragão Scale Mail",
+    "tipoOriginal": "MA|XPHB, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:316",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Brunea",
+      "propriedadesEspeciais": [],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 323,
+    "nomeIngles": "Bob",
+    "nomeLocal": "Bob",
+    "tipoOriginal": "M, martial",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:323",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Machado de Batalha",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 330,
+    "nomeIngles": "Bonecounter",
+    "nomeLocal": "Bonecounter",
+    "tipoOriginal": "M, simple",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:330",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Maça",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 338,
+    "nomeIngles": "Bookmark",
+    "nomeLocal": "Livromark",
+    "tipoOriginal": "M, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:338",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Adaga",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 339,
+    "nomeIngles": "Boomerang Shield",
+    "nomeLocal": "Boomerang Escudo",
+    "tipoOriginal": "S, Attunement",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:339",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 374,
+    "nomeIngles": "Brass Dragon Scale Mail",
+    "nomeLocal": "Brass Dragão Scale Mail",
+    "tipoOriginal": "MA, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:374",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Brunea",
+      "propriedadesEspeciais": [],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 375,
+    "nomeIngles": "Brass Dragon Scale Mail",
+    "nomeLocal": "Brass Dragão Scale Mail",
+    "tipoOriginal": "MA|XPHB, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:375",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Brunea",
+      "propriedadesEspeciais": [],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 383,
+    "nomeIngles": "Breastplate of Balance",
+    "nomeLocal": "Peitoral De Balance",
+    "tipoOriginal": "MA, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:383",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Peitoral",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 391,
+    "nomeIngles": "Bronze Dragon Scale Mail",
+    "nomeLocal": "Bronze Dragão Scale Mail",
+    "tipoOriginal": "MA, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:391",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Brunea",
+      "propriedadesEspeciais": [],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 392,
+    "nomeIngles": "Bronze Dragon Scale Mail",
+    "nomeLocal": "Bronze Dragão Scale Mail",
+    "tipoOriginal": "MA|XPHB, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:392",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Brunea",
+      "propriedadesEspeciais": [],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 420,
+    "nomeIngles": "Candle Mace",
+    "nomeLocal": "Vela Maça",
+    "tipoOriginal": "M, simple",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:420",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Maça",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 464,
+    "nomeIngles": "Cast-Off Armor",
+    "nomeLocal": "Cast-Off Armadura",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:464",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Acolchoada",
+        "Couro",
+        "Couro Batido",
+        "Gibão de Peles",
+        "Camisão de Malha",
+        "Brunea",
+        "Peitoral",
+        "Meia-Armadura",
+        "Cota de Anéis",
+        "Cota de Malha",
+        "Cota de Talas",
+        "Placas"
+      ],
+      "propriedadesEspeciais": [
+        "Remoção rápida: Pode ser retirada com uma ação."
+      ]
+    }
+  },
+  {
+    "indice": 579,
+    "nomeIngles": "Copper Dragon Scale Mail",
+    "nomeLocal": "Copper Dragão Scale Mail",
+    "tipoOriginal": "MA, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:579",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Brunea",
+      "propriedadesEspeciais": [],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 580,
+    "nomeIngles": "Copper Dragon Scale Mail",
+    "nomeLocal": "Copper Dragão Scale Mail",
+    "tipoOriginal": "MA|XPHB, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:580",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Brunea",
+      "propriedadesEspeciais": [],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 607,
+    "nomeIngles": "Crusader's Shortsword",
+    "nomeLocal": "Crusader's Shortsword",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:607",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Curta",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 633,
+    "nomeIngles": "Dagger of Blindsight",
+    "nomeLocal": "Adaga De Blindsight",
+    "tipoOriginal": "M, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:633",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Adaga",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 634,
+    "nomeIngles": "Dagger of Guitar Solos",
+    "nomeLocal": "Adaga De Guitar Solos",
+    "tipoOriginal": "M, simple",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:634",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Adaga",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 635,
+    "nomeIngles": "Dagger of Venom",
+    "nomeLocal": "Adaga De Venom",
+    "tipoOriginal": "M, simple",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:635",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Adaga",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 636,
+    "nomeIngles": "Dagger of Venom",
+    "nomeLocal": "Adaga De Venom",
+    "tipoOriginal": "M|XPHB, simple",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:636",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Adaga",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 639,
+    "nomeIngles": "Dancing Sword",
+    "nomeLocal": "Dancing Espada",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:639",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Espada Longa",
+        "Espada Curta",
+        "Espada Grande",
+        "Cimitarra",
+        "Rapieira"
+      ],
+      "propriedadesEspeciais": [
+        "Dança: Pode atacar flutuando após ativação; o uso temporário é resolvido na sessão."
+      ]
+    }
+  },
+  {
+    "indice": 648,
+    "nomeIngles": "Dawnbringer",
+    "nomeLocal": "Dawnbringer",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:648",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": [
+        "Lâmina radiante: A lâmina é ativada por ação bônus. Causa dano radiante, tem Acuidade e emite luz solar.",
+        "Mortos-vivos: Causa 1d8 radiante adicional contra mortos-vivos."
+      ],
+      "danoTipo": "Radiante",
+      "atributosArma": [
+        "Força",
+        "Destreza"
+      ],
+      "propriedadesArma": [
+        "Acuidade"
+      ],
+      "proficienciasAlternativas": [
+        "Espada Longa",
+        "Espada Curta"
+      ]
+    }
+  },
+  {
+    "indice": 665,
+    "nomeIngles": "Defender",
+    "nomeLocal": "Defender",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:665",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Espada Longa",
+        "Espada Curta",
+        "Espada Grande",
+        "Cimitarra",
+        "Rapieira"
+      ],
+      "propriedadesEspeciais": [
+        "Transferir defesa: Pode transferir parte do bônus +3 de ataque e dano para CA até o próximo turno. A transferência é resolvida na sessão, sem acrescentar CA permanentemente."
+      ],
+      "bonusDano": 3,
+      "bonusAtaque": 3
+    }
+  },
+  {
+    "indice": 666,
+    "nomeIngles": "Dekella, Bident of Thassa",
+    "nomeLocal": "Dekella, Bident De Thassa",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:666",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Tridente",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 668,
+    "nomeIngles": "Demon Armor",
+    "nomeLocal": "Demon Armadura",
+    "tipoOriginal": "HA, Cursed, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:668",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Placas",
+      "bonusCA": 1,
+      "propriedadesEspeciais": [
+        "Garras e maldição: As luvas modificam ataques desarmados; a maldição e as penalidades contra demônios são resolvidas na sessão."
+      ]
+    }
+  },
+  {
+    "indice": 669,
+    "nomeIngles": "Demon Armor",
+    "nomeLocal": "Demon Armadura",
+    "tipoOriginal": "GV|XDMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:669",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Acolchoada",
+        "Couro",
+        "Couro Batido",
+        "Gibão de Peles",
+        "Camisão de Malha",
+        "Brunea",
+        "Peitoral",
+        "Meia-Armadura",
+        "Cota de Anéis",
+        "Cota de Malha",
+        "Cota de Talas",
+        "Placas"
+      ],
+      "propriedadesEspeciais": [
+        "Garras e maldição: As luvas modificam ataques desarmados; a maldição e as penalidades contra demônios são resolvidas na sessão."
+      ],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 682,
+    "nomeIngles": "Devotee's Censer",
+    "nomeLocal": "Devotee's Censer",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:682",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Mangual",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 707,
+    "nomeIngles": "Draconic Longsword",
+    "nomeLocal": "Draconic Longsword",
+    "tipoOriginal": "M, martial",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:707",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 711,
+    "nomeIngles": "Dragon Sensing Longsword",
+    "nomeLocal": "Dragão Sensing Longsword",
+    "tipoOriginal": "M, martial",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:711",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 712,
+    "nomeIngles": "Dragon Slayer",
+    "nomeLocal": "Dragão Slayer",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:712",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Espada Longa",
+        "Espada Curta",
+        "Espada Grande",
+        "Cimitarra",
+        "Rapieira"
+      ],
+      "propriedadesEspeciais": [
+        "Matadora de dragões: Dano adicional somente contra dragões."
+      ],
+      "bonusDano": 1,
+      "bonusAtaque": 1
+    }
+  },
+  {
+    "indice": 713,
+    "nomeIngles": "Dragon Thighbone Club",
+    "nomeLocal": "Dragão Thighbone Clava",
+    "tipoOriginal": "M, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:713",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Clava Grande",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 717,
+    "nomeIngles": "Dragongleam",
+    "nomeLocal": "Dragãogleam",
+    "tipoOriginal": "M, simple",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:717",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Lança",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 718,
+    "nomeIngles": "Dragonguard",
+    "nomeLocal": "Dragãoguard",
+    "tipoOriginal": "MA",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:718",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Peitoral",
+      "bonusCA": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 719,
+    "nomeIngles": "Dragonguard",
+    "nomeLocal": "Dragãoguard",
+    "tipoOriginal": "MA",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:719",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Peitoral",
+      "bonusCA": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 722,
+    "nomeIngles": "Dragonstaff of Ahghairon",
+    "nomeLocal": "Dragãostaff De Ahghairon",
+    "tipoOriginal": "simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:722",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 723,
+    "nomeIngles": "Dragontooth Dagger",
+    "nomeLocal": "Dragãotooth Adaga",
+    "tipoOriginal": "M, simple",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:723",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Adaga",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 738,
+    "nomeIngles": "Drown",
+    "nomeLocal": "Drown",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:738",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Tridente",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 746,
+    "nomeIngles": "Duskcrusher",
+    "nomeLocal": "Duskcrusher",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:746",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Martelo de Guerra",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 756,
+    "nomeIngles": "Dwarven Plate",
+    "nomeLocal": "Anão Placas",
+    "tipoOriginal": "HA",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:756",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Placas",
+      "bonusCA": 2,
+      "propriedadesEspeciais": [
+        "Resistir deslocamento: Pode usar uma reação para reduzir em até 3 metros um movimento forçado pelo chão."
+      ]
+    }
+  },
+  {
+    "indice": 757,
+    "nomeIngles": "Dwarven Plate",
+    "nomeLocal": "Anão Placas",
+    "tipoOriginal": "GV|XDMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:757",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Meia-Armadura",
+        "Placas"
+      ],
+      "propriedadesEspeciais": [
+        "Resistir deslocamento: Pode usar uma reação para reduzir em até 3 metros um movimento forçado pelo chão."
+      ],
+      "bonusCA": 2
+    }
+  },
+  {
+    "indice": 758,
+    "nomeIngles": "Dwarven Thrower",
+    "nomeLocal": "Anão Thrower",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:758",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Martelo de Guerra",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 759,
+    "nomeIngles": "Dwarven Thrower",
+    "nomeLocal": "Anão Thrower",
+    "tipoOriginal": "M|XPHB, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:759",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Martelo de Guerra",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 762,
+    "nomeIngles": "Dyrrn's Tentacle Whip",
+    "nomeLocal": "Dyrrn's Tendaacle Whip",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:762",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Chicote",
+      "propriedadesEspeciais": [],
+      "bonusDano": 2,
+      "bonusAtaque": 2
+    }
+  },
+  {
+    "indice": 770,
+    "nomeIngles": "Efreeti Chain",
+    "nomeLocal": "Efreeti Corrente",
+    "tipoOriginal": "HA, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:770",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Cota de Malha",
+      "bonusCA": 3,
+      "propriedadesEspeciais": [
+        "Proteção ígnea: Imunidade a fogo, conhecimento de Primordial e capacidade de caminhar sobre rocha derretida."
+      ]
+    }
+  },
+  {
+    "indice": 771,
+    "nomeIngles": "Efreeti Chain",
+    "nomeLocal": "Efreeti Corrente",
+    "tipoOriginal": "GV|XDMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:771",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Camisão de Malha",
+        "Cota de Malha"
+      ],
+      "propriedadesEspeciais": [
+        "Proteção ígnea: Imunidade a fogo, conhecimento de Primordial e capacidade de caminhar sobre rocha derretida."
+      ],
+      "bonusCA": 3
+    }
+  },
+  {
+    "indice": 774,
+    "nomeIngles": "Eldritch Staff",
+    "nomeLocal": "Eldritch Cajado",
+    "tipoOriginal": "M, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:774",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 794,
+    "nomeIngles": "Elven Chain",
+    "nomeLocal": "Élfico Corrente",
+    "tipoOriginal": "MA",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:794",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Camisão de Malha",
+      "bonusCA": 1,
+      "propriedadesEspeciais": [
+        "Treino próprio: O portador é considerado treinado com esta armadura enquanto a veste."
+      ],
+      "treinoArmadura": true
+    }
+  },
+  {
+    "indice": 795,
+    "nomeIngles": "Elven Chain",
+    "nomeLocal": "Élfico Corrente",
+    "tipoOriginal": "GV|XDMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:795",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Camisão de Malha",
+        "Cota de Malha"
+      ],
+      "propriedadesEspeciais": [
+        "Treino próprio: O portador é considerado treinado com esta armadura enquanto a veste."
+      ],
+      "treinoArmadura": true,
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 796,
+    "nomeIngles": "Elven Thrower",
+    "nomeLocal": "Élfico Thrower",
+    "tipoOriginal": "M, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:796",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Martelo Leve",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 813,
+    "nomeIngles": "Energy Bow",
+    "nomeLocal": "Energy Bow",
+    "tipoOriginal": "GV|XDMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:813",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Arco Curto",
+        "Arco Longo"
+      ],
+      "propriedadesEspeciais": [
+        "Flechas de energia: Produz flechas mágicas de energia; efeitos de contenção e outras ativações são resolvidos na sessão."
+      ],
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "danoTipo": "Força"
+    }
+  },
+  {
+    "indice": 825,
+    "nomeIngles": "Enspelled Staff (Cantrip)",
+    "nomeLocal": "Enspelled Cajado (Cantrip)",
+    "tipoOriginal": "M|XPHB, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:825",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 826,
+    "nomeIngles": "Enspelled Staff (Level 1)",
+    "nomeLocal": "Enspelled Cajado (Level 1)",
+    "tipoOriginal": "M|XPHB, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:826",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 827,
+    "nomeIngles": "Enspelled Staff (Level 2)",
+    "nomeLocal": "Enspelled Cajado (Level 2)",
+    "tipoOriginal": "M|XPHB, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:827",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 828,
+    "nomeIngles": "Enspelled Staff (Level 3)",
+    "nomeLocal": "Enspelled Cajado (Level 3)",
+    "tipoOriginal": "M|XPHB, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:828",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 829,
+    "nomeIngles": "Enspelled Staff (Level 4)",
+    "nomeLocal": "Enspelled Cajado (Level 4)",
+    "tipoOriginal": "M|XPHB, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:829",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 830,
+    "nomeIngles": "Enspelled Staff (Level 5)",
+    "nomeLocal": "Enspelled Cajado (Level 5)",
+    "tipoOriginal": "M|XPHB, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:830",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 831,
+    "nomeIngles": "Enspelled Staff (Level 6)",
+    "nomeLocal": "Enspelled Cajado (Level 6)",
+    "tipoOriginal": "M|XPHB, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:831",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 832,
+    "nomeIngles": "Enspelled Staff (Level 7)",
+    "nomeLocal": "Enspelled Cajado (Level 7)",
+    "tipoOriginal": "M|XPHB, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:832",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 833,
+    "nomeIngles": "Enspelled Staff (Level 8)",
+    "nomeLocal": "Enspelled Cajado (Level 8)",
+    "tipoOriginal": "M|XPHB, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:833",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 845,
+    "nomeIngles": "Ephixis, Bow of Nylea",
+    "nomeLocal": "Ephixis, Bow De Nylea",
+    "tipoOriginal": "R, simple, Attunement, Ammo: arrow|phb",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:845",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Arco Curto",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 851,
+    "nomeIngles": "Euryale's Aegis",
+    "nomeLocal": "Euryale's Aegis",
+    "tipoOriginal": "S, Attunement",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:851",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 879,
+    "nomeIngles": "Fane-Eater",
+    "nomeLocal": "Fane-Eater",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:879",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Machado de Batalha",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 883,
+    "nomeIngles": "Fate Cutter Shears",
+    "nomeLocal": "Fate Cutter Shears",
+    "tipoOriginal": "M, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:883",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Adaga",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 932,
+    "nomeIngles": "Flail of Tiamat",
+    "nomeLocal": "Flail De Tiamat",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:932",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Mangual",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 933,
+    "nomeIngles": "Flame Tongue",
+    "nomeLocal": "Flame Tongue",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:933",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Espada Longa",
+        "Espada Curta",
+        "Espada Grande",
+        "Cimitarra",
+        "Rapieira"
+      ],
+      "propriedadesEspeciais": [
+        "Chamas: Ativação por ação bônus; enquanto acesa, causa 2d6 de fogo adicionais e ilumina a área."
+      ]
+    }
+  },
+  {
+    "indice": 934,
+    "nomeIngles": "Flame Tongue Shortsword of Greed",
+    "nomeLocal": "Flame Tongue Shortsword De Greed",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:934",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Curta",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 938,
+    "nomeIngles": "Flayer Slayer",
+    "nomeLocal": "Flayer Slayer",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:938",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Machado Grande",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 962,
+    "nomeIngles": "Frost Brand",
+    "nomeLocal": "Frost Brand",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:962",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Espada Longa",
+        "Espada Curta",
+        "Espada Grande",
+        "Cimitarra",
+        "Rapieira"
+      ],
+      "propriedadesEspeciais": [
+        "Frio +1d6: Causa 1d6 de frio adicional nos golpes e oferece resistência a fogo; consulte as demais propriedades e condições do item."
+      ]
+    }
+  },
+  {
+    "indice": 986,
+    "nomeIngles": "Giant Slayer",
+    "nomeLocal": "Gigante Slayer",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:986",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Espada Longa",
+        "Espada Curta",
+        "Espada Grande",
+        "Cimitarra",
+        "Rapieira",
+        "Machadinha",
+        "Machado de Batalha",
+        "Machado Grande"
+      ],
+      "propriedadesEspeciais": [
+        "Matadora de gigantes: Dano adicional e possibilidade de derrubar gigantes."
+      ],
+      "bonusDano": 1,
+      "bonusAtaque": 1
+    }
+  },
+  {
+    "indice": 993,
+    "nomeIngles": "Glamoured Studded Leather",
+    "nomeLocal": "Glamoured Studded Leather",
+    "tipoOriginal": "LA",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:993",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Couro Batido",
+      "bonusCA": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 994,
+    "nomeIngles": "Glamoured Studded Leather",
+    "nomeLocal": "Glamoured Studded Leather",
+    "tipoOriginal": "LA|XPHB",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:994",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Couro Batido",
+      "propriedadesEspeciais": [],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 1034,
+    "nomeIngles": "Gold Dragon Scale Mail",
+    "nomeLocal": "Ouro Dragão Scale Mail",
+    "tipoOriginal": "MA, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1034",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Brunea",
+      "propriedadesEspeciais": [],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 1035,
+    "nomeIngles": "Gold Dragon Scale Mail",
+    "nomeLocal": "Ouro Dragão Scale Mail",
+    "tipoOriginal": "MA|XPHB, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:1035",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Brunea",
+      "propriedadesEspeciais": [],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 1059,
+    "nomeIngles": "Grasping Whip",
+    "nomeLocal": "Grasping Whip",
+    "tipoOriginal": "M, martial",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1059",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Chicote",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1065,
+    "nomeIngles": "Greater Silver Sword",
+    "nomeLocal": "Greater Prata Espada",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1065",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Grande",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1071,
+    "nomeIngles": "Green Dragon Scale Mail",
+    "nomeLocal": "Verde Dragão Scale Mail",
+    "tipoOriginal": "MA, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1071",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Brunea",
+      "propriedadesEspeciais": [],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 1072,
+    "nomeIngles": "Green Dragon Scale Mail",
+    "nomeLocal": "Verde Dragão Scale Mail",
+    "tipoOriginal": "MA|XPHB, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:1072",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Brunea",
+      "propriedadesEspeciais": [],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 1079,
+    "nomeIngles": "Grovelthrash (Dormant)",
+    "nomeLocal": "Grovelthrash (Dormant)",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1079",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Martelo de Guerra",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1084,
+    "nomeIngles": "Gulthias Staff",
+    "nomeLocal": "Gulthias Cajado",
+    "tipoOriginal": "simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1084",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1089,
+    "nomeIngles": "Gurt's Greataxe",
+    "nomeLocal": "Gurt's Greataxe",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1089",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Machado Grande",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": [],
+      "danoBase": {
+        "dano_1": "3d12",
+        "dano_2": ""
+      }
+    }
+  },
+  {
+    "indice": 1098,
+    "nomeIngles": "Hammer of Thunderbolts",
+    "nomeLocal": "Martelo De Thunderbolts",
+    "tipoOriginal": "M, martial",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1098",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Malho",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1099,
+    "nomeIngles": "Hammer of Thunderbolts",
+    "nomeLocal": "Martelo De Thunderbolts",
+    "tipoOriginal": "GV|XDMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:1099",
+      "usarDescricaoCatalogo": false,
+      "baseNome": "Malho",
+      "propriedadesEspeciais": [
+        "Dados incompletos: O catálogo identifica o equipamento, mas não fornece descrição segura das propriedades; nenhum bônus foi presumido."
+      ]
+    }
+  },
+  {
+    "indice": 1123,
+    "nomeIngles": "Hazirawn",
+    "nomeLocal": "Hazirawn",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1123",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Grande",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1154,
+    "nomeIngles": "Heretic",
+    "nomeLocal": "Heretic",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1154",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1155,
+    "nomeIngles": "Hew",
+    "nomeLocal": "Hew",
+    "tipoOriginal": "M, martial",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1155",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Machado de Batalha",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1156,
+    "nomeIngles": "Hew",
+    "nomeLocal": "Hew",
+    "tipoOriginal": "M, martial",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1156",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Machado de Batalha",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1161,
+    "nomeIngles": "Heward's Hireling Armor",
+    "nomeLocal": "Heward's Hireling Armadura",
+    "tipoOriginal": "LA, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1161",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Couro Batido",
+      "bonusCA": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1165,
+    "nomeIngles": "Hide of the Feral Guardian (Dormant)",
+    "nomeLocal": "Hide De O Feral Guardian (Dormant)",
+    "tipoOriginal": "LA, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1165",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Couro Batido",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1167,
+    "nomeIngles": "Hither-Thither Staff",
+    "nomeLocal": "Hither-Thither Cajado",
+    "tipoOriginal": "M, simple, Staff",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1167",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1169,
+    "nomeIngles": "Holy Avenger",
+    "nomeLocal": "Sagrado Avenger",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1169",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Espada Longa",
+        "Espada Curta",
+        "Espada Grande",
+        "Cimitarra",
+        "Rapieira"
+      ],
+      "propriedadesEspeciais": [
+        "Aura sagrada: Concede vantagem em resistências contra magias na aura; alcance depende do nível de paladino.",
+        "Dano condicional: Acrescenta 2d10 radiante contra ínferos e mortos-vivos."
+      ],
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "requisitoSintonizacao": "Sintonização por paladino."
+    }
+  },
+  {
+    "indice": 1204,
+    "nomeIngles": "Hunter's Coat",
+    "nomeLocal": "Hunter's Coat",
+    "tipoOriginal": "LA, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1204",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Couro Batido",
+      "bonusCA": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1226,
+    "nomeIngles": "Infernal Plate Armor",
+    "nomeLocal": "Infernal Placas Armadura",
+    "tipoOriginal": "HA, Cursed, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1226",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Placas",
+      "bonusCA": 2,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1306,
+    "nomeIngles": "Ironfang",
+    "nomeLocal": "Ferrofang",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1306",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Picareta de Guerra",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1327,
+    "nomeIngles": "Javelin of Backbiting",
+    "nomeLocal": "Javelin De Backbiting",
+    "tipoOriginal": "M, simple, Cursed, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1327",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Azagaia",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1328,
+    "nomeIngles": "Javelin of Lightning",
+    "nomeLocal": "Javelin De Relâmpago",
+    "tipoOriginal": "M, simple",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1328",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Azagaia",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1329,
+    "nomeIngles": "Javelin of Lightning",
+    "nomeLocal": "Javelin De Relâmpago",
+    "tipoOriginal": "M|XPHB, simple",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:1329",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Azagaia",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1348,
+    "nomeIngles": "Junky +1 Dagger",
+    "nomeLocal": "Junky +1 Adaga",
+    "tipoOriginal": "M, simple",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1348",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Adaga",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1358,
+    "nomeIngles": "Khrusor, Spear of Heliod",
+    "nomeLocal": "Khrusor, Spear De Heliod",
+    "tipoOriginal": "M, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1358",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Lança",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1361,
+    "nomeIngles": "Knife of Stolen Resistance",
+    "nomeLocal": "Knife De Stolen Resistência",
+    "tipoOriginal": "M, simple",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1361",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Adaga",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1363,
+    "nomeIngles": "Korolnor Scepter",
+    "nomeLocal": "Korolnor Scepter",
+    "tipoOriginal": "M, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1363",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Porrete",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1386,
+    "nomeIngles": "Lash of Immolation",
+    "nomeLocal": "Lash De Immolation",
+    "tipoOriginal": "M, martial",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1386",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Chicote",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1388,
+    "nomeIngles": "Lash of Shadows (Dormant)",
+    "nomeLocal": "Lash De Sombras (Dormant)",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1388",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Chicote",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1393,
+    "nomeIngles": "Leather Golem Armor",
+    "nomeLocal": "Leather Golem Armadura",
+    "tipoOriginal": "LA, Cursed, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1393",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Couro",
+      "propriedadesEspeciais": [],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 1404,
+    "nomeIngles": "Lightbringer",
+    "nomeLocal": "Lightbringer",
+    "tipoOriginal": "M, simple",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1404",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Maça",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1405,
+    "nomeIngles": "Lightbringer",
+    "nomeLocal": "Lightbringer",
+    "tipoOriginal": "M, simple",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1405",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Maça",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1423,
+    "nomeIngles": "Longbow of the Healing Hearth",
+    "nomeLocal": "Longbow De O Healing Hearth",
+    "tipoOriginal": "R, martial, Attunement, Ammo: arrow|phb",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1423",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Arco Longo",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1436,
+    "nomeIngles": "Luck Blade",
+    "nomeLocal": "Sorte Lâmina",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1436",
+      "usarDescricaoCatalogo": true,
+      "basesCompativeis": [
+        "Espada Longa",
+        "Espada Curta",
+        "Espada Grande",
+        "Cimitarra",
+        "Rapieira"
+      ],
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": [
+        "Sorte: Permite repetir uma jogada nas condições do item; desejos dependem das cargas existentes."
+      ]
+    }
+  },
+  {
+    "indice": 1437,
+    "nomeIngles": "Luminous War Pick",
+    "nomeLocal": "Luminous Guerra Pick",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1437",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Picareta de Guerra",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1441,
+    "nomeIngles": "Lute of Thunderous Thumping",
+    "nomeLocal": "Lute De Thunderous Thumping",
+    "tipoOriginal": "M|XPHB, simple",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:1441",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Porrete",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1448,
+    "nomeIngles": "Mace of Disruption",
+    "nomeLocal": "Maça De Disruption",
+    "tipoOriginal": "M, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1448",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Maça",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1449,
+    "nomeIngles": "Mace of Disruption",
+    "nomeLocal": "Maça De Disruption",
+    "tipoOriginal": "M|XPHB, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:1449",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Maça",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1450,
+    "nomeIngles": "Mace of Smiting",
+    "nomeLocal": "Maça De Smiting",
+    "tipoOriginal": "M, simple",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1450",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Maça",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1451,
+    "nomeIngles": "Mace of Smiting",
+    "nomeLocal": "Maça De Smiting",
+    "tipoOriginal": "M|XPHB, simple",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:1451",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Maça",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1452,
+    "nomeIngles": "Mace of Terror",
+    "nomeLocal": "Maça De Terror",
+    "tipoOriginal": "M, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1452",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Maça",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1453,
+    "nomeIngles": "Mace of Terror",
+    "nomeLocal": "Maça De Terror",
+    "tipoOriginal": "M|XPHB, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:1453",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Maça",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1455,
+    "nomeIngles": "Mace of the Black Crown (Dormant)",
+    "nomeLocal": "Maça De O Negro Crown (Dormant)",
+    "tipoOriginal": "M, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1455",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Maça",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1457,
+    "nomeIngles": "Macuahuitl",
+    "nomeLocal": "Macuahuitl",
+    "tipoOriginal": "M, martial",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1457",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1489,
+    "nomeIngles": "Mariner's Armor",
+    "nomeLocal": "Mariner's Armadura",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1489",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Acolchoada",
+        "Couro",
+        "Couro Batido",
+        "Gibão de Peles",
+        "Camisão de Malha",
+        "Brunea",
+        "Peitoral",
+        "Meia-Armadura",
+        "Cota de Anéis",
+        "Cota de Malha",
+        "Cota de Talas",
+        "Placas"
+      ],
+      "propriedadesEspeciais": [
+        "Marinheira: Oferece deslocamento de natação e auxílio na superfície conforme a descrição; não altera a CA."
+      ]
+    }
+  },
+  {
+    "indice": 1501,
+    "nomeIngles": "Mastix, Whip of Erebos",
+    "nomeLocal": "Mastix, Whip De Erebos",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1501",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Chicote",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1502,
+    "nomeIngles": "Matalotok",
+    "nomeLocal": "Matalotok",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1502",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Martelo de Guerra",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1538,
+    "nomeIngles": "Mind Lash",
+    "nomeLocal": "Mente Lash",
+    "tipoOriginal": "M, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1538",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Chicote",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1550,
+    "nomeIngles": "Mithral Armor",
+    "nomeLocal": "Mithral Armadura",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1550",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Camisão de Malha",
+        "Brunea",
+        "Peitoral",
+        "Meia-Armadura",
+        "Cota de Anéis",
+        "Cota de Malha",
+        "Cota de Talas",
+        "Placas"
+      ],
+      "propriedadesEspeciais": [
+        "Mithral: Remove a desvantagem em Furtividade e o requisito de Força do modelo base."
+      ],
+      "furtividade": "",
+      "forcaRequerida": 0
+    }
+  },
+  {
+    "indice": 1561,
+    "nomeIngles": "Moonblade",
+    "nomeLocal": "Luablade",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1561",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": [
+        "Runas: A primeira runa concede +1; outras runas e poderes são determinados pelo mestre e não são presumidos."
+      ]
+    }
+  },
+  {
+    "indice": 1565,
+    "nomeIngles": "Moon-Touched Sword",
+    "nomeLocal": "Lua-Touched Espada",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1565",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Espada Longa",
+        "Espada Curta",
+        "Espada Grande",
+        "Cimitarra",
+        "Rapieira"
+      ],
+      "propriedadesEspeciais": [
+        "Luz lunar: Ilumina enquanto desembainhada no escuro; não concede bônus numérico de ataque ou dano."
+      ]
+    }
+  },
+  {
+    "indice": 1604,
+    "nomeIngles": "Needle of Mending",
+    "nomeLocal": "Needle De Mending",
+    "tipoOriginal": "M, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1604",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Adaga",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1614,
+    "nomeIngles": "Nightbringer",
+    "nomeLocal": "Noitebringer",
+    "tipoOriginal": "M, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1614",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Maça",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1617,
+    "nomeIngles": "Niko's Mace",
+    "nomeLocal": "Niko's Maça",
+    "tipoOriginal": "M, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1617",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Maça",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1620,
+    "nomeIngles": "Nine Lives Stealer",
+    "nomeLocal": "Nine Lives Stealer",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1620",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Espada Longa",
+        "Espada Curta",
+        "Espada Grande",
+        "Cimitarra",
+        "Rapieira"
+      ],
+      "propriedadesEspeciais": [
+        "Roubar vidas: Pode matar um alvo após um golpe crítico; cargas, limite de vida e resistência são resolvidos na sessão."
+      ],
+      "bonusDano": 2,
+      "bonusAtaque": 2
+    }
+  },
+  {
+    "indice": 1624,
+    "nomeIngles": "Oathbow",
+    "nomeLocal": "Oathbow",
+    "tipoOriginal": "R, martial, Attunement, Ammo: arrow|phb",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1624",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Arco Longo",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1625,
+    "nomeIngles": "Oathbow",
+    "nomeLocal": "Oathbow",
+    "tipoOriginal": "GV|XDMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:1625",
+      "usarDescricaoCatalogo": false,
+      "baseNome": "Arco Longo",
+      "propriedadesEspeciais": [
+        "Dados incompletos: O catálogo identifica o equipamento, mas não fornece descrição segura das propriedades; nenhum bônus foi presumido."
+      ]
+    }
+  },
+  {
+    "indice": 1628,
+    "nomeIngles": "Obsidian Flint Dragon Plate",
+    "nomeLocal": "Obsidian Flint Dragão Placas",
+    "tipoOriginal": "HA",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1628",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Placas",
+      "bonusCA": 2,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1673,
+    "nomeIngles": "Orcsplitter",
+    "nomeLocal": "Orcsplitter",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1673",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Machado Grande",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1685,
+    "nomeIngles": "Oversized Longbow",
+    "nomeLocal": "Oversized Longbow",
+    "tipoOriginal": "R, martial, Ammo: arrow|phb",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1685",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Arco Longo",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1709,
+    "nomeIngles": "Pariah's Shield",
+    "nomeLocal": "Pariah's Escudo",
+    "tipoOriginal": "S, Attunement",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1709",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "propriedadesEspeciais": [
+        "CA condicional: Bônus de CA depende dos aliados próximos; não é somado à CA permanente."
+      ]
+    }
+  },
+  {
+    "indice": 1710,
+    "nomeIngles": "Pathfinder's Greataxe",
+    "nomeLocal": "Pathfinder's Greataxe",
+    "tipoOriginal": "M, martial",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1710",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Machado Grande",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1736,
+    "nomeIngles": "Piercer",
+    "nomeLocal": "Piercer",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1736",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Rapieira",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1762,
+    "nomeIngles": "Plate Armor of Etherealness",
+    "nomeLocal": "Placas Armadura De Etherealness",
+    "tipoOriginal": "HA, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1762",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Placas",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1763,
+    "nomeIngles": "Plate Armor of Etherealness (*)",
+    "nomeLocal": "Placas Armadura De Etherealness (*)",
+    "tipoOriginal": "GV|XDMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:1763",
+      "usarDescricaoCatalogo": true,
+      "basesCompativeis": [
+        "Meia-Armadura",
+        "Placas"
+      ],
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1764,
+    "nomeIngles": "Plate of Knight's Fellowship",
+    "nomeLocal": "Placas De Knight's Fellowship",
+    "tipoOriginal": "HA, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1764",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Placas",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1779,
+    "nomeIngles": "Poison Soaked Kukri",
+    "nomeLocal": "Poison Soaked Kukri",
+    "tipoOriginal": "M|XPHB, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:1779",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Adaga",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1893,
+    "nomeIngles": "Powered Armor",
+    "nomeLocal": "Podered Armadura",
+    "tipoOriginal": "HA, futuristic, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1893",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Placas",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1942,
+    "nomeIngles": "Quarterstaff of the Acrobat",
+    "nomeLocal": "Quarterstaff De O Acrobat",
+    "tipoOriginal": "M|XPHB, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:1942",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1954,
+    "nomeIngles": "Rakdos Riteknife",
+    "nomeLocal": "Rakdos Riteknife",
+    "tipoOriginal": "M, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1954",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Adaga",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1955,
+    "nomeIngles": "Ranseur of Torture",
+    "nomeLocal": "Ranseur De Torture",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1955",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Lança Longa",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": [],
+      "danoBase": {
+        "dano_1": "2d10",
+        "dano_2": ""
+      }
+    }
+  },
+  {
+    "indice": 1960,
+    "nomeIngles": "Reaper's Scream",
+    "nomeLocal": "Reaper's Scream",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1960",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Maça Estrela",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": [],
+      "danoTipo": "Necrótico"
+    }
+  },
+  {
+    "indice": 1963,
+    "nomeIngles": "Red Dragon Scale Mail",
+    "nomeLocal": "Vermelho Dragão Scale Mail",
+    "tipoOriginal": "MA, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1963",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Brunea",
+      "propriedadesEspeciais": [],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 1964,
+    "nomeIngles": "Red Dragon Scale Mail",
+    "nomeLocal": "Vermelho Dragão Scale Mail",
+    "tipoOriginal": "MA|XPHB, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:1964",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Brunea",
+      "propriedadesEspeciais": [],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 1965,
+    "nomeIngles": "Red Wizard Blade",
+    "nomeLocal": "Vermelho Wizard Lâmina",
+    "tipoOriginal": "M, simple",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1965",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Adaga",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1975,
+    "nomeIngles": "Repulsion Shield",
+    "nomeLocal": "Repulsion Escudo",
+    "tipoOriginal": "S|XPHB",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:1975",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 1976,
+    "nomeIngles": "Reszur",
+    "nomeLocal": "Reszur",
+    "tipoOriginal": "M, simple",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:1976",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Adaga",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2091,
+    "nomeIngles": "Rod of Lordly Might",
+    "nomeLocal": "Vara De Lordly Might",
+    "tipoOriginal": "RD|DMG, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2091",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Maça",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2092,
+    "nomeIngles": "Rod of Lordly Might",
+    "nomeLocal": "Vara De Lordly Might",
+    "tipoOriginal": "RD|XDMG, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2092",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Maça",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2121,
+    "nomeIngles": "Ruidium Shield",
+    "nomeLocal": "Ruidium Escudo",
+    "tipoOriginal": "S, Attunement",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2121",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2124,
+    "nomeIngles": "Ruinblade",
+    "nomeLocal": "Ruinblade",
+    "tipoOriginal": "M, martial, Cursed, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2124",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Grande",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2125,
+    "nomeIngles": "Ruinous Flail",
+    "nomeLocal": "Ruinous Flail",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2125",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Mangual",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2127,
+    "nomeIngles": "Ruin's Wake (Dormant)",
+    "nomeLocal": "Ruin's Wake (Dormant)",
+    "tipoOriginal": "M, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2127",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Lança",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2149,
+    "nomeIngles": "Saint Markovia's Thighbone",
+    "nomeLocal": "Saint Markovia's Thighbone",
+    "tipoOriginal": "M, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2149",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Maça",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2153,
+    "nomeIngles": "Sapphire Buckler",
+    "nomeLocal": "Sapphire Buckler",
+    "tipoOriginal": "S, Attunement",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2153",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2165,
+    "nomeIngles": "Scimitar of Speed",
+    "nomeLocal": "Scimitar De Velocidade",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2165",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Cimitarra",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2166,
+    "nomeIngles": "Scimitar of Speed",
+    "nomeLocal": "Scimitar De Velocidade",
+    "tipoOriginal": "M|XPHB, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2166",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Cimitarra",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2168,
+    "nomeIngles": "Scorpion Armor",
+    "nomeLocal": "Scorpion Armadura",
+    "tipoOriginal": "HA, Cursed, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2168",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Placas",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2170,
+    "nomeIngles": "Scourge of Shadow",
+    "nomeLocal": "Scourge De Sombra",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2170",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Chicote",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": [],
+      "danoBase": {
+        "dano_1": "3d4",
+        "dano_2": ""
+      }
+    }
+  },
+  {
+    "indice": 2205,
+    "nomeIngles": "Seeker Dart",
+    "nomeLocal": "Seeker Dart",
+    "tipoOriginal": "R, simple",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2205",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Dardo",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2214,
+    "nomeIngles": "Sentinel Shield",
+    "nomeLocal": "Sentinel Escudo",
+    "tipoOriginal": "S",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2214",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "propriedadesEspeciais": [
+        "Sentinela: Vantagem em iniciativa e testes de Percepção ao segurar o escudo."
+      ]
+    }
+  },
+  {
+    "indice": 2215,
+    "nomeIngles": "Sentinel Shield",
+    "nomeLocal": "Sentinel Escudo",
+    "tipoOriginal": "S|XPHB",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2215",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "propriedadesEspeciais": [
+        "Sentinela: Vantagem em iniciativa e testes de Percepção ao segurar o escudo."
+      ]
+    }
+  },
+  {
+    "indice": 2216,
+    "nomeIngles": "Serpent Scale Armor",
+    "nomeLocal": "Serpent Scale Armadura",
+    "tipoOriginal": "MA",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2216",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Brunea",
+      "propriedadesEspeciais": [],
+      "destrezaSemLimite": true,
+      "furtividade": ""
+    }
+  },
+  {
+    "indice": 2231,
+    "nomeIngles": "Shatterspike",
+    "nomeLocal": "Shatterspike",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2231",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2241,
+    "nomeIngles": "Shield of Expression",
+    "nomeLocal": "Escudo De Expression",
+    "tipoOriginal": "S|XPHB",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2241",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2242,
+    "nomeIngles": "Shield of Expression",
+    "nomeLocal": "Escudo De Expression",
+    "tipoOriginal": "S",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2242",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2243,
+    "nomeIngles": "Shield of Far Sight",
+    "nomeLocal": "Escudo De Far Sight",
+    "tipoOriginal": "S",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2243",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2244,
+    "nomeIngles": "Shield of Missile Attraction",
+    "nomeLocal": "Escudo da Atração de Mísseis",
+    "tipoOriginal": "S, Cursed, Attunement",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2244",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "propriedadesEspeciais": [
+        "Atração de mísseis: Resistência a ataques de armas à distância e maldição que redireciona ataques próximos; não concede CA extra."
+      ]
+    }
+  },
+  {
+    "indice": 2245,
+    "nomeIngles": "Shield of Missile Attraction",
+    "nomeLocal": "Escudo da Atração de Mísseis",
+    "tipoOriginal": "S|XPHB, Cursed, Attunement",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2245",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "propriedadesEspeciais": [
+        "Atração de mísseis: Resistência a ataques de armas à distância e maldição que redireciona ataques próximos; não concede CA extra."
+      ]
+    }
+  },
+  {
+    "indice": 2246,
+    "nomeIngles": "Shield of Shouting",
+    "nomeLocal": "Escudo De Shouting",
+    "tipoOriginal": "S",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2246",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2247,
+    "nomeIngles": "Shield of the Blazing Dreadnought",
+    "nomeLocal": "Escudo De O Blazing Dreadnought",
+    "tipoOriginal": "S, Attunement",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2247",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2248,
+    "nomeIngles": "Shield of the Cavalier",
+    "nomeLocal": "Escudo De O Cavalier",
+    "tipoOriginal": "S|XPHB, Attunement",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2248",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2249,
+    "nomeIngles": "Shield of the Hidden Lord",
+    "nomeLocal": "Escudo De O Hidden Lord",
+    "tipoOriginal": "S, Attunement",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2249",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "bonusCA": 2,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2250,
+    "nomeIngles": "Shield of the Silver Dragon",
+    "nomeLocal": "Escudo De O Prata Dragão",
+    "tipoOriginal": "S",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2250",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "bonusCA": 2,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2251,
+    "nomeIngles": "Shield of the Tortoise",
+    "nomeLocal": "Escudo De O Tortoise",
+    "tipoOriginal": "S, Cursed, Attunement",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2251",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "bonusCA": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2252,
+    "nomeIngles": "Shield of the Uven Rune",
+    "nomeLocal": "Escudo De O Uven Rune",
+    "tipoOriginal": "S, Attunement",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2252",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2275,
+    "nomeIngles": "Silken Spite (Dormant)",
+    "nomeLocal": "Silken Spite (Dormant)",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2275",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Rapieira",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2287,
+    "nomeIngles": "Silver Dragon Scale Mail",
+    "nomeLocal": "Prata Dragão Scale Mail",
+    "tipoOriginal": "MA, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2287",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Brunea",
+      "propriedadesEspeciais": [],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 2288,
+    "nomeIngles": "Silver Dragon Scale Mail",
+    "nomeLocal": "Prata Dragão Scale Mail",
+    "tipoOriginal": "MA|XPHB, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2288",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Brunea",
+      "propriedadesEspeciais": [],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 2297,
+    "nomeIngles": "Silver Sword",
+    "nomeLocal": "Prata Espada",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2297",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Grande",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2310,
+    "nomeIngles": "Skyblinder Staff",
+    "nomeLocal": "Skyblinder Cajado",
+    "tipoOriginal": "simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2310",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2325,
+    "nomeIngles": "Sling of Giant Felling",
+    "nomeLocal": "Sling De Gigante Felling",
+    "tipoOriginal": "R, simple, Ammo: sling bullet|phb",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2325",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Funda",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2341,
+    "nomeIngles": "Smoldering Armor",
+    "nomeLocal": "Smoldering Armadura",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2341",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Acolchoada",
+        "Couro",
+        "Couro Batido",
+        "Gibão de Peles",
+        "Camisão de Malha",
+        "Brunea",
+        "Peitoral",
+        "Meia-Armadura",
+        "Cota de Anéis",
+        "Cota de Malha",
+        "Cota de Talas",
+        "Placas"
+      ],
+      "propriedadesEspeciais": [
+        "Fumaça: Libera fumaça inofensiva; não concede bônus adicional de CA."
+      ]
+    }
+  },
+  {
+    "indice": 2342,
+    "nomeIngles": "Snicker-Snack",
+    "nomeLocal": "Snicker-Snack",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2342",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Grande",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": [],
+      "atributosArma": [
+        "Força",
+        "Carisma"
+      ],
+      "proficienciasAlternativas": [],
+      "treinoArma": true
+    }
+  },
+  {
+    "indice": 2359,
+    "nomeIngles": "Spear of Backbiting",
+    "nomeLocal": "Spear De Backbiting",
+    "tipoOriginal": "M, simple, Cursed, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2359",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Lança",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2392,
+    "nomeIngles": "Spellguard Shield",
+    "nomeLocal": "Magiaguard Escudo",
+    "tipoOriginal": "S, Attunement",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2392",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "propriedadesEspeciais": [
+        "Proteção mágica: Vantagem em resistências contra magias e efeitos mágicos; ataques mágicos contra o portador têm desvantagem."
+      ]
+    }
+  },
+  {
+    "indice": 2393,
+    "nomeIngles": "Spellguard Shield",
+    "nomeLocal": "Magiaguard Escudo",
+    "tipoOriginal": "S|XPHB, Attunement",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2393",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "propriedadesEspeciais": [
+        "Proteção mágica: Vantagem em resistências contra magias e efeitos mágicos; ataques mágicos contra o portador têm desvantagem."
+      ]
+    }
+  },
+  {
+    "indice": 2405,
+    "nomeIngles": "Spider Staff",
+    "nomeLocal": "Aranha Cajado",
+    "tipoOriginal": "simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2405",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2406,
+    "nomeIngles": "Spider Staff",
+    "nomeLocal": "Aranha Cajado",
+    "tipoOriginal": "M, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2406",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2409,
+    "nomeIngles": "Spiked Shield",
+    "nomeLocal": "Spiked Escudo",
+    "tipoOriginal": "S|XPHB, Attunement",
+    "metadados": {
+      "tipo": "escudo",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2409",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Escudo",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2426,
+    "nomeIngles": "Staff of Adornment",
+    "nomeLocal": "Cajado De Adornment",
+    "tipoOriginal": "M|XPHB, simple, Staff",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2426",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2427,
+    "nomeIngles": "Staff of Adornment",
+    "nomeLocal": "Cajado De Adornment",
+    "tipoOriginal": "simple, Staff",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2427",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2428,
+    "nomeIngles": "Staff of Birdcalls",
+    "nomeLocal": "Cajado De Birdcalls",
+    "tipoOriginal": "M|XPHB, simple, Staff",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2428",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2429,
+    "nomeIngles": "Staff of Birdcalls",
+    "nomeLocal": "Cajado De Birdcalls",
+    "tipoOriginal": "simple, Staff",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2429",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2430,
+    "nomeIngles": "Staff of Charming",
+    "nomeLocal": "Cajado De Encantoing",
+    "tipoOriginal": "simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2430",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2431,
+    "nomeIngles": "Staff of Charming",
+    "nomeLocal": "Cajado De Encantoing",
+    "tipoOriginal": "M|XPHB, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2431",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2432,
+    "nomeIngles": "Staff of Defense",
+    "nomeLocal": "Cajado De Defesa",
+    "tipoOriginal": "simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2432",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": [],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 2433,
+    "nomeIngles": "Staff of Defense",
+    "nomeLocal": "Cajado De Defesa",
+    "tipoOriginal": "M, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2433",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": [],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 2434,
+    "nomeIngles": "Staff of Dunamancy",
+    "nomeLocal": "Cajado De Dunamancy",
+    "tipoOriginal": "simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2434",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2435,
+    "nomeIngles": "Staff of Fate",
+    "nomeLocal": "Cajado De Fate",
+    "tipoOriginal": "M, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2435",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2436,
+    "nomeIngles": "Staff of Fire",
+    "nomeLocal": "Cajado De Fogo",
+    "tipoOriginal": "simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2436",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2437,
+    "nomeIngles": "Staff of Fire",
+    "nomeLocal": "Cajado De Fogo",
+    "tipoOriginal": "M|XPHB, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2437",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2438,
+    "nomeIngles": "Staff of Flowers",
+    "nomeLocal": "Cajado De Flowers",
+    "tipoOriginal": "M|XPHB, simple, Staff",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2438",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2439,
+    "nomeIngles": "Staff of Flowers",
+    "nomeLocal": "Cajado De Flowers",
+    "tipoOriginal": "simple, Staff",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2439",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2440,
+    "nomeIngles": "Staff of Frost",
+    "nomeLocal": "Cajado De Frost",
+    "tipoOriginal": "simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2440",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2441,
+    "nomeIngles": "Staff of Frost",
+    "nomeLocal": "Cajado De Frost",
+    "tipoOriginal": "M|XPHB, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2441",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2442,
+    "nomeIngles": "Staff of Healing",
+    "nomeLocal": "Cajado De Healing",
+    "tipoOriginal": "simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2442",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2443,
+    "nomeIngles": "Staff of Healing",
+    "nomeLocal": "Cajado De Healing",
+    "tipoOriginal": "M|XPHB, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2443",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2444,
+    "nomeIngles": "Staff of Power",
+    "nomeLocal": "Cajado do Poder",
+    "tipoOriginal": "simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2444",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "bonusCA": 2,
+      "propriedadesEspeciais": [],
+      "bonusMagia": [
+        {
+          "classeNome": "todas",
+          "ataque": 2
+        }
+      ]
+    }
+  },
+  {
+    "indice": 2445,
+    "nomeIngles": "Staff of Power",
+    "nomeLocal": "Cajado do Poder",
+    "tipoOriginal": "M|XPHB, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2445",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": [],
+      "bonusCA": 2,
+      "bonusMagia": [
+        {
+          "classeNome": "todas",
+          "ataque": 2
+        }
+      ]
+    }
+  },
+  {
+    "indice": 2446,
+    "nomeIngles": "Staff of Ruling",
+    "nomeLocal": "Cajado De Ruling",
+    "tipoOriginal": "M, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2446",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2447,
+    "nomeIngles": "Staff of Striking",
+    "nomeLocal": "Cajado do Golpe",
+    "tipoOriginal": "simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2447",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2448,
+    "nomeIngles": "Staff of Striking",
+    "nomeLocal": "Cajado do Golpe",
+    "tipoOriginal": "M|XPHB, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2448",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2449,
+    "nomeIngles": "Staff of Swarming Insects",
+    "nomeLocal": "Cajado De Swarming Insects",
+    "tipoOriginal": "simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2449",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2450,
+    "nomeIngles": "Staff of Swarming Insects",
+    "nomeLocal": "Cajado De Swarming Insects",
+    "tipoOriginal": "M|XPHB, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2450",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2451,
+    "nomeIngles": "Staff of the Adder",
+    "nomeLocal": "Cajado De O Adder",
+    "tipoOriginal": "simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2451",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2452,
+    "nomeIngles": "Staff of the Adder",
+    "nomeLocal": "Cajado De O Adder",
+    "tipoOriginal": "M|XPHB, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2452",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2453,
+    "nomeIngles": "Staff of the Forgotten One",
+    "nomeLocal": "Cajado De O Forgotten One",
+    "tipoOriginal": "simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2453",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2454,
+    "nomeIngles": "Staff of the Ivory Claw",
+    "nomeLocal": "Cajado De O Marfim Claw",
+    "tipoOriginal": "simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2454",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": [],
+      "bonusMagia": [
+        {
+          "classeNome": "todas",
+          "ataque": 1
+        }
+      ]
+    }
+  },
+  {
+    "indice": 2455,
+    "nomeIngles": "Staff of the Magi",
+    "nomeLocal": "Cajado do Mago",
+    "tipoOriginal": "simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2455",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": [],
+      "bonusMagia": [
+        {
+          "classeNome": "todas",
+          "ataque": 2
+        }
+      ]
+    }
+  },
+  {
+    "indice": 2456,
+    "nomeIngles": "Staff of the Magi",
+    "nomeLocal": "Cajado do Mago",
+    "tipoOriginal": "M|XPHB, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2456",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": [],
+      "bonusMagia": [
+        {
+          "classeNome": "todas",
+          "ataque": 2
+        }
+      ]
+    }
+  },
+  {
+    "indice": 2457,
+    "nomeIngles": "Staff of the Python",
+    "nomeLocal": "Cajado De O Python",
+    "tipoOriginal": "simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2457",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2458,
+    "nomeIngles": "Staff of the Python",
+    "nomeLocal": "Cajado De O Python",
+    "tipoOriginal": "M|XPHB, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2458",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2459,
+    "nomeIngles": "Staff of the Rooted Hills",
+    "nomeLocal": "Cajado De O Rooted Hills",
+    "tipoOriginal": "M, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2459",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2460,
+    "nomeIngles": "Staff of the Woodlands",
+    "nomeLocal": "Cajado De O Woodlands",
+    "tipoOriginal": "simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2460",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": [],
+      "bonusMagia": [
+        {
+          "classeNome": "todas",
+          "ataque": 2
+        }
+      ]
+    }
+  },
+  {
+    "indice": 2461,
+    "nomeIngles": "Staff of the Woodlands",
+    "nomeLocal": "Cajado De O Woodlands",
+    "tipoOriginal": "M|XPHB, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2461",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": [],
+      "bonusMagia": [
+        {
+          "classeNome": "todas",
+          "ataque": 2
+        }
+      ]
+    }
+  },
+  {
+    "indice": 2462,
+    "nomeIngles": "Staff of Thunder and Lightning",
+    "nomeLocal": "Cajado De Thunder E Relâmpago",
+    "tipoOriginal": "simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2462",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2463,
+    "nomeIngles": "Staff of Thunder and Lightning",
+    "nomeLocal": "Cajado De Thunder E Relâmpago",
+    "tipoOriginal": "M|XPHB, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2463",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2464,
+    "nomeIngles": "Staff of Withering",
+    "nomeLocal": "Cajado De Withering",
+    "tipoOriginal": "simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2464",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2465,
+    "nomeIngles": "Staff of Withering",
+    "nomeLocal": "Cajado De Withering",
+    "tipoOriginal": "M|XPHB, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2465",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2477,
+    "nomeIngles": "Steel",
+    "nomeLocal": "Aço",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2477",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2490,
+    "nomeIngles": "Stonebreaker's Breastplate",
+    "nomeLocal": "Pedrabreaker's Peitoral",
+    "tipoOriginal": "MA, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2490",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Peitoral",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2491,
+    "nomeIngles": "Stonemaker War Pick",
+    "nomeLocal": "Pedramaker Guerra Pick",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2491",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Picareta de Guerra",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2505,
+    "nomeIngles": "Sun Blade",
+    "nomeLocal": "Lâmina Solar",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2505",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": [
+        "Lâmina radiante: A lâmina é ativada por ação bônus. Causa dano radiante, tem Acuidade e emite luz solar.",
+        "Mortos-vivos: Causa 1d8 radiante adicional contra mortos-vivos."
+      ],
+      "danoTipo": "Radiante",
+      "atributosArma": [
+        "Força",
+        "Destreza"
+      ],
+      "propriedadesArma": [
+        "Acuidade"
+      ],
+      "proficienciasAlternativas": [
+        "Espada Longa",
+        "Espada Curta"
+      ]
+    }
+  },
+  {
+    "indice": 2506,
+    "nomeIngles": "Sun Blade",
+    "nomeLocal": "Lâmina Solar",
+    "tipoOriginal": "M|XPHB, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2506",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": [
+        "Lâmina radiante: A lâmina é ativada por ação bônus. Causa dano radiante, tem Acuidade e emite luz solar.",
+        "Mortos-vivos: Causa 1d8 radiante adicional contra mortos-vivos."
+      ],
+      "danoTipo": "Radiante",
+      "atributosArma": [
+        "Força",
+        "Destreza"
+      ],
+      "propriedadesArma": [
+        "Acuidade"
+      ],
+      "proficienciasAlternativas": [
+        "Espada Longa",
+        "Espada Curta"
+      ]
+    }
+  },
+  {
+    "indice": 2508,
+    "nomeIngles": "Sun Staff",
+    "nomeLocal": "Sun Cajado",
+    "tipoOriginal": "M, simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2508",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2509,
+    "nomeIngles": "Sunforger",
+    "nomeLocal": "Sunforger",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2509",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Martelo de Guerra",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2510,
+    "nomeIngles": "Sunsword",
+    "nomeLocal": "Sunsword",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2510",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "propriedadesEspeciais": [
+        "Lâmina radiante: A lâmina é ativada por ação bônus. Causa dano radiante, tem Acuidade e emite luz solar.",
+        "Mortos-vivos: Causa 1d8 radiante adicional contra mortos-vivos."
+      ],
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "danoTipo": "Radiante",
+      "atributosArma": [
+        "Força",
+        "Destreza"
+      ],
+      "propriedadesArma": [
+        "Acuidade"
+      ],
+      "proficienciasAlternativas": [
+        "Espada Longa",
+        "Espada Curta"
+      ]
+    }
+  },
+  {
+    "indice": 2511,
+    "nomeIngles": "Survival Mantle",
+    "nomeLocal": "Survival Mantle",
+    "tipoOriginal": "MA",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2511",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Meia-Armadura",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2512,
+    "nomeIngles": "Sword of Answering",
+    "nomeLocal": "Espada De Answering",
+    "tipoOriginal": "M|XPHB, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2512",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": [
+        "Reação (2024): Pode reagir ao sofrer dano de uma criatura ao alcance, atacando-a com vantagem. O dano desse ataque ignora resistência e imunidade."
+      ]
+    }
+  },
+  {
+    "indice": 2513,
+    "nomeIngles": "Sword of Answering (Answerer)",
+    "nomeLocal": "Espada De Answering (Answerer)",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2513",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": [
+        "Reação (2014): Pode reagir ao sofrer dano de uma criatura ao alcance, atacando-a com vantagem. O dano desse ataque ignora resistência e imunidade."
+      ],
+      "requisitoSintonizacao": "Mesmo alinhamento da espada."
+    }
+  },
+  {
+    "indice": 2514,
+    "nomeIngles": "Sword of Answering (Back Talker)",
+    "nomeLocal": "Espada De Answering (Back Talker)",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2514",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": [
+        "Reação (2014): Pode reagir ao sofrer dano de uma criatura ao alcance, atacando-a com vantagem. O dano desse ataque ignora resistência e imunidade."
+      ],
+      "requisitoSintonizacao": "Mesmo alinhamento da espada."
+    }
+  },
+  {
+    "indice": 2515,
+    "nomeIngles": "Sword of Answering (Concluder)",
+    "nomeLocal": "Espada De Answering (Concluder)",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2515",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": [
+        "Reação (2014): Pode reagir ao sofrer dano de uma criatura ao alcance, atacando-a com vantagem. O dano desse ataque ignora resistência e imunidade."
+      ],
+      "requisitoSintonizacao": "Mesmo alinhamento da espada."
+    }
+  },
+  {
+    "indice": 2516,
+    "nomeIngles": "Sword of Answering (Last Quip)",
+    "nomeLocal": "Espada De Answering (Last Quip)",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2516",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": [
+        "Reação (2014): Pode reagir ao sofrer dano de uma criatura ao alcance, atacando-a com vantagem. O dano desse ataque ignora resistência e imunidade."
+      ],
+      "requisitoSintonizacao": "Mesmo alinhamento da espada."
+    }
+  },
+  {
+    "indice": 2517,
+    "nomeIngles": "Sword of Answering (Rebutter)",
+    "nomeLocal": "Espada De Answering (Rebutter)",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2517",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": [
+        "Reação (2014): Pode reagir ao sofrer dano de uma criatura ao alcance, atacando-a com vantagem. O dano desse ataque ignora resistência e imunidade."
+      ],
+      "requisitoSintonizacao": "Mesmo alinhamento da espada."
+    }
+  },
+  {
+    "indice": 2518,
+    "nomeIngles": "Sword of Answering (Replier)",
+    "nomeLocal": "Espada De Answering (Replier)",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2518",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": [
+        "Reação (2014): Pode reagir ao sofrer dano de uma criatura ao alcance, atacando-a com vantagem. O dano desse ataque ignora resistência e imunidade."
+      ],
+      "requisitoSintonizacao": "Mesmo alinhamento da espada."
+    }
+  },
+  {
+    "indice": 2519,
+    "nomeIngles": "Sword of Answering (Retorter)",
+    "nomeLocal": "Espada De Answering (Retorter)",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2519",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": [
+        "Reação (2014): Pode reagir ao sofrer dano de uma criatura ao alcance, atacando-a com vantagem. O dano desse ataque ignora resistência e imunidade."
+      ],
+      "requisitoSintonizacao": "Mesmo alinhamento da espada."
+    }
+  },
+  {
+    "indice": 2520,
+    "nomeIngles": "Sword of Answering (Scather)",
+    "nomeLocal": "Espada De Answering (Scather)",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2520",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": [
+        "Reação (2014): Pode reagir ao sofrer dano de uma criatura ao alcance, atacando-a com vantagem. O dano desse ataque ignora resistência e imunidade."
+      ],
+      "requisitoSintonizacao": "Mesmo alinhamento da espada."
+    }
+  },
+  {
+    "indice": 2521,
+    "nomeIngles": "Sword of Answering (Squelcher)",
+    "nomeLocal": "Espada De Answering (Squelcher)",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2521",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": [
+        "Reação (2014): Pode reagir ao sofrer dano de uma criatura ao alcance, atacando-a com vantagem. O dano desse ataque ignora resistência e imunidade."
+      ],
+      "requisitoSintonizacao": "Mesmo alinhamento da espada."
+    }
+  },
+  {
+    "indice": 2522,
+    "nomeIngles": "Sword of Kas",
+    "nomeLocal": "Espada De Kas",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2522",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2523,
+    "nomeIngles": "Sword of Kas",
+    "nomeLocal": "Espada De Kas",
+    "tipoOriginal": "M|XPHB, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2523",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2524,
+    "nomeIngles": "Sword of Life Stealing",
+    "nomeLocal": "Espada De Vida Stealing",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2524",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Espada Longa",
+        "Espada Curta",
+        "Espada Grande",
+        "Cimitarra",
+        "Rapieira"
+      ],
+      "propriedadesEspeciais": [
+        "Roubar vida: Efeito de dano adicional e pontos de vida temporários em golpes críticos, com exceções por tipo de criatura."
+      ]
+    }
+  },
+  {
+    "indice": 2526,
+    "nomeIngles": "Sword of Sharpness",
+    "nomeLocal": "Espada De Sharpness",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2526",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Espada Grande",
+        "Espada Longa",
+        "Cimitarra"
+      ],
+      "propriedadesEspeciais": [
+        "Afiada: Dano maximizado contra objetos e efeitos especiais em golpes críticos, conforme a edição."
+      ]
+    }
+  },
+  {
+    "indice": 2527,
+    "nomeIngles": "Sword of the Paruns",
+    "nomeLocal": "Espada De O Paruns",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2527",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2529,
+    "nomeIngles": "Sword of Vengeance",
+    "nomeLocal": "Espada De Vengeance",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2529",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Espada Longa",
+        "Espada Curta",
+        "Espada Grande",
+        "Cimitarra",
+        "Rapieira"
+      ],
+      "propriedadesEspeciais": [
+        "Vingança: Maldição que afeta o comportamento do portador e a escolha de alvos."
+      ],
+      "bonusDano": 1,
+      "bonusAtaque": 1
+    }
+  },
+  {
+    "indice": 2530,
+    "nomeIngles": "Sword of Wounding",
+    "nomeLocal": "Espada De Feridaing",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2530",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Espada Longa",
+        "Espada Curta",
+        "Espada Grande",
+        "Cimitarra",
+        "Rapieira"
+      ],
+      "propriedadesEspeciais": [
+        "Ferimentos: Causa ferimentos com dano e restrições de cura conforme as condições da edição."
+      ]
+    }
+  },
+  {
+    "indice": 2531,
+    "nomeIngles": "Sword of Zariel",
+    "nomeLocal": "Espada De Zariel",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2531",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2552,
+    "nomeIngles": "Tearulai",
+    "nomeLocal": "Tearulai",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2552",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Longa",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2563,
+    "nomeIngles": "The Bloody End (Dormant)",
+    "nomeLocal": "The Sanguey End (Dormant)",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2563",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Maça Estrela",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2580,
+    "nomeIngles": "Thunderous Greatclub",
+    "nomeLocal": "Thunderous Greatclub",
+    "tipoOriginal": "M|XPHB, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2580",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Clava Grande",
+      "propriedadesEspeciais": [],
+      "atributosFixos": [
+        {
+          "atributo": "forca",
+          "valor": 20
+        }
+      ]
+    }
+  },
+  {
+    "indice": 2581,
+    "nomeIngles": "Tidecaller Trident",
+    "nomeLocal": "Tidecaller Trident",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2581",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Tridente",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2587,
+    "nomeIngles": "Tinderstrike",
+    "nomeLocal": "Tinderstrike",
+    "tipoOriginal": "M, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2587",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Adaga",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2618,
+    "nomeIngles": "Trident of Fish Command",
+    "nomeLocal": "Trident De Fish Command",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2618",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Tridente",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2619,
+    "nomeIngles": "Trident of Fish Command",
+    "nomeLocal": "Trident De Fish Command",
+    "tipoOriginal": "M|XPHB, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2619",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Tridente",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2625,
+    "nomeIngles": "True-Ice Shards (Dagger)",
+    "nomeLocal": "True-Ice Shards (Adaga)",
+    "tipoOriginal": "M, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2625",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Adaga",
+      "propriedadesEspeciais": [],
+      "danoBase": {
+        "dano_1": "1d6",
+        "dano_2": ""
+      },
+      "danoTipo": "Frio"
+    }
+  },
+  {
+    "indice": 2626,
+    "nomeIngles": "True-Ice Shards (Rapier)",
+    "nomeLocal": "True-Ice Shards (Rapier)",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2626",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Rapieira",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": [],
+      "danoBase": {
+        "dano_1": "1d8",
+        "dano_2": ""
+      },
+      "danoTipo": "Frio"
+    }
+  },
+  {
+    "indice": 2632,
+    "nomeIngles": "Two-Birds Sling",
+    "nomeLocal": "Two-Birds Sling",
+    "tipoOriginal": "R, simple, Ammo: sling bullet|phb",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2632",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Funda",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2641,
+    "nomeIngles": "Vanrak's Mithral Shirt",
+    "nomeLocal": "Vanrak's Mithral Shirt",
+    "tipoOriginal": "MA",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2641",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Camisão de Malha",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2654,
+    "nomeIngles": "Vicious +1 Weapon",
+    "nomeLocal": "Vicious +1 Weapon",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2654",
+      "usarDescricaoCatalogo": true,
+      "basesCompativeis": [
+        "Adaga",
+        "Foice Curta",
+        "Espada Longa",
+        "Espada Curta",
+        "Espada Grande",
+        "Rapieira",
+        "Cimitarra",
+        "Machado de Batalha",
+        "Machado Grande",
+        "Machadinha",
+        "Martelo de Guerra",
+        "Martelo Leve",
+        "Malho",
+        "Maça",
+        "Maça Estrela",
+        "Mangual",
+        "Chicote",
+        "Glaive",
+        "Alabarda",
+        "Lança Longa",
+        "Lança de Montaria",
+        "Lança",
+        "Azagaia",
+        "Tridente",
+        "Bordão",
+        "Clava Grande",
+        "Porrete",
+        "Arco Longo",
+        "Arco Curto",
+        "Besta Leve",
+        "Besta Pesada",
+        "Besta de Mão",
+        "Funda",
+        "Dardo",
+        "Picareta de Guerra"
+      ],
+      "propriedadesEspeciais": [
+        "Golpe cruel: Além do bônus +1 declarado, tem dano adicional condicional em acertos críticos."
+      ],
+      "bonusDano": 1,
+      "bonusAtaque": 1
+    }
+  },
+  {
+    "indice": 2655,
+    "nomeIngles": "Vicious Weapon",
+    "nomeLocal": "Vicious Weapon",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2655",
+      "usarDescricaoCatalogo": true,
+      "basesCompativeis": [
+        "Adaga",
+        "Foice Curta",
+        "Espada Longa",
+        "Espada Curta",
+        "Espada Grande",
+        "Rapieira",
+        "Cimitarra",
+        "Machado de Batalha",
+        "Machado Grande",
+        "Machadinha",
+        "Martelo de Guerra",
+        "Martelo Leve",
+        "Malho",
+        "Maça",
+        "Maça Estrela",
+        "Mangual",
+        "Chicote",
+        "Glaive",
+        "Alabarda",
+        "Lança Longa",
+        "Lança de Montaria",
+        "Lança",
+        "Azagaia",
+        "Tridente",
+        "Bordão",
+        "Clava Grande",
+        "Porrete",
+        "Arco Longo",
+        "Arco Curto",
+        "Besta Leve",
+        "Besta Pesada",
+        "Besta de Mão",
+        "Funda",
+        "Dardo",
+        "Picareta de Guerra"
+      ],
+      "propriedadesEspeciais": [
+        "Golpe cruel: Dano adicional em acertos críticos; não concede bônus permanente nas jogadas de ataque."
+      ]
+    }
+  },
+  {
+    "indice": 2659,
+    "nomeIngles": "Voidwalker Armor",
+    "nomeLocal": "Voidwalker Armadura",
+    "tipoOriginal": "LA, Cursed, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2659",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Couro Batido",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2660,
+    "nomeIngles": "Vorpal Sword",
+    "nomeLocal": "Vorpal Espada",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2660",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Espada Grande",
+        "Espada Longa",
+        "Cimitarra"
+      ],
+      "propriedadesEspeciais": [
+        "Vorpal: Pode decapitar após um resultado 20 na jogada de ataque, respeitando as exceções do alvo."
+      ],
+      "bonusDano": 3,
+      "bonusAtaque": 3
+    }
+  },
+  {
+    "indice": 2663,
+    "nomeIngles": "Voyager Staff",
+    "nomeLocal": "Voyager Cajado",
+    "tipoOriginal": "simple, Staff, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2663",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Bordão",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": [],
+      "bonusMagia": [
+        {
+          "classeNome": "todas",
+          "ataque": 1
+        }
+      ]
+    }
+  },
+  {
+    "indice": 2725,
+    "nomeIngles": "Wave",
+    "nomeLocal": "Wave",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2725",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Tridente",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2726,
+    "nomeIngles": "Wave",
+    "nomeLocal": "Wave",
+    "tipoOriginal": "M|XPHB, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2726",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Tridente",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2728,
+    "nomeIngles": "Waythe",
+    "nomeLocal": "Waythe",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2728",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Grande",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2732,
+    "nomeIngles": "Weapon of Warning",
+    "nomeLocal": "Weapon De Guerraning",
+    "tipoOriginal": "GV|DMG",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2732",
+      "usarDescricaoCatalogo": false,
+      "basesCompativeis": [
+        "Adaga",
+        "Foice Curta",
+        "Espada Longa",
+        "Espada Curta",
+        "Espada Grande",
+        "Rapieira",
+        "Cimitarra",
+        "Machado de Batalha",
+        "Machado Grande",
+        "Machadinha",
+        "Martelo de Guerra",
+        "Martelo Leve",
+        "Malho",
+        "Maça",
+        "Maça Estrela",
+        "Mangual",
+        "Chicote",
+        "Glaive",
+        "Alabarda",
+        "Lança Longa",
+        "Lança de Montaria",
+        "Lança",
+        "Azagaia",
+        "Tridente",
+        "Bordão",
+        "Clava Grande",
+        "Porrete",
+        "Arco Longo",
+        "Arco Curto",
+        "Besta Leve",
+        "Besta Pesada",
+        "Besta de Mão",
+        "Funda",
+        "Dardo",
+        "Picareta de Guerra"
+      ],
+      "propriedadesEspeciais": [
+        "Alerta: Ajuda contra surpresa e concede vantagem em iniciativa enquanto estiver sintonizada."
+      ]
+    }
+  },
+  {
+    "indice": 2744,
+    "nomeIngles": "Whelm",
+    "nomeLocal": "Whelm",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2744",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Martelo de Guerra",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2745,
+    "nomeIngles": "Whelm",
+    "nomeLocal": "Whelm",
+    "tipoOriginal": "M|XPHB, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2745",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Martelo de Guerra",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2754,
+    "nomeIngles": "White Dragon Scale Mail",
+    "nomeLocal": "Branco Dragão Scale Mail",
+    "tipoOriginal": "MA, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2754",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Brunea",
+      "propriedadesEspeciais": [],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 2755,
+    "nomeIngles": "White Dragon Scale Mail",
+    "nomeLocal": "Branco Dragão Scale Mail",
+    "tipoOriginal": "MA|XPHB, Attunement",
+    "metadados": {
+      "tipo": "armadura",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2024",
+      "catalogoId": "equipamento:2755",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Brunea",
+      "propriedadesEspeciais": [],
+      "bonusCA": 1
+    }
+  },
+  {
+    "indice": 2760,
+    "nomeIngles": "Will of the Talon (Dormant)",
+    "nomeLocal": "Will De O Talon (Dormant)",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2760",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Picareta de Guerra",
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2766,
+    "nomeIngles": "Windvane",
+    "nomeLocal": "Windvane",
+    "tipoOriginal": "M, simple, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2766",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Lança",
+      "bonusDano": 2,
+      "bonusAtaque": 2,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2774,
+    "nomeIngles": "Winter's Dark Bite",
+    "nomeLocal": "Winter's Dark Bite",
+    "tipoOriginal": "M, martial",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2774",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Espada Grande",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2775,
+    "nomeIngles": "Witchlight Vane",
+    "nomeLocal": "Witchlight Vane",
+    "tipoOriginal": "Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2775",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Maça",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2781,
+    "nomeIngles": "Woodcutter's Axe",
+    "nomeLocal": "Woodcutter's Machado",
+    "tipoOriginal": "M, martial",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2781",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Machadinha",
+      "bonusDano": 1,
+      "bonusAtaque": 1,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2787,
+    "nomeIngles": "Wrought-Iron Tower",
+    "nomeLocal": "Wrought-Ferro Torre",
+    "tipoOriginal": "M, martial, Attunement",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": true,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2787",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Martelo de Guerra",
+      "bonusDano": 3,
+      "bonusAtaque": 3,
+      "bonusCA": 2,
+      "propriedadesEspeciais": []
+    }
+  },
+  {
+    "indice": 2801,
+    "nomeIngles": "Yester Hill Axe",
+    "nomeLocal": "Yester Hill Machado",
+    "tipoOriginal": "M, martial",
+    "metadados": {
+      "tipo": "arma",
+      "modo": "especifico",
+      "exigeSintonizacao": false,
+      "edicao": "DND_2014",
+      "catalogoId": "equipamento:2801",
+      "usarDescricaoCatalogo": true,
+      "baseNome": "Machado de Batalha",
+      "propriedadesEspeciais": []
+    }
+  }
+]

@@ -1,0 +1,45 @@
+﻿{
+  "catalogs": [
+    {
+      "ed": "DND_2014",
+      "feats": [
+        "ALERTA"
+      ],
+      "spells": 467
+    },
+    {
+      "ed": "DND_2024",
+      "feats": [
+        "Alerta",
+        "Habilidoso",
+        "Imobilizador"
+      ],
+      "spells": 8
+    }
+  ],
+  "pdf": [
+    {
+      "ed": "DND_2014",
+      "deathAfterRoundtrip": {
+        "sucessos": 2,
+        "falhas": 1
+      },
+      "deathText": [
+        "Não informados no documento: jogador, alinhamento, XP, inspiração, PV temporários, testes de morte e dados de"
+      ],
+      "drawnTexts": 99
+    },
+    {
+      "ed": "DND_2024",
+      "deathAfterRoundtrip": {
+        "sucessos": 2,
+        "falhas": 1
+      },
+      "deathText": [
+        "Não informados no documento: jogador, alinhamento, XP, inspiração, PV temporários, testes de morte e dados de"
+      ],
+      "drawnTexts": 99
+    }
+  ]
+}
+

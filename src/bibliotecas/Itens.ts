@@ -1,6 +1,12 @@
- import { traduzirNomeItem } from "./ItensTraduzidos.ts";
+ import { traduzirNomeItem } from "./ItensTraduzidos";
+import { EquipamentoMagico, VinculoEquipamento, metadadosMagicosCatalogo, metadadosDoRegistroCatalogo } from './ItensMagicos';
 
 export class Itens {
+ registroCatalogo?: number;
+ equipamentoMagico?: EquipamentoMagico;
+ vinculoEquipamento?: VinculoEquipamento;
+ requisitosSintonizacaoConfirmados?: boolean;
+ efeitosExplicitos?: import('../api/classesPrincipais/Efeitos').Efeitos[];
  id: string;
  nome: string;
  nomeIngles: string;
@@ -19,16 +25,19 @@ export class Itens {
  raridade: string,
  sintonizavel: boolean,
  descricao: string,
- nomeIngles?: string
+ nomeIngles?: string,
+ equipamentoMagico?: EquipamentoMagico
  ) {
  this.id = this.gerarIdUnico();
  this.nome = traduzirNomeItem(nome);
  this.nomeIngles = nomeIngles ?? nome;
+ this.equipamentoMagico = equipamentoMagico ?? metadadosMagicosCatalogo(this.nomeIngles);
  this.tipo = tipo;
  this.peso = peso;
  this.preco = preco;
  this.raridade = raridade;
  this.sintonizavel = sintonizavel;
+ if (this.equipamentoMagico) this.sintonizavel = this.equipamentoMagico.exigeSintonizacao;
  this.descricao = descricao;
  }
 
@@ -28161,3 +28170,12 @@ export const itens: Itens[] = [
  "Zulkoon"
  )
 ];
+
+itens.forEach((item, indice) => {
+  item.registroCatalogo = indice;
+  const metadados = metadadosDoRegistroCatalogo(indice, item.nomeIngles);
+  item.equipamentoMagico = metadados;
+  if (metadados) {
+    item.sintonizavel = metadados.exigeSintonizacao;
+  }
+});
