@@ -180,12 +180,14 @@ test.each(['DND_2014', 'DND_2024'])('snapshots do contrato atual %s fazem roundt
   }
 });
 
-test('edição pela página real salva nome sem esperar timer local e reabre', async () => {
+test('edição pela página real salva nome após pausa na digitação e reabre', async () => {
   jest.useFakeTimers();
   const store = memory(JSON.stringify([fixture()]));
   store.data.set('ficha', 'sintetica-1');
   const view = render(<FichaProvider storage={store}><MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><CriarFicha /></MemoryRouter></FichaProvider>);
   fireEvent.change(screen.getByPlaceholderText('Nome do Personagem'), { target: { value: 'Nome pela tela' } });
+  expect(screen.queryByRole('status')).not.toBeInTheDocument();
+  act(() => jest.advanceTimersByTime(800));
   await act(async () => { await Promise.resolve(); });
   expect(screen.getByRole('status')).toHaveTextContent('Alterações não salvas');
   act(() => jest.advanceTimersByTime(300));

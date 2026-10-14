@@ -33,6 +33,7 @@ test.each(['2014', '2024'])('cria e reabre uma ficha da edição %s', async edit
   expect(window.location.pathname).toBe('/criar-ficha');
   const name = screen.getByPlaceholderText('Nome do Personagem');
   await user.type(name, `Aventureira sintética ${edition}`);
+  await user.tab();
   view.unmount();
   const saved = parseCollection(localStorage.getItem('fichas'));
   expect(saved.fichas).toHaveLength(1);
