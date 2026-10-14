@@ -297,7 +297,12 @@ test('detalhes preservam aquisições repetidas e atualizam após mutação da m
 });
 
 test('características de classe sem versão revisada não usam texto legado como fallback', () => {
-  expect(descricaoCaracteristica('Pacto da Corrente', 'DND_2024')).toMatch(/não catalogada/);
+  const descricaoLegada = descricaoCaracteristica('Fúria', 'DND_2014');
+  expect(descricaoLegada).toContain('ferocidade primitiva');
+  expect(descricaoCaracteristica('Fúria', 'DND_2024')).toBe('Descrição desta característica indisponível para esta edição.');
+  const descricaoRevisada = descricaoCaracteristica('Pacto da Corrente', 'DND_2024');
+  expect(descricaoLegada).not.toBe(descricaoRevisada);
+  expect(descricaoRevisada).toBe('Descrição desta característica indisponível para esta edição.');
   expect(descricaoCaracteristica('Pacto da Corrente', 'DND_2030')).toMatch(/desconhecida/);
 });
 
