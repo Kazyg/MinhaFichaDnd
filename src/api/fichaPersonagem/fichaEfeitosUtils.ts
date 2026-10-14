@@ -3,6 +3,7 @@ import { Efeitos } from "../classesPrincipais/Efeitos";
 import { Itens } from "../../bibliotecas/Itens";
 import type { Ficha } from "./FichaPersonagem";
 import { chaveClasse, nivelDaClasse } from '../rulesets/progressao';
+import { itemEstaEquipado } from './fichaEquipamentosMagicos';
 
 export type AtributoChave = "forca" | "destreza" | "constituicao" | "inteligencia" | "sabedoria" | "carisma";
 
@@ -82,7 +83,27 @@ const extrairBonusPorRegex = (textoNormalizado: string, regexes: RegExp[]) => {
 };
 
 export const extrairEfeitosDoItem = (item: Itens): Efeitos[] => {
-  if (item.efeitosExplicitos) return item.efeitosExplicitos.map((e, i) => Object.assign(criarEfeitoBaseDoItem(item), e, { id: `item:${item.id}:${i}`, origemTipo: 'item', origemId: item.id }));
+  if (item.equipamentoMagico) {
+    const magia = item.equipamentoMagico;
+    const extras = (item.efeitosExplicitos ?? []).filter(e => !(magia.bonusMagia?.length && (['ataque_magia', 'cd_magia'].includes(e.tipoEfeito) || ['ataque_magia', 'cd_magia'].includes(e.arma))) && !(magia.tipo === 'arma' && magia.bonusCA && (e.tipoEfeito === 'ca_item' || e.ca === 'CA'))).filter(e => magia.tipo === 'arma'
+      ? !['ataque_arma', 'dano_arma'].includes(e.tipoEfeito) && !['ataque_arma', 'dano_arma'].includes(e.arma)
+      : e.tipoEfeito !== 'ca_item' && e.ca !== 'CA');
+    const efeitos = extras.map(e => Object.assign(criarEfeitoBaseDoItem(item), e));
+    magia.atributosFixos?.forEach(a => efeitos.push(Object.assign(criarEfeitoBaseDoItem(item), { tipoEfeito: 'atributo_fixo', atributo: a.atributo, valorFixo: a.valor })));
+    magia.bonusMagia?.forEach(b => {
+      (['ataque', 'cd'] as const).forEach(tipo => {
+        if (!b[tipo]) return;
+        efeitos.push(Object.assign(criarEfeitoBaseDoItem(item), { tipoEfeito: tipo === 'ataque' ? 'ataque_magia' : 'cd_magia', classeNome: b.classeNome, bonus: b[tipo] }));
+      });
+    });
+    if (magia.tipo === 'arma' && magia.bonusCA && !extras.some(e => e.tipoEfeito === 'ca_item' || e.ca === 'CA')) efeitos.push(Object.assign(criarEfeitoBaseDoItem(item), { tipoEfeito: 'ca_item', ca: 'CA', bonus: magia.bonusCA }));
+    return efeitos.map((e, i) => Object.assign(e, { id: `item:${item.id}:${i}`, origemTipo: 'item', origemId: item.id }));
+  }
+  if (item.efeitosExplicitos) return item.efeitosExplicitos
+    .filter(e => !item.equipamentoMagico || (item.equipamentoMagico.tipo === 'arma'
+      ? !['ataque_arma', 'dano_arma'].includes(e.tipoEfeito) && !['ataque_arma', 'dano_arma'].includes(e.arma)
+      : e.tipoEfeito !== 'ca_item' && e.ca !== 'CA'))
+    .map((e, i) => Object.assign(criarEfeitoBaseDoItem(item), e, { id: `item:${item.id}:${i}`, origemTipo: 'item', origemId: item.id }));
   const efeitos: Efeitos[] = [];
   const descricaoNormalizada = normalizarTexto(item.descricao ?? "");
   const nomeNormalizado = normalizarTexto(item.nome ?? "");
@@ -148,7 +169,7 @@ export const extrairEfeitosDoItem = (item: Itens): Efeitos[] => {
   }
 
   const bonusAtaqueMagia = extrairBonusPorRegex(`${nomeNormalizado} ${descricaoNormalizada}`, [
-    /bonus de \+(\d+) nas jogadas de ataque (?:com feiticos|magico|de magia)/,
+    /bonus de \+(\d+) nas jogadas de ataque (?:com feiticos|de feitico|magico|de magia)/,
     /ganha \+(\d+) de bonus nas jogadas de ataque magico/,
     /gain a \+(\d+) bonus to spell attack rolls/,
   ]);
@@ -165,6 +186,7 @@ export const extrairEfeitosDoItem = (item: Itens): Efeitos[] => {
   const bonusCDMagia = extrairBonusPorRegex(`${nomeNormalizado} ${descricaoNormalizada}`, [
     /bonus de \+(\d+) nas cds dos testes de resistencia de (?:seus|suas) (?:feiticos|magias)/,
     /bonus de \+(\d+) nas cds dos testes de resistencia de suas magias de [a-zçãéíóú]+/,
+    /bonus de \+(\d+) nas jogadas de ataque (?:com feiticos|de feitico|magico|de magia) e nas cds dos testes de resistencia de (?:seus|suas) (?:feiticos|magias)/,
     /gain a \+(\d+) bonus to the saving throw dcs of your spells/,
     /gain a \+(\d+) bonus to the saving throw dcs of your [a-z]+ spells/,
   ]);
@@ -178,8 +200,23 @@ export const extrairEfeitosDoItem = (item: Itens): Efeitos[] => {
     efeitos.push(efeito);
   }
 
-  // Weapon-local attack/damage requires explicit, scoped data; never grant
-  // a global benefit from a weapon name or an isolated attack phrase.
+  const bonusAtaqueArma = extrairBonusPorRegex(descricaoNormalizada, [
+    /bonus de \+(\d+) nas jogadas de ataque com armas?(?:[.,;]|$| e)/,
+    /bonus de \+(\d+) nas jogadas de ataque e (?:de )?dano com armas?(?:[.,;]|$)/,
+    /gain a \+(\d+) bonus to weapon attack rolls/,
+  ]);
+  const bonusDanoArma = extrairBonusPorRegex(descricaoNormalizada, [
+    /bonus de \+(\d+) nas jogadas de dano com armas?(?:[.,;]|$| e)/,
+    /bonus de \+(\d+) nas jogadas de ataque e (?:de )?dano com armas?(?:[.,;]|$)/,
+    /gain a \+(\d+) bonus to weapon damage rolls/,
+  ]);
+  ([['ataque_arma', bonusAtaqueArma], ['dano_arma', bonusDanoArma]] as const).forEach(([tipo, bonus]) => {
+    if (bonus === null) return;
+    const efeito = criarEfeitoBaseDoItem(item);
+    efeito.setTipoEfeito(tipo);
+    efeito.setBonus(bonus);
+    efeitos.push(efeito);
+  });
 
   if (
     descricaoNormalizada.includes("se sintonizar com ate quatro itens magicos") ||
@@ -197,6 +234,10 @@ export const extrairEfeitosDoItem = (item: Itens): Efeitos[] => {
 export const listarEfeitosAtivos = (ficha: Ficha | null | undefined): Efeitos[] => {
   if (!ficha?.efeitos) return [];
   const ativo = (efeito: Efeitos) => {
+    if (efeito.origemTipo === 'item') {
+      const item = ficha.itensMochila?.find(i => i.id === efeito.origemId);
+      if (!item || !itemEstaEquipado(ficha, item) || (item.sintonizavel && !ficha.itensSintonizados?.includes(item.id))) return false;
+    }
     if (efeito.conteudo && (efeito.conteudo.edicao !== ficha.versaoRegras || !resolverConteudo(efeito.conteudo))) return false;
     if (efeito.nivelClasseOrigem && efeito.classeNome && nivelDaClasse(ficha, chaveClasse(efeito.classeNome)) < efeito.nivelClasseOrigem) return false;
     if (efeito.level === undefined || efeito.level === null) return true;
@@ -231,8 +272,10 @@ export const calcularValorAtributoFinal = (ficha: Ficha | null | undefined, atri
 
 const classeCorresponde = (efeito: Efeitos, classeNome?: string) => {
   const classeEfeito = normalizarTexto(efeito.classeNome ?? "todas");
-  if (!classeNome || classeEfeito === "todas" || classeEfeito === "") return true;
-  return classeEfeito === normalizarTexto(classeNome);
+  if (classeEfeito === "todas" || classeEfeito === "") return true;
+  if (!classeNome) return false;
+  const classe = normalizarTexto(classeNome);
+  return (MAPA_CLASSES[classeEfeito] ?? classeEfeito) === (MAPA_CLASSES[classe] ?? classe);
 };
 
 export const calcularBonusMagiaPorClasse = (

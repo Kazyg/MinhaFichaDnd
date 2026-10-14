@@ -1,4 +1,5 @@
 import { migrarInventario } from './fichaInventario';
+import { restaurarEquipamentosMagicos } from './fichaEquipamentosMagicos';
 import { restaurarModelos } from './fichaRestauracao';
 import { migrarMagias } from './fichaConjuracao';
 import { Ficha } from './FichaPersonagem';
@@ -34,6 +35,20 @@ const race = shape({ nome: string }, {
   tracos: array(shape({ traco: string, descricao: string })), subOpcoes: array(named),
 });
 const equipment = shape({ id, nome: string }, {
+  registroCatalogo: v => Number.isInteger(v) && v >= 0,
+  magica: v => typeof v === 'boolean',
+  equipamentoMagico: shape({ tipo: v => ['arma', 'armadura', 'escudo'].includes(v), modo: v => ['melhoria', 'especifico'].includes(v), exigeSintonizacao: v => typeof v === 'boolean' }, {
+    baseNome: string, bonusAtaque: number, bonusDano: number, bonusCA: number,
+    requisitoSintonizacao: string, propriedadesEspeciais: strings, edicao: v => ['DND_2014', 'DND_2024'].includes(v),
+    catalogoId: string, basesCompativeis: strings, danoTipo: string, atributosArma: strings, propriedadesArma: strings, proficienciasAlternativas: strings, furtividade: string,
+    danoBase: shape({ dano_1: string, dano_2: string }), treinoArma: v => typeof v === 'boolean',
+    atributosFixos: array(shape({ atributo: string, valor: number })),
+    forcaRequerida: number,
+    bonusMagia: array(shape({ classeNome: string }, { ataque: number, cd: number })),
+    usarDescricaoCatalogo: v => typeof v === 'boolean', destrezaSemLimite: v => typeof v === 'boolean', treinoArmadura: v => typeof v === 'boolean',
+  }),
+  vinculoEquipamento: shape({ tipo: v => ['arma', 'armadura'].includes(v), id }),
+  requisitosSintonizacaoConfirmados: v => typeof v === 'boolean',
   efeitosExplicitos: v => array(effect)(v),
   custo: number, preco: number, peso: number, ac: number, forca: number, sintonizavel: v => typeof v === 'boolean',
   categoria: string, descricao: string, dano: shape({ dano_1: string, dano_2: string }), dano_atributo: strings,
@@ -47,7 +62,7 @@ const effect = shape({ id }, {
   usosMagiaTalento: v => object(v) && Object.values(v).every(n => typeof n === 'number' && Number.isInteger(n) && n >= 0),
   limiteAtributo: number,
   tituloEfeito: string, tipoEfeito: string, origemTipo: string, origemId: string,
-  classeNome: string, atributo: string, talento: string, pericia: string, arma: string, ca: string,
+  armaId: string, armaCategoria: string, classeNome: string, atributo: string, talento: string, pericia: string, arma: string, ca: string,
   bonus: number, valorFixo: number, level: number, nivelClasseOrigem: number, proeficienciasRaca: strings,
   proeficienciasBackGround: strings, proeficienciasClasse: strings, proficienciasMulticlasse: strings,
 });
@@ -68,7 +83,7 @@ const fields: Record<string, Check> = {
     }, { aviso: string, conteudo: contentReference, snapshot: contentSnapshot })),
   escolhasAnteriores: array(shape({ tipo: string, valor: () => true })),
   escolhasMetamagia: array(shape({ nivelClasse: number, slot: number, nome: string, descricao: string })),
-  idiomasLivres: strings, atributosSelecionados: strings, migracoes: strings,
+  idiomasLivres: strings, idiomasBackground: strings, atributosSelecionados: strings, migracoes: strings,
   distribuicaoAtributos: shape({ metodo: v => v === null || string(v), atributos: shape(Object.fromEntries(['forca', 'destreza', 'constituicao', 'inteligencia', 'sabedoria', 'carisma'].map(k => [k, number]))), valores: array(number), pontos: number, modo: v => ['todos', 'dois'].includes(v), maior: string, menor: string }),
   racaPrincipal: race, subRaca: race, classePrincipal: classe,
   subClasse: array(shape({ classe, subclasse: shape({ id, nome: string }, { niveis: array(level), magias: strings }) })),
@@ -157,13 +172,16 @@ export function hydrateFicha(value: any): Ficha {
     hydrated.atributosPersonagem = Object.assign(new Atributos(), hydrated.atributosPersonagem);
   }
   if (hydrated.efeitos) hydrated.efeitos = hydrated.efeitos.map((e: any) => Object.assign(new Efeitos(), e));
-  const ficha = Object.assign(new Ficha(hydrated), hydrated, { versaoRegras: hydrated.versaoRegras ?? 'DND_2014' });
+  const ficha: Ficha = Object.assign(new Ficha(hydrated), hydrated, { versaoRegras: hydrated.versaoRegras ?? 'DND_2014' });
   if (ficha.magiasEscolhidas?.length) migrarMagias(ficha);
   // Missing legacy counters are unknown, not evidence of zero recorded saves.
   if (document.recursos == null) ficha.recursos = { slots: {} };
   ficha.recursos.slots ??= {};
   ficha.itensSintonizados ??= [];
   migrarInventario(ficha, document.itensSintonizados == null);
+  restaurarEquipamentosMagicos(ficha);
+  ficha.itensSintonizados = [...new Set(ficha.getItensSintonizadosEquipados().map(i => i.id))];
+  ficha.itensEquipados?.forEach(item => ficha.sincronizarEfeitosItem(item));
   return ficha;
 }
 

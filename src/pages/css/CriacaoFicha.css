@@ -199,3 +199,10 @@
     height: 25px;
   }
 }
+.avanco-atributos { display: flex; flex-direction: column; gap: .75rem; padding: .75rem 0; border-block: 1px solid #666; margin-block: .75rem; }
+.avanco-opcoes { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .75rem; }
+.avanco-opcoes label { display: inline-flex; align-items: center; gap: .3rem; padding: 0; font-size: .9rem; cursor: pointer; }
+.avanco-opcoes input { margin: 0; accent-color: #ff6b2b; }
+.avanco-atributos > label { display: flex; flex-direction: column; gap: .35rem; text-align: left; }
+.avanco-atributos select { width: 100%; box-sizing: border-box; min-height: 2.75rem; padding: .6rem; color: #fff; background: #292929; border: 1px solid #888; border-radius: .4rem; color-scheme: dark; }
+.avanco-atributos select:focus-visible, .avanco-opcoes label:focus-within { outline: 2px solid #ff9b66; outline-offset: 2px; }

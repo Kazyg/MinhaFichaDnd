@@ -7,6 +7,9 @@ import { Armaduras_equip } from "../../../api/equipamentos/Armaduras";
 import { toast } from "react-toastify";
 import { selecionarCA, selecionarProficiencias } from "../../../api/fichaPersonagem/fichaSeletores";
 import type { Ficha } from "../../../api/fichaPersonagem/FichaPersonagem";
+import { itemMagicoVinculado, nomeEquipamentoMagico } from '../../../api/fichaPersonagem/fichaEquipamentosMagicos';
+import VinculacaoMagica from './VinculacaoMagica';
+import PropriedadesMagicas from './PropriedadesMagicas';
 
 interface AbaArmadurasProps {
   setModalEquipamentoAberto: React.Dispatch<React.SetStateAction<boolean>>;
@@ -43,7 +46,7 @@ export default function AbaArmaduras({ setModalEquipamentoAberto }: AbaArmaduras
     const escudo = normalizarString(equipamento.categoria) === 'escudos';
     const previa = { ...ficha, ...(escudo ? { escudoEquipado: equipamento } : { ArmaduraEquipada: equipamento }) } as Ficha;
     const ca = selecionarCA(previa);
-    return { total: ca.total, detalhe: `CA ao equipar: ${ca.explicacao}` };
+    return { total: ca.total, resumo: ca.expressao, detalhe: `CA ao equipar: ${ca.explicacao}`, treinada: escudo ? ca.treinoEscudo : ca.treinoArmadura };
   }
 
   function obterBadgeCategoria(categoria: string) {
@@ -94,13 +97,13 @@ export default function AbaArmaduras({ setModalEquipamentoAberto }: AbaArmaduras
       <button className="adicionar-armas" onClick={() => setModalEquipamentoAberto(true)}>Adicionar Novo Equipamento</button>
       <ul className="lista-armas">
         {ficha?.ArmadurasMochila?.map((equipamento) => {
-          const proficiente =
+          const caResumo = calcularCaExibida(equipamento);
+          const proficiente = caResumo.treinada ||
             verificarProficiencias(equipamento.nome, equipamento.categoria, coletarProeficiencias(ficha?.efeitos)) ||
             (normalizarString(equipamento.categoria) !== 'escudos' && verificarProficiencias("todas as armaduras", "", coletarProeficiencias(ficha?.efeitos)));
           const equipada = ficha?.ArmaduraEquipada?.id === equipamento.id || ficha?.escudoEquipado?.id === equipamento.id;
           const badgeCategoria = obterBadgeCategoria(equipamento.categoria);
           const badgeFurtividade = obterBadgeFurtividade(equipamento.furtividade);
-          const caResumo = calcularCaExibida(equipamento);
           const isEscudo = normalizarString(equipamento.categoria) === "escudos";
 
           return (
@@ -110,7 +113,8 @@ export default function AbaArmaduras({ setModalEquipamentoAberto }: AbaArmaduras
                   <div className="cabecalho-bloco-equipamento">
                     <div className="titulo-status-equipamento">
                       <div className="titulo-com-meta">
-                        <h4>{equipamento.nome}</h4>
+                        <h4>{nomeEquipamentoMagico(ficha, 'armadura', equipamento)}</h4>
+                        {(itemMagicoVinculado(ficha, 'armadura', equipamento.id) || equipamento.magica) && <span className="info-badge magia-equipamento-badge">Mágica</span>}
                         <span className="info-badge" title={badgeCategoria.descricao}>{badgeCategoria.label}</span>
                         <span className="info-badge" title={badgeFurtividade.descricao}>{badgeFurtividade.label}</span>
                         <img className="icon-proficiencia" alt="proficiencia" src={proficiente ? proficienciaIcon : noProficienciaIcon} title={proficiente ? "proficiente" : "não proficiente"}></img>
@@ -134,12 +138,14 @@ export default function AbaArmaduras({ setModalEquipamentoAberto }: AbaArmaduras
                   <div className="propriedades-grid">
                     <div className="linha-base-equipamento">
                       <span className="dado-base" aria-hidden="true">🛡</span>
-                      <span className="texto-secundario" title={caResumo.detalhe}>{caResumo.detalhe}</span>
+                      <span className="texto-secundario" title={caResumo.detalhe}>{caResumo.resumo}</span>
                     </div>
                     {!isEscudo && (
                       <span className="texto-secundario">{equipamento.categoria}</span>
                     )}
                   </div>
+                  <VinculacaoMagica tipo="armadura" equipamento={equipamento} />
+                  <PropriedadesMagicas item={itemMagicoVinculado(ficha, 'armadura', equipamento.id)} equipamento />
                 </div>
               </div>
 

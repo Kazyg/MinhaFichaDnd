@@ -1,6 +1,8 @@
+import { selecionarFontesConjuracao } from './fichaConjuracao';
+import { selecionarProficiencias } from './fichaSeletores';
 import type { Ficha } from './FichaPersonagem';
 import { Efeitos } from '../classesPrincipais/Efeitos';
-import { buscarTalentoConteudo, chaveConteudo, getTalentosConteudo, referenciaConteudo, resolverConteudo, rotuloConteudo } from '../rulesets/conteudo';
+import { buscarTalentoConteudo, chaveConteudo, getTalentosConteudo, referenciaConteudo, resolverConteudo } from '../rulesets/conteudo';
 import type { TalentoConteudo } from '../rulesets/types';
 import { calcularValorAtributoFinal } from './fichaEfeitosUtils';
 import { talento2024, validarEscolhasTalento, requisitosTalento } from './talentos2024Utils';
@@ -21,14 +23,13 @@ export function talentoDoEfeito(e: Efeitos): TalentoConteudo | undefined {
 }
 export function descreverTalentoSalvo(e: Efeitos) {
   const t = talentoDoEfeito(e);
-  if (t) return `${t.descricao}\n${rotuloConteudo(t)}${e.escolhasTalento2024 ? `\nEscolhas: ${Object.entries(e.escolhasTalento2024).map(([k, v]) => `${k}: ${v.join(', ')}`).join('; ')}` : Array.isArray(e.escolhasTalento) && e.escolhasTalento.length ? `\nEscolhas: ${e.escolhasTalento.join(', ')}` : ''}`;
-  if (e.conteudo) return `Revisão de talento indisponível; nenhuma mecânica nova aplicada. Snapshot preservado: ${e.talentoSnapshot?.descricao ?? e.talento}`;
-  return `Talento legado sem referência de edição/revisão: ${e.talento}. Efeitos salvos preservados; revise explicitamente para usar o catálogo versionado.`;
+  if (t) return `${t.descricao}${e.escolhasTalento2024 ? `\nEscolhas: ${Object.entries(e.escolhasTalento2024).map(([k, v]) => `${k}: ${v.join(', ')}`).join('; ')}` : Array.isArray(e.escolhasTalento) && e.escolhasTalento.length ? `\nEscolhas: ${e.escolhasTalento.join(', ')}` : ''}`;
+  return e.talentoSnapshot?.descricao ?? '';
 }
 export function erroTalento(f: Ficha, nivel: number, t: TalentoConteudo, escolhas?: EscolhasSelecaoTalento, categoria?: string, ignorar: Efeitos[] = []): string | null {
   if (!Number.isInteger(nivel) || nivel < 1 || nivel > (f.levelTotal ?? 0)) return 'Nível de aquisição inválido.';
   const atual = buscarTalentoConteudo(f.versaoRegras, t.nome);
-  if (!atual || atual.id !== t.id || atual.revisao !== t.revisao || !atual.suportado) return 'Talento sem implementação verificada nesta edição; seleção pendente.';
+  if (!atual || atual.id !== t.id || atual.revisao !== t.revisao || (f.versaoRegras !== 'DND_2014' && !atual.suportado)) return 'Talento sem implementação verificada nesta edição; seleção pendente.';
   if (categoria && t.categoria !== categoria) return `Esta escolha exige a categoria ${categoria}.`;
   if (t.categoria === 'General' && nivel < 4) return 'Requer nível 4.';
   if (t.categoria === 'Epic Boon' && nivel < 19) return 'Requer nível 19.';
@@ -46,7 +47,9 @@ export function erroTalento(f: Ficha, nivel: number, t: TalentoConteudo, escolha
   // Inclui escolhas futuras para não invalidar silenciosamente o planejamento salvo.
   const antes = { ...f, levelTotal: nivel, efeitos } as Ficha;
   if (t.requisito.tipo === 'atributo' && !t.requisito.requisito?.some(a => calcularValorAtributoFinal(antes, a) >= (t.requisito.valor ?? 13))) return 'Pré-requisito de atributo não atendido.';
-  if (t.requisito.tipo && t.requisito.tipo !== 'atributo') return 'Pré-requisito ainda não suportado.';
+  if (t.requisito.tipo === 'magia' && !selecionarFontesConjuracao(antes).length && !f.magiasEscolhidas?.some(g => g.magia.length) && !f.magiasConjuracao?.some(m => m.nivel === 0)) return 'Requer capacidade de conjurar pelo menos uma magia.';
+  if (t.requisito.tipo === 'armadura' && !t.requisito.requisito?.some(a => Array.from(selecionarProficiencias(antes)).some(p => p.includes('todas as armaduras') || chaveConteudo(p).includes(chaveConteudo(a).replace('armadura-', ''))))) return 'Pré-requisito de proficiência em armadura não atendido.';
+  if (t.requisito.tipo && !['atributo', 'magia', 'armadura'].includes(t.requisito.tipo)) return 'Pré-requisito não atendido.';
   if (escolhas === undefined) return null; // filtro de elegibilidade; confirmação exige escolhas
   if (!t.escolha && escolhas.length) return 'Este talento não oferece escolhas adicionais.';
   if (t.escolha === 'atributo-agarrador') {

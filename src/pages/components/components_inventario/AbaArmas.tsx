@@ -5,7 +5,9 @@ import proficienciaIcon from "../../../imagens/swords_24dp_EA3323_FILL0_wght400_
 import "../../css/ArmaInventario.css"
 import { toast } from "react-toastify";
 import { Armas } from "../../../api/equipamentos/Armas";
-import { listarEfeitosAtivos } from "../../../api/fichaPersonagem/fichaEfeitosUtils";
+import { itemMagicoVinculado, nomeEquipamentoMagico } from '../../../api/fichaPersonagem/fichaEquipamentosMagicos';
+import VinculacaoMagica from './VinculacaoMagica';
+import PropriedadesMagicas from './PropriedadesMagicas';
 
 import { selecionarArma, selecionarProficiencias, formatarBonus as bonusAtaque } from "../../../api/fichaPersonagem/fichaSeletores";
 
@@ -18,9 +20,6 @@ export default function AbaArmas({ setModalAberto }: AbaArmasProps) {
     const proficienciaArmaSimples = verificarProficiencias("armas simples", coletarProeficiencias(ficha?.efeitos));
     const proficienciaArmaMarciais = verificarProficiencias("armas marciais", coletarProeficiencias(ficha?.efeitos));
     const proficienciaArmaExoticas = verificarProficiencias("armas exoticas", coletarProeficiencias(ficha?.efeitos));
-    const bonusDanoItens = listarEfeitosAtivos(ficha)
-        .filter((efeito) => efeito.tipoEfeito === "dano_arma" || efeito.arma === "dano_arma")
-        .reduce((acc, efeito) => acc + (efeito.bonus ?? 0), 0);
 
     const descricoesPropriedades: Record<string, string> = {
         acuidade: "Você pode usar Força ou Destreza nas jogadas de ataque e dano, usando o maior modificador.",
@@ -56,9 +55,10 @@ export default function AbaArmas({ setModalAberto }: AbaArmasProps) {
 
     function obterResumoDano(arma: Armas) {
         const resumo = selecionarArma(ficha, arma);
-        const base = arma.dano.dano_1 || '0';
+        const base = resumo.dadosDano.dano_1 || '0';
         return { formula: resumo.formula, atributo: resumo.atributo, detalhe: resumo.explicacao,
-            ataque: resumo.ataque, tipo: arma.dano_tipo, base,
+            bonusExtra: resumo.parcelasDano.slice(1).filter(p => p.aplicada).reduce((s, p) => s + p.valor, 0), proficiente: resumo.proficiente,
+            ataque: resumo.ataque, tipo: resumo.tipoDano, base, danoVersatil: resumo.dadosDano.dano_2,
             dadoIcone: `/icon_d${base.match(/d(\d+)/i)?.[1] ?? 4}.png` };
     }
 
@@ -121,9 +121,8 @@ export default function AbaArmas({ setModalAberto }: AbaArmasProps) {
             <button className="adicionar-armas" onClick={() => setModalAberto(true)}>Adicionar Nova Arma</button>
             <ul className="lista-armas">
                 {ficha?.ArmasMochila?.map((arma) => {
-                    const proficiente =
-                        verificarProficiencias(arma.nome, coletarProeficiencias(ficha?.efeitos)) ||
-                        verificarProficiencias(arma.categoria, coletarProeficiencias(ficha?.efeitos));
+                    const proficiente = selecionarArma(ficha, arma).proficiente;
+                    const magico = itemMagicoVinculado(ficha, 'arma', arma.id);
                     const equipada = !!ficha?.ArmaEquipada?.find(a => a.id === arma.id);
                     const danoResumo = obterResumoDano(arma);
                     const badgeCategoria = obterBadgeCategoria(arma.categoria);
@@ -137,7 +136,8 @@ export default function AbaArmas({ setModalAberto }: AbaArmasProps) {
                                     <div className="cabecalho-bloco-equipamento">
                                         <div className="titulo-status-equipamento">
                                             <div className="titulo-com-meta">
-                                                <h4>{arma.nome}</h4>
+                                                <h4>{nomeEquipamentoMagico(ficha, 'arma', arma)}</h4>
+                                                {(magico || arma.magica) && <span className="info-badge magia-equipamento-badge">{magico?.equipamentoMagico?.modo === 'especifico' ? 'Arma mágica especial' : 'Mágica'}</span>}
                                                 <span className="info-badge" title={badgeCategoria.descricao}>{badgeCategoria.label}</span>
                                                 <span className="info-badge" title={badgeAlcance.descricao}>{badgeAlcance.label}</span>
                                                 <img className="icon-proficiencia" alt="proficiencia" src={proficiente ? proficienciaIcon : noProficienciaIcon} title={proficiente ? "proficiente" : "não proficiente"}></img>
@@ -152,11 +152,11 @@ export default function AbaArmas({ setModalAberto }: AbaArmasProps) {
                                             <img className="dado-base" src={danoResumo.dadoIcone} alt="Dado de dano" />
                                             <div className="bloco-base-texto">
                                                 <span className="destaque-label">Base</span>
-                                                <strong>{`${danoResumo.base}${arma.dano.dano_2 ? ` / ${arma.dano.dano_2}` : ""}`}</strong>
+                                                <strong>{`${danoResumo.base}${danoResumo.danoVersatil ? ` / ${danoResumo.danoVersatil}` : ""}`}</strong>
                                             </div>
-                                            {bonusDanoItens !== 0 && (
-                                                <span className="texto-secundario" title="Bônus acumulado de dano por itens e efeitos ativos">
-                                                    {`Bônus extra ${formatarBonus(bonusDanoItens).trim()}`}
+                                            {danoResumo.bonusExtra !== 0 && (
+                                                <span className="texto-secundario" title="Bônus de dano aplicável a esta arma">
+                                                    {`Bônus extra ${formatarBonus(danoResumo.bonusExtra).trim()}`}
                                                 </span>
                                             )}
                                         </div>
@@ -176,6 +176,8 @@ export default function AbaArmas({ setModalAberto }: AbaArmasProps) {
                                             <span className="texto-secundario">Sem propriedades relevantes</span>
                                         )}
                                     </div>
+                                    <PropriedadesMagicas item={magico} equipamento />
+                                    <VinculacaoMagica tipo="arma" equipamento={arma} />
                                 </div>
                             </div>
 

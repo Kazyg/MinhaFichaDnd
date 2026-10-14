@@ -354,3 +354,20 @@
     text-align: center;
   }
 }
+.inventario-itens-container .acoes-item { flex-wrap: wrap; }
+.botao-sintonizar-item {
+  background: #444;
+  border: none;
+  outline: 2px solid #a78bfa;
+  color: white;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+.botao-sintonizar-item:hover,
+.botao-sintonizar-item[aria-pressed="true"] { background: #624495; }
+@media (max-width: 600px) {
+  .inventario-itens-container .item-lista { flex-direction: column; align-items: stretch; }
+}
+
+.inventario-itens-container .detalhes-item { min-width: 0; overflow-wrap: anywhere; }

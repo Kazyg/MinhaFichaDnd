@@ -119,19 +119,24 @@ export default function CriacaoFicha() {
       {modalRacaAberto && (
         <>
           <div className="popup-overlay" onClick={() => setModalRacaAberto(false)}></div>
-          <div className="popup">
+          <div className="popup popup-racial">
             <ModalSelecao
               titulo={`Escolha sua ${rulesetData.regras.labelRacaOuEspecie}`}
               opcoes={racas}
               onClose={() => setModalRacaAberto(false)}
               onSelect={(raca) => {
+                const mesmaRaca = ficha?.racaPrincipal?.nome === raca?.nome;
+                if (!mesmaRaca) {
+                  ['subRaca', 'ferramentaSubRaca', 'TalentoEscolhidoHumanoVariante'].forEach(t => ficha?.excluirEfeitoPorTitulo(t));
+                }
+                const mesmosBonus = JSON.stringify(ficha?.racaPrincipal?.atributos) === JSON.stringify(raca?.atributos);
                 ficha?.setRacaPrincipal(raca);
                 ficha?.setTamanho(raca?.tamanho ? raca?.tamanho : null);
                 const idiomasDaEspecie = rulesetData.regras.especieConcedeIdiomas ? raca?.idiomas ?? [] : rulesetData.regras.idiomasObrigatorios;
                 const idiomasLivres = idiomasSelecionado?.filter(Boolean).map((idioma) => idioma.nome) ?? [];
                 ficha?.setIdiomasRaca([...new Set([...idiomasDaEspecie, ...idiomasLivres])]);
-                ficha?.setSubRaca(null);
-                if (ficha && rulesetData.regras.especieConcedeAtributos) {
+                if (!mesmaRaca) ficha?.setSubRaca(null);
+                if (ficha && rulesetData.regras.especieConcedeAtributos && (!mesmaRaca || !mesmosBonus)) {
                   arquivarEscolha(ficha, 'atributos-antes-da-raca', ficha.atributosPersonagem);
                   ficha.setAtributosPersonagem(null);
                 }
@@ -176,9 +181,10 @@ export default function CriacaoFicha() {
       {subGrupoAberto && (
         <>
           <div className="popup-overlay" onClick={() => setSubGrupoAberto(false)}></div>
-          <div className="popup">
+          <div className="popup popup-racial">
             <ModalSelecao
               titulo={`Escolha sua ${rulesetData.regras.labelSubRacaOuOpcao}`}
+              tipoSelecao="subraca"
               opcoes={subRacas}
               onClose={() => setSubGrupoAberto(false)}
               onSelect={(subRaca) => {
@@ -256,23 +262,6 @@ export default function CriacaoFicha() {
                   ficha?.setIniciativa(null);
                 }
                 setModalBackGroundsAberto(false)
-                if (rulesetData.version === "DND_2014") {
-                  if (idiomasSelecionado && idiomasSelecionado[1]) {
-                    ficha?.removerIdioma(idiomasSelecionado[1].nome);
-                  }
-                  if (idiomasSelecionado && idiomasSelecionado[0]) {
-                    ficha?.removerIdioma(idiomasSelecionado[0].nome);
-                  }
-                  if (backGrounds?.nome === "Membro da Guilda dos Ladrões das Sombras") {
-                    let idioma = idiomas.find(i => i.nome === "Gíria de Ladrões");
-                    if (idioma) {
-                      setIdiomasSelecionado([idioma]);
-                      ficha?.setIdiomas(idioma.nome);
-                    }
-                  } else {
-                    setIdiomasSelecionado(null)
-                  }
-                }
                 let efeito = new Efeitos();
                 backGrounds?.proeficienciaFerramentas && efeito.setProeficienciasBackGround(backGrounds?.proeficienciaFerramentas);
                 efeito.setLevel(1);
@@ -333,26 +322,26 @@ export default function CriacaoFicha() {
       )}
 
       <div className="todos-niveis-container">
-        <div className="niveis-container">
+        <div className="niveis-container" id="progressao-nivel-1">
           <div className="nivel">
             {ficha?.racaPrincipal &&
               ficha?.classePrincipal &&
-              ficha?.backGround &&
-              idiomasObrigatoriosSelecionados &&
+              (rulesetData.version === "DND_2014" || ficha?.backGround) &&
+              (rulesetData.version === "DND_2014" || idiomasObrigatoriosSelecionados) &&
               (ficha.racaPrincipal.subOpcoes && ficha.racaPrincipal.subOpcoes.length > 0 ? ficha.subRaca : true) ? (
-              <LevelOneSetup key={`${ficha.id}-${ficha.classePrincipal.nome}-${ficha.backGround.nome}`} raca={ficha.subRaca ? ficha.subRaca : ficha.racaPrincipal} classe={ficha.classePrincipal} />
+              <LevelOneSetup key={`${ficha.id}-${ficha.classePrincipal.nome}-${rulesetData.version === "DND_2014" ? "" : ficha.backGround?.nome}`} raca={ficha.subRaca ? ficha.subRaca : ficha.racaPrincipal} classe={ficha.classePrincipal} />
             ) : "Nivel 1"}
           </div>
         </div>
 
 
         {[...Array(19)].map((_, i) => (
-          <div key={i + 2} className="niveis-container">
+          <div key={i + 2} className="niveis-container" id={`progressao-nivel-${i + 2}`}>
             <div className="nivel">
               {ficha?.racaPrincipal &&
                 ficha?.classePrincipal &&
-                ficha?.backGround &&
-                idiomasObrigatoriosSelecionados &&
+                (rulesetData.version === "DND_2014" || ficha?.backGround) &&
+                (rulesetData.version === "DND_2014" || idiomasObrigatoriosSelecionados) &&
                 (ficha.racaPrincipal.subOpcoes && ficha.racaPrincipal.subOpcoes.length > 0 ? ficha.subRaca : true) ? (
                 <NivelBlock
                   key={i + 2}

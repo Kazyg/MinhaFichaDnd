@@ -2,6 +2,8 @@ import { talentoDoEfeito } from './talentosConteudo';
 import { especializacoesAtivas } from './fichaEspecializacao';
 import type { Ficha } from './FichaPersonagem';
 import type { Armas } from '../equipamentos/Armas';
+import { armas } from '../equipamentos/Armas';
+import { magiaDoEquipamento, nomeEquipamentoMagico } from './fichaEquipamentosMagicos';
 import { chaveClasse } from '../rulesets/progressao';
 import { calcularValorAtributoFinal, listarEfeitosAtivos, normalizarTexto } from './fichaEfeitosUtils';
 
@@ -10,6 +12,12 @@ export type Parcela = { fonte: string; valor: number; condicao?: string; aplicad
 export const formatarBonus = (n: number) => `${n >= 0 ? '+' : ''}${n}`;
 export const modificador = (valor: number) => Math.floor((valor - 10) / 2);
 export const modificadorAtributo = (f: Documento, atributo: string) => modificador(calcularValorAtributoFinal(f, atributo));
+const ALIASES_ARMAS: Record<string, string[]> = {
+  'foice curta': ['foice', 'foices'],
+  bordao: ['cajado', 'cajados', 'bordoes'],
+  porrete: ['clava', 'clavas'],
+  adaga: ['punhal', 'punhais', 'adagas'],
+};
 export const explicarParcelas = (parcelas: Parcela[]) => parcelas.map(p => `${p.fonte}: ${formatarBonus(p.valor)}${p.condicao ? ` (${p.condicao})` : ''}${p.aplicada ? '' : ' — não aplicado'}`).join('; ');
 const parcela = (fonte: string, valor: number, aplicada = true, condicao?: string): Parcela => ({ fonte, valor, aplicada, condicao });
 const somar = (p: Parcela[]) => p.reduce((s, v) => s + (v.aplicada ? v.valor : 0), 0);
@@ -95,13 +103,22 @@ export function selecionarCA(f: Documento) {
   const escudo = f?.escudoEquipado;
   const des = modificadorAtributo(f, 'destreza');
   const categoria = normalizarTexto(armadura?.categoria);
-  const treino = !armadura || temTreinoArmadura(f, armadura.categoria);
+  const magiaArmadura = armadura ? magiaDoEquipamento(f, 'armadura', armadura) : undefined;
+  const treino = !armadura || temTreinoArmadura(f, armadura.categoria) || !!(magiaArmadura?.ativo && magiaArmadura.magia?.treinoArmadura);
   const treinoEscudo = temTreinoArmadura(f, 'escudos');
   const avisos: string[] = [];
   if (!treino || (escudo && !treinoEscudo && f?.versaoRegras === 'DND_2014')) avisos.push('Sem treino: desvantagem em testes de FOR/DES e não pode conjurar magias.');
   if (escudo && !treinoEscudo && f?.versaoRegras === 'DND_2024') avisos.push('Escudo sem treino (2024): não concede CA.');
   const parcelas: Parcela[] = [];
   if (escudo) parcelas.push(parcela(escudo.nome, escudo.ac, f?.versaoRegras !== 'DND_2024' || treinoEscudo, '2014: com ou sem treino; 2024: exige treino'));
+  if (armadura) {
+    const magia = magiaDoEquipamento(f, 'armadura', armadura);
+    if (magia.bonusCA) parcelas.push(parcela(magia.item!.nome, magia.bonusCA));
+  }
+  if (escudo) {
+    const magia = magiaDoEquipamento(f, 'armadura', escudo);
+    if (magia.bonusCA) parcelas.push(parcela(magia.item!.nome, magia.bonusCA, f?.versaoRegras !== 'DND_2024' || treinoEscudo, 'bônus mágico adicional ao escudo; 2024 exige treino'));
+  }
   let defesaIncluida = false;
   listarEfeitosAtivos(f).filter(e => e.ca === 'CA' || e.tipoEfeito === 'ca_item' || e.tipoEfeito === 'estilo_defesa' || e.tipoEfeito === 'defensivo').forEach(e => {
     const defesa = e.tipoEfeito === 'estilo_defesa' || e.tipoEfeito === 'defensivo' || e.tituloEfeito?.startsWith('estiloLuta');
@@ -113,24 +130,37 @@ export function selecionarCA(f: Documento) {
   const classes = selecionarClassesAtivas(f).map(c => c.chave);
   // Multiclassing does not grant Unarmored Defense a second time.
   const primeiraDefesa = selecionarNiveis(f).find(n => n.classe && ['barbaro', 'monge'].includes(chaveClasse(n.classe)))?.classe;
-  const alternativas = [{ fonte: 'Sem armadura: 10 + DES', valor: 10 + des, aplicada: !armadura }];
-  if (classes.includes('barbaro')) alternativas.push({ fonte: 'Bárbaro: 10 + DES + CON (permite escudo)', valor: 10 + des + modificadorAtributo(f, 'constituicao'), aplicada: !armadura && chaveClasse(primeiraDefesa!) === 'barbaro' });
-  if (classes.includes('monge')) alternativas.push({ fonte: 'Monge: 10 + DES + SAB (sem escudo)', valor: 10 + des + modificadorAtributo(f, 'sabedoria'), aplicada: !armadura && !escudo && chaveClasse(primeiraDefesa!) === 'monge' });
+  const alternativas = [{ fonte: 'Sem armadura: 10 + DES', valor: 10 + des, base: 10, destreza: des, aplicada: !armadura }];
+  if (classes.includes('barbaro')) alternativas.push({ fonte: 'Bárbaro: 10 + DES + CON (permite escudo)', valor: 10 + des + modificadorAtributo(f, 'constituicao'), base: 10, destreza: des, aplicada: !armadura && chaveClasse(primeiraDefesa!) === 'barbaro' });
+  if (classes.includes('monge')) alternativas.push({ fonte: 'Monge: 10 + DES + SAB (sem escudo)', valor: 10 + des + modificadorAtributo(f, 'sabedoria'), base: 10, destreza: des, aplicada: !armadura && !escudo && chaveClasse(primeiraDefesa!) === 'monge' });
   const limiteDes = listarEfeitosAtivos(f).some(e => e.tipoEfeito === 'limite_destreza_armadura') ? 3 : 2;
-  if (armadura) alternativas.push({ fonte: `${armadura.nome}: base${categoria.includes('leve') ? ' + DES' : categoria.includes('media') ? ` + DES (máx. ${limiteDes})` : ''}`, valor: armadura.ac + (categoria.includes('leve') ? des : categoria.includes('media') ? Math.min(des, limiteDes) : 0), aplicada: true });
+  const desSemLimite = categoria.includes('leve') || (magiaArmadura?.ativo && magiaArmadura.magia?.destrezaSemLimite);
+  const desArmadura = desSemLimite ? des : categoria.includes('media') ? Math.min(des, limiteDes) : 0;
+  if (armadura) alternativas.push({ fonte: `${armadura.nome}: base${desSemLimite ? ' + DES' : categoria.includes('media') ? ` + DES (máx. ${limiteDes})` : ''}`, valor: armadura.ac + desArmadura, base: armadura.ac, destreza: desArmadura, aplicada: true });
   const selecionada = alternativas.filter(a => a.aplicada).reduce((a, b) => b.valor > a.valor ? b : a);
   const manual = f?.classeArmadura ?? f?.cA;
   const total = manual ?? selecionada.valor + somar(parcelas);
-  return { total, alternativas, parcelas, avisos, explicacao: `${manual != null ? `CA manual salva: ${manual}. Cálculo de referência: ` : ''}${selecionada.fonte} = ${selecionada.valor}; ${explicarParcelas(parcelas)} ${avisos.join(' ')}` };
+  const { base, destreza } = selecionada;
+  const outros = total - base - destreza;
+  const nome = armadura ? nomeEquipamentoMagico(f, 'armadura', armadura) : selecionada.fonte.split(':')[0];
+  const termo = (valor: number) => valor ? ` ${valor < 0 ? '-' : '+'} ${Math.abs(valor)}` : '';
+  const expressao = manual != null ? `CA manual ${total}` : `${nome} ${base}${termo(destreza)}${termo(outros)}`;
+  const tooltip = manual != null ? `CA manual salva (${total})` : `${armadura ? 'Armadura equipada' : nome} (${base})${destreza ? ` + Destreza (${formatarBonus(destreza)})` : ''}${outros ? ` + Outros bônus (${formatarBonus(outros)})` : ''}. ${selecionada.fonte}; ${explicarParcelas(parcelas)} ${avisos.join(' ')}`;
+  return { total, alternativas, parcelas, avisos, expressao, tooltip, explicacao: tooltip, treinoArmadura: treino, treinoEscudo };
 }
 
 export function selecionarArma(f: Documento, arma: Armas) {
-  const atributo = (arma.dano_atributo ?? []).map(nome => ({ nome, modificador: modificadorAtributo(f, nome) }))
+  const magia = magiaDoEquipamento(f, 'arma', arma);
+  const dadosArma = !magia.ativo && magia.magia?.modo === 'especifico' ? armas.find(a => a.nome === magia.magia?.baseNome) ?? arma : arma;
+  const atributo = (dadosArma.dano_atributo ?? []).map(nome => ({ nome, modificador: modificadorAtributo(f, nome) }))
     .sort((a, b) => b.modificador - a.modificador)[0] ?? { nome: 'Força', modificador: modificadorAtributo(f, 'forca') };
   const profs = selecionarProficiencias(f);
-  const proficiente = profs.has(normalizarTexto(arma.nome)) || profs.has(normalizarTexto(arma.categoria));
+  const nomeBase = normalizarTexto(magia.magia?.baseNome ?? arma.nome);
+  const proficiente = profs.has(nomeBase) || profs.has(normalizarTexto(arma.categoria)) || !!ALIASES_ARMAS[nomeBase]?.some(nome => profs.has(nome)) || !!(magia.ativo && (magia.magia?.treinoArma || magia.magia?.proficienciasAlternativas?.some(nome => profs.has(normalizarTexto(nome)))));
   const ataque = [parcela(atributo.nome, atributo.modificador), parcela('Proficiência', selecionarProficiencia(f), proficiente)];
   const dano = [parcela(atributo.nome, atributo.modificador)];
+  if (magia.bonusAtaque) ataque.push(parcela(magia.item!.nome, magia.bonusAtaque));
+  if (magia.bonusDano) dano.push(parcela(magia.item!.nome, magia.bonusDano));
   const estilos = new Set<string>();
   listarEfeitosAtivos(f).forEach(e => {
     const arquearia = e.tipoEfeito === 'estilo_arquearia' || e.arma === 'distancia';
@@ -144,10 +174,14 @@ export function selecionarArma(f: Documento, arma: Armas) {
         equipada && arma.distancia !== 'sim' && !normalizarTexto(arma.propriedades).includes('duas maos') && f?.ArmaEquipada?.length === 1,
       arquearia ? 'arma à distância' : 'uma arma corpo a corpo em uma mão, nenhuma outra arma; dano principal'));
     } else {
+      if (e.armaId && e.armaId !== arma.id) return;
+      if (e.arma && !['ataque_arma', 'dano_arma'].includes(e.arma) && normalizarTexto(e.arma) !== normalizarTexto(arma.nome) && e.arma !== arma.id && normalizarTexto(e.arma) !== normalizarTexto(arma.categoria)) return;
+      if (e.armaCategoria && normalizarTexto(e.armaCategoria) !== normalizarTexto(arma.categoria)) return;
       if (e.tipoEfeito === 'ataque_arma' || e.arma === 'ataque_arma') ataque.push(parcela(e.tituloEfeito || 'Bônus de ataque', e.bonus));
       if (e.tipoEfeito === 'dano_arma' || e.arma === 'dano_arma') dano.push(parcela(e.tituloEfeito || 'Bônus de dano', e.bonus));
     }
   });
-  return { ataque: somar(ataque), formula: `${arma.dano?.dano_1 || '0'} ${formatarBonus(somar(dano))}`, atributo: atributo.nome,
+  return { ataque: somar(ataque), formula: `${dadosArma.dano?.dano_1 || '0'} ${formatarBonus(somar(dano))}`, atributo: atributo.nome,
+    dadosDano: dadosArma.dano, tipoDano: dadosArma.dano_tipo,
     proficiente, parcelasAtaque: ataque, parcelasDano: dano, explicacao: `Ataque: ${explicarParcelas(ataque)}. Dano: ${explicarParcelas(dano)}` };
 }

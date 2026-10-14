@@ -21,6 +21,8 @@ export class Efeitos {
     talento: string;
     pericia: string;
     arma: string;
+    armaId?: string;
+    armaCategoria?: string;
     ca: string;
     bonus: number;
     valorFixo: number;

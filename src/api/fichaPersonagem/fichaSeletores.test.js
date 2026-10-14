@@ -52,7 +52,8 @@ test('iniciativa após bônus inicial, ASI, item e ajuste manual; perícia espec
   expect(selecionarIniciativa(f).total).toBe(3);
   expect(f.aplicarAumentoAtributos(4, ['destreza', 'destreza'])).toBe(true);
   expect(selecionarIniciativa(f).total).toBe(4);
-  efeito(f, { atributo: 'destreza', valorFixo: 20, tipoEfeito: 'atributo_fixo', origemTipo: 'item' });
+  const item = { id: 'destreza20', nome: 'Destreza 20', efeitosExplicitos: [Object.assign(new Efeitos(), { atributo: 'destreza', valorFixo: 20, tipoEfeito: 'atributo_fixo' })] };
+  f.setItemMochila(item); f.setEquiparItem(item);
   expect(selecionarIniciativa(f).total).toBe(5);
   efeito(f, { tipoEfeito: 'iniciativa', bonus: 1, tituloEfeito: 'Ajuste manual' });
   expect(selecionarIniciativa(f).total).toBe(6);
@@ -85,14 +86,17 @@ test.each(['DND_2014', 'DND_2024'])('CA sem treino, escudo e Defesa condicionais
 test.each(['DND_2014', 'DND_2024'])('Monge/Bárbaro: alternativas não somam, escudo exclui Monge em %s', edicao => {
   const monge = fixture(edicao, 'monge');
   expect(selecionarCA(monge).total).toBe(14);
+  expect(selecionarCA(monge).expressao).toBe('Monge 10 + 2 + 2');
   monge.escudoEquipado = escudo;
   expect(selecionarCA(monge).total).toBe(edicao === 'DND_2014' ? 14 : 12);
   expect(selecionarCA(monge).alternativas.find(a => a.fonte.startsWith('Monge')).aplicada).toBe(false);
   const barbaro = fixture(edicao, 'barbaro');
   barbaro.escudoEquipado = escudo;
   expect(selecionarCA(barbaro).total).toBe(16);
+  expect(selecionarCA(barbaro).expressao).toBe('Bárbaro 10 + 2 + 4');
   barbaro.selecionarClasseNoNivel(classe(barbaro, 'monge'), 5);
   expect(selecionarCA(barbaro).total).toBe(16);
+  expect(selecionarCA(barbaro).expressao).toBe('Bárbaro 10 + 2 + 4');
 });
 
 test('Arquearia afeta ataque; Duelismo exige arma única equipada; efeito futuro fica inativo', () => {

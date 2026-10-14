@@ -241,10 +241,11 @@ test('modal bloqueia Desejo no nível1, preserva filtro de truque e permite font
   const onSelect = jest.fn();
   const antes = JSON.stringify(listasMagias);
   render(<ModalMagias titulo="Seleção" magiaSelect="" onClose={jest.fn()} onSelect={onSelect} />);
+  expect(screen.queryByText(/Catálogo parcial|Fonte de conjuração/)).not.toBeInTheDocument();
   fireEvent.click(screen.getByText('Desejo'));
   expect(screen.getByRole('button', { name: 'Escolher Desejo' })).toBeDisabled();
   fireEvent.click(screen.getByText('Luz'));
-  fireEvent.change(screen.getByLabelText('Fonte de conjuração'), { target: { value: fonte(mockFicha,'clerigo').id } });
+  fireEvent.change(screen.getByLabelText('Aprender por'), { target: { value: fonte(mockFicha,'clerigo').id } });
   fireEvent.click(screen.getByRole('button', { name: 'Escolher Luz' }));
   expect(onSelect).toHaveBeenCalledWith('Luz',fonte(mockFicha,'clerigo').id,'progressao');
   expect(JSON.stringify(listasMagias)).toBe(antes);

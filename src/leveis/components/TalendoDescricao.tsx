@@ -21,7 +21,7 @@ const TalentoDescricao: React.FC<CaracteristicasClasseProps> = ({ talento, efeit
         }));
     };
     const salvo = efeito ?? ficha?.efeitos?.find(e => e.talento === talento);
-    const descricao = salvo ? descreverTalentoSalvo(salvo) : `Talento legado sem revisão identificada: ${talento}. Nenhuma descrição de outra edição foi aplicada.`;
+    const descricao = salvo ? descreverTalentoSalvo(salvo) : '';
 
     return (
         <div key={talento} className="skills-container">

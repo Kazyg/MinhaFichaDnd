@@ -113,12 +113,19 @@
     color: #555;
   }
   
+  .ficha-versao {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.85rem;
+    color: #444;
+  }
+
   .ficha-list {
     list-style: none;
     padding: 0;
     margin: 10px 0;
   }
-  
+
   .ficha-item {
     display: flex;
     flex-direction: row;
@@ -167,4 +174,4 @@
     margin-top: -5px;
     margin-bottom: -5px;
   }
-  
+

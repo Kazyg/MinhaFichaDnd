@@ -102,7 +102,7 @@ test('talento antigo não ganha automaticamente efeitos nem texto de 2024 ao rea
   expect(salvo.efeitos[0].conteudo).toBeUndefined();
   expect(selecionarIniciativa(salvo).total).toBe(7);
   expect(exportFicha(salvo)).toBe(antes);
-  expect(descreverTalentoSalvo(e)).toMatch(/legado sem referência/);
+  expect(descreverTalentoSalvo(e)).toBe('');
 });
 
 test('referência desconhecida preserva snapshot e bloqueia benefício automático', () => {
@@ -112,7 +112,7 @@ test('referência desconhecida preserva snapshot e bloqueia benefício automáti
   const restaurada = reabrir(f);
   expect(restaurada.efeitos[0].talentoSnapshot).toEqual(f.efeitos[0].talentoSnapshot);
   expect(selecionarIniciativa(restaurada).total).toBe(2);
-  expect(descreverTalentoSalvo(restaurada.efeitos[0])).toMatch(/indisponível/);
+  expect(descreverTalentoSalvo(restaurada.efeitos[0])).toBe(f.efeitos[0].talentoSnapshot.descricao);
 });
 
 test('Imobilizador valida nível, FOR ou DES, escolha, teto e repetibilidade antes de mudar estado', () => {

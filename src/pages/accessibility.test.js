@@ -38,6 +38,7 @@ test.each(['2014', '2024'])('criar, cancelar, abrir e reabrir usando apenas tecl
   await user.keyboard('{Enter}');
   expect(screen.getByRole('dialog', { name: 'Selecione uma Ficha' })).toBeInTheDocument();
   expect(screen.getByLabelText('Importar ficha JSON')).toBeInTheDocument();
+  expect(screen.getByText(`Versão ${edition}`)).toBeInTheDocument();
   await user.tab();
   await user.keyboard('{Enter}');
   expect(screen.getByRole('button', { name: 'Menu da ficha' })).toHaveFocus();

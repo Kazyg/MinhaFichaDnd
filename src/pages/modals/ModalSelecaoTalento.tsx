@@ -1,7 +1,6 @@
 import AccessibleDialog from "../components/AccessibleDialog";
 import React, { useState } from "react";
 import type { TalentoConteudo } from '../../api/rulesets/types';
-import { rotuloConteudo } from '../../api/rulesets/conteudo';
 import { treinamentosTalento, EscolhasSelecaoTalento } from '../../api/fichaPersonagem/talentosConteudo';
 import { camposTalento } from '../../bibliotecas/Catalogo2024';
 import { talento2024, validarEscolhasTalento, proficiencia2024 } from '../../api/fichaPersonagem/talentos2024Utils';
@@ -28,7 +27,7 @@ const ModalSelecaoTalento: React.FC<ModalSelecaoProps> = ({ ficha, opcoes = [], 
     const escolhasConfirmadas = regra ? escolhas2024 : escolhas;
     const quantidade = selecionado?.escolha === 'treinamentos' ? 3 : selecionado?.escolha === 'atributo-agarrador' ? 1 : 0;
     const erro = !selecionado ? 'Escolha um talento.' : !opcoes.some(t => t.id === selecionado.id && t.revisao === selecionado.revisao) ? 'Opção indisponível.' :
-        !selecionado.suportado ? 'Implementação pendente.' : regra ? (validar ? validar(selecionado, escolhas2024) : validarEscolhasTalento(regra, escolhas2024, ficha, ficha?.levelTotal ?? 1)[0]) : escolhas.filter(Boolean).length !== quantidade ? 'Complete as escolhas adicionais.' : validar?.(selecionado, escolhas);
+        selecionado.edicao !== 'DND_2014' && !selecionado.suportado ? 'Este talento não está disponível para seleção.' : regra ? (validar ? validar(selecionado, escolhas2024) : validarEscolhasTalento(regra, escolhas2024, ficha, ficha?.levelTotal ?? 1)[0]) : escolhas.filter(Boolean).length !== quantidade ? 'Complete as escolhas adicionais.' : validar?.(selecionado, escolhas);
 
     const normalizar = (texto: string) =>
         texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
@@ -66,9 +65,7 @@ const ModalSelecaoTalento: React.FC<ModalSelecaoProps> = ({ ficha, opcoes = [], 
                         <>
                             <h3>{selecionado.nome}</h3>
                             <p>{selecionado.descricao}</p>
-                            <p>{rotuloConteudo(selecionado)} · {selecionado.categoria} · {selecionado.repetivel ? 'Repetível' : 'Não repetível'}</p>
-                            <p>Requisito: {selecionado.requisito.requisito?.join(' ou ') ?? 'Nenhum'} {selecionado.requisito.valor ?? ''}</p>
-                            {selecionado.fonte.url && <a href={selecionado.fonte.url} target="_blank" rel="noreferrer">{selecionado.fonte.titulo}</a>}
+                            {selecionado.requisito.tipo && <p>Requisito: {selecionado.requisito.requisito?.join(' ou ')} {selecionado.requisito.valor ?? ''}</p>}
                             {campos.map(campo => <fieldset key={campo.chave}><legend>{campo.rotulo}</legend>
                                 {Array.from({ length: campo.quantidade }, (_, i) => <label key={i}>{campo.rotulo} {i + 1}
                                     <select value={escolhas2024[campo.chave]?.[i] ?? ''} onChange={e => {

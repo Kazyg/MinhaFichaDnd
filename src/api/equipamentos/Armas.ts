@@ -1,4 +1,5 @@
 export class Armas {
+    magica?: boolean;
     id: string;
     nome: string;
     categoria: string;

@@ -3,6 +3,8 @@ import { useFicha } from "../../../api/fichaPersonagem/FichaContext";
 import { Itens } from "../../../bibliotecas/Itens";
 import { toast } from "react-toastify";
 import { calcularLimiteSintonizacao } from "../../../api/fichaPersonagem/fichaEfeitosUtils";
+import { equipamentoDoItem, itemEstaEquipado } from '../../../api/fichaPersonagem/fichaEquipamentosMagicos';
+import PropriedadesMagicas from './PropriedadesMagicas';
 
 interface AbaItensProps {
   setModalItemAberto: React.Dispatch<React.SetStateAction<boolean>>;
@@ -28,7 +30,7 @@ export default function AbaItens({ setModalItemAberto }: AbaItensProps) {
     forceUpdate();
   };
 
-  const itemEquipado = (item: Itens) => ficha?.itensEquipados?.some((equipado) => equipado.id === item.id) ?? false;
+  const itemEquipado = (item: Itens) => itemEstaEquipado(ficha, item);
 
   const alternarEquipamentoItem = (item: Itens) => {
     if (!ficha) return;
@@ -39,7 +41,7 @@ export default function AbaItens({ setModalItemAberto }: AbaItensProps) {
       return;
     }
 
-    ficha.setEquiparItem(item);
+    if (!ficha.setEquiparItem(item)) toast.error('Não há mãos livres suficientes ou equipamento vinculado disponível.');
     forceUpdate();
   };
 
@@ -82,16 +84,28 @@ export default function AbaItens({ setModalItemAberto }: AbaItensProps) {
               <div className="meta-item-linha">
                 {itemEquipado(item) && <span className="status-item-equipado">Equipado</span>}
                 {item.sintonizavel && <span className="status-item-sintonizavel">Sintonizável</span>}
+                {item.vinculoEquipamento && ficha && <span className="info-badge magia-equipamento-badge">Vinculado a {equipamentoDoItem(ficha, item)?.nome}</span>}
+                {item.equipamentoMagico?.edicao && <span className="info-badge">Regras {item.equipamentoMagico.edicao.replace('DND_', '')}</span>}
               </div>
+              {item.equipamentoMagico?.modo === 'melhoria' && !item.vinculoEquipamento && <p className="magia-equipamento-nota">Associe este item na aba {item.equipamentoMagico.tipo === 'arma' ? 'Armas' : 'Armaduras'}.</p>}
+              {item.equipamentoMagico?.modo === 'especifico' && !item.vinculoEquipamento && item.equipamentoMagico.basesCompativeis && <label className="vinculacao-magica">
+                Equipamento base
+                <select aria-label={`Equipamento base para ${item.nome}`} value="" onChange={event => { ficha.selecionarBaseEquipamentoMagico(item.id, event.target.value); forceUpdate(); }}>
+                  <option value="">Escolher tipo compatível</option>
+                  {item.equipamentoMagico.basesCompativeis.map(nome => <option key={nome} value={nome}>{nome}</option>)}
+                </select>
+              </label>}
+              <PropriedadesMagicas item={item} />
             </div>
             <div className="acoes-item">
-              {item.sintonizavel && <button onClick={() => {
+              {item.sintonizavel && <button className="botao-sintonizar-item" aria-pressed={ficha.itensSintonizados?.includes(item.id) ?? false} onClick={() => {
                 if (!ficha.setSintonizarItem(item.id, !ficha.itensSintonizados?.includes(item.id))) toast.error('Limite de sintonização atingido.');
                 forceUpdate();
-              }}>{ficha.itensSintonizados?.includes(item.id) ? 'Encerrar sintonização' : 'Sintonizar'}</button>}
+              }}>{ficha.itensSintonizados?.includes(item.id) ? 'Dessintonizar' : 'Sintonizar'}</button>}
 
               <button
                 className="botao-equipar-item"
+                disabled={!!item.equipamentoMagico && !item.vinculoEquipamento}
                 onClick={() => alternarEquipamentoItem(item)}
               >
                 {itemEquipado(item) ? "Desequipar" : "Equipar"}

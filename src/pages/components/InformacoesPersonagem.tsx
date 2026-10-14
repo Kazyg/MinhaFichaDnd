@@ -1,4 +1,5 @@
 import AccessibleDialog from "./AccessibleDialog";
+import NomePersonagem from "./NomePersonagem";
 import React, { useState } from "react";
 import "../css/InformacoesPersonagem.css";
 import iconCa from "../../imagens/icon_ac.png"
@@ -14,18 +15,11 @@ import { calcularValorAtributoFinal, selecionarAtributo } from "../../api/fichaP
 import { selecionarCA, selecionarProficiencia } from "../../api/fichaPersonagem/fichaSeletores";
 import { temSalvaguarda } from '../../api/fichaPersonagem/talentos2024Utils';
 
-declare global {
-  interface Window {
-    nomeTimeout: number | undefined;
-  }
-}
-
 export default function InformacoesPersonagem() {
   const [xp, setXp] = useState("");
   const [popupNivelAberto, setPopupNivelAberto] = useState(false);
 
   const { ficha, forceUpdate } = useFicha();
-  const [tempNome, setTempNome] = useState(ficha?.nomePersonagem ?? "");
 
   const atributosIniciais = [
     { id: 1, nome: "FOR", valor: 10, nomeDesc: "Força" },
@@ -35,11 +29,6 @@ export default function InformacoesPersonagem() {
     { id: 5, nome: "SAB", valor: 10, nomeDesc: "Sabedoria" },
     { id: 6, nome: "CAR", valor: 10, nomeDesc: "Carisma" }
   ];
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTempNome(e.target.value);
-    ficha?.setNomePersonagem(e.target.value);
-    forceUpdate();
-  };
 
   const calcularProeficiencia = (idAtributo: number) => {
     let nomeTesteResistencia = atributosIniciais.find(a => a.id === idAtributo)?.nomeDesc;
@@ -132,11 +121,15 @@ export default function InformacoesPersonagem() {
         <div className="coluna-1">
           <div className="campo">
             <label htmlFor="nome-personagem">Nome</label>
-            <input
-              type="text"
-              id="nome-personagem" placeholder="Nome do Personagem"
-              value={tempNome}
-              onChange={handleChange}
+            <NomePersonagem
+              key={ficha?.id ?? 'sem-ficha'}
+              nome={ficha?.nomePersonagem ?? ""}
+              onSave={nome => {
+                if (ficha && ficha.nomePersonagem !== nome) {
+                  ficha.setNomePersonagem(nome);
+                  forceUpdate();
+                }
+              }}
             />
           </div>
 
@@ -228,7 +221,7 @@ export default function InformacoesPersonagem() {
             <img src={iconCa} alt="CA" className="icon-ca"></img>
             <span className="ca-text" aria-label="Classe de armadura">{ca.total}</span>
             <div className="ca">
-              <span className="ca-detalhes">{ca.explicacao}</span>
+              <span className="ca-detalhes" title={ca.tooltip} tabIndex={0}>{ca.expressao}</span>
             </div>
           </div>
 

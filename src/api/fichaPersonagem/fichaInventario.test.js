@@ -55,9 +55,11 @@ test('sintonizar é independente de equipar e sobrevive ao JSON', () => {
   f = roundtrip(f); expect(f.itensSintonizados).toEqual([]);
   expect(f.setSintonizarItem(i.id, true)).toBe(true);
   expect(calcularValorAtributoFinal(f, 'forca')).toBe(12);
-  f.setDesequiparItem(i.id); expect(f.itensSintonizados).toEqual([i.id]);
+  f.setDesequiparItem(i.id); expect(f.itensSintonizados).toEqual([]);
   expect(calcularValorAtributoFinal(f, 'forca')).toBe(10);
   f = roundtrip(f); f.setEquiparItem(f.itensMochila[0]);
+  expect(calcularValorAtributoFinal(f, 'forca')).toBe(10);
+  f.setSintonizarItem(i.id, true);
   expect(calcularValorAtributoFinal(f, 'forca')).toBe(12);
   f.setSintonizarItem(i.id, false); expect(calcularValorAtributoFinal(f, 'forca')).toBe(10);
   f.excluirItem(i.id); expect(f.itensSintonizados).toEqual([]); expect(f.itensEquipados).toEqual([]);
@@ -134,7 +136,7 @@ test('interface permite sintonizar sem equipar', () => {
   const view = render(<AbaItens setModalItemAberto={() => {}} />);
   fireEvent.click(screen.getByRole('button', { name: 'Sintonizar' }));
   view.rerender(<AbaItens setModalItemAberto={() => {}} />);
-  expect(screen.getByRole('button', { name: 'Encerrar sintonização' })).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Dessintonizar' })).toBeInTheDocument();
   expect(mockFicha.itensEquipados).toBeNull();
 });
 

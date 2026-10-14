@@ -9,6 +9,8 @@ import { useFicha } from "../api/fichaPersonagem/FichaContext";
 import { exportFicha } from "../api/fichaPersonagem/fichaStorage";
 
 export default function CriarFicha() {
+  const [barraRecolhida, setBarraRecolhida] = useState(() => { try { return localStorage.getItem('progressao-recolhida') === 'true'; } catch { return false; } });
+  const alternarBarra = () => setBarraRecolhida(atual => { try { localStorage.setItem('progressao-recolhida', String(!atual)); } catch {} return !atual; });
   const { ficha, salvarFicha } = useFicha();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -116,9 +118,11 @@ export default function CriarFicha() {
       </div>
       {/* Modo Desktop: exibe todos os componentes */}
       {!isMobile && (
-        <div className="desktop-layout">
+        <div className={`desktop-layout ${barraRecolhida ? "barra-recolhida" : ""}`}>
           <aside className="desktop-sidebar">
-            <CriacaoFicha />
+            <button className="alternar-progressao" aria-label={barraRecolhida ? 'Expandir progressão' : 'Recolher progressão'} aria-expanded={!barraRecolhida} aria-controls="conteudo-progressao" title={barraRecolhida ? 'Expandir progressão' : 'Recolher progressão'} onClick={alternarBarra}><svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M9 3v18" /><path d={barraRecolhida ? 'm13 9 3 3-3 3' : 'm16 9-3 3 3 3'} /></svg></button>
+            {barraRecolhida && <nav className="atalhos-progressao" aria-label="Níveis">{Array.from({ length: 20 }, (_, i) => <button key={i} title={`Nível ${i + 1}`} aria-label={`Abrir nível ${i + 1}`} onClick={() => { alternarBarra(); requestAnimationFrame(() => document.getElementById(`progressao-nivel-${i + 1}`)?.scrollIntoView({ block: 'nearest' })); }}>{i + 1}</button>)}</nav>}
+            <div id="conteudo-progressao" hidden={barraRecolhida}><CriacaoFicha /></div>
           </aside>
           <main className="desktop-main">
             <InformacoesPersonagem />

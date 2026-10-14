@@ -72,18 +72,8 @@ const ModalSelecaoMagias: React.FC<ModalSelecaoProps> = ({ titulo, onClose, onSe
     }
 
     return (
-        <AccessibleDialog className="popup-content-modal" onClose={onClose} aria-label={titulo}>
+        <AccessibleDialog className="popup-content-modal modal-magias" onClose={onClose} aria-label={titulo}>
             <h2>{titulo}</h2>
-            <p>Catálogo parcial da edição {ficha?.versaoRegras ?? "DND_2014"}. Conteúdo ausente permanece pendente.</p>
-            {!magiaSelect && <>
-                <label>Fonte de conjuração <select value={fonte} onChange={e => { setFonte(e.target.value); setCopia(false); }}>
-                    {fontes.map(f => <option key={f.id} value={f.id}>{f.nome} ({f.edicao === 'DND_2024' ? '2024' : '2014'})</option>)}
-                </select></label>
-                {fontes.find(f => f.id === fonte)?.categoria === 'livro' && <label>
-                    <input type="checkbox" checked={copia} onChange={e => setCopia(e.target.checked)} /> Cópia adicional no livro (tempo e custo conferidos com a mesa)
-                </label>}
-                {erro && selecionado && <p id="erro-magia" role="status">{erro}</p>}
-            </>}
             {filtrosAbertos && (
                 <div className="filtros-magias">
                     <h5>Filtro de Magias</h5>
@@ -191,9 +181,20 @@ const ModalSelecaoMagias: React.FC<ModalSelecaoProps> = ({ titulo, onClose, onSe
                 </div>}
 
                 <div className="detalhes-raca">
+                    {!selecionado && <p>Selecione uma magia para consultar seus detalhes.</p>}
                     {selecionado && (
                         <>
                             <h3>{selecionado}</h3>
+                            {!magiaSelect && <div className="magia-aquisicao">
+                                {fontes.length > 1 && <label>Aprender por <select value={fonte} onChange={e => { setFonte(e.target.value); setCopia(false); }}>
+                                    {fontes.map(f => <option key={f.id} value={f.id}>{f.nome} ({f.edicao === 'DND_2024' ? '2024' : '2014'})</option>)}
+                                </select></label>}
+                                {fontes.find(f => f.id === fonte)?.categoria === 'livro' && <label>
+                                    <input type="checkbox" checked={copia} onChange={e => setCopia(e.target.checked)} /> Cópia adicional no livro (tempo e custo conferidos com a mesa)
+                                </label>}
+                                {erro && selecionado && <p id="erro-magia" role="status">{fontes.length ? erro : 'Nenhuma classe disponível para aprender esta magia.'}</p>}
+                            </div>}
+
                             <ConteudoMagia magia={escolhaSalva ? resolverMagiaSalva(escolhaSalva) : listaMagias.find(m => m.nome === selecionado)} snapshot={escolhaSalva?.snapshot}
                                 aviso={escolhaSalva && !escolhaSalva.conteudo ? 'Registro legado catalogo-2014; texto antigo preservado, sem conversão automática.' : undefined} />
                         </>

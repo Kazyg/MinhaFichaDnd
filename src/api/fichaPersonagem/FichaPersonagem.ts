@@ -17,6 +17,7 @@ import { Patronos } from "../classesEspeciais/Patronos.class";
 import { criarConcessoesTalento, talento2024 } from './talentos2024Utils';
 import { resolverConteudo } from '../rulesets/conteudo';
 import { calcularLimiteSintonizacao, extrairEfeitosDoItem } from "./fichaEfeitosUtils";
+import { TipoEquipamento, equipamentoDoItem, itemMagicoVinculado, melhoriaCompativel, motivoBloqueioMelhoria, restaurarEquipamentosMagicos, sincronizarEstadoItensMagicos } from './fichaEquipamentosMagicos';
 
 export class Ficha {
     especializacoesOficiais?: import('./fichaEspecializacao').Especializacao[];
@@ -31,10 +32,35 @@ export class Ficha {
     setSintonizarItem(id: string, ativo: boolean) {
         const item = this.itensMochila?.find(i => i.id === id);
         if (!item?.sintonizavel) return false;
-        const ids = this.itensSintonizados ?? [];
+        const ids = this.getItensSintonizadosEquipados().map(i => i.id);
         if (ativo && !ids.includes(id) && ids.length >= calcularLimiteSintonizacao(this)) return false;
         this.itensSintonizados = ativo ? Array.from(new Set([...ids, id])) : ids.filter(i => i !== id);
         if (this.itensEquipados?.some(i => i.id === id)) this.sincronizarEfeitosItem(item);
+        return true;
+    }
+    selecionarBaseEquipamentoMagico(id: string, baseNome: string) {
+        const item = this.itensMochila?.find(i => i.id === id);
+        if (!item?.equipamentoMagico || item.vinculoEquipamento || !item.equipamentoMagico.basesCompativeis?.includes(baseNome)) return false;
+        item.equipamentoMagico = { ...item.equipamentoMagico, baseNome };
+        restaurarEquipamentosMagicos(this);
+        return !!item.vinculoEquipamento;
+    }
+    vincularItemMagico(idItem: string, tipo: TipoEquipamento, idEquipamento: string) {
+        const item = this.itensMochila?.find(i => i.id === idItem);
+        const equipamento = tipo === 'arma' ? this.ArmasMochila?.find(a => a.id === idEquipamento) : this.ArmadurasMochila?.find(a => a.id === idEquipamento);
+        if (!item || !equipamento || !melhoriaCompativel(item, tipo, equipamento) || motivoBloqueioMelhoria(this, tipo, equipamento)) return false;
+        if (item.vinculoEquipamento && (item.vinculoEquipamento.tipo !== tipo || item.vinculoEquipamento.id !== idEquipamento)) return false;
+        const ocupado = itemMagicoVinculado(this, tipo, idEquipamento);
+        if (ocupado && ocupado.id !== idItem) return false;
+        item.vinculoEquipamento = { tipo, id: idEquipamento };
+        sincronizarEstadoItensMagicos(this);
+        return true;
+    }
+    desvincularItemMagico(idItem: string) {
+        const item = this.itensMochila?.find(i => i.id === idItem);
+        if (!item || item.equipamentoMagico?.modo !== 'melhoria') return false;
+        delete item.vinculoEquipamento;
+        sincronizarEstadoItensMagicos(this);
         return true;
     }
 
@@ -42,6 +68,7 @@ export class Ficha {
     escolhasAnteriores?: { tipo: string; valor: unknown }[];
     escolhasMetamagia?: EscolhaMetamagia[];
     idiomasLivres?: string[];
+    idiomasBackground?: string[];
     atributosSelecionados?: string[];
     distribuicaoAtributos?: {
         metodo: string | null; atributos: Record<string, number>; valores: number[]; pontos: number;
@@ -109,6 +136,7 @@ export class Ficha {
         this.recursos = data.recursos ?? { slots: {}, morte: { sucessos: 0, falhas: 0 } };
         this.inventarioAnterior = data.inventarioAnterior;
         this.idiomasLivres = data.idiomasLivres;
+        this.idiomasBackground = data.idiomasBackground;
         this.magiasConjuracao = data.magiasConjuracao;
         this.escolhasAnteriores = data.escolhasAnteriores;
         this.escolhasMetamagia = data.escolhasMetamagia;
@@ -275,9 +303,16 @@ export class Ficha {
     }
 
     setBackGround(backGround: BackGround | null) {
+        if (this.versaoRegras === 'DND_2014') {
+            const outrasFontesIdioma = [...(this.idiomasLivres ?? []), ...(this.racaPrincipal?.idiomas ?? []), ...(this.subRaca?.idiomas ?? []), ...(nivelDaClasse(this, 'ladino') > 0 ? ['Gíria de Ladrões'] : [])];
+            this.idiomas = (this.idiomas ?? []).filter(i => !this.idiomasBackground?.includes(i) || outrasFontesIdioma.includes(i));
+            this.idiomasBackground = backGround?.nome === 'Membro da Guilda dos Ladrões das Sombras' ? ['Gíria de Ladrões'] : [];
+            this.idiomas = [...new Set([...this.idiomas, ...this.idiomasBackground])];
+        }
         const anteriores = this.backGround?.proeficienciasHabilidades ?? [];
-        const fixasRaca = this.racaPrincipal?.pericia ?? [];
-        this.pericias = [...new Set([...(this.pericias ?? []).filter(p => !anteriores.includes(p) || fixasRaca.includes(p)), ...fixasRaca, ...(backGround?.proeficienciasHabilidades ?? [])])];
+        const fixasRaca = [...(this.racaPrincipal?.pericia ?? []), ...(this.subRaca?.pericia ?? [])];
+        const outrasFontes = (this.efeitos ?? []).filter(e => e.tituloEfeito !== 'background').flatMap(e => [e.pericia, ...(e.proeficienciasClasse ?? []), ...(e.proeficienciasRaca ?? []), ...(e.proeficienciasBackGround ?? []), ...(e.proficienciasMulticlasse ?? []), ...(Array.isArray(e.escolhasTalento) ? e.escolhasTalento : [])]);
+        this.pericias = [...new Set([...(this.pericias ?? []).filter(p => !anteriores.includes(p) || fixasRaca.includes(p) || outrasFontes.includes(p)), ...fixasRaca, ...(backGround?.proeficienciasHabilidades ?? [])])];
         if (this.backGround?.nome !== backGround?.nome) arquivarEscolha(this, 'origem', this.backGround);
         this.backGround = backGround;
     }
@@ -463,6 +498,9 @@ export class Ficha {
         }
     }
     excluirArmaMochila(idArma: string) {
+        const magico = itemMagicoVinculado(this, 'arma', idArma);
+        if (magico?.equipamentoMagico?.modo === 'especifico') { this.excluirItem(magico.id); return; }
+        if (magico) this.desvincularItemMagico(magico.id);
         this.setDesequiparArma(idArma);
         if (this.ArmasMochila) this.ArmasMochila = this.ArmasMochila.filter(s => s.id !== idArma);
     }
@@ -476,6 +514,9 @@ export class Ficha {
         }
     }
     excluirArmaduraMochila(idArmadura: string) {
+        const magico = itemMagicoVinculado(this, 'armadura', idArmadura);
+        if (magico?.equipamentoMagico?.modo === 'especifico') { this.excluirItem(magico.id); return; }
+        if (magico) this.desvincularItemMagico(magico.id);
         if (this.ArmaduraEquipada?.id === idArmadura) this.setDesequiparArmadura();
         if (this.escudoEquipado?.id === idArmadura) this.setDesequiparEscudo();
         if (this.ArmadurasMochila) this.ArmadurasMochila = this.ArmadurasMochila.filter(s => s.id !== idArmadura);
@@ -488,18 +529,21 @@ export class Ficha {
     }
     setArmaduraEquipada(armadura: Armaduras_equip) {
         this.ArmaduraEquipada = this.ArmadurasMochila?.find(a => a.id === armadura.id) ?? this.ArmaduraEquipada;
+        sincronizarEstadoItensMagicos(this);
     }
     setDesequiparArmadura() {
         this.ArmaduraEquipada = null;
+        sincronizarEstadoItensMagicos(this);
     }
     setEscudoEquipado(escudo: Armaduras_equip) {
         const item = this.ArmadurasMochila?.find(a => a.id === escudo.id);
         if (!item || this.getMaosOcupadas() - (this.escudoEquipado ? 1 : 0) + 1 > 2) return false;
         this.escudoEquipado = item;
         this.atualizarMaos();
+        sincronizarEstadoItensMagicos(this);
         return true;
     }
-    setDesequiparEscudo() { this.escudoEquipado = null; this.atualizarMaos(); }
+    setDesequiparEscudo() { this.escudoEquipado = null; this.atualizarMaos(); sincronizarEstadoItensMagicos(this); }
     setEquiparArma(arma: Armas) {
         const item = this.ArmasMochila?.find(a => a.id === arma.id);
         if (!item) return false;
@@ -507,11 +551,13 @@ export class Ficha {
         if (this.getMaosOcupadas() + this.maosDaArma(item) > 2) return false;
         this.ArmaEquipada = [...(this.ArmaEquipada ?? []), item];
         this.atualizarMaos();
+        sincronizarEstadoItensMagicos(this);
         return true;
     }
     setDesequiparArma(id: string) {
         this.ArmaEquipada = this.ArmaEquipada?.filter(a => a.id !== id) ?? null;
         this.atualizarMaos();
+        sincronizarEstadoItensMagicos(this);
     }
     // Compatibility entry point: the old increment is deliberately ignored.
     setMaosOcupadas(_mao: number) { this.atualizarMaos(); }
@@ -582,30 +628,47 @@ export class Ficha {
     }
     setItemMochila(item: Itens) {
         item = Object.assign(Object.create(Object.getPrototypeOf(item)), item);
+        if (item.equipamentoMagico) item.equipamentoMagico = JSON.parse(JSON.stringify(item.equipamentoMagico));
+        delete item.vinculoEquipamento;
+        delete item.requisitosSintonizacaoConfirmados;
         while (this.itensMochila?.some(i => i.id === item.id)) item.id = this.gerarIdUnico();
         if (!this.itensMochila) {
             this.itensMochila = [item];
         } else {
             this.itensMochila = [...this.itensMochila, item];
         }
+        restaurarEquipamentosMagicos(this);
     }
     excluirItem(idItem: string) {
+        const item = this.itensMochila?.find(i => i.id === idItem);
+        const representacao = item?.equipamentoMagico?.modo === 'especifico' ? item.vinculoEquipamento : undefined;
+        if (item?.vinculoEquipamento) delete item.vinculoEquipamento;
         this.itensSintonizados = this.itensSintonizados?.filter(id => id !== idItem);
         this.excluirEfeitoPorOrigem("item", idItem);
         if (this.itensMochila) this.itensMochila = this.itensMochila.filter(s => s.id !== idItem);
         if (this.itensEquipados?.some(item => item.id === idItem)) {
             this.setDesequiparItem(idItem);
         }
+        if (representacao?.tipo === 'arma') this.excluirArmaMochila(representacao.id);
+        if (representacao?.tipo === 'armadura') this.excluirArmaduraMochila(representacao.id);
     }
     setLimiteSintonizacao(limite: number) {
         this.limiteSintonizacao = limite;
     }
     getItensSintonizadosEquipados() {
-        return this.itensMochila?.filter(item => this.itensSintonizados?.includes(item.id)) ?? [];
+        return this.itensMochila?.filter(item => item.sintonizavel && this.itensSintonizados?.includes(item.id)) ?? [];
     }
     setEquiparItem(item: Itens) {
         item = this.itensMochila?.find(i => i.id === item.id) as Itens;
-        if (!item) return;
+        if (!item) return false;
+        if (item.equipamentoMagico) {
+            const equipamento = equipamentoDoItem(this, item);
+            if (!equipamento || !item.vinculoEquipamento) return false;
+            if (item.vinculoEquipamento.tipo === 'arma') return this.setEquiparArma(equipamento as Armas);
+            if (item.equipamentoMagico.tipo === 'escudo') return this.setEscudoEquipado(equipamento as Armaduras_equip);
+            this.setArmaduraEquipada(equipamento as Armaduras_equip);
+            return true;
+        }
         if (!this.itensEquipados) {
             this.itensEquipados = [];
         }
@@ -613,23 +676,35 @@ export class Ficha {
             this.itensEquipados.push(item);
         }
         this.sincronizarEfeitosItem(item);
+        return true;
     }
     setDesequiparItem(idItem: string) {
+        const vinculado = this.itensMochila?.find(i => i.id === idItem);
+        if (vinculado?.equipamentoMagico && vinculado.vinculoEquipamento) {
+            const v = vinculado.vinculoEquipamento;
+            if (v.tipo === 'arma') this.setDesequiparArma(v.id);
+            else if (this.ArmaduraEquipada?.id === v.id) this.setDesequiparArmadura();
+            else if (this.escudoEquipado?.id === v.id) this.setDesequiparEscudo();
+        }
+        this.itensSintonizados = this.itensSintonizados?.filter(id => id !== idItem);
         const item = this.itensEquipados?.find(i => i.id === idItem);
         if (this.itensEquipados) {
             this.itensEquipados = this.itensEquipados.filter(i => i.id !== idItem);
         }
         if (item) {
             const salvos = this.efeitos?.filter(e => e.origemTipo === 'item' && e.origemId === item.id) ?? [];
-            if (item.efeitosExplicitos === undefined && salvos.length) item.efeitosExplicitos = salvos;
+            const legados = salvos.filter(e => !e.id.startsWith(`item:${item.id}:`));
+            if (item.efeitosExplicitos === undefined && legados.length) item.efeitosExplicitos = legados;
             this.excluirEfeitoPorOrigem("item", item.id);
         }
     }
     sincronizarEfeitosItem(item: Itens) {
         const salvos = this.efeitos?.filter(e => e.origemTipo === 'item' && e.origemId === item.id) ?? [];
-        if (item.efeitosExplicitos === undefined && salvos.length) item.efeitosExplicitos = salvos;
+        const legados = salvos.filter(e => !e.id.startsWith(`item:${item.id}:`));
+        if (item.efeitosExplicitos === undefined && legados.length) item.efeitosExplicitos = legados;
         this.excluirEfeitoPorOrigem("item", item.id);
-        const efeitosItem = item.sintonizavel && !this.itensSintonizados?.includes(item.id) ? [] : extrairEfeitosDoItem(item);
+        const ativo = this.itensEquipados?.some(i => i.id === item.id) && (!item.sintonizavel || this.itensSintonizados?.includes(item.id));
+        const efeitosItem = ativo ? extrairEfeitosDoItem(item) : [];
         efeitosItem.forEach((efeito) => this.setEfeitos(efeito));
     }
     setPatrono(patrono: Patronos | null | undefined) {

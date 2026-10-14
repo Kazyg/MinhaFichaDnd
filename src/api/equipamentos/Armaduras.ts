@@ -1,5 +1,6 @@
 // equipamentos/Armaduras.ts
 export class Armaduras_equip {
+    magica?: boolean;
     id: string;
     nome: string;
     categoria: string;

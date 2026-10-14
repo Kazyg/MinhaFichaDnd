@@ -449,3 +449,42 @@
 .titulo-arma {
     width: 120px;
 }
+.vinculacao-magica {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  max-width: 100%;
+}
+.vinculacao-magica label { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-width: 0; }
+.vinculacao-magica select {
+  background: #2c2f33;
+  color: #eee;
+  border: 1px solid #a78bfa;
+  border-radius: 8px;
+  padding: 6px 8px;
+  max-width: 100%;
+}
+.magia-equipamento-badge { color: #d6c4ff; border-color: #a78bfa; }
+.magia-equipamento-nota { display: block; color: #d6c4ff; font-size: 0.8rem; overflow-wrap: anywhere; margin: 6px 0; }
+.propriedade-magica-container { position: relative; display: inline-flex; min-width: 0; }
+.propriedade-magica-container [role="button"] { cursor: help; }
+.propriedade-magica-container [role="button"]:focus-visible { outline: 2px solid #a78bfa; outline-offset: 2px; }
+.tooltip-propriedade-magica {
+  position: fixed;
+  z-index: 2000;
+  box-sizing: border-box;
+  max-height: min(220px, calc(100vh - 16px));
+  overflow: auto;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  padding: 8px 10px;
+  border: 1px solid #a78bfa;
+  border-radius: 8px;
+  color: #eee;
+  background: #24272b;
+  box-shadow: 0 4px 12px #0008;
+  font-size: 0.8rem;
+}
+.botao-sintonizar-item:disabled, .botao-equipar-item:disabled { opacity: 0.5; cursor: not-allowed; }

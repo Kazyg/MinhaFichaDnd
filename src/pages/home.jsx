@@ -133,7 +133,8 @@ export default function Home() {
                   {fichas.map((ficha) => (
                     <li key={ficha.id} className="ficha-item">
                       <button type="button" className="selection-option" onClick={() => selecionarFicha(ficha)}>
-                        {ficha.nomePersonagem || "Ficha sem Nome"}: {ficha.racaPrincipal?.nome || "sem raça"} / {ficha.classePrincipal?.nome || "sem classe"}
+                        <span>{ficha.nomePersonagem || "Ficha sem Nome"}: {ficha.racaPrincipal?.nome || "sem raça"} / {ficha.classePrincipal?.nome || "sem classe"}</span>
+                        <span className="ficha-versao">Versão {ficha.versaoRegras === "DND_2024" ? "2024" : "2014"}</span>
                       </button>
                       <button aria-label={`Excluir ${ficha.nomePersonagem || "Ficha sem Nome"}`} onClick={() => handleDeletar(ficha.id)} className="delete-button">
                         <img src={deleteIcon} alt="Deletar" className="delete-icon" title="Deletar" />
