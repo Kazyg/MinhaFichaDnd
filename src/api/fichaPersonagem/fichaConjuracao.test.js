@@ -301,7 +301,9 @@ test('cards preservam registros inativos e desconhecidos sem inventar fórmulas'
   render(<AbaMagias />);
   expect(within(screen.getByRole('region', { name: 'Magias pendentes de revisão' })).getByRole('article', { name: 'Registro antigo' })).toBeInTheDocument();
   expect(within(screen.getByRole('region', { name: 'Conjuração, Círculo 9' })).getByRole('article', { name: 'Desejo' })).toBeInTheDocument();
-  expect(document.querySelector('.magia-card-valores strong')).toBeNull();
+  screen.getAllByRole('article').forEach(card => {
+    expect(within(card).queryByText(/Ataque [+-]?\d|CD \d|\d+d\d+/, { selector: 'strong' })).not.toBeInTheDocument();
+  });
   expect(JSON.stringify(mockFicha)).toBe(antes);
 });
 

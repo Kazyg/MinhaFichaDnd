@@ -22,17 +22,26 @@ test.each(['DND_2014', 'DND_2024'] as const)('todos os backgrounds %s têm dados
     const f = new Ficha({ versaoRegras: versao });
     f.setBackGround(b);
     expect(f.ouro).toBe(valores[index]);
-    if (versao === 'DND_2014') {
-      expect(dados.alternativa).toBeUndefined();
-      expect(f.itensMochila?.some(i => /algibeira/i.test(i.nome)) ?? false).toBe(false);
-    } else {
-      expect(dados.alternativa).toEqual({ ouro: 50, prata: 0, cobre: 0 });
-      f.setBackGround({ ...b, escolhaEquipamento: 'dinheiro' });
-      expect(f.ouro).toBe(50);
-      expect(f.itensMochila ?? []).toHaveLength(0);
-      expect(f.ArmasMochila ?? []).toHaveLength(0);
-    }
   });
+});
+
+test.each(getRulesetData('DND_2014').backgroundsOuOrigens)('$nome 2014 não oferece alternativa em dinheiro nem recipiente de moedas', b => {
+  const dados = equipamentoBackground('DND_2014', b.nome)!;
+  const f = new Ficha({ versaoRegras: 'DND_2014' });
+  f.setBackGround(b);
+  expect(dados.alternativa).toBeUndefined();
+  expect(f.itensMochila?.some(i => /algibeira/i.test(i.nome)) ?? false).toBe(false);
+});
+
+test.each(getRulesetData('DND_2024').backgroundsOuOrigens)('$nome 2024 permite trocar equipamento por 50 peças de ouro', b => {
+  const dados = equipamentoBackground('DND_2024', b.nome)!;
+  const f = new Ficha({ versaoRegras: 'DND_2024' });
+  f.setBackGround(b);
+  expect(dados.alternativa).toEqual({ ouro: 50, prata: 0, cobre: 0 });
+  f.setBackGround({ ...b, escolhaEquipamento: 'dinheiro' });
+  expect(f.ouro).toBe(50);
+  expect(f.itensMochila ?? []).toHaveLength(0);
+  expect(f.ArmasMochila ?? []).toHaveLength(0);
 });
 
 test.each([

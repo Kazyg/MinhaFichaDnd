@@ -134,8 +134,7 @@ test('menus e eventos visuais não iniciam autosave; sair do editor salva pendê
   fireEvent.click(screen.getByRole('button', { name: 'Menu da ficha' }));
   fireEvent.scroll(window);
   fireEvent.mouseOver(screen.getByRole('button', { name: 'Salvar Ficha' }));
-  await act(async () => {});
-  act(() => jest.advanceTimersByTime(10000));
+  await act(async () => { jest.advanceTimersByTime(10000); });
   expect(writes(store)).toBe(0);
   await edit('Botão manual');
   fireEvent.click(screen.getByRole('button', { name: 'Salvar Ficha' }));

@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import ModalSelecaoMagias from './ModalMagias';
 import { Ficha } from '../../api/fichaPersonagem/FichaPersonagem';
 import { getMagiasConteudo } from '../../api/rulesets/conteudo';
@@ -24,13 +24,13 @@ test('nomes curtos, longos e espaço reduzido mantêm nome acessível e fonte m�
   render(<ModalSelecaoMagias {...props} />);
   fireEvent.click(screen.getByRole('button', { name: 'Luz' }));
   const curto = screen.getByRole('button', { name: 'Escolher Luz' });
-  expect(curto.firstElementChild).toHaveStyle({ fontSize: '14px' });
+  expect(within(curto).getByText('Escolher Luz')).toHaveStyle({ fontSize: '14px' });
   fireEvent.click(screen.getByRole('button', { name: nomeLongo }));
   const longo = screen.getByRole('button', { name: `Escolher ${nomeLongo}` });
   expect(longo).toHaveAttribute('title', `Escolher ${nomeLongo}`);
   largura = (`Escolher ${nomeLongo}`).length * 13 * 0.55;
   fireEvent(window, new Event('resize'));
-  const texto = longo.firstElementChild as HTMLElement;
+  const texto = within(longo).getByText(`Escolher ${nomeLongo}`);
   expect(parseFloat(texto.style.fontSize)).toBeLessThan(14);
   expect(texto.scrollWidth).toBeLessThanOrEqual(texto.clientWidth);
   largura = 100;
