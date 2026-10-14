@@ -1,6 +1,7 @@
 import TalentoOrigem from './components/TalentoOrigem';
 import { erroTalento, selecionarTalentoInicial, talentosDisponiveis } from '../api/fichaPersonagem/talentosConteudo';
 import { podeTerSubclasse } from '../api/fichaPersonagem/subclasseElegibilidade';
+import DescricaoCaracteristica from "./components/DescricaoCaracteristica";
 import React, { useState } from "react";
 import iconClasse from "../imagens/icon_class.png"
 import iconRaca from "../imagens/icon_ancestry.png"
@@ -445,7 +446,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
                       <button onClick={() => toggleTraco(traco.traco)}>
                         {traco.traco} {tracosExpandidos[traco.traco] ? "▲" : "▼"}
                       </button>
-                      {tracosExpandidos[traco.traco] && <p className="descricao texto-formatado">{traco.descricao}</p>}
+                      {tracosExpandidos[traco.traco] && <DescricaoCaracteristica nome={traco.traco} descricao={traco.descricao} />}
                     </div>
                   ))}
                   {raca instanceof Draconato && (

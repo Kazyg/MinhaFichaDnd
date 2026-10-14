@@ -12,5 +12,15 @@ export class Acolito extends BackGround {
               Você também pode possuir laços com um templo específico devotado à sua divindade ou panteão, e fixar residência nele. Pode ser o templo que você está acostumado a servir, se ainda tiver boas relações com ele, ou um templo no qual você encontrou um novo lar. Enquanto frequentar as redondezas desse templo, você pode solicitar os sacerdotes para assisti-lo, desde que essa assistência não seja de alguma forma perigosa e que você sempre esteja em uma boa relação com seu templo.
             `,
             })
+        this.equipamentoInicial = {
+            itens: [
+                { nome: 'símbolo sagrado', quantidade: 1 },
+                { nome: 'livro de preces', quantidade: 1 },
+                { nome: 'varetas de incenso', quantidade: 5 },
+                { nome: 'vestimentas', quantidade: 1 },
+                { nome: 'conjunto de roupas comuns', quantidade: 1 },
+            ],
+            moedas: { ouro: 15, prata: 0, cobre: 0 },
+        };
     }
 }

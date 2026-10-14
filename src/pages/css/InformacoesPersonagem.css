@@ -386,3 +386,16 @@
     left: 0;
   }
 }
+
+.popup-nivel.popup-info-personagem[role="dialog"] { box-sizing: border-box; width: min(620px, calc(100vw - 24px)); max-width: 620px; padding: 24px; border: 1px solid #50565e; border-radius: 14px; }
+.popup-nivel h3 { margin: 0 0 20px; font-size: 1.35rem; text-align: center; }
+.popup-nivel .popup-content-info-personagem { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 8px; }
+.popup-nivel .popup-content-info-personagem button { width: 100%; min-width: 0; height: 44px; padding: 0; font-weight: 600; }
+.popup-nivel .nivel-footer { display: flex; justify-content: center; margin-top: 20px; }
+.popup-nivel .nivel-footer button { min-width: 120px; padding: 10px 20px; background: #4f545c; color: white; border: 1px solid #626974; border-radius: 6px; cursor: pointer; }
+.popup-nivel button:hover { background: #626974; }
+.popup-nivel button:focus-visible { outline: 2px solid #a8bbff; outline-offset: 3px; }
+@media (max-width: 540px) {
+  .popup-nivel.popup-info-personagem[role="dialog"] { padding: 16px; }
+  .popup-nivel .popup-content-info-personagem { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}

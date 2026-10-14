@@ -2,8 +2,10 @@ import AccessibleDialog from "../AccessibleDialog";
 import React, { useState } from "react";
 import { useFicha } from "../../../api/fichaPersonagem/FichaContext";
 import { selecionarEscolhasMagia } from '../../../api/fichaPersonagem/fichaConjuracao';
-import { getTalentosConteudo, resolverMagiaSalva, rotuloConteudo } from '../../../api/rulesets/conteudo';
+import { resolverMagiaSalva } from '../../../api/rulesets/conteudo';
+import { descricaoMagia, propriedadeMagiaDisponivel } from '../DescricaoMagia';
 import { descreverTalentoSalvo } from '../../../api/fichaPersonagem/talentosConteudo';
+import { descricaoCaracteristica } from '../../../bibliotecas/bibliotecaPrincipal';
 
 
 type DetalheItem = {
@@ -35,10 +37,9 @@ export default function AbaDetalhes() {
 
   const talentosSelecionados = (() => {
     const itens = new Map<string, DetalheItem>();
-    const Talentos = getTalentosConteudo(ficha?.versaoRegras ?? "DND_2014");
 
     ficha?.talentos?.forEach(nome => adicionarItemUnico(itens, {
-      nome, tipo: 'talento', descricao: `Talento legado sem revisão identificada: ${nome}. Referência original preservada; revisão manual pendente.`,
+      nome, tipo: 'talento', descricao: 'Descrição deste talento indisponível.',
     }));
     ficha?.efeitos?.forEach(efeito => {
       if (!efeito.talento) return;
@@ -75,14 +76,13 @@ export default function AbaDetalhes() {
     ficha?.classePrincipal?.niveis?.forEach((nivel) => {
       if (nivel.nivel > (ficha?.levelTotal || 0)) return;
       nivel.caracteristicas?.forEach((caracteristica) => {
-        const talentoEncontrado = Talentos.find(
-          (talento) => normalizar(talento.nome) === normalizar(caracteristica)
-        );
-
         adicionarItemUnico(itens, {
           nome: caracteristica,
           tipo: "talento",
-          descricao: talentoEncontrado?.descricao?.trim() || "Descrição não encontrada.",
+          descricao: descricaoCaracteristica(
+            caracteristica,
+            ficha?.versaoRegras ?? "DND_2014"
+          ),
           subtitulo: ficha?.classePrincipal?.nome
             ? `Classe: ${ficha.classePrincipal.nome} • Nível ${nivel.nivel}`
             : `Nível ${nivel.nivel}`,
@@ -147,7 +147,7 @@ export default function AbaDetalhes() {
         return {
           nome, id: escolha.id,
           tipo: "magia" as const,
-          descricao: magiaEncontrada ? `${!escolha.conteudo ? 'Registro legado catalogo-2014 preservado. ' : ''}${rotuloConteudo(magiaEncontrada)}\n${magiaEncontrada.descricao}` : `Revisão desconhecida, sem fallback. Snapshot preservado: ${escolha.snapshot?.descricao ?? 'indisponível'}`,
+          descricao: descricaoMagia(magiaEncontrada, escolha.snapshot),
           subtitulo:
             magiaEncontrada?.nivel !== undefined && magiaEncontrada?.tipo
               ? `Nível ${magiaEncontrada.nivel} • ${magiaEncontrada.tipo}`
@@ -159,7 +159,7 @@ export default function AbaDetalhes() {
             magiaEncontrada?.duracao
               ? `Duração: ${magiaEncontrada.concentracao ? "concentração, " : ""}${magiaEncontrada.duracao}`
               : "",
-          ].filter(Boolean),
+          ].filter(detalhe => propriedadeMagiaDisponivel(detalhe)),
         };
       })
       .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"));

@@ -1,6 +1,7 @@
 // equipamentos/Armaduras.ts
 export class Armaduras_equip {
     magica?: boolean;
+    origemConcessao?: import('../fichaPersonagem/fichaConcessoesIniciais').OrigemEquipamento;
     id: string;
     nome: string;
     categoria: string;

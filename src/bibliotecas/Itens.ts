@@ -7,6 +7,7 @@ export class Itens {
  vinculoEquipamento?: VinculoEquipamento;
  requisitosSintonizacaoConfirmados?: boolean;
  efeitosExplicitos?: import('../api/classesPrincipais/Efeitos').Efeitos[];
+ origemConcessao?: import('../api/fichaPersonagem/fichaConcessoesIniciais').OrigemEquipamento;
  id: string;
  nome: string;
  nomeIngles: string;

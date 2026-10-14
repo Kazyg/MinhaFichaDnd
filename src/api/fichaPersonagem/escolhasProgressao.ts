@@ -22,7 +22,7 @@ export function efeitosDoAvanco(ficha: Ficha, nivel: number): Efeitos[] {
 
 export function erroASI(ficha: Ficha, nivel: number, escolhas: string[]): string | null {
   const classe = ficha.multiclasses?.find(m => m.nivelEscolhido.includes(nivel))?.classe;
-  if (!classe || nivel > (ficha.levelTotal ?? 0) || !recursosNoNivel(classe, nivelDaClasse(ficha, classe, nivel), ficha.versaoRegras).length) return 'Este nível de classe não concede aumento de atributos.';
+  if (!classe || !Number.isInteger(nivel) || nivel < 1 || nivel > (ficha.versaoRegras === 'DND_2024' ? 20 : (ficha.levelTotal ?? 0)) || !recursosNoNivel(classe, nivelDaClasse(ficha, classe, nivel), ficha.versaoRegras).length) return 'Este nível de classe não concede aumento de atributos.';
   if (escolhas.length !== 2 || escolhas.some(a => !atributosChaves.includes(normalizarChave(a) as typeof atributosChaves[number]))) return 'Escolha os dois aumentos de +1.';
   const anteriores = efeitosDoAvanco(ficha, nivel);
   const semEscolha = { ...ficha, efeitos: (ficha.efeitos ?? []).filter(e => !anteriores.includes(e)), levelTotal: nivel } as Ficha;
@@ -67,7 +67,7 @@ export function talentosElegiveis(ficha: Ficha, nivel: number) {
 
 export function selecionarTalentoAvanco(ficha: Ficha, nivel: number, nome: string, escolhas: EscolhasSelecaoTalento = []): boolean {
   const classe = ficha.multiclasses?.find(m => m.nivelEscolhido.includes(nivel))?.classe;
-  if (!classe || nivel > (ficha.levelTotal ?? 0) || !recursosNoNivel(classe, nivelDaClasse(ficha, classe, nivel), ficha.versaoRegras).length || !talentosElegiveis(ficha, nivel).some(t => t.nome === nome)) return false;
+  if (!classe || !Number.isInteger(nivel) || nivel < 1 || nivel > (ficha.versaoRegras === 'DND_2024' ? 20 : (ficha.levelTotal ?? 0)) || !recursosNoNivel(classe, nivelDaClasse(ficha, classe, nivel), ficha.versaoRegras).length || !talentosElegiveis(ficha, nivel).some(t => t.nome === nome)) return false;
   const anteriores = efeitosDoAvanco(ficha, nivel);
   const talento = buscarTalentoConteudo(ficha.versaoRegras, nome)!;
   if (erroTalento(ficha, nivel, talento, escolhas, undefined, anteriores)) return false;

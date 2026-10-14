@@ -1,5 +1,6 @@
 export class Armas {
     magica?: boolean;
+    origemConcessao?: import('../fichaPersonagem/fichaConcessoesIniciais').OrigemEquipamento;
     id: string;
     nome: string;
     categoria: string;

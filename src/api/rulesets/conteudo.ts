@@ -3,6 +3,7 @@ import { Talentos } from '../../bibliotecas/Talentos';
 import { Magias, magiasBardo, magiasBruxo, magiasClerigo, magiasDruida, magiasFeiticeiro, magiasMago, magiasPaladino, magiasPatrulheiro } from '../../bibliotecas/Magia';
 import { talentosOrigem2024 } from './dnd2024/talentosLegados';
 import type { MagiaConteudo, MetadadosConteudo, ReferenciaConteudo, RulesetVersion, TalentoConteudo } from './types';
+import { complementarCombate, nomeCanonicoMagia, dadosRevisadosMagia } from './magiasCombate';
 
 export const SRD51 = 'https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf';
 export const SRD521 = 'https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.1.pdf';
@@ -96,7 +97,26 @@ const magias2024: MagiaConteudo[] = [curar('DND_2024'), ...indices2024.map(([nom
   descricao: `${ingles} — índice verificado de 2024. Consulte a descrição no SRD 5.2.1; esta entrada não automatiza seus efeitos.`,
 }))];
 const catalogoMagias2024 = magiasPhb2024.map(m => m.nome === 'Curar Ferimentos' ? curar('DND_2024') : m);
-const catalogoMagias = (edicao: RulesetVersion) => edicao === 'DND_2014' ? magias2014 : catalogoMagias2024;
+export function apresentarMagia(magia: MagiaConteudo): MagiaConteudo {
+  const canonico = nomeCanonicoMagia(magia.edicao, magia.nome);
+  const normalizar = (nome: string) => nome.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+  const descricao = magia.edicao === 'DND_2014' && magia.descricao === 'Descrição legada indisponível.'
+    ? Magias.find(m => normalizar(m.nome) === normalizar(canonico)) : undefined;
+  const base = descricao ? { ...magia, ...descricao, nome:magia.nome, nivel:magia.nivel, tipo:magia.tipo } : magia;
+  const revisada = complementarCombate(base);
+  return { ...revisada, selecionavel: revisada.descricao !== 'Descrição legada indisponível.' || !!revisada.resumoVerificado };
+}
+function revisarCatalogo(magia: MagiaConteudo): MagiaConteudo {
+  const atual = apresentarMagia(magia);
+  const verificada = dadosRevisadosMagia(magia.edicao, magia.nome);
+  return { ...atual, revisao:'srd-magias-20261014-1',
+    ...(verificada ? { natureza:'oficial' as const, licenca:'CC-BY-4.0' as const, descricao:atual.resumoVerificado ?? atual.descricao,
+      fonte:{ titulo:magia.edicao === 'DND_2014' ? 'SRD 5.1' : 'SRD 5.2', url:verificada.combate?.fonte,
+        localizador:`${verificada.ingles}, p. ${verificada.pagina}`, consultadoEm:'2026-10-14' } } : {}) };
+}
+const magiasAtuais2014 = magias2014.map(revisarCatalogo);
+const magiasAtuais2024 = catalogoMagias2024.map(revisarCatalogo);
+const catalogoMagias = (edicao: RulesetVersion) => edicao === 'DND_2014' ? magiasAtuais2014 : magiasAtuais2024;
 export function getMagiasConteudo(edicao: RulesetVersion): MagiaConteudo[] {
   edicaoValida(edicao); return copia(catalogoMagias(edicao));
 }
@@ -111,7 +131,7 @@ export function resolverConteudo(ref: ReferenciaConteudo): MagiaConteudo | Talen
   if (!ref || !['DND_2014', 'DND_2024'].includes(ref.edicao)) return undefined;
   // Resolve first, then clone only the requested entry. Cloning both complete
   // catalogs for every derived attribute makes selecting a feat stall the UI.
-  return copia([...catalogoMagias(ref.edicao), ...catalogoTalentos(ref.edicao), ...magiasLegadas, ...magias2024, ...talentos2024].find(c => c.id === ref.id && c.edicao === ref.edicao && c.revisao === ref.revisao) ?? null) ?? undefined;
+  return copia([...catalogoMagias(ref.edicao), ...catalogoTalentos(ref.edicao), ...magias2014, ...catalogoMagias2024, ...magiasLegadas, ...magias2024, ...talentos2024].find(c => c.id === ref.id && c.edicao === ref.edicao && c.revisao === ref.revisao) ?? null) ?? undefined;
 }
 export function resolverMagiaSalva(escolha: { nome: string; catalogo: string; conteudo?: ReferenciaConteudo; snapshot?: MagiaConteudo }) {
   if (escolha.conteudo) {

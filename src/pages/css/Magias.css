@@ -218,3 +218,43 @@
   gap: 8px;
   margin-bottom: 16px;
 }
+.magias { display: flex; flex-direction: column; align-items: stretch; gap: 16px; min-width: 0; width: 100%; box-sizing: border-box; }
+.magias .header-magias, .magia-fonte, .magia-circulo-header, .magia-slots, .magia-card-titulo, .magia-card-valores, .magia-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.magias .header-magias { justify-content: flex-start; width: 100%; }
+.magias .header-magias h3 { margin-right: 4px; }
+.magia-fonte { padding: 6px; border: 1px solid #555; border-radius: 10px; }
+.magia-grupo { display: grid; gap: 14px; min-width: 0; width: 100%; }
+.magia-grupo:empty { display: none; }
+.magia-circulo { border-top: 1px solid #555; padding-top: 12px; min-width: 0; }
+.magia-circulo-header { margin-bottom: 12px; justify-content: flex-start; width: 100%; }
+.magia-circulo-header h4, .magia-card h4 { margin: 0; }
+.magia-cards { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; width: 100%; }
+.magia-card { display: flex; flex-direction: column; gap: 12px; min-width: 0; padding: 14px; background: #292b30; color: #f2f2f2; border: 1px solid #555; border-left: 3px solid #e03e00; border-radius: 10px; box-sizing: border-box; overflow-wrap: anywhere; }
+.magia-card .info-badge { white-space: normal; text-align: left; }
+.magia-card-titulo { justify-content: space-between; }
+.magia-card-titulo h4 { font-size: 1.05rem; }
+.magia-destaque { padding: 10px 14px; color: #ff885d; background: rgba(224,62,0,.12); border: 1px solid rgba(224,62,0,.35); border-radius: 10px; }
+.magia-tipo-dano { display: block; color: #ddd; font-size: .8rem; margin-top: 4px; }
+.magias .magia-slot { display: inline-flex; align-items: center; justify-content: center; padding: 4px; width: 44px; height: 44px; flex: 0 0 44px; border: 1px solid transparent; background: transparent; border-radius: 8px; cursor: pointer; }
+.magia-slot img { width: 32px; height: 32px; object-fit: contain; }
+.magia-slot.gasto img { filter: grayscale(1) brightness(1.9); opacity: .85; }
+.magias .magia-slot.gasto { background: rgba(255,255,255,.06); border-color: #777; }
+.magias .magia-slot:hover { background: #444; border-color: #e03e00; }
+.magias :focus-visible { outline: 2px solid #ff885d; outline-offset: 3px; }
+.magia-badge-wrap { position: relative; display: inline-flex; max-width: 100%; }
+.magia-tooltip { display: none; position: absolute; top: calc(100% + 5px); left: 0; width: max-content; max-width: min(260px, 75vw); padding: 8px; background: #16181c; border: 1px solid #ff885d; border-radius: 6px; color: #fff; font-size: .8rem; white-space: normal; overflow-wrap: anywhere; z-index: 20; box-shadow: 0 4px 10px #0008; pointer-events: none; }
+.magia-badge-wrap:hover .magia-tooltip, .magia-badge-wrap:focus-within .magia-tooltip, .magia-tooltip.aberto { display: block; }
+.magia-detalhes { margin-top: auto; font-size: .85rem; }
+.magia-detalhes summary { cursor: pointer; color: #ff885d; padding: 8px 0; }
+.magia-detalhes p { line-height: 1.5; }
+.magias .magia-detalhes button { width: auto; padding: 8px 12px; }
+.magias select, .magias input { max-width: 100%; box-sizing: border-box; }
+.magia-circulo-escolha { display: flex; flex-wrap: wrap; align-items: center; align-self: flex-start; gap: 10px; padding: 6px 8px 6px 12px; background: #222429; border: 1px solid rgba(224,62,0,.3); border-radius: 10px; color: #ddd; font-size: .85rem; }
+.magia-circulo-escolha select { appearance: none; min-width: 64px; min-height: 40px; padding: 8px 30px 8px 12px; border: 1px solid #e03e00; border-radius: 7px; background-color: #34363d; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='m2 2 4 4 4-4' fill='none' stroke='%23ff885d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; color: #ffad8f; font: inherit; font-weight: 700; cursor: pointer; transition: border-color .15s ease, background-color .15s ease; }
+.magia-circulo-escolha select:hover { background-color: #3f3533; border-color: #ff885d; }
+.magia-circulo-escolha select:focus-visible { outline: 2px solid #ff885d; outline-offset: 3px; }
+.magia-circulo-escolha select option { background: #292b30; color: #f2f2f2; }
+.magia-card-valores > .magia-circulo-escolha { margin-left: auto; align-self: center; max-width: 100%; box-sizing: border-box; }
+@media (max-width: 600px) { .magia-fonte { width: 100%; } .magia-card { padding: 12px; } .magia-tooltip { left: auto; right: 0; } }
+
+.modal-magias .magia-validacao { margin: 8px 0; padding: 10px 12px; color: #ffd4b8; background: #332a24; border-left: 3px solid #ffad8f; border-radius: 6px; font-size: .9rem; line-height: 1.5; overflow-wrap: anywhere; }

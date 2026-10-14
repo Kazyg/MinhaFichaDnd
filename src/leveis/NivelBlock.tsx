@@ -1,3 +1,4 @@
+import DescricaoCaracteristica from "./components/DescricaoCaracteristica";
 import { erroTalento } from '../api/fichaPersonagem/talentosConteudo';
 import { efeitosDoAvanco } from '../api/fichaPersonagem/escolhasProgressao';
 import { getTalentosConteudo } from '../api/rulesets/conteudo';
@@ -351,7 +352,7 @@ const NivelBlock: React.FC<NivelBlockProps> = ({ nivel, classesDisponiveis, sele
                                                                     {opcao.nome.toLowerCase()} {descricaoExpandida ? "▲" : "▼"}
                                                                 </button>
                                                                 {descricaoExpandida && (
-                                                                    <p className="descricao p-2 border rounded-lg mt-2">{opcao.descricao}</p>
+                                                                    <DescricaoCaracteristica nome={opcao.nome} descricao={opcao.descricao} versao={ficha?.versaoRegras} />
                                                                 )}
                                                             </>
                                                         )}
@@ -451,7 +452,7 @@ const NivelBlock: React.FC<NivelBlockProps> = ({ nivel, classesDisponiveis, sele
                     <div className="popup">
                         <ModalSelecaoClasse
                             titulo="Escolha sua Classe"
-                            opcoes={classesPermitidas}
+                            opcoes={ficha?.versaoRegras === "DND_2024" ? classesDisponiveis : classesPermitidas}
                             validar={classe => ficha ? erroSelecaoClasse(ficha, classe, nivel) : 'Ficha indisponível.'}
                             onClose={() => setModalClasseAberto(false)}
                             onSelect={(classe) => {

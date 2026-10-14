@@ -36,7 +36,7 @@ const PopupVida: React.FC<PopupVidaProps> = ({ onConfirmar, onCancelar, onRestau
             <div>
                 <h3>Ajustar Vida</h3>
                 <div className="barra-deslizante-mobile">
-                    {vidaEditada}
+                    <div className="vida-valor"><span>Pontos de vida</span><strong>{vidaEditada} <small>/ {calcularVida(ficha)}</small></strong></div>
                     <input
                         aria-label="Pontos de vida atuais"
                         type="range"
@@ -49,19 +49,21 @@ const PopupVida: React.FC<PopupVidaProps> = ({ onConfirmar, onCancelar, onRestau
                 </div>
                 <div className="campo-texto">
                     <div className="campo-texto1">
-                        <h5>Dano:</h5>
+                        <label htmlFor="vida-dano">Dano</label>
                         <input
                             type="number"
                             max={calcularVida(ficha)}
+                            id="vida-dano"
                             aria-label="Dano"
                             onChange={handleChangeDano}
                         />
                     </div>
                     <div className="campo-texto1">
-                        <h5>Cura:</h5>
+                        <label htmlFor="vida-cura">Cura</label>
                         <input
                             type="number"
                             max={calcularVida(ficha)}
+                            id="vida-cura"
                             aria-label="Cura"
                             onChange={handleChangeCura}
                         />
@@ -72,7 +74,7 @@ const PopupVida: React.FC<PopupVidaProps> = ({ onConfirmar, onCancelar, onRestau
                         onConfirmar(vidaEditada, cura, dano)
                     }}>Confirmar</button>
                     <button onClick={onCancelar}>Cancelar</button>
-                    <button onClick={onRestaurar}>Restaurar Vida</button>
+                    <button className="vida-restaurar" onClick={onRestaurar}>Restaurar Vida</button>
                 </div>
             </div>
         </div>

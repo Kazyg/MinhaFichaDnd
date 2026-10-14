@@ -7,8 +7,8 @@ export function descricaoCaracteristica(nome: string, edicao: RulesetVersion = '
   const chave = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   const entrada = caracteristicasDeClasse.find(c => chave(c.nome) === chave(nome) && c.versaoRegras === edicao)
     ?? (edicao === 'DND_2014' ? caracteristicasDeClasse.find(c => chave(c.nome) === chave(nome) && !c.versaoRegras) : undefined);
-  return entrada ? `${entrada.descricao}\nCatálogo ${edicao.replace('DND_', '')}: fonte, revisão e licença pendentes de verificação.`
-    : 'Descrição desta edição não catalogada. Nenhum texto de outra edição foi aplicado.';
+  return entrada ? entrada.descricao
+    : 'Descrição desta característica indisponível para esta edição.';
 }
 
 export const bibliotecaPrincipal = {

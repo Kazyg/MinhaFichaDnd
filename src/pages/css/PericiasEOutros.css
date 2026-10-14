@@ -15,24 +15,37 @@
 }
 
 .info-extra {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  column-gap: 0.25rem;
+  row-gap: 0.2rem;
   background-color: #3b3f44;
   padding: 0.4rem;
   border-radius: 0.3rem;
   margin-bottom: 0;
-  font-size: 0.7rem;
-}
-
-.info-coluna {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-
-.info-item {
-  color: white;
+  /* Same height as the original three 0.75rem lines and two 0.2rem gaps. */
+  height: calc(3lh + 1.2rem);
   font-size: 0.75rem;
+  container-type: inline-size;
+}
+
+.info-extra .info-item-tamanho {
+  grid-column: 1 / -1;
+}
+
+.info-extra .info-item {
+  align-self: center;
+  color: white;
+  font-size: clamp(0.625rem, 6cqw, 0.6875rem);
+  font-weight: 400;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.info-extra .info-item strong {
+  font-weight: 700;
 }
 
 .pericias-lista {

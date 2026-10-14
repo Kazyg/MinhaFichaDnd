@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import DescricaoCaracteristica from "./DescricaoCaracteristica";
 import { descricaoCaracteristica } from "../../bibliotecas/bibliotecaPrincipal";
 import { useFicha } from '../../api/fichaPersonagem/FichaContext';
 
@@ -36,10 +37,10 @@ const CaracteristicasPatrono: React.FC<CaracteristicasPatronoProps> = ({ patrono
               onClick={() => toggleCaracteristica(caracteristica)}
               className="w-full text-left p-2 border rounded-lg focus:outline-none"
             >
-              {caracteristica.toLowerCase()} {caracteristicasExpandidas[caracteristica] ? "▲" : "▼"}
+              {caracteristica} {caracteristicasExpandidas[caracteristica] ? "▲" : "▼"}
             </button>
             {caracteristicasExpandidas[caracteristica] && (
-              <p className="descricao p-2 border rounded-lg mt-2">{descricao}</p>
+              <DescricaoCaracteristica nome={caracteristica} descricao={descricao} versao={ficha?.versaoRegras} />
             )}
           </div>
         );

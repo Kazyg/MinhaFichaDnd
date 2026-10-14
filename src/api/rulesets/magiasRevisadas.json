@@ -1,0 +1,5846 @@
+{
+  "DND_2014": {
+    "Mísseis Mágicos": {
+      "ingles": "Magic Missile",
+      "pagina": 161,
+      "nivel": 1,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 4,
+          "tipo": "Energia",
+          "bonusFixo": 1,
+          "rotulo": "Dano por dardo"
+        },
+        "alvos": {
+          "rotulo": "Dardos",
+          "base": 3,
+          "porCirculo": 1
+        },
+        "propriedades": [
+          "Acerto automático"
+        ],
+        "notas": [
+          "Cada dardo acerta automaticamente uma criatura visível. Os dardos atingem simultaneamente e podem ser distribuídos entre alvos."
+        ]
+      },
+      "resumoVerificado": "Cada dardo acerta automaticamente uma criatura visível. Os dardos atingem simultaneamente e podem ser distribuídos entre alvos.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 36
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Raio de Fogo": {
+      "ingles": "Fire Bolt",
+      "pagina": 144,
+      "nivel": 0,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "ataque": "distancia",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 10,
+          "tipo": "Fogo",
+          "niveisPersonagem": [
+            5,
+            11,
+            17
+          ]
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. Exige uma jogada de ataque mágico. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 36
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Bola de Fogo": {
+      "ingles": "Fireball",
+      "pagina": 144,
+      "nivel": 3,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 8,
+          "dado": 6,
+          "tipo": "Fogo",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 45
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a tiny ball of bat guano and sulfur"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Mãos Flamejantes": {
+      "ingles": "Burning Hands",
+      "pagina": 123,
+      "nivel": 1,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 3,
+          "dado": 6,
+          "tipo": "Fogo",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Onda Trovejante": {
+      "ingles": "Thunderwave",
+      "pagina": 187,
+      "nivel": 1,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Constituição",
+        "dano": {
+          "dadosBase": 2,
+          "dado": 8,
+          "tipo": "Trovejante",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Constituição; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Raio de Gelo": {
+      "ingles": "Ray of Frost",
+      "pagina": 174,
+      "nivel": 0,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "ataque": "distancia",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 8,
+          "tipo": "Frio",
+          "niveisPersonagem": [
+            5,
+            11,
+            17
+          ]
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. Exige uma jogada de ataque mágico. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Toque Chocante": {
+      "ingles": "Shocking Grasp",
+      "pagina": 179,
+      "nivel": 0,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "ataque": "corpo-a-corpo",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 8,
+          "tipo": "Elétrico",
+          "niveisPersonagem": [
+            5,
+            11,
+            17
+          ]
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. Exige uma jogada de ataque mágico. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Toque Arrepiante": {
+      "ingles": "Chill Touch",
+      "pagina": 124,
+      "nivel": 0,
+      "tipo": "necromancia",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "ataque": "distancia",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 8,
+          "tipo": "Necrótico",
+          "niveisPersonagem": [
+            5,
+            11,
+            17
+          ]
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. Exige uma jogada de ataque mágico. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 36
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      }
+    },
+    "Rajada Mística": {
+      "ingles": "Eldritch Blast",
+      "pagina": 139,
+      "nivel": 0,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "ataque": "distancia",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 10,
+          "tipo": "Energia",
+          "rotulo": "Dano por feixe"
+        },
+        "alvos": {
+          "rotulo": "Feixes",
+          "base": 1,
+          "niveisPersonagem": [
+            5,
+            11,
+            17
+          ]
+        },
+        "notas": [
+          "Faça uma jogada de ataque por feixe; os feixes podem atingir alvos diferentes. O dano indicado é por feixe, sem modificador automático."
+        ]
+      },
+      "resumoVerificado": "Faça uma jogada de ataque por feixe; os feixes podem atingir alvos diferentes. O dano indicado é por feixe, sem modificador automático.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 36
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Espirro Ácido": {
+      "ingles": "Acid Splash",
+      "pagina": 114,
+      "nivel": 0,
+      "tipo": "conjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 6,
+          "tipo": "Ácido",
+          "niveisPersonagem": [
+            5,
+            11,
+            17
+          ]
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Rajada de Veneno": {
+      "ingles": "Poison Spray",
+      "pagina": 169,
+      "nivel": 0,
+      "tipo": "conjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Constituição",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 12,
+          "tipo": "Veneno",
+          "niveisPersonagem": [
+            5,
+            11,
+            17
+          ]
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Constituição; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 3
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Chama Sagrada": {
+      "ingles": "Sacred Flame",
+      "pagina": 176,
+      "nivel": 0,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 8,
+          "tipo": "Radiante",
+          "niveisPersonagem": [
+            5,
+            11,
+            17
+          ]
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Produzir Chama": {
+      "ingles": "Produce Flame",
+      "pagina": 172,
+      "nivel": 0,
+      "tipo": "conjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "ataque": "distancia",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 8,
+          "tipo": "Fogo",
+          "niveisPersonagem": [
+            5,
+            11,
+            17
+          ]
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. Exige uma jogada de ataque mágico. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "10 minuto",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Zombaria Viciosa": {
+      "ingles": "Vicious Mockery",
+      "pagina": 189,
+      "nivel": 0,
+      "tipo": "encantamento",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Sabedoria",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 4,
+          "tipo": "Psíquico",
+          "niveisPersonagem": [
+            5,
+            11,
+            17
+          ]
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Sabedoria; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Infligir Ferimentos": {
+      "ingles": "Inflict Wounds",
+      "pagina": 157,
+      "nivel": 1,
+      "tipo": "necromancia",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "ataque": "corpo-a-corpo",
+        "dano": {
+          "dadosBase": 3,
+          "dado": 10,
+          "tipo": "Necrótico",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. Exige uma jogada de ataque mágico. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Raio Guiador": {
+      "ingles": "Guiding Bolt",
+      "pagina": 151,
+      "nivel": 1,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "ataque": "distancia",
+        "dano": {
+          "dadosBase": 4,
+          "dado": 6,
+          "tipo": "Radiante",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. Exige uma jogada de ataque mágico. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 36
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      }
+    },
+    "Raio Ardente": {
+      "ingles": "Scorching Ray",
+      "pagina": 176,
+      "nivel": 2,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "ataque": "distancia",
+        "dano": {
+          "dadosBase": 2,
+          "dado": 6,
+          "tipo": "Fogo",
+          "rotulo": "Dano por raio"
+        },
+        "alvos": {
+          "rotulo": "Raios",
+          "base": 3,
+          "porCirculo": 1
+        },
+        "notas": [
+          "Faça uma jogada de ataque por raio. Os raios podem atingir o mesmo alvo ou alvos diferentes."
+        ]
+      },
+      "resumoVerificado": "Faça uma jogada de ataque por raio. Os raios podem atingir o mesmo alvo ou alvos diferentes.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 36
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Despedaçar": {
+      "ingles": "Shatter",
+      "pagina": 178,
+      "nivel": 2,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Constituição",
+        "dano": {
+          "dadosBase": 3,
+          "dado": 8,
+          "tipo": "Trovejante",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Constituição; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a chip of mica"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Flecha Ácida de Melf": {
+      "ingles": "Acid Arrow",
+      "pagina": 114,
+      "nivel": 2,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "ataque": "distancia",
+        "dano": {
+          "dadosBase": 4,
+          "dado": 4,
+          "tipo": "Ácido",
+          "dadosPorCirculo": 1
+        },
+        "notas": [
+          "Dano indicado no acerto inicial. Ao final do próximo turno do alvo, causa 2d4, aumentando 1d4 por círculo acima do segundo; consulte também o efeito de um erro."
+        ]
+      },
+      "resumoVerificado": "Dano indicado no acerto inicial. Ao final do próximo turno do alvo, causa 2d4, aumentando 1d4 por círculo acima do segundo; consulte também o efeito de um erro.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 27
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "powdered rhubarb leaf and an adder’s stomach"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Esfera Flamejante": {
+      "ingles": "Flaming Sphere",
+      "pagina": 145,
+      "nivel": 2,
+      "tipo": "conjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 2,
+          "dado": 6,
+          "tipo": "Fogo",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a bit of tallow, a pinch of brimstone, and a dusting of powdered iron"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Raio Lunar": {
+      "ingles": "Moonbeam",
+      "pagina": 166,
+      "nivel": 2,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Constituição",
+        "dano": {
+          "dadosBase": 2,
+          "dado": 10,
+          "tipo": "Radiante",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Constituição; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 36
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "several seeds of any moonseed plant and a piece of opalescent feldspar"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Arma Espiritual": {
+      "ingles": "Spiritual Weapon",
+      "pagina": 182,
+      "nivel": 2,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "ataque": "corpo-a-corpo",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 8,
+          "tipo": "Energia",
+          "dadosPorCirculo": 1,
+          "modificador": true,
+          "intervaloCirculos": 2
+        },
+        "notas": [
+          "O dano usa o modificador de conjuração. A concentração e o escalonamento dependem da edição."
+        ]
+      },
+      "resumoVerificado": "O dano usa o modificador de conjuração. A concentração e o escalonamento dependem da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "1 ação bônus",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "1 minuto",
+      "concentracao": false,
+      "ritual": true
+    },
+    "Relâmpago": {
+      "ingles": "Lightning Bolt",
+      "pagina": 159,
+      "nivel": 3,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 8,
+          "dado": 6,
+          "tipo": "Elétrico",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a bit of fur and a rod of amber, crystal, or glass"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Guardiões Espirituais": {
+      "ingles": "Spirit Guardians",
+      "pagina": 182,
+      "nivel": 3,
+      "tipo": "conjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Sabedoria",
+        "dano": {
+          "dadosBase": 3,
+          "dado": 8,
+          "tipo": "Radiante ou Necrótico",
+          "dadosPorCirculo": 1
+        },
+        "notas": [
+          "O tipo de dano depende da opção definida na descrição. A aplicação e a frequência seguem a edição."
+        ]
+      },
+      "resumoVerificado": "O tipo de dano depende da opção definida na descrição. A aplicação e a frequência seguem a edição.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a holy symbol"
+      },
+      "duracao": "Concentração, até 10 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Toque Vampírico": {
+      "ingles": "Vampiric Touch",
+      "pagina": 189,
+      "nivel": 3,
+      "tipo": "necromancia",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "ataque": "corpo-a-corpo",
+        "dano": {
+          "dadosBase": 3,
+          "dado": 6,
+          "tipo": "Necrótico",
+          "dadosPorCirculo": 1
+        },
+        "notas": [
+          "Recupera PV iguais à metade do dano necrótico causado."
+        ]
+      },
+      "resumoVerificado": "Recupera PV iguais à metade do dano necrótico causado.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Invocar Relâmpagos": {
+      "ingles": "Call Lightning",
+      "pagina": 123,
+      "nivel": 3,
+      "tipo": "conjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 3,
+          "dado": 10,
+          "tipo": "Elétrico",
+          "dadosPorCirculo": 1
+        },
+        "notas": [
+          "Sob uma tempestade existente, acrescente 1d10 ao dano."
+        ]
+      },
+      "resumoVerificado": "Sob uma tempestade existente, acrescente 1d10 ao dano.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 36
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Concentração, até 10 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Cone de Frio": {
+      "ingles": "Cone of Cold",
+      "pagina": 127,
+      "nivel": 5,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Constituição",
+        "dano": {
+          "dadosBase": 8,
+          "dado": 8,
+          "tipo": "Frio",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Constituição; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a small crystal or glass cone"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Coluna de Chamas": {
+      "ingles": "Flame Strike",
+      "pagina": 145,
+      "nivel": 5,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 4,
+          "dado": 6,
+          "tipo": "Fogo",
+          "dadosPorCirculo": 1
+        },
+        "danosAdicionais": [
+          {
+            "dadosBase": 4,
+            "dado": 6,
+            "tipo": "Radiante",
+            "dadosPorCirculo": 1
+          }
+        ]
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "pinch of sulfur"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Desintegrar": {
+      "ingles": "Disintegrate",
+      "pagina": 135,
+      "nivel": 6,
+      "tipo": "transmutação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 10,
+          "dado": 6,
+          "tipo": "Energia",
+          "dadosPorCirculo": 3,
+          "bonusFixo": 40
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a lodestone and a pinch of dust"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Barreira de Lâminas": {
+      "ingles": "Blade Barrier",
+      "pagina": 122,
+      "nivel": 6,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 6,
+          "dado": 10,
+          "tipo": "Cortante"
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 27
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Concentração, até 10 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Corrente de Relâmpagos": {
+      "ingles": "Chain Lightning",
+      "pagina": 124,
+      "nivel": 6,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 10,
+          "dado": 8,
+          "tipo": "Elétrico"
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 45
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a bit of fur; a piece of amber, glass, or a crystal rod; and three silver pins"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Círculo da Morte": {
+      "ingles": "Circle of Death",
+      "pagina": 124,
+      "nivel": 6,
+      "tipo": "necromancia",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Constituição",
+        "dano": {
+          "dadosBase": 8,
+          "dado": 6,
+          "tipo": "Necrótico",
+          "dadosPorCirculo": 2
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Constituição; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 45
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "the powder of a crushed black pearl worth at least 500 gp"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Dedo da Morte": {
+      "ingles": "Finger of Death",
+      "pagina": 144,
+      "nivel": 7,
+      "tipo": "necromancia",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Constituição",
+        "dano": {
+          "dadosBase": 7,
+          "dado": 8,
+          "tipo": "Necrótico",
+          "bonusFixo": 30
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Constituição; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Praga de Insetos": {
+      "ingles": "Insect Plague",
+      "pagina": 157,
+      "nivel": 5,
+      "tipo": "conjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Constituição",
+        "dano": {
+          "dadosBase": 4,
+          "dado": 10,
+          "tipo": "Perfurante",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Constituição; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 90
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a few grains of sugar, some kernels of grain, and a smear of fat"
+      },
+      "duracao": "Concentração, até 10 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Muralha de Fogo": {
+      "ingles": "Wall of Fire",
+      "pagina": 190,
+      "nivel": 4,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 5,
+          "dado": 8,
+          "tipo": "Fogo",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 36
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a small piece of phosphorus"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Explosão Solar": {
+      "ingles": "Sunburst",
+      "pagina": 184,
+      "nivel": 8,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Constituição",
+        "dano": {
+          "dadosBase": 12,
+          "dado": 6,
+          "tipo": "Radiante"
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Constituição; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 45
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "fire and a piece of sunstone"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Raio Solar": {
+      "ingles": "Sunbeam",
+      "pagina": 184,
+      "nivel": 6,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Constituição",
+        "dano": {
+          "dadosBase": 6,
+          "dado": 8,
+          "tipo": "Radiante"
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Constituição; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a magnifying glass"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Curar Ferimentos": {
+      "ingles": "Cure Wounds",
+      "pagina": 132,
+      "nivel": 1,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "cura": {
+          "dadosBase": 1,
+          "dado": 8,
+          "modificador": true,
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "Restaura pontos de vida conforme a fórmula indicada, usando o modificador de conjuração. Consulte as limitações de alvo e os demais efeitos na descrição da edição.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Palavra Curativa": {
+      "ingles": "Healing Word",
+      "pagina": 153,
+      "nivel": 1,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "cura": {
+          "dadosBase": 1,
+          "dado": 4,
+          "modificador": true,
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "Restaura pontos de vida conforme a fórmula indicada, usando o modificador de conjuração. Consulte as limitações de alvo e os demais efeitos na descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "1 ação bônus",
+      "componentes": {
+        "componentes": [
+          "V"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Curar Ferimentos em Massa": {
+      "ingles": "Mass Cure Wounds",
+      "pagina": 162,
+      "nivel": 5,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "cura": {
+          "dadosBase": 3,
+          "dado": 8,
+          "modificador": true,
+          "dadosPorCirculo": 1
+        },
+        "alvos": {
+          "rotulo": "Alvos (até)",
+          "base": 6
+        }
+      },
+      "resumoVerificado": "Restaura pontos de vida conforme a fórmula indicada, usando o modificador de conjuração. Consulte as limitações de alvo e os demais efeitos na descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Palavra Curativa em Massa": {
+      "ingles": "Mass Healing Word",
+      "pagina": 163,
+      "nivel": 3,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "cura": {
+          "dadosBase": 1,
+          "dado": 4,
+          "modificador": true,
+          "dadosPorCirculo": 1
+        },
+        "alvos": {
+          "rotulo": "Alvos (até)",
+          "base": 6
+        }
+      },
+      "resumoVerificado": "Restaura pontos de vida conforme a fórmula indicada, usando o modificador de conjuração. Consulte as limitações de alvo e os demais efeitos na descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "1 ação bônus",
+      "componentes": {
+        "componentes": [
+          "V"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Enfeitiçar Pessoa": {
+      "ingles": "Charm Person",
+      "pagina": 124,
+      "nivel": 1,
+      "tipo": "encantamento",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Sabedoria",
+        "notas": [
+          "Um humanoide faz resistência de Sabedoria; em combate, pode ter vantagem conforme a descrição. A magia não dá controle total sobre o alvo."
+        ],
+        "alvos": {
+          "rotulo": "Alvos (até)",
+          "base": 1,
+          "porCirculo": 1
+        }
+      },
+      "resumoVerificado": "Um humanoide faz resistência de Sabedoria; em combate, pode ter vantagem conforme a descrição. A magia não dá controle total sobre o alvo.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 9
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "1 hora",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Imobilizar Pessoa": {
+      "ingles": "Hold Person",
+      "pagina": 154,
+      "nivel": 2,
+      "tipo": "encantamento",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Sabedoria",
+        "notas": [
+          "Um humanoide faz resistência de Sabedoria; em falha, fica paralisado enquanto o efeito durar, repetindo a resistência conforme a descrição."
+        ],
+        "alvos": {
+          "rotulo": "Alvos (até)",
+          "base": 1,
+          "porCirculo": 1
+        }
+      },
+      "resumoVerificado": "Um humanoide faz resistência de Sabedoria; em falha, fica paralisado enquanto o efeito durar, repetindo a resistência conforme a descrição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a small, straight piece of iron"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Imobilizar Monstro": {
+      "ingles": "Hold Monster",
+      "pagina": 154,
+      "nivel": 5,
+      "tipo": "encantamento",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Sabedoria",
+        "notas": [
+          "O alvo faz resistência de Sabedoria e pode ficar paralisado; repete a resistência conforme a descrição."
+        ],
+        "alvos": {
+          "rotulo": "Alvos (até)",
+          "base": 1,
+          "porCirculo": 1
+        }
+      },
+      "resumoVerificado": "O alvo faz resistência de Sabedoria e pode ficar paralisado; repete a resistência conforme a descrição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 27
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a small, straight piece of iron"
+      }
+    },
+    "Medo": {
+      "ingles": "Fear",
+      "pagina": 142,
+      "nivel": 3,
+      "tipo": "ilusão",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Sabedoria",
+        "notas": [
+          "Criaturas na área fazem resistência de Sabedoria; a falha provoca medo e fuga conforme a descrição."
+        ]
+      },
+      "resumoVerificado": "Criaturas na área fazem resistência de Sabedoria; a falha provoca medo e fuga conforme a descrição.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a white feather or the heart of a hen"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Lentidão": {
+      "ingles": "Slow",
+      "pagina": 180,
+      "nivel": 3,
+      "tipo": "transmutação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Sabedoria",
+        "notas": [
+          "Até seis criaturas na área fazem resistência de Sabedoria; a falha reduz suas opções de movimento e ações."
+        ]
+      },
+      "resumoVerificado": "Até seis criaturas na área fazem resistência de Sabedoria; a falha reduz suas opções de movimento e ações.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 36
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a drop of molasses"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Padrão Hipnótico": {
+      "ingles": "Hypnotic Pattern",
+      "pagina": 155,
+      "nivel": 3,
+      "tipo": "ilusão",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Sabedoria",
+        "notas": [
+          "Criaturas que veem o padrão fazem resistência de Sabedoria; em falha, ficam enfeitiçadas e incapacitadas até o efeito terminar ou ser interrompido."
+        ]
+      },
+      "resumoVerificado": "Criaturas que veem o padrão fazem resistência de Sabedoria; em falha, ficam enfeitiçadas e incapacitadas até o efeito terminar ou ser interrompido.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 36
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "S",
+          "M"
+        ],
+        "material": "a glowing stick of incense or a crystal vial filled with phosphorescent material"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Banimento": {
+      "ingles": "Banishment",
+      "pagina": 120,
+      "nivel": 4,
+      "tipo": "abjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Carisma",
+        "notas": [
+          "O alvo faz resistência de Carisma; em falha, é banido temporariamente, conforme sua origem e a descrição da edição."
+        ],
+        "alvos": {
+          "rotulo": "Alvos (até)",
+          "base": 1,
+          "porCirculo": 1
+        }
+      },
+      "resumoVerificado": "O alvo faz resistência de Carisma; em falha, é banido temporariamente, conforme sua origem e a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "an item distasteful to the target"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Polimorfia": {
+      "ingles": "Polymorph",
+      "pagina": 169,
+      "nivel": 4,
+      "tipo": "transmutação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Sabedoria",
+        "notas": [
+          "Transforma uma criatura em uma besta permitida pela descrição. Um alvo involuntário faz resistência de Sabedoria."
+        ]
+      },
+      "resumoVerificado": "Transforma uma criatura em uma besta permitida pela descrição. Um alvo involuntário faz resistência de Sabedoria.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a caterpillar cocoon"
+      },
+      "duracao": "Concentração, até 1 hora",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Confusão": {
+      "ingles": "Confusion",
+      "pagina": 127,
+      "nivel": 4,
+      "tipo": "encantamento",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Sabedoria",
+        "notas": [
+          "Criaturas na área fazem resistência de Sabedoria; a falha altera seu comportamento, determinado pela tabela da magia."
+        ]
+      },
+      "resumoVerificado": "Criaturas na área fazem resistência de Sabedoria; a falha altera seu comportamento, determinado pela tabela da magia.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 27
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "three nut shells"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Sono": {
+      "ingles": "Sleep",
+      "pagina": 180,
+      "nivel": 1,
+      "tipo": "encantamento",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "propriedades": [
+          "5d8 PV afetados",
+          "+2d8 PV por círculo superior"
+        ]
+      },
+      "resumoVerificado": "Afeta criaturas em ordem crescente de PV atuais, dentro da reserva rolada; as criaturas afetadas adormecem conforme a descrição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 27
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a pinch of fine sand, rose petals, or a cricket"
+      },
+      "duracao": "1 minuto",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Escudo Arcano": {
+      "ingles": "Shield",
+      "pagina": 179,
+      "nivel": 1,
+      "tipo": "abjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "notas": [
+          "Uma reação concede +5 à CA até o início do próximo turno, incluindo contra o ataque desencadeador, e impede o dano de Mísseis Mágicos."
+        ]
+      },
+      "resumoVerificado": "Uma reação concede +5 à CA até o início do próximo turno, incluindo contra o ataque desencadeador, e impede o dano de Mísseis Mágicos.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      }
+    },
+    "Armadura Arcana": {
+      "ingles": "Mage Armor",
+      "pagina": 160,
+      "nivel": 1,
+      "tipo": "abjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "notas": [
+          "Uma criatura voluntária sem armadura passa a ter CA base 13 + modificador de Destreza por até 8 horas."
+        ]
+      },
+      "resumoVerificado": "Uma criatura voluntária sem armadura passa a ter CA base 13 + modificador de Destreza por até 8 horas.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a piece of cured leather"
+      },
+      "duracao": "8 hora",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Bênção": {
+      "ingles": "Bless",
+      "pagina": 122,
+      "nivel": 1,
+      "tipo": "encantamento",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "notas": [
+          "Até três criaturas acrescentam 1d4 a ataques e resistências enquanto o efeito durar. Cada círculo acima do primeiro permite mais um alvo."
+        ],
+        "alvos": {
+          "rotulo": "Alvos (até)",
+          "base": 3,
+          "porCirculo": 1
+        }
+      },
+      "resumoVerificado": "Até três criaturas acrescentam 1d4 a ataques e resistências enquanto o efeito durar. Cada círculo acima do primeiro permite mais um alvo.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 9
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a sprinkling of holy water"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Perdição": {
+      "ingles": "Bane",
+      "pagina": 120,
+      "nivel": 1,
+      "tipo": "encantamento",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Carisma",
+        "notas": [
+          "Até três criaturas fazem resistência de Carisma. Em falha, subtraem 1d4 de ataques e resistências; cada círculo superior permite mais um alvo."
+        ],
+        "alvos": {
+          "rotulo": "Alvos (até)",
+          "base": 3,
+          "porCirculo": 1
+        }
+      },
+      "resumoVerificado": "Até três criaturas fazem resistência de Carisma. Em falha, subtraem 1d4 de ataques e resistências; cada círculo superior permite mais um alvo.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 9
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a drop of blood"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Auxílio": {
+      "ingles": "Aid",
+      "pagina": 114,
+      "nivel": 2,
+      "tipo": "abjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "notas": [
+          "Até três criaturas aumentam seus PV atuais e máximos em 5 por 8 horas, mais 5 por círculo acima do segundo."
+        ],
+        "alvos": {
+          "rotulo": "Alvos (até)",
+          "base": 3
+        }
+      },
+      "resumoVerificado": "Até três criaturas aumentam seus PV atuais e máximos em 5 por 8 horas, mais 5 por círculo acima do segundo.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 9
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a tiny st rip of white cloth"
+      },
+      "duracao": "8 hora",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Luz": {
+      "ingles": "Light",
+      "pagina": 159,
+      "nivel": 0,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "notas": [
+          "Um objeto emite luz plena em 6 m e penumbra por mais 6 m, por até 1 hora. Consulte as condições para objetos carregados por criaturas hostis."
+        ]
+      },
+      "resumoVerificado": "Um objeto emite luz plena em 6 m e penumbra por mais 6 m, por até 1 hora. Consulte as condições para objetos carregados por criaturas hostis.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "M"
+        ],
+        "material": "a firefly or phosphorescent moss"
+      },
+      "duracao": "1 hora",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Mãos Mágicas": {
+      "ingles": "Mage Hand",
+      "pagina": 160,
+      "nivel": 0,
+      "tipo": "conjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "notas": [
+          "Uma mão espectral manipula objetos leves à distância. Não pode atacar, ativar itens mágicos nem carregar mais de cerca de 4,5 kg."
+        ]
+      },
+      "resumoVerificado": "Uma mão espectral manipula objetos leves à distância. Não pode atacar, ativar itens mágicos nem carregar mais de cerca de 4,5 kg.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 9
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "1 minuto",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Detectar Magia": {
+      "ingles": "Detect Magic",
+      "pagina": 134,
+      "nivel": 1,
+      "tipo": "adivinhação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "notas": [
+          "Permite detectar magia próxima enquanto mantém concentração; consulte a descrição para auras e obstáculos que bloqueiam a percepção."
+        ]
+      },
+      "resumoVerificado": "Permite detectar magia próxima enquanto mantém concentração; consulte a descrição para auras e obstáculos que bloqueiam a percepção.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Concentração, até 10 minuto",
+      "concentracao": true,
+      "ritual": true
+    },
+    "Passo Nebuloso": {
+      "ingles": "Misty Step",
+      "pagina": 165,
+      "nivel": 2,
+      "tipo": "conjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "notas": [
+          "Teleporta você para um espaço desocupado visível a até 9 m, como ação bônus."
+        ]
+      },
+      "resumoVerificado": "Teleporta você para um espaço desocupado visível a até 9 m, como ação bônus.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação bônus",
+      "componentes": {
+        "componentes": [
+          "V"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Invisibilidade": {
+      "ingles": "Invisibility",
+      "pagina": 157,
+      "nivel": 2,
+      "tipo": "ilusão",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "notas": [
+          "Uma criatura fica invisível enquanto o efeito durar. As condições que encerram a invisibilidade seguem a edição."
+        ],
+        "alvos": {
+          "rotulo": "Alvos (até)",
+          "base": 1,
+          "porCirculo": 1
+        }
+      },
+      "resumoVerificado": "Uma criatura fica invisível enquanto o efeito durar. As condições que encerram a invisibilidade seguem a edição.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "an eyelash encased in gum arabic"
+      },
+      "duracao": "Concentração, até 1 hora",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Amizade Animal": {
+      "ingles": "Animal Friendship",
+      "pagina": 115,
+      "nivel": 1,
+      "tipo": "encantamento",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Sabedoria",
+        "notas": [
+          "Uma besta faz resistência de Sabedoria. Em falha, fica enfeitiçada; as limitações do alvo seguem a edição."
+        ]
+      },
+      "resumoVerificado": "Uma besta faz resistência de Sabedoria. Em falha, fica enfeitiçada; as limitações do alvo seguem a edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 9
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a morsel of food"
+      },
+      "duracao": "24 hora",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Animar Mortos": {
+      "ingles": "Animate Dead",
+      "pagina": 115,
+      "nivel": 3,
+      "tipo": "necromancia",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "notas": [
+          "Anima restos como um morto-vivo ou renova o controle sobre mortos-vivos já criados, conforme a descrição e o círculo utilizado."
+        ]
+      },
+      "resumoVerificado": "Anima restos como um morto-vivo ou renova o controle sobre mortos-vivos já criados, conforme a descrição e o círculo utilizado.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 3
+      },
+      "conjuracao": "1 minuto",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a drop of blood, a piece of flesh, and a pinch of bone dust"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Chama Contínua": {
+      "ingles": "Continual Flame",
+      "pagina": 130,
+      "nivel": 2,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "notas": [
+          "Cria uma chama permanente que ilumina sem consumir combustível nem produzir calor, até ser dissipada."
+        ]
+      },
+      "resumoVerificado": "Cria uma chama permanente que ilumina sem consumir combustível nem produzir calor, até ser dissipada.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "ruby dust worth 50 gp, which the spell consumes"
+      },
+      "duracao": "Até ser dissipada",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Escrita Ilusória": {
+      "ingles": "Illusory Script",
+      "pagina": 156,
+      "nivel": 1,
+      "tipo": "ilusão",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "notas": [
+          "Oculta o significado de uma escrita por 10 dias; leitores designados veem a mensagem verdadeira."
+        ]
+      },
+      "resumoVerificado": "Oculta o significado de uma escrita por 10 dias; leitores designados veem a mensagem verdadeira.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "1 minuto",
+      "componentes": {
+        "componentes": [
+          "S",
+          "M"
+        ],
+        "material": "a lead---based ink worth at least 10 gp, which the spell consumes"
+      },
+      "duracao": "10 dia",
+      "concentracao": false,
+      "ritual": true
+    },
+    "Proteção Contra Veneno": {
+      "ingles": "Protection from Poison",
+      "pagina": 173,
+      "nivel": 2,
+      "tipo": "abjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "notas": [
+          "Neutraliza veneno no alvo e concede resistência a dano de veneno e vantagem nas resistências contra envenenamento durante o efeito."
+        ]
+      },
+      "resumoVerificado": "Neutraliza veneno no alvo e concede resistência a dano de veneno e vantagem nas resistências contra envenenamento durante o efeito.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "1 hora",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Proteção Contra Energia": {
+      "ingles": "Protection from Energy",
+      "pagina": 173,
+      "nivel": 3,
+      "tipo": "abjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "notas": [
+          "Concede resistência a um tipo escolhido entre ácido, frio, fogo, elétrico e trovejante enquanto mantém concentração."
+        ]
+      },
+      "resumoVerificado": "Concede resistência a um tipo escolhido entre ácido, frio, fogo, elétrico e trovejante enquanto mantém concentração.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Concentração, até 1 hora",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Proteção Contra a Morte": {
+      "ingles": "Death Ward",
+      "pagina": 133,
+      "nivel": 4,
+      "tipo": "abjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "notas": [
+          "Protege uma vez contra cair a 0 PV ou contra um efeito que mataria instantaneamente sem causar dano, conforme a descrição."
+        ]
+      },
+      "resumoVerificado": "Protege uma vez contra cair a 0 PV ou contra um efeito que mataria instantaneamente sem causar dano, conforme a descrição.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "8 hora",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Rogar Maldição": {
+      "ingles": "Bestow Curse",
+      "pagina": 121,
+      "nivel": 3,
+      "tipo": "necromancia",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Sabedoria",
+        "notas": [
+          "Em falha na resistência de Sabedoria, o alvo sofre uma maldição escolhida entre os efeitos da descrição. Duração e concentração variam com o círculo."
+        ]
+      },
+      "resumoVerificado": "Em falha na resistência de Sabedoria, o alvo sofre uma maldição escolhida entre os efeitos da descrição. Duração e concentração variam com o círculo.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Banquete de Heróis": {
+      "ingles": "Heroes’ Feast",
+      "pagina": 154,
+      "nivel": 6,
+      "tipo": "conjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "notas": [
+          "Cria um banquete para até doze criaturas, com benefícios contra medo e veneno e aumento de PV por 24 horas, conforme a edição."
+        ]
+      },
+      "resumoVerificado": "Cria um banquete para até doze criaturas, com benefícios contra medo e veneno e aumento de PV por 24 horas, conforme a edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 9
+      },
+      "conjuracao": "10 minutos",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a gem ---encrusted bowl worth at least 1,000 gp, which the spell consumes"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Enfraquecer Intelecto": {
+      "ingles": "Feeblemind",
+      "pagina": 142,
+      "nivel": 8,
+      "tipo": "encantamento",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Inteligência",
+        "dano": {
+          "dadosBase": 4,
+          "dado": 6,
+          "tipo": "Psíquico"
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Inteligência; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 45
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a handful of clay, crystal, glass, or mineral spheres"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Telecinesia": {
+      "ingles": "Telekinesis",
+      "pagina": 185,
+      "nivel": 5,
+      "tipo": "transmutação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "notas": [
+          "Move uma criatura ou objeto por esforço mágico enquanto mantém concentração; o teste para resistir depende da edição."
+        ]
+      },
+      "resumoVerificado": "Move uma criatura ou objeto por esforço mágico enquanto mantém concentração; o teste para resistir depende da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Concentração, até 10 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Criar Passagem": {
+      "ingles": "Passwall",
+      "pagina": 167,
+      "nivel": 5,
+      "tipo": "transmutação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "notas": [
+          "Abre uma passagem temporária em uma superfície de madeira, pedra ou gesso, dentro das dimensões da descrição."
+        ]
+      },
+      "resumoVerificado": "Abre uma passagem temporária em uma superfície de madeira, pedra ou gesso, dentro das dimensões da descrição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 9
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a pinch of sesame seeds"
+      },
+      "duracao": "1 hora",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Esquentar Metal": {
+      "ingles": "Heat Metal",
+      "pagina": 153,
+      "nivel": 2,
+      "tipo": "transmutação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Constituição",
+        "dano": {
+          "dadosBase": 2,
+          "dado": 8,
+          "tipo": "Fogo",
+          "dadosPorCirculo": 1
+        },
+        "notas": [
+          "A fórmula indica o dano causado pelo objeto aquecido. A resistência de Constituição está ligada a soltar o objeto; não reduz automaticamente o dano."
+        ]
+      },
+      "resumoVerificado": "A fórmula indica o dano causado pelo objeto aquecido. A resistência de Constituição está ligada a soltar o objeto; não reduz automaticamente o dano.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a piece of iron and a flame"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Crescer Espinhos": {
+      "ingles": "Spike Growth",
+      "pagina": 182,
+      "nivel": 2,
+      "tipo": "transmutação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "dano": {
+          "dadosBase": 2,
+          "dado": 4,
+          "tipo": "Perfurante",
+          "rotulo": "Dano por 1,5 m percorridos"
+        },
+        "notas": [
+          "A área é terreno difícil. O dano indicado se aplica por cada 1,5 m percorridos dentro dela, sem jogada de ataque ou resistência contra o dano."
+        ]
+      },
+      "resumoVerificado": "A área é terreno difícil. O dano indicado se aplica por cada 1,5 m percorridos dentro dela, sem jogada de ataque ou resistência contra o dano.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 45
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "seven sharp thorns or seven small twigs, each sharpened to a point"
+      },
+      "duracao": "Concentração, até 10 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Lâmina Flamejante": {
+      "ingles": "Flame Blade",
+      "pagina": 145,
+      "nivel": 2,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "ataque": "corpo-a-corpo",
+        "dano": {
+          "dadosBase": 3,
+          "dado": 6,
+          "tipo": "Fogo",
+          "dadosPorCirculo": 1,
+          "intervaloCirculos": 2
+        },
+        "notas": [
+          "A lâmina permite ataques mágicos corpo a corpo. O modificador e o escalonamento seguem a edição."
+        ]
+      },
+      "resumoVerificado": "A lâmina permite ataques mágicos corpo a corpo. O modificador e o escalonamento seguem a edição.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação bônus",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "leaf of sumac"
+      },
+      "duracao": "Concentração, até 10 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Escudo Ardente": {
+      "ingles": "Fire Shield",
+      "pagina": 144,
+      "nivel": 4,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "dano": {
+          "dadosBase": 2,
+          "dado": 8,
+          "tipo": "Fogo ou Frio"
+        },
+        "notas": [
+          "A fórmula indica o dano de retaliação contra um atacante a até 1,5 m que acerte você com um ataque corpo a corpo. A versão escolhida determina fogo ou frio."
+        ]
+      },
+      "resumoVerificado": "A fórmula indica o dano de retaliação contra um atacante a até 1,5 m que acerte você com um ataque corpo a corpo. A versão escolhida determina fogo ou frio.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a bit of phosphorus or a firefly"
+      },
+      "duracao": "10 minuto",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Névoa Mortal": {
+      "ingles": "Cloudkill",
+      "pagina": 125,
+      "nivel": 5,
+      "tipo": "conjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Constituição",
+        "dano": {
+          "dadosBase": 5,
+          "dado": 8,
+          "tipo": "Veneno",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Constituição; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 36
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Concentração, até 10 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Nuvem Incendiária": {
+      "ingles": "Incendiary Cloud",
+      "pagina": 157,
+      "nivel": 8,
+      "tipo": "conjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 10,
+          "dado": 8,
+          "tipo": "Fogo"
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 45
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Tempestade de Fogo": {
+      "ingles": "Fire Storm",
+      "pagina": 145,
+      "nivel": 7,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 7,
+          "dado": 10,
+          "tipo": "Fogo"
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 45
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Tempestade Glacial": {
+      "ingles": "Ice Storm",
+      "pagina": 155,
+      "nivel": 4,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 2,
+          "dado": 8,
+          "tipo": "Concussão",
+          "dadosPorCirculo": 1
+        },
+        "danosAdicionais": [
+          {
+            "dadosBase": 4,
+            "dado": 6,
+            "tipo": "Frio"
+          }
+        ]
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 90
+      },
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a pinch of dust and a few drops of water"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Chuva de Meteoros": {
+      "ingles": "Meteor Swarm",
+      "pagina": 164,
+      "nivel": 9,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 20,
+          "dado": 6,
+          "tipo": "Fogo"
+        },
+        "danosAdicionais": [
+          {
+            "dadosBase": 20,
+            "dado": 6,
+            "tipo": "Concussão"
+          }
+        ]
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "conjuracao": "1 ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Favor Divino": {
+      "ingles": "Divine Favor",
+      "pagina": 136,
+      "nivel": 1,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 4,
+          "tipo": "Radiante",
+          "rotulo": "Dano adicional ao acertar"
+        },
+        "notas": [
+          "A fórmula indica o dano adicional de seus ataques com armas que acertarem; não é um ataque mágico separado."
+        ]
+      },
+      "resumoVerificado": "A fórmula indica o dano adicional de seus ataques com armas que acertarem; não é um ataque mágico separado.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "1 ação bônus",
+      "componentes": {
+        "componentes": [
+          "V"
+        ],
+        "material": null
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Marca do Predador": {
+      "ingles": "Hunter’s Mark",
+      "pagina": 155,
+      "nivel": 1,
+      "tipo": "adivinhação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 6,
+          "tipo": "Tipo da arma",
+          "rotulo": "Dano adicional ao acertar"
+        },
+        "notas": [
+          "A fórmula indica o dano adicional ao acertar a criatura marcada, respeitando os tipos de ataque permitidos pela edição."
+        ]
+      },
+      "resumoVerificado": "A fórmula indica o dano adicional ao acertar a criatura marcada, respeitando os tipos de ataque permitidos pela edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 27
+      },
+      "conjuracao": "1 ação bônus",
+      "componentes": {
+        "componentes": [
+          "V"
+        ],
+        "material": null
+      },
+      "duracao": "Concentração, até 1 hora",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Repreensão Diabólica": {
+      "ingles": "Hellish Rebuke",
+      "pagina": 154,
+      "nivel": 1,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 2,
+          "dado": 10,
+          "tipo": "Fogo",
+          "dadosPorCirculo": 1
+        },
+        "notas": [
+          "Uma reação causa dano de fogo à criatura que o feriu; uma resistência bem-sucedida de Destreza reduz esse dano à metade."
+        ]
+      },
+      "resumoVerificado": "Uma reação causa dano de fogo à criatura que o feriu; uma resistência bem-sucedida de Destreza reduz esse dano à metade.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Oração de Cura": {
+      "ingles": "Prayer of Healing",
+      "pagina": 170,
+      "nivel": 2,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "cura": {
+          "dadosBase": 2,
+          "dado": 8,
+          "dadosPorCirculo": 1,
+          "modificador": true
+        },
+        "alvos": {
+          "rotulo": "Alvos (até)",
+          "base": 6
+        },
+        "notas": [
+          "Restaura PV de até seis criaturas visíveis. Não afeta mortos-vivos nem constructos."
+        ]
+      },
+      "resumoVerificado": "Restaura PV de até seis criaturas visíveis. Não afeta mortos-vivos nem constructos.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 9
+      },
+      "conjuracao": "10 minutos",
+      "componentes": {
+        "componentes": [
+          "V"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Regeneração": {
+      "ingles": "Regenerate",
+      "pagina": 174,
+      "nivel": 7,
+      "tipo": "transmutação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1.pdf",
+        "cura": {
+          "dadosBase": 4,
+          "dado": 8,
+          "bonusFixo": 15
+        },
+        "notas": [
+          "A fórmula é a cura inicial; depois o alvo recupera 1 PV no início de cada turno durante o efeito. A magia também pode restaurar membros decepados."
+        ]
+      },
+      "resumoVerificado": "A fórmula é a cura inicial; depois o alvo recupera 1 PV no início de cada turno durante o efeito. A magia também pode restaurar membros decepados.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "1 minuto",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a prayer wheel and holy water"
+      },
+      "duracao": "1 hora",
+      "concentracao": false,
+      "ritual": false
+    }
+  },
+  "DND_2024": {
+    "Mísseis Mágicos": {
+      "ingles": "Magic Missile",
+      "pagina": 146,
+      "nivel": 1,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 4,
+          "tipo": "Energia",
+          "bonusFixo": 1,
+          "rotulo": "Dano por dardo"
+        },
+        "alvos": {
+          "rotulo": "Dardos",
+          "base": 3,
+          "porCirculo": 1
+        },
+        "propriedades": [
+          "Acerto automático"
+        ],
+        "notas": [
+          "Cada dardo acerta automaticamente uma criatura visível. Os dardos atingem simultaneamente e podem ser distribuídos entre alvos."
+        ]
+      },
+      "resumoVerificado": "Cada dardo acerta automaticamente uma criatura visível. Os dardos atingem simultaneamente e podem ser distribuídos entre alvos.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 36
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Raio de Fogo": {
+      "ingles": "Fire Bolt",
+      "pagina": 132,
+      "nivel": 0,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "ataque": "distancia",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 10,
+          "tipo": "Fogo",
+          "niveisPersonagem": [
+            5,
+            11,
+            17
+          ]
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. Exige uma jogada de ataque mágico. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 36
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Bola de Fogo": {
+      "ingles": "Fireball",
+      "pagina": 131,
+      "nivel": 3,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 8,
+          "dado": 6,
+          "tipo": "Fogo",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 45
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a ball of bat guano and sulfur"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Mãos Flamejantes": {
+      "ingles": "Burning Hands",
+      "pagina": 114,
+      "nivel": 1,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 3,
+          "dado": 6,
+          "tipo": "Fogo",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Onda Trovejante": {
+      "ingles": "Thunderwave",
+      "pagina": 169,
+      "nivel": 1,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Constituição",
+        "dano": {
+          "dadosBase": 2,
+          "dado": 8,
+          "tipo": "Trovejante",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Constituição; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Raio de Gelo": {
+      "ingles": "Ray of Frost",
+      "pagina": 157,
+      "nivel": 0,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "ataque": "distancia",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 8,
+          "tipo": "Frio",
+          "niveisPersonagem": [
+            5,
+            11,
+            17
+          ]
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. Exige uma jogada de ataque mágico. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Toque Chocante": {
+      "ingles": "Shocking Grasp",
+      "pagina": 162,
+      "nivel": 0,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "ataque": "corpo-a-corpo",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 8,
+          "tipo": "Elétrico",
+          "niveisPersonagem": [
+            5,
+            11,
+            17
+          ]
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. Exige uma jogada de ataque mágico. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Toque Arrepiante": {
+      "ingles": "Chill Touch",
+      "pagina": 115,
+      "nivel": 0,
+      "tipo": "necromancia",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "ataque": "corpo-a-corpo",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 10,
+          "tipo": "Necrótico",
+          "niveisPersonagem": [
+            5,
+            11,
+            17
+          ]
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. Exige uma jogada de ataque mágico. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Rajada Mística": {
+      "ingles": "Eldritch Blast",
+      "pagina": 127,
+      "nivel": 0,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "ataque": "distancia",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 10,
+          "tipo": "Energia",
+          "rotulo": "Dano por feixe"
+        },
+        "alvos": {
+          "rotulo": "Feixes",
+          "base": 1,
+          "niveisPersonagem": [
+            5,
+            11,
+            17
+          ]
+        },
+        "notas": [
+          "Faça uma jogada de ataque por feixe; os feixes podem atingir alvos diferentes. O dano indicado é por feixe, sem modificador automático."
+        ]
+      },
+      "resumoVerificado": "Faça uma jogada de ataque por feixe; os feixes podem atingir alvos diferentes. O dano indicado é por feixe, sem modificador automático.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 36
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Rajada de Veneno": {
+      "ingles": "Poison Spray",
+      "pagina": 153,
+      "nivel": 0,
+      "tipo": "necromancia",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 12,
+          "tipo": "Veneno",
+          "niveisPersonagem": [
+            5,
+            11,
+            17
+          ]
+        },
+        "ataque": "distancia"
+      },
+      "resumoVerificado": "A fórmula indica o dano. Exige uma jogada de ataque mágico. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 9
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Chama Sagrada": {
+      "ingles": "Sacred Flame",
+      "pagina": 159,
+      "nivel": 0,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 8,
+          "tipo": "Radiante",
+          "niveisPersonagem": [
+            5,
+            11,
+            17
+          ]
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Produzir Chama": {
+      "ingles": "Produce Flame",
+      "pagina": 156,
+      "nivel": 0,
+      "tipo": "conjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "ataque": "distancia",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 8,
+          "tipo": "Fogo",
+          "niveisPersonagem": [
+            5,
+            11,
+            17
+          ]
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. Exige uma jogada de ataque mágico. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "Ação bônus",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "10 minuto",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Zombaria Viciosa": {
+      "ingles": "Vicious Mockery",
+      "pagina": 171,
+      "nivel": 0,
+      "tipo": "encantamento",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Sabedoria",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 6,
+          "tipo": "Psíquico",
+          "niveisPersonagem": [
+            5,
+            11,
+            17
+          ]
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Sabedoria; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Infligir Ferimentos": {
+      "ingles": "Inflict Wounds",
+      "pagina": 143,
+      "nivel": 1,
+      "tipo": "necromancia",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "dano": {
+          "dadosBase": 2,
+          "dado": 10,
+          "tipo": "Necrótico",
+          "dadosPorCirculo": 1
+        },
+        "resistencia": "Constituição"
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Constituição; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Raio Guiador": {
+      "ingles": "Guiding Bolt",
+      "pagina": 138,
+      "nivel": 1,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "ataque": "distancia",
+        "dano": {
+          "dadosBase": 4,
+          "dado": 6,
+          "tipo": "Radiante",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. Exige uma jogada de ataque mágico. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 36
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      }
+    },
+    "Raio Adoecente": {
+      "ingles": "Ray of Sickness",
+      "pagina": 158,
+      "nivel": 1,
+      "tipo": "necromancia",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "ataque": "distancia",
+        "dano": {
+          "dadosBase": 2,
+          "dado": 8,
+          "tipo": "Veneno",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. Exige uma jogada de ataque mágico. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Raio Ardente": {
+      "ingles": "Scorching Ray",
+      "pagina": 159,
+      "nivel": 2,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "ataque": "distancia",
+        "dano": {
+          "dadosBase": 2,
+          "dado": 6,
+          "tipo": "Fogo",
+          "rotulo": "Dano por raio"
+        },
+        "alvos": {
+          "rotulo": "Raios",
+          "base": 3,
+          "porCirculo": 1
+        },
+        "notas": [
+          "Faça uma jogada de ataque por raio. Os raios podem atingir o mesmo alvo ou alvos diferentes."
+        ]
+      },
+      "resumoVerificado": "Faça uma jogada de ataque por raio. Os raios podem atingir o mesmo alvo ou alvos diferentes.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 36
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Despedaçar": {
+      "ingles": "Shatter",
+      "pagina": 161,
+      "nivel": 2,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Constituição",
+        "dano": {
+          "dadosBase": 3,
+          "dado": 8,
+          "tipo": "Trovejante",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Constituição; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a chip of mica"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Flecha Ácida de Melf": {
+      "ingles": "Acid Arrow",
+      "pagina": 107,
+      "nivel": 2,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "ataque": "distancia",
+        "dano": {
+          "dadosBase": 4,
+          "dado": 4,
+          "tipo": "Ácido",
+          "dadosPorCirculo": 1
+        },
+        "notas": [
+          "Dano indicado no acerto inicial. Ao final do próximo turno do alvo, causa 2d4, aumentando 1d4 por círculo acima do segundo; consulte também o efeito de um erro."
+        ]
+      },
+      "resumoVerificado": "Dano indicado no acerto inicial. Ao final do próximo turno do alvo, causa 2d4, aumentando 1d4 por círculo acima do segundo; consulte também o efeito de um erro.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 27
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "powdered rhubarb leaf"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Esfera Flamejante": {
+      "ingles": "Flaming Sphere",
+      "pagina": 132,
+      "nivel": 2,
+      "tipo": "conjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 2,
+          "dado": 6,
+          "tipo": "Fogo",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a ball of wax"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Raio Lunar": {
+      "ingles": "Moonbeam",
+      "pagina": 150,
+      "nivel": 2,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Constituição",
+        "dano": {
+          "dadosBase": 2,
+          "dado": 10,
+          "tipo": "Radiante",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Constituição; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 36
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a moonseed leaf"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Arma Espiritual": {
+      "ingles": "Spiritual Weapon",
+      "pagina": 165,
+      "nivel": 2,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "ataque": "corpo-a-corpo",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 8,
+          "tipo": "Energia",
+          "dadosPorCirculo": 1,
+          "modificador": true,
+          "intervaloCirculos": 1
+        },
+        "notas": [
+          "O dano usa o modificador de conjuração. A concentração e o escalonamento dependem da edição."
+        ]
+      },
+      "resumoVerificado": "O dano usa o modificador de conjuração. A concentração e o escalonamento dependem da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "Ação bônus",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": true
+    },
+    "Relâmpago": {
+      "ingles": "Lightning Bolt",
+      "pagina": 144,
+      "nivel": 3,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 8,
+          "dado": 6,
+          "tipo": "Elétrico",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a bit of fur and a crystal rod"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Guardiões Espirituais": {
+      "ingles": "Spirit Guardians",
+      "pagina": 164,
+      "nivel": 3,
+      "tipo": "conjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Sabedoria",
+        "dano": {
+          "dadosBase": 3,
+          "dado": 8,
+          "tipo": "Radiante ou Necrótico",
+          "dadosPorCirculo": 1
+        },
+        "notas": [
+          "O tipo de dano depende da opção definida na descrição. A aplicação e a frequência seguem a edição."
+        ]
+      },
+      "resumoVerificado": "O tipo de dano depende da opção definida na descrição. A aplicação e a frequência seguem a edição.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a prayer scroll"
+      },
+      "duracao": "Concentração, até 10 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Toque Vampírico": {
+      "ingles": "Vampiric Touch",
+      "pagina": 171,
+      "nivel": 3,
+      "tipo": "necromancia",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "ataque": "corpo-a-corpo",
+        "dano": {
+          "dadosBase": 3,
+          "dado": 6,
+          "tipo": "Necrótico",
+          "dadosPorCirculo": 1
+        },
+        "notas": [
+          "Recupera PV iguais à metade do dano necrótico causado."
+        ]
+      },
+      "resumoVerificado": "Recupera PV iguais à metade do dano necrótico causado.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Invocar Relâmpagos": {
+      "ingles": "Call Lightning",
+      "pagina": 114,
+      "nivel": 3,
+      "tipo": "conjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 3,
+          "dado": 10,
+          "tipo": "Elétrico",
+          "dadosPorCirculo": 1
+        },
+        "notas": [
+          "Sob uma tempestade existente, acrescente 1d10 ao dano."
+        ]
+      },
+      "resumoVerificado": "Sob uma tempestade existente, acrescente 1d10 ao dano.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 36
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Concentração, até 10 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Cone de Frio": {
+      "ingles": "Cone of Cold",
+      "pagina": 117,
+      "nivel": 5,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Constituição",
+        "dano": {
+          "dadosBase": 8,
+          "dado": 8,
+          "tipo": "Frio",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Constituição; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a small crystal or glass cone"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Coluna de Chamas": {
+      "ingles": "Flame Strike",
+      "pagina": 132,
+      "nivel": 5,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 5,
+          "dado": 6,
+          "tipo": "Fogo",
+          "dadosPorCirculo": 1
+        },
+        "danosAdicionais": [
+          {
+            "dadosBase": 5,
+            "dado": 6,
+            "tipo": "Radiante",
+            "dadosPorCirculo": 1
+          }
+        ]
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a pinch of sulfur"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Desintegrar": {
+      "ingles": "Disintegrate",
+      "pagina": 124,
+      "nivel": 6,
+      "tipo": "transmutação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 10,
+          "dado": 6,
+          "tipo": "Energia",
+          "dadosPorCirculo": 3,
+          "bonusFixo": 40
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a lodestone and dust"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Barreira de Lâminas": {
+      "ingles": "Blade Barrier",
+      "pagina": 113,
+      "nivel": 6,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 6,
+          "dado": 10,
+          "tipo": "Cortante"
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 27
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Concentração, até 10 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Corrente de Relâmpagos": {
+      "ingles": "Chain Lightning",
+      "pagina": 114,
+      "nivel": 6,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 10,
+          "dado": 8,
+          "tipo": "Elétrico"
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 45
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "three silver pins"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Círculo da Morte": {
+      "ingles": "Circle of Death",
+      "pagina": 115,
+      "nivel": 6,
+      "tipo": "necromancia",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Constituição",
+        "dano": {
+          "dadosBase": 8,
+          "dado": 8,
+          "tipo": "Necrótico",
+          "dadosPorCirculo": 2
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Constituição; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 45
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "the powder of a crushed black pearl worth 500+ GP"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Dedo da Morte": {
+      "ingles": "Finger of Death",
+      "pagina": 131,
+      "nivel": 7,
+      "tipo": "necromancia",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Constituição",
+        "dano": {
+          "dadosBase": 7,
+          "dado": 8,
+          "tipo": "Necrótico",
+          "bonusFixo": 30
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Constituição; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Praga de Insetos": {
+      "ingles": "Insect Plague",
+      "pagina": 143,
+      "nivel": 5,
+      "tipo": "conjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Constituição",
+        "dano": {
+          "dadosBase": 4,
+          "dado": 10,
+          "tipo": "Perfurante",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Constituição; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 90
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a locust"
+      },
+      "duracao": "Concentração, até 10 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Muralha de Fogo": {
+      "ingles": "Wall of Fire",
+      "pagina": 172,
+      "nivel": 4,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 5,
+          "dado": 8,
+          "tipo": "Fogo",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 36
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a piece of charcoal"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Explosão Solar": {
+      "ingles": "Sunburst",
+      "pagina": 167,
+      "nivel": 8,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Constituição",
+        "dano": {
+          "dadosBase": 12,
+          "dado": 6,
+          "tipo": "Radiante"
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Constituição; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 45
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a piece of sunstone"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Raio Solar": {
+      "ingles": "Sunbeam",
+      "pagina": 166,
+      "nivel": 6,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Constituição",
+        "dano": {
+          "dadosBase": 6,
+          "dado": 8,
+          "tipo": "Radiante"
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Constituição; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a magnifying glass"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Curar Ferimentos": {
+      "ingles": "Cure Wounds",
+      "pagina": 121,
+      "nivel": 1,
+      "tipo": "abjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "cura": {
+          "dadosBase": 2,
+          "dado": 8,
+          "modificador": true,
+          "dadosPorCirculo": 2
+        }
+      },
+      "resumoVerificado": "Restaura pontos de vida conforme a fórmula indicada, usando o modificador de conjuração. Consulte as limitações de alvo e os demais efeitos na descrição da edição.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Palavra Curativa": {
+      "ingles": "Healing Word",
+      "pagina": 139,
+      "nivel": 1,
+      "tipo": "abjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "cura": {
+          "dadosBase": 2,
+          "dado": 4,
+          "modificador": true,
+          "dadosPorCirculo": 2
+        }
+      },
+      "resumoVerificado": "Restaura pontos de vida conforme a fórmula indicada, usando o modificador de conjuração. Consulte as limitações de alvo e os demais efeitos na descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "Ação bônus",
+      "componentes": {
+        "componentes": [
+          "V"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Curar Ferimentos em Massa": {
+      "ingles": "Mass Cure Wounds",
+      "pagina": 147,
+      "nivel": 5,
+      "tipo": "abjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "cura": {
+          "dadosBase": 5,
+          "dado": 8,
+          "modificador": true,
+          "dadosPorCirculo": 1
+        },
+        "alvos": {
+          "rotulo": "Alvos (até)",
+          "base": 6
+        }
+      },
+      "resumoVerificado": "Restaura pontos de vida conforme a fórmula indicada, usando o modificador de conjuração. Consulte as limitações de alvo e os demais efeitos na descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Palavra Curativa em Massa": {
+      "ingles": "Mass Healing Word",
+      "pagina": 148,
+      "nivel": 3,
+      "tipo": "abjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "cura": {
+          "dadosBase": 2,
+          "dado": 4,
+          "modificador": true,
+          "dadosPorCirculo": 1
+        },
+        "alvos": {
+          "rotulo": "Alvos (até)",
+          "base": 6
+        }
+      },
+      "resumoVerificado": "Restaura pontos de vida conforme a fórmula indicada, usando o modificador de conjuração. Consulte as limitações de alvo e os demais efeitos na descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "Ação bônus",
+      "componentes": {
+        "componentes": [
+          "V"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Enfeitiçar Pessoa": {
+      "ingles": "Charm Person",
+      "pagina": 115,
+      "nivel": 1,
+      "tipo": "encantamento",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Sabedoria",
+        "notas": [
+          "Um humanoide faz resistência de Sabedoria; em combate, pode ter vantagem conforme a descrição. A magia não dá controle total sobre o alvo."
+        ],
+        "alvos": {
+          "rotulo": "Alvos (até)",
+          "base": 1,
+          "porCirculo": 1
+        }
+      },
+      "resumoVerificado": "Um humanoide faz resistência de Sabedoria; em combate, pode ter vantagem conforme a descrição. A magia não dá controle total sobre o alvo.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 9
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "1 hora",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Imobilizar Pessoa": {
+      "ingles": "Hold Person",
+      "pagina": 141,
+      "nivel": 2,
+      "tipo": "encantamento",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Sabedoria",
+        "notas": [
+          "Um humanoide faz resistência de Sabedoria; em falha, fica paralisado enquanto o efeito durar, repetindo a resistência conforme a descrição."
+        ],
+        "alvos": {
+          "rotulo": "Alvos (até)",
+          "base": 1,
+          "porCirculo": 1
+        }
+      },
+      "resumoVerificado": "Um humanoide faz resistência de Sabedoria; em falha, fica paralisado enquanto o efeito durar, repetindo a resistência conforme a descrição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a straight piece of iron"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Imobilizar Monstro": {
+      "ingles": "Hold Monster",
+      "pagina": 140,
+      "nivel": 5,
+      "tipo": "encantamento",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Sabedoria",
+        "notas": [
+          "O alvo faz resistência de Sabedoria e pode ficar paralisado; repete a resistência conforme a descrição."
+        ],
+        "alvos": {
+          "rotulo": "Alvos (até)",
+          "base": 1,
+          "porCirculo": 1
+        }
+      },
+      "resumoVerificado": "O alvo faz resistência de Sabedoria e pode ficar paralisado; repete a resistência conforme a descrição.",
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a straight piece of iron"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Medo": {
+      "ingles": "Fear",
+      "pagina": 130,
+      "nivel": 3,
+      "tipo": "ilusão",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Sabedoria",
+        "notas": [
+          "Criaturas na área fazem resistência de Sabedoria; a falha provoca medo e fuga conforme a descrição."
+        ]
+      },
+      "resumoVerificado": "Criaturas na área fazem resistência de Sabedoria; a falha provoca medo e fuga conforme a descrição.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a white feather"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Lentidão": {
+      "ingles": "Slow",
+      "pagina": 163,
+      "nivel": 3,
+      "tipo": "transmutação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Sabedoria",
+        "notas": [
+          "Até seis criaturas na área fazem resistência de Sabedoria; a falha reduz suas opções de movimento e ações."
+        ]
+      },
+      "resumoVerificado": "Até seis criaturas na área fazem resistência de Sabedoria; a falha reduz suas opções de movimento e ações.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 36
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a drop of molasses"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Padrão Hipnótico": {
+      "ingles": "Hypnotic Pattern",
+      "pagina": 141,
+      "nivel": 3,
+      "tipo": "ilusão",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Sabedoria",
+        "notas": [
+          "Criaturas que veem o padrão fazem resistência de Sabedoria; em falha, ficam enfeitiçadas e incapacitadas até o efeito terminar ou ser interrompido."
+        ]
+      },
+      "resumoVerificado": "Criaturas que veem o padrão fazem resistência de Sabedoria; em falha, ficam enfeitiçadas e incapacitadas até o efeito terminar ou ser interrompido.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 36
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "S",
+          "M"
+        ],
+        "material": "a pinch of confetti"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Banimento": {
+      "ingles": "Banishment",
+      "pagina": 112,
+      "nivel": 4,
+      "tipo": "abjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Carisma",
+        "notas": [
+          "O alvo faz resistência de Carisma; em falha, é banido temporariamente, conforme sua origem e a descrição da edição."
+        ],
+        "alvos": {
+          "rotulo": "Alvos (até)",
+          "base": 1,
+          "porCirculo": 1
+        }
+      },
+      "resumoVerificado": "O alvo faz resistência de Carisma; em falha, é banido temporariamente, conforme sua origem e a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 9
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a pentacle"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Polimorfia": {
+      "ingles": "Polymorph",
+      "pagina": 153,
+      "nivel": 4,
+      "tipo": "transmutação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Sabedoria",
+        "notas": [
+          "Transforma uma criatura em uma besta permitida pela descrição. Um alvo involuntário faz resistência de Sabedoria."
+        ]
+      },
+      "resumoVerificado": "Transforma uma criatura em uma besta permitida pela descrição. Um alvo involuntário faz resistência de Sabedoria.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a caterpillar cocoon"
+      },
+      "duracao": "Concentração, até 1 hora",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Confusão": {
+      "ingles": "Confusion",
+      "pagina": 117,
+      "nivel": 4,
+      "tipo": "encantamento",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Sabedoria",
+        "notas": [
+          "Criaturas na área fazem resistência de Sabedoria; a falha altera seu comportamento, determinado pela tabela da magia."
+        ]
+      },
+      "resumoVerificado": "Criaturas na área fazem resistência de Sabedoria; a falha altera seu comportamento, determinado pela tabela da magia.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 27
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "three nut shells"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Sono": {
+      "ingles": "Sleep",
+      "pagina": 163,
+      "nivel": 1,
+      "tipo": "encantamento",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Sabedoria",
+        "propriedades": [
+          "Concentração",
+          "Resistências sucessivas"
+        ]
+      },
+      "resumoVerificado": "Criaturas na área fazem resistência de Sabedoria; em falha, ficam incapacitadas e repetem a resistência, podendo ficar inconscientes.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a pinch of sand or rose petals"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Escudo Arcano": {
+      "ingles": "Shield",
+      "pagina": 161,
+      "nivel": 1,
+      "tipo": "abjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "notas": [
+          "Uma reação concede +5 à CA até o início do próximo turno, incluindo contra o ataque desencadeador, e impede o dano de Mísseis Mágicos."
+        ]
+      },
+      "resumoVerificado": "Uma reação concede +5 à CA até o início do próximo turno, incluindo contra o ataque desencadeador, e impede o dano de Mísseis Mágicos.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      }
+    },
+    "Armadura Arcana": {
+      "ingles": "Mage Armor",
+      "pagina": 145,
+      "nivel": 1,
+      "tipo": "abjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "notas": [
+          "Uma criatura voluntária sem armadura passa a ter CA base 13 + modificador de Destreza por até 8 horas."
+        ]
+      },
+      "resumoVerificado": "Uma criatura voluntária sem armadura passa a ter CA base 13 + modificador de Destreza por até 8 horas.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a piece of cured leather"
+      },
+      "duracao": "8 hora",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Bênção": {
+      "ingles": "Bless",
+      "pagina": 113,
+      "nivel": 1,
+      "tipo": "encantamento",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "notas": [
+          "Até três criaturas acrescentam 1d4 a ataques e resistências enquanto o efeito durar. Cada círculo acima do primeiro permite mais um alvo."
+        ],
+        "alvos": {
+          "rotulo": "Alvos (até)",
+          "base": 3,
+          "porCirculo": 1
+        }
+      },
+      "resumoVerificado": "Até três criaturas acrescentam 1d4 a ataques e resistências enquanto o efeito durar. Cada círculo acima do primeiro permite mais um alvo.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 9
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a Holy Symbol worth 5+ GP"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Perdição": {
+      "ingles": "Bane",
+      "pagina": 112,
+      "nivel": 1,
+      "tipo": "encantamento",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Carisma",
+        "notas": [
+          "Até três criaturas fazem resistência de Carisma. Em falha, subtraem 1d4 de ataques e resistências; cada círculo superior permite mais um alvo."
+        ],
+        "alvos": {
+          "rotulo": "Alvos (até)",
+          "base": 3,
+          "porCirculo": 1
+        }
+      },
+      "resumoVerificado": "Até três criaturas fazem resistência de Carisma. Em falha, subtraem 1d4 de ataques e resistências; cada círculo superior permite mais um alvo.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 9
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a drop of blood"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Auxílio": {
+      "ingles": "Aid",
+      "pagina": 107,
+      "nivel": 2,
+      "tipo": "abjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "notas": [
+          "Até três criaturas aumentam seus PV atuais e máximos em 5 por 8 horas, mais 5 por círculo acima do segundo."
+        ],
+        "alvos": {
+          "rotulo": "Alvos (até)",
+          "base": 3
+        }
+      },
+      "resumoVerificado": "Até três criaturas aumentam seus PV atuais e máximos em 5 por 8 horas, mais 5 por círculo acima do segundo.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 9
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a strip of white cloth"
+      },
+      "duracao": "8 hora",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Luz": {
+      "ingles": "Light",
+      "pagina": 144,
+      "nivel": 0,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "notas": [
+          "Um objeto emite luz plena em 6 m e penumbra por mais 6 m, por até 1 hora. Consulte as condições para objetos carregados por criaturas hostis."
+        ]
+      },
+      "resumoVerificado": "Um objeto emite luz plena em 6 m e penumbra por mais 6 m, por até 1 hora. Consulte as condições para objetos carregados por criaturas hostis.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "M"
+        ],
+        "material": "a firefly or phosphorescent moss"
+      },
+      "duracao": "1 hora",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Mãos Mágicas": {
+      "ingles": "Mage Hand",
+      "pagina": 145,
+      "nivel": 0,
+      "tipo": "conjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "notas": [
+          "Uma mão espectral manipula objetos leves à distância. Não pode atacar, ativar itens mágicos nem carregar mais de cerca de 4,5 kg."
+        ]
+      },
+      "resumoVerificado": "Uma mão espectral manipula objetos leves à distância. Não pode atacar, ativar itens mágicos nem carregar mais de cerca de 4,5 kg.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 9
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "1 minuto",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Detectar Magia": {
+      "ingles": "Detect Magic",
+      "pagina": 123,
+      "nivel": 1,
+      "tipo": "adivinhação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "notas": [
+          "Permite detectar magia próxima enquanto mantém concentração; consulte a descrição para auras e obstáculos que bloqueiam a percepção."
+        ]
+      },
+      "resumoVerificado": "Permite detectar magia próxima enquanto mantém concentração; consulte a descrição para auras e obstáculos que bloqueiam a percepção.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Concentração, até 10 minuto",
+      "concentracao": true,
+      "ritual": true
+    },
+    "Passo Nebuloso": {
+      "ingles": "Misty Step",
+      "pagina": 150,
+      "nivel": 2,
+      "tipo": "conjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "notas": [
+          "Teleporta você para um espaço desocupado visível a até 9 m, como ação bônus."
+        ]
+      },
+      "resumoVerificado": "Teleporta você para um espaço desocupado visível a até 9 m, como ação bônus.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "Ação bônus",
+      "componentes": {
+        "componentes": [
+          "V"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Invisibilidade": {
+      "ingles": "Invisibility",
+      "pagina": 143,
+      "nivel": 2,
+      "tipo": "ilusão",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "notas": [
+          "Uma criatura fica invisível enquanto o efeito durar. As condições que encerram a invisibilidade seguem a edição."
+        ],
+        "alvos": {
+          "rotulo": "Alvos (até)",
+          "base": 1,
+          "porCirculo": 1
+        }
+      },
+      "resumoVerificado": "Uma criatura fica invisível enquanto o efeito durar. As condições que encerram a invisibilidade seguem a edição.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "an eyelash in gum arabic"
+      },
+      "duracao": "Concentração, até 1 hora",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Amizade Animal": {
+      "ingles": "Animal Friendship",
+      "pagina": 107,
+      "nivel": 1,
+      "tipo": "encantamento",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Sabedoria",
+        "notas": [
+          "Uma besta faz resistência de Sabedoria. Em falha, fica enfeitiçada; as limitações do alvo seguem a edição."
+        ]
+      },
+      "resumoVerificado": "Uma besta faz resistência de Sabedoria. Em falha, fica enfeitiçada; as limitações do alvo seguem a edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 9
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a morsel of food"
+      },
+      "duracao": "24 hora",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Animar Mortos": {
+      "ingles": "Animate Dead",
+      "pagina": 108,
+      "nivel": 3,
+      "tipo": "necromancia",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "notas": [
+          "Anima restos como um morto-vivo ou renova o controle sobre mortos-vivos já criados, conforme a descrição e o círculo utilizado."
+        ]
+      },
+      "resumoVerificado": "Anima restos como um morto-vivo ou renova o controle sobre mortos-vivos já criados, conforme a descrição e o círculo utilizado.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 3
+      },
+      "conjuracao": "1 minuto",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a drop of blood, a piece of flesh, and a pinch of bone dust"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Chama Contínua": {
+      "ingles": "Continual Flame",
+      "pagina": 119,
+      "nivel": 2,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "notas": [
+          "Cria uma chama permanente que ilumina sem consumir combustível nem produzir calor, até ser dissipada."
+        ]
+      },
+      "resumoVerificado": "Cria uma chama permanente que ilumina sem consumir combustível nem produzir calor, até ser dissipada.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "ruby dust worth 50+ GP, which the spell consumes"
+      },
+      "duracao": "Até ser dissipada",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Escrita Ilusória": {
+      "ingles": "Illusory Script",
+      "pagina": 142,
+      "nivel": 1,
+      "tipo": "ilusão",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "notas": [
+          "Oculta o significado de uma escrita por 10 dias; leitores designados veem a mensagem verdadeira."
+        ]
+      },
+      "resumoVerificado": "Oculta o significado de uma escrita por 10 dias; leitores designados veem a mensagem verdadeira.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "componentes": {
+        "componentes": [
+          "S",
+          "M"
+        ],
+        "material": "ink worth 10+ GP, which the spell consumes"
+      },
+      "duracao": "10 dia",
+      "concentracao": false,
+      "ritual": true
+    },
+    "Proteção Contra Veneno": {
+      "ingles": "Protection from Poison",
+      "pagina": 157,
+      "nivel": 2,
+      "tipo": "abjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "notas": [
+          "Neutraliza veneno no alvo e concede resistência a dano de veneno e vantagem nas resistências contra envenenamento durante o efeito."
+        ]
+      },
+      "resumoVerificado": "Neutraliza veneno no alvo e concede resistência a dano de veneno e vantagem nas resistências contra envenenamento durante o efeito.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "1 hora",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Proteção Contra Energia": {
+      "ingles": "Protection from Energy",
+      "pagina": 157,
+      "nivel": 3,
+      "tipo": "abjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "notas": [
+          "Concede resistência a um tipo escolhido entre ácido, frio, fogo, elétrico e trovejante enquanto mantém concentração."
+        ]
+      },
+      "resumoVerificado": "Concede resistência a um tipo escolhido entre ácido, frio, fogo, elétrico e trovejante enquanto mantém concentração.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Concentração, até 1 hora",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Proteção Contra a Morte": {
+      "ingles": "Death Ward",
+      "pagina": 122,
+      "nivel": 4,
+      "tipo": "abjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "notas": [
+          "Protege uma vez contra cair a 0 PV ou contra um efeito que mataria instantaneamente sem causar dano, conforme a descrição."
+        ]
+      },
+      "resumoVerificado": "Protege uma vez contra cair a 0 PV ou contra um efeito que mataria instantaneamente sem causar dano, conforme a descrição.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "8 hora",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Rogar Maldição": {
+      "ingles": "Bestow Curse",
+      "pagina": 112,
+      "nivel": 3,
+      "tipo": "necromancia",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Sabedoria",
+        "notas": [
+          "Em falha na resistência de Sabedoria, o alvo sofre uma maldição escolhida entre os efeitos da descrição. Duração e concentração variam com o círculo."
+        ]
+      },
+      "resumoVerificado": "Em falha na resistência de Sabedoria, o alvo sofre uma maldição escolhida entre os efeitos da descrição. Duração e concentração variam com o círculo.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Banquete de Heróis": {
+      "ingles": "Heroes’ Feast",
+      "pagina": 140,
+      "nivel": 6,
+      "tipo": "conjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "notas": [
+          "Cria um banquete para até doze criaturas, com benefícios contra medo e veneno e aumento de PV por 24 horas, conforme a edição."
+        ]
+      },
+      "resumoVerificado": "Cria um banquete para até doze criaturas, com benefícios contra medo e veneno e aumento de PV por 24 horas, conforme a edição.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "10 minutos",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a gem-encrusted bowl worth 1,000+ GP, which the spell consumes"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Telecinesia": {
+      "ingles": "Telekinesis",
+      "pagina": 167,
+      "nivel": 5,
+      "tipo": "transmutação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "notas": [
+          "Move uma criatura ou objeto por esforço mágico enquanto mantém concentração; o teste para resistir depende da edição."
+        ]
+      },
+      "resumoVerificado": "Move uma criatura ou objeto por esforço mágico enquanto mantém concentração; o teste para resistir depende da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Concentração, até 10 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Criar Passagem": {
+      "ingles": "Passwall",
+      "pagina": 151,
+      "nivel": 5,
+      "tipo": "transmutação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "notas": [
+          "Abre uma passagem temporária em uma superfície de madeira, pedra ou gesso, dentro das dimensões da descrição."
+        ]
+      },
+      "resumoVerificado": "Abre uma passagem temporária em uma superfície de madeira, pedra ou gesso, dentro das dimensões da descrição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 9
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a pinch of sesame seeds"
+      },
+      "duracao": "1 hora",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Fagulha Estelar": {
+      "ingles": "Starry Wisp",
+      "pagina": 165,
+      "nivel": 0,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "ataque": "distancia",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 8,
+          "tipo": "Radiante",
+          "niveisPersonagem": [
+            5,
+            11,
+            17
+          ]
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. Exige uma jogada de ataque mágico. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Esquentar Metal": {
+      "ingles": "Heat Metal",
+      "pagina": 139,
+      "nivel": 2,
+      "tipo": "transmutação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Constituição",
+        "dano": {
+          "dadosBase": 2,
+          "dado": 8,
+          "tipo": "Fogo",
+          "dadosPorCirculo": 1
+        },
+        "notas": [
+          "A fórmula indica o dano causado pelo objeto aquecido. A resistência de Constituição está ligada a soltar o objeto; não reduz automaticamente o dano."
+        ]
+      },
+      "resumoVerificado": "A fórmula indica o dano causado pelo objeto aquecido. A resistência de Constituição está ligada a soltar o objeto; não reduz automaticamente o dano.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a piece of iron and a flame"
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Crescer Espinhos": {
+      "ingles": "Spike Growth",
+      "pagina": 164,
+      "nivel": 2,
+      "tipo": "transmutação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "dano": {
+          "dadosBase": 2,
+          "dado": 4,
+          "tipo": "Perfurante",
+          "rotulo": "Dano por 1,5 m percorridos"
+        },
+        "notas": [
+          "A área é terreno difícil. O dano indicado se aplica por cada 1,5 m percorridos dentro dela, sem jogada de ataque ou resistência contra o dano."
+        ]
+      },
+      "resumoVerificado": "A área é terreno difícil. O dano indicado se aplica por cada 1,5 m percorridos dentro dela, sem jogada de ataque ou resistência contra o dano.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 45
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "seven thorns"
+      },
+      "duracao": "Concentração, até 10 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Lâmina Flamejante": {
+      "ingles": "Flame Blade",
+      "pagina": 132,
+      "nivel": 2,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "ataque": "corpo-a-corpo",
+        "dano": {
+          "dadosBase": 3,
+          "dado": 6,
+          "tipo": "Fogo",
+          "dadosPorCirculo": 1,
+          "modificador": true
+        },
+        "notas": [
+          "A lâmina permite ataques mágicos corpo a corpo. O modificador e o escalonamento seguem a edição."
+        ]
+      },
+      "resumoVerificado": "A lâmina permite ataques mágicos corpo a corpo. O modificador e o escalonamento seguem a edição.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "Ação bônus",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a sumac leaf"
+      },
+      "duracao": "Concentração, até 10 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Escudo Ardente": {
+      "ingles": "Fire Shield",
+      "pagina": 132,
+      "nivel": 4,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "dano": {
+          "dadosBase": 2,
+          "dado": 8,
+          "tipo": "Fogo ou Frio"
+        },
+        "notas": [
+          "A fórmula indica o dano de retaliação contra um atacante a até 1,5 m que acerte você com um ataque corpo a corpo. A versão escolhida determina fogo ou frio."
+        ]
+      },
+      "resumoVerificado": "A fórmula indica o dano de retaliação contra um atacante a até 1,5 m que acerte você com um ataque corpo a corpo. A versão escolhida determina fogo ou frio.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a bit of phosphorus or a firefly"
+      },
+      "duracao": "10 minuto",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Névoa Mortal": {
+      "ingles": "Cloudkill",
+      "pagina": 116,
+      "nivel": 5,
+      "tipo": "conjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Constituição",
+        "dano": {
+          "dadosBase": 5,
+          "dado": 8,
+          "tipo": "Veneno",
+          "dadosPorCirculo": 1
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Constituição; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 36
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Concentração, até 10 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Nuvem Incendiária": {
+      "ingles": "Incendiary Cloud",
+      "pagina": 142,
+      "nivel": 8,
+      "tipo": "conjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 10,
+          "dado": 8,
+          "tipo": "Fogo"
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 45
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Concentração, até 1 minuto",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Tempestade de Fogo": {
+      "ingles": "Fire Storm",
+      "pagina": 132,
+      "nivel": 7,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 7,
+          "dado": 10,
+          "tipo": "Fogo"
+        }
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 45
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Tempestade Glacial": {
+      "ingles": "Ice Storm",
+      "pagina": 141,
+      "nivel": 4,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 2,
+          "dado": 10,
+          "tipo": "Concussão",
+          "dadosPorCirculo": 1
+        },
+        "danosAdicionais": [
+          {
+            "dadosBase": 4,
+            "dado": 6,
+            "tipo": "Frio"
+          }
+        ]
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 90
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a mitten"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Chuva de Meteoros": {
+      "ingles": "Meteor Swarm",
+      "pagina": 149,
+      "nivel": 9,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 20,
+          "dado": 6,
+          "tipo": "Fogo"
+        },
+        "danosAdicionais": [
+          {
+            "dadosBase": 20,
+            "dado": 6,
+            "tipo": "Concussão"
+          }
+        ]
+      },
+      "resumoVerificado": "A fórmula indica o dano. O alvo faz resistência de Destreza; consulte o efeito de uma resistência bem-sucedida na descrição. As condições e a frequência de aplicação seguem a descrição da edição.",
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Favor Divino": {
+      "ingles": "Divine Favor",
+      "pagina": 125,
+      "nivel": 1,
+      "tipo": "transmutação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 4,
+          "tipo": "Radiante",
+          "rotulo": "Dano adicional ao acertar"
+        },
+        "notas": [
+          "A fórmula indica o dano adicional de seus ataques com armas que acertarem; não é um ataque mágico separado."
+        ]
+      },
+      "resumoVerificado": "A fórmula indica o dano adicional de seus ataques com armas que acertarem; não é um ataque mágico separado.",
+      "alcance": {
+        "tipo": "pessoal",
+        "distancia": 0
+      },
+      "conjuracao": "Ação bônus",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "1 minuto",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Marca do Predador": {
+      "ingles": "Hunter’s Mark",
+      "pagina": 141,
+      "nivel": 1,
+      "tipo": "adivinhação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 6,
+          "tipo": "Energia",
+          "rotulo": "Dano adicional ao acertar"
+        },
+        "notas": [
+          "A fórmula indica o dano adicional ao acertar a criatura marcada, respeitando os tipos de ataque permitidos pela edição."
+        ]
+      },
+      "resumoVerificado": "A fórmula indica o dano adicional ao acertar a criatura marcada, respeitando os tipos de ataque permitidos pela edição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 27
+      },
+      "conjuracao": "Ação bônus",
+      "componentes": {
+        "componentes": [
+          "V"
+        ],
+        "material": null
+      },
+      "duracao": "Concentração, até 1 hora",
+      "concentracao": true,
+      "ritual": false
+    },
+    "Orbe Cromático": {
+      "ingles": "Chromatic Orb",
+      "pagina": 115,
+      "nivel": 1,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "ataque": "distancia",
+        "dano": {
+          "dadosBase": 3,
+          "dado": 8,
+          "tipo": "Tipo escolhido",
+          "dadosPorCirculo": 1
+        },
+        "notas": [
+          "Escolha ácido, frio, fogo, elétrico, veneno ou trovejante. Faça um ataque mágico à distância; saltos para outros alvos seguem a descrição de 2024."
+        ]
+      },
+      "resumoVerificado": "Escolha ácido, frio, fogo, elétrico, veneno ou trovejante. Faça um ataque mágico à distância; saltos para outros alvos seguem a descrição de 2024.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 27
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a diamond worth 50+ GP"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Sussurros Dissonantes": {
+      "ingles": "Dissonant Whispers",
+      "pagina": 124,
+      "nivel": 1,
+      "tipo": "encantamento",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Sabedoria",
+        "dano": {
+          "dadosBase": 3,
+          "dado": 6,
+          "tipo": "Psíquico",
+          "dadosPorCirculo": 1
+        },
+        "notas": [
+          "Em falha na resistência de Sabedoria, o alvo sofre o dano e usa sua reação para se afastar conforme a descrição. Em sucesso, sofre metade do dano."
+        ]
+      },
+      "resumoVerificado": "Em falha na resistência de Sabedoria, o alvo sofre o dano e usa sua reação para se afastar conforme a descrição. Em sucesso, sofre metade do dano.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "V"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Faca de Gelo": {
+      "ingles": "Ice Knife",
+      "pagina": 141,
+      "nivel": 1,
+      "tipo": "conjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "ataque": "distancia",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 1,
+          "dado": 10,
+          "tipo": "Perfurante",
+          "rotulo": "Dano no acerto"
+        },
+        "danosAdicionais": [
+          {
+            "dadosBase": 2,
+            "dado": 6,
+            "dadosPorCirculo": 1,
+            "tipo": "Frio",
+            "rotulo": "Dano da explosão"
+          }
+        ],
+        "notas": [
+          "O ataque determina o dano perfurante inicial. Acertando ou errando, a explosão exige resistência de Destreza contra o dano de frio, conforme a descrição."
+        ]
+      },
+      "resumoVerificado": "O ataque determina o dano perfurante inicial. Acertando ou errando, a explosão exige resistência de Destreza contra o dano de frio, conforme a descrição.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "conjuracao": "Ação",
+      "componentes": {
+        "componentes": [
+          "S",
+          "M"
+        ],
+        "material": "a drop of water or a piece of ice"
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Repreensão Diabólica": {
+      "ingles": "Hellish Rebuke",
+      "pagina": 140,
+      "nivel": 1,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "resistencia": "Destreza",
+        "dano": {
+          "dadosBase": 2,
+          "dado": 10,
+          "tipo": "Fogo",
+          "dadosPorCirculo": 1
+        },
+        "notas": [
+          "Uma reação causa dano de fogo à criatura que o feriu; uma resistência bem-sucedida de Destreza reduz esse dano à metade."
+        ]
+      },
+      "resumoVerificado": "Uma reação causa dano de fogo à criatura que o feriu; uma resistência bem-sucedida de Destreza reduz esse dano à metade.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 18
+      },
+      "componentes": {
+        "componentes": [
+          "V",
+          "S"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Destruição Divina": {
+      "ingles": "Divine Smite",
+      "pagina": 125,
+      "nivel": 1,
+      "tipo": "evocação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "dano": {
+          "dadosBase": 2,
+          "dado": 8,
+          "tipo": "Radiante",
+          "dadosPorCirculo": 1,
+          "rotulo": "Dano adicional ao acertar"
+        },
+        "notas": [
+          "A fórmula é o dano radiante adicional após acertar um ataque permitido pela magia. Acrescente 1d8 contra um ínfero ou morto-vivo."
+        ]
+      },
+      "resumoVerificado": "A fórmula é o dano radiante adicional após acertar um ataque permitido pela magia. Acrescente 1d8 contra um ínfero ou morto-vivo.",
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Oração de Cura": {
+      "ingles": "Prayer of Healing",
+      "pagina": 154,
+      "nivel": 2,
+      "tipo": "abjuração",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "cura": {
+          "dadosBase": 2,
+          "dado": 8,
+          "dadosPorCirculo": 1,
+          "modificador": false
+        },
+        "alvos": {
+          "rotulo": "Alvos (até)",
+          "base": 5
+        },
+        "notas": [
+          "Até cinco criaturas recebem os benefícios de um descanso curto e a cura indicada. Uma criatura só pode receber novamente esse benefício após um descanso longo."
+        ]
+      },
+      "resumoVerificado": "Até cinco criaturas recebem os benefícios de um descanso curto e a cura indicada. Uma criatura só pode receber novamente esse benefício após um descanso longo.",
+      "alcance": {
+        "tipo": "distância",
+        "distancia": 9
+      },
+      "conjuracao": "10 minutos",
+      "componentes": {
+        "componentes": [
+          "V"
+        ],
+        "material": null
+      },
+      "duracao": "Instantânea",
+      "concentracao": false,
+      "ritual": false
+    },
+    "Regeneração": {
+      "ingles": "Regenerate",
+      "pagina": 158,
+      "nivel": 7,
+      "tipo": "transmutação",
+      "combate": {
+        "fonte": "https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf",
+        "cura": {
+          "dadosBase": 4,
+          "dado": 8,
+          "bonusFixo": 15
+        },
+        "notas": [
+          "A fórmula é a cura inicial; depois o alvo recupera 1 PV no início de cada turno durante o efeito. A magia também pode restaurar membros decepados."
+        ]
+      },
+      "resumoVerificado": "A fórmula é a cura inicial; depois o alvo recupera 1 PV no início de cada turno durante o efeito. A magia também pode restaurar membros decepados.",
+      "alcance": {
+        "tipo": "toque",
+        "distancia": 0
+      },
+      "conjuracao": "1 minuto",
+      "componentes": {
+        "componentes": [
+          "V",
+          "S",
+          "M"
+        ],
+        "material": "a prayer wheel"
+      },
+      "duracao": "1 hora",
+      "concentracao": false,
+      "ritual": false
+    }
+  }
+}

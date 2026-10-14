@@ -150,7 +150,7 @@ export default function InformacoesPersonagem() {
         </div>
         {/* Popup de Nível */}
         {popupNivelAberto && (
-          <AccessibleDialog className="popup-info-personagem" aria-label="Escolha o Nível" onClose={() => setPopupNivelAberto(false)}>
+          <AccessibleDialog className="popup-info-personagem popup-nivel" aria-label="Escolha o Nível" onClose={() => setPopupNivelAberto(false)}>
             <h3>Escolha o Nível</h3>
             <div className="popup-content-info-personagem">
               {[...Array(20)].map((_, i) => (
@@ -158,8 +158,8 @@ export default function InformacoesPersonagem() {
                   {i + 1}
                 </button>
               ))}
-              <button onClick={() => setPopupNivelAberto(false)}>Fechar</button>
             </div>
+            <div className="nivel-footer"><button onClick={() => setPopupNivelAberto(false)}>Fechar</button></div>
           </AccessibleDialog>
         )}
 

@@ -22,7 +22,7 @@ const ModalSelecaoClasse: React.FC<ModalSelecaoProps> = ({ opcoes = [], titulo, 
         texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
     const opcoesFiltradas = opcoes.filter((opcao) =>
-        normalizar(opcao.nome).includes(filtro.toLowerCase())
+        normalizar(opcao.nome).includes(normalizar(filtro))
     );
 
     const classePrincipal = opcoesFiltradas.find(opcao => opcao.nome === ficha?.classePrincipal?.nome);

@@ -1,3 +1,4 @@
+import { RegistroConcessoes, sincronizarConcessoes, registrarAlteracaoMoeda } from './fichaConcessoesIniciais';
 import { podeTerSubclasse } from './subclasseElegibilidade';
 import { EscolhaMagia, adicionarMagia, removerMagia, selecionarEscolhasMagia, selecionarFontesConjuracao } from './fichaConjuracao';
 import { chaveClasse, nivelDaClasse, niveisMetamagia, podeSelecionarClasse } from '../rulesets/progressao';
@@ -20,6 +21,7 @@ import { calcularLimiteSintonizacao, extrairEfeitosDoItem } from "./fichaEfeitos
 import { TipoEquipamento, equipamentoDoItem, itemMagicoVinculado, melhoriaCompativel, motivoBloqueioMelhoria, restaurarEquipamentosMagicos, sincronizarEstadoItensMagicos } from './fichaEquipamentosMagicos';
 
 export class Ficha {
+    concessoesIniciais?: RegistroConcessoes;
     especializacoesOficiais?: import('./fichaEspecializacao').Especializacao[];
     itensSintonizados?: string[];
     recursos: { slots: Record<string, number>; morte?: { sucessos?: number; falhas?: number } };
@@ -128,6 +130,7 @@ export class Ficha {
     versaoRegras: "DND_2014" | "DND_2024";
 
     constructor(data: Partial<Ficha> = {}) {
+        this.concessoesIniciais = data.concessoesIniciais ? JSON.parse(JSON.stringify(data.concessoesIniciais)) : undefined;
         this.especializacoesOficiais = data.especializacoesOficiais?.map(e => ({ ...e }));
         if (data.versaoRegras !== undefined && data.versaoRegras !== "DND_2014" && data.versaoRegras !== "DND_2024") {
             throw new Error(`Versão de regras não suportada: ${String(data.versaoRegras)}`);
@@ -314,7 +317,8 @@ export class Ficha {
         const outrasFontes = (this.efeitos ?? []).filter(e => e.tituloEfeito !== 'background').flatMap(e => [e.pericia, ...(e.proeficienciasClasse ?? []), ...(e.proeficienciasRaca ?? []), ...(e.proeficienciasBackGround ?? []), ...(e.proficienciasMulticlasse ?? []), ...(Array.isArray(e.escolhasTalento) ? e.escolhasTalento : [])]);
         this.pericias = [...new Set([...(this.pericias ?? []).filter(p => !anteriores.includes(p) || fixasRaca.includes(p) || outrasFontes.includes(p)), ...fixasRaca, ...(backGround?.proeficienciasHabilidades ?? [])])];
         if (this.backGround?.nome !== backGround?.nome) arquivarEscolha(this, 'origem', this.backGround);
-        this.backGround = backGround;
+        sincronizarConcessoes(this, backGround);
+        this.backGround = backGround ? Object.assign(Object.create(Object.getPrototypeOf(backGround)), JSON.parse(JSON.stringify(backGround))) : null;
     }
 
     setAtributosPersonagem(atributos: Atributos | null) {
@@ -618,12 +622,15 @@ export class Ficha {
         if (index === 17) return this.metamagica4?.nome;
     }
     adicionarOuro(quantidade: number) {
+        registrarAlteracaoMoeda(this, 'ouro', quantidade);
         this.ouro += quantidade;
     }
     adicionarPrata(quantidade: number) {
+        registrarAlteracaoMoeda(this, 'prata', quantidade);
         this.prata += quantidade;
     }
     adicionarCobre(quantidade: number) {
+        registrarAlteracaoMoeda(this, 'cobre', quantidade);
         this.cobre += quantidade;
     }
     setItemMochila(item: Itens) {
