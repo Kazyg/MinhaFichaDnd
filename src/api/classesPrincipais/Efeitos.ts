@@ -3,7 +3,7 @@ import type { ReferenciaConteudo, TalentoConteudo, BeneficiosTalento, MagiaTalen
 export class Efeitos {
     conteudo?: ReferenciaConteudo;
     talentoSnapshot?: TalentoConteudo;
-    escolhasTalento?: string[];
+    escolhasTalento?: string[] | Record<string, string[]>;
     beneficiosTalento?: BeneficiosTalento;
     magiasTalento?: MagiaTalento[];
     ultimaTrocaMagiaTalento?: number;
@@ -26,6 +26,9 @@ export class Efeitos {
     valorFixo: number;
     nivelClasseOrigem?: number;
     level: number;
+    escolhasTalento2024?: Record<string, string[]>;
+    limiteAtributo?: number;
+    usosMagiaTalento?: Record<string, number>;
     constructor() {
         this.id = this.gerarIdUnico();
         this.tituloEfeito = "";

@@ -2,7 +2,8 @@ import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import type { Ficha } from "../api/fichaPersonagem/FichaPersonagem";
 import { selecionarEscolhasMagia } from '../api/fichaPersonagem/fichaConjuracao';
 import { resolverMagiaSalva, rotuloConteudo } from '../api/rulesets/conteudo';
-import { talentoDoEfeito } from '../api/fichaPersonagem/talentosConteudo';
+import { talentoDoEfeito, descreverEscolhasTalento } from '../api/fichaPersonagem/talentosConteudo';
+import { magiasConcedidas } from '../api/fichaPersonagem/talentos2024Utils';
 import { calcularValorAtributoFinal, listarEfeitosAtivos, selecionarAtributo } from "../api/fichaPersonagem/fichaEfeitosUtils";
 
 import { selecionarCA, selecionarArma, selecionarClassesAtivas, selecionarNiveis, selecionarVida, selecionarIniciativa, selecionarDeslocamento, selecionarPericia, selecionarPercepcaoPassiva, selecionarProficiencia, explicarParcelas } from '../api/fichaPersonagem/fichaSeletores';
@@ -661,7 +662,7 @@ export const gerarFichaPdf = async (ficha: Ficha) => {
   linha(`Talentos: ${obterTalentos(ficha).join(', ') || 'Não informados'}`);
   (ficha.efeitos ?? []).filter(e => e.talento).forEach(e => {
     const t = talentoDoEfeito(e);
-    linha(`${e.talento}: ${t ? `${t.id} | ${rotuloConteudo(t)}` : e.conteudo ? 'Revisão desconhecida, snapshot preservado no JSON' : 'Legado sem referência individual; efeitos salvos preservados'}. Escolhas: ${e.escolhasTalento?.join(', ') || 'nenhuma registrada'}`);
+    linha(`${e.talento}: ${t ? `${t.id} | ${rotuloConteudo(t)}` : e.conteudo ? 'Revisão desconhecida, snapshot preservado no JSON' : 'Legado sem referência individual; efeitos salvos preservados'}. Escolhas: ${descreverEscolhasTalento(e) || 'nenhuma registrada'}`);
   });
   linha(`Estilos selecionados: ${(ficha.estiloLuta ?? []).map(e => e.estilo + ' (' + e.classe + ')').join(', ') || 'Nenhum'}`);
   linha('Magias:');
@@ -670,6 +671,7 @@ export const gerarFichaPdf = async (ficha: Ficha) => {
     linha(`${m.classe}: ${m.nome} (${m.categoria}${m.preparada ? ', preparada' : ''}; fonte ${m.edicao}). Conteúdo: ${c ? `${c.id} | ${rotuloConteudo(c)}` : 'revisão desconhecida, snapshot preservado no JSON'}${!m.conteudo ? '; registro legado sem revisão individual' : ''}`);
   });
   linha(`Ouro: ${ficha.ouro} | Prata: ${ficha.prata} | Cobre: ${ficha.cobre}`);
+  magiasConcedidas(ficha).forEach(m => linha(`${m.talento}: ${m.magia.nome}; atributo ${m.atributo ?? 'não informado'}; usos gratuitos ${ficha.efeitos?.find(e => e.tituloEfeito === m.origem)?.usosMagiaTalento?.[m.chaveUso] ?? 0}/${m.usosSemEspaco}`));
   page1.drawText(`D&D ${ficha.versaoRegras === 'DND_2024' ? '2024' : '2014'} - valores e detalhes completos no anexo`, { x: 40, y: 8, size: 7, font });
   return pdfDoc.save();
 };

@@ -19,7 +19,7 @@ export function temTreinamento(ficha: Ficha, pericia: string, nivel: number) {
   if (ficha.pericias?.some(p => normalizarChave(p) === chave)) return true;
   return listarEfeitosAtivos({ ...ficha, levelTotal: nivel } as Ficha).some(e =>
     (normalizarChave(e.pericia ?? '') === chave && (!e.tipoEfeito || e.tipoEfeito === 'proficiencia')) ||
-    (talentoDoEfeito(e)?.escolha === 'treinamentos' && e.escolhasTalento?.some(p => normalizarChave(p) === chave)));
+    (talentoDoEfeito(e)?.escolha === 'treinamentos' && (Array.isArray(e.escolhasTalento) && e.escolhasTalento.some(p => normalizarChave(p) === chave))));
 }
 export function erroEspecializacao(ficha: Ficha, escolha: Especializacao, outras = ficha.especializacoesOficiais ?? []): string | null {
   const fonte = fontesEspecializacao(ficha.versaoRegras).find(f => f.id === escolha.fonte);

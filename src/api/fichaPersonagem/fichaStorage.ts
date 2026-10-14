@@ -42,7 +42,10 @@ const equipment = shape({ id, nome: string }, {
 const contentReference = shape({ id: string, edicao: string, revisao: string });
 const contentSnapshot = shape({ nome: string, descricao: string });
 const effect = shape({ id }, {
-  conteudo: contentReference, talentoSnapshot: contentSnapshot, escolhasTalento: strings,
+  conteudo: contentReference, talentoSnapshot: contentSnapshot, escolhasTalento: v => strings(v) || (object(v) && Object.values(v).every(strings)),
+  escolhasTalento2024: v => object(v) && Object.values(v).every(strings),
+  usosMagiaTalento: v => object(v) && Object.values(v).every(n => typeof n === 'number' && Number.isInteger(n) && n >= 0),
+  limiteAtributo: number,
   tituloEfeito: string, tipoEfeito: string, origemTipo: string, origemId: string,
   classeNome: string, atributo: string, talento: string, pericia: string, arma: string, ca: string,
   bonus: number, valorFixo: number, level: number, nivelClasseOrigem: number, proeficienciasRaca: strings,

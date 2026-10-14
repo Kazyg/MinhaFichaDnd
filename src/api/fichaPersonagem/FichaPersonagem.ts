@@ -14,6 +14,8 @@ import { Armaduras_equip } from "../equipamentos/Armaduras"
 import { Armas } from "../equipamentos/Armas";
 import { Itens } from "../../bibliotecas/Itens";
 import { Patronos } from "../classesEspeciais/Patronos.class";
+import { criarConcessoesTalento, talento2024 } from './talentos2024Utils';
+import { resolverConteudo } from '../rulesets/conteudo';
 import { calcularLimiteSintonizacao, extrairEfeitosDoItem } from "./fichaEfeitosUtils";
 
 export class Ficha {
@@ -252,7 +254,7 @@ export class Ficha {
 
     aplicarAumentoAtributos(nivel: number, escolhas: string[]) { return aplicarASI(this, nivel, escolhas); }
     concluirAtributos() { return concluirDistribuicao(this); }
-    selecionarTalentoAvanco(nivel: number, nome: string, escolhas: string[] = []) { return selecionarTalentoAvanco(this, nivel, nome, escolhas); }
+    selecionarTalentoAvanco(nivel: number, nome: string, escolhas: import('./talentosConteudo').EscolhasSelecaoTalento = []) { return selecionarTalentoAvanco(this, nivel, nome, escolhas); }
     selecionarMetamagia(nivelClasse: number, slot: number, nome: string) { return selecionarMetamagia(this, nivelClasse, slot, nome); }
 
     setSubClasse(classe: Classes, subClasse: SubClasses) {
@@ -429,10 +431,16 @@ export class Ficha {
             this.efeitos = []
         }
         this.efeitos?.push(efeitos);
+        const conteudo = efeitos.conteudo && resolverConteudo(efeitos.conteudo);
+        if ((efeitos.escolhasTalento2024 || (efeitos.escolhasTalento && !Array.isArray(efeitos.escolhasTalento))) && talento2024(efeitos.talento) && (!efeitos.conteudo || (conteudo && 'phb' in conteudo && conteudo.phb))) {
+            this.efeitos?.push(...criarConcessoesTalento(efeitos, this).map(e => Object.assign(e, {
+                conteudo: efeitos.conteudo, classeNome: efeitos.classeNome, nivelClasseOrigem: efeitos.nivelClasseOrigem,
+            })));
+        }
     }
     excluirEfeitoPorTitulo(titulo: string) {
         if (this.efeitos) {
-            this.efeitos = this.efeitos?.filter(e => e.tituloEfeito !== titulo);
+            this.efeitos = this.efeitos?.filter(e => e.tituloEfeito !== titulo && !(e.origemTipo === 'talento2024' && e.origemId === titulo));
         }
     }
     excluirEfeitoPorNivel(nivel: number) {

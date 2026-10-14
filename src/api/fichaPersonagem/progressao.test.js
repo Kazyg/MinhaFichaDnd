@@ -247,8 +247,7 @@ test.each(['DND_2014', 'DND_2024'])('modal mostra somente classes novas elegíve
   const dialog = within(screen.getByRole('dialog'));
   for (const classe of getRulesetData(edicao).classes) {
     const opcao = dialog.queryByRole('button', { name: classe.nome, exact: true });
-    if (['guerreiro', 'barbaro', 'ladino'].includes(classe.chave)) expect(opcao).toBeInTheDocument();
-    else expect(opcao).not.toBeInTheDocument();
+    expect(Boolean(opcao)).toBe(['guerreiro', 'barbaro', 'ladino'].includes(classe.chave));
   }
   expect(ficha.selecionarClasseNoNivel(getRulesetData(edicao).classes.find(c => c.chave === 'mago'), 2)).toBe(false);
 });

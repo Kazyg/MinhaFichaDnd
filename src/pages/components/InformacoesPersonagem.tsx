@@ -12,6 +12,7 @@ import VidaComponente from "./components_InformacoesPersonagem/ModalVida";
 import { calcularValorAtributoFinal, selecionarAtributo } from "../../api/fichaPersonagem/fichaEfeitosUtils";
 
 import { selecionarCA, selecionarProficiencia } from "../../api/fichaPersonagem/fichaSeletores";
+import { temSalvaguarda } from '../../api/fichaPersonagem/talentos2024Utils';
 
 declare global {
   interface Window {
@@ -43,7 +44,7 @@ export default function InformacoesPersonagem() {
   const calcularProeficiencia = (idAtributo: number) => {
     let nomeTesteResistencia = atributosIniciais.find(a => a.id === idAtributo)?.nomeDesc;
 
-    if (ficha?.classePrincipal?.testesResistencias?.includes(nomeTesteResistencia ?? "")) {
+    if (temSalvaguarda(ficha, nomeTesteResistencia ?? '')) {
       return selecionarProficiencia(ficha);
     }
     return 0;

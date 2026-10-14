@@ -3,7 +3,7 @@ import { Efeitos } from '../classesPrincipais/Efeitos';
 import { Atributos } from '../classesPrincipais/Atributos.class';
 import { atributosChaves, chaveClasse, erroDistribuicao, nivelDaClasse, normalizarChave, recursosNoNivel } from '../rulesets/progressao';
 import { calcularValorAtributoFinal } from './fichaEfeitosUtils';
-import { erroTalento, registrarTalento, talentosDisponiveis, talentoDoEfeito } from './talentosConteudo';
+import { erroTalento, registrarTalento, talentosDisponiveis, talentoDoEfeito, EscolhasSelecaoTalento } from './talentosConteudo';
 import { buscarTalentoConteudo } from '../rulesets/conteudo';
 
 export function arquivarEscolha(ficha: Ficha, tipo: string, valor: unknown) {
@@ -13,10 +13,11 @@ export function arquivarEscolha(ficha: Ficha, tipo: string, valor: unknown) {
 
 export function efeitosDoAvanco(ficha: Ficha, nivel: number): Efeitos[] {
   const classe = ficha.multiclasses?.find(m => m.nivelEscolhido.includes(nivel))?.classe;
-  return (ficha.efeitos ?? []).filter(e => e.level === nivel && (
+  const principais = (ficha.efeitos ?? []).filter(e => e.level === nivel && (
     e.origemId === `avanco:${classe && chaveClasse(classe)}:${classe && nivelDaClasse(ficha, classe, nivel)}` ||
     [`selecionadoAtributo${nivel}`, `selecionadoTalento${nivel}`, `TalentoEscolhido${nivel}`,
       `atributo1Classe${classe?.nome}${nivel}`, `atributo2Classe${classe?.nome}${nivel}`].includes(e.tituloEfeito)));
+  return (ficha.efeitos ?? []).filter(e => principais.includes(e) || (e.origemTipo === 'talento2024' && principais.some(p => p.tituloEfeito === e.origemId)));
 }
 
 export function erroASI(ficha: Ficha, nivel: number, escolhas: string[]): string | null {
@@ -64,7 +65,7 @@ export function talentosElegiveis(ficha: Ficha, nivel: number) {
   return talentosDisponiveis(ficha, nivel, undefined, efeitosDoAvanco(ficha, nivel));
 }
 
-export function selecionarTalentoAvanco(ficha: Ficha, nivel: number, nome: string, escolhas: string[] = []): boolean {
+export function selecionarTalentoAvanco(ficha: Ficha, nivel: number, nome: string, escolhas: EscolhasSelecaoTalento = []): boolean {
   const classe = ficha.multiclasses?.find(m => m.nivelEscolhido.includes(nivel))?.classe;
   if (!classe || nivel > (ficha.levelTotal ?? 0) || !recursosNoNivel(classe, nivelDaClasse(ficha, classe, nivel), ficha.versaoRegras).length || !talentosElegiveis(ficha, nivel).some(t => t.nome === nome)) return false;
   const anteriores = efeitosDoAvanco(ficha, nivel);

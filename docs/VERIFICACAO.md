@@ -1,5 +1,9 @@
 # Base de verificação — A21 e parte de A26
 
+**Integração posterior:** regras de `feat/regras-2024` adaptadas à persistência e referências de `feature/dnd2024`; **748 testes em 22 suítes, lint, typecheck e build com ofuscação aprovados**. Veja o [relatório do merge](merge-regras-2024-2026-10-13/RELATORIO.md). Os resultados da revisão anterior abaixo não descrevem o estado após essa integração.
+
+**Revalidação em 13/10/2026:** veja o [relatório corrente](revisao-portfolio-2026-10-13/RELATORIO.md). Após o patch Router 6.30.6, foram executados 257 testes: 256 passaram e um falhou em Iniciado em Magia 2024, cuja implementação está incompleta. Lint, typecheck estrito e build com ofuscação passaram. Os números e avisos abaixo são históricos.
+
 **Estado corrente em 08/10/2026:** strict habilitado, 239 testes em 14 suítes aprovados, lint/typecheck aprovados. Consulte a [implementação atual, matriz e logs exclusivos](revisao-pendencias-2026-10-08/IMPLEMENTACAO.md). Os resultados abaixo são o histórico da base de 07/10, não o resultado desta nova execução.
 
 Verificada em 07/10/2026, com Node 24.14.0 e npm 11.9.0. Execute na raiz:

@@ -40,13 +40,14 @@ export function selecionarIniciativa(f: Documento) {
     ...listarEfeitosAtivos(f).filter(e => e.tipoEfeito === 'iniciativa').map(e => parcela(e.tituloEfeito || 'Ajuste de iniciativa', e.bonus))];
   const alerta = listarEfeitosAtivos(f).map(talentoDoEfeito).find(t => t?.iniciativa);
   if (alerta) parcelas.push(parcela(`Alerta ${alerta.edicao.replace('DND_', '')}`, alerta.iniciativa === 'fixo5' ? 5 : selecionarProficiencia(f)));
+  else if (listarEfeitosAtivos(f).some(e => e.tipoEfeito === 'iniciativa_proficiencia')) parcelas.push(parcela('Alerta 2024 salvo', selecionarProficiencia(f)));
   return { total: somar(parcelas), parcelas };
 }
 export function selecionarPericia(f: Documento, nome: string, atributo: string) {
   const efeitos = listarEfeitosAtivos(f).filter(e => normalizarTexto(e.pericia) === normalizarTexto(nome));
   const especializada = efeitos.some(e => e.tipoEfeito === 'especializacao') || (!!f && especializacoesAtivas(f).some(e => normalizarTexto(e.pericia) === normalizarTexto(nome)));
-  const porTalento = listarEfeitosAtivos(f).some(e => talentoDoEfeito(e)?.escolha === 'treinamentos' && e.escolhasTalento?.some(p => normalizarTexto(p) === normalizarTexto(nome)));
-  const treinada = porTalento || especializada || !!f?.pericias?.some(p => normalizarTexto(p) === normalizarTexto(nome)) || efeitos.some(e => !e.tipoEfeito || e.tipoEfeito === 'proficiencia');
+  const porTalento = listarEfeitosAtivos(f).some(e => talentoDoEfeito(e)?.escolha === 'treinamentos' && (Array.isArray(e.escolhasTalento) && e.escolhasTalento.some(p => normalizarTexto(p) === normalizarTexto(nome))));
+  const treinada = porTalento || especializada || selecionarProficiencias(f).has(normalizarTexto(nome)) || !!f?.pericias?.some(p => normalizarTexto(p) === normalizarTexto(nome)) || efeitos.some(e => !e.tipoEfeito || e.tipoEfeito === 'proficiencia');
   const parcelas = [parcela(`${atributo} final`, modificadorAtributo(f, atributo)),
     parcela(especializada ? 'Especialização (2 × proficiência)' : 'Proficiência', selecionarProficiencia(f) * (especializada ? 2 : 1), treinada),
     ...efeitos.filter(e => e.tipoEfeito === 'bonus_pericia').map(e => parcela(e.tituloEfeito || 'Ajuste de perícia', e.bonus))];
@@ -62,6 +63,7 @@ export function selecionarVida(f: Documento) {
     `${classe!.nome} no nível ${nivel}`, Math.max(1, (nivel === 1 ? classe!.dadosVida : Math.floor(classe!.dadosVida / 2) + 1) + con), true,
     nivel === 1 ? `dado máximo + CON ${formatarBonus(con)}` : `média fixa + CON ${formatarBonus(con)}`));
   parcelas.push(...listarEfeitosAtivos(f).filter(e => e.tipoEfeito === 'pv_maximo').map(e => parcela(e.tituloEfeito || 'Ajuste de PV', e.bonus)));
+  parcelas.push(...listarEfeitosAtivos(f).filter(e => ['vida', 'vida_por_nivel'].includes(e.tipoEfeito)).map(e => parcela(e.tituloEfeito, e.bonus * (e.tipoEfeito === 'vida_por_nivel' ? f?.levelTotal ?? 0 : 1))));
   // vidaTotal has no automatic writer: retain an explicitly saved maximum.
   return { total: f?.vidaTotal ?? somar(parcelas), calculado: somar(parcelas), parcelas,
     ausentes, manual: f?.vidaTotal != null };
@@ -78,7 +80,7 @@ export function selecionarDeslocamento(f: Documento) {
 }
 export function selecionarProficiencias(f: Documento) {
   return new Set(listarEfeitosAtivos(f).flatMap(e => [
-    ...(talentoDoEfeito(e)?.escolha === 'treinamentos' ? e.escolhasTalento ?? [] : []),
+    ...(talentoDoEfeito(e)?.escolha === 'treinamentos' ? (Array.isArray(e.escolhasTalento) ? e.escolhasTalento : []) : []),
     ...(e.proeficienciasClasse ?? []), ...(e.proeficienciasRaca ?? []),
     ...(e.proeficienciasBackGround ?? []), ...(e.proficienciasMulticlasse ?? []),
   ]).concat(f?.classePrincipal?.armaduras ?? [], f?.classePrincipal?.armas ?? []).map(normalizarTexto));
@@ -101,8 +103,8 @@ export function selecionarCA(f: Documento) {
   const parcelas: Parcela[] = [];
   if (escudo) parcelas.push(parcela(escudo.nome, escudo.ac, f?.versaoRegras !== 'DND_2024' || treinoEscudo, '2014: com ou sem treino; 2024: exige treino'));
   let defesaIncluida = false;
-  listarEfeitosAtivos(f).filter(e => e.ca === 'CA' || e.tipoEfeito === 'ca_item' || e.tipoEfeito === 'estilo_defesa').forEach(e => {
-    const defesa = e.tipoEfeito === 'estilo_defesa' || e.tituloEfeito?.startsWith('estiloLuta');
+  listarEfeitosAtivos(f).filter(e => e.ca === 'CA' || e.tipoEfeito === 'ca_item' || e.tipoEfeito === 'estilo_defesa' || e.tipoEfeito === 'defensivo').forEach(e => {
+    const defesa = e.tipoEfeito === 'estilo_defesa' || e.tipoEfeito === 'defensivo' || e.tituloEfeito?.startsWith('estiloLuta');
     if (defesa && defesaIncluida) return;
     if (defesa) defesaIncluida = true;
     parcelas.push(parcela(defesa ? 'Estilo Defesa' : e.tituloEfeito || 'Ajuste de CA', e.bonus,
@@ -114,7 +116,8 @@ export function selecionarCA(f: Documento) {
   const alternativas = [{ fonte: 'Sem armadura: 10 + DES', valor: 10 + des, aplicada: !armadura }];
   if (classes.includes('barbaro')) alternativas.push({ fonte: 'Bárbaro: 10 + DES + CON (permite escudo)', valor: 10 + des + modificadorAtributo(f, 'constituicao'), aplicada: !armadura && chaveClasse(primeiraDefesa!) === 'barbaro' });
   if (classes.includes('monge')) alternativas.push({ fonte: 'Monge: 10 + DES + SAB (sem escudo)', valor: 10 + des + modificadorAtributo(f, 'sabedoria'), aplicada: !armadura && !escudo && chaveClasse(primeiraDefesa!) === 'monge' });
-  if (armadura) alternativas.push({ fonte: `${armadura.nome}: base${categoria.includes('leve') ? ' + DES' : categoria.includes('media') ? ' + DES (máx. 2)' : ''}`, valor: armadura.ac + (categoria.includes('leve') ? des : categoria.includes('media') ? Math.min(des, 2) : 0), aplicada: true });
+  const limiteDes = listarEfeitosAtivos(f).some(e => e.tipoEfeito === 'limite_destreza_armadura') ? 3 : 2;
+  if (armadura) alternativas.push({ fonte: `${armadura.nome}: base${categoria.includes('leve') ? ' + DES' : categoria.includes('media') ? ` + DES (máx. ${limiteDes})` : ''}`, valor: armadura.ac + (categoria.includes('leve') ? des : categoria.includes('media') ? Math.min(des, limiteDes) : 0), aplicada: true });
   const selecionada = alternativas.filter(a => a.aplicada).reduce((a, b) => b.valor > a.valor ? b : a);
   const manual = f?.classeArmadura ?? f?.cA;
   const total = manual ?? selecionada.valor + somar(parcelas);

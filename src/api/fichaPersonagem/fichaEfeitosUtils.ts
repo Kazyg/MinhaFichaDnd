@@ -196,12 +196,13 @@ export const extrairEfeitosDoItem = (item: Itens): Efeitos[] => {
 
 export const listarEfeitosAtivos = (ficha: Ficha | null | undefined): Efeitos[] => {
   if (!ficha?.efeitos) return [];
-  return ficha.efeitos.filter((efeito) => {
+  const ativo = (efeito: Efeitos) => {
     if (efeito.conteudo && (efeito.conteudo.edicao !== ficha.versaoRegras || !resolverConteudo(efeito.conteudo))) return false;
     if (efeito.nivelClasseOrigem && efeito.classeNome && nivelDaClasse(ficha, chaveClasse(efeito.classeNome)) < efeito.nivelClasseOrigem) return false;
     if (efeito.level === undefined || efeito.level === null) return true;
     return efeito.level <= (ficha.levelTotal || 0);
-  });
+  };
+  return ficha.efeitos.filter(efeito => ativo(efeito) && (efeito.origemTipo !== 'talento2024' || ficha.efeitos?.some(pai => pai.tituloEfeito === efeito.origemId && pai.origemTipo !== 'talento2024' && ativo(pai))));
 };
 
 const normalizarAtributo = (atributo: string): AtributoChave | null => {
@@ -216,8 +217,7 @@ export const selecionarAtributo = (ficha: Ficha | null | undefined, atributo: st
   const valorBase = ficha?.atributosPersonagem?.[atributoChave]?.valor ?? 10;
   const efeitos = listarEfeitosAtivos(ficha).filter((efeito) => normalizarAtributo(efeito.atributo ?? "") === atributoChave);
 
-  const bonusTotal = efeitos.reduce((acc, efeito) => acc + (efeito.bonus ?? 0), 0);
-  const valorComBonus = valorBase + bonusTotal;
+  const valorComBonus = efeitos.reduce((valor, efeito) => valor + (efeito.limiteAtributo ? Math.max(0, Math.min(efeito.bonus ?? 0, efeito.limiteAtributo - valor)) : efeito.bonus ?? 0), valorBase);
   const valoresFixos = efeitos
     .map((efeito) => efeito.valorFixo ?? null)
     .filter((valor): valor is number => typeof valor === "number");

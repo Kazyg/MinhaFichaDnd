@@ -419,7 +419,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
                             setModalTalentoOrigemHumanoAberto(false);
                           }}></div>
                           <div className="popup">
-                            <ModalSelecaoTalento
+                            <ModalSelecaoTalento ficha={ficha}
                               titulo={rulesetData.version === "DND_2024" ? "Escolha um Talento de Origem" : "Escolha um Talento"}
                               opcoes={talentos}
                               onClose={() => {
@@ -431,7 +431,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
                                 forceUpdate(); return true;
                               }}
                               validar={(t, escolhas) => ficha ? erroTalento(ficha, 1, t, escolhas, rulesetData.version === 'DND_2024' ? 'Origin' : undefined, efeitosTalentoHumano) : 'Ficha indisponível'}
-                              escolhasIniciais={efeitosTalentoHumano[0]?.escolhasTalento}
+                              escolhasIniciais={efeitosTalentoHumano[0]?.escolhasTalento2024 ?? efeitosTalentoHumano[0]?.escolhasTalento}
                               talentoInicial={talentos.find(t => t.nome === ficha?.efeitos?.find(e => e.tituloEfeito === tituloTalentoHumano)?.talento) ?? null}
                             />
                           </div>

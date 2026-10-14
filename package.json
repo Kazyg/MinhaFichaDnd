@@ -11,7 +11,7 @@
     "pdf-lib": "^1.17.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "6.30.4",
+    "react-router-dom": "6.30.6",
     "react-scripts": "^5.0.1",
     "react-toastify": "^11.0.5",
     "web-vitals": "^3.5.0",
@@ -27,7 +27,6 @@
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
     "typecheck": "tsc --noEmit"
   },
-  "obfuscate": "javascript-obfuscator ./build --output ./build --compact true --control-flow-flattening true --dead-code-injection true --debug-protection true --debug-protection-interval true --disable-console-output true",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -47,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "@types/jest": "27.5.2",
     "@types/react": "18.3.18",
     "@types/react-dom": "18.3.5",
     "eslint": "8.57.1",

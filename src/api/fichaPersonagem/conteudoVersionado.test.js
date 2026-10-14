@@ -42,7 +42,10 @@ test('edições e revisões desconhecidas não caem no catálogo legado nem na r
   const magia = buscarMagiaConteudo('DND_2024', 'Curar Ferimentos');
   expect(resolverConteudo({ ...referenciaConteudo(magia), revisao: 'futura' })).toBeUndefined();
   expect(resolverConteudo({ ...referenciaConteudo(magia), edicao: 'DND_2014' })).toBeUndefined();
-  expect(buscarMagiaConteudo('DND_2024', 'Raio de Fogo')).toBeUndefined();
+  const raio2024 = buscarMagiaConteudo('DND_2024', 'Raio de Fogo');
+  expect(raio2024).toMatchObject({ edicao: 'DND_2024', revisao: 'phb2024-ha6-20250813-1', licenca: 'pendente' });
+  expect(raio2024.id).not.toBe(buscarMagiaConteudo('DND_2014', 'Raio de Fogo').id);
+  expect(buscarMagiaConteudo('DND_2024', 'Magia inexistente de teste')).toBeUndefined();
   expect(buscarMagiaConteudo('DND_2014', 'Raio de Fogo')).toBeDefined();
 });
 
@@ -52,7 +55,8 @@ test('catálogos têm identidade, fonte, revisão, licença e categoria; legado 
     expect(new Set(registros.map(c => `${c.id}@${c.revisao}`)).size).toBe(registros.length);
     registros.forEach(c => {
       expect(c.edicao).toBe(edicao);
-      expect(c.fonte.consultadoEm).toBe('2026-10-07');
+      expect(c.fonte.consultadoEm).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(Number.isNaN(Date.parse(c.fonte.consultadoEm))).toBe(false);
       expect(c.fonte.localizador).toBeTruthy();
       expect(c.categoria).toBeTruthy();
       expect(['oficial', 'compativel', 'homebrew', 'nao-verificado']).toContain(c.natureza);

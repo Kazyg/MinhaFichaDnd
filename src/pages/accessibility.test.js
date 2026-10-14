@@ -58,7 +58,9 @@ test('seleciona talento por teclado, anuncia seleção e retorna ao acionador', 
   expect(screen.getByRole('textbox', { name: 'Filtrar talentos...' })).toHaveFocus();
   await user.tab(); await user.keyboard(' ');
   expect(screen.getByRole('button', { name: talent.nome })).toHaveAttribute('aria-pressed', 'true');
-  await user.tab(); await user.tab(); await user.keyboard('{Enter}');
+  await user.tab();
+  expect(screen.getByRole('button', { name: `Escolher ${talent.nome}` })).toHaveFocus();
+  await user.keyboard('{Enter}');
   expect(selected).toHaveBeenCalledWith(talent, []);
   expect(screen.getByRole('button', { name: 'Talento' })).toHaveFocus();
 });

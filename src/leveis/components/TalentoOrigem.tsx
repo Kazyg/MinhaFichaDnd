@@ -17,7 +17,7 @@ export default function TalentoOrigem() {
     {efeitos.map(e => <p key={e.id}>{descreverTalentoSalvo(e)}</p>)}
     {!t?.suportado ? <p role="status">Implementação e escolhas pendentes. O nome concedido pela origem permanece salvo.</p> : <button onClick={() => setAberto(true)}>Configurar ou revisar {nome}</button>}
     {aberto && t && <div className="popup"><ModalSelecaoTalento titulo={`Revisar ${nome}`} opcoes={[t]} talentoInicial={t}
-      escolhasIniciais={efeitos[0]?.escolhasTalento} validar={(t, escolhas) => erroTalento(ficha, 1, t, escolhas, 'Origin', efeitos)}
+      escolhasIniciais={efeitos[0]?.escolhasTalento2024 ?? efeitos[0]?.escolhasTalento} validar={(t, escolhas) => erroTalento(ficha, 1, t, escolhas, 'Origin', efeitos)}
       onClose={() => setAberto(false)} onSelect={(t, escolhas) => {
         if (selecionarTalentoInicial(ficha, 'TalentoOrigem', t.nome, escolhas)) return false;
         forceUpdate(); return true;

@@ -489,7 +489,7 @@ const NivelBlock: React.FC<NivelBlockProps> = ({ nivel, classesDisponiveis, sele
                 <>
                     <div className="popup-overlay" onClick={() => setModalTalentoAberto(false)}></div>
                     <div className="popup">
-                        <ModalSelecaoTalento
+                        <ModalSelecaoTalento ficha={ficha}
                             titulo="Escolha um Talento"
                             opcoes={talentos}
                             onClose={() => setModalTalentoAberto(false)}
@@ -499,7 +499,7 @@ const NivelBlock: React.FC<NivelBlockProps> = ({ nivel, classesDisponiveis, sele
                                 return !!sucesso;
                             }}
                             validar={(t, escolhas) => ficha ? erroTalento(ficha, nivel, t, escolhas, undefined, efeitosDoAvanco(ficha, nivel)) : "Ficha indisponível"}
-                            escolhasIniciais={ficha?.efeitos?.find(e => e.tituloEfeito === `TalentoEscolhido${nivel}`)?.escolhasTalento}
+                            escolhasIniciais={ficha?.efeitos?.find(e => e.tituloEfeito === `TalentoEscolhido${nivel}`)?.escolhasTalento2024 ?? ficha?.efeitos?.find(e => e.tituloEfeito === `TalentoEscolhido${nivel}`)?.escolhasTalento}
                             talentoInicial={talentos.find(t => t.nome === ficha?.efeitos?.find(e => e.tituloEfeito === `TalentoEscolhido${nivel}`)?.talento) ?? null}
                         />
                     </div>

@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import ModalSelecaoMagias from '../../modals/ModalMagias';
 import '../../css/Magias.css';
 import { useFicha } from '../../../api/fichaPersonagem/FichaContext';
+import { magiasConcedidas, usarMagiaTalento, restaurarMagiasTalento } from '../../../api/fichaPersonagem/talentos2024Utils';
 import { adicionarMagia, pendenciasMagia, prepararMagia, removerMagia, revisarFonteMagia, selecionarEscolhasMagia, selecionarFontesConjuracao, selecionarPoolsMagia } from '../../../api/fichaPersonagem/fichaConjuracao';
 
 export default function AbaMagias() {
@@ -12,6 +13,7 @@ export default function AbaMagias() {
   const fontes = selecionarFontesConjuracao(ficha);
   const pools = selecionarPoolsMagia(ficha);
   const escolhas = selecionarEscolhasMagia(ficha);
+  const concedidas = magiasConcedidas(ficha);
   return <div className="magias">
     <div className="header-magias"><h3>Conjuração</h3>
       <button className="adicionar-armas" onClick={() => setModal('')}>Escolher Magia</button>
@@ -39,6 +41,12 @@ export default function AbaMagias() {
       </div>)}
     </section>)}
     <h3>Magias registradas</h3>
+    {concedidas.length > 0 && <section aria-label="Magias concedidas por talentos"><h3>Magias de talentos</h3>
+      {concedidas.map(m => <div key={`${m.origem}:${m.magia.nome}`}><p>{m.magia.nome.replace(/^2024: /, '')} — {m.talento}, {m.atributo}</p><p>{m.magia.descricao}</p>
+        {m.magia.nivel > 0 && m.usosSemEspaco > 0 && <button disabled={(ficha?.efeitos?.find(e => e.tituloEfeito === m.origem)?.usosMagiaTalento?.[m.chaveUso] ?? 0) >= m.usosSemEspaco} onClick={() => { if (ficha && usarMagiaTalento(ficha, m.origem, m.magia.nome)) forceUpdate(); }}>Usar {m.magia.nome.replace(/^2024: /, '')} sem espaço</button>}
+      </div>)}
+      <button onClick={() => { if (ficha) { restaurarMagiasTalento(ficha); forceUpdate(); } }}>Restaurar usos de magias de talentos (descanso longo)</button>
+    </section>}
     {escolhas.map(escolha => {
       const pendencias = pendenciasMagia(ficha, escolha);
       const fonte = fontes.find(f => f.id === escolha.fonte);

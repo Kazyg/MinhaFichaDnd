@@ -1,120 +1,88 @@
-# Minha Ficha D&D
+﻿# MinhaFichaDnd
 
-Aplicação web para criação e gerenciamento de fichas de personagens de **Dungeons & Dragons 5e**.
+Aplicação web para criar e gerenciar fichas de personagens de Dungeons & Dragons 5e, com regras de 2014 e 2024.
 
-O projeto permite montar personagens escolhendo raça, sub-raça, classe e background, além de acompanhar progressão de níveis, multiclasses, perícias, idiomas, inventário, equipamentos e magias. Também oferece salvamento local no navegador, importação e exportação em JSON e geração da ficha em PDF.
+[Aplicação publicada](https://minhafichadnd.com.br/) · [Repositório](https://github.com/Kazyg/MinhaFichaDnd) · [Revisão técnica atual](docs/revisao-portfolio-2026-10-13/RELATORIO.md)
+
+O projeto reúne criação, progressão e consulta da ficha em uma interface para desktop e dispositivos móveis. Seu objetivo técnico é desenvolver e manter uma aplicação React com regras de domínio, persistência local e compatibilidade com documentos existentes, por meio de melhorias incrementais.
 
 ## Funcionalidades
 
-- Criação de fichas de personagem para D&D 5e
-- Seleção de raça, sub-raça, classe e background
-- Configuração de atributos, perícias, idiomas e efeitos
-- Progressão de níveis e suporte a multiclasses
-- Gerenciamento de inventário, equipamentos e magias
-- Salvamento local no navegador, com status visível e ação Salvar Ficha
-- Importação e exportação de fichas em `JSON`
-- Exportação da ficha em `PDF`
-- Interface adaptada para desktop e mobile
+- Seleção de raça/espécie, classe, subclasse e antecedente/origem por edição.
+- Atributos, perícias, idiomas, efeitos, progressão de níveis e multiclasses.
+- Inventário, armas, armaduras, sintonização e seleção de magias.
+- Salvamento automático local e ação Salvar Ficha, com tratamento de falhas.
+- Importação e exportação JSON, com escolha explícita entre cópia e substituição quando há colisão de ID.
+- Exportação PDF carregada sob demanda, com tratamento de falha e nova tentativa.
 
-## Tecnologias utilizadas
+As automações são parciais. Uma entrada no catálogo não garante implementação de todos os seus requisitos, escolhas ou efeitos; consulte as limitações abaixo.
 
-- React
-- JavaScript
-- TypeScript
-- React Router DOM
-- pdf-lib
-- Framer Motion
-- React Toastify
+## Tecnologias
 
-## Requisitos
+React 18, JavaScript, TypeScript 4.9, React Router 6, Context API, Create React App (`react-scripts` 5), pdf-lib, Framer Motion e React Toastify. Testes com Jest e React Testing Library; verificação com ESLint e TypeScript.
 
-Antes de começar, você precisa ter instalado:
+## Executar localmente
 
-- [Node.js](https://nodejs.org/) em versão LTS
-- `npm` (normalmente já vem com o Node.js)
+Ambiente desta revisão: Node.js 24.14.0 e npm 11.9.0. O workflow usa Node 24. Instale a partir do lockfile:
 
-## Instalação
-
-### 1. Clone o repositório
-
-```bash
-git clone <URL_DO_REPOSITORIO>
-```
-
-### 2. Acesse a pasta do projeto
-
-```bash
+```sh
+git clone https://github.com/Kazyg/MinhaFichaDnd.git
 cd MinhaFichaDnd
-```
-
-### 3. Instale as dependências
-
-```bash
 npm ci
-```
-
-## Como executar o projeto
-
-Para iniciar o ambiente de desenvolvimento:
-
-```bash
 npm start
 ```
 
-Depois disso, a aplicação ficará disponível em:
+Abra `http://127.0.0.1:3000`. O script limita o servidor de desenvolvimento ao loopback. Para publicação, use artefatos estáticos; o servidor de desenvolvimento não é hosting de produção.
 
-```bash
-http://localhost:3000
-```
+## Verificação e build
 
-## Scripts disponíveis
+| Comando | Finalidade |
+| --- | --- |
+| `npm test -- --watchAll=false --runInBand` | Executar a suíte uma vez |
+| `npm run lint` | Verificar JS/JSX/TS/TSX |
+| `npm run typecheck` | Verificar TS/TSX com `strict: true` |
+| `npm run build:verify` | Compilar e ofuscar em temporário exclusivo, removido ao terminar |
+| `npm run build` | Gerar e ofuscar em `build/` ou no `BUILD_PATH` informado |
+| `npm run obfuscate` | Ofuscar manualmente o `build/` existente; desnecessário depois de `build` |
 
-### `npm start`
-Inicia a aplicação em modo de desenvolvimento.
+O build usa `javascript-obfuscator`. Ofuscação não substitui segurança ou licenciamento e aumenta o JavaScript. Prefira `build:verify` para preservar artefatos anteriores. `allowJs: true` e `checkJs: false` não oferecem checagem integral de tipos dentro de JavaScript.
 
-### `npm run build`
-Gera a versão de produção na pasta `build/` e executa a etapa de ofuscação do JavaScript.
+## Organização
 
-### `npm test`
-Executa os testes do projeto.
+| Diretório | Responsabilidade |
+| --- | --- |
+| `src/pages` | Home, edição, modais e componentes de interface |
+| `src/leveis` | Escolhas e progressão |
+| `src/api/fichaPersonagem` | Modelo, persistência, restauração, seletores e regras |
+| `src/api/rulesets` | Regras e referências por edição |
+| `src/bibliotecas` | Catálogos legados e dados estáticos |
+| `src/utils` | Utilitários e exportação PDF |
+| `public` | Recursos estáticos, template PDF e atribuições |
+| `scripts` | Inicialização local e build |
+| `docs` | Auditorias, decisões e evidências |
 
-## Estrutura geral do projeto
+## Persistência e compatibilidade
 
-- `src/pages` - páginas principais da aplicação
-- `src/pages/components` - componentes da criação e edição da ficha
-- `src/api` - classes e regras de negócio da ficha e entidades do jogo
-- `src/utils` - utilitários, incluindo exportação para PDF
+As fichas ficam no `localStorage`, restritas ao navegador e à origem. Não há conta, backend de fichas ou sincronização entre dispositivos. Alterações são observadas e a gravação é tentada após 300 ms; Salvar Ficha força a gravação. Estados pendentes, erros e recuperação aparecem na interface; o indicador fica oculto quando tudo está salvo.
 
-## Observações
+Limpar os dados do navegador pode apagar fichas. Mantenha cópias JSON fora dele. Em caso de erro, exporte as alterações em memória ou o conteúdo original pelas ações de recuperação antes de fechar. A importação aceita até 5 MiB. PDF serve para consulta/impressão e não substitui backup JSON.
 
-- O projeto usa os scripts do `react-scripts`, então o recomendado é iniciar com `npm start`.
-- Caso o comando falhe, confirme se as dependências foram instaladas com `npm install`.
-- As fichas ficam persistidas localmente no navegador.
+Fichas legadas sem edição seguem 2014. Referências, snapshots, campos desconhecidos e escolhas arquivadas são preservados pelos contratos existentes; revisões desconhecidas não são convertidas silenciosamente. Testes usam armazenamento sintético, sem alterar fichas reais. O roteiro de recuperação está no [relatório anterior](docs/revisao-pendencias-2026-10-08/IMPLEMENTACAO.md#recuperação-mínima-p04p16).
 
-## Objetivo do projeto
+## Limitações conhecidas
 
-Este projeto foi desenvolvido para facilitar a criação e manutenção de fichas de personagens de RPG, centralizando regras, atributos e recursos do personagem em uma interface web mais prática e organizada.
+- Cobertura e automações diferem por edição. As regras de talentos de `feat/regras-2024` foram integradas com escolhas, requisitos, concessões e usos de magias; benefícios condicionais de combate continuam manuais. O acervo PHB 2024 vai além do subconjunto SRD auditado anteriormente, com licença de redistribuição pendente. Consulte a [integração e validação](docs/merge-regras-2024-2026-10-13/RELATORIO.md).
+- XML não está implementado; o mapeamento PDF é uma ferramenta interna ausente do menu.
+- O PDF usa Helvetica/WinAnsi: caracteres fora da cobertura podem virar `?`; o JSON mantém o texto integral.
+- O bundle é grande, e a toolchain CRA mantém avisos e dependências vulneráveis. A revisão registra o alcance conhecido, sem afirmar segurança integral.
+- Testes de componentes não certificam layout em navegador, zoom real, leitor de tela ou conformidade integral de acessibilidade. Resultados históricos e atuais são separados nos relatórios.
 
-## Verificação automatizada
+## Créditos e licenciamento
 
-Revalidação e correções de 08/10/2026: [matriz P01–P19/N01/N02 e evidências](docs/revisao-pendencias-2026-10-08/IMPLEMENTACAO.md). O comando `npm start` limita o servidor de desenvolvimento a `127.0.0.1`; ele não deve ser usado como hosting de produção.
+O subconjunto identificado em [CONTEUDO-LICENCAS.txt](public/CONTEUDO-LICENCAS.txt) usa os SRDs 5.1 e 5.2.1 da Wizards of the Coast sob [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), com atribuição e indicação das adaptações locais. Os resumos em português não são traduções oficiais. Veja a [fonte oficial dos SRDs](https://www.dndbeyond.com/srd).
 
-Os comandos reproduzíveis de testes, lint, tipagem e build descartável, decisões de configuração e limitações estão em [docs/VERIFICACAO.md](docs/VERIFICACAO.md). Para validar sem alterar `build/`, execute `npm run build:verify`.
+Essa licença não se estende automaticamente ao acervo inteiro. Textos legados, tradução comunitária do PHB 2024, imagens, ícones e modelo PDF têm pendências de procedência ou permissão de redistribuição. Acesso a um livro e créditos em um arquivo não comprovam autorização para publicação. Não foi adicionada licença genérica que englobe esses materiais.
 
-## Conteúdo por edição (F7 — A15, A17, A23)
+Consulte a [auditoria atual](docs/revisao-portfolio-2026-10-13/RELATORIO.md), o [inventário de assets](docs/auditoria-2026-10-06/F7-assets.json) e a [auditoria de conteúdo](docs/auditoria-2026-10-06/F7-conteudo.md). A recomendação de divulgação como portfólio permanece condicionada à resolução das pendências de conteúdo e validação funcional.
 
-Novas escolhas de talentos e magias registram ID, edição, fonte, revisão/errata, categoria e licença. O catálogo é parcial: Alerta 2014/2024, Habilidoso e Imobilizador 2024 têm escolhas/benefícios implementados; Curar Ferimentos tem escola e fórmula próprias de cada edição. Outros talentos permanecem pendentes de implementação. O índice de magias 2024 não usa a lista 2014 como substituta.
-
-Fichas antigas mantêm referências, efeitos e snapshots. Conteúdo legado e revisões desconhecidas aparecem como pendências; revisar uma escolha é uma ação explícita que arquiva o registro anterior. O JSON preserva esses dados e o PDF identifica a revisão/pendência.
-
-[Atribuições e licenças do subconjunto](public/CONTEUDO-LICENCAS.txt). Os resumos em português são adaptações locais dos SRDs; esta atribuição não certifica a procedência de todo o acervo antigo. Consulte [fontes, escopo, validações e pendências](docs/auditoria-2026-10-06/F7-conteudo.md) e o [inventário de assets/PDF](docs/auditoria-2026-10-06/F7-assets.json).
-
-## Salvamento e uso
-
-As fichas ficam no `localStorage` deste navegador e origem; não há conta, servidor ou sincronização entre dispositivos. O contexto observa alterações nas fichas e tenta gravar após 300 ms; Salvar Ficha força a gravação. Confirme o status “Salvo neste navegador”. Em caso de erro, use as ações de recuperação ou exporte as alterações em memória antes de fechar. Limpar os dados do navegador pode apagar as fichas; mantenha cópias JSON.
-
-Carregar Ficha Salva também permite importar JSON (até 5 MiB). IDs repetidos exigem escolher cópia ou substituição. Exportar JSON preserva os dados editáveis; PDF é uma representação para consulta/impressão, não um backup completo. XML não está implementado; o mapeamento de PDF é uma ferramenta interna e não aparece no menu.
-
-Escolha 2014 ou 2024 ao criar a ficha. A edição persistida é mantida ao reabrir; fichas legadas sem edição seguem 2014. Os catálogos e automações são parciais em ambas as edições; a presença de uma opção não garante implementação completa de seus efeitos. Confira as pendências exibidas e o relatório de conteúdo acima.
-
-Os seletores usam botões acionáveis com Enter/Espaço. Nos diálogos, Tab/Shift+Tab percorrem os controles e Escape cancela; fechar devolve o foco ao controle de origem, quando ele continua disponível. Validações automatizadas e limites de verificação assistiva estão em [A22/A26](docs/auditoria-2026-10-06/F8-acessibilidade.md).
+Não foram incluídas capturas de tela: a autorização dos recursos visuais ainda não foi documentada.
