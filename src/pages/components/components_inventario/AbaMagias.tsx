@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useId, useState } from 'react';
 import { toast } from 'react-toastify';
 import ModalSelecaoMagias from '../../modals/ModalMagias';
 import '../../css/ArmaInventario.css';
@@ -16,6 +16,9 @@ import { adicionarMagia, selecionarEscolhasMagia, selecionarFontesConjuracao, se
 export default function AbaMagias() {
   const { ficha, forceUpdate } = useFicha();
   const [modal, setModal] = useState<string | null>(null);
+  const [compacto, setCompacto] = useState(false);
+  const [recolhidos, setRecolhidos] = useState<Record<string, boolean>>({});
+  const idMagias = useId();
 
   const fontes = selecionarFontesConjuracao(ficha);
   const pools = selecionarPoolsMagia(ficha);
@@ -28,7 +31,7 @@ export default function AbaMagias() {
     const fonteCompativel = fonte?.edicao === magia?.edicao ? fonte : undefined;
     const circulos = pools.filter(p => fonteCompativel && p.fontes.includes(fonteCompativel.id)).flatMap(p => p.espacos.flatMap((n, i) => n > 0 ? [i + 1] : []));
     return <MagiaCard key={escolha.id} nome={escolha.nome} magia={magia} origem={`${fonte?.nome ?? escolha.classe} · ${magia?.edicao.replace('DND_', '') ?? escolha.edicao.replace('DND_', '')}`}
-      ataque={fonteCompativel?.ataque} cd={fonteCompativel?.cd} modificador={fonteCompativel ? modificadorAtributo(ficha, fonteCompativel.atributo) : undefined} nivelPersonagem={ficha?.levelTotal ?? 1} circulos={circulos}>
+      compacto={compacto} ataque={fonteCompativel?.ataque} cd={fonteCompativel?.cd} modificador={fonteCompativel ? modificadorAtributo(ficha, fonteCompativel.atributo) : undefined} nivelPersonagem={ficha?.levelTotal ?? 1} circulos={circulos}>
       <DescricaoMagia magia={magia} snapshot={escolha.snapshot} />
     </MagiaCard>;
   };
@@ -37,7 +40,7 @@ export default function AbaMagias() {
     const magia = resolvida ? apresentarMagia(resolvida) : undefined;
     const mod = m.atributo ? modificadorAtributo(ficha, m.atributo) : undefined;
     return <MagiaCard key={`${m.origem}:${m.magia.nome}`} nome={m.magia.nome.replace(/^2024: /, '')} magia={magia} origem={`${m.talento} · ${m.atributo ?? 'atributo pendente'} · 2024`}
-      ataque={mod === undefined ? undefined : mod + selecionarProficiencia(ficha)} cd={mod === undefined ? undefined : 8 + mod + selecionarProficiencia(ficha)} modificador={mod} nivelPersonagem={ficha?.levelTotal ?? 1}>
+      compacto={compacto} ataque={mod === undefined ? undefined : mod + selecionarProficiencia(ficha)} cd={mod === undefined ? undefined : 8 + mod + selecionarProficiencia(ficha)} modificador={mod} nivelPersonagem={ficha?.levelTotal ?? 1}>
       <DescricaoMagia magia={magia} />
       {!magia && <p>{m.magia.descricao}</p>}
       {m.magia.nivel > 0 && m.usosSemEspaco > 0 && <button disabled={(ficha?.efeitos?.find(e => e.tituloEfeito === m.origem)?.usosMagiaTalento?.[m.chaveUso] ?? 0) >= m.usosSemEspaco}
@@ -50,8 +53,17 @@ export default function AbaMagias() {
     if (!niveis.length) return null;
     return <section key={nome} aria-label={nome} className="magia-grupo">
       {nome !== 'Conjuração' && <h3>{nome}</h3>}
-      {niveis.map(nivel => <section key={nivel} className="magia-circulo" aria-label={`${nome}, ${nivel === 0 ? 'Truques' : `Círculo ${nivel}`}`}>
-        <div className="magia-circulo-header"><h4>{nivel === 0 ? 'Truques' : `Círculo ${nivel}`}</h4>
+      {niveis.map(nivel => {
+        const chave = `${nome}:${nivel}`;
+        const rotulo = nivel === 0 ? 'Truques' : `Círculo ${nivel}`;
+        const aberto = !recolhidos[chave];
+        const idConteudo = `${idMagias}-${encodeURIComponent(chave)}`;
+        return <section key={nivel} className="magia-circulo" aria-label={`${nome}, ${rotulo}`}>
+        <div className="magia-circulo-header"><h4><button type="button" className="magia-circulo-toggle"
+          aria-label={`${aberto ? 'Recolher' : 'Expandir'} ${rotulo} — ${nome}`} aria-expanded={aberto} aria-controls={idConteudo}
+          onClick={() => setRecolhidos(anteriores => ({ ...anteriores, [chave]: !anteriores[chave] }))}>
+          <span aria-hidden="true">{aberto ? '▾' : '▸'}</span>{rotulo}
+        </button></h4>
           {nivel > 0 && recursos.filter(p => p.espacos[nivel - 1] > 0).map(pool => <div className="magia-slots" key={pool.id} role="group" aria-label={`${pool.nome}, círculo ${nivel}`}>
             {Array.from({ length: pool.espacos[nivel - 1] }, (_, slot) => {
               const chave = pool.id.startsWith('pacto:') ? pool.id : `${pool.id}:${nivel - 1}`;
@@ -63,15 +75,20 @@ export default function AbaMagias() {
             <MagiaBadge detalhe={`${pool.nome}: ${pool.espacos[nivel - 1]} espaços; recuperação: ${pool.recuperacao}`}>ⓘ</MagiaBadge>
           </div>)}
         </div>
-        <div className="magia-cards">{registros.filter(e => e.nivel === nivel).map(card)}{talentos.filter(m => m.magia.nivel === nivel).map(talentoCard)}</div>
-      </section>)}
+        <div id={idConteudo} className="magia-cards" hidden={!aberto}>{registros.filter(e => e.nivel === nivel).map(card)}{talentos.filter(m => m.magia.nivel === nivel).map(talentoCard)}</div>
+      </section>; })}
     </section>;
   };
   const pacto = pools.filter(p => p.id.startsWith('pacto:'));
   const fontesPacto = new Set(fontes.filter(f => f.progressao === 'pacto').map(f => f.id));
   const pendentes = escolhas.filter(e => e.nivel === null);
-  return <div className="magias">
+  return <div className={`magias${compacto ? ' magias-compactas' : ''}`}>
     <div className="header-magias"><h3>Conjuração</h3><button className="adicionar-armas" onClick={() => setModal('')}>Escolher Magia</button>
+      <button type="button" className="magia-visualizacao-toggle" aria-label="Visualização compacta" title={compacto ? 'Usar visualização ampliada' : 'Usar visualização compacta'} aria-pressed={compacto} onClick={() => setCompacto(anterior => !anterior)}>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+          {compacto ? <><rect x="4" y="4" width="16" height="6" rx="1" /><rect x="4" y="14" width="16" height="6" rx="1" /></> : <><rect x="3" y="4" width="7" height="16" rx="1" /><rect x="14" y="4" width="7" height="16" rx="1" /><path d="M3 9h7M3 14h7M14 9h7M14 14h7" /></>}
+        </svg>
+      </button>
       {fontes.map(fonte => <div className="magia-fonte" role="group" aria-label={fonte.nome} key={fonte.id}>
         <MagiaBadge detalhe={`${fonte.nome} · ${fonte.edicao.replace('DND_', '')} · nível ${fonte.nivel}. Conjuração por ${fonte.atributo}; escolhas até o círculo ${fonte.circuloMaximo}.`}>{fonte.nome}</MagiaBadge>
         <MagiaBadge detalhe={`CD das magias de ${fonte.nome}, usando ${fonte.atributo}`}>CD {fonte.cd}</MagiaBadge>

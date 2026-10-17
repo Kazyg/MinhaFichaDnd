@@ -1,3 +1,9 @@
+:root {
+  --selecao-fundo: #cc3b08;
+  --selecao-fundo-hover: #b43306;
+  --selecao-texto-secundario: #fff0e5;
+}
+
 /* Estilos base (desktop) */
 .criacao-ficha {
   position: relative;
@@ -52,7 +58,7 @@
 .criacao-ficha button {
   width: 86%;
   margin-bottom: 10px;
-  background: #ff4500;
+  background: var(--selecao-fundo);
   border: none;
   color: white;
   cursor: pointer;
@@ -61,7 +67,7 @@
 }
 
 .criacao-ficha button:hover {
-  background: #e03e00;
+  background: var(--selecao-fundo-hover);
 }
 
 .botao-selecao {
@@ -108,6 +114,17 @@
   background: #444;
 }
 
+/* Seletores com rótulo secundário e valor principal, inclusive na progressão. */
+.criacao-ficha button:is(.botao-selecao, .botao-selecao-subopcao, .botao-selecao-talento),
+.criacao-ficha button.botao-distribuir:has(> .botao-texto) {
+  background: var(--selecao-fundo);
+}
+
+.criacao-ficha button:is(.botao-selecao, .botao-selecao-subopcao, .botao-selecao-talento):hover:not(:disabled),
+.criacao-ficha button.botao-distribuir:has(> .botao-texto):hover:not(:disabled) {
+  background: var(--selecao-fundo-hover);
+}
+
 .botao-selecao .button-icon {
   width: 35px;
   height: 35px;
@@ -123,7 +140,8 @@
 
 .botao-texto span {
   font-size: 12px;
-  color: #bbb;
+  color: var(--selecao-texto-secundario);
+  font-weight: 500;
 }
 
 .botao-texto strong {
@@ -166,11 +184,15 @@
 .escolher-button {
   width: 200px !important;
   margin-bottom: 10px;
-  background-color: #ff4500;
+  background-color: var(--selecao-fundo);
   color: white;
   border: none;
   border-radius: 5px;
   padding: 5px;
+}
+
+.escolher-button:hover:not(:disabled) {
+  background-color: var(--selecao-fundo-hover);
 }
 
 /* Estilos para celular (max-width: 768px) */

@@ -2,7 +2,7 @@ import AccessibleDialog from "./AccessibleDialog";
 import NomePersonagem from "./NomePersonagem";
 import React, { useState } from "react";
 import "../css/InformacoesPersonagem.css";
-import iconCa from "../../imagens/icon_ac.png"
+import EscudoCA from "./components_InformacoesPersonagem/EscudoCA";
 import iconMorte1 from "../../imagens/skull_24dp_000000_FILL0_wght400_GRAD0_opsz24.png"
 import iconMorte2 from "../../imagens/skull_24dp_CCCCCC_FILL0_wght400_GRAD0_opsz24.png"
 import iconMorte3 from "../../imagens/skull_24dp_EA3323_FILL0_wght400_GRAD0_opsz24.png"
@@ -186,9 +186,9 @@ export default function InformacoesPersonagem() {
           </div>
         </div>
 
-        {/* Coluna 3: Proficiências */}
+        {/* Coluna 3: Salvaguardas */}
         <div className="coluna-3">
-          <h4>Proficiências</h4>
+          <h4>Salvaguardas</h4>
           <div className="proficiencias-container">
             {Object.entries(ficha?.atributosPersonagem || atributosIniciais).map(([atributo, dados]) => (
               <div key={atributo} className="proficiencia">
@@ -218,8 +218,7 @@ export default function InformacoesPersonagem() {
         {/* Coluna 4: CA e Vida */}
         <div className="coluna-4">
           <div className="ca-container">
-            <img src={iconCa} alt="CA" className="icon-ca"></img>
-            <span className="ca-text" aria-label="Classe de armadura">{ca.total}</span>
+            <EscudoCA valor={ca.total} />
             <div className="ca">
               <span className="ca-detalhes" title={ca.tooltip} tabIndex={0}>{ca.expressao}</span>
             </div>

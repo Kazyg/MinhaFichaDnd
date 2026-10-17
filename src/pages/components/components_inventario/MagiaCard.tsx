@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useId, useState } from 'react';
 import type { MagiaConteudo } from '../../../api/rulesets/types';
 import { formulaCura } from '../../../api/rulesets/conteudo';
 import { propriedadeMagiaDisponivel } from '../DescricaoMagia';
@@ -14,11 +14,13 @@ export function MagiaBadge({ children, detalhe }: { children: React.ReactNode; d
   </span>;
 }
 
-export default function MagiaCard({ nome, magia, origem, status, ataque, cd, modificador, nivelPersonagem = 1, circulos = [], children }: {
+export default function MagiaCard({ nome, magia, origem, status, ataque, cd, modificador, nivelPersonagem = 1, circulos = [], compacto = false, children }: {
   nome: string; magia?: MagiaConteudo; origem: string; status?: string; ataque?: number; cd?: number; modificador?: number;
-  nivelPersonagem?: number; circulos?: number[]; children: React.ReactNode;
+  nivelPersonagem?: number; circulos?: number[]; compacto?: boolean; children: React.ReactNode;
 }) {
   const [circuloEscolhido, setCirculo] = useState<number | null>(null);
+  const [detalhado, setDetalhado] = useState(false);
+  const idDetalhes = useId();
   const circulo = circuloEscolhido !== null && circulos.includes(circuloEscolhido) ? circuloEscolhido : magia?.nivel ?? 0;
   const cura = magia?.combate?.cura ? calcularFormulaMagia(magia.combate.cura, magia.nivel, circulo, nivelPersonagem, modificador)
     : magia?.cura && modificador !== undefined ? formulaCura(magia, circulo, modificador) : null;
@@ -29,7 +31,26 @@ export default function MagiaCard({ nome, magia, origem, status, ataque, cd, mod
   const alvos = magia ? calcularAlvosMagia(magia, circulo, nivelPersonagem) : null;
   const aumenta = magia?.combate?.alvos?.porCirculo || magia?.combate?.cura?.dadosPorCirculo || dano?.dadosPorCirculo || magia?.combate?.danosAdicionais?.some(d => d.dadosPorCirculo) || magia?.cura;
   const propriedade = (texto: string | undefined, rotulo: string) => propriedadeMagiaDisponivel(texto) ? <MagiaBadge detalhe={`${rotulo}: ${texto}`}>{texto}</MagiaBadge> : null;
+  const formulas = [...danos, { label: 'Cura', formula: cura, dado: magia?.combate?.cura?.dado ?? magia?.cura?.dado, tipo: undefined }];
   return <article className="magia-card" aria-label={nome}>
+    {compacto && <div className="magia-card-resumo">
+      <button type="button" className="magia-nome-compacto" aria-expanded={detalhado} aria-controls={idDetalhes}
+        title={`${detalhado ? 'Recolher' : 'Ver'} detalhes de ${nome}`} onClick={() => setDetalhado(anterior => !anterior)}>
+        <span>{nome}</span><span className="magia-resumo-seta" aria-hidden="true">{detalhado ? '▴' : '▾'}</span>
+      </button>
+      <div className="magia-resumo-info">
+        <div className="magia-resumo-badges">
+          {propriedade(magia?.conjuracao, 'Conjuração')}
+          {magia?.combate?.ataque && ataque !== undefined && <MagiaBadge detalhe={`Ataque mágico: ${ataque >= 0 ? '+' : ''}${ataque}`}>Ataque {ataque >= 0 ? '+' : ''}{ataque}</MagiaBadge>}
+          {magia?.combate?.resistencia && cd !== undefined && <MagiaBadge detalhe={`CD ${cd} · ${magia.combate.resistencia}`}><span className="magia-resumo-cd">CD {cd} · {magia.combate.resistencia}</span></MagiaBadge>}
+          {status && <MagiaBadge detalhe={status}>{status}</MagiaBadge>}
+        </div>
+        <div className="magia-resumo-formulas">
+          {formulas.map((v, i) => v.formula && <MagiaBadge key={`${v.label}:${i}`} detalhe={`${v.label}: ${v.formula}${v.tipo ? ` · ${v.tipo}` : ''}`}>{v.formula}</MagiaBadge>)}
+        </div>
+      </div>
+    </div>}
+    <div id={idDetalhes} className="magia-card-conteudo" hidden={compacto && !detalhado}>
     <div className="magia-card-titulo"><h4>{nome}</h4>{status && <MagiaBadge detalhe={status}>{status}</MagiaBadge>}</div>
     <div className="propriedades-grid">
       <MagiaBadge detalhe={origem}>{origem}</MagiaBadge>
@@ -40,7 +61,7 @@ export default function MagiaCard({ nome, magia, origem, status, ataque, cd, mod
     <div className="magia-card-valores">
       {magia?.combate?.ataque && ataque !== undefined && <strong className="magia-destaque">Ataque {ataque >= 0 ? '+' : ''}{ataque}</strong>}
       {magia?.combate?.resistencia && cd !== undefined && <strong className="magia-destaque">CD {cd} · {magia.combate.resistencia}</strong>}
-      {[...danos, { label:'Cura', formula:cura, dado:magia?.combate?.cura?.dado ?? magia?.cura?.dado, tipo:undefined }].map((v,i) => v.formula && <div className="linha-base-equipamento" key={`${v.label}:${i}`}>
+      {formulas.map((v,i) => v.formula && <div className="linha-base-equipamento" key={`${v.label}:${i}`}>
         {[4,6,8,10,12,20].includes(v.dado ?? 0) && <img className="dado-base" src={`/icon_d${v.dado}.png`} alt={`d${v.dado}`} />}
         <span>{v.label} <strong>{v.formula}</strong>{v.tipo && <span className="magia-tipo-dano">{v.tipo}</span>}</span>
       </div>)}
@@ -56,5 +77,6 @@ export default function MagiaCard({ nome, magia, origem, status, ataque, cd, mod
       {!!magia.componentes.componentes.length && <MagiaBadge detalhe={`Componentes: ${magia.componentes.componentes.join(', ')}. ${magia.componentes.material ?? ''}`}>{magia.componentes.componentes.join(', ')}</MagiaBadge>}
     </div>}
     <details className="magia-detalhes"><summary>Descrição</summary>{children}</details>
+    </div>
   </article>;
 }

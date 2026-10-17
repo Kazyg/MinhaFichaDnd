@@ -182,31 +182,14 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  position: relative;
-  padding-left: 0;
-}
-
-.icon-ca {
-  width: 3.8rem;
-  height: 3.8rem;
-}
-
-.ca-text {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 3.8rem;
-  height: 3.8rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.9rem;
+  min-width: 0;
 }
 
 .ca {
   position: relative;
   background: #3b3f44;
-  width: min(17.5rem, 100%);
+  flex: 1 1 0;
+  min-width: 0;
   padding: 0.2rem;
   border-radius: 0.3rem;
 }
@@ -357,33 +340,9 @@
     flex-direction: column;
   }
 
-  .ca-container {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .ca-text {
-    left: 0;
-    width: 80px;
-    height: 80px;
-    font-size: 40px;
-  }
-
-  .ca {
-    margin-left: 0;
-    width: 100%;
-  }
-
   .atributos-container,
   .proficiencias-container {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .icon-ca {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    left: 0;
   }
 }
 
