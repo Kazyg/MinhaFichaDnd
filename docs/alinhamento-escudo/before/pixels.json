@@ -1,0 +1,53 @@
+{
+  "method": "Orange outline flood fill + white numeral ink bounding box; no Canvas metrics",
+  "toleranceCssPixels": 1,
+  "checks": [
+    {
+      "screenshot": "desktop-1440-11-escudo.png",
+      "value": 11,
+      "shieldInteriorCentroid": [
+        44.24020823004462,
+        40.62642538423401
+      ],
+      "inkBounds": [
+        31,
+        35,
+        56,
+        59
+      ],
+      "inkCenter": [
+        43.5,
+        47.0
+      ],
+      "deltaCssPixels": [
+        -0.7402082300446224,
+        6.373574615765989
+      ],
+      "passed": false
+    },
+    {
+      "screenshot": "mobile-390-11-escudo.png",
+      "value": 11,
+      "shieldInteriorCentroid": [
+        51.76843853820598,
+        46.683388704318936
+      ],
+      "inkBounds": [
+        36,
+        40,
+        66,
+        68
+      ],
+      "inkCenter": [
+        51.0,
+        54.0
+      ],
+      "deltaCssPixels": [
+        -0.7684385382059773,
+        7.316611295681064
+      ],
+      "passed": false
+    }
+  ],
+  "passed": false
+}

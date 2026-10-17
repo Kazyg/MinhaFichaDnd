@@ -1,0 +1,835 @@
+{
+  "method": "Orange outline flood fill + white numeral ink bounding box; no Canvas metrics",
+  "toleranceCssPixels": 1,
+  "checks": [
+    {
+      "screenshot": "desktop-1440-1-escudo.png",
+      "value": 1,
+      "shieldInteriorCentroid": [
+        44.664370078740156,
+        40.485236220472444
+      ],
+      "inkBounds": [
+        41,
+        28,
+        49,
+        52
+      ],
+      "inkCenter": [
+        45.0,
+        40.0
+      ],
+      "deltaCssPixels": [
+        0.33562992125984437,
+        -0.4852362204724443
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "desktop-1440-8-escudo.png",
+      "value": 8,
+      "shieldInteriorCentroid": [
+        44.65919172005914,
+        40.481764415968456
+      ],
+      "inkBounds": [
+        38,
+        28,
+        52,
+        52
+      ],
+      "inkCenter": [
+        45.0,
+        40.0
+      ],
+      "deltaCssPixels": [
+        0.34080827994085894,
+        -0.4817644159684562
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "desktop-1440-9-escudo.png",
+      "value": 9,
+      "shieldInteriorCentroid": [
+        44.65350444225074,
+        40.483218163869694
+      ],
+      "inkBounds": [
+        38,
+        28,
+        52,
+        52
+      ],
+      "inkCenter": [
+        45.0,
+        40.0
+      ],
+      "deltaCssPixels": [
+        0.34649555774925744,
+        -0.48321816386969374
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "desktop-1440-10-escudo.png",
+      "value": 10,
+      "shieldInteriorCentroid": [
+        44.62931885488648,
+        40.486673247778874
+      ],
+      "inkBounds": [
+        30,
+        28,
+        60,
+        52
+      ],
+      "inkCenter": [
+        45.0,
+        40.0
+      ],
+      "deltaCssPixels": [
+        0.37068114511352235,
+        -0.48667324777887444
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "desktop-1440-11-escudo.png",
+      "value": 11,
+      "shieldInteriorCentroid": [
+        44.664370078740156,
+        40.485236220472444
+      ],
+      "inkBounds": [
+        32,
+        28,
+        58,
+        52
+      ],
+      "inkCenter": [
+        45.0,
+        40.0
+      ],
+      "deltaCssPixels": [
+        0.33562992125984437,
+        -0.4852362204724443
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "desktop-1440-20-escudo.png",
+      "value": 20,
+      "shieldInteriorCentroid": [
+        44.63550939663699,
+        40.50494559841741
+      ],
+      "inkBounds": [
+        28,
+        28,
+        61,
+        52
+      ],
+      "inkCenter": [
+        44.5,
+        40.0
+      ],
+      "deltaCssPixels": [
+        -0.1355093966369907,
+        -0.5049455984174074
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "mobile-390-1-escudo.png",
+      "value": 1,
+      "shieldInteriorCentroid": [
+        51.76843853820598,
+        46.683388704318936
+      ],
+      "inkBounds": [
+        47,
+        32,
+        57,
+        61
+      ],
+      "inkCenter": [
+        52.0,
+        46.5
+      ],
+      "deltaCssPixels": [
+        0.2315614617940227,
+        -0.1833887043189364
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "mobile-390-8-escudo.png",
+      "value": 8,
+      "shieldInteriorCentroid": [
+        51.758161225849435,
+        46.68221185876082
+      ],
+      "inkBounds": [
+        43,
+        32,
+        61,
+        61
+      ],
+      "inkCenter": [
+        52.0,
+        46.5
+      ],
+      "deltaCssPixels": [
+        0.24183877415056543,
+        -0.18221185876082302
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "mobile-390-9-escudo.png",
+      "value": 9,
+      "shieldInteriorCentroid": [
+        51.75499334221038,
+        46.68841544607191
+      ],
+      "inkBounds": [
+        43,
+        32,
+        61,
+        61
+      ],
+      "inkCenter": [
+        52.0,
+        46.5
+      ],
+      "deltaCssPixels": [
+        0.2450066577896166,
+        -0.1884154460719074
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "mobile-390-10-escudo.png",
+      "value": 10,
+      "shieldInteriorCentroid": [
+        51.73876123876124,
+        46.68714618714619
+      ],
+      "inkBounds": [
+        33,
+        32,
+        70,
+        61
+      ],
+      "inkCenter": [
+        51.5,
+        46.5
+      ],
+      "deltaCssPixels": [
+        -0.2387612387612421,
+        -0.18714618714619036
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "mobile-390-11-escudo.png",
+      "value": 11,
+      "shieldInteriorCentroid": [
+        51.76843853820598,
+        46.683388704318936
+      ],
+      "inkBounds": [
+        36,
+        32,
+        68,
+        61
+      ],
+      "inkCenter": [
+        52.0,
+        46.5
+      ],
+      "deltaCssPixels": [
+        0.2315614617940227,
+        -0.1833887043189364
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "mobile-390-20-escudo.png",
+      "value": 20,
+      "shieldInteriorCentroid": [
+        51.76415722851432,
+        46.689540306462355
+      ],
+      "inkBounds": [
+        32,
+        32,
+        72,
+        61
+      ],
+      "inkCenter": [
+        52.0,
+        46.5
+      ],
+      "deltaCssPixels": [
+        0.23584277148567878,
+        -0.1895403064623551
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "mobile-320-1-escudo.png",
+      "value": 1,
+      "shieldInteriorCentroid": [
+        51.76843853820598,
+        46.683388704318936
+      ],
+      "inkBounds": [
+        47,
+        32,
+        57,
+        61
+      ],
+      "inkCenter": [
+        52.0,
+        46.5
+      ],
+      "deltaCssPixels": [
+        0.2315614617940227,
+        -0.1833887043189364
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "mobile-320-8-escudo.png",
+      "value": 8,
+      "shieldInteriorCentroid": [
+        51.758161225849435,
+        46.68221185876082
+      ],
+      "inkBounds": [
+        43,
+        32,
+        61,
+        61
+      ],
+      "inkCenter": [
+        52.0,
+        46.5
+      ],
+      "deltaCssPixels": [
+        0.24183877415056543,
+        -0.18221185876082302
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "mobile-320-9-escudo.png",
+      "value": 9,
+      "shieldInteriorCentroid": [
+        51.75499334221038,
+        46.68841544607191
+      ],
+      "inkBounds": [
+        43,
+        32,
+        61,
+        61
+      ],
+      "inkCenter": [
+        52.0,
+        46.5
+      ],
+      "deltaCssPixels": [
+        0.2450066577896166,
+        -0.1884154460719074
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "mobile-320-10-escudo.png",
+      "value": 10,
+      "shieldInteriorCentroid": [
+        51.73876123876124,
+        46.68714618714619
+      ],
+      "inkBounds": [
+        33,
+        32,
+        70,
+        61
+      ],
+      "inkCenter": [
+        51.5,
+        46.5
+      ],
+      "deltaCssPixels": [
+        -0.2387612387612421,
+        -0.18714618714619036
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "mobile-320-11-escudo.png",
+      "value": 11,
+      "shieldInteriorCentroid": [
+        51.76843853820598,
+        46.683388704318936
+      ],
+      "inkBounds": [
+        36,
+        32,
+        68,
+        61
+      ],
+      "inkCenter": [
+        52.0,
+        46.5
+      ],
+      "deltaCssPixels": [
+        0.2315614617940227,
+        -0.1833887043189364
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "mobile-320-20-escudo.png",
+      "value": 20,
+      "shieldInteriorCentroid": [
+        51.76415722851432,
+        46.689540306462355
+      ],
+      "inkBounds": [
+        32,
+        32,
+        72,
+        61
+      ],
+      "inkCenter": [
+        52.0,
+        46.5
+      ],
+      "deltaCssPixels": [
+        0.23584277148567878,
+        -0.1895403064623551
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "desktop-1920-1-escudo.png",
+      "value": 1,
+      "shieldInteriorCentroid": [
+        45.990917347865576,
+        41.66394187102634
+      ],
+      "inkBounds": [
+        42,
+        29,
+        50,
+        54
+      ],
+      "inkCenter": [
+        46.0,
+        41.5
+      ],
+      "deltaCssPixels": [
+        0.009082652134424052,
+        -0.1639418710263385
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "desktop-1920-8-escudo.png",
+      "value": 8,
+      "shieldInteriorCentroid": [
+        45.99363057324841,
+        41.65741583257507
+      ],
+      "inkBounds": [
+        38,
+        29,
+        53,
+        54
+      ],
+      "inkCenter": [
+        45.5,
+        41.5
+      ],
+      "deltaCssPixels": [
+        -0.4936305732484101,
+        -0.15741583257506875
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "desktop-1920-9-escudo.png",
+      "value": 9,
+      "shieldInteriorCentroid": [
+        45.98883826879271,
+        41.66902050113895
+      ],
+      "inkBounds": [
+        39,
+        29,
+        53,
+        54
+      ],
+      "inkCenter": [
+        46.0,
+        41.5
+      ],
+      "deltaCssPixels": [
+        0.011161731207288028,
+        -0.16902050113895228
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "desktop-1920-10-escudo.png",
+      "value": 10,
+      "shieldInteriorCentroid": [
+        45.95765027322405,
+        41.6643897996357
+      ],
+      "inkBounds": [
+        30,
+        29,
+        62,
+        54
+      ],
+      "inkCenter": [
+        46.0,
+        41.5
+      ],
+      "deltaCssPixels": [
+        0.042349726775952945,
+        -0.16438979963569977
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "desktop-1920-11-escudo.png",
+      "value": 11,
+      "shieldInteriorCentroid": [
+        45.990917347865576,
+        41.66394187102634
+      ],
+      "inkBounds": [
+        33,
+        29,
+        59,
+        54
+      ],
+      "inkCenter": [
+        46.0,
+        41.5
+      ],
+      "deltaCssPixels": [
+        0.009082652134424052,
+        -0.1639418710263385
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "desktop-1920-20-escudo.png",
+      "value": 20,
+      "shieldInteriorCentroid": [
+        45.98448905109489,
+        41.6610401459854
+      ],
+      "inkBounds": [
+        29,
+        29,
+        63,
+        54
+      ],
+      "inkCenter": [
+        46.0,
+        41.5
+      ],
+      "deltaCssPixels": [
+        0.015510948905109956,
+        -0.16104014598540317
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "escala-48-1-escudo.png",
+      "value": 1,
+      "shieldInteriorCentroid": [
+        35.79861751152074,
+        32.82442396313364
+      ],
+      "inkBounds": [
+        33,
+        25,
+        38,
+        41
+      ],
+      "inkCenter": [
+        35.5,
+        33.0
+      ],
+      "deltaCssPixels": [
+        -0.2986175115207388,
+        0.17557603686636014
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "escala-48-8-escudo.png",
+      "value": 8,
+      "shieldInteriorCentroid": [
+        35.791127541589645,
+        32.81515711645102
+      ],
+      "inkBounds": [
+        31,
+        24,
+        41,
+        41
+      ],
+      "inkCenter": [
+        36.0,
+        32.5
+      ],
+      "deltaCssPixels": [
+        0.2088724584103545,
+        -0.31515711645101874
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "escala-48-9-escudo.png",
+      "value": 9,
+      "shieldInteriorCentroid": [
+        35.79232192414431,
+        32.83209990749306
+      ],
+      "inkBounds": [
+        31,
+        24,
+        41,
+        41
+      ],
+      "inkCenter": [
+        36.0,
+        32.5
+      ],
+      "deltaCssPixels": [
+        0.20767807585568931,
+        -0.33209990749305973
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "escala-48-10-escudo.png",
+      "value": 10,
+      "shieldInteriorCentroid": [
+        35.77700831024931,
+        32.82502308402585
+      ],
+      "inkBounds": [
+        25,
+        24,
+        47,
+        41
+      ],
+      "inkCenter": [
+        36.0,
+        32.5
+      ],
+      "deltaCssPixels": [
+        0.2229916897506925,
+        -0.325023084025851
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "escala-48-11-escudo.png",
+      "value": 11,
+      "shieldInteriorCentroid": [
+        35.79861751152074,
+        32.82442396313364
+      ],
+      "inkBounds": [
+        27,
+        24,
+        45,
+        41
+      ],
+      "inkCenter": [
+        36.0,
+        32.5
+      ],
+      "deltaCssPixels": [
+        0.2013824884792612,
+        -0.32442396313363986
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "escala-48-20-escudo.png",
+      "value": 20,
+      "shieldInteriorCentroid": [
+        35.75764596848934,
+        32.825301204819276
+      ],
+      "inkBounds": [
+        24,
+        24,
+        48,
+        41
+      ],
+      "inkCenter": [
+        36.0,
+        32.5
+      ],
+      "deltaCssPixels": [
+        0.24235403151065782,
+        -0.3253012048192758
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "escala-96-1-escudo.png",
+      "value": 1,
+      "shieldInteriorCentroid": [
+        59.703977798334876,
+        53.67345050878816
+      ],
+      "inkBounds": [
+        54,
+        36,
+        66,
+        71
+      ],
+      "inkCenter": [
+        60.0,
+        53.5
+      ],
+      "deltaCssPixels": [
+        0.2960222016651244,
+        -0.17345050878815726
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "escala-96-8-escudo.png",
+      "value": 8,
+      "shieldInteriorCentroid": [
+        59.69749652294854,
+        53.6682892906815
+      ],
+      "inkBounds": [
+        49,
+        36,
+        71,
+        71
+      ],
+      "inkCenter": [
+        60.0,
+        53.5
+      ],
+      "deltaCssPixels": [
+        0.3025034770514594,
+        -0.1682892906814999
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "escala-96-9-escudo.png",
+      "value": 9,
+      "shieldInteriorCentroid": [
+        59.69188876013905,
+        53.663383545770564
+      ],
+      "inkBounds": [
+        49,
+        36,
+        71,
+        71
+      ],
+      "inkCenter": [
+        60.0,
+        53.5
+      ],
+      "deltaCssPixels": [
+        0.3081112398609491,
+        -0.16338354577056435
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "escala-96-10-escudo.png",
+      "value": 10,
+      "shieldInteriorCentroid": [
+        59.67994441871237,
+        53.673228346456696
+      ],
+      "inkBounds": [
+        37,
+        36,
+        82,
+        71
+      ],
+      "inkCenter": [
+        59.5,
+        53.5
+      ],
+      "deltaCssPixels": [
+        -0.17994441871236688,
+        -0.17322834645669616
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "escala-96-11-escudo.png",
+      "value": 11,
+      "shieldInteriorCentroid": [
+        59.704161849710985,
+        53.67156069364162
+      ],
+      "inkBounds": [
+        41,
+        36,
+        79,
+        71
+      ],
+      "inkCenter": [
+        60.0,
+        53.5
+      ],
+      "deltaCssPixels": [
+        0.29583815028901483,
+        -0.17156069364161652
+      ],
+      "passed": true
+    },
+    {
+      "screenshot": "escala-96-20-escudo.png",
+      "value": 20,
+      "shieldInteriorCentroid": [
+        59.68826802689543,
+        53.675284025040575
+      ],
+      "inkBounds": [
+        36,
+        36,
+        84,
+        71
+      ],
+      "inkCenter": [
+        60.0,
+        53.5
+      ],
+      "deltaCssPixels": [
+        0.3117319731045711,
+        -0.1752840250405754
+      ],
+      "passed": true
+    }
+  ],
+  "passed": true
+}

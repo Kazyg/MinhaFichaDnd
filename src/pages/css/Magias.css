@@ -258,3 +258,31 @@
 @media (max-width: 600px) { .magia-fonte { width: 100%; } .magia-card { padding: 12px; } .magia-tooltip { left: auto; right: 0; } }
 
 .modal-magias .magia-validacao { margin: 8px 0; padding: 10px 12px; color: #ffd4b8; background: #332a24; border-left: 3px solid #ffad8f; border-radius: 6px; font-size: .9rem; line-height: 1.5; overflow-wrap: anywhere; }
+
+.magias { container-type: inline-size; }
+.magias .header-magias { position: relative; box-sizing: border-box; padding-right: 52px; min-height: 44px; }
+.magias .magia-visualizacao-toggle, .magias .magia-circulo-toggle { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; max-width: 100%; padding: 8px 12px; border: 1px solid #777; border-radius: 8px; background: #292b30; color: #f2f2f2; font: inherit; cursor: pointer; overflow-wrap: anywhere; }
+.magias .magia-visualizacao-toggle[aria-pressed="true"] { background: #40302a; border-color: #ff885d; color: #ffad8f; }
+.magias .magia-visualizacao-toggle { position: absolute; top: 0; right: 0; width: 44px; height: 44px; padding: 10px; }
+.magias .magia-circulo-toggle { justify-content: flex-start; padding-left: 8px; font-weight: 700; }
+.magias .magia-circulo-toggle span { flex: 0 0 1em; }
+.magias .magia-visualizacao-toggle:hover, .magias .magia-circulo-toggle:hover { border-color: #ff885d; }
+.magia-cards[hidden] { display: none; }
+.magia-slots, .magia-fonte { min-width: 0; max-width: 100%; box-sizing: border-box; }
+.magia-card-conteudo { display: contents; }
+.magia-card-conteudo[hidden] { display: none; }
+.magias-compactas .magia-cards { gap: 4px 8px; }
+.magias-compactas .magia-card { padding: 0; gap: 0; border-radius: 5px; }
+.magia-card-resumo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; min-height: 64px; gap: 6px; padding: 4px 8px; }
+.magias .magia-nome-compacto { display: flex; align-items: center; justify-content: space-between; gap: 4px; min-width: 0; min-height: 44px; width: 100%; padding: 4px 0; border: 0; background: transparent; color: #f2f2f2; font: inherit; font-size: 1rem; font-weight: 700; text-align: left; cursor: pointer; overflow-wrap: anywhere; }
+.magia-resumo-seta { color: #ff885d; font-size: .7rem; flex-shrink: 0; }
+.magia-resumo-info { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; min-width: 0; }
+.magia-resumo-badges, .magia-resumo-formulas { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 4px; min-width: 0; max-width: 100%; }
+.magia-card-resumo .info-badge { padding: 2px 4px; font-size: .7rem; line-height: 1.25; }
+.magia-card-resumo .magia-resumo-formulas .info-badge { background: transparent; padding: 1px 0; font-size: .95rem; font-weight: 700; }
+.magia-resumo-cd { color: #ff986f; font-weight: 700; }
+.magias-compactas .magia-card-conteudo:not([hidden]) { display: flex; flex-direction: column; gap: 12px; padding: 12px; border-top: 1px solid #555; }
+.magias-compactas .magia-card-conteudo > .magia-card-titulo { display: none; }
+@container (min-width: 600px) {
+  .magias-compactas .magia-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+}

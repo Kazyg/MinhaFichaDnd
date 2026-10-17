@@ -317,7 +317,7 @@ test('2014 troca background na UI sem perder progressão ou idiomas', async () =
   expect(ficha.aplicarAumentoAtributos(8, ['forca', 'destreza'])).toBe(true);
   const niveis = JSON.stringify(ficha.multiclasses);
   mount(ficha, <CriacaoFicha />);
-  await tick(() => fireEvent.click(screen.getByRole('button', { name: /Selecionar Antecedente|Selecionar Background/ })));
+  await tick(() => fireEvent.click(screen.getByRole('button', { name: /Antecedente|Background/ })));
   const dialog = within(screen.getByRole('dialog'));
   await tick(() => fireEvent.click(dialog.getByRole('button', { name: /^soldado$/i })));
   await tick(() => fireEvent.click(dialog.getByRole('button', { name: /^Escolher soldado$/i })));

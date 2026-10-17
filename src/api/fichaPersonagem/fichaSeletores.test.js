@@ -132,7 +132,7 @@ test('UI usa valores finais, mantém especialização após exportar/reabrir', (
   mockFicha.setEfeitos(especializacao);
   render(<><InformacoesPersonagem /><PericiasEOutros /></>);
   expect(screen.getByText('0/44')).toBeInTheDocument();
-  expect(screen.getByLabelText('Classe de armadura')).toHaveTextContent('12');
+  expect(screen.getByRole('img', { name: 'Classe de armadura: 12' })).toHaveTextContent('12');
   expect(screen.queryByLabelText('Especialização em Furtividade')).not.toBeInTheDocument();
   const reaberta = parseImport(exportFicha(mockFicha));
   expect(selecionarPericia(reaberta, 'Furtividade', 'destreza').total).toBe(8);
