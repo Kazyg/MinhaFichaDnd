@@ -1,0 +1,153 @@
+
+import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import App from '../App';
+import { exportFicha, parseCollection } from '../api/fichaPersonagem/fichaStorage';
+
+beforeEach(() => {
+  localStorage.clear();
+  window.history.replaceState({}, '', '/');
+});
+afterEach(() => { jest.restoreAllMocks(); window.innerWidth = 1024; });
+
+async function entrar(user) {
+  await user.click(screen.getByRole('link', { name: /Área do Jogador/ }));
+  expect(window.location.pathname).toBe('/criar-ficha');
+  expect(screen.getByRole('dialog', { name: 'Criador de Fichas de RPG' })).toBeInTheDocument();
+}
+async function criar(user, edition = '2024') {
+  await user.click(screen.getByRole('button', { name: 'Criar Nova Ficha' }));
+  await user.click(screen.getByRole('button', { name: new RegExp(`Regras ${edition}`) }));
+}
+async function sair(user) {
+  await user.click(screen.getByRole('button', { name: 'Menu da ficha' }));
+  await user.click(screen.getByRole('button', { name: 'Sair' }));
+}
+
+test('popup exige escolher uma opcao e nao exibe Fichas ou Fechar', async () => {
+  const user = userEvent.setup();
+  render(<App />);
+  await entrar(user);
+  expect(screen.queryByRole('button', { name: 'Fechar' })).not.toBeInTheDocument();
+  expect(screen.queryByRole('button', { name: 'Fichas', hidden: true })).not.toBeInTheDocument();
+  await user.keyboard('{Escape}');
+  fireEvent.click(screen.getByTestId('fichas-overlay'));
+  expect(screen.getByRole('dialog')).toBeInTheDocument();
+  expect(localStorage.getItem('fichas')).toBeNull();
+  await criar(user);
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+});
+
+test.each([390, 1280])('modal preserva edição ao fechar, trocar ficha e sair (%s px)', async width => {
+  window.innerWidth = width;
+  const user = userEvent.setup();
+  render(<App />);
+  await entrar(user);
+  await criar(user, '2014');
+  if (width <= 768) await user.click(screen.getByRole('button', { name: 'Informações' }));
+  await user.type(screen.getByPlaceholderText('Nome do Personagem'), 'Aria');
+  await user.tab();
+  await sair(user); await entrar(user);
+  await user.click(screen.getByRole('button', { name: 'Carregar Ficha Salva' }));
+  await user.click(screen.getAllByRole('button', { name: /Aria:|Aria editada:/ })[0]);
+  if (width <= 768) await user.click(screen.getByRole('button', { name: 'Informações' }));
+  expect(screen.getByPlaceholderText('Nome do Personagem')).toHaveValue('Aria');
+  await sair(user); await entrar(user);
+  await criar(user);
+  await sair(user); await entrar(user);
+  await user.click(screen.getByRole('button', { name: 'Carregar Ficha Salva' }));
+  await user.click(screen.getByText(/Aria:/));
+  if (width <= 768) await user.click(screen.getByRole('button', { name: 'Informações' }));
+  expect(screen.getByPlaceholderText('Nome do Personagem')).toHaveValue('Aria');
+  await user.clear(screen.getByPlaceholderText('Nome do Personagem'));
+  await user.type(screen.getByPlaceholderText('Nome do Personagem'), 'Aria editada');
+  await sair(user);
+  expect(window.location.pathname).toBe('/');
+  expect(parseCollection(localStorage.getItem('fichas')).fichas).toHaveLength(2);
+  expect(parseCollection(localStorage.getItem('fichas')).fichas.some(f => f.nomePersonagem === 'Aria editada')).toBe(true);
+  await entrar(user);
+  await user.click(screen.getByRole('button', { name: 'Carregar Ficha Salva' }));
+  await user.click(screen.getByText(/Aria editada:/));
+  if (width <= 768) await user.click(screen.getByRole('button', { name: 'Informações' }));
+  expect(screen.getByPlaceholderText('Nome do Personagem')).toHaveValue('Aria editada');
+});
+
+test('falha ao salvar impede sair e trocar ficha; edição continua disponível', async () => {
+  const user = userEvent.setup();
+  render(<App />);
+  await entrar(user); await criar(user);
+  jest.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new Error('Sem espaço'); });
+  await user.type(screen.getByPlaceholderText('Nome do Personagem'), 'Pendente');
+  await sair(user);
+  expect(window.location.pathname).toBe('/criar-ficha');
+  expect(screen.getByPlaceholderText('Nome do Personagem')).toHaveValue('Pendente');
+
+});
+
+test('rota antiga redireciona ao editor e abre modal', () => {
+  window.history.replaceState({}, '', '/jogador');
+  render(<App />);
+  expect(window.location.pathname).toBe('/criar-ficha');
+  expect(screen.getByRole('dialog', { name: 'Criador de Fichas de RPG' })).toBeInTheDocument();
+});
+
+test('mestre mantém ações provisórias e oferece Sair no menu', async () => {
+  window.history.replaceState({}, '', '/mestre');
+  const user = userEvent.setup();
+  render(<App />);
+  expect(screen.getByRole('dialog', { name: 'Gerenciador de Campanhas' })).toBeInTheDocument();
+  expect(screen.queryByRole('link', { name: /Selecionar área/, hidden: true })).not.toBeInTheDocument();
+  await user.keyboard('{Escape}');
+  expect(screen.getByRole('dialog')).toBeInTheDocument();
+  await user.click(screen.getByRole('button', { name: /Carregar Campanha/ }));
+    expect(screen.getByRole('dialog', { name: 'Selecione uma Campanha' })).toBeInTheDocument();
+    expect(screen.getByLabelText('Importar campanha JSON')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Confirmar Importação' })).toBeDisabled();
+    await user.click(screen.getByRole('button', { name: 'Voltar' }));
+  await user.click(screen.getByRole('button', { name: /Nova Campanha/ }));
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    expect(screen.queryByText('Suas campanhas começam aqui')).not.toBeInTheDocument();
+  await user.click(screen.getByRole('button', { name: 'Menu do mestre' }));
+  await user.keyboard('{Escape}');
+  expect(screen.getByRole('button', { name: 'Menu do mestre' })).toHaveFocus();
+  await user.keyboard('{Enter}');
+  await user.click(screen.getByRole('button', { name: 'Sair' }));
+  expect(window.location.pathname).toBe('/');
+  expect(localStorage.getItem('fichas')).toBeNull();
+});
+
+test('redimensionar mantem o popup aberto', async () => {
+  const user = userEvent.setup();
+  render(<App />);
+  await entrar(user);
+  window.innerWidth = 390;
+  fireEvent(window, new Event('resize'));
+  expect(screen.getByRole('heading', { name: 'Criador de Fichas de RPG' })).toHaveFocus();
+  await user.keyboard('{Escape}');
+  expect(screen.getByRole('dialog')).toBeInTheDocument();
+});
+
+test('importação resolve colisão como cópia e exclusão mantém a ficha original', async () => {
+  const user = userEvent.setup();
+  render(<App />);
+  await entrar(user); await criar(user);
+  const original = parseCollection(localStorage.getItem('fichas')).fichas[0];
+  await sair(user); await entrar(user);
+  await user.click(screen.getByRole('button', { name: 'Carregar Ficha Salva' }));
+  await user.upload(screen.getByLabelText('Importar ficha JSON'), new File([exportFicha(original)], 'ficha.json', { type: 'application/json' }));
+  await user.click(screen.getByRole('button', { name: 'Confirmar Importação' }));
+  await user.click(await screen.findByRole('button', { name: 'Importar como cópia' }));
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  const salvo = parseCollection(localStorage.getItem('fichas'));
+  expect(salvo.fichas).toHaveLength(2);
+  expect(new Set(salvo.fichas.map(f => f.id)).size).toBe(2);
+  await sair(user); await entrar(user);
+  await user.click(screen.getByRole('button', { name: 'Carregar Ficha Salva' }));
+  jest.spyOn(window, 'confirm').mockReturnValue(true);
+  await user.click(screen.getAllByRole('button', { name: /Excluir Ficha sem Nome/ })[1]);
+  expect(window.confirm).toHaveBeenCalled();
+  expect(parseCollection(localStorage.getItem('fichas')).fichas.map(f => f.id)).toEqual([original.id]);
+  await user.click(screen.getByRole('button', { name: /Ficha sem Nome:/ }));
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(screen.queryByRole('heading', { name: 'Área do Jogador' })).not.toBeInTheDocument();
+});

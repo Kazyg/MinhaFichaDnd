@@ -1,19 +1,19 @@
-import AccessibleDialog from "./components/AccessibleDialog";
-import { hydrateFicha } from '../api/fichaPersonagem/fichaStorage';
-import React, { useState } from "react";
-import iconFixaCriarNova from "../imagens/icon-fixa-criar-nova.png";
-import iconFixaSalva from "../imagens/icon-fixa-salva.png";
-import deleteIcon from "../imagens/delete_icon.png"
-import { useNavigate } from "react-router-dom";
-import "../pages/css/Home.css";
-import { Ficha } from "../api/fichaPersonagem/FichaPersonagem";
-import { useFicha } from "../api/fichaPersonagem/FichaContext"
-import { MAX_INPUT_BYTES, parseImport } from "../api/fichaPersonagem/fichaStorage";
+import React, { useEffect, useRef, useState } from 'react';
+import AccessibleDialog from './AccessibleDialog';
+import { Ficha } from '../../api/fichaPersonagem/FichaPersonagem';
+import { useFicha } from '../../api/fichaPersonagem/FichaContext';
+import { hydrateFicha, MAX_INPUT_BYTES, parseImport } from '../../api/fichaPersonagem/fichaStorage';
+import iconFixaCriarNova from '../../imagens/icon-fixa-criar-nova.png';
+import iconFixaSalva from '../../imagens/icon-fixa-salva.png';
+import '../css/Home.css';
+import '../css/GerenciarFichas.css';
 
-export default function Home() {
-
-  const navigate = useNavigate();
-  const { setFicha, salvarFicha, importarFicha: persistirImportacao, fichas, deletarFicha, erro: erroPersistencia } = useFicha();
+export default function GerenciarFichas({ onClose }) {
+  const leitura = useRef(null);
+  useEffect(() => () => {
+    if (leitura.current?.readyState === FileReader.LOADING) leitura.current.abort();
+  }, []);
+  const { salvarFicha, importarFicha: persistirImportacao, fichas, deletarFicha, salvarPendentes, erro: erroPersistencia } = useFicha();
   const [modalAberta, setModalAberta] = useState(false);
   const [modalCriarFichaAberta, setModalCriarFichaAberta] = useState(false);
   const [arquivoSelecionado, setArquivoSelecionado] = useState(null);
@@ -22,21 +22,22 @@ export default function Home() {
 
   const selecionarFicha = (fichaSelecionada) => {
     const fichaInstancia = fichaSelecionada instanceof Ficha ? fichaSelecionada : hydrateFicha(fichaSelecionada);
-    setFicha(fichaInstancia);
-    navigate("/criar-ficha");
+    if (!salvarPendentes()) return;
+    if (salvarFicha(fichaInstancia)) onClose();
   };
 
   const criarNovaFicha = (versaoRegras) => {
+    if (!salvarPendentes()) return;
     const ficha = new Ficha({ versaoRegras });
     ficha.setLevelTotal(1);
     if (!salvarFicha(ficha)) return;
     setModalCriarFichaAberta(false);
-    navigate("/criar-ficha");
+    onClose();
   };
 
   const handleDeletar = (id) => {
     const confirmar = window.confirm('Tem certeza que deseja excluir esta ficha?');
-    if (confirmar) {
+    if (confirmar && salvarPendentes()) {
       deletarFicha(id);
     }
   };
@@ -49,10 +50,11 @@ export default function Home() {
   };
 
   const concluirImportacao = (text, escolha) => {
+    if (!salvarPendentes()) return;
     const ficha = persistirImportacao(text, escolha);
     if (ficha) {
       setImportacaoPendente(null);
-      navigate('/criar-ficha');
+      onClose();
     }
   };
   const importarFicha = () => {
@@ -62,6 +64,7 @@ export default function Home() {
         return;
       }
       const reader = new FileReader();
+      leitura.current = reader;
       reader.onerror = () => setErroImportacao('Não foi possível ler o arquivo.');
       reader.onload = (e) => {
         try {
@@ -82,26 +85,20 @@ export default function Home() {
     }
   };
 
+  const inicial = !modalAberta && !modalCriarFichaAberta;
+  const titulo = modalCriarFichaAberta ? 'Escolha as regras da ficha' : modalAberta ? 'Selecione uma Ficha' : 'Criador de Fichas de RPG';
+  const voltar = () => { setModalAberta(false); setModalCriarFichaAberta(false); };
   return (
-    <>
-      <div className="home-container">
-        <h1 className="home-title">Criador de Fichas de RPG</h1>
-        <div className="button-container">
-          <button className="icon-button" aria-label="Carregar Ficha Salva" aria-haspopup="dialog" onClick={() => setModalAberta(true)}>
-            <img src={iconFixaSalva} alt="Carregar Ficha Salva" className="icon-image" />
-            <span className="tooltip">Carregar Ficha Salva</span>
-          </button>
-          <button className="icon-button" aria-label="Criar Nova Ficha" aria-haspopup="dialog" onClick={() => setModalCriarFichaAberta(true)}>
-            <img src={iconFixaCriarNova} alt="Criar Nova Ficha" className="icon-image" />
-            <span className="tooltip">Criar Nova Ficha</span>
-          </button>
-        </div>
-      </div>
-
-      {
-        modalCriarFichaAberta && (
-          <div className="modal-overlay" onClick={() => setModalCriarFichaAberta(false)}>
-            <AccessibleDialog aria-label="Escolha as regras da ficha" onClose={() => setModalCriarFichaAberta(false)} className="modal-content modal-criar-ficha" onClick={(e) => e.stopPropagation()}>
+    <div className="fichas-overlay" data-testid="fichas-overlay">
+      <AccessibleDialog key={titulo} aria-label={titulo} onClose={voltar} className={`fichas-dialog ${inicial ? 'fichas-dialog-inicial' : ''}`}>
+        {!modalAberta && !modalCriarFichaAberta && <>
+          <h2>Criador de Fichas de RPG</h2>
+          <div className="fichas-actions">
+            <button aria-label="Carregar Ficha Salva" title="Carregar ficha" onClick={() => setModalAberta(true)}><img src={iconFixaSalva} alt="" /><span>Carregar ficha</span></button>
+            <button aria-label="Criar Nova Ficha" title="Nova ficha" onClick={() => setModalCriarFichaAberta(true)}><img src={iconFixaCriarNova} alt="" /><span>Nova ficha</span></button>
+          </div>
+        </>}
+        {modalCriarFichaAberta && <>
               <h2>Escolha as regras da ficha</h2>
               {erroPersistencia && <p role="alert">{erroPersistencia}</p>}
               <p>Selecione qual versão de D&D 5ª edição será usada como base.</p>
@@ -115,17 +112,10 @@ export default function Home() {
                   <span>Regras clássicas da 5ª edição original.</span>
                 </button>
               </div>
-              <button className="close-button" onClick={() => setModalCriarFichaAberta(false)}>Fechar</button>
-            </AccessibleDialog>
-          </div>
-        )
-      }
 
-      {/* 🔹 MODAL PARA SELEÇÃO DE FICHA */}
-      {
-        modalAberta && (
-          <div  className="modal-overlay" onClick={() => setModalAberta(false)}>
-            <AccessibleDialog aria-label="Selecione uma Ficha" onClose={() => setModalAberta(false)} className="modal-content" onClick={(e) => e.stopPropagation()}>
+
+        </>}
+        {modalAberta && <>
               <h2>Selecione uma Ficha</h2>
               {erroPersistencia && <p role="alert">{erroPersistencia}</p>}
               {fichas.length > 0 ? (
@@ -137,7 +127,7 @@ export default function Home() {
                         <span className="ficha-versao">Versão {ficha.versaoRegras === "DND_2024" ? "2024" : "2014"}</span>
                       </button>
                       <button aria-label={`Excluir ${ficha.nomePersonagem || "Ficha sem Nome"}`} onClick={() => handleDeletar(ficha.id)} className="delete-button">
-                        <img src={deleteIcon} alt="Deletar" className="delete-icon" title="Deletar" />
+                        <svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7" /></svg>
                       </button>
                     </li>
                   ))}
@@ -148,9 +138,6 @@ export default function Home() {
               <div>
                 <label htmlFor="importar-ficha">Importar ficha JSON</label>
                 <input id="importar-ficha" aria-invalid={!!erroImportacao} aria-describedby={erroImportacao ? "erro-importacao" : undefined} type="file" accept=".json" onChange={handleFileChange} />
-                <button onClick={importarFicha} disabled={!arquivoSelecionado}>
-                  Confirmar Importação
-                </button>
                 {erroImportacao && <p id="erro-importacao" role="alert">{erroImportacao}</p>}
                 {importacaoPendente && <div role="group" aria-label="ID já existente">
                   <p>Já existe uma ficha com este ID. Como deseja importar?</p>
@@ -159,11 +146,14 @@ export default function Home() {
                   <button onClick={() => setImportacaoPendente(null)}>Cancelar importação</button>
                 </div>}
               </div>
-              <button className="close-button" onClick={() => setModalAberta(false)}>Fechar</button>
-            </AccessibleDialog>
-          </div>
-        )
-      }
-    </>
+
+
+        </>}
+        <div className={`fichas-dialog-footer ${modalAberta ? 'fichas-import-actions' : ''}`}>
+          {modalAberta && <button onClick={importarFicha} disabled={!arquivoSelecionado}>Confirmar Importação</button>}
+          {(modalAberta || modalCriarFichaAberta) && <button onClick={voltar}>Voltar</button>}
+        </div>
+      </AccessibleDialog>
+    </div>
   );
 }

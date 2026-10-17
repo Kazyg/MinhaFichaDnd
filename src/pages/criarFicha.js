@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import CriacaoFicha from "./components/CriacaoFicha";
 import InformacoesPersonagem from "./components/InformacoesPersonagem";
 import PericiasEOutros from "./components/PericiasEOutros";
@@ -7,6 +7,9 @@ import InventarioMagiasDetalhes from "./components/InventarioMagiasDetalhes";
 import "./css/criarFicha.css";
 import { useFicha } from "../api/fichaPersonagem/FichaContext";
 import { exportFicha } from "../api/fichaPersonagem/fichaStorage";
+
+import GerenciarFichas from './components/GerenciarFichas';
+import SairIcon from './components/SairIcon';
 
 export default function CriarFicha() {
   const [barraRecolhida, setBarraRecolhida] = useState(() => { try { return localStorage.getItem('progressao-recolhida') === 'true'; } catch { return false; } });
@@ -18,10 +21,21 @@ export default function CriarFicha() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const [fichasAbertas, setFichasAbertas] = useState(() => !ficha || !!location.state?.abrirFichas);
+  useEffect(() => {
+    if (location.state?.abrirFichas) {
+      setFichasAbertas(true);
+      navigate(location.pathname, { replace: true, state: null });
+    }
+  }, [location, navigate]);
+  const sair = () => {
+    if (salvarPendentes()) navigate('/');
+  };
   const menuButton = useRef(null);
   const [erroExportacao, setErroExportacao] = useState("");
   const fecharMenu = () => { setIsMenuOpen(false); menuButton.current?.focus(); };
-  useEffect(() => { menuButton.current?.focus(); }, []);
+  useEffect(() => { if (!fichasAbertas) menuButton.current?.focus(); }, [fichasAbertas]);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [abaAtiva, setAbaAtiva] = useState("criacao");
   useEffect(() => {
@@ -33,17 +47,6 @@ export default function CriarFicha() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  // Redireciona para a Home se a ficha não estiver instanciada
-  useEffect(() => {
-    if (!ficha) {
-      navigate("/");
-    }
-  }, [ficha, navigate]);
-
-  if (!ficha) {
-    return null; // Ou uma mensagem de carregamento
-  }
 
   const handleSalvarFicha = () => {
     if (salvarFicha(ficha)) fecharMenu();
@@ -84,7 +87,7 @@ export default function CriarFicha() {
 
 
   return (
-    <div key={ficha.id} className="criar-ficha">
+    <div className="criar-ficha">
       <div className="menu-container" onKeyDown={e => { if (e.key === "Escape" && isMenuOpen) { e.preventDefault(); fecharMenu(); } }} onBlur={e => { if (!e.currentTarget.contains(e.relatedTarget)) setIsMenuOpen(false); }}>
         <button ref={menuButton} data-page-focus aria-label="Menu da ficha" aria-expanded={isMenuOpen} aria-controls="acoes-ficha" className="hamburger-button" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           ☰
@@ -93,13 +96,16 @@ export default function CriarFicha() {
         {erroExportacao && <p role="alert">{erroExportacao}</p>}
         {isMenuOpen && (
           <div id="acoes-ficha" className="menu-options">
+            {ficha && <>
             <button onClick={handleSalvarFicha}>Salvar Ficha</button>
             <button onClick={handleExportarPDF}>Exportar PDF</button>
             <button onClick={handleExportarJSON}>Exportar JSON</button>
+            </>}
+            <button className="menu-sair" onClick={sair}><SairIcon /> Sair</button>
           </div>
         )}
 
-        {isMobile && (
+        {ficha && isMobile && (
           <div className="menu-abas-criarFicha">
           {[
             { nome: "Criar", id: "criacao" },
@@ -120,8 +126,8 @@ export default function CriarFicha() {
         )}
       </div>
       {/* Modo Desktop: exibe todos os componentes */}
-      {!isMobile && (
-        <div className={`desktop-layout ${barraRecolhida ? "barra-recolhida" : ""}`}>
+      {ficha && !isMobile && (
+        <div key={ficha.id} className={`desktop-layout ${barraRecolhida ? "barra-recolhida" : ""}`}>
           <aside className="desktop-sidebar">
             <div className="rolagem-progressao">
               <header className="cabecalho-progressao">
@@ -141,14 +147,16 @@ export default function CriarFicha() {
       )}
 
       {/* Conteúdo das abas no Mobile */}
-      {isMobile && (
-        <div className="conteudo-abas">
+      {ficha && isMobile && (
+        <div key={ficha.id} className="conteudo-abas">
           {abaAtiva === "criacao" && <CriacaoFicha />}
           {abaAtiva === "informacoes" && <InformacoesPersonagem />}
           {abaAtiva === "pericias" && <PericiasEOutros />}
           {abaAtiva === "inventario" && <InventarioMagiasDetalhes />}
         </div>
       )}
+      {!ficha && <main className="ficha-empty"><h1>Área do Jogador</h1><p>Crie uma nova ficha ou carregue uma ficha existente para começar.</p></main>}
+      {fichasAbertas && <GerenciarFichas onClose={() => setFichasAbertas(false)} />}
     </div>
   );
 }

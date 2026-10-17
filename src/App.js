@@ -1,5 +1,6 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/home.jsx";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import SelecaoArea from "./pages/SelecaoArea";
+import AreaMestre from "./pages/AreaMestre";
 import CriarFicha from "./pages/criarFicha";
 import { FichaProvider } from "./api/fichaPersonagem/FichaContext";
 import { ToastContainer } from 'react-toastify';
@@ -11,7 +12,9 @@ function App() {
       <ToastContainer />
       <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<SelecaoArea />} />
+          <Route path="/jogador" element={<Navigate to="/criar-ficha" replace state={{ abrirFichas: true }} />} />
+          <Route path="/mestre" element={<AreaMestre />} />
           <Route path="/criar-ficha" element={<CriarFicha />} />
         </Routes>
       </Router>

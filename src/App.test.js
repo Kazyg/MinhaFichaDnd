@@ -5,10 +5,10 @@ import { parseCollection } from './api/fichaPersonagem/fichaStorage';
 
 beforeEach(() => {
   localStorage.clear();
-  window.history.replaceState({}, '', '/');
+  window.history.replaceState({}, '', '/criar-ficha');
 });
 
-test('exibe a home sem faixa de salvamento quando não há pendências', () => {
+test('exibe a modal inicial sem faixa de salvamento quando não há pendências', () => {
   render(<App />);
   expect(screen.getByRole('heading', { name: /Criador de Fichas de RPG/i })).toBeInTheDocument();
   expect(screen.queryByRole('status')).not.toBeInTheDocument();
@@ -19,10 +19,10 @@ test('fechar a seleção de edição não cria ficha', async () => {
   render(<App />);
   await user.click(screen.getByRole('button', { name: /Criar Nova Ficha/i }));
   expect(screen.getByRole('heading', { name: 'Escolha as regras da ficha' })).toBeInTheDocument();
-  await user.click(screen.getByRole('button', { name: 'Fechar' }));
+  await user.click(screen.getByRole('button', { name: 'Voltar' }));
   expect(screen.queryByRole('heading', { name: 'Escolha as regras da ficha' })).not.toBeInTheDocument();
   expect(localStorage.getItem('fichas')).toBeNull();
-  expect(window.location.pathname).toBe('/');
+  expect(window.location.pathname).toBe('/criar-ficha');
 });
 
 test.each(['2014', '2024'])('cria e reabre uma ficha da edição %s', async edition => {
@@ -39,7 +39,7 @@ test.each(['2014', '2024'])('cria e reabre uma ficha da edição %s', async edit
   expect(saved.fichas).toHaveLength(1);
   expect(saved.fichas[0].versaoRegras).toBe(`DND_${edition}`);
   expect(saved.fichas[0].nomePersonagem).toBe(`Aventureira sintética ${edition}`);
-  window.history.replaceState({}, '', '/');
+  window.history.replaceState({ usr: { abrirFichas: true } }, '', '/criar-ficha');
   render(<App />);
   await user.click(screen.getByRole('button', { name: /Carregar Ficha Salva/i }));
   await user.click(screen.getByText(new RegExp(`Aventureira sintética ${edition}:`)));
@@ -50,7 +50,7 @@ test('dados corrompidos mostram recuperação sem perder os bytes originais', ()
   localStorage.setItem('fichas', '[corrompido');
   render(<App />);
   expect(screen.queryByRole('button', { name: /Criar Nova Ficha/i })).not.toBeInTheDocument();
-  expect(window.location.pathname).toBe('/');
+  expect(window.location.pathname).toBe('/criar-ficha');
   expect(localStorage.getItem('fichas')).toBe('[corrompido');
   expect(screen.getByText(/Gravações bloqueadas/)).toBeInTheDocument();
 });
