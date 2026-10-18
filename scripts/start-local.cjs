@@ -1,5 +1,6 @@
 // CRA's development server is not a production host. Keep its tools local.
 const { spawnSync } = require('node:child_process');
+require('./prepare-ocr.cjs');
 const result = spawnSync(process.execPath, [require.resolve('react-scripts/scripts/start')], {
   stdio: 'inherit', env: { ...process.env, HOST: '127.0.0.1' },
 });

@@ -1,5 +1,6 @@
 const { spawnSync } = require('node:child_process');
 const path = require('node:path');
+require('./prepare-ocr.cjs');
 
 const output = path.resolve(process.env.BUILD_PATH || 'build');
 function run(script, args = []) {
@@ -11,4 +12,6 @@ function run(script, args = []) {
 }
 run('react-scripts/scripts/build');
 run('javascript-obfuscator/bin/javascript-obfuscator', [output, '--output', output,
-  '--compact', 'true', '--control-flow-flattening', 'true']);
+  '--compact', 'true', '--control-flow-flattening', 'true',
+  // Distribuições WASM/worker de terceiros devem conservar seus bytes e licenças.
+  '--exclude', `${output.replace(/\\/g, '/')}/ocr/**`]);

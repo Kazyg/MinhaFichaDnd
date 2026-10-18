@@ -1,0 +1,29 @@
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import RecortarRetrato from './RecortarRetrato';
+import { carregarImagemRecorte, gerarRetrato, sugerirRecorte } from '../retratos';
+import { rasterizarPaginaPdf } from '../pdf';
+import { AnexoCampanha } from '../modelos';
+jest.mock('../retratos',()=>({carregarImagemRecorte:jest.fn(),gerarRetrato:jest.fn(),sugerirRecorte:jest.fn(()=>null)}));
+jest.mock('../pdf',()=>({rasterizarPaginaPdf:jest.fn()}));
+const anexo:AnexoCampanha={id:'a',campanhaId:'c',nome:'original.png',mime:'image/png',arquivo:new Blob(['original']),tamanho:8};
+beforeEach(()=>{jest.spyOn(HTMLCanvasElement.prototype,'getContext').mockReturnValue({drawImage:jest.fn()} as unknown as CanvasRenderingContext2D);const canvas=document.createElement('canvas');canvas.width=500;canvas.height=300;(carregarImagemRecorte as jest.Mock).mockResolvedValue(canvas);(sugerirRecorte as jest.Mock).mockReturnValue(null);(gerarRetrato as jest.Mock).mockResolvedValue({...anexo,id:'novo',nome:'retrato.png'});});
+afterEach(()=>jest.restoreAllMocks());
+test('área manual acessível gera apenas retrato; original não é persistido ou alterado',async()=>{
+  const usar=jest.fn();const {unmount}=render(<RecortarRetrato anexo={anexo} onRetrato={usar}/>);
+  expect(carregarImagemRecorte).not.toHaveBeenCalled();
+  fireEvent.click(screen.getByRole('button',{name:'Selecionar recorte da ficha'}));
+  await waitFor(()=>expect(screen.getByRole('button',{name:'Usar este recorte como retrato'})).toBeEnabled());
+  fireEvent.change(screen.getByLabelText('Esquerda (%)'),{target:{value:'40'}});fireEvent.change(screen.getByLabelText('Largura (%)'),{target:{value:'50'}});
+  expect(usar).not.toHaveBeenCalled();fireEvent.click(screen.getByRole('button',{name:'Usar este recorte como retrato'}));
+  await waitFor(()=>expect(usar).toHaveBeenCalledWith(expect.objectContaining({id:'novo'})));
+  expect(gerarRetrato).toHaveBeenCalledWith(expect.anything(),{x:40,y:0,largura:50,altura:100},'c');
+  const canvas=(carregarImagemRecorte as jest.Mock).mock.results[0].value;unmount();expect((await canvas).width).toBe(0);
+});
+test('PDF permite selecionar página de origem e mantém sugestão revisável',async()=>{
+  const canvas=document.createElement('canvas');canvas.width=500;canvas.height=300;(rasterizarPaginaPdf as jest.Mock).mockResolvedValue({canvas,numPaginas:3});
+  (sugerirRecorte as jest.Mock).mockReturnValue({x:40,y:5,largura:50,altura:60});
+  render(<RecortarRetrato anexo={{...anexo,mime:'application/pdf'}} onRetrato={jest.fn()}/>);
+  fireEvent.click(screen.getByRole('button',{name:'Selecionar recorte da ficha'}));await screen.findByText(/Região de ilustração sugerida/);
+  fireEvent.change(screen.getByLabelText('Página de origem'),{target:{value:'2'}});
+  await waitFor(()=>expect(rasterizarPaginaPdf).toHaveBeenLastCalledWith(anexo.arquivo,2,2200,expect.anything()));
+});

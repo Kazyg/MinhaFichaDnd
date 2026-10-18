@@ -1,3 +1,9 @@
+:root {
+  --area-acao: #b93600;
+  --area-acao-hover: #d04408;
+  --area-destaque: #ff8a50;
+  --area-foco: #ffb184;
+}
 .area-selection {
   height: 100vh;
   height: 100dvh;
@@ -11,7 +17,7 @@
 }
 .area-selection::-webkit-scrollbar { display: none; }
 .area-selection-content { width: min(100%, 850px); text-align: center; }
-.areas-eyebrow { color: #ff8a50; font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.areas-eyebrow { color: var(--area-destaque); font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 .area-selection .areas-eyebrow { font-size: clamp(1.5rem, 4vw, 2.5rem); line-height: 1.2; margin: 0 0 1rem; letter-spacing: .06em; }
 .area-selection h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); margin: 1rem 0; }
 .areas-intro { color: #c4c4c4; margin-bottom: 2.5rem; }
@@ -21,7 +27,7 @@
 .area-card > svg { width: 64px; height: 64px; color: #ff8a50; }
 .area-card h2 { font-size: 1.4rem; margin: 1.5rem 0 .5rem; }
 .area-card p { color: #c4c4c4; line-height: 1.6; margin: 0 0 2rem; }
-.area-card-action { margin-top: auto; background: #b93600; border-radius: 5px; padding: .8rem 1rem; width: 100%; font-weight: 600; }
+.area-card-action { margin-top: auto; background: var(--area-acao); border-radius: 5px; padding: .8rem 1rem; width: 100%; font-weight: 600; }
 .areas-back { display: inline-block; color: #fff; text-decoration: none; padding: .7rem 1rem; border-radius: 4px; }
 .areas-back:hover { background: #383838; }
 .home-container > .areas-back { margin-bottom: 1rem; background: #222; }
@@ -36,8 +42,8 @@
 .master-menu #acoes-mestre { position: absolute; top: 100%; left: 0; padding: .5rem; background: #222; z-index: 10; min-width: 130px; border: 1px solid #555; }
 .master-layout { display: grid; grid-template-columns: 230px minmax(0, 1fr); min-height: calc(100vh - 60px); }
 .master-sidebar { padding: 1.5rem 1rem; }
-.master-sidebar button { display: flex; align-items: center; gap: .5rem; width: 100%; margin: .75rem 0; padding: .8rem; background: #b93600; color: #fff; border: 1px solid transparent; border-radius: 5px; font: inherit; text-align: left; cursor: pointer; }
-.master-sidebar button:hover { background: #d04408; }
+.master-sidebar button { display: flex; align-items: center; gap: .5rem; width: 100%; margin: .75rem 0; padding: .8rem; background: var(--area-acao); color: #fff; border: 1px solid transparent; border-radius: 5px; font: inherit; text-align: left; cursor: pointer; }
+.master-sidebar button:hover { background: var(--area-acao-hover); }
 .master-main { background: #2b2e32; padding: clamp(1.5rem, 5vw, 4rem); }
 .master-book { width: 64px; height: 64px; color: #ff8a50; margin-bottom: 1rem; }
 .master-main h1 { font-size: 2rem; margin: .75rem 0; }

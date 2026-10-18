@@ -91,22 +91,14 @@ test('rota antiga redireciona ao editor e abre modal', () => {
   expect(screen.getByRole('dialog', { name: 'Criador de Fichas de RPG' })).toBeInTheDocument();
 });
 
-test('mestre mantém ações provisórias e oferece Sair no menu', async () => {
+test('mestre abre gerenciador acessível e oferece Sair no menu', async () => {
   window.history.replaceState({}, '', '/mestre');
   const user = userEvent.setup();
   render(<App />);
-  expect(screen.getByRole('dialog', { name: 'Gerenciador de Campanhas' })).toBeInTheDocument();
+  expect(await screen.findByRole('dialog', { name: 'Gerenciador de Campanhas' })).toBeInTheDocument();
   expect(screen.queryByRole('link', { name: /Selecionar área/, hidden: true })).not.toBeInTheDocument();
   await user.keyboard('{Escape}');
-  expect(screen.getByRole('dialog')).toBeInTheDocument();
-  await user.click(screen.getByRole('button', { name: /Carregar Campanha/ }));
-    expect(screen.getByRole('dialog', { name: 'Selecione uma Campanha' })).toBeInTheDocument();
-    expect(screen.getByLabelText('Importar campanha JSON')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Confirmar Importação' })).toBeDisabled();
-    await user.click(screen.getByRole('button', { name: 'Voltar' }));
-  await user.click(screen.getByRole('button', { name: /Nova Campanha/ }));
-    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-    expect(screen.queryByText('Suas campanhas começam aqui')).not.toBeInTheDocument();
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   await user.click(screen.getByRole('button', { name: 'Menu do mestre' }));
   await user.keyboard('{Escape}');
   expect(screen.getByRole('button', { name: 'Menu do mestre' })).toHaveFocus();
