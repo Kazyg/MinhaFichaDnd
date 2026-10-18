@@ -18,7 +18,7 @@ export interface RepositorioCampanhas {
 export type CodigoErroPersistencia = 'indisponivel' | 'cota-excedida' | 'bloqueado' | 'versao-incompativel' | 'dados-corrompidos' | 'transacao-falhou'
   | 'conflito' | 'nao-encontrado' | 'migracao-falhou' | 'backup-invalido' | 'backup-incompativel' | 'arquivo-grande';
 
-/** Erros reconhecíveis pela futura UI, sem depender de mensagens do navegador. */
+/** Erros reconhecíveis pela UI, sem depender de mensagens do navegador. */
 export interface FalhaPersistencia extends Error {
   codigo: CodigoErroPersistencia;
 }

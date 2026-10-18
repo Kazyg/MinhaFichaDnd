@@ -56,7 +56,7 @@ export interface FichaOriginal {
 export interface InstanciaFicha {
   id: string;
   campanhaId: string;
-  fichaOriginalId: string | null; // null permite avulsos/minions no futuro
+  fichaOriginalId: string | null; // null identifica avulsos/minions sem ficha original
   categoria: CategoriaFicha;
   nome: string;
   pv: PontosVida;
@@ -136,7 +136,7 @@ export interface LayoutCampanha {
   paineis: PainelLayout[];
 }
 
-/** Unidade transacional de leitura/backup para a futura camada de persistência. */
+/** Agregado transacional de leitura, persistência e backup da campanha. */
 export interface DadosCampanha {
   campanha: Campanha;
   anexos: AnexoCampanha[];

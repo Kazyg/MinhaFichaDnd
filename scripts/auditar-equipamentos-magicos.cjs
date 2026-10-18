@@ -20,7 +20,7 @@ const ingles = catalogo('src/bibliotecas/ItensIngles.ts', 'ItensIngles');
 const local = catalogo('src/bibliotecas/Itens.ts', 'Itens');
 if (ingles.length !== local.length || ingles.some((i, n) => i.nome !== local[n].nome)) throw new Error('Os registros locais e ingleses não estão alinhados; revisar os IDs do catálogo antes de gerar metadados.');
 const candidatos = ingles.filter(i => /^(?:M|R|LA|MA|HA|S|GV)(?:[|,]|$)/.test(i.tipo) || /weapon|armor|shield|staff|rod/i.test(i.tipo) || /(?:functions?|can be used|use it|wielded) as (?:a |an )?(?:magic |\+\d )?(?:weapon|quarterstaff|club|mace|longsword|greatsword|dagger|shield|armor)/i.test(i.descricao));
-const destino = path.resolve('docs/equipamentos-magicos-2026-10-14');
+const destino = path.resolve('tmp/auditoria-equipamentos-magicos');
 fs.mkdirSync(destino, { recursive: true });
 fs.writeFileSync(path.join(destino, 'analise-catalogo.json'), JSON.stringify({ registrosLocais: local.length, registrosIngles: ingles.length, candidatos: candidatos.map(({ descricao, ...identificacao }) => identificacao) }, null, 2));
 console.log(JSON.stringify({ registrosLocais: local.length, registrosIngles: ingles.length, candidatos: candidatos.length }));

@@ -2,7 +2,7 @@
 
 Aplicação web para criar e gerenciar fichas de personagens de Dungeons & Dragons 5e, com regras de 2014 e 2024.
 
-[Aplicação publicada](https://minhafichadnd.com.br/) · [Repositório](https://github.com/Kazyg/MinhaFichaDnd) · [Arquitetura e documentação](docs/arquiteture.md)
+[Aplicação publicada](https://minhafichadnd.com.br/) · [Repositório](https://github.com/Kazyg/MinhaFichaDnd) · [Arquitetura e documentação](arquiteture.md)
 
 O projeto reúne criação, progressão e consulta da ficha em uma interface para desktop e dispositivos móveis. Seu objetivo técnico é desenvolver e manter uma aplicação React com regras de domínio, persistência local e compatibilidade com documentos existentes, por meio de melhorias incrementais.
 
@@ -14,6 +14,7 @@ O projeto reúne criação, progressão e consulta da ficha em uma interface par
 - Salvamento automático local e ação Salvar Ficha, com tratamento de falhas.
 - Importação e exportação JSON, com escolha explícita entre cópia e substituição quando há colisão de ID.
 - Exportação PDF carregada sob demanda, com tratamento de falha e nova tentativa.
+- [Área do Mestre](src/features/areaMestre/README.md): campanhas, roteiros, fichas importadas, PV, combates e condições.
 
 As automações são parciais. Uma entrada no catálogo não garante implementação de todos os seus requisitos, escolhas ou efeitos; consulte as limitações abaixo.
 
@@ -59,19 +60,19 @@ O build usa `javascript-obfuscator`. Ofuscação não substitui segurança ou li
 | `src/utils` | Utilitários e exportação PDF |
 | `public` | Recursos estáticos, template PDF e atribuições |
 | `scripts` | Inicialização local e build |
-| `docs` | Documentação central em `arquiteture.md`, auditorias e evidências |
+| `arquiteture.md` | Documentação central de arquitetura e manutenção |
 
 ## Persistência e compatibilidade
 
-As fichas ficam no `localStorage`, restritas ao navegador e à origem. Não há conta, backend de fichas ou sincronização entre dispositivos. Alterações são observadas e a gravação é tentada após 300 ms; Salvar Ficha força a gravação. Estados pendentes, erros e recuperação aparecem na interface; o indicador fica oculto quando tudo está salvo.
+As fichas do editor ficam no `localStorage`; campanhas e anexos da Área do Mestre ficam em IndexedDB. Ambos são restritos ao navegador e à origem, sem conta, backend de fichas ou sincronização entre dispositivos. No editor, a gravação é tentada após 300 ms; Salvar Ficha força a gravação. Estados pendentes, erros e recuperação aparecem na interface; o indicador fica oculto quando tudo está salvo.
 
-Limpar os dados do navegador pode apagar fichas. Mantenha cópias JSON fora dele. Em caso de erro, exporte as alterações em memória ou o conteúdo original pelas ações de recuperação antes de fechar. A importação aceita até 5 MiB. PDF serve para consulta/impressão e não substitui backup JSON.
+Limpar os dados do navegador pode apagar fichas e campanhas. Mantenha cópias JSON das fichas e backups ZIP das campanhas fora dele. Em caso de erro no editor, exporte as alterações em memória ou o conteúdo original pelas ações de recuperação antes de fechar. A importação JSON aceita até 5 MiB. PDF serve para consulta/impressão e não substitui esses backups.
 
-Fichas legadas sem edição seguem 2014. Referências, snapshots, campos desconhecidos e escolhas arquivadas são preservados pelos contratos existentes; revisões desconhecidas não são convertidas silenciosamente. Testes usam armazenamento sintético, sem alterar fichas reais. O roteiro de recuperação está no [relatório anterior](docs/revisao-pendencias-2026-10-08/IMPLEMENTACAO.md#recuperação-mínima-p04p16).
+Fichas legadas sem edição seguem 2014. Referências, snapshots, campos desconhecidos e escolhas arquivadas são preservados pelos contratos existentes; revisões desconhecidas não são convertidas silenciosamente. Testes usam armazenamento sintético, sem alterar fichas reais.
 
 ## Limitações conhecidas
 
-- Cobertura e automações diferem por edição. As regras de talentos de `feat/regras-2024` foram integradas com escolhas, requisitos, concessões e usos de magias; benefícios condicionais de combate continuam manuais. O acervo PHB 2024 vai além do subconjunto SRD auditado anteriormente, com licença de redistribuição pendente. Consulte a [integração e validação](docs/merge-regras-2024-2026-10-13/RELATORIO.md).
+- Cobertura e automações diferem por edição. As regras de talentos de `feat/regras-2024` foram integradas com escolhas, requisitos, concessões e usos de magias; benefícios condicionais de combate continuam manuais. O acervo PHB 2024 vai além do subconjunto SRD auditado anteriormente, com licença de redistribuição pendente.
 - XML não está implementado; o mapeamento PDF é uma ferramenta interna ausente do menu.
 - O PDF usa Helvetica/WinAnsi: caracteres fora da cobertura podem virar `?`; o JSON mantém o texto integral.
 - O bundle é grande, e a toolchain CRA mantém avisos e dependências vulneráveis. A revisão registra o alcance conhecido, sem afirmar segurança integral.
@@ -83,6 +84,6 @@ O subconjunto identificado em [CONTEUDO-LICENCAS.txt](public/CONTEUDO-LICENCAS.t
 
 Essa licença não se estende automaticamente ao acervo inteiro. Textos legados, tradução comunitária do PHB 2024, imagens, ícones e modelo PDF têm pendências de procedência ou permissão de redistribuição. Acesso a um livro e créditos em um arquivo não comprovam autorização para publicação. Não foi adicionada licença genérica que englobe esses materiais.
 
-Consulte a [auditoria atual](docs/revisao-portfolio-2026-10-13/RELATORIO.md), o [inventário de assets](docs/auditoria-2026-10-06/F7-assets.json) e a [auditoria de conteúdo](docs/auditoria-2026-10-06/F7-conteudo.md). A recomendação de divulgação como portfólio permanece condicionada à resolução das pendências de conteúdo e validação funcional.
+A divulgação como portfólio permanece condicionada à resolução das pendências de conteúdo e validação funcional descritas em [arquiteture.md](arquiteture.md#conteúdo-e-licenciamento).
 
 Não foram incluídas capturas de tela: a autorização dos recursos visuais ainda não foi documentada.

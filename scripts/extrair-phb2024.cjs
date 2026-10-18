@@ -1,8 +1,12 @@
 ﻿// Entrada: pages.json temporário obtido com PDF.js, com {page, text, items}.
 // O PDF e sua extração integral não fazem parte do repositório.
 const fs = require('node:fs');
+if (!process.argv[2] || !process.argv[3]) {
+  console.error('Uso: node scripts/extrair-phb2024.cjs <pages.json> <indice.json>');
+  process.exit(1);
+}
 const pages = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
-const index = require('../docs/revisao-pendencias-2026-10-08/FONTE-PHB2024-indice.json');
+const index = JSON.parse(fs.readFileSync(process.argv[3], 'utf8'));
 const join = s => s.replace(/-\s*\n\s*([a-zà-ÿ])/g, '$1').replace(/\s+/g, ' ').trim();
 const lines = (start, end) => pages.filter(p => p.page >= start && p.page <= end).flatMap(p => p.text.split('\n').map(text => ({ text: text.trim(), page: p.page })))
   .filter(l => l.text && !/^CAPÍTULO \d+ \|/.test(l.text) && !/^\d+$/.test(l.text) && !/^[A-Z][A-Z &.'’—-]{5,}$/.test(l.text));

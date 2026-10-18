@@ -47,6 +47,6 @@ for (const [edition, spells, aliases] of [['DND_2014',antiga,aliases2014],['DND_
     };
   });
 }
-fs.mkdirSync('docs/magias-2026-10-14',{ recursive:true });
-fs.writeFileSync('docs/magias-2026-10-14/auditoria.json',JSON.stringify(audit,null,2)+'\n');
+fs.mkdirSync('tmp/auditoria-magias',{ recursive:true });
+fs.writeFileSync('tmp/auditoria-magias/auditoria.json',JSON.stringify(audit,null,2)+'\n');
 console.log(Object.fromEntries(Object.entries(audit).map(([e,m]) => [e,{ total:m.length, verificadaSRD:m.filter(s => s.verificadaSRD).length, correspondencias:m.filter(s => s.correspondenciaRecuperada).length, semDescricao:m.filter(s => !s.selecionavel).map(s => s.nome) }])));

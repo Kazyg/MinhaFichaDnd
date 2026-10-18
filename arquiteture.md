@@ -1,12 +1,12 @@
 ﻿# Arquitetura — MinhaFichaDnd
 
-Documento central de manutenção, consolidado em 14/10/2026. Relatórios datados são evidências históricas: seus resultados e propostas não devem ser interpretados como validação do código atual.
+Documento central de arquitetura e manutenção do projeto.
 
 ## Aplicação e execução
 
 SPA React 18 com JavaScript, TypeScript 4.9, React Router 6 e Create React App (`react-scripts` 5). Usa Context API, React Toastify, Framer Motion e pdf-lib. Não há backend de fichas, autenticação ou sincronização entre dispositivos.
 
-A aplicação executável está na raiz. `src/App.js` envolve as rotas no `FichaProvider`: `/` abre a Home e `/criar-ficha` abre a edição. A interface tem layouts para desktop e dispositivos móveis.
+A aplicação executável está na raiz. `src/App.js` envolve as rotas no `FichaProvider`: `/` abre a Home, `/criar-ficha` abre a edição e `/mestre` carrega a Área do Mestre sob demanda. A interface tem layouts para desktop e dispositivos móveis.
 
 ```sh
 npm ci
@@ -26,9 +26,10 @@ O servidor local usa `http://127.0.0.1:3000`, limitado ao loopback por `scripts/
 | `src/api/rulesets` | Contratos, catálogos, fontes e regras por edição |
 | `src/bibliotecas` | Catálogos legados e dados estáticos |
 | `src/utils` | Utilitários e exportação PDF |
+| `src/features/areaMestre` | Campanhas, anexos, workspace e motor de combate |
 | `public` | Entradas estáticas: HTML, imagens, template PDF e atribuições |
 | `scripts` | Inicialização, compilação, importação e auditoria de catálogos |
-| `docs` | Este documento e evidências de revisões |
+| `arquiteture.md` | Este guia de arquitetura e manutenção |
 | `tmp` | Arquivos de trabalho locais, ignorados pelo Git |
 | `build` | Saída gerada e ignorada pelo Git; recriada por `npm run build` |
 
@@ -39,13 +40,13 @@ A interface usa o contexto da ficha e os módulos de domínio. As regras e os se
 ## Persistência, importação e recuperação
 
 - `FichaPersonagem.ts` contém o modelo; `FichaContext.tsx` coordena o estado e a gravação. `fichaStorage.ts` valida documentos; `fichaRestauracao.ts` restaura modelos.
-- O armazenamento é `localStorage`, por navegador e origem. As chaves são `fichas`, `fichas.backup` e `fichas.recuperacao`.
+- O armazenamento das fichas do editor é `localStorage`, por navegador e origem. As chaves são `fichas`, `fichas.backup` e `fichas.recuperacao`.
 - Alterações disparam tentativa de gravação após 300 ms. Salvar Ficha força a gravação; a interface informa pendências, falhas e recuperação.
 - Importação JSON aceita até 5 MiB e valida os campos conhecidos. Em colisão de ID, o usuário escolhe cópia ou substituição.
 - Campos desconhecidos, snapshots e escolhas arquivadas são preservados. Fichas sem edição seguem 2014; revisões ou edições desconhecidas não são reinterpretadas silenciosamente.
 - Em falhas, exportar as alterações em memória ou o original pelas ações de recuperação antes de fechar. JSON é o backup recuperável; PDF é para consulta/impressão. Limpar os dados do navegador pode apagar as fichas.
 
-Procedimento e cenários detalhados: [integridade de dados](auditoria-2026-10-06/INTEGRIDADE-DADOS.md), [restauração](auditoria-2026-10-06/F3-restauracao.md) e [recuperação mínima](revisao-pendencias-2026-10-08/IMPLEMENTACAO.md#recuperação-mínima-p04p16).
+A Área do Mestre usa IndexedDB independente e backups ZIP de campanhas. Seus contratos, migrações e fluxos estão no [README do módulo](src/features/areaMestre/README.md).
 
 ## Edições, referências e progressão
 
@@ -54,8 +55,6 @@ A edição da ficha determina catálogos e seletores. Aquisições conservam ref
 Talentos verificam requisitos, repetição e escolhas obrigatórias. Cada aquisição conserva suas concessões e escolhas. A remoção afeta somente a origem correspondente; bônus de níveis inativos não se aplicam. Escolhas 2024 usam `escolhasTalento2024`, preservando os formatos legados de `escolhasTalento`. Benefícios condicionais de combate continuam sob controle da mesa.
 
 Magias concedidas por talentos não consomem a seleção de classe. Usos gratuitos são persistidos no efeito e restaurados pelo descanso disponível na seção; truques não os gastam. A implementação 2024 não substitui integralmente a progressão legada de classes.
-
-Detalhes: [regras 2024](regras-2024.md), [ajustes de interface e domínio](AJUSTES-FEATURE-DND2024.md), [progressão](auditoria-2026-10-06/F4-progressao.md), [cálculos](auditoria-2026-10-06/F5-calculos.md) e [integração das regras](merge-regras-2024-2026-10-13/RELATORIO.md).
 
 ## Conjuração e apresentação das magias
 
@@ -76,7 +75,9 @@ node scripts/revisar-magias.cjs
 
 O segundo comando depende de `tmp/srd51-spells.json` e `tmp/srd52-spells.json`, com registros `{ page, text }` extraídos dos PDFs oficiais. São entradas locais necessárias para regeneração, embora não sejam necessárias para executar ou compilar a aplicação.
 
-Detalhes, fontes e limitações: [revisão de magias](magias-2026-10-14/README.md), [auditoria por registro](magias-2026-10-14/auditoria.json) e [conjuração](auditoria-2026-10-06/F6-conjuracao.md).
+As auditorias auxiliares gravam suas saídas em `tmp/auditoria-magias` e
+`tmp/auditoria-equipamentos-magicos`. O extrator do PHB recebe a extração e o índice
+como entradas externas: `node scripts/extrair-phb2024.cjs <pages.json> <indice.json>`.
 
 ## Inventário, concessões e equipamentos mágicos
 
@@ -85,8 +86,6 @@ Concessões de background são reconciliadas por IDs e origem, sem substituir in
 As moedas registram saldo observado, contribuição restante e gastos. Retiradas consomem primeiro a contribuição; depósitos não a aumentam. Trocar backgrounds não recupera dinheiro gasto. Fichas antigas não recebem crédito ao abrir/importar; a seleção explícita inicia a concessão quando aplicável. Divergência financeira suspende a reconciliação e preserva os valores. Backgrounds 2024 oferecem equipamentos e moedas próprios ou somente 50 PO, com escolha persistida.
 
 Equipamentos mágicos persistem snapshot, base e vínculo por ID de instância. Equipar e sintonizar são estados independentes. Melhorias vinculam-se a equipamentos existentes; bases alternativas exigem escolha. Seletores calculam CA, ataque e dano suportados. Cargas, reações, ativações e benefícios condicionais permanecem manuais. Dados sem base verificável não geram equipamentos automaticamente.
-
-Detalhes: [concessões e tabela dos backgrounds](concessoes-iniciais.md), [catálogo de equipamentos mágicos](equipamentos-magicos-2026-10-14/RELATORIO.md) e [inventário e recursos](auditoria-2026-10-06/F8-inventario-recursos.md).
 
 ## Exportação PDF
 
@@ -102,11 +101,10 @@ O antigo `my-app` continha apenas README e gitignore residuais e foi removido. O
 
 ### Arquivos locais em tmp
 
-- `srd51-spells.json` e `srd52-spells.json`: preservar para executar a regeneração de magias.
-- PDFs SRD e extrações `*-pages.json`: material de trabalho para refazer/conferir extrações; dispensáveis para runtime e build.
-- `magias-legadas.json`: cópia auxiliar de trabalho, sem referência nos scripts ativos examinados; preservada por não ser saída de log.
-- `pdf-tools`, `pdfs` e perfis de navegador `panel-*-profile*`: ferramentas e caches de inspeção, sem dependência da aplicação; podem ser descartados após encerrar ferramentas/navegadores. Parte de `pdf-tools` apresentou restrição de acesso nesta revisão e foi preservada.
-- Logs e HTMLs `panel-layout-*`: saídas transitórias removidas nesta limpeza. Novos arquivos locais ficam ignorados pelo Git.
+`srd51-spells.json` e `srd52-spells.json` são entradas de `scripts/revisar-magias.cjs`
+e devem ser preservados para regeneração. Logs, capturas, perfis de navegador e
+saídas auxiliares são descartáveis. A pasta é ignorada pelo Git e não é necessária
+para executar ou compilar a aplicação.
 
 ## Validação e limites conhecidos
 
@@ -121,16 +119,11 @@ npm run build:verify
 
 O workflow `.github/workflows/validate.yml` instala com `npm ci` e executa esses quatro checks em push/PR; não faz deploy. Jest/React Testing Library verificam cenários sintéticos, sem acessar fichas reais. TypeScript usa `strict: true`, mas `allowJs: true` com `checkJs: false` não garante checagem integral de JavaScript.
 
-Resultados antigos pertencem ao commit e cenário de cada relatório. Testes DOM não certificam layout real, zoom, leitores de tela ou acessibilidade integral. CRA tem dívida de dependências e o bundle é grande; os números das auditorias datadas não representam uma análise atual de segurança.
-
-Histórico: [base de verificação](VERIFICACAO.md), [acessibilidade](auditoria-2026-10-06/F8-acessibilidade.md), [custos e desempenho](auditoria-2026-10-06/A25-custos.md), [diagnóstico](revisao-pendencias-2026-10-08/DIAGNOSTICO.md), [implementação](revisao-pendencias-2026-10-08/IMPLEMENTACAO.md) e [revisão de portfólio](revisao-portfolio-2026-10-13/RELATORIO.md).
+Testes DOM não certificam layout real, zoom, leitores de tela ou acessibilidade integral. CRA tem dívida de dependências e o bundle é grande; verificações antigas não representam uma análise atual de segurança.
 
 ## Conteúdo e licenciamento
 
-[CONTEUDO-LICENCAS.txt](../public/CONTEUDO-LICENCAS.txt) delimita o material SRD e as atribuições. A licença do subconjunto SRD não abrange automaticamente o acervo completo, traduções comunitárias, imagens, ícones ou o template PDF. Não há licença geral que resolva essas pendências. Resumos locais não são traduções oficiais.
+[CONTEUDO-LICENCAS.txt](public/CONTEUDO-LICENCAS.txt) delimita o material SRD e as atribuições. A licença do subconjunto SRD não abrange automaticamente o acervo completo, traduções comunitárias, imagens, ícones ou o template PDF. Não há licença geral que resolva essas pendências. Resumos locais não são traduções oficiais.
 
 Manter origem, edição, página, revisão e licença junto aos registros. O acesso a um livro ou sua citação não comprova permissão de redistribuição. A divulgação como portfólio permanece condicionada às pendências documentadas.
 
-Evidências: [inventário de assets](auditoria-2026-10-06/F7-assets.json), [auditoria de conteúdo](auditoria-2026-10-06/F7-conteudo.md), [fonte PHB 2024](revisao-pendencias-2026-10-08/FONTE-PHB2024.md) e [índice usado pelo extrator](revisao-pendencias-2026-10-08/FONTE-PHB2024-indice.json). Este índice é entrada de `scripts/extrair-phb2024.cjs` e não deve ser excluído como evidência descartável.
-
-Os relatórios e anexos históricos foram preservados para rastreabilidade, reprodução e referências existentes. Para manutenção diária, começar por este arquivo.
