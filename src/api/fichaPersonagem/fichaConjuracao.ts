@@ -21,8 +21,8 @@ export type FonteConjuracao = {
   espacos: number[]; truques: number; magias: number; livroPorProgressao: number;
   categoria: CategoriaMagia; cd: number; ataque: number;
 };
-// Acervo histórico: usado só na leitura legada, reconhecimento de classes e escolas 2014.
-// Seleções novas usam getMagiasConteudo(fonte.edicao), nunca estas listas em 2024.
+
+
 export const listasMagias: Record<string, { nome: string; nivel: number; tipo: string }[]> = {
   bardo: magiasBardo, bruxo: magiasBruxo, clerigo: magiasClerigo, druida: magiasDruida,
   feiticeiro: magiasFeiticeiro, mago: magiasMago, paladino: magiasPaladino, patrulheiro: magiasPatrulheiro,
@@ -60,7 +60,7 @@ export function selecionarPoolsMagia(f: Documento) {
   return [...pools, ...fontes.filter(c => c.progressao === 'pacto').map(c => ({ id: `pacto:${c.id}`, nome: `Magia de Pacto — ${c.nome}`, recuperacao: 'Descanso curto ou longo', fontes: [c.id], espacos: [...c.espacos] }))];
 }
 
-// Pure, lossless projection. The original legacy array remains in the document as a recovery snapshot.
+
 export function selecionarEscolhasMagia(f: Documento): EscolhaMagia[] {
   if (f?.magiasConjuracao) return f.magiasConjuracao;
   const fontes = selecionarFontesConjuracao(f);
@@ -107,7 +107,7 @@ export function validarEscolhaMagia(f: Documento, fonteIdEscolhida: string, nome
     const livres = [3,8,14,20].filter(n => fonte.nivel >= n).length;
     if (!escolas.includes(magia.tipo) && atuais.filter(e => !escolas.includes(buscarMagia(e.nome)?.tipo ?? '')).length >= livres) return `Limite de ${livres} escolhas fora das escolas da subclasse.`;
   }
-  // Arcane Trickster has Mage Hand and two free choices, not three free choices.
+
   if (fonte.chave === 'ladino' && categoria === 'truque' && nome !== 'Mãos Mágicas' && atuais.filter(e => e.nome !== 'Mãos Mágicas').length >= fonte.truques - 1) return 'Você precisa escolher Mãos Mágicas como um dos seus truques.';
   return null;
 }

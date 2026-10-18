@@ -1,4 +1,4 @@
-/** @jest-environment node */
+
 import './ambienteIndexedDB.testUtils';
 import fs from 'fs';
 import { webcrypto } from 'crypto';

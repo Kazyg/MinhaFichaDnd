@@ -1,23 +1,23 @@
-/* Estilo para o popup */
+
 .popup {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #222; /* Fundo escuro */
+    background-color: #222;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     z-index: 1000;
     width: 80%;
-    max-width: 1000px; /* Largura máxima */
-    max-height: 90vh; /* Altura máxima */
+    max-width: 1000px;
+    max-height: 90vh;
     display: flex;
     flex-direction: column;
-    color: white; /* Texto branco */
+    color: white;
   }
-  
-  /* Estilo para o fundo escuro quando o popup está aberto */
+
+
   .popup-overlay {
     position: fixed;
     top: 0;
@@ -27,8 +27,8 @@
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
   }
-  
-  /* Estilo para o conteúdo do popup */
+
+
   .popup-content-modal {
     display: flex;
     flex-direction: column;
@@ -37,7 +37,7 @@
     height: 600px;
     gap: 20px;
     flex: 1;
-    overflow: hidden; /* Evita transbordamento */
+    overflow: hidden;
   }
 
   .popup-content-modal h2 {
@@ -49,8 +49,8 @@
     display: flex;
     justify-content: flex-start;
   }
-  
-  /* Estilo para a lista de raças (30% da largura) */
+
+
   .lista-racas {
     width: 250px;
     display: flex;
@@ -58,8 +58,8 @@
     margin-right: 10px;
     gap: 10px;
   }
-  
-  /* Estilo para o campo de filtro */
+
+
   .lista-racas input {
     width: 80%;
     height: 10px;
@@ -124,7 +124,7 @@
     width: 20px;
     height: 20px;
   }
-  
+
   .selects-filtros{
     display: flex;
     flex-direction: row;
@@ -147,8 +147,8 @@
     margin-top: -4px;
     margin-left: -4px;
   }
-  
-  /* Estilo para a lista de raças (com scrollbar) */
+
+
   .lista-racas ul {
     list-style: none;
     width: 100%;
@@ -156,14 +156,14 @@
     max-height: 52.5vh;
     padding: 0;
     margin: 0;
-    overflow-y: auto; /* Scrollbar vertical */
+    overflow-y: auto;
     flex: 1;
     background-color: #333;
     border-radius: 5px;
     padding: 10px;
     max-height: 294px;
   }
-  
+
   .lista-racas ul li {
     padding: 10px;
     cursor: pointer;
@@ -172,12 +172,12 @@
     margin-bottom: 5px;
     color: white;
   }
-  
+
   .lista-racas ul li:hover {
     background-color: #555;
   }
-  
-  /* Estilo para os detalhes da raça (70% da largura) */
+
+
   .detalhes-raca {
     width: 675px;
     height: 400px;
@@ -188,10 +188,10 @@
     border-radius: 5px;
     padding: 20px;
     color: white;
-    overflow-y: auto; /* Adiciona scrollbar se necessário */
+    overflow-y: auto;
     max-height: 55vh;
   }
-  
+
   .detalhes-raca p {
     text-align: left;
     margin: 2.5px;
@@ -202,7 +202,7 @@
     margin-bottom: 8px;
     margin-top: 5px;
   }
-  /* Estilo para o botão de escolher raça */
+
   .detalhes-raca button {
     padding: 10px;
     background-color: var(--selecao-fundo);
@@ -210,13 +210,13 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: auto; /* Coloca o botão no final */
+    margin-top: auto;
   }
-  
+
   .detalhes-raca button:hover {
     background-color: var(--selecao-fundo-hover);
   }
-  
+
   .popup-footer {
     display: flex;
     flex-direction: row;
@@ -232,32 +232,32 @@
     margin-top: -10px;
     margin-bottom: -10px;
   }
-  
-  /* Estilo para o botão de fechar */
+
+
   .popup-footer button.fechar {
-    background-color: #ff4d4d; /* Vermelho */
+    background-color: #ff4d4d;
     margin-top: 0px;
     margin-bottom: 0px;
   }
-  
+
   .popup-footer button.fechar:hover {
-    background-color: #cc0000; /* Vermelho mais escuro */
+    background-color: #cc0000;
   }
-  
-  /* Scrollbar */
+
+
   .lista-racas ul::-webkit-scrollbar {
     width: 8px;
   }
-  
+
   .lista-racas ul::-webkit-scrollbar-thumb {
     background: gray;
     border-radius: 4px;
   }
-  
+
   .detalhes-raca::-webkit-scrollbar {
     width: 8px;
   }
-  
+
   .detalhes-raca::-webkit-scrollbar-thumb {
     background: gray;
     border-radius: 4px;
@@ -271,7 +271,7 @@
     background-color: #333;
     border-radius: 5px;
     color: white;
-    margin-top: 10px; /* Espaço do topo */
+    margin-top: 10px;
   }
 
   .selecao-atributos-ancestral {
@@ -283,9 +283,9 @@
     background-color: #333;
     border-radius: 5px;
     color: white;
-    margin-top: 10px; /* Espaço do topo */
+    margin-top: 10px;
   }
-  
+
   .selecao-atributos h3 {
     margin-bottom: 15px;
     margin-top: 0;
@@ -295,8 +295,8 @@
     margin-bottom: 15px;
     margin-top: 0;
   }
-  
-  /* Estilo para o container do checkbox */
+
+
   .checkbox-container {
     display: flex;
     align-items: center;
@@ -304,14 +304,14 @@
     cursor: pointer;
     padding: 5px;
     border-radius: 5px;
-    background-color: #444; /* Cor de fundo semelhante aos itens da lista */
+    background-color: #444;
   }
-  
+
   .checkbox-container:hover {
-    background-color: #555; /* Cor de fundo mais clara no hover */
+    background-color: #555;
   }
-  
-  /* Estilo para o checkbox */
+
+
   .checkbox-container input[type="checkbox"] {
     appearance: none;
     width: 18px;
@@ -322,14 +322,14 @@
     cursor: pointer;
     position: relative;
   }
-  
+
   .checkbox-container input[type="checkbox"]:checked {
-    background-color: #ff4500; /* Laranja quando marcado */
+    background-color: #ff4500;
     border-color: #ff4500;
   }
-  
+
   .checkbox-container input[type="checkbox"]:checked::before {
-    content: "✔"; /* Símbolo de checkmark */
+    content: "✔";
     position: absolute;
     font-size: 14px;
     color: white;
@@ -337,14 +337,14 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  
+
   .checkbox-container input[type="checkbox"]:disabled {
-    opacity: 0.5; /* Opacidade menor quando desabilitado */
+    opacity: 0.5;
     cursor: not-allowed;
   }
-  
+
   .checkbox-container input[type="checkbox"]:disabled + span {
-    opacity: 0.5; /* Opacidade menor para o texto quando desabilitado */
+    opacity: 0.5;
   }
 
   .checkbox-container.disabled-hover:hover {
@@ -363,50 +363,50 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 90%; /* Ajusta a largura do popup para telas menores */
-      max-width: 100%; /* Remove a largura máxima */
-      height: auto; /* Altura automática */
-      max-height: 100vh; /* Ajusta a altura máxima */
-      padding: 5px; /* Reduz o padding */
+      width: 90%;
+      max-width: 100%;
+      height: auto;
+      max-height: 100vh;
+      padding: 5px;
     }
-  
+
     .popup-content-modal {
-      height: auto; /* Altura automática */
-      flex-direction: column; /* Altera a direção do flex para coluna */
+      height: auto;
+      flex-direction: column;
       width: 350px;
-      gap: 15px; /* Reduz o espaçamento entre os elementos */
+      gap: 15px;
     }
-  
+
     .popup-body-modal {
-      flex-direction: column; /* Altera a direção do flex para coluna */
+      flex-direction: column;
       align-items: center;
       width: 350px;
-      gap: 15px; /* Espaçamento entre a lista e a descrição */
+      gap: 15px;
     }
-  
+
     .lista-racas {
       min-width: 250px;
-      width: 93%; /* Ocupa 100% da largura */
-      margin-right: 0; /* Remove a margem direita */
+      width: 93%;
+      margin-right: 0;
       margin-left: -17px;
     }
-  
+
     .lista-racas ul {
-      max-height: 30vh; /* Ajusta a altura máxima da lista */
+      max-height: 30vh;
     }
-  
+
     .detalhes-raca {
-      width: 90%; /* Ocupa 100% da largura */
-      height: auto; /* Altura automática */
-      max-height: 30vh; /* Ajusta a altura máxima da descrição */
-      padding: 15px; /* Reduz o padding */
+      width: 90%;
+      height: auto;
+      max-height: 30vh;
+      padding: 15px;
       margin-left: 3px;
     }
-  
+
     .detalhes-raca button {
-      margin-top: 10px; /* Ajusta a margem do botão */
+      margin-top: 10px;
     }
-    
+
     .selecao-atributos-container{
       display: flex;
       flex-direction: column;
@@ -422,18 +422,18 @@
       justify-content: space-around;
       align-items: center;
     }
-    /* Estilo para o checkbox na versão mobile */
+
     .checkbox-container {
       position: relative;
       margin-top: 10px;
       width: 40% !important;
       margin-left: 0px !important;
     }
-  
-    /* Ajusta o botão de fechar para mobile */
+
+
     .popup-footer button.fechar {
-      width: 100%; /* Ocupa 100% da largura */
-      margin-top: 10px; /* Ajusta a margem */
+      width: 100%;
+      margin-top: 10px;
     }
   }
 .popup.popup-racial {

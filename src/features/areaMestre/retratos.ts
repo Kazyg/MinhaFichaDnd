@@ -19,7 +19,7 @@ export async function carregarImagemRecorte(anexo: AnexoCampanha, signal?: Abort
   } finally { URL.revokeObjectURL(url); }
 }
 
-/** Sugere somente uma região ampla, colorida e isolada; decorações/textos pequenos são descartados. */
+
 export function sugerirRecorte(canvas: HTMLCanvasElement): AreaRecorte | null {
   const mini = document.createElement('canvas'); mini.width = 80; mini.height = 80;
   try {

@@ -209,7 +209,7 @@ export class Ficha {
         return `${timestamp}-${random}`;
     };
 
-    // Métodos para alterar propriedades
+
     setNomePersonagem(nome: string | null) {
         this.nomePersonagem = nome;
     }
@@ -239,8 +239,8 @@ export class Ficha {
             anterior.nivelEscolhido = anterior.nivelEscolhido.filter(n => n !== nivel);
             anterior.nivelClasse = anterior.nivelEscolhido.length;
             if (!anterior.nivelClasse) this.multiclasses = this.multiclasses?.filter(m => m.id !== anterior.id) ?? null;
-            // Only explicit provenance authorizes invalidation. Legacy/manual effects
-            // without an origin are retained rather than guessed from their position.
+
+
             this.efeitos = this.efeitos?.filter(e => !(e.classeNome === anterior.classe.nome &&
                 ((e.origemTipo === 'nivel' && !e.nivelClasseOrigem && e.level === nivel) || (!anterior.nivelClasse && e.origemTipo === 'classe')))) ?? null;
             const entradaEstilo = anterior.classe.niveis?.find(n => n.caracteristicas?.some(c => c.includes('Estilo de Luta')))?.nivel;
@@ -563,7 +563,7 @@ export class Ficha {
         this.atualizarMaos();
         sincronizarEstadoItensMagicos(this);
     }
-    // Compatibility entry point: the old increment is deliberately ignored.
+
     setMaosOcupadas(_mao: number) { this.atualizarMaos(); }
     setEspacosMagiaDisponiveis(magiasmulticlasse: { nivelMagia: number, espaco: number }[]) {
         this.espacosMagiaDisponiveis = magiasmulticlasse;

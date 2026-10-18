@@ -39,7 +39,7 @@ describe('workspace refinado da Área do Mestre', () => {
     render(<Integracao repositorio={ambiente.repositorio} />);
     await criar('Uma campanha com nome muito longo para o cabeçalho');
     const header = screen.getByRole('banner', { name: 'Cabeçalho da campanha' });
-    // eslint-disable-next-line testing-library/no-node-access -- Verify the dedicated left header slot required by the layout.
+
     expect(within(header).getByRole('heading', { level: 1 }).closest('.am-header-esquerda')).toBeInTheDocument();
     expect(within(header).getByText('minhafichadnd')).toHaveClass('am-marca');
     expect(within(header).queryByText('Área do Mestre')).not.toBeInTheDocument();
@@ -224,7 +224,7 @@ describe('workspace refinado da Área do Mestre', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Abrir coleção de monstros' }));
       fireEvent.click(screen.getByRole('button', { name: 'Adicionar instância de Goblin' }));
       await waitFor(async () => expect((await ambiente.repositorio.obter((await ambiente.repositorio.listar())[0].id))!.instancias).toHaveLength(2));
-      // Aguarda revisão publicada antes da próxima operação confirmada.
+
       await waitFor(async () => expect((await ambiente.repositorio.obter((await ambiente.repositorio.listar())[0].id))!.instancias).toHaveLength(2));
       fireEvent.click(screen.getByRole('button', { name: 'Adicionar instância de Goblin' }));
       fireEvent.click(screen.getByRole('button', { name: 'Fechar coleção' }));

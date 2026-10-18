@@ -1,4 +1,4 @@
-/** DTOs próprios da Área do Mestre: sem classes, proxies ou URLs temporárias. */
+
 export const VERSAO_SCHEMA_MESTRE = 1 as const;
 export type CategoriaFicha = 'jogador' | 'monstro';
 export type FormatoFicha = 'json' | 'imagem' | 'pdf';
@@ -15,7 +15,7 @@ export interface RoteiroCampanha {
 
 export interface Campanha {
   id: string;
-  /** Revisão de concorrência: atribuída pelo repositório, independente do schema. */
+
   revisao?: number;
   schemaVersion: typeof VERSAO_SCHEMA_MESTRE;
   nome: string;
@@ -25,7 +25,7 @@ export interface Campanha {
   atualizadoEm: string;
 }
 
-/** O Blob é armazenável diretamente no IndexedDB; não serializar via JSON. */
+
 export interface AnexoCampanha {
   id: string;
   campanhaId: string;
@@ -41,7 +41,7 @@ export interface FichaOriginal {
   categoria: CategoriaFicha;
   formato: FormatoFicha;
   anexoId: string;
-  /** PDF do exportador do site; anexoId continua apontando ao JSON original. */
+
   pdfAnexoId?: string;
   imagemAnexoId?: string;
   nome: string;
@@ -52,11 +52,11 @@ export interface FichaOriginal {
   importadoEm: string;
 }
 
-/** Cada ocorrência tem PV próprios, referenciando o mesmo documento original. */
+
 export interface InstanciaFicha {
   id: string;
   campanhaId: string;
-  fichaOriginalId: string | null; // null identifica avulsos/minions sem ficha original
+  fichaOriginalId: string | null;
   categoria: CategoriaFicha;
   nome: string;
   pv: PontosVida;
@@ -67,11 +67,11 @@ export interface ParticipanteCombate {
   combateId: string;
   instanciaId: string;
   iniciativa: number;
-  ordem: number; // desempate e ordem manual persistidos
-  pvInicio: PontosVida; // snapshot da preparação; execução usa execucao.pvAtivacao
+  ordem: number;
+  pvInicio: PontosVida;
 }
 
-/** Marcador individual dentro de um combate; sem consequências mecânicas automáticas. */
+
 export interface CondicaoCombate {
   id: string;
   campanhaId: string;
@@ -93,8 +93,8 @@ export interface Combate {
   campanhaId: string;
   estado: 'preparado' | 'ativo' | 'encerrado';
   rodada: number;
-  participanteAtivoId: string | null; // identidade estável ao reordenar
-  /** Em preparado, registra a confirmação da preparação, sem iniciar turnos. */
+  participanteAtivoId: string | null;
+
   iniciadoEm: string;
   encerradoEm: string | null;
   condicoes?: CondicaoCombate[];
@@ -103,7 +103,7 @@ export interface Combate {
     versao: 1;
     origemSnapshot?: 'ativacao' | 'legado';
     ativadoEm: string;
-    /** Inclui o participante cujo turno está em andamento. */
+
     visitados: string[];
     pvAtivacao: { participanteId: string; instanciaId: string; pv: PontosVida }[];
   };
@@ -136,7 +136,7 @@ export interface LayoutCampanha {
   paineis: PainelLayout[];
 }
 
-/** Agregado transacional de leitura, persistência e backup da campanha. */
+
 export interface DadosCampanha {
   campanha: Campanha;
   anexos: AnexoCampanha[];

@@ -1,4 +1,4 @@
-/* eslint-disable testing-library/no-node-access -- Verifica a separação estrutural entre listas roláveis, cabeçalhos e rodapé. */
+
 import React from 'react';
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import PrepararCombate from './PrepararCombate';

@@ -37,6 +37,27 @@
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "src/features/areaMestre/ui/AreaMestreWorkspace.test.tsx",
+          "src/features/areaMestre/ui/CondicoesCombate.test.tsx",
+          "src/features/areaMestre/ui/GridWorkspace.mouse.test.tsx",
+          "src/features/areaMestre/ui/PrepararCombate.test.tsx"
+        ],
+        "rules": {
+          "testing-library/no-node-access": "off"
+        }
+      },
+      {
+        "files": [
+          "src/features/areaMestre/ui/CondicoesCombate.test.tsx"
+        ],
+        "rules": {
+          "testing-library/no-container": "off"
+        }
+      }
     ]
   },
   "browserslist": {

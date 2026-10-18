@@ -4,7 +4,7 @@
   --selecao-texto-secundario: #fff0e5;
 }
 
-/* Estilos base (desktop) */
+
 .criacao-ficha {
   position: relative;
   margin-top: 0;
@@ -114,7 +114,7 @@
   background: #444;
 }
 
-/* Seletores com rótulo secundário e valor principal, inclusive na progressão. */
+
 .criacao-ficha button:is(.botao-selecao, .botao-selecao-subopcao, .botao-selecao-talento),
 .criacao-ficha button.botao-distribuir:has(> .botao-texto) {
   background: var(--selecao-fundo);
@@ -195,7 +195,7 @@
   background-color: var(--selecao-fundo-hover);
 }
 
-/* Estilos para celular (max-width: 768px) */
+
 @media (max-width: 768px) {
   .criacao-ficha {
     position: relative;

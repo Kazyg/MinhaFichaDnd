@@ -1,4 +1,4 @@
-/** @jest-environment node */
+
 import './ambienteIndexedDB.testUtils';
 import { webcrypto } from 'crypto';
 import { IDBFactory, IDBObjectStore } from 'fake-indexeddb';
@@ -12,14 +12,14 @@ import { confirmarPreparacao, RascunhoPreparacaoCombate } from './preparacaoComb
 import { RepositorioCampanhasIndexedDB } from './persistencia';
 
 const data = '2026-10-18T12:00:00.000Z';
-// A File's immutable name is the only extra field the importer needs over Blob.
+
 const arquivo = (conteudo: string, nome: string, mime: string): File => Object.assign(new Blob([conteudo], { type: mime }), { name: nome, lastModified: 0 }) as File;
 
 async function importarCampanha(): Promise<DadosCampanha> {
   const contexto = { campanhaId: 'campanha', importadoEm: data };
   const jogador = await prepararImportacao(arquivo(exportFicha(new Ficha({ id: 'aria-original', nomePersonagem: 'Ária', versaoRegras: 'DND_2024', vidaTotal: 24, vidaAtual: 13 })), 'Aria.json', 'application/json'), { ...contexto, fichaId: 'aria', anexoId: 'json', categoria: 'jogador' });
   const monstro = await prepararImportacao(arquivo('%PDF-1.7\nGoblin original\n', 'Goblin.pdf', 'application/pdf'), { ...contexto, fichaId: 'goblin', anexoId: 'pdf', categoria: 'monstro' });
-  // Manual review of missing PDF HP uses existing import flow; no OCR is needed.
+
   monstro.ficha.pvIniciais = { atuais: 7, maximos: 7 };
   return {
     campanha: { id: 'campanha', schemaVersion: 1, nome: 'Preparação', roteiro: '', criadoEm: data, atualizadoEm: data },
@@ -91,7 +91,7 @@ describe('preparação completa com IndexedDB transacional e backup', () => {
       rascunho.participantes[0].instancia.pv.atuais = 0;
       rascunho.participantes.splice(1, 1);
       expect(rascunho.participantes).toHaveLength(3);
-      // Dismissing the modal drops the draft; it never invokes a repository write.
+
       expect(await repo.obter('campanha')).toEqual(original);
       expect((await repo.obter('campanha'))!.instancias).toHaveLength(2);
     } finally { repo.fechar(); }

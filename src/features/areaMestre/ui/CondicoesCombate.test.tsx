@@ -1,4 +1,4 @@
-/* eslint-disable testing-library/no-container, testing-library/no-node-access -- inspeção do desenho SVG garante os símbolos locais corretos. */
+
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import CondicoesCombate from './CondicoesCombate';
 import BarraIniciativa from './BarraIniciativa';

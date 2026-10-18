@@ -1,4 +1,4 @@
-/** @jest-environment node */
+
 import './ambienteIndexedDB.testUtils';
 import { webcrypto } from 'crypto';
 import { IDBFactory, IDBObjectStore } from 'fake-indexeddb';
@@ -48,7 +48,7 @@ test('importação, dois ativos independentes, restauração ferida, histórico 
   let repo = new RepositorioCampanhasIndexedDB({ indexedDB: fabrica, nomeBanco: 'encerramento-integral' });
   try {
     let dados = await ativo(repo);
-    // A prepared encounter may share instances, but activation must revalidate occupation.
+
     const compartilhado = preparar(await campanha(), 'compartilhado', dados.instancias.slice(0, 2));
     const conflitante = { ...dados, combates: [...dados.combates, ...compartilhado.combates], participantes: [...dados.participantes, ...compartilhado.participantes] };
     expect(() => executarAcaoCombate(conflitante, 'compartilhado', 'iniciar', ativacao)).toThrow(/outro combate ativo/);
@@ -75,7 +75,7 @@ test('importação, dois ativos independentes, restauração ferida, histórico 
     expect(a).toMatchObject({ estado: 'encerrado', rodada: 2, encerradoEm: fim, historico: { decisaoPV: 'restaurar' } });
     expect(a.historico!.participantes.map(p => p.instanciaId)).toEqual(['g1', 'aria-1']);
     expect(a.historico!.participantes.find(p => p.instanciaId === 'aria-1')).toMatchObject({ nome: 'Ária', pvInicial: { atuais: 13, maximos: 24 }, pvFinal: { atuais: 0, maximos: 27 } });
-    // Released IDs are eligible for future encounters; preparing does not mutate A's history.
+
     expect(() => preparar(dados, 'futuro', dados.instancias.slice(0, 2))).not.toThrow();
     await repo.salvar(encerrarCombate(dados, 'B', 'manter', '2026-10-18T14:00:00.000Z'));
     dados = (await repo.obter('c'))!;

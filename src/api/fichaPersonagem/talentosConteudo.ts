@@ -44,13 +44,13 @@ export function erroTalento(f: Ficha, nivel: number, t: TalentoConteudo, escolha
     return validarEscolhasTalento(regra, escolhas, documento, nivel)[0] ?? null;
   }
   if (escolhas !== undefined && !Array.isArray(escolhas)) return 'Formato de escolhas incompatível com este talento.';
-  // Inclui escolhas futuras para não invalidar silenciosamente o planejamento salvo.
+
   const antes = { ...f, levelTotal: nivel, efeitos } as Ficha;
   if (t.requisito.tipo === 'atributo' && !t.requisito.requisito?.some(a => calcularValorAtributoFinal(antes, a) >= (t.requisito.valor ?? 13))) return 'Pré-requisito de atributo não atendido.';
   if (t.requisito.tipo === 'magia' && !selecionarFontesConjuracao(antes).length && !f.magiasEscolhidas?.some(g => g.magia.length) && !f.magiasConjuracao?.some(m => m.nivel === 0)) return 'Requer capacidade de conjurar pelo menos uma magia.';
   if (t.requisito.tipo === 'armadura' && !t.requisito.requisito?.some(a => Array.from(selecionarProficiencias(antes)).some(p => p.includes('todas as armaduras') || chaveConteudo(p).includes(chaveConteudo(a).replace('armadura-', ''))))) return 'Pré-requisito de proficiência em armadura não atendido.';
   if (t.requisito.tipo && !['atributo', 'magia', 'armadura'].includes(t.requisito.tipo)) return 'Pré-requisito não atendido.';
-  if (escolhas === undefined) return null; // filtro de elegibilidade; confirmação exige escolhas
+  if (escolhas === undefined) return null;
   if (!t.escolha && escolhas.length) return 'Este talento não oferece escolhas adicionais.';
   if (t.escolha === 'atributo-agarrador') {
     if (escolhas.length !== 1 || !['forca', 'destreza'].includes(escolhas[0])) return 'Escolha Força ou Destreza.';

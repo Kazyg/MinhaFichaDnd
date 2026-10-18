@@ -6,7 +6,7 @@ import { arquivarEscolha } from './escolhasProgressao';
 
 export type Especializacao = { fonte: string; pericia: string; nivelAquisicao: number; edicao: string };
 export const periciasEspecializacao = ['Acrobacia', 'Adestrar Animais', 'Arcanismo', 'Atletismo', 'Atuação', 'Enganação', 'Furtividade', 'História', 'Intimidação', 'Intuição', 'Investigação', 'Medicina', 'Natureza', 'Percepção', 'Persuasão', 'Prestidigitação', 'Religião', 'Sobrevivência'];
-// SRD 5.1: Bard/Expertise, Rogue/Expertise. SRD 5.2.1: Bard, Ranger, Rogue, Wizard/Scholar.
+
 export function fontesEspecializacao(edicao: string) {
   const marcos = edicao === 'DND_2014' ? [['bardo', 3, 2], ['bardo', 10, 2], ['ladino', 1, 2], ['ladino', 6, 2]] as const
     : edicao === 'DND_2024' ? [['bardo', 2, 2], ['bardo', 9, 2], ['ladino', 1, 2], ['ladino', 6, 2], ['patrulheiro', 2, 1], ['patrulheiro', 9, 2], ['mago', 2, 1]] as const : [];
@@ -15,7 +15,7 @@ export function fontesEspecializacao(edicao: string) {
 }
 export function temTreinamento(ficha: Ficha, pericia: string, nivel: number) {
   const chave = normalizarChave(pericia);
-  // Legacy flat training has no acquisition history; retain its explicit assertion.
+
   if (ficha.pericias?.some(p => normalizarChave(p) === chave)) return true;
   return listarEfeitosAtivos({ ...ficha, levelTotal: nivel } as Ficha).some(e =>
     (normalizarChave(e.pericia ?? '') === chave && (!e.tipoEfeito || e.tipoEfeito === 'proficiencia')) ||

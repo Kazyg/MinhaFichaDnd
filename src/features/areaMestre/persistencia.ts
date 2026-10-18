@@ -12,7 +12,7 @@ const STORES = ['campanhas', ...COLECOES, 'arquivos', 'layouts'];
 type Registro = { id: string; campanhaId: string; [chave: string]: unknown };
 export type MigracaoBanco = (banco: IDBDatabase, transacao: IDBTransaction) => void;
 
-/** Migrações síncronas: agendar requests na transação de upgrade, sem await externo. */
+
 export const MIGRACOES_MESTRE: Readonly<Record<number, MigracaoBanco>> = {
   4(_banco, transacao) {
     const pedido = transacao.objectStore('combates').openCursor();
@@ -84,11 +84,11 @@ function requisicao<T>(pedido: IDBRequest<T>): Promise<T> {
   });
 }
 
-/** Repositório isolado da UI; cada escrita substitui um agregado atomicamente. */
+
 export class RepositorioCampanhasIndexedDB implements RepositorioCampanhas {
   private abertura?: Promise<IDBDatabase>;
   private banco?: IDBDatabase;
-  // Identidade dos Blobs devolvidos por esta sessão permite atualizar PV sem regravar arquivos.
+
   private arquivosConhecidos = new WeakMap<Blob, string>();
   private geracaoConexao = 0;
 
@@ -161,7 +161,7 @@ export class RepositorioCampanhasIndexedDB implements RepositorioCampanhas {
         let erroAcao: unknown;
         tx.oncomplete = () => resolve(resultado);
         tx.onabort = () => reject(erroAcao ?? tx.error ?? new ErroPersistencia('transacao-falhou', 'Transação interrompida.'));
-        tx.onerror = () => { /* onabort entrega a falha após o rollback. */ };
+        tx.onerror = () => {   };
         acao(tx).then(valor => { resultado = valor; }, erro => {
           erroAcao = erro;
           try { tx.abort(); } catch { reject(erro); }
@@ -200,7 +200,7 @@ export class RepositorioCampanhasIndexedDB implements RepositorioCampanhas {
 
   private async gravar(dados: DadosCampanha, criar: boolean): Promise<void> {
     try { validarDadosCampanha(dados); } catch (erro) { throw normalizarErroPersistencia(erro); }
-    // Congelar o conteúdo lógico antes de qualquer await: mudanças do chamador não entram na transação.
+
     const arquivos = dados.anexos.map(anexo => anexo.arquivo);
     dados = JSON.parse(JSON.stringify({ ...dados, anexos: dados.anexos.map(({ arquivo, ...anexo }) => anexo) })) as DadosCampanha;
     dados.anexos.forEach((anexo, indice) => { anexo.arquivo = arquivos[indice]; });
@@ -241,7 +241,7 @@ export class RepositorioCampanhasIndexedDB implements RepositorioCampanhas {
       revisaoSalva = (atual?.revisao ?? 0) + 1;
       tx.objectStore('campanhas').put({ ...dados.campanha, revisao: revisaoSalva });
     });
-    // A próxima edição deve partir de obter(): não alterar silenciosamente o DTO do chamador.
+
     dados.anexos.forEach(anexo => this.arquivosConhecidos.set(anexo.arquivo, JSON.stringify([anexo.id, id, revisaoSalva])));
   }
 

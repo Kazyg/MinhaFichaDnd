@@ -1,4 +1,4 @@
-/** @jest-environment node */
+
 import './ambienteIndexedDB.testUtils';
 import { IDBFactory, IDBObjectStore } from 'fake-indexeddb';
 import { DadosCampanha } from './modelos';
@@ -105,7 +105,7 @@ describe('persistência IndexedDB da Área do Mestre', () => {
     await repositorio.excluir('campanha-1');
     expect(await repositorio.obter('campanha-1')).toBeNull();
     expect(await repositorio.obter('outra')).not.toBeNull();
-    // Os IDs antigos tornam-se disponíveis após a exclusão em cascata.
+
     await repositorio.criar(comFicha('nova'));
     expect((await repositorio.obter('nova'))!.anexos).toHaveLength(1);
     await expect(repositorio.excluir('ausente')).rejects.toMatchObject({ codigo: 'nao-encontrado' });

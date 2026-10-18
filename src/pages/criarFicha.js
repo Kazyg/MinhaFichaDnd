@@ -125,7 +125,7 @@ export default function CriarFicha() {
         </div>
         )}
       </div>
-      {/* Modo Desktop: exibe todos os componentes */}
+      { }
       {ficha && !isMobile && (
         <div key={ficha.id} className={`desktop-layout ${barraRecolhida ? "barra-recolhida" : ""}`}>
           <aside className="desktop-sidebar">
@@ -146,7 +146,7 @@ export default function CriarFicha() {
         </div>
       )}
 
-      {/* Conteúdo das abas no Mobile */}
+      { }
       {ficha && isMobile && (
         <div key={ficha.id} className="conteudo-abas">
           {abaAtiva === "criacao" && <CriacaoFicha />}

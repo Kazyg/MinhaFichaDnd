@@ -1,4 +1,4 @@
-/** @jest-environment node */
+
 import './ambienteIndexedDB.testUtils';
 import { webcrypto } from 'crypto';
 import { IDBFactory, IDBObjectStore } from 'fake-indexeddb';
@@ -39,7 +39,7 @@ function campanhaCompleta(): DadosCampanha {
 function normalizar(dados: DadosCampanha) {
   dados = { ...dados, campanha: normalizarRoteirosCampanha(dados.campanha) };
   for (const grupo of ['anexos', 'fichas', 'instancias', 'combates', 'participantes'] as const) {
-    // IndexedDB returns primary-key order; archive insertion order is not domain state.
+
     Object.assign(dados, { [grupo]: [...dados[grupo]].sort((a, b) => a.id.localeCompare(b.id)) });
   }
   const ids = new Map<string, string>();

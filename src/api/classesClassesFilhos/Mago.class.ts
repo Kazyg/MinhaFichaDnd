@@ -25,12 +25,12 @@ export class Mago extends Classes {
       ["Arcanismo", "História", "Intuição", "Investigação", "Medicina", "Religião"],
       []
     );
-    this.level = 0; // Nível inicial
-    this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis
+    this.level = 0;
+    this.niveis = this.preencherNiveis();
     this.subClasse = [new EscolaDeAbjuracao(), new EscolaDeConjuracao(), new EscolaDeAdivinhacao(), new EscolaDeEncantamento(), new EscolaDeEvocacao(), new EscolaDeIlusao(), new EscolaDeNecromancia(), new EscolaDeTransmutacao(), new MagoDeGuerra()];
   }
 
-  // Método para aumentar o nível
+
   aumentarNivel(): void {
     if (this.level < 20) {
       this.level += 1;
@@ -39,7 +39,7 @@ export class Mago extends Classes {
     }
   }
 
-  // Método para preencher a tabela de níveis
+
   private preencherNiveis() {
     return [
       { nivel: 1, proeficiencia: 2, truquesConhecidos: 3, espacosMagia: [2, 0, 0, 0, 0, 0, 0, 0, 0], caracteristicas: ["Conjuração de Mago", "Recuperação Arcana"] },

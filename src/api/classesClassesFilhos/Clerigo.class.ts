@@ -25,8 +25,8 @@ export class Clerigo extends Classes {
       ["História", "Intuição", "Medicina", "Persuasão", "Religião"],
       ["Armadura leve", "armadura média", "escudos"]
     );
-    this.level = 0; // Nível inicial
-    this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis
+    this.level = 0;
+    this.niveis = this.preencherNiveis();
     this.subClasse = [
       new DominioDaLuz(), 
       new DominioDoConhecimento(), 
@@ -40,7 +40,7 @@ export class Clerigo extends Classes {
   ];
   }
 
-  // Método para aumentar o nível
+
   aumentarNivel(): void {
     if (this.level < 20) {
       this.level += 1;
@@ -49,7 +49,7 @@ export class Clerigo extends Classes {
     }
   }
 
-  // Método para preencher a tabela de níveis
+
   private preencherNiveis() {
     return [
       { nivel: 1, proeficiencia: 2, caracteristicas: ["Conjuração de Clérigo", "Domínio Divino"], truquesConhecidos: 3, espacosMagia: [2, 0, 0, 0, 0, 0, 0, 0, 0] },

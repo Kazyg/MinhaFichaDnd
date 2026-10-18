@@ -1,6 +1,6 @@
-/* Run with text extracted using pdftotext -raw from the supplied chapters.
- * node scripts/importar-catalogos-2024.cjs /tmp/magias2024-raw.txt /tmp/talentos2024-raw.txt
- * Fails rather than publishing an incomplete catalog. */
+
+
+
 const fs = require("fs");
 const path = require("path");
 const clean = (s) =>

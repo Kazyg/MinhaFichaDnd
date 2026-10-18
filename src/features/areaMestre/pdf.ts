@@ -56,12 +56,12 @@ export async function abrirPdf(blob: Blob): Promise<DocumentoPdf> {
   const motor = await import('./pdfMotor');
   return motor.carregarPdf(new Uint8Array(await lerBlob(blob) as ArrayBuffer));
 }
-/** Apenas a camada de texto existente; não executa JavaScript do PDF nem usa OCR. */
+
 export async function extrairTextoPdf(blob: Blob): Promise<string> {
   const documento = await abrirPdf(blob);
   try {
     const trechos: string[] = [];
-    // Limite explícito para não bloquear importações de documentos extensos.
+
     for (let n = 1; n <= Math.min(documento.numPages, 5); n++) {
       const pagina = await documento.getPage(n);
       const texto = await pagina.getTextContent();

@@ -5,7 +5,7 @@ type Props = React.HTMLAttributes<HTMLDivElement> & { onClose: () => void };
 const focusable = 'button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), a[href], [tabindex="0"]';
 const stack: HTMLDivElement[] = [];
 
-/** Keeps existing modal layout; owns keyboard, background isolation and focus lifecycle. */
+
 export default function AccessibleDialog({ onClose, children, ...props }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const close = useRef(onClose);
@@ -52,7 +52,7 @@ export default function AccessibleDialog({ onClose, children, ...props }: Props)
     };
     document.addEventListener('keydown', keydown, true);
     document.addEventListener('focusin', contain);
-    // A selected row/filter may disappear without the modal itself unmounting.
+
     const observer = new MutationObserver(contain);
     observer.observe(dialog, { childList: true, subtree: true });
     return () => {
@@ -67,7 +67,7 @@ export default function AccessibleDialog({ onClose, children, ...props }: Props)
       });
       if (opener?.isConnected && !opener.closest('[inert]')) opener.focus({ preventScroll: true });
       else {
-        // Wait for route/tab replacement to mount its logical destination.
+
         queueMicrotask(() => {
           if (document.activeElement === document.body) {
             document.querySelector<HTMLElement>('[data-page-focus], button:not(:disabled)')?.focus();

@@ -1,4 +1,4 @@
-/** Símbolos vetoriais locais: não carregam imagens nem bibliotecas externas. */
+
 export default function IconeCondicao({ icone }: { icone?: string }) {
   const aliases: Record<string, string> = { chama:'flame',gota:'drop',neve:'snow',raio:'zap',escudo:'shield',coracao:'heart','olho-riscado':'eye',olho:'eye',lua:'moon',cadeado:'lock','seta-baixo':'down',foco:'focus' };
   const chave = aliases[icone ?? ''] ?? (icone ?? '').toLowerCase();

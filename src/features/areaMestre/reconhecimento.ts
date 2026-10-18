@@ -6,7 +6,7 @@ const normalizar = (texto: string) => texto.normalize('NFD').replace(/[\u0300-\u
 const inteiro = (texto: string) => /^\d+$/.test(texto) && Number.isSafeInteger(Number(texto)) ? Number(texto) : null;
 const rotulo = /(?:pontos?\s+de\s+vida(?:\s+(?:totais|atuais|maximos|temporarios))?|hit\s+points|(?:current|max(?:imum)?)\s+hp|(?:pv|hp)(?:\s+(?:totais|atuais|maximos|temporarios))?)/i;
 
-/** Mantém as coordenadas: valores podem estar acima do rótulo no PDF oficial. */
+
 export function reconhecerPagina(pagina: TextoPagina, categoria: CategoriaFicha): Reconhecimento {
   const trechos = pagina.trechos;
   const linhas: TrechoPagina[] = [];

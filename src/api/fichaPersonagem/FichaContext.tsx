@@ -23,7 +23,7 @@ function sameData(a: any, b: any, depth = 0): boolean {
   return keys.length === Object.keys(b).length && keys.every(k => Object.prototype.hasOwnProperty.call(b, k) && sameData(a[k], b[k], depth + 1));
 }
 
-// Observe existing imperative setters, direct assignments and nested array/object edits.
+
 function observe<T extends object>(root: T, changed: () => void): T {
   const cache = new WeakMap<object, any>();
   const wrap = (value: any): any => {
@@ -106,8 +106,8 @@ export const FichaProvider = ({ children, storage }: React.PropsWithChildren<{ s
     if (blocked.current || !mounted.current) return;
     dirty.current = true;
     cancel();
-    // Some existing components update derived properties during render.
-    // Defer React notifications until that render has completed.
+
+
     Promise.resolve().then(() => {
       if (mounted.current && dirty.current) { setStatus('sujo'); update(); }
     });
@@ -125,7 +125,7 @@ export const FichaProvider = ({ children, storage }: React.PropsWithChildren<{ s
       const raw = store.getItem(STORAGE_KEY);
       original.current = raw;
       const loaded = parseCollection(raw);
-      // The old separate pointer is only a hint; stale IDs never create a new ficha.
+
       const selectedId = loaded.selectedId ?? (raw?.trimStart().startsWith('[') ? store.getItem('ficha') : null);
       models.current = loaded.fichas.map(wrapFicha);
       selected.current = models.current.find(f => f.id === selectedId) ?? null;

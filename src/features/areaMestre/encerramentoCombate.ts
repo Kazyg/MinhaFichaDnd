@@ -4,10 +4,10 @@ import { validarDadosCampanha } from './validacao';
 
 export const nomeCombate = (dados: DadosCampanha, combate: Combate): string => combate.nome || `Combate ${dados.combates.findIndex(c => c.id === combate.id) + 1}`;
 
-/** Snapshots reconstruídos da preparação não representam a ativação real. */
+
 export const podeRestaurarPV = (combate: Combate): boolean => combate.execucao?.origemSnapshot === 'ativacao';
 
-/** Operação pura: salvar o agregado sob revisão é responsabilidade do repositório. */
+
 export function encerrarCombate(dados: DadosCampanha, combateId: string, decisao: 'manter' | 'restaurar', agora: string): DadosCampanha {
   validarDadosCampanha(dados);
   const combate = dados.combates.find(c => c.id === combateId);

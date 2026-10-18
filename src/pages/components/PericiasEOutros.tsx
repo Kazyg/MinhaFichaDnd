@@ -149,7 +149,7 @@ export default function PericiasEOutros() {
     }
   }, [ficha, refreshKey]);
 
-  // Função para alternar o status de treinado
+
   const toggleTreinado = (index: number) => {
     setPericias((prev) =>
       prev.map((p, i) =>
@@ -162,7 +162,7 @@ export default function PericiasEOutros() {
 
   return (
     <div  className="pericias-container">
-      {/* Quadro pequeno com informações básicas */}
+      { }
       <div className="info-extra">
           <div className="info-item" title={explicarParcelas(selecionarIniciativa(ficha).parcelas)}><strong>Iniciativa:</strong> {formatarBonus(selecionarIniciativa(ficha).total)}</div>
           <div className="info-item"><strong>Proficiência:</strong> +{selecionarProficiencia(ficha)}</div>
@@ -171,7 +171,7 @@ export default function PericiasEOutros() {
           <div className="info-item info-item-tamanho"><strong>Tamanho:</strong> {ficha?.tamanho || ""}</div>
       </div>
 
-      {/* Quadro grande com perícias */}
+      { }
       <div className="pericias-lista">
         <h4>Perícias</h4>
         <ul>

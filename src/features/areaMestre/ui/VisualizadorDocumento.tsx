@@ -63,8 +63,8 @@ export default function VisualizadorDocumento({ anexo }: { anexo: AnexoCampanha 
     };
     void carregar();
     return () => { ativo = false; URL.revokeObjectURL(local); if (documento) void documento.destroy(); };
-  // IDs identificam anexos imutáveis. Salvar PV devolve novos Blobs do IndexedDB,
-  // mas não deve recarregar o documento aberto nem perder página/zoom.
+
+
   }, [anexo.id, anexo.campanhaId, anexo.mime, imagem]);
   useEffect(() => {
     if (!pdf) return;

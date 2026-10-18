@@ -21,7 +21,7 @@ export class Armas {
         custo: number,
         peso: number,
         propriedades: string,
-        distancia: string // Nova propriedade
+        distancia: string
     ) {
         this.id = this.gerarIdUnico();
         this.nome = nome;
@@ -42,459 +42,459 @@ export class Armas {
     };
 }
 
-// Exemplo de utilização: 
-// import { Armas, armas } from "./equipamentos/Armas";
 
-// Armas Simples Melee por órdem alfabética
+
+
+
 
 export const armas: Armas[] = [
     new Armas(
-        "Adaga",                 // nome
-        "Armas Simples",         // categoria
-        { dano_1: "1d4", dano_2: "" }, // dano
-        "Perfurante",           // dano_tipo
-        ["Força", "Destreza"],  // dano_atributo
-        2,                      // custo (em moedas de ouro)
-        0.5,                    // peso (em kg)
-        "Acuidade, Leve, Arremesso (6/18)", // propriedades
-        "não"                   // distancia
+        "Adaga",
+        "Armas Simples",
+        { dano_1: "1d4", dano_2: "" },
+        "Perfurante",
+        ["Força", "Destreza"],
+        2,
+        0.5,
+        "Acuidade, Leve, Arremesso (6/18)",
+        "não"
     ),
 
     new Armas(
-        "Azagaia",              // nome
-        "Armas Simples",        // categoria
-        { dano_1: "1d6", dano_2: "" }, // dano
-        "Perfurante",           // dano_tipo
-        ["Força"],              // dano_atributo
-        0.5,                    // custo (em moedas de ouro)
-        1,                      // peso (em kg)
-        "Arremesso (9/36)",     // propriedades
-        "não"                   // distancia
+        "Azagaia",
+        "Armas Simples",
+        { dano_1: "1d6", dano_2: "" },
+        "Perfurante",
+        ["Força"],
+        0.5,
+        1,
+        "Arremesso (9/36)",
+        "não"
     ),
 
     new Armas(
-        "Bordão",               // nome
-        "Armas Simples",        // categoria
-        { dano_1: "1d6", dano_2: "1d8" }, // dano
-        "Concussão",            // dano_tipo
-        ["Força"],              // dano_atributo
-        0.2,                    // custo (em moedas de ouro)
-        2,                      // peso (em kg)
-        "Versátil (1d8), Arremesso (9/36)", // propriedades
-        "não"                   // distancia
+        "Bordão",
+        "Armas Simples",
+        { dano_1: "1d6", dano_2: "1d8" },
+        "Concussão",
+        ["Força"],
+        0.2,
+        2,
+        "Versátil (1d8), Arremesso (9/36)",
+        "não"
     ),
 
     new Armas(
-        "Clava Grande",         // nome
-        "Armas Simples",        // categoria
-        { dano_1: "1d8", dano_2: "" }, // dano
-        "Concussão",            // dano_tipo
-        ["Força"],              // dano_atributo
-        0.2,                    // custo (em moedas de ouro)
-        5,                      // peso (em kg)
-        "Pesada, Duas Mãos",    // propriedades
-        "não"                   // distancia
+        "Clava Grande",
+        "Armas Simples",
+        { dano_1: "1d8", dano_2: "" },
+        "Concussão",
+        ["Força"],
+        0.2,
+        5,
+        "Pesada, Duas Mãos",
+        "não"
     ),
 
     new Armas(
-        "Foice Curta",          // nome
-        "Armas Simples",        // categoria
-        { dano_1: "1d4", dano_2: "" }, // dano
-        "Cortante",             // dano_tipo
-        ["Força"],              // dano_atributo
-        1,                      // custo (em moedas de ouro)
-        5,                      // peso (em kg)
-        "Leve",                 // propriedades
-        "não"                   // distancia
+        "Foice Curta",
+        "Armas Simples",
+        { dano_1: "1d4", dano_2: "" },
+        "Cortante",
+        ["Força"],
+        1,
+        5,
+        "Leve",
+        "não"
     ),
 
     new Armas(
-        "Lança",                // nome
-        "Armas Simples",        // categoria
-        { dano_1: "1d6", dano_2: "1d8" }, // dano
-        "Perfurante",           // dano_tipo
-        ["Força"],              // dano_atributo
-        1,                      // custo (em moedas de ouro)
-        1.5,                    // peso (em kg)
-        "Arremesso (6/18), Versátil (1d8)", // propriedades
-        "não"                   // distancia
+        "Lança",
+        "Armas Simples",
+        { dano_1: "1d6", dano_2: "1d8" },
+        "Perfurante",
+        ["Força"],
+        1,
+        1.5,
+        "Arremesso (6/18), Versátil (1d8)",
+        "não"
     ),
 
     new Armas(
-        "Maça",                 // nome
-        "Armas Simples",        // categoria     
-        { dano_1: "1d6", dano_2: "" }, // dano
-        "Concussão",            // dano_tipo
-        ["Força"],              // dano_atributo
-        5,                      // custo (em moedas de ouro)
-        2,                      // peso (em kg)
-        "",                     // propriedades
-        "não"                   // distancia
+        "Maça",
+        "Armas Simples",
+        { dano_1: "1d6", dano_2: "" },
+        "Concussão",
+        ["Força"],
+        5,
+        2,
+        "",
+        "não"
     ),
 
     new Armas(
-        "Machadinha",           // nome
-        "Armas Simples",        // categoria     
-        { dano_1: "1d6", dano_2: "" }, // dano
-        "Cortante",             // dano_tipo
-        ["Força"],              // dano_atributo
-        5,                      // custo (em moedas de ouro)
-        1,                      // peso (em kg)
-        "Leve, Arremesso (6/18)", // propriedades
-        "não"                   // distancia
+        "Machadinha",
+        "Armas Simples",
+        { dano_1: "1d6", dano_2: "" },
+        "Cortante",
+        ["Força"],
+        5,
+        1,
+        "Leve, Arremesso (6/18)",
+        "não"
     ),
 
     new Armas(
-        "Martelo Leve",         // nome
-        "Armas Simples",        // categoria     
-        { dano_1: "1d4", dano_2: "" }, // dano
-        "Concussão",            // dano_tipo
-        ["Força"],              // dano_atributo
-        2,                      // custo (em moedas de ouro)
-        1,                      // peso (em kg)
-        "Leve, Arremesso (6/18)", // propriedades
-        "não"                   // distancia
+        "Martelo Leve",
+        "Armas Simples",
+        { dano_1: "1d4", dano_2: "" },
+        "Concussão",
+        ["Força"],
+        2,
+        1,
+        "Leve, Arremesso (6/18)",
+        "não"
     ),
 
     new Armas(
-        "Porrete",              // nome
-        "Armas Simples",        // categoria     
-        { dano_1: "1d4", dano_2: "" }, // dano
-        "Concussão",            // dano_tipo
-        ["Força"],              // dano_atributo
-        0.1,                    // custo (em moedas de ouro)
-        1,                      // peso (em kg)
-        "Leve",                 // propriedades
-        "não"                   // distancia
+        "Porrete",
+        "Armas Simples",
+        { dano_1: "1d4", dano_2: "" },
+        "Concussão",
+        ["Força"],
+        0.1,
+        1,
+        "Leve",
+        "não"
     ),
 
-    // Armas simples - DISTANCIA - ordem alfabética
+
 
     new Armas(
-        "Arco Curto",           // nome
-        "Armas Simples",        // categoria     
-        { dano_1: "1d6", dano_2: "" }, // dano
-        "Perfurante",           // dano_tipo
-        ["Destreza"],           // dano_atributo
-        25,                     // custo (em moedas de ouro)
-        1,                      // peso (em kg)
-        "Munição (24/96), Duas Mãos", // propriedades
-        "sim"                   // distancia
-    ),
-
-    new Armas(
-        "Besta Leve",           // nome
-        "Armas Simples",        // categoria     
-        { dano_1: "1d8", dano_2: "" }, // dano
-        "Perfurante",           // dano_tipo
-        ["Destreza"],           // dano_atributo
-        25,                     // custo (em moedas de ouro)
-        2.5,                    // peso (em kg)
-        "Munição (24/96), Duas Mãos, Recarga", // propriedades
-        "sim"                   // distancia
+        "Arco Curto",
+        "Armas Simples",
+        { dano_1: "1d6", dano_2: "" },
+        "Perfurante",
+        ["Destreza"],
+        25,
+        1,
+        "Munição (24/96), Duas Mãos",
+        "sim"
     ),
 
     new Armas(
-        "Dardo",                // nome
-        "Armas Simples",        // categoria     
-        { dano_1: "1d4", dano_2: "" }, // dano
-        "Perfurante",           // dano_tipo
-        ["Destreza"],           // dano_atributo
-        0.05,                   // custo (em moedas de ouro)
-        0.1,                    // peso (em kg)
-        "Acuidade, Arremesso (6/18)", // propriedades
-        "sim"                   // distancia
+        "Besta Leve",
+        "Armas Simples",
+        { dano_1: "1d8", dano_2: "" },
+        "Perfurante",
+        ["Destreza"],
+        25,
+        2.5,
+        "Munição (24/96), Duas Mãos, Recarga",
+        "sim"
     ),
 
     new Armas(
-        "Funda",                // nome
-        "Armas Simples",        // categoria     
-        { dano_1: "1d4", dano_2: "" }, // dano
-        "Concussão",            // dano_tipo
-        ["Destreza"],           // dano_atributo
-        0.1,                    // custo (em moedas de ouro)
-        0,                      // peso (em kg)
-        "Munição (9/36)",       // propriedades
-        "sim"                   // distancia
-    ),
-
-    // Armas Marciais Corpo a corpo - ordem alfabética
-
-    new Armas(
-        "Alabarda",             // nome
-        "Armas Marciais",       // categoria     
-        { dano_1: "1d10", dano_2: "" }, // dano
-        "Cortante",             // dano_tipo
-        ["Força"],              // dano_atributo
-        20,                     // custo (em moedas de ouro)
-        3,                      // peso (em kg)
-        "Pesada, Alcance, Duas Mãos", // propriedades
-        "não"                   // distancia
+        "Dardo",
+        "Armas Simples",
+        { dano_1: "1d4", dano_2: "" },
+        "Perfurante",
+        ["Destreza"],
+        0.05,
+        0.1,
+        "Acuidade, Arremesso (6/18)",
+        "sim"
     ),
 
     new Armas(
-        "Cimitarra",            // nome
-        "Armas Marciais",       // categoria     
-        { dano_1: "1d6", dano_2: "" }, // dano
-        "Cortante",             // dano_tipo
-        ["Força", "Destreza"],  // dano_atributo (Acuidade)
-        25,                     // custo (em moedas de ouro)
-        1.5,                    // peso (em kg)
-        "Acuidade, Leve",       // propriedades
-        "não"                   // distancia
+        "Funda",
+        "Armas Simples",
+        { dano_1: "1d4", dano_2: "" },
+        "Concussão",
+        ["Destreza"],
+        0.1,
+        0,
+        "Munição (9/36)",
+        "sim"
+    ),
+
+
+
+    new Armas(
+        "Alabarda",
+        "Armas Marciais",
+        { dano_1: "1d10", dano_2: "" },
+        "Cortante",
+        ["Força"],
+        20,
+        3,
+        "Pesada, Alcance, Duas Mãos",
+        "não"
     ),
 
     new Armas(
-        "Chicote",              // nome
-        "Armas Marciais",       // categoria     
-        { dano_1: "1d4", dano_2: "" }, // dano
-        "Cortante",             // dano_tipo
-        ["Força", "Destreza"],  // dano_atributo (Acuidade)
-        25,                     // custo (em moedas de ouro)
-        2,                      // peso (em kg)
-        "Acuidade, Leve",       // propriedades
-        "não"                   // distancia
+        "Cimitarra",
+        "Armas Marciais",
+        { dano_1: "1d6", dano_2: "" },
+        "Cortante",
+        ["Força", "Destreza"],
+        25,
+        1.5,
+        "Acuidade, Leve",
+        "não"
     ),
 
     new Armas(
-        "Espada Curta",         // nome
-        "Armas Marciais",       // categoria     
-        { dano_1: "1d6", dano_2: "" }, // dano
-        "Perfurante",           // dano_tipo
-        ["Força", "Destreza"],  // dano_atributo (Acuidade)
-        10,                     // custo (em moedas de ouro)
-        1,                      // peso (em kg)
-        "Acuidade, Leve",       // propriedades
-        "não"                   // distancia
+        "Chicote",
+        "Armas Marciais",
+        { dano_1: "1d4", dano_2: "" },
+        "Cortante",
+        ["Força", "Destreza"],
+        25,
+        2,
+        "Acuidade, Leve",
+        "não"
     ),
 
     new Armas(
-        "Espada Grande",        // nome
-        "Armas Marciais",       // categoria     
-        { dano_1: "2d6", dano_2: "" }, // dano
-        "Cortante",             // dano_tipo
-        ["Força"],              // dano_atributo
-        50,                     // custo (em moedas de ouro)
-        3,                      // peso (em kg)
-        "Pesada, Duas Mãos",    // propriedades
-        "não"                   // distancia
+        "Espada Curta",
+        "Armas Marciais",
+        { dano_1: "1d6", dano_2: "" },
+        "Perfurante",
+        ["Força", "Destreza"],
+        10,
+        1,
+        "Acuidade, Leve",
+        "não"
     ),
 
     new Armas(
-        "Espada Longa",         // nome
-        "Armas Marciais",       // categoria     
-        { dano_1: "1d8", dano_2: "1d10" }, // dano
-        "Cortante",             // dano_tipo
-        ["Força"],              // dano_atributo
-        15,                     // custo (em moedas de ouro)
-        1.5,                    // peso (em kg)
-        "Versátil (1d10)",      // propriedades
-        "não"                   // distancia
+        "Espada Grande",
+        "Armas Marciais",
+        { dano_1: "2d6", dano_2: "" },
+        "Cortante",
+        ["Força"],
+        50,
+        3,
+        "Pesada, Duas Mãos",
+        "não"
     ),
 
     new Armas(
-        "Glaive",               // nome
-        "Armas Marciais",       // categoria     
-        { dano_1: "1d10", dano_2: "" }, // dano
-        "Cortante",             // dano_tipo
-        ["Força"],              // dano_atributo
-        20,                     // custo (em moedas de ouro)
-        3,                      // peso (em kg)
-        "Pesada, Alcance, Duas Mãos", // propriedades
-        "não"                   // distancia
+        "Espada Longa",
+        "Armas Marciais",
+        { dano_1: "1d8", dano_2: "1d10" },
+        "Cortante",
+        ["Força"],
+        15,
+        1.5,
+        "Versátil (1d10)",
+        "não"
     ),
 
     new Armas(
-        "Lança de Montaria",    // nome
-        "Armas Marciais",       // categoria     
-        { dano_1: "1d12", dano_2: "" }, // dano
-        "Perfurante",           // dano_tipo
-        ["Força"],              // dano_atributo
-        10,                     // custo (em moedas de ouro)
-        3,                      // peso (em kg)
-        "Alcance, Especial",    // propriedades
-        "não"                   // distancia
+        "Glaive",
+        "Armas Marciais",
+        { dano_1: "1d10", dano_2: "" },
+        "Cortante",
+        ["Força"],
+        20,
+        3,
+        "Pesada, Alcance, Duas Mãos",
+        "não"
     ),
 
     new Armas(
-        "Lança Longa",          // nome
-        "Armas Marciais",       // categoria     
-        { dano_1: "1d10", dano_2: "" }, // dano
-        "Perfurante",           // dano_tipo
-        ["Força"],              // dano_atributo
-        5,                      // custo (em moedas de ouro)
-        4,                      // peso (em kg)
-        "Pesada, Alcance, Duas Mãos", // propriedades
-        "não"                   // distancia
+        "Lança de Montaria",
+        "Armas Marciais",
+        { dano_1: "1d12", dano_2: "" },
+        "Perfurante",
+        ["Força"],
+        10,
+        3,
+        "Alcance, Especial",
+        "não"
     ),
 
     new Armas(
-        "Maça Estrela",         // nome
-        "Armas Marciais",       // categoria     
-        { dano_1: "1d8", dano_2: "" }, // dano
-        "Perfurante",           // dano_tipo
-        ["Força"],              // dano_atributo
-        15,                     // custo (em moedas de ouro)
-        2,                      // peso (em kg)
-        "",                     // propriedades
-        "não"                   // distancia
+        "Lança Longa",
+        "Armas Marciais",
+        { dano_1: "1d10", dano_2: "" },
+        "Perfurante",
+        ["Força"],
+        5,
+        4,
+        "Pesada, Alcance, Duas Mãos",
+        "não"
     ),
 
     new Armas(
-        "Machado Grande",       // nome
-        "Armas Marciais",       // categoria     
-        { dano_1: "1d12", dano_2: "" }, // dano
-        "Cortante",             // dano_tipo
-        ["Força"],              // dano_atributo
-        30,                     // custo (em moedas de ouro)
-        3.5,                    // peso (em kg)
-        "Pesada, Duas Mãos",    // propriedades
-        "não"                   // distancia
+        "Maça Estrela",
+        "Armas Marciais",
+        { dano_1: "1d8", dano_2: "" },
+        "Perfurante",
+        ["Força"],
+        15,
+        2,
+        "",
+        "não"
     ),
 
     new Armas(
-        "Machado de Batalha",   // nome
-        "Armas Marciais",       // categoria     
-        { dano_1: "1d8", dano_2: "1d10" }, // dano
-        "Cortante",             // dano_tipo
-        ["Força"],              // dano_atributo
-        10,                     // custo (em moedas de ouro)
-        2,                      // peso (em kg)
-        "Versátil (1d10)",      // propriedades
-        "não"                   // distancia
+        "Machado Grande",
+        "Armas Marciais",
+        { dano_1: "1d12", dano_2: "" },
+        "Cortante",
+        ["Força"],
+        30,
+        3.5,
+        "Pesada, Duas Mãos",
+        "não"
     ),
 
     new Armas(
-        "Malho",                // nome
-        "Armas Marciais",       // categoria     
-        { dano_1: "2d6", dano_2: "" }, // dano
-        "Concussão",            // dano_tipo
-        ["Força"],              // dano_atributo
-        10,                     // custo (em moedas de ouro)
-        5,                      // peso (em kg)
-        "Pesada, Duas Mãos",    // propriedades
-        "não"                   // distancia
+        "Machado de Batalha",
+        "Armas Marciais",
+        { dano_1: "1d8", dano_2: "1d10" },
+        "Cortante",
+        ["Força"],
+        10,
+        2,
+        "Versátil (1d10)",
+        "não"
     ),
 
     new Armas(
-        "Mangual",              // nome
-        "Armas Marciais",       // categoria     
-        { dano_1: "1d8", dano_2: "" }, // dano
-        "Concussão",            // dano_tipo
-        ["Força"],              // dano_atributo
-        10,                     // custo (em moedas de ouro)
-        1,                      // peso (em kg)
-        "",                     // propriedades
-        "não"                   // distancia
+        "Malho",
+        "Armas Marciais",
+        { dano_1: "2d6", dano_2: "" },
+        "Concussão",
+        ["Força"],
+        10,
+        5,
+        "Pesada, Duas Mãos",
+        "não"
     ),
 
     new Armas(
-        "Martelo de Guerra",    // nome
-        "Armas Marciais",       // categoria     
-        { dano_1: "1d8", dano_2: "1d10" }, // dano
-        "Concussão",            // dano_tipo
-        ["Força"],              // dano_atributo
-        15,                     // custo (em moedas de ouro)
-        5,                      // peso (em kg)
-        "Versátil (1d10)",      // propriedades
-        "não"                   // distancia
+        "Mangual",
+        "Armas Marciais",
+        { dano_1: "1d8", dano_2: "" },
+        "Concussão",
+        ["Força"],
+        10,
+        1,
+        "",
+        "não"
     ),
 
     new Armas(
-        "Picareta de Guerra",   // nome
-        "Armas Marciais",       // categoria     
-        { dano_1: "1d8", dano_2: "" }, // dano
-        "Perfurante",           // dano_tipo
-        ["Força"],              // dano_atributo
-        5,                      // custo (em moedas de ouro)
-        1,                      // peso (em kg)
-        "",                     // propriedades
-        "não"                   // distancia
+        "Martelo de Guerra",
+        "Armas Marciais",
+        { dano_1: "1d8", dano_2: "1d10" },
+        "Concussão",
+        ["Força"],
+        15,
+        5,
+        "Versátil (1d10)",
+        "não"
     ),
 
     new Armas(
-        "Rapieira",             // nome
-        "Armas Marciais",       // categoria     
-        { dano_1: "1d8", dano_2: "" }, // dano
-        "Perfurante",           // dano_tipo
-        ["Força", "Destreza"],  // dano_atributo
-        5,                      // custo (em moedas de ouro)
-        1,                      // peso (em kg)
-        "",                     // propriedades
-        "não"                   // distancia
+        "Picareta de Guerra",
+        "Armas Marciais",
+        { dano_1: "1d8", dano_2: "" },
+        "Perfurante",
+        ["Força"],
+        5,
+        1,
+        "",
+        "não"
     ),
 
     new Armas(
-        "Tridente",             // nome
-        "Armas Marciais",       // categoria     
-        { dano_1: "1d6", dano_2: "1d8" }, // dano
-        "Perfurante",           // dano_tipo
-        ["Força", "Destreza"],  // dano_atributo
-        5,                      // custo (em moedas de ouro)
-        2,                      // peso (em kg)
-        "Arremessável (6/18), Versátil (1d8)", // propriedades
-        "não"                   // distancia
-    ),
-
-    // Armas Marciais a distância
-
-    new Armas(
-        "Arco Longo",           // nome
-        "Armas Marciais",       // categoria     
-        { dano_1: "1d8", dano_2: "" }, // dano
-        "Perfurante",           // dano_tipo
-        ["Destreza"],           // dano_atributo
-        50,                     // custo (em moedas de ouro)
-        1,                      // peso (em kg)
-        "Munição (Distancia: 45/180), Pesada, Duas Mãos", // propriedades
-        "sim"                   // distancia
+        "Rapieira",
+        "Armas Marciais",
+        { dano_1: "1d8", dano_2: "" },
+        "Perfurante",
+        ["Força", "Destreza"],
+        5,
+        1,
+        "",
+        "não"
     ),
 
     new Armas(
-        "Besta de Mão",         // nome
-        "Armas Marciais",       // categoria     
-        { dano_1: "1d6", dano_2: "" }, // dano
-        "Perfurante",           // dano_tipo
-        ["Destreza"],           // dano_atributo
-        75,                     // custo (em moedas de ouro)
-        1.5,                    // peso (em kg)
-        "Munição (Distancia: 9/36), Leve, Recarga", // propriedades
-        "sim"                   // distancia
+        "Tridente",
+        "Armas Marciais",
+        { dano_1: "1d6", dano_2: "1d8" },
+        "Perfurante",
+        ["Força", "Destreza"],
+        5,
+        2,
+        "Arremessável (6/18), Versátil (1d8)",
+        "não"
+    ),
+
+
+
+    new Armas(
+        "Arco Longo",
+        "Armas Marciais",
+        { dano_1: "1d8", dano_2: "" },
+        "Perfurante",
+        ["Destreza"],
+        50,
+        1,
+        "Munição (Distancia: 45/180), Pesada, Duas Mãos",
+        "sim"
     ),
 
     new Armas(
-        "Besta Pesada",         // nome
-        "Armas Marciais",       // categoria     
-        { dano_1: "1d10", dano_2: "" }, // dano
-        "Perfurante",           // dano_tipo
-        ["Destreza"],           // dano_atributo
-        50,                     // custo (em moedas de ouro)
-        4.5,                    // peso (em kg)
-        "Munição (Distância: 30/120), Pesada, Recarga, Duas Mãos", // propriedades
-        "sim"                   // distancia
+        "Besta de Mão",
+        "Armas Marciais",
+        { dano_1: "1d6", dano_2: "" },
+        "Perfurante",
+        ["Destreza"],
+        75,
+        1.5,
+        "Munição (Distancia: 9/36), Leve, Recarga",
+        "sim"
     ),
 
     new Armas(
-        "Rede",                 // nome
-        "Armas Marciais",       // categoria     
-        { dano_1: "", dano_2: "" }, // dano
-        "Perfurante",           // dano_tipo
-        ["Destreza"],           // dano_atributo
-        1,                      // custo (em moedas de ouro)
-        1.5,                    // peso (em kg)
-        "Especial, Arremesso (1.5/4.5)", // propriedades
-        "sim"                   // distancia
+        "Besta Pesada",
+        "Armas Marciais",
+        { dano_1: "1d10", dano_2: "" },
+        "Perfurante",
+        ["Destreza"],
+        50,
+        4.5,
+        "Munição (Distância: 30/120), Pesada, Recarga, Duas Mãos",
+        "sim"
     ),
 
     new Armas(
-        "Zarabatana",           // nome
-        "Armas Marciais",       // categoria     
-        { dano_1: "1", dano_2: "" }, // dano
-        "Perfurante",           // dano_tipo
-        ["Destreza"],           // dano_atributo
-        10,                     // custo (em moedas de ouro)
-        0.5,                    // peso (em kg)
-        "Munição (Distância: 7.5/30), Recarga", // propriedades
-        "sim"                   // distancia
+        "Rede",
+        "Armas Marciais",
+        { dano_1: "", dano_2: "" },
+        "Perfurante",
+        ["Destreza"],
+        1,
+        1.5,
+        "Especial, Arremesso (1.5/4.5)",
+        "sim"
+    ),
+
+    new Armas(
+        "Zarabatana",
+        "Armas Marciais",
+        { dano_1: "1", dano_2: "" },
+        "Perfurante",
+        ["Destreza"],
+        10,
+        0.5,
+        "Munição (Distância: 7.5/30), Recarga",
+        "sim"
     ),
 ];

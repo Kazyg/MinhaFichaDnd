@@ -1,4 +1,4 @@
-/* eslint-disable testing-library/no-node-access -- Real grid gestures need offsetParent geometry and the library-owned resize handle. */
+
 import React, { useState } from 'react';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { GridWorkspace } from './GridWorkspace';
@@ -6,8 +6,8 @@ import { criarLayoutPadrao } from './layoutWorkspace';
 import { repositorioTeste } from './testRepositorio';
 import { useCampanhas } from '../useCampanhas';
 
-// Keep the real GridLayout, GridItem and react-draggable event handlers.
-// Only measurement is supplied: JSDOM has no layout engine.
+
+
 jest.mock('react-grid-layout', () => ({
   ...jest.requireActual('react-grid-layout'),
   useContainerWidth: () => ({ width: 960, containerRef: { current: null } }),

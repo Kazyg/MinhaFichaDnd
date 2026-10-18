@@ -1,4 +1,4 @@
-/* Estilos base (desktop) */
+
 .inventario-container {
   position: relative;
   margin-top: 0;
@@ -318,7 +318,7 @@
   border-radius: 4px;
 }
 
-/* Estilos para celular (max-width: 768px) */
+
 @media (max-width: 768px) {
   .inventario-container {
     position: relative;

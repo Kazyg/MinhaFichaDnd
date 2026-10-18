@@ -8,7 +8,7 @@ export async function lerResumoFichaJson(blob: Blob): Promise<{ classe?: string;
   return { classe: nome(ficha.classePrincipal), nivel: typeof ficha.levelTotal === 'number' ? ficha.levelTotal : undefined, raca: nome(ficha.racaPrincipal) };
 }
 
-/** Leitura de snapshots: não instancia Ficha, não recalcula e não acessa storage. */
+
 export function lerFichaSomenteLeitura(texto: string): Record<string, unknown> {
   interpretarFichaJson(texto);
   const documento = parseJSON(texto);

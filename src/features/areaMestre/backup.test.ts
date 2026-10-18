@@ -1,4 +1,4 @@
-/** @jest-environment node */
+
 import { webcrypto } from 'crypto';
 import { Blob as NodeBlob } from 'buffer';
 import { zipSync, unzipSync, strFromU8, strToU8 } from 'fflate';

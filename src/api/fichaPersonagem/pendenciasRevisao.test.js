@@ -62,7 +62,7 @@ describe.each(['DND_2014', 'DND_2024'])('%s', edicao => {
     expect(copia.efeitos).toHaveLength(0);
     expect(copia.idiomas).toEqual(['Comum', 'Élfico']);
     expect(pendenciasLegadas(copia)).toHaveLength(0);
-    // Roteiro P16: editar somente uma cópia, guardando o arquivo anterior.
+
     const json = JSON.parse(exportFicha(copia));
     json.data.efeitos.push(json.data.escolhasAnteriores.find(e => e.tipo.includes('arquivar:efeito')).valor);
     const recuperada = parseImport(JSON.stringify(json));

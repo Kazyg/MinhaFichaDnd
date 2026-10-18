@@ -13,5 +13,5 @@ function run(script, args = []) {
 run('react-scripts/scripts/build');
 run('javascript-obfuscator/bin/javascript-obfuscator', [output, '--output', output,
   '--compact', 'true', '--control-flow-flattening', 'true',
-  // Distribuições WASM/worker de terceiros devem conservar seus bytes e licenças.
+
   '--exclude', `${output.replace(/\\/g, '/')}/ocr/**`]);

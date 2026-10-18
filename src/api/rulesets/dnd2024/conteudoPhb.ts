@@ -39,7 +39,7 @@ export const talentosPhb2024: TalentoConteudo[] = dados.talentos.map(t => {
     conjuracao: requisito.includes('conjuracao') ? requisito.includes('pacto') ? 'conjuracao-ou-pacto' : 'conjuracao' : undefined,
     treino, estilo: categoria === 'Fighting Style', aumento, escolhas: escolhas[t.nome], proficiencias: treinos[t.nome], recursos: recursos[t.nome],
     pvPorNivel: t.nome === 'Vigoroso' ? 2 : undefined, pv: t.nome === 'Dádiva da Fortitude' ? 40 : undefined,
-    // Velocidades do documento são em pés; os textos do livro usam metros.
+
     deslocamento: t.nome === 'Velocista' ? 10 : t.nome === 'Dádiva da Velocidade' ? 30 : undefined,
     estiloEfeito: t.nome === 'Defensivo' ? 'estilo_defesa' : t.nome === 'Arquearia' ? 'estilo_arquearia' : t.nome === 'Duelismo' ? 'estilo_duelismo' : undefined };
   return { ...metadados(t.nome, categoria, t.pagina), nome: t.nome, descricao: t.descricao,

@@ -1,4 +1,4 @@
-/* Estilos base (desktop) */
+
 .criar-ficha {
   display: flex;
   min-height: 100vh;
@@ -134,7 +134,7 @@
   background-color: #555;
 }
 
-/* Estilos para celular (max-width: 768px) */
+
 @media (max-width: 768px) {
 
   .menu-abas-criarFicha {

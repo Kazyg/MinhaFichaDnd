@@ -6,8 +6,8 @@ export const getRulesetVersion = (version?: RulesetVersion | null): RulesetVersi
   throw new Error(`Versão de regras não suportada: ${String(version)}`);
 };
 
-// Only configuration: no character instances, generated IDs or catalog copies.
-// Return fresh arrays so callers cannot mutate another character's configuration.
+
+
 export function getRulesetConfig(version?: RulesetVersion | null): Pick<RulesetData, 'version' | 'regras'> {
   const edition = getRulesetVersion(version);
   return { version: edition, regras: edition === 'DND_2014' ? {

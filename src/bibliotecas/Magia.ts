@@ -5620,7 +5620,7 @@ A magia pode penetrar a maioria das barreiras, mas é bloqueada por 30 centímet
     ritual: false,
     alcance: {
       tipo: "distancia",
-      distancia: 750000 // 750km em metros
+      distancia: 750000
     },
     componentes: {
       componentes: ["V", "S", "M"],
@@ -7022,7 +7022,7 @@ A magia pode penetrar a maioria das barreiras, mas é bloqueada por 30 centímet
     duracao: "1 hora",
     descricao: "Protege uma criatura voluntária que você tocar e cria uma conexão mística. Enquanto o alvo estiver a até 18 metros de você, ele recebe +1 de bônus na CA, nos testes de resistência e terá resistência a todos os danos. No entanto, a cada vez que ele sofrer dano, você sofrerá a mesma quantidade de dano. A magia acaba se você cair a 0 PV, se afastarem mais de 18m, se for conjurada novamente ou se você dissipar com uma ação."
   },
-  // MAGIAS DE BRUXO
+
   {
     nome: "Abraço Terrestre de Maximilian",
     nivel: 2,
@@ -7743,7 +7743,7 @@ A magia pode penetrar a maioria das barreiras, mas é bloqueada por 30 centímet
     duracao: "Instantânea",
     descricao: "Conjura fortaleza com 4 torres, paredes e forte interior. Inclui 100 servos invisíveis. Permanente se conjurada semanalmente por 1 ano."
   },
-  // MAGIAS DE BRUXO (continuação)
+
   {
     nome: "Gaiola da Alma",
     nivel: 6,

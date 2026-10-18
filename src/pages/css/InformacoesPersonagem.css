@@ -234,7 +234,7 @@
   z-index: 1;
 }
 
-/* Traços pretos na barra de vida */
+
 .barra-vida::after {
   content: "";
   position: absolute;

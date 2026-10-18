@@ -18,7 +18,7 @@ interface Props {
   onEditarCondicao?: (participanteId: string, condicaoId?: string) => void;
 }
 
-/** Cinco ocorrências visuais, nunca cinco novas entidades. */
+
 export function janelaIniciativa(ordem: ParticipanteCombate[], ativo: string | null, rodada: number) {
   const indice = ordem.findIndex(p => p.id === ativo);
   if (indice < 0 || !ordem.length) return [];
@@ -84,7 +84,7 @@ export default function BarraIniciativa({ dados, combateId, ocupado, onAvancar, 
       }
     });
     posicoes.current = proximas;
-    // PV/mensagens não reiniciam a animação: apenas a janela/ordem visual muda.
+
   }, [assinatura, compacto]);
   useEffect(() => () => { animacoes.current.forEach(a => a.cancel()); }, []);
 
@@ -157,7 +157,7 @@ export default function BarraIniciativa({ dados, combateId, ocupado, onAvancar, 
         if (!instancia) return null;
         const ficha = dados.fichas.find(f => f.id === instancia.fichaOriginalId);
         const condicoes = (combate.condicoes ?? []).filter(c => c.participanteId === p.id);
-        // Só uma ocorrência por ID tem controles, priorizando o centro e o próximo.
+
         const principal = (!compacto || Math.abs(deslocamento) < 2) && [...janela].filter(item => item.participante.id === p.id).sort((a, b) => Math.abs(a.deslocamento) - Math.abs(b.deslocamento) || b.deslocamento - a.deslocamento)[0].chave === chave;
         const descricaoCopia = principal ? '' : janela.filter(item => item.participante.id === p.id).length > 1 ? ' (repetição visual)' : ' (prévia)';
         const conteudo = <>{ficha ? <MiniaturaFicha ficha={ficha} anexos={dados.anexos} /> : <span className="am-miniatura am-miniatura-vazia" aria-hidden="true">◆</span>}<span><strong>{instancia.nome}</strong><small>PV {instancia.pv.atuais}/{instancia.pv.maximos}{instancia.pv.atuais === 0 ? ' · 0 PV' : ''}</small></span></>;

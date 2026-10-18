@@ -10,7 +10,7 @@ export function chaveClasse(classe: string | { nome: string; chave?: string }): 
   return ({ lutador: 'guerreiro', fighter: 'guerreiro', rogue: 'ladino', ranger: 'patrulheiro' } as Record<string, string>)[nome] ?? nome;
 }
 
-// Semantic resources are independent of translated feature labels and saved tables.
+
 export function recursosNoNivel(classe: string | { nome: string; chave?: string }, nivel: number, edicao: string): string[] {
   const chave = chaveClasse(classe);
   if (!['barbaro', 'bardo', 'bruxo', 'clerigo', 'druida', 'feiticeiro', 'guerreiro', 'ladino', 'mago', 'monge', 'paladino', 'patrulheiro'].includes(chave)) return [];
@@ -44,8 +44,8 @@ export function erroSelecaoClasse(ficha: Ficha, classe: Classes, nivel: number):
   const anteriores = (ficha.multiclasses ?? []).filter(m => m.nivelEscolhido.some(n => n < nivel)).map(m => m.classe);
   if (!anteriores.length && ficha.classePrincipal) anteriores.push(ficha.classePrincipal);
   if (!anteriores.length) return 'Selecione primeiro a classe do nível 1.';
-  // Advancing an already acquired class is not entering a new multiclass.
-  // Recheck prerequisites only when acquiring the first level of a new class.
+
+
   if (anteriores.some(c => chaveClasse(c) === chaveClasse(classe))) return null;
   const antes = { ...ficha, levelTotal: Math.min(nivel - 1, ficha.levelTotal ?? 0) } as Ficha;
   const requisitos: Record<string, string> = {

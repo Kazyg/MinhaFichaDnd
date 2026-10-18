@@ -110,17 +110,17 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
     return Array.from({ length: 6 }, rolar4d6);
   };
 
-  // Iniciar a distribuição de atributos
+
   const iniciarDistribuicao = () => {
     setMostrarPopupAtributos(true);
   };
 
-  // Fechar o popup e resetar os valores
+
   const fecharPopup = () => {
     setMostrarPopupAtributos(false);
   };
 
-  // Resetar atributos ao mudar o método
+
   const selecionarMetodo = (metodo: string) => {
     if (atributoMetodo !== metodo) {
       setAtributoMetodo(metodo);
@@ -160,7 +160,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
     }
   };
 
-  // Aumentar ou diminuir atributo (Point Buy)
+
   const ajustarAtributo = (atributo: keyof typeof atributos, operacao: "incrementar" | "decrementar") => {
     const valorAtual = atributos[atributo];
     let novoValor = valorAtual;
@@ -187,8 +187,8 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
 
   const atualizarAtributo = (atributo: keyof typeof atributos, novoValor: number) => {
     setAtributos((prev) => ({
-      ...prev, // Mantém os outros atributos
-      [atributo]: novoValor, // Atualiza apenas o atributo específico
+      ...prev,
+      [atributo]: novoValor,
     }));
   };
 
@@ -367,7 +367,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
         </button>
         {nivelExpandido && (
           <>
-            {/* Escolha da distribuição de atributos */}
+            { }
             <div>
               <button className="secao-toggle" onClick={() => toggleSecao("atributos")}>
                 <h3 className="tituloh3">Método de distribuição de atributos {secoesExpandidas.atributos ? "▲" : "▼"}</h3>
@@ -396,7 +396,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
               )}
             </div>
             {renderPopupAtributos()}
-            {/* Traços raciais */}
+            { }
             <div>
               <button className="secao-toggle" onClick={() => toggleSecao("tracos")}>
                 <h3 className="tituloh3">Traços de {rulesetData.regras.labelRacaOuEspecie}{secoesExpandidas.tracos ? "▲" : "▼"}</h3>
@@ -467,7 +467,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
                                   </div>
                                 );
                               }
-                              return null; // Retorna null se a condição não for atendida
+                              return null;
                             })}
                           </>
                         )}
@@ -478,7 +478,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
               )}
             </div>
 
-            {/* Escolha de Proficiências */}
+            { }
             <div>
               <button className="secao-toggle" onClick={() => toggleSecao("proeficiencias")}>
                 <h3 className="tituloh3">Escolha de Proficiências ({classe.habilidade} opções){secoesExpandidas.proeficiencias ? "▲" : "▼"}</h3>
@@ -506,7 +506,7 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
               )}
             </div>
 
-            {/* Características do nível 1 */}
+            { }
             <div>
               <button className="secao-toggle" onClick={() => toggleSecao("caracteristicas")}>
                 <h3 className="tituloh3">Características de Classe Nível 1{secoesExpandidas.caracteristicas ? "▲" : "▼"}</h3>

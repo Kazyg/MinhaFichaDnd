@@ -1,4 +1,4 @@
-/** @jest-environment node */
+
 import './ambienteIndexedDB.testUtils';
 import { webcrypto } from 'crypto';
 import { IDBFactory, IDBObjectStore } from 'fake-indexeddb';

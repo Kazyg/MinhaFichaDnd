@@ -24,7 +24,7 @@ export default function NomePersonagem({ nome, onSave }: Props) {
   }, [nome]);
 
   useEffect(() => {
-    // Commit the draft before the provider flushes storage on page exit.
+
     window.addEventListener('beforeunload', confirmar, true);
     return () => {
       window.removeEventListener('beforeunload', confirmar, true);

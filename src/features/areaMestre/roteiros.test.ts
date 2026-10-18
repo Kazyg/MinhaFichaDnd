@@ -1,4 +1,4 @@
-/** @jest-environment node */
+
 import './ambienteIndexedDB.testUtils';
 import { IDBFactory, IDBCursor } from 'fake-indexeddb';
 import { zipSync, unzipSync, strFromU8, strToU8 } from 'fflate';

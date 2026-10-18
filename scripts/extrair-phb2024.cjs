@@ -1,5 +1,5 @@
-﻿// Entrada: pages.json temporário obtido com PDF.js, com {page, text, items}.
-// O PDF e sua extração integral não fazem parte do repositório.
+﻿
+
 const fs = require('node:fs');
 if (!process.argv[2] || !process.argv[3]) {
   console.error('Uso: node scripts/extrair-phb2024.cjs <pages.json> <indice.json>');

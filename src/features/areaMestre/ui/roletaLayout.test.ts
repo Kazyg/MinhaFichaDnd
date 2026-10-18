@@ -1,9 +1,9 @@
-/** @jest-environment node */
+
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import postcss from 'postcss';
 
-// Contrato estrutural do CSS: medidas físicas/animação visual exigem navegador.
+
 const folha = postcss.parse(readFileSync(resolve(process.cwd(), 'src/features/areaMestre/ui/barraIniciativa.css'), 'utf8'));
 function estilo(seletor: string, media?: string): Record<string, string> {
   const resultado: Record<string, string> = {};

@@ -1,9 +1,9 @@
-/** @jest-environment node */
+
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import postcss from 'postcss';
 
-// Contrato do CSS: jsdom não calcula dimensões nem rolagem de flex/grid.
+
 const folha = postcss.parse(readFileSync(resolve(process.cwd(), 'src/features/areaMestre/ui/prepararCombate.css'), 'utf8'));
 function propriedades(seletor: string, mobile = false): Record<string, string> {
   const resultado: Record<string, string> = {};

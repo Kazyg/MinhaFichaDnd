@@ -30,7 +30,7 @@ async function hash(conteudo: Uint8Array): Promise<string> {
   return Array.from(new Uint8Array(digest), v => v.toString(16).padStart(2, '0')).join('');
 }
 
-/** Inspeciona tamanhos antes de descompactar; não aceita ZIP64, multipartes, criptografia ou caminhos livres. */
+
 interface EntradaZip { tamanho: number; inicio: number; compactado: number; metodo: number; crc: number }
 function inspecionarZip(conteudo: Uint8Array): Map<string, EntradaZip> {
   const v = new DataView(conteudo.buffer, conteudo.byteOffset, conteudo.byteLength);
@@ -83,7 +83,7 @@ function crc32(bytes: Uint8Array): number {
 
 export async function exportarBackup(dados: DadosCampanha): Promise<Blob> {
   validarDadosCampanha(dados);
-  // Captura antes do primeiro await; Blobs são imutáveis, metadados e relações não.
+
   dados = { ...JSON.parse(JSON.stringify(dados)), anexos: dados.anexos.map(a => ({ ...a })) };
   if (dados.anexos.length + 1 > LIMITES_BACKUP.entradas) throw grande();
   const { zipSync, strToU8 } = await import('fflate');
@@ -126,7 +126,7 @@ export async function lerBackup(arquivo: Blob): Promise<DadosCampanha> {
       const compactado = conteudo.subarray(entrada.inicio, entrada.inicio + entrada.compactado);
       if (entrada.metodo === 0) receber(compactado);
       else {
-        // Pequenos blocos limitam a memória transitória mesmo quando o cabeçalho mente.
+
         const inflater = new Inflate(receber);
         for (let p = 0; p < compactado.length; p += 256) inflater.push(compactado.subarray(p, p + 256), p + 256 >= compactado.length);
       }
@@ -162,7 +162,7 @@ export async function lerBackup(arquivo: Blob): Promise<DadosCampanha> {
   }
 }
 
-/** Importa sempre como nova campanha; criar deve ser uma operação atômica sem sobrescrita. */
+
 export async function restaurarBackup(arquivo: Blob, repositorio: Pick<RepositorioCampanhas, 'criar'>, gerarId: () => string = gerarIdSeguro): Promise<DadosCampanha> {
   const dados = await lerBackup(arquivo);
   const usados = new Set<string>();

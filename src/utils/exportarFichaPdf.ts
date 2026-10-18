@@ -75,7 +75,7 @@ type Pagina1Map = {
   caracteristicas: Rect;
 };
 
-// Coordinates measured on the bundled 612 × 792 template (reference render: 816 × 1056).
+
 const templateRect = (left: number, right: number, top: number, bottom: number): Rect => ({
   xMin: left * .75, xMax: right * .75, yMin: (1056 - bottom) * .75, yMax: (1056 - top) * .75,
 });
@@ -620,7 +620,7 @@ export const gerarFichaPdf = async (ficha: Ficha) => {
     lineHeightFactor: 1.15,
   });
 
-  // The full appendix flows onto fresh pages; nothing is silently dropped in fixed boxes.
+
   let pagina = pdfDoc.addPage();
   let y = pagina.getHeight() - 40;
   const linha = (texto: string) => {

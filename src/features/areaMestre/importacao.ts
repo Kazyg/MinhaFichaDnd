@@ -24,7 +24,7 @@ export interface MetadadosJson {
   avisos: AvisoImportacao[];
 }
 
-/** Reutiliza a validação existente, sem hidratar/migrar ou recalcular a ficha. */
+
 export function interpretarFichaJson(texto: string): MetadadosJson {
   try {
     const valor: unknown = parseJSON(texto);
@@ -41,13 +41,13 @@ export function interpretarFichaJson(texto: string): MetadadosJson {
     let pv: PontosVida = { atuais: 0, maximos: 0 };
     let origemPV: FichaOriginal['origemPV'] = 'manual-pendente';
     let maximo = pvValido(dados.vidaTotal) ? dados.vidaTotal : null;
-    // Exportações reais mantêm vidaTotal=null quando o site usa seu seletor de PV.
-    // Só reutilizar esse cálculo puro quando o snapshot contém todas as entradas.
+
+
     if (dados.vidaTotal == null && Number.isSafeInteger(dados.levelTotal) && dados.levelTotal! >= 1 && dados.levelTotal! <= 20 &&
       Number.isSafeInteger(dados.atributosPersonagem?.constituicao?.valor) && dados.atributosPersonagem!.constituicao.valor >= 1 && dados.atributosPersonagem!.constituicao.valor <= 30) {
       const niveis = selecionarNiveis(dados);
       if (niveis.length && niveis.every(n => [6,8,10,12].includes(n.classe?.dadosVida ?? 0))) {
-        // O seletor é puro e usa apenas campos do DTO validado, sem métodos de Ficha.
+
         const snapshot = { ...dados, versaoRegras: dados.versaoRegras ?? 'DND_2014' } as typeof dados;
         const calculado = selecionarVida(snapshot);
         if (!calculado.ausentes.length && pvValido(calculado.total)) maximo = calculado.total;
@@ -77,7 +77,7 @@ export interface ResultadoImportacao { ficha: FichaOriginal; anexo: AnexoCampanh
 function ler(arquivo: Blob, modo: 'texto'): Promise<string>;
 function ler(arquivo: Blob, modo: 'bytes'): Promise<ArrayBuffer>;
 function ler(arquivo: Blob, modo: 'texto' | 'bytes'): Promise<string | ArrayBuffer> {
-  // Blobs modernos (inclusive em execução sem DOM) expõem leitores nativos.
+
   const falha = () => { throw new ErroAreaMestre('leitura-falhou', 'Não foi possível ler o arquivo.'); };
   if (modo === 'texto' && typeof arquivo.text === 'function') return arquivo.text().catch(falha);
   if (modo === 'bytes' && typeof arquivo.arrayBuffer === 'function') return arquivo.arrayBuffer().catch(falha);
@@ -106,7 +106,7 @@ function conferirAssinatura(bytes: Uint8Array, mime: string): boolean {
   }
 }
 
-/** Prepara importação atômica; não escreve no armazenamento nem cria object URLs. */
+
 export async function prepararImportacao(arquivo: File, contexto: ContextoImportacao): Promise<ResultadoImportacao> {
   [contexto.campanhaId, contexto.fichaId, contexto.anexoId].forEach(validarId);
   if (!['jogador', 'monstro'].includes(contexto.categoria) || !Number.isFinite(Date.parse(contexto.importadoEm))) {

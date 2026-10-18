@@ -26,7 +26,7 @@ function meta(nome: string, edicao: RulesetVersion, categoria: string, verificad
 const requisitoVazio = { tipo: null, requisito: null, valor: null };
 const bonusVazio = [{ tipo: null, condicao: null, bonus: null, valor: null }];
 const talentos2014: TalentoConteudo[] = Talentos.map(t => ({ ...t, ...meta(t.nome, 'DND_2014', 'Legacy'), repetivel: false, suportado: false }));
-// O texto e a licença do Alerta 2014 não foram certificados: preservamos o registro local.
+
 const alerta2014 = talentos2014.find(t => t.nome === 'ALERTA')!;
 alerta2014.suportado = true;
 alerta2014.iniciativa = 'fixo5';
@@ -61,13 +61,13 @@ export const listasLegadas = { bardo: magiasBardo, bruxo: magiasBruxo, clerigo: 
   feiticeiro: magiasFeiticeiro, mago: magiasMago, paladino: magiasPaladino, patrulheiro: magiasPatrulheiro };
 const vazia = { conjuracao: 'Consultar fonte', alcance: { tipo: 'Consultar fonte', distancia: 0 },
   componentes: { componentes: [] as string[], material: null }, concentracao: null, duracao: 'Consultar fonte', ritual: null };
-// Snapshot acessível também a fichas 2024 antigas que explicitamente usavam catalogo-2014.
+
 const magiasLegadas: MagiaConteudo[] = [...new Map(Object.values(listasLegadas).flat().map(m => [m.nome, m])).values()].map(m => ({
   ...vazia, ...Magias.find(d => d.nome === m.nome), ...m, ...meta(m.nome, 'DND_2014', 'magia'),
   descricao: Magias.find(d => d.nome === m.nome)?.descricao ?? 'Descrição legada indisponível.',
   listas: Object.entries(listasLegadas).filter(([, lista]) => lista.some(v => v.nome === m.nome)).map(([chave]) => chave),
 }));
-// Não fundir grafias distintas do acervo: a ficha antiga referencia o nome exato.
+
 const idsLegados = magiasLegadas.map(m => m.id);
 magiasLegadas.forEach(m => {
   if (idsLegados.filter(id => id === m.id).length > 1) m.id += `:${encodeURIComponent(m.nome)}`;
@@ -81,7 +81,7 @@ function curar(edicao: RulesetVersion): MagiaConteudo {
     cura: { dadosBase: dados, dadosPorCirculo: dados, dado: 8, exclui: edicao === 'DND_2014' ? ['morto-vivo', 'constructo'] : [] } };
 }
 const magias2014 = magiasLegadas.map(m => m.nome === 'Curar Ferimentos' ? curar('DND_2014') : m);
-// Subconjunto com listas/círculo/escola verificados; texto integral consultado na fonte.
+
 const indices2024: [string, string, number, string, string[]][] = [
   ['Luz', 'Light', 0, 'evocação', ['bardo', 'clerigo', 'feiticeiro', 'mago']],
   ['Mãos Mágicas', 'Mage Hand', 0, 'conjuração', ['bardo', 'feiticeiro', 'bruxo', 'mago']],
@@ -127,10 +127,10 @@ export function buscarMagiaConteudo(edicao: RulesetVersion, nome: string) {
 }
 export const referenciaConteudo = ({ id, edicao, revisao }: ReferenciaConteudo): ReferenciaConteudo => ({ id, edicao, revisao });
 export function resolverConteudo(ref: ReferenciaConteudo): MagiaConteudo | TalentoConteudo | undefined {
-  // Referência desconhecida nunca vira uma revisão atual nem outra edição.
+
   if (!ref || !['DND_2014', 'DND_2024'].includes(ref.edicao)) return undefined;
-  // Resolve first, then clone only the requested entry. Cloning both complete
-  // catalogs for every derived attribute makes selecting a feat stall the UI.
+
+
   return copia([...catalogoMagias(ref.edicao), ...catalogoTalentos(ref.edicao), ...magias2014, ...catalogoMagias2024, ...magiasLegadas, ...magias2024, ...talentos2024].find(c => c.id === ref.id && c.edicao === ref.edicao && c.revisao === ref.revisao) ?? null) ?? undefined;
 }
 export function resolverMagiaSalva(escolha: { nome: string; catalogo: string; conteudo?: ReferenciaConteudo; snapshot?: MagiaConteudo }) {

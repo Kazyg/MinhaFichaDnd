@@ -67,7 +67,7 @@ test.each([
   expect(before.fontes.reduce((sum, c) => sum + c.truques, 0)).toBeGreaterThan(0);
   expect(before.escolhas).toHaveLength(1);
   expect(before.escolhas[0].nome).toBe('Luz');
-  expect(api.ficha.espacosMagiaTotais).toBeNull(); // Rendering no longer writes derived caches.
+  expect(api.ficha.espacosMagiaTotais).toBeNull();
   await tick(() => api.salvarFicha(api.ficha));
   view.unmount();
   const utils = render(<FichaProvider storage={store}><Probe /><AbaMagias /></FichaProvider>);
@@ -157,8 +157,8 @@ test('fluxo mobile real restaura idiomas, perícias e distribuição ao alternar
   const previousWidth = window.innerWidth;
   window.innerWidth = 480;
   const first = fixture(); const second = fixture(); second.id = 'segunda'; second.pericias = []; second.idiomas = ['Comum'];
-  // This scenario restores explicit choices; ambiguous legacy languages are
-  // covered separately and must not gain provenance from their array position.
+
+
   first.idiomasLivres = ['Élfico', 'Anão'];
   const store = memory(serializeCollection([first, second], first.id));
   const mount = () => render(<FichaProvider storage={store}><Probe /><MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><CriarFicha /></MemoryRouter></FichaProvider>);

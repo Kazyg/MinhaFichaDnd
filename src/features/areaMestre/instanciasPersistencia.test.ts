@@ -1,4 +1,4 @@
-/** @jest-environment node */
+
 import './ambienteIndexedDB.testUtils';
 import { IDBFactory } from 'fake-indexeddb';
 import { RepositorioCampanhasIndexedDB } from './persistencia';

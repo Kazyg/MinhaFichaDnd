@@ -85,7 +85,7 @@ test('ordem expandida acessa participantes fora da roleta e escolhe qualquer des
 test.each(['touch', 'mouse'])('drag %s usa IDs reais, só grava no drop e não abre ficha ou ordem completa', async tipo => {
   const p = props(3, 0); render(<BarraIniciativa {...p} />);
   const anterior = Object.getOwnPropertyDescriptor(document, 'elementFromPoint');
-  const destino = itens()[4]; // C repetido: representa p2, não a posição visual 4.
+  const destino = itens()[4];
   Object.defineProperty(document, 'elementFromPoint', { configurable: true, value: () => destino });
   try {
     const handle = screen.getByRole('button', { name: 'Reorganizar A' });

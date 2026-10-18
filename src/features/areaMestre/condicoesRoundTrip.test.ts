@@ -1,4 +1,4 @@
-/** @jest-environment node */
+
 import './ambienteIndexedDB.testUtils';
 import { webcrypto } from 'crypto';
 import { IDBFactory, IDBObjectStore } from 'fake-indexeddb';
@@ -36,23 +36,23 @@ test('quatro participantes: duração própria, zero PV, reload, edição, expir
     await repo.criar(dados);
     dados = (await repo.obter('c'))!;
     async function passo() { await repo.salvar(avancar(dados)); dados = (await repo.obter('c'))!; }
-    await passo(); // Guerreiro recebeu veneno durante o turno parcial: não conta.
+    await passo();
     expect(restantes(dados, 'veneno')).toBe(3);
-    await passo(); // Mago termina: Goblin 1 começa.
+    await passo();
     expect(restantes(dados, 'fogo')).toBe(2);
-    await passo(); // Goblin 1 completa o primeiro turno, mesmo com 0 PV.
+    await passo();
     expect(restantes(dados, 'fogo')).toBe(1);
     expect(restantes(dados, 'veneno')).toBe(3);
-    await passo(); // Goblin 2: indefinida permanece.
+    await passo();
     expect(restantes(dados, 'paralisia')).toBeNull();
     repo.fechar();
     repo = new RepositorioCampanhasIndexedDB({ indexedDB: fabrica, nomeBanco: 'condicoes-integral' });
     expect(await repo.obter('c')).toEqual(dados);
-    await passo(); // Guerreiro: primeiro turno completo.
+    await passo();
     expect(restantes(dados, 'veneno')).toBe(2);
     await passo(); await passo();
     expect(restantes(dados, 'fogo')).toBeUndefined();
-    await passo(); // Goblin 2 conclui turno com duração ainda indefinida.
+    await passo();
     const rodada = dados.combates[0].rodada;
     await repo.salvar(alterarCondicao(dados, 'b', 'p3', { tipo: 'editar', id: 'paralisia', dados: efeito('paralisado', 1) }, data));
     dados = (await repo.obter('c'))!;
@@ -72,7 +72,7 @@ test('quatro participantes: duração própria, zero PV, reload, edição, expir
       expect(c.combateId).toBe(novo.id);
       expect(restaurado.participantes.some(p => p.id === c.participanteId && p.combateId === novo.id)).toBe(true);
     }
-    // Counts resume at the same turn occurrence on both aggregates.
+
     for (let i = 0; i < 8; i++) {
       await passo();
       restaurado = executarAcaoCombate(restaurado, novo.id, 'avancar', data);

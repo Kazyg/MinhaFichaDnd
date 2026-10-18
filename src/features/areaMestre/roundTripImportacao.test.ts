@@ -1,4 +1,4 @@
-/** @jest-environment node */
+
 import './ambienteIndexedDB.testUtils';
 import { webcrypto } from 'crypto';
 import { IDBFactory } from 'fake-indexeddb';
@@ -38,7 +38,7 @@ test('campanha vazia → importação real PDF/retrato → três instâncias →
     const retrato = await prepararRetrato(retratoArquivo, 'campanha');
     const revisado = confirmarMetadados({ ficha: preparado.ficha, anexos: [preparado.anexo, retrato] }, 'Goblin', '12', '12');
     revisado.ficha = { ...revisado.ficha, imagemAnexoId: retrato.id };
-    // Toda preparação é pura: nenhum registro parcial aparece antes de confirmar.
+
     expect((await repo.obter('campanha'))!.anexos).toHaveLength(0);
     let dados = incorporarImportacao((await repo.obter('campanha'))!, revisado);
     dados = criarInstanciaAdicional(dados, 'goblin', 'goblin-2');

@@ -21,7 +21,7 @@ export function completarLayout(layout: LayoutCampanha): LayoutCampanha {
   });
   return { ...layout, larguraSidebar: inteiro(layout.larguraSidebar ?? 260, 200, 400), larguraPV: inteiro(layout.larguraPV ?? 320, 240, 440), paineis: paineis.map(salvo => {
     const base = padrao.paineis.find(p => p.tipo === salvo.tipo) ?? { ...salvo, x: 0, y: 0, largura: 4, altura: 10 };
-    // Previous contracts accepted pixel coordinates. Such entries receive grid defaults.
+
     if (salvo.largura > 12 || salvo.altura > 60 || salvo.x > 12 || salvo.y > 60) return { ...salvo, x: base.x, y: base.y, largura: base.largura, altura: base.altura };
     const largura = inteiro(salvo.largura, 3, 12);
     const altura = inteiro(salvo.altura, 3, 20);

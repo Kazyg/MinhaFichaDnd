@@ -1,6 +1,6 @@
 import { TextoPagina, TrechoPagina } from './pdf';
 
-/** Worker, WASM e idiomas são servidos pelo próprio site; nenhum documento sai do navegador. */
+
 export async function reconhecerImagem(entrada: Blob | HTMLCanvasElement, progresso?: (texto: string) => void, signal?: AbortSignal): Promise<TextoPagina> {
   if (signal?.aborted) throw new Error('Processamento cancelado.');
   let canvas: HTMLCanvasElement | undefined;

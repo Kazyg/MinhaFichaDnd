@@ -2,7 +2,7 @@ import { ErroAreaMestre, validarId, validarPV } from './dominio';
 import { DadosCampanha, InstanciaFicha } from './modelos';
 import { validarDadosCampanha } from './validacao';
 
-/** Cópias locais: nenhum item do rascunho é gravado antes da confirmação. */
+
 export interface ParticipantePreparacao {
   id: string;
   instancia: InstanciaFicha;
@@ -15,20 +15,20 @@ function exigir(condicao: unknown, mensagem: string): asserts condicao {
   if (!condicao) throw new ErroAreaMestre('dados-invalidos', mensagem);
 }
 
-/** A posição de inclusão desempata iniciativas iguais, inclusive após edição. */
+
 export function ordenarParticipantesPreparacao(participantes: readonly ParticipantePreparacao[]): ParticipantePreparacao[] {
   return participantes.map((participante, indice) => ({ participante, indice }))
     .sort((a, b) => b.participante.iniciativa - a.participante.iniciativa || a.indice - b.indice)
     .map(item => item.participante);
 }
 
-/**
- * Monta uma única unidade transacional, sem alterar a campanha nem o rascunho.
- * O repositório existente deve salvar este agregado uma única vez, sob revisão.
- * Avulsos confirmados permanecem instâncias comuns da campanha; cancelar não
- * chama este serviço e descarta suas cópias. Preparados não reservam instâncias:
- * a exclusividade simultânea aplica-se aos encontros ativos.
- */
+
+
+
+
+
+
+
 export function confirmarPreparacao(
   dados: DadosCampanha, rascunho: RascunhoPreparacaoCombate, combateId: string, confirmadoEm: string,
 ): DadosCampanha {

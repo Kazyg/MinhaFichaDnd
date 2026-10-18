@@ -1,4 +1,4 @@
-/* Container principal */
+
 .level-container {
     width: 100%;
     overflow-y: auto;
@@ -13,29 +13,29 @@
     max-width: 230px;
     width: 100%;
   }
-  
+
   .level-container h2 {
     margin-top: 0;
     text-align: center;
     color: white;
   }
-  
-  /* Títulos */
+
+
   .tituloh2 {
-    font-size: 1.25rem; /* 20px */
+    font-size: 1.25rem;
     font-weight: 600;
     color: white;
     margin-bottom: 1rem;
   }
-  
+
   .tituloh3 {
-    font-size: 1rem; /* 16px */
+    font-size: 1rem;
     font-weight: 500;
     color: white;
     margin-bottom: 0.75rem;
   }
-  
-  /* Container de métodos de atributos */
+
+
   .metodo-atributos-container {
     display: flex;
     flex-direction: column;
@@ -43,13 +43,13 @@
     margin-bottom: 1rem;
     width: 100%;
   }
-  
-  /* Botões */
+
+
   .metodo-atributos-container button,
   .monta-atributos button {
     width: 100%;
     padding: 10px;
-    font-size: 0.875rem; /* 14px */
+    font-size: 0.875rem;
     font-weight: 500;
     color: white;
     border: none;
@@ -57,13 +57,13 @@
     cursor: pointer;
     transition: background 0.3s ease;
   }
-  
+
   .metodo-atributos-container button:hover,
   .monta-atributos button:hover {
     background: #e03e00;
   }
-  
-  /* Popup de distribuição de atributos */
+
+
   .monta-atributos-container {
     position: fixed;
     top: 0;
@@ -75,7 +75,7 @@
     justify-content: center;
     align-items: center;
   }
-  
+
   .monta-atributos {
     background: #222;
     padding: 20px;
@@ -83,13 +83,13 @@
     width: 300px;
     color: white;
   }
-  
+
   .monta-atributos h3 {
     margin-top: 0;
     text-align: center;
   }
-  
-  /* Container de traços e habilidades */
+
+
   .skills-container {
     margin-bottom: 0.75rem;
     padding: 6px 12px;
@@ -100,11 +100,11 @@
     box-sizing: border-box;
     margin-left: 0;
   }
-  
+
   .skills-container button {
     width: 100%;
     text-align: left;
-    font-size: 0.875rem; /* 14px */
+    font-size: 0.875rem;
     font-weight: 500;
     color: white;
     background: none;
@@ -114,18 +114,18 @@
     justify-content: space-between;
     align-items: center;
   }
-  
+
   .skills-container button:hover {
     color: #bbb;
   }
-  
+
   .skills-container .descricao {
-    font-size: 0.875rem; /* 14px */
+    font-size: 0.875rem;
     color: #bbb;
     margin-top: 0.5rem;
   }
-  
-  /* Checkboxes de proficiências */
+
+
   .checkbox-container {
     display: flex;
     width: 106%;
@@ -138,11 +138,11 @@
     background-color: #444;
     transition: background-color 0.3s ease;
   }
-  
+
   .checkbox-container:hover {
     background-color: #555;
   }
-  
+
   .checkbox-container input[type="checkbox"] {
     appearance: none;
     width: 18px;
@@ -153,12 +153,12 @@
     cursor: pointer;
     position: relative;
   }
-  
+
   .checkbox-container input[type="checkbox"]:checked {
     background-color: #ff4500;
     border-color: #ff4500;
   }
-  
+
   .checkbox-container input[type="checkbox"]:checked::before {
     content: "✔";
     position: absolute;
@@ -168,38 +168,38 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  
+
   .checkbox-container input[type="checkbox"]:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
-  
+
   .checkbox-container input[type="checkbox"]:disabled + span {
     opacity: 0.5;
   }
-  
+
   .checkbox-container.disabled-hover:hover {
     background-color: #444 !important;
   }
-  
-  /* Características de classe */
+
+
   .skills-container p {
-    font-size: 0.875rem; /* 14px */
+    font-size: 0.875rem;
     color: #bbb;
     margin: 0;
   }
-  
-  /* Scrollbar */
+
+
   .level-container::-webkit-scrollbar {
     width: 8px;
   }
-  
+
   .level-container::-webkit-scrollbar-thumb {
     background: gray;
     border-radius: 4px;
   }
-  
-  /* Popup de distribuição de atributos */
+
+
 .monta-atributos-container-distribuicao {
     position: fixed;
     top: 25%;
@@ -212,7 +212,7 @@
     align-items: center;
     z-index: 1000;
   }
-  
+
   .monta-atributos-distribuicao {
     background: #222;
     padding: 20px;
@@ -221,20 +221,20 @@
     color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   }
-  
+
   .atributos-container-distribuicao {
     display: flex;
     flex-direction: column;
     gap: 8px;
     margin-bottom: 1rem;
   }
-  
+
   .atributo-item-distribuicao {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  
+
   .atributo-item-distribuicao select {
     background: #333;
     border: 1px solid #555;
@@ -242,13 +242,13 @@
     color: white;
     padding: 4px;
   }
-  
+
   .point-buy-controls {
     display: flex;
     align-items: center;
     gap: 8px;
   }
-  
+
   .point-buy-controls button {
     background: #444;
     border: none;
@@ -257,7 +257,7 @@
     border-radius: 4px;
     cursor: pointer;
   }
-  
+
   .point-buy-controls button:hover {
     background: #555;
   }

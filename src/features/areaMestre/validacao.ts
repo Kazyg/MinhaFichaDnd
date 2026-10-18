@@ -18,7 +18,7 @@ const data = (v: unknown): v is string => texto(v) && /^\d{4}-\d{2}-\d{2}T\d{2}:
 function registro(v: unknown, campo: string, obrigatorios: string[], opcionais: string[] = []): Registro {
   if (!v || typeof v !== 'object' || Array.isArray(v)) falhar(campo);
   const proto = Object.getPrototypeOf(v);
-  // Aceita objetos simples de outros realms (iframes/structured clone), não classes.
+
   if (proto !== null && (Object.getPrototypeOf(proto) !== null || Object.getOwnPropertyDescriptor(proto, 'constructor')?.value?.name !== 'Object')) falhar(campo);
   const valor = v as Registro;
   if (Object.getOwnPropertySymbols(valor).length || Object.values(Object.getOwnPropertyDescriptors(valor)).some(d => !('value' in d))) falhar(`${campo}: propriedades`);
@@ -45,7 +45,7 @@ function entidades(v: unknown, campo: string, campos: string[], opcionais: strin
   return resultado;
 }
 
-/** Validação em runtime compartilhada entre IndexedDB e manifesto de backup. */
+
 export function validarDadosCampanha(valor: unknown): asserts valor is DadosCampanha {
   const dados = registro(valor, 'campanha', ['campanha', 'anexos', 'fichas', 'instancias', 'combates', 'participantes', 'layout']);
   const c = registro(dados.campanha, 'metadados', ['id', 'schemaVersion', 'nome', 'roteiro', 'criadoEm', 'atualizadoEm'], ['revisao', 'roteiros']);

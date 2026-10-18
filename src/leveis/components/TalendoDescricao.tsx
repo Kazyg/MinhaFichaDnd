@@ -10,10 +10,10 @@ interface CaracteristicasClasseProps {
 
 const TalentoDescricao: React.FC<CaracteristicasClasseProps> = ({ talento, efeito }) => {
     const { ficha } = useFicha();
-    // Estado para controlar quais características estão expandidas
+
     const [caracteristicasExpandidas, setCaracteristicasExpandidas] = useState<{ [key: string]: boolean }>({});
 
-    // Função para alternar a visibilidade da descrição
+
     const toggleCaracteristica = (caracteristica: string) => {
         setCaracteristicasExpandidas((prev) => ({
             ...prev,

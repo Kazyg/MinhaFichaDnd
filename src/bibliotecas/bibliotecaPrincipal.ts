@@ -12,7 +12,7 @@ export function descricaoCaracteristica(nome: string, edicao: RulesetVersion = '
 }
 
 export const bibliotecaPrincipal = {
-  // Acervo legado para os consumidores 2014. Seleções novas usam rulesets/conteudo.
+
   procedencia: { natureza: 'nao-verificado', licenca: 'pendente', revisao: 'legado-local-1' },
   caracteristicasDeClasse,
   Talentos

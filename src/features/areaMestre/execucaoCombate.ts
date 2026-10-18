@@ -8,14 +8,14 @@ const exigir = (condicao: unknown, mensagem: string) => {
   if (!condicao) throw new ErroAreaMestre('dados-invalidos', mensagem);
 };
 
-/** A reconstrução anterior usava sempre a data da preparação. Ambíguos não restauram. */
+
 export function migrarOrigemSnapshot(combate: Combate): Combate {
   if (!combate.execucao || combate.execucao.origemSnapshot) return combate;
   return { ...combate, execucao: { ...combate.execucao,
     origemSnapshot: combate.execucao.ativadoEm !== combate.iniciadoEm ? 'ativacao' : 'legado' } };
 }
 
-/** Compatibilidade versionada: o histórico anterior só conhecia o snapshot da preparação. */
+
 export function migrarExecucaoLegada(combate: Combate, participantes: ParticipanteCombate[]): Combate {
   if (combate.estado !== 'ativo' || combate.execucao) return combate;
   const ordem = participantes.filter(p => p.combateId === combate.id).sort((a, b) => a.ordem - b.ordem);
@@ -25,7 +25,7 @@ export function migrarExecucaoLegada(combate: Combate, participantes: Participan
     pvAtivacao: ordem.map(p => ({ participanteId: p.id, instanciaId: p.instanciaId, pv: { ...p.pvInicio } })) } };
 }
 
-/** Função pura: ordem manual nunca é recalculada pela iniciativa durante a execução. */
+
 export function executarAcaoCombate(dados: DadosCampanha, combateId: string, acao: AcaoExecucaoCombate, agora: string): DadosCampanha {
   validarDadosCampanha(dados);
   const original = dados.combates.find(c => c.id === combateId);

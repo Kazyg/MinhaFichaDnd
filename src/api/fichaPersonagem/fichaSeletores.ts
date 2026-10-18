@@ -22,7 +22,7 @@ export const explicarParcelas = (parcelas: Parcela[]) => parcelas.map(p => `${p.
 const parcela = (fonte: string, valor: number, aplicada = true, condicao?: string): Parcela => ({ fonte, valor, aplicada, condicao });
 const somar = (p: Parcela[]) => p.reduce((s, v) => s + (v.aplicada ? v.valor : 0), 0);
 
-// Positions beyond the active level remain saved but do not contribute.
+
 export function selecionarNiveis(f: Documento) {
   return Array.from({ length: f?.levelTotal ?? 0 }, (_, i) => {
     const nivel = i + 1;
@@ -72,14 +72,14 @@ export function selecionarVida(f: Documento) {
     nivel === 1 ? `dado máximo + CON ${formatarBonus(con)}` : `média fixa + CON ${formatarBonus(con)}`));
   parcelas.push(...listarEfeitosAtivos(f).filter(e => e.tipoEfeito === 'pv_maximo').map(e => parcela(e.tituloEfeito || 'Ajuste de PV', e.bonus)));
   parcelas.push(...listarEfeitosAtivos(f).filter(e => ['vida', 'vida_por_nivel'].includes(e.tipoEfeito)).map(e => parcela(e.tituloEfeito, e.bonus * (e.tipoEfeito === 'vida_por_nivel' ? f?.levelTotal ?? 0 : 1))));
-  // vidaTotal has no automatic writer: retain an explicitly saved maximum.
+
   return { total: f?.vidaTotal ?? somar(parcelas), calculado: somar(parcelas), parcelas,
     ausentes, manual: f?.vidaTotal != null };
 }
 export function selecionarDeslocamento(f: Documento) {
   const origem = f?.subRaca ?? f?.racaPrincipal;
   const baseRaca = f?.racaPrincipal?.velocidade;
-  // speed historically cached the parent species. Other values are manual overrides.
+
   const manual = f?.speed != null && f.speed !== baseRaca;
   const base = manual ? f!.speed! : origem?.velocidade ?? f?.speed ?? 0;
   const parcelas = [parcela(manual ? 'Deslocamento salvo' : origem?.nome ?? 'Deslocamento não informado', base),
@@ -128,7 +128,7 @@ export function selecionarCA(f: Documento) {
       !defesa || (!!armadura && (f?.versaoRegras !== 'DND_2024' || treino)), defesa ? 'vestindo armadura; 2024 exige treino' : undefined));
   });
   const classes = selecionarClassesAtivas(f).map(c => c.chave);
-  // Multiclassing does not grant Unarmored Defense a second time.
+
   const primeiraDefesa = selecionarNiveis(f).find(n => n.classe && ['barbaro', 'monge'].includes(chaveClasse(n.classe)))?.classe;
   const alternativas = [{ fonte: 'Sem armadura: 10 + DES', valor: 10 + des, base: 10, destreza: des, aplicada: !armadura }];
   if (classes.includes('barbaro')) alternativas.push({ fonte: 'Bárbaro: 10 + DES + CON (permite escudo)', valor: 10 + des + modificadorAtributo(f, 'constituicao'), base: 10, destreza: des, aplicada: !armadura && chaveClasse(primeiraDefesa!) === 'barbaro' });

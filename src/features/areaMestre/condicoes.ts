@@ -9,7 +9,7 @@ export interface DadosCondicao {
 }
 export type AcaoCondicao = { tipo: 'adicionar' | 'editar'; id: string; dados: DadosCondicao } | { tipo: 'excluir'; id: string };
 
-/** A edição preserva a ocorrência ignorada: altera restantes, sem reiniciar o turno. */
+
 export function alterarCondicao(dados: DadosCampanha, combateId: string, participanteId: string, acao: AcaoCondicao, agora: string): DadosCampanha {
   validarDadosCampanha(dados);
   if (!['adicionar', 'editar', 'excluir'].includes(acao.tipo)) throw new ErroAreaMestre('dados-invalidos', 'Ação de condição inválida.');
@@ -36,7 +36,7 @@ export function alterarCondicao(dados: DadosCampanha, combateId: string, partici
   return resultado;
 }
 
-/** Chamado somente por avanço real, antes de publicar o próximo turno. */
+
 export function processarCondicoesTurno(combate: Combate, encerrandoId: string, iniciandoId: string, ocorrencia: number): CondicaoCombate[] | undefined {
   return combate.condicoes?.flatMap(c => {
     if (c.duracao === 'manual') return [c];

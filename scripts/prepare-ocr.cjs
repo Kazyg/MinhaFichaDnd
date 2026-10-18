@@ -1,4 +1,4 @@
-// Assets locais reproduzíveis. Não baixamos idiomas de CDNs durante a importação.
+
 const fs = require('node:fs');
 const path = require('node:path');
 const destino = path.resolve(__dirname, '../public/ocr');

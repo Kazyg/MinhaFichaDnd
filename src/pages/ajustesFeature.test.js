@@ -25,8 +25,8 @@ test.each(['DND_2014', 'DND_2024'])('estilo de luta abre uma única modal intera
   await user.click(screen.getByRole('button', { name: /Selecionar Estilo de luta/ }));
   expect(screen.getAllByRole('dialog', { hidden: true })).toHaveLength(1);
   const dialog = screen.getByRole('dialog');
-  // Inert ancestors are the browser-level cause of this regression.
-  // eslint-disable-next-line testing-library/no-node-access
+
+
   expect(dialog.closest('[inert]')).toBeNull();
   await user.click(within(dialog).getByRole('button', { name: 'Defesa', exact: true }));
   expect(within(dialog).getByRole('button', { name: 'Defesa', exact: true })).toHaveAttribute('aria-pressed', 'true');
@@ -40,7 +40,7 @@ test.each(['DND_2014', 'DND_2024'])('estilo de luta abre uma única modal intera
   expect(mockFicha.efeitos.filter(e => e.tipoEfeito === 'estilo_defesa')).toHaveLength(0);
   expect(mockFicha.efeitos.filter(e => e.tipoEfeito === 'estilo_duelismo')).toHaveLength(1);
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-  // eslint-disable-next-line testing-library/no-node-access
+
   expect(document.querySelector('[inert]')).toBeNull();
 });
 

@@ -207,7 +207,7 @@ export const createDnd2024Ruleset = (): RulesetData => ({
     criarOrigem("Sábio", ["Arcanismo", "História"], ["constituicao", "inteligencia", "sabedoria"], "Iniciado em Magia (Mago)", ["Cajado", "Suprimentos de Calígrafo", "Livro (história)", "Pergaminho (8 folhas)", "Túnica", "8 PO", "ou 50 PO"], ["Suprimentos de Calígrafo"]),
     criarOrigem("Soldado", ["Atletismo", "Intimidação"], ["forca", "destreza", "constituicao"], "Atacante Selvagem", ["Lança", "Arco Curto", "20 Flechas", "Kit de Curandeiro", "Kit de Jogos", "Aljava", "Roupas de Viagem", "14 PO", "ou 50 PO"], ["Kit de Jogos"])
   ],
-  // Content APIs return independent copies only when the caller requests them.
+
   get talentos() { return getTalentosConteudo("DND_2024"); },
   armas: [],
   armaduras: [],

@@ -3,7 +3,7 @@ import { prepararImportacao } from './importacao';
 
 export interface ImportacaoConfirmada { ficha: FichaOriginal; anexos: AnexoCampanha[] }
 
-/** Apenas rótulos explícitos e um único valor: PDFs ambíguos exigem revisão manual. */
+
 export function detectarPvTexto(texto: string): number | null {
   if ((texto.match(/(?:pontos\s+de\s+vida|hit\s+points|pv\s+m[aá]ximos)/gi) ?? []).length !== 1) return null;
   const encontrados = Array.from(texto.matchAll(/(?:pontos\s+de\s+vida|hit\s+points|pv\s+m[aá]ximos)\s*[:：]?\s*(\d+)\b(?![\d.,/]|\s*\/)/gi));

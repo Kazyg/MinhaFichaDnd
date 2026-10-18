@@ -105,7 +105,7 @@
 @media(max-width:1199px) { .am-bloqueio { grid-template-columns:160px minmax(0,1fr); } .am-sidebar-recolhida .am-bloqueio { grid-template-columns:70px minmax(0,1fr); } .am-pv { grid-column:2; border-left:0; border-top:1px solid #555; } }
 @media(max-width:599px) { .am-workspace .am-cabecalho { padding:.6rem; gap:.5rem; } .am-identidade h1 { font-size:1rem; } .am-acoes-cabecalho { width:100%; } .am-acoes-cabecalho button { font-size:.75rem; flex:1; } .am-bloqueio,.am-sidebar-recolhida .am-bloqueio { display:block; overflow:auto; } .am-sidebar { display:flex; gap:.4rem; flex-wrap:wrap; border-right:0; border-bottom:1px solid #555; padding:.5rem; } .am-sidebar button { flex:1 1 120px; margin:0; font-size:.8rem; } .am-sidebar-recolhida .am-sidebar { flex-wrap:nowrap; padding:.5rem; } .am-sidebar-recolhida .am-sidebar button { min-width:44px; flex:1; } .am-sidebar-recolhida .am-sidebar-texto { display:none; } .am-central { padding:.6rem; } .am-pv { padding:1rem; } .am-dialog { padding:1.1rem; } }
 
-/* O botão ocupa somente o conteúdo; cabeçalho e resize preservam seus eventos. */
+
 .am-workspace #am-menu { width:min(340px,calc(100vw - 24px)); min-width:0; border-radius:6px; }
 .am-workspace #am-menu button { background:transparent; border-color:transparent; text-align:left; }
 .am-workspace #am-menu button:hover:enabled { background:var(--area-menu-hover,#ffffff12); border-color:transparent; }

@@ -95,7 +95,7 @@ export const createDnd2014Ruleset = (): RulesetData => ({
     new Pirata(),
     new Orfao()
   ].map(background => Object.assign(background, { equipamentoInicial: equipamentoBackground('DND_2014', background.nome) })),
-  // Content APIs return independent copies only when the caller requests them.
+
   get talentos() { return getTalentosConteudo("DND_2014"); },
   armas: [],
   armaduras: [],

@@ -3,7 +3,7 @@ import { CondicaoCombate } from './modelos';
 export const CATEGORIAS_CONDICOES = [{"id": "oficiais", "nome": "Condições oficiais"}, {"id": "dano-continuo", "nome": "Dano contínuo"}, {"id": "negativos", "nome": "Efeitos negativos"}, {"id": "positivos", "nome": "Efeitos positivos"}, {"id": "marcadores", "nome": "Outros marcadores"}] as const;
 export type CategoriaCondicao = typeof CATEGORIAS_CONDICOES[number]['id'];
 export interface ItemCatalogoCondicao { id: string; nome: string; categoria: CategoriaCondicao; icone: string; aliases?: readonly string[] }
-/** Catálogo de marcadores: não aplica consequências mecânicas automaticamente. */
+
 export const CATALOGO_CONDICOES: readonly ItemCatalogoCondicao[] = [
   {"id": "cego", "nome": "Cego", "categoria": "oficiais", "icone": "olho-riscado", "aliases": ["Blinded"]},
   {"id": "enfeiticado", "nome": "Enfeitiçado", "categoria": "oficiais", "icone": "coracao", "aliases": ["Charmed"]},

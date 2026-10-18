@@ -58,7 +58,7 @@ const equipment = shape({ id, nome: string }, {
   custo: number, preco: number, peso: number, ac: number, forca: number, sintonizavel: v => typeof v === 'boolean',
   categoria: string, descricao: string, dano: shape({ dano_1: string, dano_2: string }), dano_atributo: strings,
 });
-// Unknown revision/edition strings are preserved for review, never coerced to current content.
+
 const contentReference = shape({ id: string, edicao: string, revisao: string });
 const contentSnapshot = shape({ nome: string, descricao: string });
 const effect = shape({ id }, {
@@ -113,7 +113,7 @@ for (const key of ['pericias', 'talentos', 'idiomas']) fields[key] = strings;
 for (const key of ['ArmadurasMochila', 'ArmasMochila', 'ArmaEquipada', 'itensMochila', 'itensEquipados']) fields[key] = array(equipment);
 for (const key of ['metamagica1', 'metamagica2', 'metamagica3', 'metamagica4']) fields[key] = shape({ nome: string, descricao: string });
 
-// Check the graph before JSON.stringify can silently turn NaN/Infinity into null.
+
 export function validateGraph(value: any, depth = 0, ancestors = new Set<any>()) {
   if (depth > 60) fail('profundidade máxima');
   if (typeof value === 'number' && !Number.isFinite(value)) fail('número não finito');
@@ -141,8 +141,8 @@ export function validateFicha(value: any): asserts value is Ficha {
     const ids = (value[key] || []).map((entry: any) => entry.id);
     if (new Set(ids).size !== ids.length) fail(`${key}: IDs duplicados`);
   }
-  // References are embedded snapshots/names, not IDs from the current rule catalog.
-  // Unknown old options remain valid. Only explicit class links must resolve locally.
+
+
   const classNames = new Set([value.classePrincipal?.nome, ...(value.multiclasses || []).map((m: any) => m.classe.nome)]);
   for (const entry of value.subClasse || []) {
     if (!classNames.has(entry.classe.nome)) fail('subClasse.classe: referência ausente');
@@ -165,9 +165,9 @@ export function hydrateFicha(value: any): Ficha {
   const document = wireFicha(value);
   validateGraph(document);
   validateFicha(document);
-  // Preserve unknown fields instead of dropping them in the constructor.
+
   const hydrated = restaurarModelos(mapUnlimitedRages(document, false));
-  // Keep the last explicit selection, archiving every displaced snapshot.
+
   const selections = hydrated.subClasse ?? [];
   const displaced = selections.filter((s: any, i: number) => selections.slice(i + 1).some((next: any) => next.classe.nome === s.classe.nome));
   if (displaced.length) {
@@ -181,7 +181,7 @@ export function hydrateFicha(value: any): Ficha {
   if (hydrated.efeitos) hydrated.efeitos = hydrated.efeitos.map((e: any) => Object.assign(new Efeitos(), e));
   const ficha: Ficha = Object.assign(new Ficha(hydrated), hydrated, { versaoRegras: hydrated.versaoRegras ?? 'DND_2014' });
   if (ficha.magiasEscolhidas?.length) migrarMagias(ficha);
-  // Missing legacy counters are unknown, not evidence of zero recorded saves.
+
   if (document.recursos == null) ficha.recursos = { slots: {} };
   ficha.recursos.slots ??= {};
   ficha.itensSintonizados ??= [];
@@ -192,9 +192,9 @@ export function hydrateFicha(value: any): Ficha {
   return ficha;
 }
 
-// The legacy rule catalog uses Infinity for unlimited rages. Encode this one
-// semantic value explicitly; every numeric value in a document must be finite.
-// Legacy null remains null (we cannot infer whether it originally was Infinity).
+
+
+
 function mapUnlimitedRages(value: any, encode: boolean): any {
   if (!object(value) || (value.versaoRegras !== undefined && value.versaoRegras !== 'DND_2014')) return value;
   const mapClass = (c: any) => {

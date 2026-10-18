@@ -30,7 +30,7 @@ export type EquipamentoMagico = {
 
 export type VinculoEquipamento = { tipo: 'arma' | 'armadura'; id: string };
 
-// Catalog registration and legacy import boundary; runtime rules use the saved metadata.
+
 export function metadadosMagicosCatalogo(nome: string): EquipamentoMagico | undefined {
   const chave = nome.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
   const generico = chave.match(/^(?:\+([123]) (weapon|arma|armor|armadura|shield|escudo)|(weapon|arma|armor|armadura|shield|escudo),? \+([123]))(?: \(\*\))?$/);

@@ -61,7 +61,7 @@ export function sincronizarConcessoes(f: Ficha, b: BackGround | null) {
     }
   }
   if (r.assinatura === assinatura) return;
-  // Legacy grants cannot be distinguished from manual acquisitions.
+
   if (!r.assinatura && r.revisao && r.origem === idOrigem) return;
   for (const instancia of r.instancias) {
     if (instancia.tipo === 'arma') f.excluirArmaMochila(instancia.id);

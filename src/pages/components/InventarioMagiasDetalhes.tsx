@@ -22,7 +22,7 @@ export default function InventarioMagiasDetalhes() {
 
   return (
     <div className="inventario-container">
-      {/* Menu Superior */}
+      { }
       <div className="menu-abas">
         {["armas", "armaduras", "itens", "magias", "detalhes"].map((aba) => (
           <button
@@ -37,7 +37,7 @@ export default function InventarioMagiasDetalhes() {
       </div>
 
       <div className="conteudo-abas">
-        {/* Renderiza a aba ativa */}
+        { }
         {abaAtiva === "armas" && <AbaArmas setModalAberto={setModalAberto} />}
         {abaAtiva === "armaduras" && <AbaArmaduras setModalEquipamentoAberto={setModalEquipamentoAberto} />}
         {abaAtiva === "itens" && <AbaItens setModalItemAberto={setModalItemAberto} />}
@@ -65,7 +65,7 @@ export default function InventarioMagiasDetalhes() {
           <div className="popup-overlay" onClick={() => setModalAberto(false)}></div>
           <div className="popup">
             <ModalInventarioEquipamentos
-              equipamentos={armaduras_equip} // Passa o array de equipamentos
+              equipamentos={armaduras_equip}
               onClose={() => setModalEquipamentoAberto(false)}
               onSelecionarEquipamento={(armaduraEscolhida) => {
                 ficha?.setArmaduraMochila(armaduraEscolhida)

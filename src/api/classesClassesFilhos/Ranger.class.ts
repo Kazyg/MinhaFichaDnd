@@ -25,12 +25,12 @@ export class Ranger extends Classes {
       ["Atletismo", "Furtividade", "Adestrar Animais", "Intuição", "Investigação", "Natureza", "Percepção", "Sobrevivência"],
       ["Armadura leve", "armadura média", "escudos", "armas simples", "armas marciais"]
     );
-    this.level = 0; // Nível inicial
-    this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis
+    this.level = 0;
+    this.niveis = this.preencherNiveis();
     this.subClasse = [new ConclaveDaBesta(), new ConclaveDoCaçador(), new ConclaveDoRastreadorSubterrâneo(), new AndarilhoDoHorizonte(), new PerseguidorObscuro()];
   }
 
-  // Método para aumentar o nível
+
   aumentarNivel(): void {
     if (this.level < 20) {
       this.level += 1;
@@ -39,7 +39,7 @@ export class Ranger extends Classes {
     }
   }
 
-  // Método para preencher a tabela de níveis
+
   private preencherNiveis() {
     return [
       { nivel: 1, proeficiencia: 2, magiasConhecidas: 0, espacosMagia: [0, 0, 0, 0, 0], caracteristicas: ["Inimigo Favorito", "Explorador Natural"] },

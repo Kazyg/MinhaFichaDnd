@@ -23,12 +23,12 @@ export class Lutador extends Classes {
       ["Acrobacia", "Atletismo", "Adestrar Animais", "História", "Intimidação", "Intuição", "Percepção", "Sobrevivência"],
       ["Armadura leve", "armadura média", "escudos", "armas simples", "armas marciais"]
     );
-    this.level = 0; // Nível inicial
-    this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis
+    this.level = 0;
+    this.niveis = this.preencherNiveis();
     this.subClasse = [new Campeao(), new CavaleiroArcano(), new MestreDeBatalha(), new ArqueiroArcano(), new Cavaleiro(), new Samurai()];
   }
 
-  // Método para aumentar o nível
+
   aumentarNivel(): void {
     if (this.level < 20) {
       this.level += 1;
@@ -37,7 +37,7 @@ export class Lutador extends Classes {
     }
   }
 
-  // Método para preencher a tabela de níveis
+
   private preencherNiveis() {
     return [
       { nivel: 1, proeficiencia: 2, caracteristicas: ["Estilo de Luta Guerreiro", "Retomar o Fôlego"] },

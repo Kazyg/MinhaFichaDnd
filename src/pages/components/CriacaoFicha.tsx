@@ -271,7 +271,7 @@ export default function CriacaoFicha({
         </>
       )}
 
-      {/* Popup de seleção de sub-raça */}
+      { }
       {subGrupoAberto && (
         <>
           <div
@@ -404,7 +404,7 @@ export default function CriacaoFicha({
                       "DND_2024",
                       origem2024.talentoOrigem,
                     );
-                    // Escolhas obrigatórias são concluídas no nível 1; nunca inventadas.
+
                     if (
                       ficha &&
                       conteudo?.suportado &&

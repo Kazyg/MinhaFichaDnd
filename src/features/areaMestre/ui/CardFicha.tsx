@@ -17,9 +17,9 @@ export default function CardFicha({ ficha, anexos, quantidade, onAbrir, onAdicio
     setResumo('');
     if (ficha.formato === 'json' && fonte.current) void lerResumoFichaJson(fonte.current.arquivo).then(valor => {
       if (ativo) setResumo([valor.classe, valor.nivel !== undefined ? `Nível ${valor.nivel}` : '', valor.raca].filter(Boolean).join(' · '));
-    }).catch(() => { /* O visualizador apresenta o erro completo ao abrir. */ });
+    }).catch(() => {   });
     return () => { ativo = false; };
-  // Anexos originais são imutáveis; salvar PV não exige reler o JSON de até 5 MiB.
+
   }, [anexo?.id, anexo?.campanhaId, ficha.formato]);
   return <div className="am-card-ficha">
     <button className="am-card-ficha-abrir" aria-label={`Abrir ficha ${ficha.nome}`} onClick={onAbrir}>

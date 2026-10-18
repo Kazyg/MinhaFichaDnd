@@ -7,7 +7,7 @@ import { lerBlob } from './pdf';
 import { validarDadosCampanha } from './validacao';
 const lerTexto = async (arquivo: Blob) => typeof arquivo.text === 'function' ? arquivo.text() : await lerBlob(arquivo, true) as string;
 
-/** Reconhece o envelope atual e o snapshot completo usado antes dos envelopes. */
+
 export function validarJsonDoSite(texto: string) {
   const valor = parseJSON(texto);
   const envelope = valor?.format === 'minhafichadnd' && valor?.version === 1 && valor?.kind === 'ficha';
@@ -20,10 +20,10 @@ export function validarJsonDoSite(texto: string) {
   return parseImport(texto);
 }
 
-/** Nunca acessa a ficha ativa: a hidratação trabalha em uma cópia do arquivo. */
+
 export async function gerarPdfDoJson(ficha: FichaOriginal, original: AnexoCampanha): Promise<AnexoCampanha> {
   const texto = await lerTexto(original.arquivo);
-  // Compatibilidade: documentos antigos já aceitos não passam pelo filtro novo.
+
   const personagem = parseImport(texto);
   const { gerarFichaPdf } = await import('../../utils/exportarFichaPdf');
   const bytes = await gerarFichaPdf(personagem);
@@ -33,7 +33,7 @@ export async function gerarPdfDoJson(ficha: FichaOriginal, original: AnexoCampan
     mime: 'application/pdf', tamanho: arquivo.size, arquivo };
 }
 
-/** JSON, PDF e metadados só são publicados juntos depois da geração bem-sucedida. */
+
 export async function prepararImportacaoComPdf(arquivo: File, contexto: ContextoImportacao): Promise<ImportacaoConfirmada> {
   const resultado = await prepararImportacao(arquivo, contexto);
   if (resultado.ficha.formato !== 'json') return { ficha: resultado.ficha, anexos: [resultado.anexo] };
@@ -46,7 +46,7 @@ export async function prepararImportacaoComPdf(arquivo: File, contexto: Contexto
   }
 }
 
-/** Acrescenta somente o PDF: PV revisados, retratos e instâncias permanecem intactos. */
+
 export async function converterFichaJson(dados: DadosCampanha, fichaId: string): Promise<DadosCampanha> {
   const ficha = dados.fichas.find(f => f.id === fichaId);
   if (!ficha || ficha.formato !== 'json') throw new Error('Ficha JSON não encontrada.');

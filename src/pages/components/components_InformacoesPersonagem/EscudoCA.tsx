@@ -2,8 +2,8 @@ import { useLayoutEffect, useRef, useState } from 'react';
 import iconCa from '../../../imagens/icon_ac.png';
 import '../../css/EscudoCA.css';
 
-// Centróide da área interna do PNG original (150 × 150), não do seu bounding box.
-// A ponta estreita deixa o centro visual acima de y=75. O desenho original é preservado.
+
+
 const CENTRO = { x: 74.5, y: 65 };
 
 export default function EscudoCA({ valor }: { valor: number }) {
@@ -11,7 +11,7 @@ export default function EscudoCA({ valor }: { valor: number }) {
   const [posicao, setPosicao] = useState<{ x: number; y: number } | null>(null);
 
   useLayoutEffect(() => {
-    // Ambientes sem layout/canvas (como jsdom) usam o alinhamento SVG de fallback.
+
     if (typeof CanvasRenderingContext2D === 'undefined') return;
     let ativo = true;
     const contexto = document.createElement('canvas').getContext('2d');
@@ -26,8 +26,8 @@ export default function EscudoCA({ valor }: { valor: number }) {
       contexto.textBaseline = 'alphabetic';
       contexto.direction = 'ltr';
       const limites = contexto.measureText(String(valor));
-      // A largura de avanço e a caixa da linha incluem espaços da fonte. Estes
-      // limites medem a tinta: a mesma fórmula atende qualquer quantidade/dígito.
+
+
       const x = CENTRO.x - (limites.actualBoundingBoxRight - limites.actualBoundingBoxLeft) / 2;
       const y = CENTRO.y + (limites.actualBoundingBoxAscent - limites.actualBoundingBoxDescent) / 2;
       if (Number.isFinite(x) && Number.isFinite(y)) {

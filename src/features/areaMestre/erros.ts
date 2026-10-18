@@ -7,7 +7,7 @@ export class ErroPersistencia extends Error implements FalhaPersistencia {
   }
 }
 
-/** Não depende de instanceof DOMException (pode vir de outra aba/realm). */
+
 export function normalizarErroPersistencia(erro: unknown): ErroPersistencia {
   if (erro instanceof ErroPersistencia) return erro;
   const nome = typeof erro === 'object' && erro !== null && 'name' in erro ? String((erro as { name: unknown }).name) : '';

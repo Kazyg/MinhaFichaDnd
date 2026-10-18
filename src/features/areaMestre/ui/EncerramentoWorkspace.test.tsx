@@ -120,7 +120,7 @@ test('cria outro ativo, alterna, cancela e encerra com decisões distintas, pres
   expect(await screen.findByRole('cell', { name: '1/8' })).toBeInTheDocument();
   const salvo = (await ambiente.repositorio.obter('c'))!;
   expect(salvo.combates.every(c => c.estado === 'encerrado')).toBe(true);
-  expect(salvo.instancias).toHaveLength(5); // Avulsos não são apagados no encerramento.
+  expect(salvo.instancias).toHaveLength(5);
 });
 
 test('mudança em outra aba durante confirmação mantém modal, não restaura e exige recarga', async () => {

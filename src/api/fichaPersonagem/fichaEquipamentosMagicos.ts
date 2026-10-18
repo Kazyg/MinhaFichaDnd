@@ -30,7 +30,7 @@ export function itemEstaEquipado(f: Ficha | null | undefined, item: Itens): bool
 export function magiaDoEquipamento(f: Ficha | null | undefined, tipo: TipoEquipamento, equipamento: Equipamento) {
   const item = itemMagicoVinculado(f, tipo, equipamento.id);
   const magia = item?.equipamentoMagico;
-  // Weapon rows preview an attack with that weapon; attuned properties still require active equipment.
+
   const ativo = !!item && ((magia?.modo === 'melhoria' && !item.sintonizavel) || (itemEstaEquipado(f, item) && (!item.sintonizavel || !!f?.itensSintonizados?.includes(item.id))));
   return { item, magia, ativo, bonusAtaque: ativo ? magia?.bonusAtaque ?? 0 : 0,
     bonusDano: ativo ? magia?.bonusDano ?? 0 : 0, bonusCA: ativo ? magia?.bonusCA ?? 0 : 0 };

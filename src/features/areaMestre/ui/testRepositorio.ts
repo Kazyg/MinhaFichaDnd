@@ -1,8 +1,8 @@
 import { IDBFactory } from 'fake-indexeddb';
 import { criarRepositorioCampanhas } from '../persistencia';
 
-// Jest 27/jsdom does not expose structuredClone. Keep cloned DTOs in this
-// realm, and preserve browser Blob identity/type instead of substituting Node Blob.
+
+
 function clonar<T>(valor: T): T {
   if (valor instanceof Blob) return valor.slice(0, valor.size, valor.type) as T;
   if (Array.isArray(valor)) return valor.map(clonar) as T;

@@ -24,7 +24,7 @@
   padding: 0.4rem;
   border-radius: 0.3rem;
   margin-bottom: 0;
-  /* Same height as the original three 0.75rem lines and two 0.2rem gaps. */
+
   height: calc(3lh + 1.2rem);
   font-size: 0.75rem;
   container-type: inline-size;
@@ -165,7 +165,7 @@
   line-height: 0.9rem;
 }
 
-/* Estilos para celular (max-width: 768px) */
+
 @media (max-width: 768px) {
   .pericias-container {
     position: relative;

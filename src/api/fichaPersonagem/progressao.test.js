@@ -145,7 +145,7 @@ test('array incompleto, repetido, point buy inválido e origem inválida não co
   ficha.distribuicaoAtributos = standard(); ficha.distribuicaoAtributos.atributos.forca = 14;
   expect(ficha.concluirAtributos()).toBe(false);
   ficha.distribuicaoAtributos = { ...standard(), metodo: 'Point Buy', pontos: 0 };
-  expect(ficha.concluirAtributos()).toBe(true); // standard array spends exactly 27
+  expect(ficha.concluirAtributos()).toBe(true);
   ficha.distribuicaoAtributos.atributos.forca = 16;
   expect(ficha.concluirAtributos()).toBe(false);
   ficha.distribuicaoAtributos = standard(); ficha.distribuicaoAtributos.modo = 'dois'; ficha.distribuicaoAtributos.maior = 'forca'; ficha.distribuicaoAtributos.menor = 'forca';

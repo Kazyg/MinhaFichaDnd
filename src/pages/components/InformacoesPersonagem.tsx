@@ -117,7 +117,7 @@ export default function InformacoesPersonagem() {
   return (
     <div className="informacoes-personagem compact">
       <div className="container-principal">
-        {/* Coluna 1: Nome, Nível, XP */}
+        { }
         <div className="coluna-1">
           <div className="campo">
             <label htmlFor="nome-personagem">Nome</label>
@@ -148,7 +148,7 @@ export default function InformacoesPersonagem() {
             />
           </div>
         </div>
-        {/* Popup de Nível */}
+        { }
         {popupNivelAberto && (
           <AccessibleDialog className="popup-info-personagem popup-nivel" aria-label="Escolha o Nível" onClose={() => setPopupNivelAberto(false)}>
             <h3>Escolha o Nível</h3>
@@ -163,7 +163,7 @@ export default function InformacoesPersonagem() {
           </AccessibleDialog>
         )}
 
-        {/* Coluna 2: Atributos */}
+        { }
         <div className="coluna-2">
           <h4>Atributos</h4>
           <div className="atributos-container">
@@ -186,7 +186,7 @@ export default function InformacoesPersonagem() {
           </div>
         </div>
 
-        {/* Coluna 3: Salvaguardas */}
+        { }
         <div className="coluna-3">
           <h4>Salvaguardas</h4>
           <div className="proficiencias-container">
@@ -215,7 +215,7 @@ export default function InformacoesPersonagem() {
           </div>
         </div>
 
-        {/* Coluna 4: CA e Vida */}
+        { }
         <div className="coluna-4">
           <div className="ca-container">
             <EscudoCA valor={ca.total} />

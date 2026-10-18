@@ -8,8 +8,8 @@ import { Patronos } from '../classesEspeciais/Patronos.class';
 import { Multiclasses } from '../classesPrincipais/Multiclasses';
 import { chaveClasse } from '../rulesets/progressao';
 
-// Catalogs identify prototypes only. Never replace persisted snapshots or IDs
-// with current catalog data: those snapshots may contain manual/legacy edits.
+
+
 export function restaurarModelos(data: any) {
   const rules = getRulesetData(data.versaoRegras);
   const restore = (value: any, options: any[], fallback: object): any => {
@@ -21,8 +21,8 @@ export function restaurarModelos(data: any) {
   const restoreClass = (value: any) => {
     const template = value && rules.classes.find(c => chaveClasse(c) === chaveClasse(value));
     const result = value && Object.assign(Object.create(template ? Object.getPrototypeOf(template) : Classes.prototype), value);
-    // Old snapshots keep their serialized shape; missing keys resolve through
-    // the same alias boundary. New catalog choices persist their stable key.
+
+
     if (result?.subClasse) result.subClasse = result.subClasse.map((s: any) =>
       restore(s, findClass(value.nome)?.subClasse ?? [], SubClasses.prototype));
     return result;
@@ -46,7 +46,7 @@ export function restaurarModelos(data: any) {
 
 export function idiomasEscolhidos(ficha: Ficha): string[] {
   if (ficha.idiomasLivres) return ficha.idiomasLivres;
-  // A saved language's position does not identify its source. Keep the original
-  // idiomas array; the review panel asks for an explicit decision.
+
+
   return [];
 }

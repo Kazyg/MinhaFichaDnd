@@ -1,4 +1,4 @@
-// Tables: SRD 5.1 / 5.2.1 and PHB arcane subclasses.
+
 export type EdicaoMagia = 'DND_2014' | 'DND_2024';
 const completos = [
   [], [2], [3], [4,2], [4,3], [4,3,2], [4,3,3], [4,3,3,1], [4,3,3,2],

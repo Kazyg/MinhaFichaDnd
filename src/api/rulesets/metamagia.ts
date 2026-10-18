@@ -8,7 +8,7 @@ export const fonteMetamagia2024 = 'https://www.dndbeyond.com/sources/dnd/br-2024
 export function opcoesMetamagia(edicao: string) {
   if (edicao === 'DND_2014') return Metamagica.filter(m => m.nome);
   if (edicao !== 'DND_2024') return [];
-  // Local adaptations of SRD 5.2.1 pp. 66–67 (CC-BY-4.0). Saved snapshots stay unchanged.
+
   const resumos: Record<string, string> = {
     'Magia Acelerada': '2 pontos: transforma a conjuração de uma ação em ação bônus. Não pode ser usada se você já conjurou magia de círculo 1 ou maior neste turno, nem permite conjurar outra dessas magias depois no mesmo turno.',
     'Magia Aumentada': '2 pontos: um alvo tem desvantagem nos testes de resistência contra a magia.',

@@ -1,6 +1,6 @@
 import { Campanha } from './modelos';
 
-/** Conserva texto legado e roteiros existentes, sem alterar o objeto recebido. */
+
 export function normalizarRoteirosCampanha(campanha: Campanha): Campanha {
   if (!campanha.roteiro.trim()) return campanha;
   const roteiros = campanha.roteiros ?? [];

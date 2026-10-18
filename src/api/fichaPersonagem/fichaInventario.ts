@@ -1,6 +1,6 @@
 import type { Ficha } from './FichaPersonagem';
 
-// Keep the original graph in the exported document for recoverable legacy repair.
+
 export function migrarInventario(ficha: Ficha, sintonizacaoLegada: boolean) {
   if (ficha.migracoes?.includes('F8-inventario-v1')) return;
   if (!ficha.ArmasMochila?.length && !ficha.ArmadurasMochila?.length && !ficha.itensMochila?.length && !ficha.ArmaEquipada?.length && !ficha.ArmaduraEquipada && !ficha.escudoEquipado && !ficha.itensEquipados?.length && !ficha.maosOcupadas) return;
@@ -28,7 +28,7 @@ export function migrarInventario(ficha: Ficha, sintonizacaoLegada: boolean) {
   ficha.escudoEquipado = ficha.ArmadurasMochila?.find(i => i.id === ficha.escudoEquipado?.id) ?? null;
   ficha.itensEquipados = ficha.itensEquipados?.map(a => ficha.itensMochila?.find(i => i.id === a.id)).filter((a, i, all) => a && all.indexOf(a) === i) as Ficha['itensEquipados'];
   ficha.itensEquipados ??= null;
-  // Legacy Equipar also meant attunement; preserve that choice once.
+
   ficha.itensSintonizados = Array.from(new Set([...(ficha.itensSintonizados ?? []), ...(sintonizacaoLegada ? (ficha.itensEquipados ?? []).filter(i => i.sintonizavel).map(i => i.id) : [])]));
   ficha.itensSintonizados = ficha.itensSintonizados.filter(id => ficha.itensMochila?.some(i => i.id === id && i.sintonizavel));
   ficha.efeitos = ficha.efeitos?.filter(e => e.origemTipo !== 'item' || ficha.itensEquipados?.some(i => i.id === e.origemId)) ?? null;

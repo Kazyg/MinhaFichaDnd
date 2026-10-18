@@ -24,12 +24,12 @@ export class Rogue extends Classes {
       ["Acrobacia", "Atletismo", "Atuação", "Enganação", "Furtividade", "Intimidação", "Intuição", "Investigação", "Percepção", "Persuasão", "Prestidigitação"],
       ["Armaduras leve", "ferramentas de ladrão"]
     );
-    this.level = 0; // Nível inicial
-    this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis
+    this.level = 0;
+    this.niveis = this.preencherNiveis();
     this.subClasse = [new Assassino(), new Ladrao(), new TrapaceiroArcano(), new Inquiridor(), new Mentor(), new Batedor(), new Espadachim()]
   }
 
-  // Método para aumentar o nível
+
   aumentarNivel(): void {
     if (this.level < 20) {
       this.level += 1;
@@ -38,7 +38,7 @@ export class Rogue extends Classes {
     }
   }
 
-  // Método para preencher a tabela de níveis
+
   private preencherNiveis() {
     return [
       { nivel: 1, proeficiencia: 2, ataqueFurtivo: "1d6", caracteristicas: ["Ataque Furtivo", "Gíria de Ladrão"] },

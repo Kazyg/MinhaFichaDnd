@@ -49,7 +49,7 @@ const ModalSelecaoMagias: React.FC<ModalSelecaoProps> = ({ titulo, onClose, onSe
         const texto = textoSelecaoRef.current;
         if (!texto) return;
         const ajustarTexto = () => {
-            // Recomeça no tamanho normal para também recuperar a fonte ao ganhar espaço.
+
             let tamanho = 14;
             texto.style.fontSize = `${tamanho}px`;
             while (texto.scrollWidth > texto.clientWidth && tamanho > 12) {

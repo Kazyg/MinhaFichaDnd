@@ -1,4 +1,4 @@
-// Snapshot do catálogo anterior à F7; revisão editorial e licença pendentes.
+
 export const talentosOrigem2024 = [
   { nome: "Alerta", categoria: "Origin", requisito: { tipo: null, requisito: null, valor: null }, bonus: [{ tipo: null, condicao: null, bonus: null, valor: null }], descricao: "Você ganha prontidão excepcional para agir no começo de um combate." },
   { nome: "Artifista", categoria: "Origin", requisito: { tipo: null, requisito: null, valor: null }, bonus: [{ tipo: null, condicao: null, bonus: null, valor: null }], descricao: "Você domina ferramentas e cria itens com eficiência durante descansos." },

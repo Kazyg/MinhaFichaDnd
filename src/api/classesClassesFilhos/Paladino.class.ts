@@ -24,12 +24,12 @@ export class Paladino extends Classes {
       ["Atletismo", "Intimidação", "Intuição", "Medicina", "Persuasão", "Religião"],
       ["Armadura leve", "armadura média", "escudos", "armas simples", "armas marciais"]
     );
-    this.level = 0; // Nível inicial
-    this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis
+    this.level = 0;
+    this.niveis = this.preencherNiveis();
     this.subClasse = [new JuramentoDeDevoção(), new JuramentoDeVingança(), new JuramentoDosAnciões(), new JuramentoDaConquista(), new JuramentoDaRedencao()];
   }
 
-  // Método para aumentar o nível
+
   aumentarNivel(): void {
     if (this.level < 20) {
       this.level += 1;
@@ -38,7 +38,7 @@ export class Paladino extends Classes {
     }
   }
 
-  // Método para preencher a tabela de níveis
+
   private preencherNiveis() {
     return [
       { nivel: 1, proeficiencia: 2, espacosMagia: [0, 0, 0, 0, 0], caracteristicas: ["Sentido Divino", "Cura pelas Mãos"] },

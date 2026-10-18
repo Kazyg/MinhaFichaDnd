@@ -27,12 +27,12 @@ export class Feiticeiro extends Classes {
       ["Arcanismo", "Enganação", "Intuição", "Intimidação", "Persuasão", "Religião"],
       []
     );
-    this.level = 0; // Nível inicial
-    this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis
+    this.level = 0;
+    this.niveis = this.preencherNiveis();
     this.subClasse = [new LinhagemDraconica(), new MagiaSelvagem(), new AlmaFavorecida(), new AdeptoDasSombras(), new FeiticeiroDaTempestade()];
   }
 
-  // Método para aumentar o nível
+
   aumentarNivel(): void {
     if (this.level < 20) {
       this.level += 1;
@@ -41,7 +41,7 @@ export class Feiticeiro extends Classes {
     }
   }
 
-  // Método para preencher a tabela de níveis
+
   private preencherNiveis() {
     return [
       { nivel: 1, proeficiencia: 2, pontosFeiticaria: 0, caracteristicas: ["Conjuração de Feiticeiro", "Origem de Feitiçaria"], truquesConhecidos: 4, magiasConhecidas: 2, espacosMagia: [2, 0, 0, 0, 0, 0, 0, 0, 0] },

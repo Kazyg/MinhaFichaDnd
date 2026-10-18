@@ -54,7 +54,7 @@
     justify-content: space-evenly;
     width: 50%;
   }
-  
+
   .moldura-magia1 {
     position: absolute;
     top: 0;
@@ -95,11 +95,11 @@
     display: flex;
     flex-direction: row;
   }
-  
+
   .magia-coluna1,
   .magia-coluna2,
   .magia-coluna3 {
-    position: relative; /* Mantém os elementos acima da moldura */
+    position: relative;
   }
 
   .magia-coluna1{

@@ -3,7 +3,7 @@ const os = require('node:os');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 
-// A unique directory prevents CRA's cleanup from touching an existing build.
+
 const output = fs.mkdtempSync(path.join(os.tmpdir(), 'minhafichadnd-build-'));
 console.log(`Build descartável: ${output}`);
 try {
