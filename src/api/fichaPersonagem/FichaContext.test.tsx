@@ -1,5 +1,6 @@
+import { FichasIndexedDB } from './fichasIndexedDB';
 import React from "react";
-import { act, render, screen, fireEvent } from "@testing-library/react";
+import { act, render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { FichaProvider, useFicha } from "./FichaContext";
 import { Ficha } from "./FichaPersonagem";
 import { Efeitos } from "../classesPrincipais/Efeitos";
@@ -36,7 +37,7 @@ function Editor() {
 }
 
 test("a saved character persists new talent choices after refresh and browser reload", async () => {
-  jest.useFakeTimers();
+
   localStorage.clear();
   const ficha = new Ficha({
     id: "persistencia",
@@ -52,10 +53,10 @@ test("a saved character persists new talent choices after refresh and browser re
     </FichaProvider>,
   );
   fireEvent.click(await screen.findByRole("button", { name: "Adquirir" }));
-  act(() => jest.advanceTimersByTime(5000));
+  await act(async () => { window.dispatchEvent(new Event('pagehide')); });
+  await waitFor(async () => expect((await new FichasIndexedDB().load()).fichas[0].efeitos![0]?.escolhasTalento2024?.lista).toEqual(["Mago"]));
     expect(
-      JSON.parse(localStorage.getItem("fichas")!).data[0].efeitos[0].escolhasTalento2024
-        .lista,
+      (await new FichasIndexedDB().load()).fichas[0].efeitos![0]?.escolhasTalento2024?.lista,
     ).toEqual(["Mago"]);
   view.unmount();
   render(
@@ -64,7 +65,7 @@ test("a saved character persists new talent choices after refresh and browser re
     </FichaProvider>,
   );
   expect(await screen.findByText("Mago")).toBeInTheDocument();
-  const recuperada = JSON.parse(localStorage.getItem("fichas")!).data[0];
+  const recuperada = (await new FichasIndexedDB().load()).fichas[0];
   expect(recuperada.talentos).toEqual(["ALERTA"]);
   expect(recuperada.magiasEscolhidas).toEqual([
     { classe: "Mago", magia: ["Bola de Fogo"] },

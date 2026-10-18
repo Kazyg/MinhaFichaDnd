@@ -41,8 +41,8 @@ function memory(raw) {
   return { getItem: k => values.get(k) ?? null, setItem: (k, v) => values.set(k, v) };
 }
 let api;
-function Probe() { api = useFicha(); return null; }
-const tick = async fn => act(async () => { fn(); await Promise.resolve(); });
+function Probe() { api = useFicha(); return <span data-testid="context-ready" />; }
+const tick = async fn => act(async () => { await fn(); });
 afterEach(() => jest.useRealTimers());
 
 test.each([
@@ -61,7 +61,7 @@ test.each([
   expect(JSON.parse(exportFicha(restored))).toEqual(JSON.parse(exportFicha(original)));
   const store = memory(serializeCollection([restored], restored.id));
   const view = render(<FichaProvider storage={store}><Probe /><AbaMagias /></FichaProvider>);
-  await tick(() => {});
+  await screen.findByTestId('context-ready');
   await calcularViaUI();
   const before = { fontes: selecionarFontesConjuracao(api.ficha), pools: selecionarPoolsMagia(api.ficha), escolhas: selecionarEscolhasMagia(api.ficha) };
   expect(before.fontes.reduce((sum, c) => sum + c.truques, 0)).toBeGreaterThan(0);
@@ -71,7 +71,7 @@ test.each([
   await tick(() => api.salvarFicha(api.ficha));
   view.unmount();
   const utils = render(<FichaProvider storage={store}><Probe /><AbaMagias /></FichaProvider>);
-  await tick(() => {});
+  await screen.findByTestId('context-ready');
   expect({ fontes: selecionarFontesConjuracao(api.ficha), pools: selecionarPoolsMagia(api.ficha), escolhas: selecionarEscolhasMagia(api.ficha) }).toEqual(before);
   await tick(() => api.ficha.selecionarClasseNoNivel(getRulesetData(edition).classes.find(c => c.nome === 'Mago'), 5));
   expect(api.ficha.multiclasses.find(m => m.classe.nome === name).nivelClasse).toBe(4);
@@ -153,7 +153,7 @@ test('falha do backup de migração impede sobrescrever a coleção', () => {
 });
 
 test('fluxo mobile real restaura idiomas, perícias e distribuição ao alternar abas e fichas', async () => {
-  jest.useFakeTimers();
+
   const previousWidth = window.innerWidth;
   window.innerWidth = 480;
   const first = fixture(); const second = fixture(); second.id = 'segunda'; second.pericias = []; second.idiomas = ['Comum'];
@@ -163,7 +163,7 @@ test('fluxo mobile real restaura idiomas, perícias e distribuição ao alternar
   const store = memory(serializeCollection([first, second], first.id));
   const mount = () => render(<FichaProvider storage={store}><Probe /><MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><CriarFicha /></MemoryRouter></FichaProvider>);
   let view = mount();
-  await tick(() => {});
+  await screen.findByTestId('context-ready');
   expect(screen.getByRole('heading', { name: /Método de distribuição/ })).toBeInTheDocument();
   expect(screen.getByRole('button', { name: /Idioma 1 Élfico/ })).toBeInTheDocument();
   await tick(() => fireEvent.click(screen.getByRole('checkbox', { name: 'Atletismo' })));
@@ -190,7 +190,7 @@ test('fluxo mobile real restaura idiomas, perícias e distribuição ao alternar
   expect(screen.getByRole('checkbox', { name: 'Atletismo' })).toBeChecked();
   await tick(() => api.tentarSalvar());
   view.unmount(); view = mount();
-  await tick(() => {});
+  await screen.findByTestId('context-ready');
   expect(api.ficha.distribuicaoAtributos).toEqual(draft);
   expect(api.ficha.idiomasLivres[0]).toBe(language);
   expect(screen.getByRole('checkbox', { name: 'Atletismo' })).toBeChecked();

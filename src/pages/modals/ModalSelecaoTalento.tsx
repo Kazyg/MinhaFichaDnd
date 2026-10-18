@@ -80,10 +80,10 @@ const ModalSelecaoTalento: React.FC<ModalSelecaoProps> = ({ ficha, listaDefinida
                                         opcoes: campo.opcoes.filter(v => !(escolhas2024[campo.chave] ?? []).some((escolhida, indice) => indice !== i && escolhida === v)),
                                         rotulo: campo.chave === 'truques' ? `Escolher truque ${i + 1}` : 'Escolher magia de 1º círculo' })}>
                                         {escolhas2024[campo.chave]?.[i]?.replace(/^2024: /, '') ?? (campo.chave === 'truques' ? `Escolher truque ${i + 1}` : 'Escolher magia de 1º círculo')}
-                                    </button> : <select value={escolhas2024[campo.chave]?.[i] ?? ''} onChange={e => {
+                                    </button> : <span className="talento-seletor"><select className="talento-select" value={escolhas2024[campo.chave]?.[i] ?? ''} onChange={e => {
                                         const valores = [...(escolhas2024[campo.chave] ?? [])]; valores[i] = e.target.value;
                                         setEscolhas2024(prev => campo.chave === 'lista' ? { ...prev, lista: valores, truques: [], magias: [] } : { ...prev, [campo.chave]: valores });
-                                    }}><option value="">Selecione...</option>{campo.opcoes.map(v => <option key={v} value={v}>{v.replace(/^2024: /, '')}</option>)}</select>}
+                                    }}><option value="">Selecione...</option>{campo.opcoes.map(v => <option key={v} value={v}>{v.replace(/^2024: /, '')}</option>)}</select></span>}
                                 </label>)}
                             </fieldset>)}
                             </div>
@@ -96,10 +96,10 @@ const ModalSelecaoTalento: React.FC<ModalSelecaoProps> = ({ ficha, listaDefinida
                                     setEscolhas2024(prev => ({ ...prev, [seletorMagia.chave]: valores })); return true;
                                 }} /></div>, document.body)}
                             {Array.from({ length: quantidade }, (_, i) => <label key={i}>Escolha adicional {i + 1}
-                                <select aria-invalid={!!erro} aria-describedby={erro ? "erro-talento" : undefined} value={escolhas[i] ?? ''} onChange={e => setEscolhas(Array.from({ length: quantidade }, (_, j) => j === i ? e.target.value : escolhas[j] ?? ''))}>
+                                <span className="talento-seletor"><select className="talento-select" aria-invalid={!!erro} aria-describedby={erro ? "erro-talento" : undefined} value={escolhas[i] ?? ''} onChange={e => setEscolhas(Array.from({ length: quantidade }, (_, j) => j === i ? e.target.value : escolhas[j] ?? ''))}>
                                     <option value="">Selecione...</option>
                                     {(selecionado.escolha === 'atributo-agarrador' ? ['forca', 'destreza'] : treinamentosTalento).map(v => <option key={v} value={v}>{v}</option>)}
-                                </select>
+                                </select></span>
                             </label>)}
                             {erro && <p id="erro-talento" role="status">{erro}</p>}
                         </>

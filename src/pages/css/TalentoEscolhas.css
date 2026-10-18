@@ -99,3 +99,64 @@
   text-overflow: ellipsis;
   font-size: 14px;
 }
+
+/* Native selects preserve the platform keyboard, touch menu and modal focus behavior. */
+.modal-talentos {
+  --talento-controle-fundo: #303030;
+  --talento-controle-opcoes: #292929;
+  --talento-controle-texto: #eee;
+  --talento-controle-borda: #888;
+  --talento-controle-destaque: var(--selecao-fundo);
+}
+.modal-talentos .talento-seletor {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  margin-top: 8px;
+  color: var(--talento-controle-texto);
+}
+.modal-talentos .talento-seletor::after {
+  content: "";
+  position: absolute;
+  right: 16px;
+  top: calc(50% - 5px);
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+.modal-talentos .talento-select {
+  appearance: none;
+  color-scheme: dark;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  box-sizing: border-box;
+  padding: 12px 40px 12px 12px;
+  border: 1px solid var(--talento-controle-borda);
+  border-radius: 8px;
+  background: var(--talento-controle-fundo);
+  color: var(--talento-controle-texto);
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+.modal-talentos .talento-select:hover:not(:disabled) { border-color: var(--talento-controle-destaque); }
+.modal-talentos .talento-select:focus-visible { outline: 3px solid var(--talento-controle-destaque); outline-offset: 3px; }
+.modal-talentos .talento-select:disabled { opacity: .5; cursor: not-allowed; }
+.modal-talentos .talento-select option { background: var(--talento-controle-opcoes); color: var(--talento-controle-texto); }
+.modal-talentos .talento-select option:checked { background: var(--talento-controle-destaque); color: var(--selecao-texto-secundario); }
+.modal-talentos .talento-escolha { background: var(--talento-controle-opcoes); border-color: var(--talento-controle-borda); }
+.modal-talentos .talento-escolha .talento-seletor { margin-top: 0; }
+.modal-talentos .detalhes-raca > label { display: block; margin: 16px 0; }
+@media (forced-colors: active) {
+  .modal-talentos .talento-select { appearance: auto; }
+  .modal-talentos .talento-seletor::after { display: none; }
+}

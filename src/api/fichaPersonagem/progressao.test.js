@@ -1,3 +1,4 @@
+import { FichasIndexedDB } from './fichasIndexedDB';
 import { bonusVidaTalentos } from './talentos2024Utils';
 import React from 'react';
 import { act, fireEvent, render, screen, within } from '@testing-library/react';
@@ -30,7 +31,7 @@ const classe = (f, key) => getRulesetData(f.versaoRegras).classes.find(c => chav
 const reabrir = ficha => parseImport(exportFicha(ficha));
 const standard = () => ({ metodo: 'Array Padrão', atributos: { forca: 15, destreza: 14, constituicao: 13, inteligencia: 12, sabedoria: 10, carisma: 8 }, valores: [], pontos: 27, modo: 'todos', maior: '', menor: '' });
 
-test.each(['DND_2014', 'DND_2024'])('marcos das doze classes %s, sem depender dos rótulos', edicao => {
+test.each(['DND_2014', 'DND_2024'])('marcos das doze classes %s, sem depender dos rótulos', async edicao => {
   const rules = getRulesetData(edicao);
   expect(rules.classes).toHaveLength(12);
   for (const c of rules.classes) {
@@ -42,27 +43,27 @@ test.each(['DND_2014', 'DND_2024'])('marcos das doze classes %s, sem depender do
   }
 });
 
-test.each(['Barbaro', 'Bárbaro', 'Clérigo', 'Clerigo', 'Lutador', 'Guerreiro', 'Ranger', 'Rogue'])('aliases e requisitos 12/13: %s', name => {
+test.each(['Barbaro', 'Bárbaro', 'Clérigo', 'Clerigo', 'Lutador', 'Guerreiro', 'Ranger', 'Rogue'])('aliases e requisitos 12/13: %s', async name => {
   expect(cumpreRequisitosClasse(name, () => 12)).toBe(false);
   expect(cumpreRequisitosClasse(name, () => 13)).toBe(true);
 });
-test.each(['monge', 'patrulheiro', 'paladino'])('requisitos compostos exigem ambos: %s', key => {
+test.each(['monge', 'patrulheiro', 'paladino'])('requisitos compostos exigem ambos: %s', async key => {
   const first = key === 'paladino' ? 'forca' : 'destreza';
   const second = key === 'paladino' ? 'carisma' : 'sabedoria';
   expect(cumpreRequisitosClasse(key, a => a === first ? 13 : 12)).toBe(false);
   expect(cumpreRequisitosClasse(key, a => a === second ? 13 : 12)).toBe(false);
   expect(cumpreRequisitosClasse(key, () => 13)).toBe(true);
 });
-test('guerreiro exige Força OU Destreza', () => {
+test('guerreiro exige Força OU Destreza', async () => {
   expect(cumpreRequisitosClasse('guerreiro', a => a === 'destreza' ? 13 : 12)).toBe(true);
   expect(cumpreRequisitosClasse('guerreiro', a => a === 'forca' ? 13 : 12)).toBe(true);
 });
-test('chave de classe sobrevive a mudança de rótulo e JSON', () => {
+test('chave de classe sobrevive a mudança de rótulo e JSON', async () => {
   const ficha = fixture(); ficha.classePrincipal.nome = 'Nome personalizado';
   expect(chaveClasse(reabrir(ficha).classePrincipal)).toBe('guerreiro');
   expect(recursosNoNivel(reabrir(ficha).classePrincipal, 6, ficha.versaoRegras)).toEqual(['asi']);
 });
-test.each(['DND_2014', 'DND_2024'])('origem inválida é recusada pela UI e pela operação em %s', edicao => {
+test.each(['DND_2014', 'DND_2024'])('origem inválida é recusada pela UI e pela operação em %s', async edicao => {
   const ficha = fixture(edicao, 'barbaro'); ficha.atributosPersonagem.forca.valor = 12;
   const mago = classe(ficha, 'mago'); const before = exportFicha(ficha);
   expect(podeSelecionarClasse(ficha, mago, 4)).toBe(false);
@@ -73,14 +74,14 @@ test.each(['DND_2014', 'DND_2024'])('origem inválida é recusada pela UI e pela
   expect(nivelDaClasse(ficha, 'mago')).toBe(1);
   expect(nivelDaClasse(ficha, 'barbaro')).toBe(3);
 });
-test('atributos de avanço futuro não autorizam multiclasse anterior', () => {
+test('atributos de avanço futuro não autorizam multiclasse anterior', async () => {
   const ficha = fixture('DND_2024', 'guerreiro', 8);
   ficha.atributosPersonagem.inteligencia.valor = 12;
   expect(ficha.aplicarAumentoAtributos(8, ['inteligencia', 'carisma'])).toBe(true);
   expect(ficha.selecionarClasseNoNivel(classe(ficha, 'mago'), 5)).toBe(false);
 });
 
-test.each(['DND_2014', 'DND_2024'])('classe já adquirida pode avançar sem revalidar entrada em multiclasse: %s', edicao => {
+test.each(['DND_2014', 'DND_2024'])('classe já adquirida pode avançar sem revalidar entrada em multiclasse: %s', async edicao => {
   let ficha = fixture(edicao, 'guerreiro', 4);
   const mago = classe(ficha, 'mago');
   expect(ficha.selecionarClasseNoNivel(mago, 2)).toBe(true);
@@ -93,7 +94,7 @@ test.each(['DND_2014', 'DND_2024'])('classe já adquirida pode avançar sem reva
   expect(ficha.selecionarClasseNoNivel(classe(ficha, 'clerigo'), 3)).toBe(false);
 });
 
-test('aumento já adquirido libera nova classe, inclusive após reabrir', () => {
+test('aumento já adquirido libera nova classe, inclusive após reabrir', async () => {
   let ficha = fixture('DND_2024', 'guerreiro', 5);
   ficha.atributosPersonagem.inteligencia.valor = 12;
   expect(ficha.aplicarAumentoAtributos(4, ['inteligencia', 'carisma'])).toBe(true);
@@ -101,7 +102,7 @@ test('aumento já adquirido libera nova classe, inclusive após reabrir', () => 
   expect(ficha.selecionarClasseNoNivel(classe(ficha, 'mago'), 5)).toBe(true);
 });
 
-test.each(['DND_2014', 'DND_2024'])('ASI 19/20, atomicidade e reabertura %s', edicao => {
+test.each(['DND_2014', 'DND_2024'])('ASI 19/20, atomicidade e reabertura %s', async edicao => {
   let ficha = fixture(edicao); ficha.atributosPersonagem.forca.valor = 19;
   const before = exportFicha(ficha);
   expect(ficha.aplicarAumentoAtributos(4, ['forca', 'forca'])).toBe(false);
@@ -117,7 +118,7 @@ test.each(['DND_2014', 'DND_2024'])('ASI 19/20, atomicidade e reabertura %s', ed
   ficha = reabrir(ficha); ficha.setLevelTotal(4);
   expect(calcularValorAtributoFinal(ficha, 'forca')).toBe(edicao === 'DND_2024' ? 19 : 20);
 });
-test('ASI retroativo considera aumentos posteriores e mantém exceções de outras fontes', () => {
+test('ASI retroativo considera aumentos posteriores e mantém exceções de outras fontes', async () => {
   const ficha = fixture('DND_2024', 'guerreiro', 8); ficha.atributosPersonagem.forca.valor = 18;
   expect(ficha.aplicarAumentoAtributos(8, ['forca', 'forca'])).toBe(true);
   expect(erroASI(ficha, 4, ['forca', 'destreza'])).toMatch(/posteriores/);
@@ -126,7 +127,7 @@ test('ASI retroativo considera aumentos posteriores e mantém exceções de outr
   expect(ficha.aplicarAumentoAtributos(4, ['destreza', 'destreza'])).toBe(true);
   expect(calcularValorAtributoFinal(ficha, 'carisma')).toBe(25);
 });
-test('trocar ASI/talento arquiva somente a escolha correspondente', () => {
+test('trocar ASI/talento arquiva somente a escolha correspondente', async () => {
   let ficha = fixture(); const manual = new Efeitos(); manual.level = 4; manual.tituloEfeito = 'anotação'; ficha.setEfeitos(manual);
   expect(ficha.aplicarAumentoAtributos(4, ['forca', 'forca'])).toBe(true);
   expect(ficha.selecionarTalentoAvanco(4, 'Habilidoso', ['Acrobacia', 'Atletismo', 'Furtividade'])).toBe(true);
@@ -138,7 +139,7 @@ test('trocar ASI/talento arquiva somente a escolha correspondente', () => {
   expect(ficha.efeitos.some(e => e.talento === 'Habilidoso')).toBe(false);
 });
 
-test('array incompleto, repetido, point buy inválido e origem inválida não concluem', () => {
+test('array incompleto, repetido, point buy inválido e origem inválida não concluem', async () => {
   const ficha = fixture(); const base = JSON.stringify(ficha.atributosPersonagem);
   ficha.distribuicaoAtributos = standard(); ficha.distribuicaoAtributos.atributos.forca = 0;
   expect(ficha.concluirAtributos()).toBe(false);
@@ -152,7 +153,7 @@ test('array incompleto, repetido, point buy inválido e origem inválida não co
   expect(ficha.concluirAtributos()).toBe(false);
   expect(base).toBeTruthy();
 });
-test('distribuição preserva base e não reaplica bônus depois de reabrir', () => {
+test('distribuição preserva base e não reaplica bônus depois de reabrir', async () => {
   let ficha = fixture(); ficha.distribuicaoAtributos = standard();
   expect(erroDistribuicao(ficha)).toBeNull();
   expect(ficha.concluirAtributos()).toBe(true);
@@ -164,7 +165,7 @@ test('distribuição preserva base e não reaplica bônus depois de reabrir', ()
   expect(ficha.concluirAtributos()).toBe(false);
 });
 
-test.each([['DND_2014', 3, 4], ['DND_2024', 2, 6]])('metamagia %s: entrada %s, total %s, sem duplicatas e reversível', (edicao, entrada, total) => {
+test.each([['DND_2014', 3, 4], ['DND_2024', 2, 6]])('metamagia %s: entrada %s, total %s, sem duplicatas e reversível', async (edicao, entrada, total) => {
   let ficha = fixture(edicao, 'feiticeiro', 20);
   const options = opcoesMetamagia(edicao);
   expect(ficha.selecionarMetamagia(entrada - 1, 0, options[0].nome)).toBe(false);
@@ -179,7 +180,7 @@ test.each([['DND_2014', 3, 4], ['DND_2024', 2, 6]])('metamagia %s: entrada %s, t
   ficha.setLevelTotal(20);
   expect(metamagiasNoNivel(ficha, nivelDaClasse(ficha, 'feiticeiro'))).toHaveLength(total);
 });
-test('2024 permite uma substituição por nível e conserva as quatro opções legadas', () => {
+test('2024 permite uma substituição por nível e conserva as quatro opções legadas', async () => {
   let ficha = fixture('DND_2024', 'feiticeiro', 17);
   ficha.metamagica1 = { nome: 'Magia Acelerada', descricao: 'Texto antigo recuperável' };
   ficha.metamagica2 = { nome: 'Magia Aumentada', descricao: 'Texto antigo' };
@@ -192,7 +193,7 @@ test('2024 permite uma substituição por nível e conserva as quatro opções l
   expect(metamagiasNoNivel(ficha, 2).find(m => m.slot === 0).nome).toBe('Magia Acelerada');
   expect(metamagiasNoNivel(ficha, 17).find(m => m.slot === 4).nome).toBe('Magia Distante');
 });
-test('patrono 2014 selecionado imediatamente; 2024 preserva legado sem ativar controle', () => {
+test('patrono 2014 selecionado imediatamente; 2024 preserva legado sem ativar controle', async () => {
   const ficha = fixture('DND_2014', 'bruxo', 1);
   expect(ficha.setPatrono({ nome: 'Primeiro' })).toBe(true);
   expect(ficha.setPatrono({ nome: 'Segundo' })).toBe(true);
@@ -204,14 +205,18 @@ test('patrono 2014 selecionado imediatamente; 2024 preserva legado sem ativar co
 });
 
 let api;
-function Probe() { api = useFicha(); return null; }
-function mount(ficha, children, values = new Map([['fichas', serializeCollection([ficha], ficha.id)]])) {
-  return render(<FichaProvider storage={{ getItem: k => values.get(k) ?? null, setItem: (k, v) => values.set(k, v) }}><Probe />{children}</FichaProvider>);
+function Probe() { api = useFicha(); return <span data-testid="context-ready" />; }
+const repositories = new WeakMap();
+async function mount(ficha, children, values = new Map([['fichas', serializeCollection([ficha], ficha.id)]])) {
+  if (!repositories.has(values)) repositories.set(values, new FichasIndexedDB(undefined, `progressao-${Math.random()}`));
+  const view = render(<FichaProvider repository={repositories.get(values)} storage={{ getItem: k => values.get(k) ?? null, setItem: (k, v) => values.set(k, v) }}><Probe />{children}</FichaProvider>);
+  await screen.findByTestId('context-ready');
+  return view;
 }
-const tick = fn => act(async () => { fn(); await Promise.resolve(); });
+const tick = fn => act(async () => { await fn(); });
 test.each(['DND_2014', 'DND_2024'])('UI permite entrar em outra classe no nível 2 com atributos válidos: %s', async edicao => {
   const ficha = fixture(edicao, 'paladino', 2);
-  mount(ficha, <NivelBlock nivel={2} classesDisponiveis={getRulesetData(edicao).classes}
+  await mount(ficha, <NivelBlock nivel={2} classesDisponiveis={getRulesetData(edicao).classes}
     selecionarMulticlasse={(c, n) => api.ficha.selecionarClasseNoNivel(c, n)} />);
   await tick(() => fireEvent.click(screen.getByRole('button', { name: /Selecionar Classe/ })));
   const dialog = screen.getByRole('dialog');
@@ -222,7 +227,7 @@ test.each(['DND_2014', 'DND_2024'])('UI permite entrar em outra classe no nível
 });
 test.each(['DND_2014', 'DND_2024'])('UI de talento no nível 4 exibe opções: %s', async edicao => {
   const ficha = fixture(edicao, 'paladino', 4);
-  mount(ficha, <NivelBlock nivel={4} classesDisponiveis={getRulesetData(edicao).classes} selecionarMulticlasse={() => {}} />);
+  await mount(ficha, <NivelBlock nivel={4} classesDisponiveis={getRulesetData(edicao).classes} selecionarMulticlasse={() => {}} />);
   await tick(() => fireEvent.click(screen.getByRole('radio', { name: 'Talento', exact: true })));
   await tick(() => fireEvent.click(screen.getByRole('button', { name: 'Selecionar Talento' })));
   expect(within(screen.getByRole('dialog')).getByRole('button', { name: /^Alerta$/i })).toBeInTheDocument();
@@ -234,7 +239,7 @@ test.each(['DND_2014', 'DND_2024'])('UI de talento no nível 4 exibe opções: %
 test('modal oculta novas classes quando a classe de origem não cumpre os requisitos', async () => {
   const ficha = fixture('DND_2014', 'paladino', 2);
   ficha.atributosPersonagem.carisma.valor = 12;
-  mount(ficha, <NivelBlock nivel={2} classesDisponiveis={getRulesetData('DND_2014').classes} selecionarMulticlasse={() => {}} />);
+  await mount(ficha, <NivelBlock nivel={2} classesDisponiveis={getRulesetData('DND_2014').classes} selecionarMulticlasse={() => {}} />);
   await tick(() => fireEvent.click(screen.getByRole('button', { name: /Selecionar Classe/ })));
   expect(within(screen.getByRole('dialog')).queryByRole('button', { name: 'Mago', exact: true })).not.toBeInTheDocument();
   expect(within(screen.getByRole('dialog')).getByRole('button', { name: 'Paladino', exact: true })).toBeInTheDocument();
@@ -244,28 +249,28 @@ test.each(['DND_2014', 'DND_2024'])('modal preserva visibilidade por edição e 
   ficha.atributosPersonagem.inteligencia.valor = 12;
   ficha.atributosPersonagem.sabedoria.valor = 12;
   ficha.atributosPersonagem.carisma.valor = 12;
-  mount(ficha, <NivelBlock nivel={2} classesDisponiveis={getRulesetData(edicao).classes} selecionarMulticlasse={() => {}} />);
+  await mount(ficha, <NivelBlock nivel={2} classesDisponiveis={getRulesetData(edicao).classes} selecionarMulticlasse={() => {}} />);
   await tick(() => fireEvent.click(screen.getByRole('button', { name: /Selecionar Classe/ })));
   const dialog = within(screen.getByRole('dialog'));
   for (const classe of getRulesetData(edicao).classes) {
     const opcao = dialog.queryByRole('button', { name: classe.nome, exact: true });
-    expect(Boolean(opcao)).toBe(edicao === 'DND_2024' || ['guerreiro', 'barbaro', 'ladino'].includes(classe.chave));
+    expect(Boolean(opcao)).toBe(['guerreiro', 'barbaro', 'ladino'].includes(classe.chave));
   }
 
   expect(ficha.selecionarClasseNoNivel(getRulesetData(edicao).classes.find(c => c.chave === 'mago'), 2)).toBe(false);
 });
-test.each(['DND_2014', 'DND_2024'])('paladino só exibe seleção de subclasse no nível de entrada: %s', edicao => {
+test.each(['DND_2014', 'DND_2024'])('paladino só exibe seleção de subclasse no nível de entrada: %s', async edicao => {
   const ficha = fixture(edicao, 'paladino', 5);
   const props = { classesDisponiveis: getRulesetData(edicao).classes, selecionarMulticlasse: () => {} };
-  const view = mount(ficha, <NivelBlock {...props} nivel={3} />);
+  const view = await mount(ficha, <NivelBlock {...props} nivel={3} />);
   expect(screen.getByRole('button', { name: /Selecionar.*Juramento|Selecionar.*Subclasse/ })).toBeInTheDocument();
   view.unmount();
-  mount(ficha, <><NivelBlock {...props} nivel={4} /><NivelBlock {...props} nivel={5} /></>);
+  await mount(ficha, <><NivelBlock {...props} nivel={4} /><NivelBlock {...props} nivel={5} /></>);
   expect(screen.queryByRole('button', { name: /Selecionar.*Juramento|Selecionar.*Subclasse/ })).not.toBeInTheDocument();
 });
 test('UI ASI só aplica distribuição completa e válida', async () => {
   const ficha = fixture('DND_2014'); ficha.atributosPersonagem.forca.valor = 19;
-  mount(ficha, <AvancoAtributos nivel={4} />);
+  await mount(ficha, <AvancoAtributos nivel={4} />);
   expect(screen.queryByRole('button', { name: 'Aplicar aumento' })).not.toBeInTheDocument();
   await tick(() => fireEvent.change(screen.getByLabelText('Aumento 1'), { target: { value: 'forca' } }));
   await tick(() => fireEvent.change(screen.getByLabelText('Aumento 2'), { target: { value: 'forca' } }));
@@ -276,7 +281,7 @@ test('UI ASI só aplica distribuição completa e válida', async () => {
 
 test('2014 aplica, substitui, limpa e restaura ASI sem acumular', async () => {
   const ficha = fixture('DND_2014');
-  mount(ficha, <AvancoAtributos nivel={4} onSelecionarTalento={() => {}} />);
+  await mount(ficha, <AvancoAtributos nivel={4} onSelecionarTalento={() => {}} />);
   await tick(() => fireEvent.change(screen.getByLabelText('Aumento 1'), { target: { value: 'forca' } }));
   await tick(() => fireEvent.change(screen.getByLabelText('Aumento 2'), { target: { value: 'forca' } }));
   expect(calcularValorAtributoFinal(api.ficha, 'forca')).toBe(15);
@@ -292,7 +297,7 @@ test('2014 aplica, substitui, limpa e restaura ASI sem acumular', async () => {
 test('2014 talento local selecionável persiste e substitui efeitos de Alerta', async () => {
   const ficha = fixture('DND_2014');
   const iniciativa = selecionarIniciativa(ficha).total;
-  mount(ficha, <NivelBlock nivel={4} classesDisponiveis={getRulesetData('DND_2014').classes} selecionarMulticlasse={() => {}} />);
+  await mount(ficha, <NivelBlock nivel={4} classesDisponiveis={getRulesetData('DND_2014').classes} selecionarMulticlasse={() => {}} />);
   await tick(() => fireEvent.click(screen.getByLabelText('Talento')));
   await tick(() => fireEvent.click(screen.getByRole('button', { name: 'Selecionar Talento' })));
   await tick(() => fireEvent.click(screen.getByRole('button', { name: 'ALERTA', exact: true })));
@@ -304,9 +309,9 @@ test('2014 talento local selecionável persiste e substitui efeitos de Alerta', 
   expect(selecionarIniciativa(api.ficha).total).toBe(iniciativa);
 });
 
-test.each(['DND_2014', 'DND_2024'])('background e idiomas são opcionais somente em 2014: %s', edicao => {
+test.each(['DND_2014', 'DND_2024'])('background e idiomas são opcionais somente em 2014: %s', async edicao => {
   const ficha = fixture(edicao); ficha.backGround = null; ficha.idiomasLivres = []; ficha.distribuicaoAtributos = standard();
-  mount(ficha, <CriacaoFicha />);
+  await mount(ficha, <CriacaoFicha />);
   expect(Boolean(screen.queryByRole('button', { name: 'Distribuir Atributos' }))).toBe(edicao === 'DND_2014');
 });
 
@@ -316,7 +321,7 @@ test('2014 troca background na UI sem perder progressão ou idiomas', async () =
   expect(ficha.selecionarTalentoAvanco(4, 'ALERTA')).toBe(true);
   expect(ficha.aplicarAumentoAtributos(8, ['forca', 'destreza'])).toBe(true);
   const niveis = JSON.stringify(ficha.multiclasses);
-  mount(ficha, <CriacaoFicha />);
+  await mount(ficha, <CriacaoFicha />);
   await tick(() => fireEvent.click(screen.getByRole('button', { name: /Antecedente|Background/ })));
   const dialog = within(screen.getByRole('dialog'));
   await tick(() => fireEvent.click(dialog.getByRole('button', { name: /^soldado$/i })));
@@ -329,7 +334,7 @@ test('2014 troca background na UI sem perder progressão ou idiomas', async () =
   expect(calcularValorAtributoFinal(salvo, 'forca')).toBe(14);
 });
 
-test('background remove apenas idiomas e perícias próprios, preservando outras fontes', () => {
+test('background remove apenas idiomas e perícias próprios, preservando outras fontes', async () => {
   const ficha = fixture('DND_2014');
   const rules = getRulesetData('DND_2014');
   const guilda = rules.backgroundsOuOrigens.find(b => b.nome === 'Membro da Guilda dos Ladrões das Sombras');
@@ -348,12 +353,12 @@ test('background remove apenas idiomas e perícias próprios, preservando outras
 test('2014 salvamento local restaura talento e ASI ao reabrir a interface', async () => {
   const ficha = fixture('DND_2014', 'guerreiro', 8);
   const values = new Map([['fichas', serializeCollection([ficha], ficha.id)]]);
-  const view = mount(ficha, <AvancoAtributos nivel={8} />, values);
+  const view = await mount(ficha, <AvancoAtributos nivel={8} />, values);
   await tick(() => { expect(api.ficha.selecionarTalentoAvanco(4, 'ALERTA')).toBe(true); });
   await tick(() => fireEvent.change(screen.getByLabelText('Aumento 1'), { target: { value: 'forca' } }));
   await tick(() => fireEvent.change(screen.getByLabelText('Aumento 2'), { target: { value: 'forca' } }));
   view.unmount();
-  mount(ficha, <AvancoAtributos nivel={8} />, values);
+  await mount(ficha, <AvancoAtributos nivel={8} />, values);
   expect(api.ficha.efeitos.find(e => e.tituloEfeito === 'TalentoEscolhido4').talento).toBe('ALERTA');
   expect(screen.getByLabelText('Aumento 1')).toHaveValue('forca');
   expect(screen.getByLabelText('Aumento 2')).toHaveValue('forca');
@@ -361,35 +366,35 @@ test('2014 salvamento local restaura talento e ASI ao reabrir a interface', asyn
 });
 test('UI não conclui array zerado', async () => {
   const ficha = fixture(); ficha.distribuicaoAtributos = standard(); ficha.distribuicaoAtributos.atributos.forca = 0; ficha.distribuicaoAtributos.valores = [15];
-  mount(ficha, <LevelOneSetup raca={ficha.racaPrincipal} classe={ficha.classePrincipal} />);
+  await mount(ficha, <LevelOneSetup raca={ficha.racaPrincipal} classe={ficha.classePrincipal} />);
   await tick(() => fireEvent.click(screen.getByRole('button', { name: 'Distribuir Atributos' })));
   expect(screen.getByRole('button', { name: 'Concluir' })).toBeDisabled();
 });
-test('UI 2024 oferece duas metamagias no nível 2', () => {
+test('UI 2024 oferece duas metamagias no nível 2', async () => {
   const ficha = fixture('DND_2024', 'feiticeiro', 2);
-  mount(ficha, <NivelBlock nivel={2} classesDisponiveis={getRulesetData('DND_2024').classes} selecionarMulticlasse={() => {}} />);
+  await mount(ficha, <NivelBlock nivel={2} classesDisponiveis={getRulesetData('DND_2024').classes} selecionarMulticlasse={() => {}} />);
   expect(screen.getByLabelText('Metamagia 1')).toBeInTheDocument();
   expect(screen.getByLabelText('Metamagia 2')).toBeInTheDocument();
   expect(screen.queryByText('Selecionar Patrono')).not.toBeInTheDocument();
 });
-test.each(['DND_2014', 'DND_2024'])('UI libera ASI para as doze classes %s no nível 4', edicao => {
+test.each(['DND_2014', 'DND_2024'])('UI libera ASI para as doze classes %s no nível 4', async edicao => {
   for (const c of getRulesetData(edicao).classes) {
     const ficha = fixture(edicao, chaveClasse(c));
-    const view = mount(ficha, <NivelBlock nivel={4} classesDisponiveis={getRulesetData(edicao).classes} selecionarMulticlasse={() => {}} />);
+    const view = await mount(ficha, <NivelBlock nivel={4} classesDisponiveis={getRulesetData(edicao).classes} selecionarMulticlasse={() => {}} />);
     expect(screen.getByLabelText('Aumento 1')).toBeInTheDocument();
     view.unmount();
   }
 });
-test('multiclasse Bruxo 2024 não mostra patrono no primeiro nível da classe e libera subclasse no terceiro', () => {
+test('multiclasse Bruxo 2024 não mostra patrono no primeiro nível da classe e libera subclasse no terceiro', async () => {
   const ficha = fixture('DND_2024', 'guerreiro', 4);
   for (const n of [2, 3, 4]) ficha.selecionarClasseNoNivel(classe(ficha, 'bruxo'), n);
-  let view = mount(ficha, <NivelBlock nivel={2} classesDisponiveis={getRulesetData('DND_2024').classes} selecionarMulticlasse={() => {}} />);
+  let view = await mount(ficha, <NivelBlock nivel={2} classesDisponiveis={getRulesetData('DND_2024').classes} selecionarMulticlasse={() => {}} />);
   expect(screen.queryByRole('button', { name: /Selecionar Patrono/ })).not.toBeInTheDocument();
   view.unmount();
-  view = mount(ficha, <NivelBlock nivel={4} classesDisponiveis={getRulesetData('DND_2024').classes} selecionarMulticlasse={() => {}} />);
+  view = await mount(ficha, <NivelBlock nivel={4} classesDisponiveis={getRulesetData('DND_2024').classes} selecionarMulticlasse={() => {}} />);
   expect(screen.getByRole('button', { name: /Selecionar seu Patrono/ })).toBeInTheDocument();
 });
-test('trocar origem preserva perícias de classe e dados da origem anterior', () => {
+test('trocar origem preserva perícias de classe e dados da origem anterior', async () => {
   const ficha = fixture(); ficha.pericias = [...ficha.backGround.proeficienciasHabilidades, 'Atletismo', 'Perícia manual'];
   ficha.setBackGround({ nome: 'Outra origem', proeficienciasHabilidades: ['Atuação'] });
   expect(ficha.pericias).toEqual(expect.arrayContaining(['Atletismo', 'Perícia manual', 'Atuação']));
@@ -397,7 +402,7 @@ test('trocar origem preserva perícias de classe e dados da origem anterior', ()
 });
 
 
-test('planejar ASI e talento em 2024 persiste sem aplicar beneficios antes da aquisicao', () => {
+test('planejar ASI e talento em 2024 persiste sem aplicar beneficios antes da aquisicao', async () => {
   let ficha = fixture('DND_2024', 'guerreiro', 8);
   ficha.setLevelTotal(1);
   expect(ficha.aplicarAumentoAtributos(4, ['forca', 'forca'])).toBe(true);
@@ -418,15 +423,30 @@ test('planejar ASI e talento em 2024 persiste sem aplicar beneficios antes da aq
 });
 
 
-test('modal 2024 mostra doze classes e explica requisito da multiclasse', async () => {
+test('modal 2024 oculta classes sem requisitos de multiclasse', async () => {
   const ficha = fixture('DND_2024', 'guerreiro', 2);
   ficha.atributosPersonagem.inteligencia.valor = 12;
   const classes = getRulesetData('DND_2024').classes;
   expect(classes).toHaveLength(12);
-  mount(ficha, <NivelBlock nivel={2} classesDisponiveis={classes} selecionarMulticlasse={() => {}} />);
+  await mount(ficha, <NivelBlock nivel={2} classesDisponiveis={classes} selecionarMulticlasse={() => {}} />);
   await tick(() => fireEvent.click(screen.getByRole('button', { name: /Selecionar Classe/ })));
   const dialog = within(screen.getByRole('dialog'));
-  await tick(() => fireEvent.click(dialog.getByRole('button', { name: 'Mago' })));
-  expect(dialog.getByRole('button', { name: 'Escolher Mago' })).toBeDisabled();
-  expect(dialog.getByRole('status')).toHaveTextContent('Requisitos de multiclasse');
+  expect(dialog.queryByRole('button', { name: 'Mago' })).not.toBeInTheDocument();
+  expect(dialog.queryByText(/Requisitos de multiclasse/)).not.toBeInTheDocument();
+  expect(dialog.queryByRole('button', { name: 'Escolher Mago' })).not.toBeInTheDocument();
+});
+
+
+test('modal recalcula elegibilidade ao atualizar atributos e confirma a classe liberada', async () => {
+  const ficha = fixture('DND_2024', 'mago', 2);
+  ficha.atributosPersonagem.carisma.valor = 12;
+  await mount(ficha, <NivelBlock nivel={2} classesDisponiveis={getRulesetData('DND_2024').classes}
+    selecionarMulticlasse={(c, n) => api.ficha.selecionarClasseNoNivel(c, n)} />);
+  await tick(() => fireEvent.click(screen.getByRole('button', { name: /Selecionar Classe/ })));
+  expect(screen.queryByRole('button', { name: 'Feiticeiro', exact: true })).not.toBeInTheDocument();
+  await tick(() => { api.ficha.atributosPersonagem.carisma.valor = 13; api.forceUpdate(); });
+  expect(screen.getByRole('button', { name: 'Feiticeiro', exact: true })).toBeEnabled();
+  await tick(() => fireEvent.click(screen.getByRole('button', { name: 'Feiticeiro', exact: true })));
+  await tick(() => fireEvent.click(screen.getByRole('button', { name: 'Escolher Feiticeiro' })));
+  expect(nivelDaClasse(api.ficha, 'feiticeiro')).toBe(1);
 });

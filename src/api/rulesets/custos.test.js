@@ -1,5 +1,5 @@
 import React from 'react';
-import { act, render, screen } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { FichaProvider, useFicha } from '../fichaPersonagem/FichaContext';
 import { Ficha } from '../fichaPersonagem/FichaPersonagem';
@@ -11,7 +11,7 @@ import { getRulesetConfig } from './regras';
 
 let api;
 function Probe() { api = useFicha(); return <CriarFicha />; }
-const tick = async fn => act(async () => { fn(); await Promise.resolve(); });
+const tick = async fn => act(async () => { await fn(); });
 
 test.each(['DND_2014', 'DND_2024'])('contagem de catálogos em criação, reabertura e níveis: %s', async versaoRegras => {
   const rules = getRulesetData(versaoRegras);
@@ -29,6 +29,7 @@ test.each(['DND_2014', 'DND_2024'])('contagem de catálogos em criação, reaber
   const values = new Map();
   const storage = { getItem: k => values.get(k) ?? null, setItem: (k, v) => values.set(k, v) };
   const view = render(<MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><FichaProvider storage={storage}><Probe /></FichaProvider></MemoryRouter>);
+  await waitFor(() => expect(api?.status).toBe('salvo'));
   await tick(() => api.setFicha(ficha));
   expect(screen.getByPlaceholderText('Nome do Personagem')).toHaveValue('Perfil');
   record('criacao');

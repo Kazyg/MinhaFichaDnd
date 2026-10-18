@@ -1,8 +1,9 @@
+import { FichasIndexedDB } from './fichasIndexedDB';
 import React, { useState } from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { FichaProvider, useFicha } from './FichaContext';
 import { Ficha } from './FichaPersonagem';
-import { serializeCollection, STORAGE_KEY, parseCollection } from './fichaStorage';
+import { serializeCollection, STORAGE_KEY } from './fichaStorage';
 import { getRulesetData } from '../rulesets/getRulesetData';
 import { chaveClasse } from '../rulesets/progressao';
 import AbaMagias from '../../pages/components/components_inventario/AbaMagias';
@@ -27,7 +28,7 @@ test('contexto real salva slots e morte e os restaura após recarregar', async (
   fireEvent.click(screen.getByRole('button', { name: 'Trocar aba' }));
   fireEvent.click(screen.getByRole('button', { name: 'Sucesso de morte 1' }));
   fireEvent.click(screen.getByRole('button', { name: 'Salvar agora' }));
-  await waitFor(() => expect(parseCollection(dados.get(STORAGE_KEY)).fichas[0].recursos.morte.sucessos).toBe(1));
+  await waitFor(async () => expect((await new FichasIndexedDB().load()).fichas[0].recursos.morte.sucessos).toBe(1));
   view.unmount();
   view = render(<FichaProvider storage={storage}><Tela /></FichaProvider>);
   expect(await screen.findByRole('button', { name: slot })).toHaveAttribute('aria-pressed', 'true');

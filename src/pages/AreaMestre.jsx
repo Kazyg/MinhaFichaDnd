@@ -9,6 +9,6 @@ export default function AreaMestre({ repositorio } = {}) {
   const navigate = useNavigate();
   const { salvarPendentes } = useFicha();
   return <AreaMestreWorkspace estado={estado} onSair={async () => {
-    if (await estado.salvarAgora() && salvarPendentes()) navigate('/');
+    if (await estado.salvarAgora() && await salvarPendentes()) navigate('/');
   }} />;
 }

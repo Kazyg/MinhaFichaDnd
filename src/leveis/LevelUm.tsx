@@ -382,13 +382,14 @@ const LevelOneSetup: React.FC<LevelOneSetupProps> = ({ raca, classe }) => {
                     <button
                       key={metodo}
                       onClick={() => selecionarMetodo(metodo)}
-                      className="botao-distribuir"
+                      className="botao-distribuir botao-metodo-atributos"
+                      aria-pressed={atributoMetodo === metodo}
                     >
                       {metodo} {atributoMetodo === metodo && "✔"}
                     </button>
                   ))}
                   {atributoMetodo && (
-                    <button className="botao-distribuir" onClick={() => { iniciarDistribuicao() }}>
+                    <button type="button" className="botao-distribuir botao-distribuir-principal" onClick={() => { iniciarDistribuicao() }}>
                       Distribuir Atributos
                     </button>
                   )}

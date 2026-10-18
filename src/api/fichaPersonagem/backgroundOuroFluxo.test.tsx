@@ -1,5 +1,6 @@
+import { FichasIndexedDB } from './fichasIndexedDB';
 import React, { useState } from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { FichaProvider, useFicha } from './FichaContext';
 import { Ficha } from './FichaPersonagem';
 import { serializeCollection, STORAGE_KEY } from './fichaStorage';
@@ -30,6 +31,7 @@ test('ficha salva: escolha na interface credita 15 PO, persiste e não duplica a
   fireEvent.click(screen.getByRole('button', { name: 'Escolher acolito' }));
   expect(screen.getByText('Ouro: 15')).toBeInTheDocument();
   fireEvent.click(screen.getByRole('button', { name: 'Salvar' }));
+  await waitFor(async () => expect((await new FichasIndexedDB().load()).fichas[0].ouro).toBe(15));
   view.unmount();
   view = render(<FichaProvider><Fluxo /></FichaProvider>);
   expect(await screen.findByText('Ouro: 15')).toBeInTheDocument();

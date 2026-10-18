@@ -12,28 +12,29 @@ beforeEach(() => { localStorage.clear(); window.history.replaceState({}, '', '/c
 test.each(['2014', '2024'])('cria e reabre por teclado: %s', async edition => {
   const user = userEvent.setup();
   const view = render(<App />);
-  expect(screen.getByRole('heading', { name: 'Criador de Fichas de RPG' })).toHaveFocus();
+  expect(await screen.findByRole('heading', { name: 'Criador de Fichas de RPG' })).toHaveFocus();
   await user.tab(); await user.tab(); await user.keyboard('{Enter}');
   const dialog = screen.getByRole('dialog', { name: 'Escolha as regras da ficha' });
   expect(within(dialog).getByRole('heading')).toHaveFocus();
   await user.tab({ shift: true });
   expect(within(dialog).getByRole('button', { name: 'Voltar' })).toHaveFocus();
   await user.keyboard('{Escape}');
-  expect(screen.getByRole('heading', { name: 'Criador de Fichas de RPG' })).toHaveFocus();
+  expect(await screen.findByRole('heading', { name: 'Criador de Fichas de RPG' })).toHaveFocus();
   await user.tab(); await user.tab(); await user.keyboard('{Enter}');
   await user.tab();
   if (edition === '2014') await user.tab();
   await user.keyboard('{Enter}');
-  expect(screen.getByRole('button', { name: 'Menu da ficha' })).toHaveFocus();
+  expect(await screen.findByRole('button', { name: 'Menu da ficha' })).toHaveFocus();
   expect(screen.getByRole('textbox', { name: 'Nome' })).toBeInTheDocument();
   view.unmount();
   window.history.replaceState({ usr: { abrirFichas: true } }, '', '/criar-ficha');
   render(<App />);
+  await screen.findByRole('heading', { name: 'Criador de Fichas de RPG' });
   await user.tab(); await user.keyboard('{Enter}');
   expect(screen.getByRole('dialog', { name: 'Selecione uma Ficha' })).toBeInTheDocument();
   expect(screen.getByLabelText('Importar ficha JSON')).toBeInTheDocument();
   await user.tab(); await user.keyboard('{Enter}');
-  expect(screen.getByRole('button', { name: 'Menu da ficha' })).toHaveFocus();
+  expect(await screen.findByRole('button', { name: 'Menu da ficha' })).toHaveFocus();
 });
 
 test('seleciona talento por teclado, anuncia seleção e retorna ao acionador', async () => {
@@ -84,9 +85,9 @@ test('atualização não reinicia foco; remoção do controle e desmontagem têm
 test('menu expõe estado, fecha por Escape e omite ações simuladas', async () => {
   const user = userEvent.setup();
   render(<App />);
-  await user.click(screen.getByRole('button', { name: 'Criar Nova Ficha' }));
+  await user.click(await screen.findByRole('button', { name: 'Criar Nova Ficha' }));
   await user.click(screen.getByRole('button', { name: /Regras 2014/ }));
-  const menu = screen.getByRole('button', { name: 'Menu da ficha' });
+  const menu = await screen.findByRole('button', { name: 'Menu da ficha' });
   await user.keyboard('{Enter}');
   expect(menu).toHaveAttribute('aria-expanded', 'true');
   expect(screen.queryByText('Exportar XML')).not.toBeInTheDocument();
@@ -111,8 +112,9 @@ test('idioma permite cancelar sem alterar e confirmar por teclado', async () => 
         onSelect={selected} onClose={() => setOpen(false)} />}</FichaProvider>;
   }
   render(<Harness />);
+  await screen.findByRole('button', { name: 'Idioma' });
   await user.tab(); await user.keyboard('{Enter}'); await user.tab();
-  expect(screen.getByRole('textbox', { name: 'Filtrar idiomas...' })).toHaveFocus();
+  expect(await screen.findByRole('textbox', { name: 'Filtrar idiomas...' })).toHaveFocus();
   await user.tab(); await user.keyboard('{Enter}');
   expect(screen.getByRole('button', { name: 'Élfico' })).toHaveAttribute('aria-pressed', 'true');
   await user.keyboard('{Escape}');
@@ -127,7 +129,7 @@ test('idioma permite cancelar sem alterar e confirmar por teclado', async () => 
 test('erro de importação fica associado ao campo no diálogo', async () => {
   const user = userEvent.setup();
   render(<App />);
-  await user.click(screen.getByRole('button', { name: 'Carregar Ficha Salva' }));
+  await user.click(await screen.findByRole('button', { name: 'Carregar Ficha Salva' }));
   const input = screen.getByLabelText('Importar ficha JSON');
   await user.upload(input, new File(['{ inválido'], 'teste.json', { type: 'application/json' }));
   await user.click(screen.getByRole('button', { name: 'Confirmar Importação' }));

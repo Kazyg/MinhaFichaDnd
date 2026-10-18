@@ -23,19 +23,37 @@ export function nivelDaClasse(ficha: Ficha, classe: string | Classes, ate = fich
     .flatMap(m => m.nivelEscolhido).filter(n => n <= ate)).size;
 }
 
-export function cumpreRequisitosClasse(classe: string | Classes, valor: (atributo: string) => number): boolean {
-  const tem = (a: string) => valor(a) >= 13;
-  switch (chaveClasse(classe)) {
-    case 'barbaro': return tem('forca');
-    case 'bardo': case 'bruxo': case 'feiticeiro': return tem('carisma');
-    case 'clerigo': case 'druida': return tem('sabedoria');
-    case 'guerreiro': return tem('forca') || tem('destreza');
-    case 'ladino': return tem('destreza');
-    case 'mago': return tem('inteligencia');
-    case 'monge': case 'patrulheiro': return tem('destreza') && tem('sabedoria');
-    case 'paladino': return tem('forca') && tem('carisma');
-    default: return false;
-  }
+type ClasseMulticlasse = string | { nome: string; chave?: string };
+const nomesAtributos: Record<string, string> = { forca: 'Força', destreza: 'Destreza', inteligencia: 'Inteligência', sabedoria: 'Sabedoria', carisma: 'Carisma' };
+// Cada grupo é uma alternativa (OU); os atributos dentro do grupo são obrigatórios (E).
+export const requisitosMulticlasse: Record<string, string[][]> = {
+  barbaro: [['forca']], bardo: [['carisma']], bruxo: [['carisma']],
+  clerigo: [['sabedoria']], druida: [['sabedoria']], feiticeiro: [['carisma']],
+  guerreiro: [['forca'], ['destreza']], ladino: [['destreza']], mago: [['inteligencia']],
+  monge: [['destreza', 'sabedoria']], paladino: [['forca', 'carisma']], patrulheiro: [['destreza', 'sabedoria']],
+};
+
+function avaliarRequisito(classe: ClasseMulticlasse, valor: (atributo: string) => number) {
+  const alternativas = (requisitosMulticlasse[chaveClasse(classe)] ?? []).map(grupo =>
+    grupo.map(atributo => ({ atributo, minimo: 13, valor: valor(atributo), atendido: valor(atributo) >= 13 })));
+  return {
+    classe, alternativas,
+    atendido: alternativas.some(grupo => grupo.every(r => r.atendido)),
+    texto: alternativas.map(grupo => grupo.map(r => `${nomesAtributos[r.atributo]} ${r.minimo}`).join(' e ')).join(' ou ') || 'uma classe reconhecida',
+  };
+}
+
+export function cumpreRequisitosClasse(classe: ClasseMulticlasse, valor: (atributo: string) => number): boolean {
+  return avaliarRequisito(classe, valor).atendido;
+}
+
+export function avaliarMulticlasse(classesAtuais: ClasseMulticlasse[], desejada: ClasseMulticlasse,
+  atributos: Record<string, number>, versaoRegras: string) {
+  const dispensado = !classesAtuais.length || classesAtuais.some(c => chaveClasse(c) === chaveClasse(desejada));
+  const classes = [...new Map([...classesAtuais, desejada].map(c => [chaveClasse(c), c])).values()];
+  const requisitos = dispensado ? [] : classes.map(c => avaliarRequisito(c, a => atributos[a]));
+  return { permitido: requisitos.every(r => r.atendido), requisitos, versaoRegras,
+    atendidos: requisitos.filter(r => r.atendido), ausentes: requisitos.filter(r => !r.atendido) };
 }
 
 export function erroSelecaoClasse(ficha: Ficha, classe: Classes, nivel: number): string | null {
@@ -48,16 +66,18 @@ export function erroSelecaoClasse(ficha: Ficha, classe: Classes, nivel: number):
 
   if (anteriores.some(c => chaveClasse(c) === chaveClasse(classe))) return null;
   const antes = { ...ficha, levelTotal: Math.min(nivel - 1, ficha.levelTotal ?? 0) } as Ficha;
-  const requisitos: Record<string, string> = {
-    barbaro: 'Força 13', bardo: 'Carisma 13', bruxo: 'Carisma 13', feiticeiro: 'Carisma 13',
-    clerigo: 'Sabedoria 13', druida: 'Sabedoria 13', guerreiro: 'Força 13 ou Destreza 13',
-    ladino: 'Destreza 13', mago: 'Inteligência 13', monge: 'Destreza 13 e Sabedoria 13',
-    patrulheiro: 'Destreza 13 e Sabedoria 13', paladino: 'Força 13 e Carisma 13',
-  };
-  const invalidas = [...anteriores, classe].filter(c => !cumpreRequisitosClasse(c, a => calcularValorAtributoFinal(antes, a)));
-  if (!invalidas.length) return null;
-  const valores = atributosChaves.map(a => `${a}: ${calcularValorAtributoFinal(antes, a)}`).join(', ');
-  return `Requisitos de multiclasse: ${invalidas.map(c => `${c.nome} exige ${requisitos[chaveClasse(c)] ?? 'uma classe reconhecida'}`).join('; ')}. Atributos antes do nível ${nivel}: ${valores}. Conclua a distribuição de atributos se ainda não foi aplicada.`;
+  const atributos = Object.fromEntries(atributosChaves.map(a => [a, calcularValorAtributoFinal(antes, a)]));
+  const resultado = avaliarMulticlasse(anteriores, classe, atributos, ficha.versaoRegras);
+  if (resultado.permitido) return null;
+  // Mantém a mensagem e o comportamento da edição 2014.
+  if (ficha.versaoRegras !== 'DND_2024') {
+    const valores = atributosChaves.map(a => `${a}: ${atributos[a]}`).join(', ');
+    return `Requisitos de multiclasse: ${resultado.ausentes.map(r => `${typeof r.classe === 'string' ? r.classe : r.classe.nome} exige ${r.texto}`).join('; ')}. Atributos antes do nível ${nivel}: ${valores}. Conclua a distribuição de atributos se ainda não foi aplicada.`;
+  }
+  return `Requisitos de multiclasse: ${resultado.ausentes.map(r => {
+    const nome = typeof r.classe === 'string' ? r.classe : r.classe.nome;
+    return `${nome} requer ${r.texto}${anteriores.some(c => chaveClasse(c) === chaveClasse(r.classe)) ? ' (classe atual; também precisa cumprir seus requisitos para adquirir uma nova classe)' : ''}`;
+  }).join('; ')}.`;
 }
 
 export function podeSelecionarClasse(ficha: Ficha, classe: Classes, nivel: number): boolean {

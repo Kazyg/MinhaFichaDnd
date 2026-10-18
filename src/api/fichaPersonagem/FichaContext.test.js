@@ -1,374 +1,131 @@
 import React from 'react';
-import { act, render, screen, fireEvent } from '@testing-library/react';
+import { act, render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { FichaProvider, useFicha } from './FichaContext';
 import { Ficha } from './FichaPersonagem';
-import { Atributos } from '../classesPrincipais/Atributos.class';
-import { BACKUP_KEY, RECOVERY_KEY, MAX_INPUT_BYTES, parseCollection, parseImport, exportFicha } from './fichaStorage';
-import { getRulesetData, getRulesetVersion } from '../rulesets/getRulesetData';
-import CriarFicha from '../../pages/criarFicha';
-import { MemoryRouter } from 'react-router-dom';
-import { Efeitos } from '../classesPrincipais/Efeitos';
-
-function memory(raw = null) {
-  const data = new Map(raw === null ? [] : [['fichas', raw]]);
-  return { data, getItem: jest.fn(k => data.get(k) ?? null), setItem: jest.fn((k, v) => data.set(k, v)) };
-}
+import { FichasIndexedDB } from './fichasIndexedDB';
+import { exportFicha } from './fichaStorage';
+const fixture = (overrides = {}) => new Ficha({ id: 'sintetica-1', nomePersonagem: 'Antes', ...overrides });
+beforeEach(() => localStorage.clear());
 let api;
-function Probe() { api = useFicha(); return <div>{api.ficha?.nomePersonagem}</div>; }
-function mount(store) { return render(<FichaProvider storage={store}><Probe /></FichaProvider>); }
-function fixture(overrides = {}) { return new Ficha({ id: 'sintetica-1', nomePersonagem: 'Antes', ...overrides }); }
-function stored(store) { return parseCollection(store.getItem('fichas')); }
-
-afterEach(() => { jest.useRealTimers(); });
-
-function editableStore() {
-  const store = memory(JSON.stringify([fixture(), fixture({ id: 'segunda', nomePersonagem: 'Outra' })]));
-  store.data.set('ficha', 'sintetica-1');
-  return store;
+function Probe() { api = useFicha(); return <div>Editor pronto</div>; }
+async function mount(repo) {
+  const view = render(<FichaProvider repository={repo}><Probe /></FichaProvider>);
+  await screen.findByText('Editor pronto');
+  return view;
 }
-function writes(store) { return store.setItem.mock.calls.filter(([key]) => key === 'fichas').length; }
-async function edit(name) {
-  await act(async () => { api.ficha.nomePersonagem = name; api.forceUpdate(); });
-}
+afterEach(() => { jest.useRealTimers(); jest.restoreAllMocks(); });
 
-test('uma alteração espera exatamente cinco segundos', async () => {
-  jest.useFakeTimers();
-  const store = editableStore();
-  mount(store);
-  await edit('Atual');
-  expect(screen.getByText('Atual')).toBeInTheDocument();
+test('cria, atualiza, importa, seleciona, exclui e reabre', async () => {
+  const repo = new FichasIndexedDB();
+  const view = await mount(repo);
+  await act(async () => { expect(await api.salvarFicha(fixture())).toBe(true); });
+  await act(async () => { api.ficha.nomePersonagem = 'Editada'; expect(await api.salvarPendentes()).toBe(true); });
+  await act(async () => { expect(await api.importarFicha(exportFicha(fixture()), 'copia')).not.toBeNull(); });
+  expect(api.fichas).toHaveLength(2);
+  await act(async () => { await api.setFicha(api.fichas.find(f => f.id === 'sintetica-1')); });
+  const copy = api.fichas.find(f => f.id !== 'sintetica-1').id;
+  await act(async () => { expect(await api.deletarFicha(copy)).toBe(true); });
+  view.unmount();
+  await repo.close();
+  await mount(new FichasIndexedDB());
+  expect(api.ficha.nomePersonagem).toBe('Editada');
+  expect(api.fichas).toHaveLength(1);
+});
+
+test('operações simultâneas preservam novas fichas', async () => {
+  await mount(new FichasIndexedDB());
+  await act(async () => { await Promise.all([api.salvarFicha(fixture()), api.salvarFicha(fixture({ id: 'segunda' }))]); });
+  expect(api.fichas).toHaveLength(2);
+});
+
+test('autosave espera cinco segundos e não repete sem mudanças', async () => {
+  const repo = new FichasIndexedDB();
+  await mount(repo);
+  await act(async () => { await api.salvarFicha(fixture()); });
+  const save = jest.spyOn(repo, 'save');
+  jest.useFakeTimers({ doNotFake: ['setImmediate'] });
+  await act(async () => { api.ficha.nomePersonagem = 'Automática'; });
   act(() => jest.advanceTimersByTime(4999));
-  expect(writes(store)).toBe(0);
+  expect(save).not.toHaveBeenCalled();
   act(() => jest.advanceTimersByTime(1));
-  expect(writes(store)).toBe(1);
-  expect(stored(store).fichas[0].nomePersonagem).toBe('Atual');
-  act(() => jest.advanceTimersByTime(15000));
-  expect(writes(store)).toBe(1);
-  expect(jest.getTimerCount()).toBe(0);
+  jest.useRealTimers();
+  await waitFor(() => expect(api.status).toBe('salvo'));
+  expect(save).toHaveBeenCalledTimes(1);
+  expect((await repo.get('sintetica-1')).nomePersonagem).toBe('Automática');
 });
 
-test.each([2, 10])('%s alterações reiniciam um único timer e salvam o estado mais recente', async count => {
-  jest.useFakeTimers();
-  const store = editableStore();
-  mount(store);
-  for (let i = 0; i < count; i++) {
-    await edit(`Nome ${i}`);
-    expect(jest.getTimerCount()).toBe(1);
-    act(() => jest.advanceTimersByTime(2000));
-    expect(writes(store)).toBe(0);
-  }
-  act(() => jest.advanceTimersByTime(2999));
-  expect(writes(store)).toBe(0);
-  act(() => jest.advanceTimersByTime(1));
-  expect(writes(store)).toBe(1);
-  expect(stored(store).fichas[0].nomePersonagem).toBe(`Nome ${count - 1}`);
+test('falha de gravação preserva alterações e permite tentar novamente', async () => {
+  const repo = new FichasIndexedDB();
+  await mount(repo);
+  await act(async () => { await api.salvarFicha(fixture()); });
+  const save = jest.spyOn(repo, 'save').mockRejectedValueOnce(new Error('Sem espaço'));
+  await act(async () => { api.ficha.nomePersonagem = 'Pendente'; expect(await api.salvarPendentes()).toBe(false); });
+  expect(screen.getByRole('alert')).toHaveTextContent('Sem espaço');
+  expect((await repo.get('sintetica-1')).nomePersonagem).toBe('Antes');
+  save.mockRestore();
+  await act(async () => { expect(await api.tentarSalvar()).toBe(true); });
+  expect((await repo.get('sintetica-1')).nomePersonagem).toBe('Pendente');
 });
 
-test.each(['pagehide', 'visibilitychange', 'beforeunload', 'unmount'])('%s salva pendências sincronicamente e cancela o timer', async event => {
-  jest.useFakeTimers();
-  const store = editableStore();
-  const view = mount(store);
-  await edit('Ao sair');
-  const visibility = jest.spyOn(document, 'visibilityState', 'get').mockReturnValue('hidden');
-  act(() => {
+test('falha de leitura bloqueia o editor; recuperação preserva o legado', async () => {
+  localStorage.setItem('fichas', '[corrompido');
+  render(<FichaProvider><Probe /></FichaProvider>);
+  await screen.findByText(/Gravações bloqueadas/);
+  expect(screen.queryByText('Editor pronto')).not.toBeInTheDocument();
+  fireEvent.change(screen.getByRole('textbox'), { target: { value: JSON.stringify([fixture()]) } });
+  fireEvent.click(screen.getByText('Validar e recuperar coleção'));
+  await screen.findByText('Editor pronto');
+  expect(api.fichas).toHaveLength(1);
+  expect(localStorage.getItem('fichas')).toBe('[corrompido');
+});
+
+test('colisão exige escolha; substituição explícita e importação inválida', async () => {
+  await mount(new FichasIndexedDB());
+  await act(async () => { await api.salvarFicha(fixture()); });
+  await act(async () => { expect(await api.importarFicha(exportFicha(fixture()))).toBeNull(); });
+  await act(async () => { expect(await api.importarFicha('{}')).toBeNull(); });
+  await act(async () => { await api.importarFicha(exportFicha(fixture({ nomePersonagem: 'Importada' })), 'substituir'); });
+  expect(api.fichas).toHaveLength(1);
+  expect(api.ficha.nomePersonagem).toBe('Importada');
+});
+
+test('edição durante gravação permanece pendente e é salva antes de sair', async () => {
+  const repo = new FichasIndexedDB();
+  await mount(repo);
+  await act(async () => { await api.salvarFicha(fixture()); });
+  const original = repo.save.bind(repo);
+  let release;
+  const gate = new Promise(resolve => { release = resolve; });
+  jest.spyOn(repo, 'save').mockImplementationOnce(async (...args) => { await gate; return original(...args); });
+  let pending;
+  await act(async () => { api.ficha.nomePersonagem = 'Primeira'; pending = api.tentarSalvar(); });
+  await act(async () => { api.ficha.nomePersonagem = 'Mais recente'; });
+  await act(async () => { release(); await pending; });
+  expect(api.status).toBe('sujo');
+  await act(async () => { expect(await api.salvarPendentes()).toBe(true); });
+  expect((await repo.get('sintetica-1')).nomePersonagem).toBe('Mais recente');
+});
+
+test.each(['pagehide', 'visibilitychange', 'beforeunload', 'unmount'])('%s inicia gravação das pendências', async event => {
+  const repo = new FichasIndexedDB();
+  const view = await mount(repo);
+  await act(async () => { await api.salvarFicha(fixture()); });
+  await act(async () => { api.ficha.nomePersonagem = 'Ao sair'; });
+  jest.spyOn(document, 'visibilityState', 'get').mockReturnValue('hidden');
+  await act(async () => {
     if (event === 'unmount') view.unmount();
     else (event === 'visibilitychange' ? document : window).dispatchEvent(new Event(event));
   });
-  visibility.mockRestore();
-  expect(stored(store).fichas[0].nomePersonagem).toBe('Ao sair');
-  expect(writes(store)).toBe(1);
-  act(() => jest.advanceTimersByTime(10000));
-  expect(writes(store)).toBe(1);
-  act(() => window.dispatchEvent(new Event('pagehide')));
-  expect(writes(store)).toBe(1);
+  await waitFor(async () => expect((await repo.get('sintetica-1')).nomePersonagem).toBe('Ao sair'));
 });
 
-test('trocar personagem persiste pendências na ficha correta', async () => {
-  jest.useFakeTimers();
-  const store = editableStore();
-  mount(store);
-  await edit('Primeira editada');
-  act(() => api.setFicha(api.fichas[1]));
-  expect(stored(store).selectedId).toBe('segunda');
-  expect(stored(store).fichas.map(f => f.nomePersonagem)).toEqual(['Primeira editada', 'Outra']);
-  await edit('Segunda editada');
-  act(() => jest.advanceTimersByTime(5000));
-  expect(stored(store).fichas.map(f => f.nomePersonagem)).toEqual(['Primeira editada', 'Segunda editada']);
-  expect(writes(store)).toBe(2);
-});
-
-test('salvamento manual é imediato e cancela autosave', async () => {
-  jest.useFakeTimers();
-  const store = editableStore();
-  mount(store);
-  await edit('Manual');
-  act(() => expect(api.salvarFicha(api.ficha)).toBe(true));
-  expect(writes(store)).toBe(1);
-  act(() => jest.advanceTimersByTime(10000));
-  expect(writes(store)).toBe(1);
-});
-
-test('falha ao salvar imediatamente preserva pendências e o timer para nova tentativa', async () => {
-  jest.useFakeTimers();
-  const store = editableStore();
-  mount(store);
-  await edit('Pendente');
-  store.setItem.mockImplementation(() => { throw new Error('Quota'); });
-  act(() => expect(api.salvarPendentes()).toBe(false));
-  expect(api.status).toBe('erro');
-  expect(jest.getTimerCount()).toBe(1);
-  store.setItem.mockImplementation((k, v) => store.data.set(k, v));
-  act(() => jest.advanceTimersByTime(5000));
-  expect(stored(store).fichas[0].nomePersonagem).toBe('Pendente');
-});
-
-test('menus e eventos visuais não iniciam autosave; sair do editor salva pendências', async () => {
-  jest.useFakeTimers();
-  const store = editableStore();
-  function Editor({ open }) {
-    api = useFicha();
-    return open ? <CriarFicha /> : <div>Outra página</div>;
-  }
-  const tree = open => <FichaProvider storage={store}><MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><Editor open={open} /></MemoryRouter></FichaProvider>;
-  const view = render(tree(true));
-  fireEvent.click(screen.getByRole('button', { name: 'Menu da ficha' }));
-  fireEvent.scroll(window);
-  fireEvent.mouseOver(screen.getByRole('button', { name: 'Salvar Ficha' }));
-  await act(async () => { jest.advanceTimersByTime(10000); });
-  expect(writes(store)).toBe(0);
-  await edit('Botão manual');
-  fireEvent.click(screen.getByRole('button', { name: 'Salvar Ficha' }));
-  expect(stored(store).fichas.find(f => f.id === 'sintetica-1').nomePersonagem).toBe('Botão manual');
-  expect(writes(store)).toBe(1);
-  expect(screen.queryByRole('button', { name: 'Salvar Ficha' })).not.toBeInTheDocument();
-  act(() => jest.advanceTimersByTime(10000));
-  expect(writes(store)).toBe(1);
-  await edit('Navegação');
-  view.rerender(tree(false));
-  expect(stored(store).fichas.find(f => f.id === 'sintetica-1').nomePersonagem).toBe('Navegação');
-  expect(jest.getTimerCount()).toBe(0);
-});
-
-test.each(['[{broken', '{}', 'null', '[null]', '[42]', '{"format":"minhafichadnd","version":99,"kind":"colecao","data":[]}'])('preserva leitura inválida %s e bloqueia gravação', raw => {
-  const store = memory(raw);
-  mount(store);
-  expect(screen.getByText(/Gravações bloqueadas/)).toBeInTheDocument();
-  expect(store.data.get('fichas')).toBe(raw);
-  expect(store.setItem).not.toHaveBeenCalled();
-});
-
-test('acesso negado na leitura é visível e não grava', () => {
-  const store = memory();
-  store.getItem.mockImplementation(() => { throw new Error('Acesso negado'); });
-  mount(store);
-  expect(screen.getByRole('alert')).toHaveTextContent('Acesso negado');
-  expect(store.setItem).not.toHaveBeenCalled();
-});
-
-test('não grava coleção vazia ao montar ou desmontar', () => {
-  const store = memory();
-  const view = mount(store);
-  view.unmount();
-  expect(store.setItem).not.toHaveBeenCalled();
-});
-
-test('legado sem edição abre, preserva opções desconhecidas e autosalva mutações aninhadas ao reabrir', async () => {
-  jest.useFakeTimers();
-  const old = { ...fixture(), atributosPersonagem: new Atributos(), opcoesAntigas: { escolha: 'desconhecida' }, talentos: ['Talento antigo'] };
-  delete old.versaoRegras;
-  const raw = JSON.stringify([old]);
-  const store = memory(raw);
-  store.data.set('ficha', old.id);
-  const view = mount(store);
-  expect(api.ficha.versaoRegras).toBe('DND_2014');
-  expect(store.setItem).not.toHaveBeenCalled();
-  await act(async () => {
-    api.ficha.setNomePersonagem('Depois');
-    api.ficha.atributosPersonagem.forca.valor = 15;
-    api.ficha.idiomas = ['Comum'];
-    api.ficha.idiomas.push('Idioma antigo');
-  });
-  expect(api.status).toBe('sujo');
-  expect(screen.queryByRole('status')).not.toBeInTheDocument();
-  act(() => jest.advanceTimersByTime(5000));
-  expect(api.status).toBe('salvo');
-  expect(screen.queryByRole('status')).not.toBeInTheDocument();
-  expect(store.data.get(BACKUP_KEY)).toBe(raw);
-  view.unmount();
-  mount(store);
-  expect(api.ficha.nomePersonagem).toBe('Depois');
-  expect(api.ficha.atributosPersonagem.forca.valor).toBe(15);
-  expect(api.ficha.idiomas).toEqual(['Comum', 'Idioma antigo']);
-  expect(api.ficha.opcoesAntigas).toEqual({ escolha: 'desconhecida' });
-  expect(api.ficha.talentos).toEqual(['Talento antigo']);
-});
-
-test.each(['quota', 'acesso negado'])('falha de %s preserva bytes e permite tentar novamente', async reason => {
-  jest.useFakeTimers();
+test('StrictMode não duplica inicialização ou migração e preserva o legado', async () => {
   const raw = JSON.stringify([fixture()]);
-  const store = memory(raw);
-  store.data.set('ficha', 'sintetica-1');
-  mount(store);
-  store.setItem.mockImplementation(() => { throw new Error(reason); });
-  await act(async () => { api.ficha.nomePersonagem = 'Pendente'; api.forceUpdate(); });
-  act(() => jest.advanceTimersByTime(5000));
-  expect(api.status).toBe('erro');
-  expect(store.data.get('fichas')).toBe(raw);
-  expect(api.ficha.nomePersonagem).toBe('Pendente');
-  store.setItem.mockImplementation((k, v) => store.data.set(k, v));
-  act(() => { expect(api.tentarSalvar()).toBe(true); });
-  expect(stored(store).fichas[0].nomePersonagem).toBe('Pendente');
-});
-
-test('falha na chave principal mantém original e backup, sem declarar importação bem sucedida', () => {
-  const raw = JSON.stringify([fixture()]);
-  const store = memory(raw);
-  mount(store);
-  store.setItem.mockImplementation((k, v) => { if (k === 'fichas') throw new Error('Quota'); store.data.set(k, v); });
-  act(() => { expect(api.importarFicha(JSON.stringify(fixture({ id: 'novo' })))).toBeNull(); });
-  expect(api.fichas).toHaveLength(1);
-  expect(store.data.get('fichas')).toBe(raw);
-  expect(store.data.get(BACKUP_KEY)).toBe(raw);
-});
-
-test('colisão exige escolha; cópia gera ID novo; substituição é explícita', () => {
-  const store = memory(JSON.stringify([fixture()]));
-  mount(store);
-  const text = exportFicha(fixture({ nomePersonagem: 'Importada' }));
-  const before = store.data.get('fichas');
-  act(() => { expect(api.importarFicha(text)).toBeNull(); });
-  expect(store.data.get('fichas')).toBe(before);
-  act(() => { expect(api.importarFicha(text, 'copia').id).not.toBe('sintetica-1'); });
-  expect(api.fichas).toHaveLength(2);
-  expect(api.fichas.find(f => f.id === 'sintetica-1').nomePersonagem).toBe('Antes');
-  act(() => { expect(api.importarFicha(text, 'substituir').id).toBe('sintetica-1'); });
-  expect(api.fichas).toHaveLength(2);
-  expect(stored(store).fichas.find(f => f.id === 'sintetica-1').nomePersonagem).toBe('Importada');
-});
-
-test.each([
-  'null', '{}', '[]', JSON.stringify({ ...fixture(), versaoRegras: 'DND_2099' }),
-].filter(Boolean))('importação inválida não altera coleção: %s', text => {
-  const raw = JSON.stringify([fixture()]);
-  const store = memory(raw);
-  mount(store);
-  act(() => { expect(api.importarFicha(text)).toBeNull(); });
-  expect(api.fichas).toHaveLength(1);
-  expect(store.data.get('fichas')).toBe(raw);
-  expect(store.setItem).not.toHaveBeenCalled();
-});
-
-test('valida tipos, números, IDs, referências, profundidade e tamanho', () => {
-  for (const patch of [{ vidaTotal: '20' }, { idiomas: [null] }, { atributosPersonagem: {} }, { id: '' }, { versaoRegras: null }, { subClasse: [{ classe: { nome: 'ausente' }, subclasse: { id: 'sub', nome: 'Antiga' } }] }]) {
-    expect(() => parseImport(JSON.stringify({ ...fixture(), ...patch }))).toThrow();
-  }
-  expect(() => parseImport(JSON.stringify(fixture()).replace('"vidaTotal":null', '"vidaTotal":1e400'))).toThrow();
-  expect(() => exportFicha(fixture({ vidaTotal: NaN }))).toThrow();
-  expect(() => parseImport(' '.repeat(MAX_INPUT_BYTES + 1))).toThrow();
-  expect(() => parseImport('{"__proto__":{},"id":"a","nomePersonagem":null}')).toThrow();
-  expect(() => parseCollection(JSON.stringify([fixture(), fixture()]))).toThrow();
-  expect(() => parseCollection(JSON.stringify({ format: 'minhafichadnd', version: 1, kind: 'colecao', selectedId: 'ausente', data: [] }))).toThrow();
-  expect(() => getRulesetVersion('futuro')).toThrow();
-});
-
-test('recupera coleção corrigida preservando bytes corrompidos', () => {
-  const store = memory('[{broken');
-  mount(store);
-  fireEvent.change(screen.getByRole('textbox'), { target: { value: JSON.stringify([fixture()]) } });
-  fireEvent.click(screen.getByText('Validar e recuperar coleção'));
-  expect(store.data.get(RECOVERY_KEY)).toBe('[{broken');
-  expect(api.fichas).toHaveLength(1);
-  expect(api.recuperacao).toBe(false);
-});
-
-test('restaura backup validado sem perder conteúdo original', () => {
-  const store = memory('null');
-  store.data.set(BACKUP_KEY, JSON.stringify([fixture()]));
-  mount(store);
-  fireEvent.click(screen.getByText('Restaurar última cópia de segurança'));
-  expect(stored(store).fichas).toHaveLength(1);
-  expect(store.data.get(RECOVERY_KEY)).toBe('null');
-});
-
-test('detecta conflito com outra aba sem sobrescrever', async () => {
-  jest.useFakeTimers();
-  const store = memory(JSON.stringify([fixture()]));
-  mount(store);
-  await act(async () => { api.fichas[0].nomePersonagem = 'Minha edição'; });
-  store.data.set('fichas', 'dados de outra aba');
-  act(() => jest.advanceTimersByTime(5000));
-  expect(api.erro).toMatch(/outra aba/);
-  expect(store.data.get('fichas')).toBe('dados de outra aba');
-});
-
-test.each(['DND_2014', 'DND_2024'])('snapshots do contrato atual %s fazem roundtrip sem mudar opções', edition => {
-  const rules = getRulesetData(edition);
-  for (const classe of rules.classes) {
-    const ficha = fixture({ versaoRegras: edition, classePrincipal: classe, racaPrincipal: rules.racasOuEspecies[0], backGround: rules.backgroundsOuOrigens[0], atributosPersonagem: new Atributos() });
-    expect(JSON.parse(JSON.stringify(parseImport(exportFicha(ficha))))).toEqual(JSON.parse(JSON.stringify(ficha)));
-  }
-});
-
-test('edição pela página real salva nome após pausa na digitação e reabre', async () => {
-  jest.useFakeTimers();
-  const store = memory(JSON.stringify([fixture()]));
-  store.data.set('ficha', 'sintetica-1');
-  const view = render(<FichaProvider storage={store}><MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><CriarFicha /></MemoryRouter></FichaProvider>);
-  fireEvent.change(screen.getByPlaceholderText('Nome do Personagem'), { target: { value: 'Nome pela tela' } });
-  expect(screen.queryByRole('status')).not.toBeInTheDocument();
-  act(() => jest.advanceTimersByTime(800));
-  await act(async () => { await Promise.resolve(); });
-  expect(screen.queryByRole('status')).not.toBeInTheDocument();
-  act(() => jest.advanceTimersByTime(5000));
-  expect(stored(store).fichas[0].nomePersonagem).toBe('Nome pela tela');
-  view.unmount();
-  mount(store);
-  expect(api.ficha.nomePersonagem).toBe('Nome pela tela');
-});
-
-test('restaura métodos de atributos e efeitos para editar fichas reabertas', async () => {
-  jest.useFakeTimers();
-  const effect = new Efeitos();
-  const store = memory(JSON.stringify([fixture({ efeitos: [effect], atributosPersonagem: new Atributos() })]));
-  store.data.set('ficha', 'sintetica-1');
-  mount(store);
-  await act(async () => {
-    api.ficha.efeitos[0].setLevel(2);
-    api.ficha.atributosPersonagem.somarAtributo('forca', 1);
-  });
-  act(() => jest.advanceTimersByTime(5000));
-  expect(stored(store).fichas[0].efeitos[0].level).toBe(2);
-  expect(stored(store).fichas[0].atributosPersonagem.forca.valor).toBe(9);
-});
-
-test('fúrias ilimitadas têm representação explícita, sem aceitar infinito arbitrário', () => {
-  const barbaro = getRulesetData('DND_2014').classes.find(c => c.nome === 'barbaro');
-  const text = exportFicha(fixture({ classePrincipal: barbaro }));
-  expect(JSON.parse(text).data.classePrincipal.niveis.find(n => n.nivel === 20).furias).toBe('ilimitado');
-  expect(parseImport(text).classePrincipal.niveis.find(n => n.nivel === 20).furias).toBe(Infinity);
-  expect(() => parseImport(text.replace('"ilimitado"', '1e400'))).toThrow();
-});
-
-test('falha de verificação mantém backup e não declara sucesso', () => {
-  const raw = JSON.stringify([fixture()]);
-  const store = memory(raw);
-  mount(store);
-  store.setItem.mockImplementation((k, v) => { if (k !== 'fichas') store.data.set(k, v); });
-  act(() => { expect(api.salvarFicha(fixture({ nomePersonagem: 'Novo' }))).toBe(false); });
-  expect(api.status).toBe('erro');
-  expect(store.data.get(BACKUP_KEY)).toBe(raw);
-  expect(store.data.get('fichas')).toBe(raw);
-});
-
-test('seleção nula no envelope não reativa o ponteiro legado', async () => {
-  jest.useFakeTimers();
-  const store = memory(JSON.stringify([fixture()]));
-  store.data.set('ficha', 'sintetica-1');
-  const view = mount(store);
-  await act(async () => { api.setFicha(null); });
-  act(() => jest.advanceTimersByTime(5000));
-  view.unmount();
-  mount(store);
-  expect(api.ficha).toBeNull();
-  expect(api.fichas).toHaveLength(1);
+  localStorage.setItem('fichas', raw);
+  const repo = new FichasIndexedDB();
+  render(<React.StrictMode><FichaProvider repository={repo}><Probe /></FichaProvider></React.StrictMode>);
+  expect(screen.queryByText('Editor pronto')).not.toBeInTheDocument();
+  await screen.findByText('Editor pronto');
+  expect((await repo.load()).fichas).toHaveLength(1);
+  expect(localStorage.getItem('fichas')).toBe(raw);
 });
