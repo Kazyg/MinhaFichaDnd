@@ -66,10 +66,16 @@ test('primeira abertura de legado gera e salva uma vez, sem mudar PV manuais ou 
   const original=await prepararImportacao(new File(['{"id":"antiga","nomePersonagem":"Antiga","vidaTotal":9,"vidaAtual":2}'],'Antiga.json',{type:'application/json'}),contexto);
   const dados=incorporarImportacao(vazio(),{ficha:original.ficha,anexos:[original.anexo]});
   dados.instancias[0].pv={atuais:4,maximos:20};
+  const retrato = new Blob([new Uint8Array([137,80,78,71,13,10,26,10])], {type:'image/png'});
+  dados.anexos.push({id:'retrato-manual',campanhaId:'c',nome:'retrato.png',mime:'image/png',arquivo:retrato,tamanho:retrato.size});
+  dados.fichas[0].imagemAnexoId='retrato-manual';
   await ambiente.repositorio.criar(dados);
   const view=render(<Tela repo={ambiente.repositorio}/>); await abrir();
   const salvo=(await ambiente.repositorio.obter('c'))!;
   expect(salvo.fichas[0].pdfAnexoId).toBeTruthy(); expect(salvo.instancias[0].pv).toEqual({atuais:4,maximos:20});
+  expect(salvo.fichas[0].imagemAnexoId).toBe('retrato-manual');
+  expect(salvo.anexos.find(a=>a.id==='retrato-manual')).toMatchObject({mime:'image/png',tamanho:retrato.size});
+  expect(await new Promise(resolve=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.readAsDataURL(salvo.anexos.find(a=>a.id==='retrato-manual')!.arquivo);})).toBe('data:image/png;base64,iVBORw0KGgo=');
   fireEvent.click(screen.getByRole('button',{name:'Fechar ficha'}));fireEvent.click(screen.getByRole('button',{name:'Reabrir ficha'}));await screen.findByText('Página 1 de 3');
   expect(global.fetch).toHaveBeenCalledTimes(1);view.unmount();
 },20000);

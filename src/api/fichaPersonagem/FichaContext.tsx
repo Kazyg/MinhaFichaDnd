@@ -1,18 +1,20 @@
 import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { Ficha } from './FichaPersonagem';
-import { BACKUP_KEY, FichaStorage, hydrateFicha, parseCollection, parseImport, persist, serializeCollection, STORAGE_KEY } from './fichaStorage';
+import { BACKUP_KEY, FichaStorage, hydrateFicha, parseCollection, parseImport, serializeCollection, STORAGE_KEY } from './fichaStorage';
+
+import { FichasIndexedDB } from './fichasIndexedDB';
 
 type Status = 'carregando' | 'sujo' | 'salvando' | 'salvo' | 'erro';
 type Collision = 'copia' | 'substituir';
 type FichaContextType = {
   fichas: Ficha[]; ficha: Ficha | null;
-  setFicha: (ficha: Ficha | null) => void;
-  salvarFicha: (ficha: Ficha) => boolean;
-  deletarFicha: (id: string) => boolean;
-  importarFicha: (text: string, collision?: Collision) => Ficha | null;
+  setFicha: (ficha: Ficha | null) => Promise<void>;
+  salvarFicha: (ficha: Ficha) => Promise<boolean>;
+  deletarFicha: (id: string) => Promise<boolean>;
+  importarFicha: (text: string, collision?: Collision) => Promise<Ficha | null>;
   refreshKey: number; forceUpdate: () => void;
   status: Status; erro: string | null; recuperacao: boolean;
-  tentarSalvar: () => boolean; salvarPendentes: () => boolean; reler: () => void;
+  tentarSalvar: () => Promise<boolean>; salvarPendentes: () => Promise<boolean>; reler: () => void;
 };
 const FichaContext = createContext<FichaContextType | null>(null);
 
@@ -60,7 +62,16 @@ function download(text: string, name: string) {
   URL.revokeObjectURL(url);
 }
 
-export const FichaProvider = ({ children, storage }: React.PropsWithChildren<{ storage?: FichaStorage }>) => {
+export const FichaProvider = ({ children, storage, repository }: React.PropsWithChildren<{ storage?: FichaStorage; repository?: FichasIndexedDB }>) => {
+  const repositoryRef = useRef(repository ?? new FichasIndexedDB());
+  const revision = useRef(0);
+  const generation = useRef(0);
+  const queue = useRef<Promise<unknown>>(Promise.resolve());
+  const enqueue = <T,>(run: () => Promise<T>): Promise<T> => {
+    const pending = queue.current.then(run, run);
+    queue.current = pending.catch(() => {});
+    return pending;
+  };
   const models = useRef<Ficha[]>([]);
   const selected = useRef<Ficha | null>(null);
   const original = useRef<string | null>(null);
@@ -68,7 +79,7 @@ export const FichaProvider = ({ children, storage }: React.PropsWithChildren<{ s
   const dirty = useRef(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const mounted = useRef(false);
-  const actions = useRef<{ flush: () => boolean; load: () => void; changed: () => void }>({ flush: () => false, load: () => {}, changed: () => {} });
+  const actions = useRef<{ flush: () => Promise<boolean>; load: () => Promise<void>; changed: () => void }>({ flush: async () => false, load: async () => {}, changed: () => {} });
   const [refreshKey, refresh] = useState(0);
   const [status, setStatus] = useState<Status>('carregando');
   const [erro, setErro] = useState<string | null>(null);
@@ -88,22 +99,26 @@ export const FichaProvider = ({ children, storage }: React.PropsWithChildren<{ s
     });
     return observed;
   };
-  const flush = () => {
+  const flush = () => enqueue(async () => {
     if (blocked.current) return error(new Error('Resolva a recuperação antes de salvar. Os dados originais estão preservados.'));
+    if (!dirty.current) return true;
     setStatus('salvando');
     try {
       const next = serializeCollection(models.current, selected.current?.id ?? null);
-      persist(getStorage(), original.current, next);
+      const version = generation.current;
+      revision.current = await repositoryRef.current.save(next, revision.current);
       cancel();
       original.current = next;
-      dirty.current = false;
+      dirty.current = generation.current !== version;
       setErro(null);
-      setStatus('salvo');
+      setStatus(dirty.current ? 'sujo' : 'salvo');
+      if (dirty.current) changed();
       return true;
     } catch (e) { return error(e); }
-  };
+  });
   const changed = () => {
     if (blocked.current || !mounted.current) return;
+    generation.current++;
     dirty.current = true;
     cancel();
 
@@ -116,17 +131,16 @@ export const FichaProvider = ({ children, storage }: React.PropsWithChildren<{ s
       if (dirty.current) actions.current.flush();
     }, 5000);
   };
-  const load = () => {
+  const load = async () => {
     cancel();
     blocked.current = true;
     original.current = null;
     try {
-      const store = getStorage();
-      const raw = store.getItem(STORAGE_KEY);
-      original.current = raw;
-      const loaded = parseCollection(raw);
-
-      const selectedId = loaded.selectedId ?? (raw?.trimStart().startsWith('[') ? store.getItem('ficha') : null);
+      setStatus('carregando');
+      await repositoryRef.current.migrate(getStorage);
+      const loaded = await repositoryRef.current.load();
+      revision.current = loaded.revision;
+      const selectedId = loaded.selectedId;
       models.current = loaded.fichas.map(wrapFicha);
       selected.current = models.current.find(f => f.id === selectedId) ?? null;
       blocked.current = false;
@@ -136,6 +150,7 @@ export const FichaProvider = ({ children, storage }: React.PropsWithChildren<{ s
       setStatus('salvo');
       update();
     } catch (e) {
+      try { original.current = getStorage().getItem(STORAGE_KEY); } catch {}
       setRecuperacao(true);
       error(e);
     }
@@ -143,9 +158,9 @@ export const FichaProvider = ({ children, storage }: React.PropsWithChildren<{ s
   actions.current = { flush, load, changed };
   useEffect(() => {
     mounted.current = true;
-    actions.current.load();
+    void enqueue(() => actions.current.load());
     const unload = (event: BeforeUnloadEvent) => {
-      if (dirty.current && !actions.current.flush()) { event.preventDefault(); event.returnValue = ''; }
+      if (dirty.current) { void actions.current.flush(); event.preventDefault(); event.returnValue = ''; }
     };
     const savePending = () => { if (dirty.current) actions.current.flush(); };
     const visibility = () => { if (document.visibilityState === 'hidden') savePending(); };
@@ -162,31 +177,34 @@ export const FichaProvider = ({ children, storage }: React.PropsWithChildren<{ s
     };
   }, [storage]);
 
-  const commit = (next: Ficha[], active: Ficha | null) => {
+  const commit = async (next: Ficha[], active: Ficha | null) => {
     if (blocked.current) return error(new Error('Resolva a recuperação antes de alterar a coleção.'));
     setStatus('salvando');
     try {
       const raw = serializeCollection(next, active?.id ?? null);
-      persist(getStorage(), original.current, raw);
+      const version = generation.current;
+      revision.current = await repositoryRef.current.save(raw, revision.current);
       cancel();
       original.current = raw;
       models.current = next;
       selected.current = active;
-      dirty.current = false;
-      setStatus('salvo');
+      dirty.current = generation.current !== version;
+      setStatus(dirty.current ? 'sujo' : 'salvo');
+      if (dirty.current) changed();
       setErro(null);
       update();
       return true;
     } catch (e) { return error(e); }
   };
-  const salvarFicha = (value: Ficha) => {
+  const saveFicha = async (value: Ficha) => {
     try {
       const normalized = models.current.includes(value) ? value : wrapFicha(hydrateFicha(value));
       const next = models.current.filter(f => f.id !== normalized.id).concat(normalized);
       return commit(next, normalized);
     } catch (e) { return error(e); }
   };
-  const importarFicha = (text: string, collision?: Collision) => {
+  const salvarFicha = (value: Ficha) => enqueue(() => saveFicha(value));
+  const importarFicha = (text: string, collision?: Collision) => enqueue(async () => {
     try {
       const value = parseImport(text);
       if (models.current.some(f => f.id === value.id)) {
@@ -195,31 +213,37 @@ export const FichaProvider = ({ children, storage }: React.PropsWithChildren<{ s
           do { value.id = value.gerarIdUnico(); } while (models.current.some(f => f.id === value.id));
         } else if (collision !== 'substituir') throw new Error('Escolha de colisão inválida.');
       }
-      return salvarFicha(value) ? selected.current : null;
+      return await saveFicha(value) ? selected.current : null;
     } catch (e) { error(e); return null; }
-  };
-  const restore = (text: string) => {
+  });
+  const restore = (text: string) => enqueue(async () => {
     try {
       const loaded = parseCollection(text);
       const raw = serializeCollection(loaded.fichas, loaded.selectedId);
-      persist(getStorage(), original.current, raw, true);
-      load();
+      revision.current = (await repositoryRef.current.load()).revision;
+      revision.current = await repositoryRef.current.save(raw, revision.current, true);
+      await load();
     } catch (e) { error(e); }
-  };
+  });
   const reler = () => {
-    if (!dirty.current || window.confirm('Descartar alterações ainda não salvas e reler o armazenamento?')) load();
+    if (!dirty.current || window.confirm('Descartar alterações ainda não salvas e reler o armazenamento?')) void enqueue(load);
   };
   const value: FichaContextType = {
     fichas: models.current, ficha: selected.current, salvarFicha, importarFicha,
-    setFicha: f => {
+    setFicha: async f => {
       if (blocked.current) return;
-      if (f && !models.current.includes(f)) { salvarFicha(f); return; }
+      if (f && !models.current.includes(f)) { await salvarFicha(f); return; }
       if (selected.current === f) return;
-      commit(models.current, f);
+      await enqueue(() => commit(models.current, f));
     },
-    deletarFicha: id => commit(models.current.filter(f => f.id !== id), selected.current?.id === id ? null : selected.current),
+    deletarFicha: id => enqueue(() => commit(models.current.filter(f => f.id !== id), selected.current?.id === id ? null : selected.current)),
     refreshKey, forceUpdate: () => { update(); changed(); }, status, erro, recuperacao,
-    tentarSalvar: flush, salvarPendentes: () => !dirty.current || actions.current.flush(), reler,
+    tentarSalvar: flush, salvarPendentes: async () => {
+      await queue.current;
+      if (blocked.current) return false;
+      while (dirty.current) { if (!await actions.current.flush()) return false; }
+      return true;
+    }, reler,
   };
   return <FichaContext.Provider value={value}>
     <aside aria-label="Salvamento das fichas" hidden={status === 'salvo' || status === 'sujo'} style={{ position: 'fixed', top: 8, right: 16, zIndex: 1100, maxWidth: 'min(480px, 90vw)', maxHeight: '85vh', overflowY: 'auto', padding: '8px 16px', background: '#17212b', color: '#fff' }}>

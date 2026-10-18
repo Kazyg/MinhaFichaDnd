@@ -28,7 +28,9 @@ test('ativa por ordem estável com empates/negativas e snapshot de PV feridos na
 });
 
 test('completa todos os turnos incluindo zero PV, incrementando só após o último', () => {
-  let d = iniciar(); const snapshot = JSON.stringify(d.combates[0].execucao!.pvAtivacao);
+  const origem = preparado();
+  origem.instancias.find(i => i.id === 'c')!.pv.atuais = 0;
+  let d = iniciar(origem); const snapshot = JSON.stringify(d.combates[0].execucao!.pvAtivacao);
   for (const id of ['b', 'c', 'd']) { d = avancar(d); expect(d.combates[0]).toMatchObject({ rodada: 1, participanteAtivoId: id }); }
   d = avancar(d);
   expect(d.combates[0]).toMatchObject({ rodada: 2, participanteAtivoId: 'a', execucao: { visitados: ['a'] } });

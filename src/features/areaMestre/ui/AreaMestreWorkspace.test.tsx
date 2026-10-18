@@ -6,6 +6,7 @@ import { RepositorioCampanhas } from '../contratos';
 import { repositorioTeste } from './testRepositorio';
 import { criarLayoutPadrao } from './layoutWorkspace';
 import { ErroPersistencia } from '../erros';
+import userEvent from '@testing-library/user-event';
 jest.mock('../reconhecimento', () => ({ reconhecerArquivo: jest.fn(async () => ({nome:null,pv:null,avisos:[]})) }));
 
 function Integracao({ repositorio }: { repositorio: RepositorioCampanhas }) {
@@ -76,7 +77,13 @@ describe('workspace refinado da Área do Mestre', () => {
     expect(within(monstros).queryByRole('button', { name: /Adicionar/ })).not.toBeInTheDocument();
     fireEvent.click(within(monstros).getByRole('button', { name: 'Mover ou redimensionar Monstros' }));
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-    fireEvent.click(within(monstros).getByRole('button', { name: 'Abrir coleção de monstros' }));
+    const abrirColecao = within(monstros).getByRole('button', { name: 'Abrir coleção de monstros' });
+    abrirColecao.focus();
+    await userEvent.keyboard('{Enter}');
+    expect(screen.getByRole('dialog', { name: 'Coleção de monstros' })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Fechar coleção' }));
+    abrirColecao.focus();
+    await userEvent.keyboard(' ');
     expect(screen.getByRole('dialog', { name: 'Coleção de monstros' })).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Fechar coleção' }));
     fireEvent.click(within(monstros).getByRole('button', { name: 'Ocultar Monstros' }));
@@ -225,7 +232,6 @@ describe('workspace refinado da Área do Mestre', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Adicionar instância de Goblin' }));
       await waitFor(async () => expect((await ambiente.repositorio.obter((await ambiente.repositorio.listar())[0].id))!.instancias).toHaveLength(2));
 
-      await waitFor(async () => expect((await ambiente.repositorio.obter((await ambiente.repositorio.listar())[0].id))!.instancias).toHaveLength(2));
       fireEvent.click(screen.getByRole('button', { name: 'Adicionar instância de Goblin' }));
       fireEvent.click(screen.getByRole('button', { name: 'Fechar coleção' }));
       const segundo = await screen.findByRole('article', { name: 'PV de Goblin 2' });

@@ -194,6 +194,11 @@ test('propriedades compactas atendem hover, teclado e toque sem confirmações n
   expect(reacao.tagName).toBe('SPAN');
   expect(reacao).toHaveClass('info-badge-propriedade');
   expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+  fireEvent.mouseEnter(reacao);
+  expect(screen.getByRole('tooltip')).toHaveTextContent('vantagem');
+  expect(reacao).toHaveAttribute('aria-expanded', 'true');
+  fireEvent.keyDown(reacao, { key: 'Escape' });
+  expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
   fireEvent.focus(reacao);
   expect(screen.getByRole('tooltip')).toHaveTextContent('vantagem');
   fireEvent.scroll(screen.getByRole('tooltip'));

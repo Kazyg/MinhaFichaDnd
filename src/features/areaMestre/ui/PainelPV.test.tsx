@@ -47,8 +47,15 @@ test('edição informa clamp e máximo zero permanece indefinido', async () => {
   fireEvent.click(screen.getByRole('button', { name: 'Editar instância' }));
   const dialogo = screen.getByRole('dialog');
   expect(within(dialogo).getByText(/serão reduzidos/)).toBeInTheDocument();
-  fireEvent.change(within(dialogo).getByLabelText('PV máximos'), { target: { value: '0' } });
+  fireEvent.change(within(dialogo).getByLabelText('PV máximos'), { target: { value: '4' } });
   fireEvent.click(within(dialogo).getByRole('button', { name: 'Salvar instância' }));
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
+  expect(screen.getByRole('article', { name: 'PV de Vigia' })).toHaveTextContent('4/4');
+  detalhes();
+  fireEvent.click(screen.getByRole('button', { name: 'Editar instância' }));
+  const edicaoZero = screen.getByRole('dialog');
+  fireEvent.change(within(edicaoZero).getByLabelText('PV máximos'), { target: { value: '0' } });
+  fireEvent.click(within(edicaoZero).getByRole('button', { name: 'Salvar instância' }));
   expect(await screen.findByText('PV máximos não definidos')).toBeInTheDocument();
   abrir(); expect(screen.getByRole('slider')).toBeDisabled();
 });
@@ -78,8 +85,13 @@ test('dano preserva PV de outras instâncias', async () => {
   expect(screen.getByText('4/7')).toBeInTheDocument(); expect(screen.getByText('6/6')).toBeInTheDocument();
 });
 test('quantidades fracionárias e inseguras são rejeitadas sem persistência', () => {
-  render(<Tela />); abrir();
-  fireEvent.change(screen.getByLabelText('Dano'), { target: { value: '1.5' } });
-  fireEvent.click(screen.getByRole('button', { name: 'Confirmar' }));
-  expect(screen.getByRole('alert')).toHaveTextContent('inteiros não negativos');
+  const atualizar = jest.fn(async () => true);
+  render(<PainelPV dados={inicial()} onAtualizar={atualizar} onAbrirFicha={jest.fn()} />); abrir();
+  for (const valor of ['1.5', '9007199254740992']) {
+    fireEvent.change(screen.getByLabelText('Dano'), { target: { value: valor } });
+    fireEvent.click(screen.getByRole('button', { name: 'Confirmar' }));
+    expect(screen.getByRole('alert')).toHaveTextContent('inteiros não negativos');
+    expect(screen.getByLabelText('PV de Vigia')).toHaveTextContent('7/7');
+    expect(atualizar).not.toHaveBeenCalled();
+  }
 });

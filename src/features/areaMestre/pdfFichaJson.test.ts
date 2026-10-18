@@ -48,7 +48,7 @@ test.each(['DND_2014','DND_2024'] as const)('gera PDF real %s com a mesma saída
   expect(preparado.anexos[0].arquivo).toBe(original);
   expect(await preparado.anexos[0].arquivo.text()).toBe(texto);
   const pdf = preparado.anexos.find(a => a.id === preparado.ficha.pdfAnexoId)!;
-  const documento = await PDFDocument.load(await pdf.arquivo.arrayBuffer());
+  const documento = await PDFDocument.load(new Uint8Array(await pdf.arquivo.arrayBuffer()));
   expect(documento.getPageCount()).toBe((await PDFDocument.load(normal)).getPageCount());
   expect(documento.getPageCount()).toBeGreaterThanOrEqual(3);
   expect(preparado.ficha).toMatchObject({ anexoId:'json', formato:'json', origemJson:{ versaoRegras:versao }, pvIniciais:{ atuais:7,maximos:18 } });
@@ -78,10 +78,15 @@ test('converte legado mínimo já importado, preserva ajustes e retrato e não r
   const legado = await prepararImportacao(arquivo('{"id":"antigo","nomePersonagem":"Antiga","vidaAtual":2,"vidaTotal":9}'),contexto);
   let dados = incorporarImportacao(vazio(),{ficha:legado.ficha,anexos:[legado.anexo]});
   dados.fichas[0].pvIniciais={atuais:4,maximos:20}; dados.instancias[0].pv={atuais:1,maximos:30};
+  const retrato = new Blob([new Uint8Array([137,80,78,71,13,10,26,10])], { type:'image/png' });
+  dados.anexos.push({id:'retrato',campanhaId:'c',nome:'retrato.png',mime:'image/png',tamanho:retrato.size,arquivo:retrato});
+  dados.fichas[0].imagemAnexoId='retrato';
   const convertido = await converterFichaJson(dados,'f');
   expect(convertido.instancias).toBe(dados.instancias);
   expect(convertido.fichas[0].pvIniciais).toEqual({atuais:4,maximos:20});
   expect(convertido.anexos[0]).toBe(dados.anexos[0]);
+  expect(convertido.fichas[0].imagemAnexoId).toBe('retrato');
+  expect(new Uint8Array(await convertido.anexos.find(a=>a.id==='retrato')!.arquivo.arrayBuffer())).toEqual(new Uint8Array(await retrato.arrayBuffer()));
   expect(await converterFichaJson(convertido,'f')).toBe(convertido);
   expect(global.fetch).toHaveBeenCalledTimes(1);
 });
@@ -98,7 +103,7 @@ test('importar → PDF → IndexedDB → reload → backup → restaurar mantém
     const salvo = (await repo.obter('c'))!;
     expect(salvo.fichas[0].pdfAnexoId).toBe(preparado.ficha.pdfAnexoId);
     const pdf = salvo.anexos.find(a=>a.id===salvo.fichas[0].pdfAnexoId)!;
-    expect((await PDFDocument.load(await pdf.arquivo.arrayBuffer())).getPageCount()).toBeGreaterThanOrEqual(3);
+    expect((await PDFDocument.load(new Uint8Array(await pdf.arquivo.arrayBuffer()))).getPageCount()).toBeGreaterThanOrEqual(3);
     const restaurado = await restaurarBackup(await exportarBackup(salvo),repo);
     const reaberto = (await repo.obter(restaurado.campanha.id))!;
     expect(reaberto.fichas[0].anexoId).not.toBe(salvo.fichas[0].anexoId);

@@ -19,26 +19,52 @@ export default function GerenciarFichas({ onClose }) {
   const [arquivoSelecionado, setArquivoSelecionado] = useState(null);
   const [erroImportacao, setErroImportacao] = useState('');
   const [importacaoPendente, setImportacaoPendente] = useState(null);
+  const [fichaParaExcluir, setFichaParaExcluir] = useState(null);
+  const [excluindo, setExcluindo] = useState(false);
+  const [erroExclusao, setErroExclusao] = useState('');
+  const exclusaoEmAndamento = useRef(false);
 
-  const selecionarFicha = (fichaSelecionada) => {
+  const selecionarFicha = async (fichaSelecionada) => {
     const fichaInstancia = fichaSelecionada instanceof Ficha ? fichaSelecionada : hydrateFicha(fichaSelecionada);
-    if (!salvarPendentes()) return;
-    if (salvarFicha(fichaInstancia)) onClose();
+    if (!await salvarPendentes()) return;
+    if (await salvarFicha(fichaInstancia)) onClose();
   };
 
-  const criarNovaFicha = (versaoRegras) => {
-    if (!salvarPendentes()) return;
+  const criarNovaFicha = async (versaoRegras) => {
+    if (!await salvarPendentes()) return;
     const ficha = new Ficha({ versaoRegras });
     ficha.setLevelTotal(1);
-    if (!salvarFicha(ficha)) return;
+    if (!await salvarFicha(ficha)) return;
     setModalCriarFichaAberta(false);
     onClose();
   };
 
-  const handleDeletar = (id) => {
-    const confirmar = window.confirm('Tem certeza que deseja excluir esta ficha?');
-    if (confirmar && salvarPendentes()) {
-      deletarFicha(id);
+  const cancelarExclusao = () => {
+    if (exclusaoEmAndamento.current) return;
+    setFichaParaExcluir(null);
+    setErroExclusao('');
+  };
+
+  const confirmarExclusao = async () => {
+    if (!fichaParaExcluir || exclusaoEmAndamento.current) return;
+    exclusaoEmAndamento.current = true;
+    setExcluindo(true);
+    setErroExclusao('');
+    try {
+      if (!await salvarPendentes()) {
+        setErroExclusao('Não foi possível salvar as alterações pendentes. Tente novamente antes de excluir a ficha.');
+        return;
+      }
+      if (!await deletarFicha(fichaParaExcluir.id)) {
+        setErroExclusao('Não foi possível excluir a ficha. Tente novamente.');
+        return;
+      }
+      setFichaParaExcluir(null);
+    } catch {
+      setErroExclusao('Não foi possível excluir a ficha. Tente novamente.');
+    } finally {
+      exclusaoEmAndamento.current = false;
+      setExcluindo(false);
     }
   };
 
@@ -49,9 +75,9 @@ export default function GerenciarFichas({ onClose }) {
     setArquivoSelecionado(file || null);
   };
 
-  const concluirImportacao = (text, escolha) => {
-    if (!salvarPendentes()) return;
-    const ficha = persistirImportacao(text, escolha);
+  const concluirImportacao = async (text, escolha) => {
+    if (!await salvarPendentes()) return;
+    const ficha = await persistirImportacao(text, escolha);
     if (ficha) {
       setImportacaoPendente(null);
       onClose();
@@ -126,7 +152,7 @@ export default function GerenciarFichas({ onClose }) {
                         <span>{ficha.nomePersonagem || "Ficha sem Nome"}: {ficha.racaPrincipal?.nome || "sem raça"} / {ficha.classePrincipal?.nome || "sem classe"}</span>
                         <span className="ficha-versao">Versão {ficha.versaoRegras === "DND_2024" ? "2024" : "2014"}</span>
                       </button>
-                      <button aria-label={`Excluir ${ficha.nomePersonagem || "Ficha sem Nome"}`} onClick={() => handleDeletar(ficha.id)} className="delete-button">
+                      <button aria-label={`Excluir ${ficha.nomePersonagem || "Ficha sem Nome"}`} onClick={() => { setErroExclusao(''); setFichaParaExcluir(ficha); }} className="delete-button">
                         <svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7" /></svg>
                       </button>
                     </li>
@@ -154,6 +180,18 @@ export default function GerenciarFichas({ onClose }) {
           {(modalAberta || modalCriarFichaAberta) && <button onClick={voltar}>Voltar</button>}
         </div>
       </AccessibleDialog>
+      {fichaParaExcluir && <div className="fichas-confirmacao-overlay">
+        <AccessibleDialog aria-labelledby="excluir-ficha-titulo" aria-describedby="excluir-ficha-mensagem" aria-busy={excluindo} onClose={cancelarExclusao} className="fichas-dialog fichas-confirmacao">
+          <h2 id="excluir-ficha-titulo">Excluir ficha?</h2>
+          <p id="excluir-ficha-mensagem">Tem certeza de que deseja excluir a ficha '{fichaParaExcluir.nomePersonagem || 'Ficha sem Nome'}'? Esta ação não pode ser desfeita.</p>
+          {erroExclusao && <p role="alert">{erroExclusao}</p>}
+          {excluindo && <p role="status">Excluindo ficha…</p>}
+          <div className="fichas-dialog-footer">
+            <button type="button" className="fichas-cancelar-exclusao" disabled={excluindo} onClick={cancelarExclusao}>Cancelar</button>
+            <button type="button" className="fichas-confirmar-exclusao" disabled={excluindo} onClick={confirmarExclusao}>Excluir ficha</button>
+          </div>
+        </AccessibleDialog>
+      </div>}
     </div>
   );
 }

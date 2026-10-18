@@ -452,7 +452,7 @@ const NivelBlock: React.FC<NivelBlockProps> = ({ nivel, classesDisponiveis, sele
                     <div className="popup">
                         <ModalSelecaoClasse
                             titulo="Escolha sua Classe"
-                            opcoes={ficha?.versaoRegras === "DND_2024" ? classesDisponiveis : classesPermitidas}
+                            opcoes={classesPermitidas}
                             validar={classe => ficha ? erroSelecaoClasse(ficha, classe, nivel) : 'Ficha indisponível.'}
                             onClose={() => setModalClasseAberto(false)}
                             onSelect={(classe) => {

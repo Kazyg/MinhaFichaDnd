@@ -18,6 +18,11 @@ import { ElfoFloresta } from '../classesNetos/ElfoFloresta.class';
 import { ElfoAlto } from '../classesNetos/ElfoAlto.class';
 
 let mockFicha;
+const originalFetch = global.fetch;
+afterEach(() => {
+  jest.restoreAllMocks();
+  global.fetch = originalFetch;
+});
 jest.mock('./FichaContext', () => ({ useFicha: () => ({ ficha: mockFicha, refreshKey: 0, forceUpdate: jest.fn() }) }));
 const classe = (f, chave) => getRulesetData(f.versaoRegras).classes.find(c => chaveClasse(c) === chave);
 function fixture(edicao = 'DND_2014', chave = 'guerreiro', nivel = 5) {

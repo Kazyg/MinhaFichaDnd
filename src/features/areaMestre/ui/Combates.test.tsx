@@ -78,9 +78,16 @@ test('histórico preserva nome e resultados após exclusão de instância, sem o
 
 test('histórico antigo não inventa resultados e histórico com ficha permite consulta', () => {
   const dados = dadosTeste(); encerrar(dados); delete dados.combates[0].historico;
-  render(<HistoricoCombate dados={dados} combateId="a" onFechar={jest.fn()} onAbrirFicha={jest.fn()} />);
+  const abrirFicha = jest.fn();
+  const view = render(<HistoricoCombate dados={dados} combateId="a" onFechar={jest.fn()} onAbrirFicha={abrirFicha} />);
   expect(screen.getByRole('status')).toHaveTextContent('não possui resultados históricos completos');
   expect(screen.queryByRole('table')).not.toBeInTheDocument();
+  encerrar(dados);
+  dados.combates[0].historico!.participantes[0].fichaOriginalId = 'ficha-historica';
+  dados.fichas.push({ id: 'ficha-historica' } as DadosCampanha['fichas'][number]);
+  view.rerender(<HistoricoCombate dados={dados} combateId="a" onFechar={jest.fn()} onAbrirFicha={abrirFicha} />);
+  fireEvent.click(screen.getByRole('button', { name: 'Consultar ficha de Guerreiro histórico' }));
+  expect(abrirFicha).toHaveBeenCalledWith('ficha-historica');
 });
 
 test('gerenciador agrupa estados, ordena histórico e usa callbacks do encontro correto', () => {

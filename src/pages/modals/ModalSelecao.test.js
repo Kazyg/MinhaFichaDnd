@@ -5,8 +5,9 @@ import { getRulesetData } from '../../api/rulesets/getRulesetData';
 import { Ficha } from '../../api/fichaPersonagem/FichaPersonagem';
 import { exportFicha, parseImport } from '../../api/fichaPersonagem/fichaStorage';
 
-const mockFicha = new Ficha({ versaoRegras: 'DND_2014', levelTotal: 1 });
+let mockFicha;
 jest.mock('../../api/fichaPersonagem/FichaContext', () => ({ useFicha: () => ({ ficha: mockFicha }) }));
+beforeEach(() => { mockFicha = new Ficha({ versaoRegras: 'DND_2014', levelTotal: 1 }); });
 function abrir(nome, edicao = 'DND_2014') {
   const racas = getRulesetData(edicao).racasOuEspecies;
   const onSelect = jest.fn(raca => mockFicha.setRacaPrincipal(raca));
@@ -38,6 +39,7 @@ test('meio-elfo limita escolhas, permite substituir e persiste dados raciais', (
   const restaurada = parseImport(exportFicha(salva));
   expect(restaurada.racaPrincipal.pericia).toEqual(['Atletismo', 'Acrobacia']);
   expect(restaurada.racaPrincipal.atributos).toEqual(raca.atributos);
+  expect(restaurada.racaPrincipal.atributos).toEqual({ atributo: ['carisma', 'destreza', 'sabedoria'], bonus: [2, 1, 1] });
 });
 test('espécies 2024 não recebem escolhas de atributos de 2014', () => {
   abrir('Anão', 'DND_2024');

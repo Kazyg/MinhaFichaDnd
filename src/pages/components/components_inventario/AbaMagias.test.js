@@ -81,7 +81,8 @@ test('recolher conjuração mantém espaços acionáveis e não recolhe o círcu
   const slot = screen.getByRole('button', { name: 'Conjuração, círculo 2, espaço 1: disponível' });
   mockForceUpdate.mockClear();
   await user.click(slot);
-  expect(mockFicha.recursos.slots['conjuracao:1']).toBeDefined();
+  expect(mockFicha.recursos.slots['conjuracao:1']).toBe(1);
+  expect(mockFicha.recursos.slots['conjuracao:1:icone:0']).toBe(1);
   expect(mockForceUpdate).toHaveBeenCalledTimes(1);
   await user.click(screen.getByRole('button', { name: 'Escolher Magia' }));
   expect(screen.getByRole('dialog')).toBeInTheDocument();

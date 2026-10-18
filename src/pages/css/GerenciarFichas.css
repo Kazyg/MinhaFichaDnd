@@ -57,6 +57,18 @@
 .fichas-actions span { font-size: .85rem; }
 .fichas-dialog-inicial .fichas-dialog-footer { display: none; }
 .menu-sair { display: flex; align-items: center; gap: .5rem; }
+.fichas-confirmacao-overlay { position: fixed; inset: 0; z-index: 1; display: grid; place-items: center; padding: 1rem; background: rgba(0, 0, 0, .75); }
+.fichas-confirmacao { box-sizing: border-box; box-shadow: 0 12px 40px rgba(0, 0, 0, .5); }
+.fichas-confirmacao p { overflow-wrap: anywhere; }
+.fichas-confirmacao .fichas-cancelar-exclusao { background: #333; border-color: #999; }
+.fichas-confirmacao .fichas-cancelar-exclusao:hover:not(:disabled) { background: #444; }
+.fichas-confirmacao .fichas-confirmar-exclusao { background: #a82418; border-color: #ff8a70; font-weight: 700; }
+.fichas-confirmacao .fichas-confirmar-exclusao:hover:not(:disabled) { background: #c32c1e; }
+.fichas-confirmacao .fichas-confirmar-exclusao:active:not(:disabled) { background: #821b12; }
+@media (max-width: 400px) {
+  .fichas-confirmacao .fichas-dialog-footer { flex-direction: column; }
+  .fichas-confirmacao .fichas-dialog-footer button { width: 100%; min-height: 44px; }
+}
 @media (max-width: 768px) {
   .menu-abas-criarFicha { flex: 1; min-width: 0; width: auto; gap: .2rem; padding: .2rem; }
   .menu-abas-criarFicha button { min-width: 0; padding: .3rem .2rem; font-size: .75rem; }

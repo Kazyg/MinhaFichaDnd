@@ -59,6 +59,13 @@ test('referência original existente não pode ser trocada e encontro/participan
   const preparado = confirmarPreparacao(dados(), { participantes: selecao() }, 'b', data);
   expect(() => confirmarPreparacao(preparado, { participantes: selecao() }, 'b', data)).toThrow(/já existe/);
   expect(() => confirmarPreparacao(preparado, { participantes: selecao() }, 'outro', data)).toThrow(/duplicados/);
+  const arquivo = new Blob(['imagem'], { type: 'image/png' });
+  preparado.anexos.push({ id: 'anexo', campanhaId: 'c', nome: 'monstro.png', mime: 'image/png', tamanho: arquivo.size, arquivo });
+  preparado.fichas.push({ id: 'ficha', campanhaId: 'c', categoria: 'monstro', formato: 'imagem', anexoId: 'anexo', nome: 'Monstro', pvIniciais: { atuais: 2, maximos: 7 }, origemPV: 'manual-pendente', avisos: [], importadoEm: data });
+  expect(() => validarDadosCampanha(preparado)).not.toThrow();
+  const trocada = selecao().map(p => ({ ...p, id: `${p.id}-novo` }));
+  trocada[0].instancia.fichaOriginalId = 'ficha';
+  expect(() => confirmarPreparacao(preparado, { participantes: trocada }, 'novo', data)).toThrow(/referência da instância existente/);
 });
 
 test.each(['rodada', 'ativo', 'encerrado'] as const)('validação impede estado preparado inconsistente: %s', campo => {

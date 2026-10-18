@@ -12,6 +12,11 @@ function dadosTeste(): DadosCampanha {
     participantes:[0,1].map(i=>({id:`p${i}`,combateId:'b',instanciaId:`i${i}`,iniciativa:10-i,ordem:i,pvInicio:{atuais:10,maximos:10}})) };
 }
 const efeito = (id:string): CondicaoCombate => ({id,campanhaId:'c',combateId:'b',participanteId:'p0',tipo:'queimando',duracao:'turnos',restantes:3,momento:'final',ignorarOcorrencia:0});
+const cryptoOriginal = Object.getOwnPropertyDescriptor(globalThis, 'crypto');
+afterEach(() => {
+  if (cryptoOriginal) Object.defineProperty(globalThis, 'crypto', cryptoOriginal);
+  else Reflect.deleteProperty(globalThis, 'crypto');
+});
 test('ícones de veneno, fogo e congelamento têm representações distintas', () => {
   const { container }=render(<><IconeCondicao icone="veneno"/><IconeCondicao icone="chama"/><IconeCondicao icone="neve"/></>);
   const desenhos=[...container.querySelectorAll('path')].map(p=>p.getAttribute('d'));

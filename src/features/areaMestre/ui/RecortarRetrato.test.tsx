@@ -22,8 +22,15 @@ test('área manual acessível gera apenas retrato; original não é persistido o
 test('PDF permite selecionar página de origem e mantém sugestão revisável',async()=>{
   const canvas=document.createElement('canvas');canvas.width=500;canvas.height=300;(rasterizarPaginaPdf as jest.Mock).mockResolvedValue({canvas,numPaginas:3});
   (sugerirRecorte as jest.Mock).mockReturnValue({x:40,y:5,largura:50,altura:60});
-  render(<RecortarRetrato anexo={{...anexo,mime:'application/pdf'}} onRetrato={jest.fn()}/>);
+  const usar = jest.fn();
+  render(<RecortarRetrato anexo={{...anexo,mime:'application/pdf'}} onRetrato={usar}/>);
   fireEvent.click(screen.getByRole('button',{name:'Selecionar recorte da ficha'}));await screen.findByText(/Região de ilustração sugerida/);
   fireEvent.change(screen.getByLabelText('Página de origem'),{target:{value:'2'}});
   await waitFor(()=>expect(rasterizarPaginaPdf).toHaveBeenLastCalledWith(anexo.arquivo,2,2200,expect.anything()));
+  await waitFor(()=>expect(screen.getByRole('button',{name:'Usar este recorte como retrato'})).toBeEnabled());
+  expect(screen.getByLabelText('Topo (%)')).toHaveValue(5);
+  fireEvent.change(screen.getByLabelText('Topo (%)'),{target:{value:'10'}});
+  fireEvent.click(screen.getByRole('button',{name:'Usar este recorte como retrato'}));
+  await waitFor(()=>expect(usar).toHaveBeenCalledWith(expect.objectContaining({id:'novo'})));
+  expect(gerarRetrato).toHaveBeenCalledWith(canvas,{x:40,y:10,largura:50,altura:60},'c');
 });

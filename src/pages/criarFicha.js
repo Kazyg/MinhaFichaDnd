@@ -29,8 +29,8 @@ export default function CriarFicha() {
       navigate(location.pathname, { replace: true, state: null });
     }
   }, [location, navigate]);
-  const sair = () => {
-    if (salvarPendentes()) navigate('/');
+  const sair = async () => {
+    if (await salvarPendentes()) navigate('/');
   };
   const menuButton = useRef(null);
   const [erroExportacao, setErroExportacao] = useState("");
@@ -48,8 +48,8 @@ export default function CriarFicha() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const handleSalvarFicha = () => {
-    if (salvarFicha(ficha)) fecharMenu();
+  const handleSalvarFicha = async () => {
+    if (await salvarFicha(ficha)) fecharMenu();
   };
 
   const handleExportarPDF = async () => {
