@@ -6,7 +6,7 @@ jest.mock('../utils/exportarFichaPdf', () => ({ exportarFichaPdf: jest.fn() }));
 
 test('PDF carrega pela ação, mantém tratamento de falha e permite tentar novamente', async () => {
   localStorage.clear();
-  window.history.replaceState({}, '', '/');
+  window.history.replaceState({}, '', '/criar-ficha');
   const user = userEvent.setup();
   render(<App />);
   await user.click(screen.getByRole('button', { name: 'Criar Nova Ficha' }));

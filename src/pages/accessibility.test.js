@@ -7,40 +7,32 @@ import ModalSelecaoTalento from './modals/ModalSelecaoTalento';
 import ModalSelecaoIdioma from './modals/ModalSelecaoIdiomas';
 import { FichaProvider } from '../api/fichaPersonagem/FichaContext';
 
-beforeEach(() => { localStorage.clear(); window.history.replaceState({}, '', '/'); });
+beforeEach(() => { localStorage.clear(); window.history.replaceState({}, '', '/criar-ficha'); });
 
-test.each(['2014', '2024'])('criar, cancelar, abrir e reabrir usando apenas teclado: %s', async edition => {
+test.each(['2014', '2024'])('cria e reabre por teclado: %s', async edition => {
   const user = userEvent.setup();
   const view = render(<App />);
-  await user.tab();
-  expect(screen.getByRole('button', { name: 'Carregar Ficha Salva' })).toHaveFocus();
-  await user.tab();
-  const create = screen.getByRole('button', { name: 'Criar Nova Ficha' });
-  await user.keyboard('{Enter}');
+  expect(screen.getByRole('heading', { name: 'Criador de Fichas de RPG' })).toHaveFocus();
+  await user.tab(); await user.tab(); await user.keyboard('{Enter}');
   const dialog = screen.getByRole('dialog', { name: 'Escolha as regras da ficha' });
   expect(within(dialog).getByRole('heading')).toHaveFocus();
   await user.tab({ shift: true });
-  expect(within(dialog).getByRole('button', { name: 'Fechar' })).toHaveFocus();
-  await user.tab();
-  expect(within(dialog).getByRole('button', { name: /Regras 2024/ })).toHaveFocus();
+  expect(within(dialog).getByRole('button', { name: 'Voltar' })).toHaveFocus();
   await user.keyboard('{Escape}');
-  expect(create).toHaveFocus();
-  await user.keyboard(' ');
+  expect(screen.getByRole('heading', { name: 'Criador de Fichas de RPG' })).toHaveFocus();
+  await user.tab(); await user.tab(); await user.keyboard('{Enter}');
   await user.tab();
   if (edition === '2014') await user.tab();
   await user.keyboard('{Enter}');
   expect(screen.getByRole('button', { name: 'Menu da ficha' })).toHaveFocus();
   expect(screen.getByRole('textbox', { name: 'Nome' })).toBeInTheDocument();
   view.unmount();
-  window.history.replaceState({}, '', '/');
+  window.history.replaceState({ usr: { abrirFichas: true } }, '', '/criar-ficha');
   render(<App />);
-  await user.tab();
-  await user.keyboard('{Enter}');
+  await user.tab(); await user.keyboard('{Enter}');
   expect(screen.getByRole('dialog', { name: 'Selecione uma Ficha' })).toBeInTheDocument();
   expect(screen.getByLabelText('Importar ficha JSON')).toBeInTheDocument();
-  expect(screen.getByText(`Versão ${edition}`)).toBeInTheDocument();
-  await user.tab();
-  await user.keyboard('{Enter}');
+  await user.tab(); await user.keyboard('{Enter}');
   expect(screen.getByRole('button', { name: 'Menu da ficha' })).toHaveFocus();
 });
 

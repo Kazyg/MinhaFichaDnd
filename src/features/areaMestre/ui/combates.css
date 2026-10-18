@@ -1,0 +1,25 @@
+.am-dialog.am-gestao-combates,.am-dialog.am-encerrar-combate,.am-dialog.am-historico-combate {width:min(1000px,96vw);min-width:0;}
+.am-combates-lista {list-style:none;padding:0;margin:0;}
+.am-combates-lista>li {display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 0;border-bottom:1px solid #555;}
+.am-combates-lista>li>div:first-child {min-width:0;flex:1;overflow-wrap:anywhere;}
+.am-combates-lista strong,.am-combates-lista span {display:block;margin-bottom:.3rem;}
+.am-combates-lista span {font-size:.85rem;color:#ddd;}
+.am-combate-acoes {display:flex;flex-wrap:wrap;gap:.5rem;max-width:50%;}
+.am-decisao-pv {border:1px solid #626262;border-radius:6px;padding:.75rem;min-width:0;}
+.am-decisao-pv legend {font-weight:bold;}
+.am-decisao-pv label {padding:.65rem;border-radius:5px;background:#303236;}
+.am-dialog .am-decisao-pv input[type=radio] {display:inline-block;width:auto;height:auto;min-height:0;padding:0;margin-right:.5rem;accent-color:var(--area-destaque,#ff8a50);}
+.am-decisao-pv label span {display:block;margin:.4rem 0 0 1.6rem;font-size:.85rem;color:#ddd;}
+.am-combate-tabela {max-width:100%;overflow:auto;margin:1rem 0;}
+.am-combate-tabela table {width:100%;border-collapse:collapse;text-align:left;}
+.am-combate-tabela caption {text-align:left;margin-bottom:.75rem;}
+.am-combate-tabela th,.am-combate-tabela td {padding:.65rem;border-bottom:1px solid #555;vertical-align:top;}
+.am-combate-tabela th {overflow-wrap:anywhere;}
+.am-combate-tabela small {display:block;font-weight:normal;margin-top:.3rem;}
+.am-dialog .am-encerramento-acoes {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));}
+.am-encerramento-acoes button {min-width:0;white-space:normal;}
+.am-historico-datas {display:grid;grid-template-columns:auto minmax(0,1fr);gap:.5rem 1rem;}
+.am-historico-datas dd {margin:0;}
+.am-historico-nota {font-size:.85rem;color:#ddd;}
+.am-escolha-combate select {display:block;width:100%;min-height:42px;margin-top:.4rem;padding:.5rem;background:#30343a;color:#fff;border:1px solid #747474;border-radius:4px;}
+@media(max-width:650px){.am-combates-lista>li {align-items:stretch;flex-direction:column;}.am-combate-acoes {max-width:none;}.am-combate-acoes button {flex:1;}.am-historico-datas {grid-template-columns:1fr;gap:.3rem;}.am-historico-datas dd {margin-bottom:.6rem;}.am-gestao-combates,.am-encerrar-combate,.am-historico-combate {padding:1rem;}.am-combate-tabela th,.am-combate-tabela td {padding:.5rem;}}

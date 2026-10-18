@@ -3,8 +3,7 @@ import iconCa from '../../../imagens/icon_ac.png';
 import '../../css/EscudoCA.css';
 
 // Centróide da área interna do PNG original (150 × 150), não do seu bounding box.
-// A ponta estreita deixa o centro visual acima de y=75. Medição reproduzível em
-// docs/alinhamento-escudo/medir-geometria.py. O desenho original é preservado.
+// A ponta estreita deixa o centro visual acima de y=75. O desenho original é preservado.
 const CENTRO = { x: 74.5, y: 65 };
 
 export default function EscudoCA({ valor }: { valor: number }) {

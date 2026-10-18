@@ -1,0 +1,63 @@
+.fichas-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, .75);
+}
+.fichas-dialog {
+  width: min(540px, 100%);
+  max-height: calc(100vh - 2rem);
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
+  padding: clamp(1rem, 4vw, 2rem);
+  border: 1px solid #666;
+  border-top: 3px solid #c94000;
+  border-radius: 8px;
+  background: #222;
+  color: #fff;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #333;
+}
+.fichas-dialog::-webkit-scrollbar { width: 8px; }
+.fichas-dialog::-webkit-scrollbar-track { background: #333; border-radius: 8px; }
+.fichas-dialog::-webkit-scrollbar-thumb { background: #888; border: 2px solid #333; border-radius: 8px; }
+.fichas-dialog::-webkit-scrollbar-thumb:hover { background: #aaa; }
+.fichas-dialog h2 { margin-top: 0; }
+.fichas-dialog p { line-height: 1.5; }
+.fichas-dialog button { cursor: pointer; font: inherit; }
+.fichas-actions { display: flex; justify-content: center; gap: 2rem; }
+.fichas-dialog-footer button, .fichas-dialog input + button {
+  border: 1px solid #d65a27;
+  border-radius: 5px;
+  padding: .75rem 1rem;
+  background: #b93600;
+  color: #fff;
+}
+.fichas-dialog button:focus-visible { outline: 3px solid #ffb184; outline-offset: 2px; }
+.fichas-dialog-footer { display: flex; justify-content: flex-end; gap: .75rem; margin-top: 1.5rem; }
+.fichas-import-actions { justify-content: space-between; align-items: center; }
+.fichas-dialog .ficha-item { background: #333; color: #fff; justify-content: space-between; }
+.fichas-dialog .ficha-versao { color: #ccc; }
+.fichas-dialog .selection-option { color: #fff; overflow-wrap: anywhere; }
+.fichas-dialog .delete-button { flex-shrink: 0; align-items: center; justify-content: center; width: 40px; height: 40px; margin-left: .5rem; border: 1px solid #999; border-radius: 5px; color: #ffb184; background: #222; }
+.fichas-dialog .delete-button:hover { color: #fff; border-color: #ff8a50; background: #8a2900; }
+.fichas-dialog .delete-button :hover { background: transparent; }
+.fichas-dialog input { display: block; width: 100%; margin: .75rem 0; }
+.fichas-dialog button:disabled { opacity: .5; cursor: default; }
+.fichas-dialog [role="alert"] { color: #ffb184; }
+.ficha-empty { margin: auto; padding: 2rem; text-align: center; color: #ddd; }
+.fichas-dialog-inicial { text-align: center; }
+.fichas-dialog-inicial h2 { font-size: clamp(1.4rem, 5vw, 2rem); margin-bottom: 1.5rem; }
+.fichas-actions button { display: flex; flex-direction: column; align-items: center; gap: .5rem; padding: .5rem; background: none; border: none; color: #fff; border-radius: 4px; }
+.fichas-actions button:hover { background: rgba(255, 255, 255, .08); }
+.fichas-actions img { width: 64px; height: 64px; object-fit: contain; }
+.fichas-actions span { font-size: .85rem; }
+.fichas-dialog-inicial .fichas-dialog-footer { display: none; }
+.menu-sair { display: flex; align-items: center; gap: .5rem; }
+@media (max-width: 768px) {
+  .menu-abas-criarFicha { flex: 1; min-width: 0; width: auto; gap: .2rem; padding: .2rem; }
+  .menu-abas-criarFicha button { min-width: 0; padding: .3rem .2rem; font-size: .75rem; }
+}

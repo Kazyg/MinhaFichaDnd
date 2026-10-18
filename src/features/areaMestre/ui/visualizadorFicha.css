@@ -1,0 +1,17 @@
+.am-workspace .am-visualizador-ficha { width: min(1120px, 96vw); max-width: 96vw; max-height: 94dvh; overflow: auto; }
+.am-documento { min-width: 0; width: 100%; }
+.am-retrato-ficha { margin:0 0 1rem; }
+.am-retrato-ficha .am-miniatura { width:120px; height:120px; object-fit:contain; }
+.am-documento-acoes { display: flex; align-items: center; flex-wrap: wrap; gap: .75rem; margin-bottom: .75rem; }
+.am-documento-acoes h2 { flex: 1; margin: 0; }
+.am-documento-acoes a { color: var(--area-destaque, #ff8a50); }
+.am-documento-acoes label { display: flex; align-items: center; gap: .5rem; }
+.am-documento-pagina { overflow: auto; max-height: 68dvh; min-width: 0; }
+.am-visualizador-ficha .am-documento-pagina { overflow: visible; max-height: none; }
+.am-documento-pagina > img { display: block; height: auto; object-fit: contain; margin: auto; }
+.am-documento-pagina canvas { display: block; margin: auto; max-width: none; background: white; }
+.am-json-grupo { border-top: 1px solid #555; padding-block: .5rem; }
+.am-json-grupo dl { margin: .25rem 0; }
+.am-json-grupo dt { color: var(--area-destaque, #ff8a50); overflow-wrap: anywhere; }
+.am-json-grupo dd { margin: .25rem 0 .75rem 1rem; overflow-wrap: anywhere; }
+.am-documento-pagina pre { white-space: pre-wrap; overflow-wrap: anywhere; }
