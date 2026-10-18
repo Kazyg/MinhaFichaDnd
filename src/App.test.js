@@ -22,6 +22,7 @@ test('fechar a seleção de edição não cria ficha', async () => {
   await user.click(screen.getByRole('button', { name: 'Voltar' }));
   expect(screen.queryByRole('heading', { name: 'Escolha as regras da ficha' })).not.toBeInTheDocument();
   expect(localStorage.getItem('fichas')).toBeNull();
+  expect((await new FichasIndexedDB().load()).fichas).toHaveLength(0);
   expect(window.location.pathname).toBe('/criar-ficha');
 });
 

@@ -6,6 +6,7 @@ import { Ficha } from '../api/fichaPersonagem/FichaPersonagem';
 import { getRulesetData } from '../api/rulesets/getRulesetData';
 
 jest.mock('../api/fichaPersonagem/FichaContext', () => ({ useFicha: jest.fn() }));
+afterEach(() => jest.restoreAllMocks());
 
 test.each(['DND_2014', 'DND_2024'].flatMap(versao => ['Array Padrão', 'Point Buy', 'Rolagem de Dados'].map(metodo => [versao, metodo])))('método e ação principal de distribuição continuam funcionais em %s: %s', (versaoRegras, metodo) => {
   const regras = getRulesetData(versaoRegras);
@@ -18,6 +19,10 @@ test.each(['DND_2014', 'DND_2024'].flatMap(versao => ['Array Padrão', 'Point Bu
   useFicha.mockReturnValue({ ficha, forceUpdate: jest.fn() });
   const setup = () => <LevelOneSetup raca={ficha.racaPrincipal} classe={ficha.classePrincipal} />;
   const view = render(setup());
+
+  const dados = [0, 1 / 6, 3 / 6, 5 / 6];
+  let rolagem = 0;
+  if (metodo === 'Rolagem de Dados') jest.spyOn(Math, 'random').mockImplementation(() => dados[rolagem++ % dados.length]);
 
   expect(screen.queryByRole('button', { name: 'Distribuir Atributos' })).not.toBeInTheDocument();
   const metodos = ['Array Padrão', 'Point Buy', 'Rolagem de Dados'];
@@ -35,7 +40,7 @@ test.each(['DND_2014', 'DND_2024'].flatMap(versao => ['Array Padrão', 'Point Bu
   const valoresEsperados = {
     'Array Padrão': [15, 14, 13, 12, 10, 8],
     'Point Buy': [],
-    'Rolagem de Dados': Array.from({ length: 6 }, () => expect.any(Number)),
+    'Rolagem de Dados': [12, 12, 12, 12, 12, 12],
   };
   expect(ficha.distribuicaoAtributos.gerados).toEqual(valoresEsperados[metodo]);
   expect(ficha.distribuicaoAtributos.gerados.every(valor => valor >= 3 && valor <= 18)).toBe(true);

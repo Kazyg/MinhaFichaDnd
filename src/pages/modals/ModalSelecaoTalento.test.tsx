@@ -4,11 +4,11 @@ import userEvent from '@testing-library/user-event';
 import ModalSelecaoTalento from './ModalSelecaoTalento';
 import { getTalentosConteudo } from '../../api/rulesets/conteudo';
 
-// Native menus are drawn by the browser; selectOptions exercises the public
-// combobox interaction without replacing it with a custom dropdown implementation.
+
+
 test('seletores 2014 preservam escolhas iniciais e confirmam uma nova escolha', async () => {
   const user = userEvent.setup();
-  // Exercise the legacy array format independently of catalog availability.
+
   const talento = { ...getTalentosConteudo('DND_2014')[0], escolha: 'atributo-agarrador' as const };
   expect(talento).toBeDefined();
   const onSelect = jest.fn();

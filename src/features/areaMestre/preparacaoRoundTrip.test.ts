@@ -82,7 +82,7 @@ describe('preparação completa com IndexedDB transacional e backup', () => {
     } finally { reaberto.fechar(); }
   });
 
-  test('cancelar seleções, novas instâncias e edição de PV do rascunho não grava nem altera registros', async () => {
+  test('preparar seleções, novas instâncias e PV sem commit preserva agregado e registros', async () => {
     const repo = new RepositorioCampanhasIndexedDB({ indexedDB: new IDBFactory(), nomeBanco: 'preparacao-cancelada' });
     try {
       await repo.criar(await importarCampanha());
@@ -91,6 +91,13 @@ describe('preparação completa com IndexedDB transacional e backup', () => {
       rascunho.participantes[0].instancia.pv.atuais = 0;
       rascunho.participantes.splice(1, 1);
       expect(rascunho.participantes).toHaveLength(3);
+      const preparado = confirmarPreparacao(original, rascunho, 'sem-commit', data);
+      expect(preparado.combates).toEqual([expect.objectContaining({ id: 'sem-commit', estado: 'preparado' })]);
+      expect(preparado.participantes).toHaveLength(3);
+      expect(preparado.instancias.find(i => i.id === 'aria-1')!.pv.atuais).toBe(0);
+      expect(preparado.instancias).toHaveLength(4);
+      expect(original.instancias.find(i => i.id === 'aria-1')!.pv.atuais).toBe(13);
+      expect(original.combates).toEqual([]);
 
       expect(await repo.obter('campanha')).toEqual(original);
       expect((await repo.obter('campanha'))!.instancias).toHaveLength(2);

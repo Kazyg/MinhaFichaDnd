@@ -18,7 +18,7 @@ const complete = (tx: IDBTransaction) => new Promise<void>((resolve, reject) => 
   tx.onerror = () => reject(tx.error ?? new Error('Falha no armazenamento.'));
 });
 
-/** Banco exclusivo do editor. Nunca escreve ou remove dados legados. */
+
 export class FichasIndexedDB {
   private opening?: Promise<IDBDatabase>;
   constructor(private factory?: IDBFactory, private name = NOME_BANCO_FICHAS) {}
@@ -50,7 +50,7 @@ export class FichasIndexedDB {
   async close() { (await this.open()).close(); this.opening = undefined; }
   async migrate(source: FichaStorage | (() => FichaStorage)) {
     const db = await this.open();
-    // Test the marker before accessing localStorage: normal CRUD must not depend on it.
+
     const check = db.transaction('meta', 'readonly');
     const checked = complete(check);
     const [done] = await Promise.all([request(check.objectStore('meta').get('migracao-localStorage-v1')), checked]);
@@ -117,7 +117,7 @@ export class FichasIndexedDB {
     const [data] = await Promise.all([request(tx.objectStore('fichas').get(id)), completed]);
     return data ? hydrateFicha(data) : null;
   }
-  /** Atomic compare-and-swap prevents stale tabs from overwriting a newer collection. */
+
   async save(raw: string, revision: number, recovery = false) {
     parseCollection(raw);
     const { data, selectedId } = JSON.parse(raw);

@@ -71,6 +71,11 @@ test.each(['retorno falso', 'exceção'])('preserva ficha, anuncia erro e permit
   expect(screen.getByRole('button', { name: 'Excluir ficha' })).toBeEnabled();
   await user.click(screen.getByRole('button', { name: 'Cancelar' }));
   expect(screen.getByRole('button', { name: 'Excluir Aria' })).toBeInTheDocument();
+  await user.click(screen.getByRole('button', { name: 'Excluir Aria' }));
+  await user.click(screen.getByRole('button', { name: 'Excluir ficha' }));
+  await waitFor(() => expect(screen.queryByRole('dialog', { name: 'Excluir ficha?' })).not.toBeInTheDocument());
+  expect(excluir).toHaveBeenCalledTimes(2);
+  expect(excluir).toHaveBeenLastCalledWith(ficha.id);
 });
 
 test('não exclui se alterações pendentes não puderem ser salvas', async () => {

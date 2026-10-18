@@ -224,6 +224,13 @@ test('importação recusa referência malformada e escolhas que quebrariam UI; r
   delete f.efeitos[0].conteudo;
   f.efeitos[0].escolhasTalento = [22];
   expect(() => reabrir(f)).toThrow();
+  const valida = ficha();
+  expect(valida.selecionarTalentoAvanco(4, 'Alerta')).toBe(true);
+  valida.efeitos[0].conteudo.revisao = 'futura';
+  const restaurada = reabrir(valida);
+  expect(restaurada.efeitos[0].conteudo.revisao).toBe('futura');
+  expect(restaurada.efeitos[0].talentoSnapshot).toEqual(valida.efeitos[0].talentoSnapshot);
+  expect(selecionarIniciativa(restaurada).total).toBe(2);
 });
 
 test('modal de talento preserva metadados, exige escolhas e só fecha depois de sucesso', () => {

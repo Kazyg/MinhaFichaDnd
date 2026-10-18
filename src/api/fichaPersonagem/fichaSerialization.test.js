@@ -13,6 +13,9 @@ test('valida tipos, números, IDs, referências, profundidade e tamanho', () => 
   expect(() => parseImport('{"__proto__":{},"id":"a","nomePersonagem":null}')).toThrow();
   expect(() => parseCollection(JSON.stringify([fixture(), fixture()]))).toThrow();
   expect(() => parseCollection(JSON.stringify({ format: 'minhafichadnd', version: 1, kind: 'colecao', selectedId: 'ausente', data: [] }))).toThrow();
+  const profunda = fixture();
+  profunda.extensao = Array.from({ length: 61 }).reduce(valor => ({ proximo: valor }), {});
+  expect(() => parseImport(JSON.stringify(profunda))).toThrow(/profundidade máxima/);
   expect(() => getRulesetVersion('futuro')).toThrow();
 });
 

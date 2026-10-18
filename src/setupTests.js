@@ -3,7 +3,7 @@ import { IDBFactory } from 'fake-indexeddb';
 import { runInThisContext } from 'vm';
 const cloneNative = runInThisContext('structuredClone');
 
-// JSDOM lacks structuredClone. Keep its Blob/File implementations intact.
+
 const cloneForIndexedDB = value => {
   if (value instanceof Blob) return value.slice(0, value.size, value.type);
   if (Array.isArray(value)) return value.map(cloneForIndexedDB);

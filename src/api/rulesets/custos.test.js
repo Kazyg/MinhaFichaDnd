@@ -12,6 +12,7 @@ import { getRulesetConfig } from './regras';
 let api;
 function Probe() { api = useFicha(); return <CriarFicha />; }
 const tick = async fn => act(async () => { await fn(); });
+afterEach(() => jest.restoreAllMocks());
 
 test.each(['DND_2014', 'DND_2024'])('contagem de catálogos em criação, reabertura e níveis: %s', async versaoRegras => {
   const rules = getRulesetData(versaoRegras);
@@ -40,8 +41,12 @@ test.each(['DND_2014', 'DND_2024'])('contagem de catálogos em criação, reaber
   record('reabertura');
   await tick(() => { api.ficha.setLevelTotal(3); api.forceUpdate(); });
   record('nivel-3');
-  console.log('A25 CONTAGEM', versaoRegras, JSON.stringify(counts));
   expect(counts.map(c => c.magias)).toEqual([0, 0, 0]);
+  const custoInicialTalentos = counts[0].talentos;
+  expect(custoInicialTalentos).toBeGreaterThan(0);
+  counts.forEach(c => {
+    expect(c.talentos).toBeLessThanOrEqual(custoInicialTalentos);
+  });
   expect(api.ficha.levelTotal).toBe(3);
   view.unmount();
   magias.mockRestore(); talentos.mockRestore();

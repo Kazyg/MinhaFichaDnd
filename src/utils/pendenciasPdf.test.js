@@ -9,11 +9,12 @@ import AbaItens from '../pages/components/components_inventario/AbaItens';
 import InformacoesPersonagem from '../pages/components/InformacoesPersonagem';
 
 let mockFicha;
+const fetchOriginal = global.fetch;
 jest.mock('../api/fichaPersonagem/FichaContext', () => ({ useFicha: () => ({ ficha: mockFicha, forceUpdate: jest.fn() }) }));
 beforeEach(() => {
   global.fetch = jest.fn(async () => ({ ok: true, arrayBuffer: async () => Uint8Array.from(fs.readFileSync('public/ficha-de-personagem-dd-5e.pdf')).buffer }));
 });
-afterEach(() => jest.restoreAllMocks());
+afterEach(() => { global.fetch = fetchOriginal; jest.restoreAllMocks(); });
 
 test('PDF normaliza acentos decompostos sem alterar JSON e explicita limite da fonte', async () => {
   const nome = 'Joa\u0303o, Éowyn, Łukasz, 李, 🐉';

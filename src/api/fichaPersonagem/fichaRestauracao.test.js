@@ -43,7 +43,11 @@ function memory(raw) {
 let api;
 function Probe() { api = useFicha(); return <span data-testid="context-ready" />; }
 const tick = async fn => act(async () => { await fn(); });
-afterEach(() => jest.useRealTimers());
+const larguraOriginal = window.innerWidth;
+afterEach(() => {
+  jest.useRealTimers();
+  window.innerWidth = larguraOriginal;
+});
 
 test.each([
   ['DND_2014', 'Guerreiro', CavaleiroArcano], ['DND_2024', 'Guerreiro', CavaleiroMistico2024],

@@ -1,5 +1,6 @@
 
 import './ambienteIndexedDB.testUtils';
+import { TextEncoder } from 'util';
 import { webcrypto } from 'crypto';
 import { IDBFactory, IDBObjectStore } from 'fake-indexeddb';
 import { unzipSync, zipSync } from 'fflate';

@@ -143,15 +143,19 @@ test('array incompleto, repetido, point buy inválido e origem inválida não co
   const ficha = fixture(); const base = JSON.stringify(ficha.atributosPersonagem);
   ficha.distribuicaoAtributos = standard(); ficha.distribuicaoAtributos.atributos.forca = 0;
   expect(ficha.concluirAtributos()).toBe(false);
+  expect(JSON.stringify(ficha.atributosPersonagem)).toBe(base);
   ficha.distribuicaoAtributos = standard(); ficha.distribuicaoAtributos.atributos.forca = 14;
   expect(ficha.concluirAtributos()).toBe(false);
+  expect(JSON.stringify(ficha.atributosPersonagem)).toBe(base);
   ficha.distribuicaoAtributos = { ...standard(), metodo: 'Point Buy', pontos: 0 };
   expect(ficha.concluirAtributos()).toBe(true);
+  const aplicada = JSON.stringify(ficha.atributosPersonagem);
   ficha.distribuicaoAtributos.atributos.forca = 16;
   expect(ficha.concluirAtributos()).toBe(false);
+  expect(JSON.stringify(ficha.atributosPersonagem)).toBe(aplicada);
   ficha.distribuicaoAtributos = standard(); ficha.distribuicaoAtributos.modo = 'dois'; ficha.distribuicaoAtributos.maior = 'forca'; ficha.distribuicaoAtributos.menor = 'forca';
   expect(ficha.concluirAtributos()).toBe(false);
-  expect(base).toBeTruthy();
+  expect(JSON.stringify(ficha.atributosPersonagem)).toBe(aplicada);
 });
 test('distribuição preserva base e não reaplica bônus depois de reabrir', async () => {
   let ficha = fixture(); ficha.distribuicaoAtributos = standard();

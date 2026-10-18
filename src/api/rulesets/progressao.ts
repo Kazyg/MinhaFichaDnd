@@ -25,7 +25,7 @@ export function nivelDaClasse(ficha: Ficha, classe: string | Classes, ate = fich
 
 type ClasseMulticlasse = string | { nome: string; chave?: string };
 const nomesAtributos: Record<string, string> = { forca: 'Força', destreza: 'Destreza', inteligencia: 'Inteligência', sabedoria: 'Sabedoria', carisma: 'Carisma' };
-// Cada grupo é uma alternativa (OU); os atributos dentro do grupo são obrigatórios (E).
+
 export const requisitosMulticlasse: Record<string, string[][]> = {
   barbaro: [['forca']], bardo: [['carisma']], bruxo: [['carisma']],
   clerigo: [['sabedoria']], druida: [['sabedoria']], feiticeiro: [['carisma']],
@@ -69,7 +69,7 @@ export function erroSelecaoClasse(ficha: Ficha, classe: Classes, nivel: number):
   const atributos = Object.fromEntries(atributosChaves.map(a => [a, calcularValorAtributoFinal(antes, a)]));
   const resultado = avaliarMulticlasse(anteriores, classe, atributos, ficha.versaoRegras);
   if (resultado.permitido) return null;
-  // Mantém a mensagem e o comportamento da edição 2014.
+
   if (ficha.versaoRegras !== 'DND_2024') {
     const valores = atributosChaves.map(a => `${a}: ${atributos[a]}`).join(', ');
     return `Requisitos de multiclasse: ${resultado.ausentes.map(r => `${typeof r.classe === 'string' ? r.classe : r.classe.nome} exige ${r.texto}`).join('; ')}. Atributos antes do nível ${nivel}: ${valores}. Conclua a distribuição de atributos se ainda não foi aplicada.`;

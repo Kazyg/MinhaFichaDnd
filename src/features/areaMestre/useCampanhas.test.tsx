@@ -79,12 +79,21 @@ describe('integração React com campanhas IndexedDB', () => {
   });
 
   test('falha de listagem é exposta sem apagar dados do repositório', async () => {
+    const view = renderHook(() => useCampanhas(ambiente.repositorio));
+    await waitFor(() => expect(view.result.current.carregando).toBe(false));
+    await act(async () => { await view.result.current.criar('Campanha preservada'); });
+    const id = view.result.current.dados!.campanha.id;
+    const antes = await ambiente.repositorio.obter(id);
+    view.unmount();
     jest.spyOn(ambiente.repositorio, 'listar').mockRejectedValueOnce(new ErroPersistencia('bloqueado', 'Armazenamento bloqueado'));
     const { result } = renderHook(() => useCampanhas(ambiente.repositorio));
     await waitFor(() => expect(result.current.erro).toBeTruthy());
     expect(result.current.carregando).toBe(false);
     await act(async () => { await result.current.listar(); });
-    expect(result.current.campanhas).toEqual([]);
+    expect(result.current.campanhas).toEqual([antes!.campanha]);
+    expect(await ambiente.repositorio.obter(id)).toEqual(antes);
+    await act(async () => { await result.current.selecionar(id); });
+    expect(result.current.dados).toEqual(antes);
   });
 
   test('edição durante gravação não é substituída pela leitura da revisão anterior', async () => {

@@ -40,8 +40,14 @@ test('troca da lista de Iniciado em Magia limpa as magias anteriores', () => {
   fireEvent.click(screen.getByRole('button', { name: 'Escolher truque 1' }));
   fireEvent.click(screen.getByRole('button', { name: 'Mãos Mágicas' }));
   fireEvent.click(screen.getByRole('button', { name: 'Escolher Mãos Mágicas' }));
+  fireEvent.click(screen.getByRole('button', { name: 'Escolher magia de 1º círculo' }));
+  fireEvent.click(screen.getByRole('button', { name: 'Alarme' }));
+  fireEvent.click(screen.getByRole('button', { name: 'Escolher Alarme' }));
   fireEvent.change(screen.getByLabelText('Lista de magias 1'), { target: { value: 'Clérigo' } });
   expect(screen.getByRole('button', { name: 'Escolher truque 1' })).toBeEnabled();
+  expect(screen.getByRole('button', { name: 'Escolher magia de 1º círculo' })).toBeEnabled();
+  expect(screen.queryByRole('button', { name: 'Mãos Mágicas' })).not.toBeInTheDocument();
+  expect(screen.queryByRole('button', { name: 'Alarme' })).not.toBeInTheDocument();
   expect(screen.getByRole('button', { name: 'Escolher Iniciado em Magia' })).toBeDisabled();
 });
 
@@ -61,6 +67,13 @@ test('escolha incompleta não modifica a ficha; edição de escolha valida ignor
   expect(exportFicha(f)).toBe(antes);
   const t = getTalentosConteudo('DND_2024').find(t => t.nome === 'Iniciado em Magia')!;
   expect(erroTalento(f, 1, t, { lista: ['Mago'], conjuracao: ['carisma'], truques: ['2024: Luz', '2024: Luz'], magias: ['2024: Alarme'] })).toMatch(/Complete/);
+  const escolhas = { lista: ['Mago'], conjuracao: ['carisma'], truques: ['2024: Luz', '2024: Mãos Mágicas'], magias: ['2024: Alarme'] };
+  expect(selecionarTalentoInicial(f, 'TalentoOrigemHumano', t.nome, escolhas)).toBeNull();
+  const revisadas = { ...escolhas, magias: ['2024: Armadura Arcana'] };
+  expect(selecionarTalentoInicial(f, 'TalentoOrigemHumano', t.nome, revisadas)).toBeNull();
+  expect(f.efeitos?.filter(e => e.tituloEfeito === 'TalentoOrigemHumano')).toHaveLength(1);
+  expect(f.efeitos?.find(e => e.tituloEfeito === 'TalentoOrigemHumano')?.escolhasTalento2024).toEqual(revisadas);
+  expect(magiasConcedidas(f).map(m => m.magia.nome)).toEqual(['2024: Luz', '2024: Mãos Mágicas', '2024: Armadura Arcana']);
 });
 
 

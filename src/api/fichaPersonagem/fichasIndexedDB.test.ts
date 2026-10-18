@@ -47,11 +47,14 @@ test.each([1, 3])('migra %s fichas, repete sem duplicar e não ressuscita exclus
 test('migração parcial isola inválidos, duplicados e campos maliciosos sem perder fichas válidas', async () => {
   const repo = new FichasIndexedDB(new IDBFactory());
   const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
-  const raw = JSON.stringify([null, ficha('a'), { id: '', nomePersonagem: 'Inválida' }, ficha('a'), ficha('b', 'DND_2024')]);
+  const malicious = JSON.parse('{"id":"maliciosa","nomePersonagem":"Maliciosa","__proto__":{"poluido":true}}');
+  const raw = JSON.stringify([null, ficha('a'), { id: '', nomePersonagem: 'Inválida' }, ficha('a'), malicious, ficha('b', 'DND_2024')]);
   const store = legacy(raw);
   await repo.migrate(store);
   expect((await repo.load()).fichas.map(f => f.id)).toEqual(['a', 'b']);
   expect(warn).toHaveBeenCalled();
+  expect(await repo.get('maliciosa')).toBeNull();
+  expect(Object.prototype).not.toHaveProperty('poluido');
   expect(store.getItem('fichas')).toBe(raw);
 });
 

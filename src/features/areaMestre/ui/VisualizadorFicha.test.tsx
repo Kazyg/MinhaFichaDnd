@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import VisualizadorDocumento, { MAX_LADO_PDF, MAX_PIXELS_PDF } from './VisualizadorDocumento';
 import VisualizadorFicha from './VisualizadorFicha';
 import { abrirPdf, DocumentoPdf } from '../pdf';
@@ -10,6 +10,7 @@ jest.mock('../pdf', () => ({
 }));
 const abrir = abrirPdf as jest.MockedFunction<typeof abrirPdf>;
 const anexo = (mime: string, conteudo = '{}'): AnexoCampanha => ({ id: 'a', campanhaId: 'c', nome: 'original', mime, arquivo: new Blob([conteudo], { type: mime }), tamanho: conteudo.length });
+const grupoJson = (titulo: string) => screen.getByText((_, elemento) => elemento?.textContent?.startsWith(titulo) ?? false, { selector: 'section' });
 let criar: jest.Mock;
 let revogar: jest.Mock;
 beforeEach(() => {
@@ -35,6 +36,9 @@ test('JSON 2024 é snapshot estruturado sem modificar armazenamento ou valores',
   render(<VisualizadorDocumento anexo={anexo('application/json', original)} />);
   expect(await screen.findByText('Snapshot original somente leitura.', { exact: false })).toBeVisible();
   expect(screen.getByRole('heading', { name: 'Defesas e PV históricos' })).toBeVisible();
+  const historicos = grupoJson('Defesas e PV históricos');
+  expect(within(historicos).getByText('3', { selector: 'span' })).toBeVisible();
+  expect(within(historicos).getByText('14', { selector: 'span' })).toBeVisible();
   expect(lerFichaSomenteLeitura(original)).toEqual(documento);
   expect(await lerResumoFichaJson(new Blob([original]))).toEqual({ classe: 'Maga', nivel: 2, raca: 'Elfa' });
   expect(storage).not.toHaveBeenCalled(); storage.mockRestore();
@@ -105,6 +109,17 @@ test('JSON real exibe CA, atributos e recursos sem campos omitidos artificiais',
   render(<VisualizadorDocumento anexo={anexo('application/json', JSON.stringify(json))} />);
   expect(await screen.findByText('Classe de armadura')).toBeVisible();
   expect(screen.getByRole('heading', { name: 'Atributos' })).toBeVisible();
+  const defesas = grupoJson('Defesas e PV históricos');
+  expect(within(defesas).getByText('16', { selector: 'span' })).toBeVisible();
+  const grupoAtributos = grupoJson('Atributos');
+  for (const [indice, nome] of ['forca', 'destreza', 'constituicao', 'inteligencia', 'sabedoria', 'carisma'].entries()) {
+    expect(within(grupoAtributos).getAllByText(nome)).toHaveLength(2);
+    expect(within(grupoAtributos).getByText(String(indice + 10), { selector: 'span' })).toBeVisible();
+  }
+  const recursos = grupoJson('Características e recursos');
+  expect(within(recursos).getByText('slots')).toBeVisible();
+  expect(within(recursos).getByText('1')).toBeVisible();
+  expect(within(recursos).getByText('2', { selector: 'span' })).toBeVisible();
   expect(screen.getByText('Arcanismo')).toBeVisible();
   expect(screen.queryByText('Não informado')).not.toBeInTheDocument();
   expect(screen.queryByText('Nível total')).not.toBeInTheDocument();

@@ -78,7 +78,7 @@ test.each([390, 1280])('modal preserva edição ao fechar, trocar ficha e sair (
   expect(screen.getByPlaceholderText('Nome do Personagem')).toHaveValue('Aria editada');
 });
 
-test('falha ao salvar impede sair e trocar ficha; edição continua disponível', async () => {
+test('falha ao salvar impede sair; edição continua disponível', async () => {
   const user = userEvent.setup();
   render(<App />);
   await entrar(user); await criar(user);

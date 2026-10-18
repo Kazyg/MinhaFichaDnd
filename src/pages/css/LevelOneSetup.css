@@ -310,7 +310,7 @@
 .descricao-caracteristica summary { cursor: pointer; color: #f0f1f3; margin-bottom: 12px; }
 .skills-container button:focus-visible, .descricao-caracteristica summary:focus-visible { outline: 2px solid #a8bbff; outline-offset: 3px; }
 
-/* Keep method selection secondary to the action that opens distribution. */
+
 .level-container .botao-metodo-atributos {
   box-sizing: border-box;
   width: 100% !important;

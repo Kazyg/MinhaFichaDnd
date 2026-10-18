@@ -52,6 +52,9 @@ test('autosave espera cinco segundos e não repete sem mudanças', async () => {
   await waitFor(() => expect(api.status).toBe('salvo'));
   expect(save).toHaveBeenCalledTimes(1);
   expect((await repo.get('sintetica-1')).nomePersonagem).toBe('Automática');
+  jest.useFakeTimers({ doNotFake: ['setImmediate'] });
+  await act(async () => { jest.advanceTimersByTime(10000); });
+  expect(save).toHaveBeenCalledTimes(1);
 });
 
 test('falha de gravação preserva alterações e permite tentar novamente', async () => {
@@ -119,13 +122,14 @@ test.each(['pagehide', 'visibilitychange', 'beforeunload', 'unmount'])('%s inici
   await waitFor(async () => expect((await repo.get('sintetica-1')).nomePersonagem).toBe('Ao sair'));
 });
 
-test('StrictMode não duplica inicialização ou migração e preserva o legado', async () => {
+test('StrictMode mantém uma única ficha migrada e preserva o legado', async () => {
   const raw = JSON.stringify([fixture()]);
   localStorage.setItem('fichas', raw);
   const repo = new FichasIndexedDB();
   render(<React.StrictMode><FichaProvider repository={repo}><Probe /></FichaProvider></React.StrictMode>);
   expect(screen.queryByText('Editor pronto')).not.toBeInTheDocument();
   await screen.findByText('Editor pronto');
-  expect((await repo.load()).fichas).toHaveLength(1);
+  expect((await repo.load()).fichas.map(f => f.id)).toEqual(['sintetica-1']);
+  expect(api.fichas.map(f => f.id)).toEqual(['sintetica-1']);
   expect(localStorage.getItem('fichas')).toBe(raw);
 });

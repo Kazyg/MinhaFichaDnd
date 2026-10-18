@@ -27,7 +27,7 @@ test.each(['DND_2014', 'DND_2024'])('estilo de luta abre uma única modal intera
   const dialog = screen.getByRole('dialog');
 
 
-  expect(dialog.closest('[inert]')).toBeNull();
+  expect(within(dialog).getByRole('heading')).toHaveFocus();
   await user.click(within(dialog).getByRole('button', { name: 'Defesa', exact: true }));
   expect(within(dialog).getByRole('button', { name: 'Defesa', exact: true })).toHaveAttribute('aria-pressed', 'true');
   await user.click(within(dialog).getByRole('button', { name: 'Escolher Defesa' }));
@@ -41,7 +41,7 @@ test.each(['DND_2014', 'DND_2024'])('estilo de luta abre uma única modal intera
   expect(mockFicha.efeitos.filter(e => e.tipoEfeito === 'estilo_duelismo')).toHaveLength(1);
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
 
-  expect(document.querySelector('[inert]')).toBeNull();
+  expect(screen.getByRole('button', { name: /Selecionar Estilo de luta/ })).toHaveFocus();
 });
 
 test('perícias removem controles manuais e painéis sem apagar efeitos salvos', () => {
