@@ -1,9 +1,10 @@
 import { processarCondicoesTurno } from './condicoes';
-import { ErroAreaMestre } from './dominio';
-import { Combate, DadosCampanha, ParticipanteCombate } from './modelos';
+import { ErroAreaMestre, validarId } from './dominio';
+import { Combate, DadosCampanha, InstanciaFicha, ParticipanteCombate } from './modelos';
 import { validarDadosCampanha } from './validacao';
 
-export type AcaoExecucaoCombate = 'iniciar' | 'avancar' | { ordem: string[] };
+export interface EntradaCombatente { id: string; instancia: InstanciaFicha; iniciativa?: number }
+export type AcaoExecucaoCombate = 'iniciar' | 'avancar' | { ordem: string[] } | { adicionar: EntradaCombatente };
 const exigir = (condicao: unknown, mensagem: string) => {
   if (!condicao) throw new ErroAreaMestre('dados-invalidos', mensagem);
 };
@@ -33,6 +34,7 @@ export function executarAcaoCombate(dados: DadosCampanha, combateId: string, aca
   if (!original) throw new Error('Encontro não encontrado.');
   let combate = migrarExecucaoLegada(original, dados.participantes);
   let participantes = dados.participantes;
+  let instancias = dados.instancias;
   const ordem = participantes.filter(p => p.combateId === combateId).sort((a, b) => a.ordem - b.ordem);
   if (acao === 'iniciar') {
     exigir(combate.estado === 'preparado', 'Somente um encontro preparado pode ser iniciado.');
@@ -62,6 +64,28 @@ export function executarAcaoCombate(dados: DadosCampanha, combateId: string, aca
       const condicoes = processarCondicoesTurno(combate, combate.participanteAtivoId!, (proximo ?? ordem[0]).id, ocorrencia);
       combate = { ...combate, ...(condicoes ? { condicoes } : {}), rodada: combate.rodada + (proximo ? 0 : 1), participanteAtivoId: (proximo ?? ordem[0]).id,
         execucao: { ...execucao, ocorrenciaTurno: ocorrencia + 1, visitados: proximo ? [...execucao.visitados, proximo.id] : [ordem[0].id] } };
+    } else if ('adicionar' in acao) {
+      const entrada = acao.adicionar;
+      validarId(entrada.id);
+      exigir(!participantes.some(p => p.id === entrada.id), 'O identificador do participante já existe.');
+      const existente = instancias.find(i => i.id === entrada.instancia.id);
+      const instancia = existente ?? entrada.instancia;
+      exigir(instancia.campanhaId === dados.campanha.id, 'O combatente deve pertencer a esta campanha.');
+      exigir(existente || (instancia.fichaOriginalId === null && instancia.categoria === 'monstro'), 'Novos combatentes devem ser minions.');
+      const ativos = new Set(dados.combates.filter(c => c.estado === 'ativo').map(c => c.id));
+      exigir(!participantes.some(p => p.instanciaId === instancia.id && ativos.has(p.combateId)), 'Este combatente já participa de um combate ativo.');
+      exigir(entrada.iniciativa === undefined || Number.isSafeInteger(entrada.iniciativa), 'A iniciativa deve ser um número inteiro válido.');
+      const atual = ordem.findIndex(p => p.id === combate.participanteAtivoId);
+      const novo: ParticipanteCombate = { id: entrada.id, instanciaId: instancia.id, combateId,
+        iniciativa: entrada.iniciativa ?? ordem[atual].iniciativa, ordem: 0, pvInicio: { ...instancia.pv } };
+      // Preserve manual ordering and insert after ties when initiative is supplied.
+      const primeiroMenor = ordem.findIndex(p => p.iniciativa < novo.iniciativa);
+      const indice = entrada.iniciativa === undefined ? atual + 1 : primeiroMenor < 0 ? ordem.length : primeiroMenor;
+      const novaOrdem = [...ordem.slice(0, indice), novo, ...ordem.slice(indice)];
+      participantes = [...participantes.filter(p => p.combateId !== combateId), ...novaOrdem.map((p, ordem) => ({ ...p, ordem }))];
+      if (!existente) instancias = [...instancias, { ...instancia, pv: { ...instancia.pv } }];
+      combate = { ...combate, execucao: { ...execucao, pvAtivacao: [...execucao.pvAtivacao,
+        { participanteId: novo.id, instanciaId: instancia.id, pv: { ...instancia.pv } }] } };
     } else {
       exigir(Array.isArray(acao.ordem) && acao.ordem.length === ordem.length && new Set(acao.ordem).size === ordem.length &&
         acao.ordem.every(id => ordem.some(p => p.id === id)), 'A nova ordem deve conter cada participante exatamente uma vez.');
@@ -69,7 +93,7 @@ export function executarAcaoCombate(dados: DadosCampanha, combateId: string, aca
       participantes = participantes.map(p => p.combateId === combateId ? { ...p, ordem: indices.get(p.id)! } : p);
     }
   }
-  const resultado = { ...dados, campanha: { ...dados.campanha, atualizadoEm: agora }, participantes,
+  const resultado = { ...dados, campanha: { ...dados.campanha, atualizadoEm: agora }, participantes, instancias,
     combates: dados.combates.map(c => c.id === combateId ? combate : c) };
   validarDadosCampanha(resultado);
   return resultado;

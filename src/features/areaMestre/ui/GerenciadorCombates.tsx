@@ -1,4 +1,7 @@
+import { useState } from 'react';
 import AccessibleDialog from '../../../pages/components/AccessibleDialog';
+import AdicionarCombatente from './AdicionarCombatente';
+import { EntradaCombatente } from '../execucaoCombate';
 import { DadosCampanha } from '../modelos';
 import { nomeCombate } from '../encerramentoCombate';
 import './combates.css';
@@ -8,10 +11,12 @@ export function dataCombate(valor: string | null | undefined): string {
   return new Date(valor).toLocaleString('pt-BR');
 }
 
-export default function GerenciadorCombates({ dados, onFechar, onPreparado, onRetomar, onEncerrar, onHistorico, ocupado = false }: {
+export default function GerenciadorCombates({ dados, onFechar, onPreparado, onRetomar, onEncerrar, onHistorico, onAdicionar, erro, ocupado = false }: {
   dados: DadosCampanha; onFechar: () => void; onPreparado: (id: string) => void;
   onRetomar: (id: string) => void; onEncerrar: (id: string) => void; onHistorico: (id: string) => void; ocupado?: boolean;
+  onAdicionar?: (id: string, entrada: EntradaCombatente) => Promise<boolean>; erro?: string | null;
 }) {
+  const [adicionando, setAdicionando] = useState<string | null>(null);
   const grupos = [{ estado: 'preparado', titulo: 'Preparados' }, { estado: 'ativo', titulo: 'Em andamento' }, { estado: 'encerrado', titulo: 'Encerrados' }] as const;
   return <div className="am-overlay"><AccessibleDialog className="am-dialog am-gestao-combates" aria-label="Gerenciar combates" onClose={() => { if (!ocupado) onFechar(); }}>
     <h2>Gerenciar combates</h2>
@@ -26,10 +31,12 @@ export default function GerenciadorCombates({ dados, onFechar, onPreparado, onRe
             <span>{combate.estado === 'encerrado' ? 'Encerrado em' : combate.estado === 'preparado' ? 'Preparado em' : 'Iniciado em'} {dataCombate(combate.estado === 'encerrado' ? combate.encerradoEm : combate.execucao?.ativadoEm ?? combate.iniciadoEm)}</span>
           </div>
           <div className="am-combate-acoes">
+            {combate.estado === 'ativo' && onAdicionar && <button disabled={ocupado} onClick={() => setAdicionando(combate.id)}>Adicionar combatente</button>}
             {combate.estado === 'preparado' && <><button disabled={ocupado} onClick={() => onPreparado(combate.id)}>Visualizar informações</button><button disabled={ocupado} onClick={() => onPreparado(combate.id)}>Iniciar execução</button></>}
             {combate.estado === 'ativo' && <><button disabled={ocupado} onClick={() => onRetomar(combate.id)}>Retomar combate</button><details><summary>Consultar participantes</summary><ul>{dados.participantes.filter(p => p.combateId === combate.id).sort((a, b) => a.ordem - b.ordem).map(p => { const instancia = dados.instancias.find(i => i.id === p.instanciaId); return <li key={p.id}>{instancia?.nome ?? 'Instância indisponível'} · Iniciativa {p.iniciativa} · PV {instancia ? `${instancia.pv.atuais}/${instancia.pv.maximos}` : 'indisponíveis'}</li>; })}</ul></details><button disabled={ocupado} onClick={() => onEncerrar(combate.id)}>Encerrar combate</button></>}
             {combate.estado === 'encerrado' && <button disabled={ocupado} onClick={() => onHistorico(combate.id)}>Consultar histórico</button>}
           </div>
+          {adicionando === combate.id && onAdicionar && <AdicionarCombatente dados={dados} ocupado={ocupado} erro={erro} onCancelar={() => setAdicionando(null)} onAdicionar={entrada => onAdicionar(combate.id, entrada)} />}
         </li>)}</ul>
       </section>;
     })}

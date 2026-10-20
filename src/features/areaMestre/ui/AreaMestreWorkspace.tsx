@@ -262,7 +262,7 @@ export function AreaMestreWorkspace({ estado, onSair }: { estado: RetornoUseCamp
       setResumoCombate(preparacao.id); setPreparacao(null); return true;
     }} />}
     {resumoCombate && dados && <ResumoCombatePreparado dados={dados} combateId={resumoCombate} ocupado={carregando || salvando} erro={erro || erroInicio} onIniciar={conflito ? undefined : () => void iniciarEncontro(resumoCombate)} onFechar={() => { setResumoCombate(null); setErroInicio(''); }} />}
-    {gestaoCombates && dados && <GerenciadorCombates dados={dados} ocupado={carregando || salvando} onFechar={() => setGestaoCombates(false)} onPreparado={id => { setGestaoCombates(false); setErroInicio(''); setResumoCombate(id); }} onRetomar={retomarCombate} onEncerrar={id => void abrirEncerramento(id)} onHistorico={id => { setGestaoCombates(false); setHistorico(id); }} />}
+    {gestaoCombates && dados && <GerenciadorCombates dados={dados} erro={erro} onAdicionar={(id, entrada) => estado.executarCombate(id, { adicionar: entrada })} ocupado={carregando || salvando || conflito} onFechar={() => setGestaoCombates(false)} onPreparado={id => { setGestaoCombates(false); setErroInicio(''); setResumoCombate(id); }} onRetomar={retomarCombate} onEncerrar={id => void abrirEncerramento(id)} onHistorico={id => { setGestaoCombates(false); setHistorico(id); }} />}
     {encerramento && dados && <EncerramentoRevisionado key={`encerramento:${encerramento}`} dados={dados} combateId={encerramento} erro={erro} onFechar={() => setEncerramento(null)} onConfirmar={async (decisao, revisao) => {
       if (!await estado.encerrarCombate(encerramento, decisao, revisao)) return false;
       if (combateSelecionado?.combateId === encerramento) { setCombateSelecionado(null); setParticipanteAberto(null); }
