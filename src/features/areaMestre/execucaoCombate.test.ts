@@ -14,6 +14,46 @@ function preparado(): DadosCampanha {
 const iniciar = (d = preparado()) => executarAcaoCombate(d, 'b', 'iniciar', data);
 const avancar = (d: DadosCampanha) => executarAcaoCombate(d, 'b', 'avancar', data);
 
+const reforco: InstanciaFicha = { id: 'reforco', campanhaId: 'c', fichaOriginalId: null, categoria: 'monstro', nome: 'Minion', pv: { atuais: 1, maximos: 1 } };
+const adicionar = (dados: DadosCampanha, iniciativa?: number) => executarAcaoCombate(dados, 'b', { adicionar: { id: 'novo', instancia: reforco, iniciativa } }, data);
+
+test('inclui minion sem iniciativa após o turno atual e preserva progresso e PV de entrada', () => {
+  const origem = avancar(iniciar()); const antes = JSON.stringify(origem);
+  let d = adicionar(origem);
+  expect(JSON.stringify(origem)).toBe(antes);
+  expect(d.combates[0]).toMatchObject({ rodada: 1, participanteAtivoId: 'b', execucao: { visitados: ['a', 'b'] } });
+  expect(d.combates[0].execucao!.pvAtivacao).toContainEqual({ participanteId: 'novo', instanciaId: 'reforco', pv: reforco.pv });
+  expect(d.instancias).toContainEqual(reforco);
+  for (const id of ['novo', 'c', 'd', 'a']) { d = avancar(d); expect(d.combates[0].participanteAtivoId).toBe(id); }
+  expect(d.combates[0].rodada).toBe(2);
+});
+
+test('inclui após o último participante sem antecipar a próxima rodada', () => {
+  let d = adicionar(avancar(avancar(avancar(iniciar()))));
+  d = avancar(d);
+  expect(d.combates[0]).toMatchObject({ rodada: 1, participanteAtivoId: 'novo' });
+  expect(avancar(d).combates[0]).toMatchObject({ rodada: 2, participanteAtivoId: 'a' });
+});
+
+test.each([5, 0, -1, -5])('posiciona iniciativa %s e concede um turno ao reforço na rodada', iniciativa => {
+  let d = adicionar(avancar(iniciar()), iniciativa);
+  const ordem = d.participantes.slice().sort((a, b) => a.ordem - b.ordem);
+  expect(ordem.map(p => p.iniciativa)).toEqual(ordem.map(p => p.iniciativa).sort((a, b) => b - a));
+  const turnos: string[] = [];
+  while (d.combates[0].rodada === 1) { d = avancar(d); if (d.combates[0].rodada === 1) turnos.push(d.combates[0].participanteAtivoId!); }
+  expect(turnos.sort()).toEqual(['c', 'd', 'novo']);
+});
+
+test('adiciona instância existente sem sobrescrever PV e rejeita duplicatas e encontro preparado', () => {
+  const origem = iniciar(); origem.instancias.push({ ...reforco, pv: { atuais: 3, maximos: 5 } });
+  const d = adicionar(origem);
+  expect(d.instancias.filter(i => i.id === reforco.id)).toHaveLength(1);
+  expect(d.participantes.find(p => p.id === 'novo')!.pvInicio).toEqual({ atuais: 3, maximos: 5 });
+  expect(() => executarAcaoCombate(d, 'b', { adicionar: { id: 'outro', instancia: reforco } }, data)).toThrow(/combate ativo/);
+  expect(() => adicionar(preparado())).toThrow(/andamento/);
+  expect(() => adicionar(iniciar(), 1.5)).toThrow(/inteiro/);
+});
+
 test('ativa por ordem estável com empates/negativas e snapshot de PV feridos na ativação', () => {
   const origem = preparado(); origem.instancias[0].pv.atuais = 0;
   const antes = JSON.stringify(origem); const ativo = iniciar(origem);

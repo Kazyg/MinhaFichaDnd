@@ -14,6 +14,28 @@ function dadosTeste(): DadosCampanha {
   };
 }
 
+test('gerenciador inclui minion sem iniciativa e jogador disponível com iniciativa zero', async () => {
+  Object.defineProperty(globalThis, 'crypto', { configurable: true, value: { randomUUID: jest.fn(() => 'novo-id') } });
+  const dados = dadosTeste();
+  dados.instancias.push({ ...dados.instancias[0], id: 'livre', nome: 'Mago' });
+  const adicionar = jest.fn().mockResolvedValue(true);
+  render(<GerenciadorCombates dados={dados} onFechar={jest.fn()} onPreparado={jest.fn()} onRetomar={jest.fn()} onEncerrar={jest.fn()} onHistorico={jest.fn()} onAdicionar={adicionar} />);
+  fireEvent.click(screen.getByRole('button', { name: 'Adicionar combatente' }));
+  expect(screen.getByRole('option', { name: 'Guerreiro (em combate)' })).toBeDisabled();
+  fireEvent.change(screen.getByLabelText('Combatente'), { target: { value: 'minion' } });
+  fireEvent.change(screen.getByLabelText('Nome do minion'), { target: { value: 'Goblin' } });
+  fireEvent.click(screen.getByRole('button', { name: 'Confirmar combatente' }));
+  await waitFor(() => expect(screen.queryByRole('form', { name: 'Adicionar combatente' })).not.toBeInTheDocument());
+  expect(adicionar).toHaveBeenLastCalledWith('a', expect.objectContaining({ instancia: expect.objectContaining({ nome: 'Goblin', pv: { atuais: 1, maximos: 1 } }) }));
+  expect(adicionar.mock.calls[0][1]).not.toHaveProperty('iniciativa');
+  fireEvent.click(screen.getByRole('button', { name: 'Adicionar combatente' }));
+  fireEvent.change(screen.getByLabelText('Combatente'), { target: { value: 'livre' } });
+  fireEvent.change(screen.getByLabelText('Iniciativa (opcional)'), { target: { value: '0' } });
+  fireEvent.click(screen.getByRole('button', { name: 'Confirmar combatente' }));
+  await waitFor(() => expect(adicionar).toHaveBeenCalledTimes(2));
+  expect(adicionar).toHaveBeenLastCalledWith('a', expect.objectContaining({ instancia: dados.instancias[1], iniciativa: 0 }));
+});
+
 test('encerramento exige escolha explícita e mostra snapshot real diferente da vida máxima', async () => {
   const dados = dadosTeste(); const confirmar = jest.fn().mockResolvedValue(true); const fechar = jest.fn();
   render(<EncerrarCombate dados={dados} combateId="a" onFechar={fechar} onConfirmar={confirmar} />);
