@@ -23,6 +23,9 @@ export default function SelecaoArea() {
             <span className="area-card-action">Entrar como jogador <span aria-hidden="true">→</span></span>
           </Link>
         </nav>
+        <footer className="site-credit">
+          <small>Desenvolvido por <span>Kzy</span></small>
+        </footer>
       </div>
     </main>
   );

@@ -17,6 +17,9 @@
 }
 .area-selection::-webkit-scrollbar { display: none; }
 .area-selection-content { width: min(100%, 850px); text-align: center; }
+.site-credit { margin-top: 1.5rem; color: #aaa; text-align: center; }
+.site-credit small { font-size: .75rem; line-height: 1.5; }
+.site-credit span { color: #c4c4c4; font-weight: 600; }
 .areas-eyebrow { color: var(--area-destaque); font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 .area-selection .areas-eyebrow { font-size: clamp(1.5rem, 4vw, 2.5rem); line-height: 1.2; margin: 0 0 1rem; letter-spacing: .06em; }
 .area-selection h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); margin: 1rem 0; }
