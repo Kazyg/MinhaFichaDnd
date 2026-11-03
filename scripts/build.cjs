@@ -11,7 +11,9 @@ function run(script, args = []) {
   if (result.status !== 0) process.exit(result.status || 1);
 }
 run('react-scripts/scripts/build');
+// Control-flow flattening pode descartar argumentos de fetch(...arguments).
+// A verificação do build executa o SDK final para detectar essa regressão.
 run('javascript-obfuscator/bin/javascript-obfuscator', [output, '--output', output,
-  '--compact', 'true', '--control-flow-flattening', 'true',
+  '--compact', 'true', '--control-flow-flattening', 'false',
 
   '--exclude', `${output.replace(/\\/g, '/')}/ocr/**`]);

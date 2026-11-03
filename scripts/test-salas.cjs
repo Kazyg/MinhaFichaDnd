@@ -1,7 +1,7 @@
 /* Testa as políticas reais em PostgreSQL embutido, sem credenciais ou dados reais. */
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
-const { readFileSync } = require('node:fs');
+const { readFileSync, readdirSync } = require('node:fs');
 const path = require('node:path');
 const { PGlite } = require('@electric-sql/pglite');
 
@@ -22,7 +22,8 @@ test('sala online: permissões, publicação, revogação, convites e isolamento
       grant select,insert,delete on storage.objects to authenticated;
       create publication supabase_realtime;
     `);
-    await db.exec(readFileSync(path.join(__dirname, '../supabase/migrations/202611020001_salas.sql'), 'utf8'));
+    const migrations = readdirSync(path.join(__dirname, '../supabase/migrations')).filter(n => n.endsWith('.sql')).sort();
+    await db.exec(readFileSync(path.join(__dirname, '../supabase/migrations', migrations[0]), 'utf8'));
     const owner = '00000000-0000-4000-8000-000000000001'; const guest = '00000000-0000-4000-8000-000000000002';
     const other = '00000000-0000-4000-8000-000000000003'; const stranger = '00000000-0000-4000-8000-000000000004';
     await db.query('insert into auth.users values ($1),($2),($3),($4)', [owner,guest,other,stranger]);
@@ -32,9 +33,21 @@ test('sala online: permissões, publicação, revogação, convites e isolamento
       await db.exec('set role authenticated');
     };
     const call = async (sql, args = []) => (await db.query(sql,args)).rows;
-    await as(owner);
+    await as(owner); // Sala legada criada antes da migração, por login permanente.
     const room = (await call("select public.sala_criar('c','Mesa') id"))[0].id;
     const invite = (await call('select convite from public.sala_config'))[0].convite;
+    const before = (await call('select * from public.salas where id=$1',[room]))[0];
+    await db.exec('reset role');
+    for (const name of migrations.slice(1)) await db.exec(readFileSync(path.join(__dirname, '../supabase/migrations', name), 'utf8'));
+    await as(owner);
+    assert.deepEqual((await call('select * from public.salas where id=$1',[room]))[0], before);
+    assert.equal((await call("select public.sala_criar('c','Outro nome') id"))[0].id, room);
+    assert.equal((await call('select convite from public.sala_config'))[0].convite, invite);
+    await as(owner,true);
+    const second = (await call("select public.sala_criar('segunda','Outra campanha') id"))[0].id;
+    assert.notEqual(second, room);
+    await as(owner,true); // Simula nova requisição/sessão da mesma identidade.
+    assert.equal((await call("select public.sala_criar('c','Mesa') id"))[0].id, room);
     const file = `${room}/${'a'.repeat(64)}`;
     await call("insert into storage.objects(bucket_id,name) values ('sala-arquivos',$1)", [file]);
     const view = { nome: 'Mesa', jogadores: [{ id: 'j0', nome: 'Lia', pv: { atuais: 4, maximos: 20 }, ficha: { id: file, mime: 'application/pdf', nome: 'Ficha do grupo' }, retrato: null }], combate: { imagens: [{ id: 'm0', retrato: null }] } };
@@ -44,7 +57,7 @@ test('sala online: permissões, publicação, revogação, convites e isolamento
     await publish(view);
     await assert.rejects(publish(view), /outra aba/);
     await as(guest,true);
-    await assert.rejects(call("select public.sala_criar('invasao','Invasão')"), /mestre/);
+    await assert.rejects(call("select public.sala_comando($1,'renovar')", [room]), /Apenas o mestre/);
     assert.equal((await call('select * from public.salas')).length,0);
     await call('select public.sala_pedir_entrada($1,$2)', [invite,'Jogador']);
     assert.equal((await call('select * from public.salas')).length,0);
@@ -62,7 +75,10 @@ test('sala online: permissões, publicação, revogação, convites e isolamento
     await as(other);
     assert.equal((await call('select * from public.salas')).length,0);
     assert.equal((await call('select * from storage.objects')).length,0);
-    await as(owner);
+    const foreignRoom = (await call("select public.sala_criar('c','Mesmo ID local, outro dono') id"))[0].id;
+    assert.notEqual(foreignRoom, room);
+    await assert.rejects(call("select public.sala_comando($1,'renovar')",[room]), /Apenas o mestre/);
+    await as(owner,true);
     await publish({ nome: 'Mesa', jogadores: [], combate: null },1);
     await as(guest,true);
     assert.equal((await call('select * from storage.objects')).length,0,'arquivo retirado perde acesso');
@@ -73,9 +89,14 @@ test('sala online: permissões, publicação, revogação, convites e isolamento
     await as(owner);
     await call("select public.sala_comando($1,'desbloquear')",[room]);
     await call("select public.sala_comando($1,'renovar')",[room]);
+    const renewed = (await call('select convite from public.sala_config where sala=$1',[room]))[0].convite;
+    assert.notEqual(renewed, invite);
+    assert.equal((await call("select public.sala_criar('c','Mesa') id"))[0].id, room);
     await as(stranger,true);
     await assert.rejects(call('select public.sala_pedir_entrada($1,$2)',[invite,'Outro']), /indisponível/);
-    await as(owner);
+    assert.equal((await call('select public.sala_pedir_entrada($1,$2) id',[renewed,'Outro']))[0].id, room);
+    assert.equal((await call('select * from public.sala_config')).length,0);
+    await as(owner,true);
     await call("select public.sala_comando($1,'revogar',$2)",[room,guest]);
     await as(guest,true);
     assert.equal((await call('select * from public.salas')).length,0);
@@ -85,5 +106,7 @@ test('sala online: permissões, publicação, revogação, convites e isolamento
     await call("select public.sala_comando($1,'reabrir')",[room]);
     await as(guest,true);
     assert.equal((await call('select * from public.salas')).length,0,'reabrir não reaprova visitantes');
+    await db.exec('reset role; set role anon');
+    await assert.rejects(call("select public.sala_criar('x','Sem sessão')"), /permission denied/);
   } finally { await db.close(); }
 });

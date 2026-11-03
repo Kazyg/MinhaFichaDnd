@@ -3,7 +3,8 @@ import { User } from '@supabase/supabase-js';
 import AccessibleDialog from '../../pages/components/AccessibleDialog';
 import { DadosCampanha } from '../areaMestre/modelos';
 import { EscolhaSala, prepararPublicacao } from './compartilhamento';
-import { ConfigSala, lerConfig, lerMembros, lerSala, linkConvite, Membro, observarSala, obterCliente, publicarSala, rpc, Sala, salaConfigurada } from './cliente';
+import { ConfigSala, lerConfig, lerMembros, lerSala, linkConvite, Membro, observarSala, publicarSala, rpc, Sala, salaConfigurada } from './cliente';
+import { provisionarSala } from './provisionamento';
 import VisaoJogadores from './VisaoJogadores';
 import './salaOnline.css';
 
@@ -12,11 +13,16 @@ const mensagem = (e: unknown) => e instanceof Error ? e.message : 'Não foi poss
 
 export default function SalaMestre({ dados, pronto, aberto, onFechar }: { dados: DadosCampanha; pronto: boolean; aberto: boolean; onFechar: () => void }) {
   const [usuario, setUsuario] = useState<User | null>(null);
-  const [email, setEmail] = useState(''); const [aviso, setAviso] = useState(''); const [erro, setErro] = useState('');
+  const [aviso, setAviso] = useState(''); const [erro, setErro] = useState('');
   const [sala, setSala] = useState<Sala | null>(null); const [config, setConfig] = useState<ConfigSala | null>(null);
   const [membros, setMembros] = useState<Membro[]>([]);
   const [escolha, setEscolha] = useState<EscolhaSala>(escolhaVazia); const [rascunho, setRascunho] = useState<EscolhaSala>(escolhaVazia);
   const [ocupado, setOcupado] = useState(false); const [previa, setPrevia] = useState(false); const [tentativa, setTentativa] = useState(0);
+  const [iniciar, setIniciar] = useState(false);
+  useEffect(() => { if (pronto) setIniciar(true); }, [pronto]);
+  const [inicializando, setInicializando] = useState(false);
+  const [repetirInicio, setRepetirInicio] = useState(0);
+  const nomeCampanha = useRef(dados.campanha.nome); nomeCampanha.current = dados.campanha.nome;
   const [sincronizando, setSincronizando] = useState(false);
   const salaRef = useRef<Sala | null>(null); const montado = useRef(true); const enviando = useRef(false);
   const proximo = useRef<{ dados: DadosCampanha; escolha: EscolhaSala } | null>(null);
@@ -29,32 +35,30 @@ export default function SalaMestre({ dados, pronto, aberto, onFechar }: { dados:
     salaRef.current = valor; setSala(valor);
   }, []);
   const carregar = useCallback(async (id: string, opcoes = false) => {
-    const [nova, pessoas] = await Promise.all([lerSala(id), lerMembros(id)]);
+    const [nova, pessoas, c] = await Promise.all([lerSala(id), lerMembros(id), lerConfig(id)]);
     if (!montado.current) return;
+    if (!nova) { receberSala(null); setConfig(null); throw new Error('Sala indisponível. Tente novamente.'); }
     receberSala(nova); setMembros(pessoas);
     if (opcoes) {
-      const c = await lerConfig(id); if (!montado.current) return;
       revisaoPublicacao.current = nova?.revisao ?? null; envioPausado.current = false;
       setConfig(c); setEscolha(c.escolha); setRascunho(c.escolha);
+    } else {
+      // Outra aba pode renovar o convite sem alterar a seleção em edição aqui.
+      setConfig(atual => atual && atual.convite !== c.convite ? { ...atual, convite: c.convite } : atual);
     }
   }, [receberSala]);
   useEffect(() => {
-    if (!salaConfigurada()) return;
-    const api = obterCliente(); let ativo = true;
-    void api.auth.getUser().then(({ data }) => { if (ativo) setUsuario(data.user); });
-    const { data } = api.auth.onAuthStateChange((_evento, sessao) => { if (ativo) setUsuario(sessao?.user ?? null); });
-    return () => { ativo = false; data.subscription.unsubscribe(); };
-  }, []);
-  useEffect(() => {
-    if (!usuario || usuario.is_anonymous) { receberSala(null); return; }
+    if (!salaConfigurada() || !iniciar || salaRef.current) return;
     let ativo = true;
-    void (async () => {
-      const { data, error } = await obterCliente().from('salas').select('id').eq('campanha_local', campanhaId).eq('dono', usuario.id).maybeSingle();
-      if (error) throw new Error('Não foi possível localizar a sala. Confira a configuração do serviço.');
-      if (ativo && data) await carregar(data.id, true);
-    })().catch(e => { if (ativo) setErro(mensagem(e)); });
+    setInicializando(true); setErro('');
+    void provisionarSala(campanhaId, nomeCampanha.current).then(async ({ id, usuario: dono }) => {
+      if (!ativo) return;
+      await carregar(id, true);
+      if (ativo) setUsuario(dono);
+    }).catch(e => { if (ativo) setErro(mensagem(e)); })
+      .finally(() => { if (ativo) setInicializando(false); });
     return () => { ativo = false; };
-  }, [usuario, campanhaId, carregar, receberSala]);
+  }, [campanhaId, iniciar, carregar, repetirInicio]);
   const salaId = sala?.id;
   useEffect(() => {
     if (!salaId) return;
@@ -70,7 +74,7 @@ export default function SalaMestre({ dados, pronto, aberto, onFechar }: { dados:
   }, [salaId, carregar]);
 
   useEffect(() => {
-    if (!salaId || !sala?.aberta || !config || !pronto || !usuario || usuario.is_anonymous || envioPausado.current) { proximo.current = null; return; }
+    if (!salaId || !sala?.aberta || !config || !pronto || !usuario || envioPausado.current) { proximo.current = null; return; }
     proximo.current = { dados, escolha };
     const timer = setTimeout(() => {
       if (enviando.current) return;
@@ -115,23 +119,28 @@ export default function SalaMestre({ dados, pronto, aberto, onFechar }: { dados:
   const monstros = dados.instancias.filter(i => i.categoria === 'monstro' && dados.participantes.some(p => p.combateId === combate?.id && p.instanciaId === i.id));
   const marcar = (campo: 'jogadores' | 'monstros', id: string, sim: boolean) => setRascunho(atual => ({ ...atual, [campo]: sim ? [...atual[campo], id] : atual[campo].filter(v => v !== id) }));
   const preview = previa ? prepararPublicacao(dados, rascunho) : null;
+  const copiar = () => agir(async () => {
+    if (!config || !sala?.aberta) return;
+    await navigator.clipboard.writeText(linkConvite(config.convite)); setAviso('Link copiado.');
+  });
+  const tentarInicio = <button disabled={inicializando || !pronto} onClick={() => { salaRef.current = null; receberSala(null); setConfig(null); setRepetirInicio(t => t + 1); }}>Tentar novamente</button>;
   return <>
-    {!aberto && erro && <p className="am-erro" role="alert">Sala online: {erro} Abra “Sala online” no menu do mestre para tentar novamente.</p>}
+    {!aberto && <section className="sala-convite-bar" aria-label="Convite da campanha">
+      {!salaConfigurada() ? <p>Salas online indisponíveis. A campanha continua funcionando neste navegador.</p> : sala && config ? <>
+        {sala.aberta ? <><label>Link de convite<input readOnly value={linkConvite(config.convite)} onFocus={e => e.target.select()} /></label>
+          <button className="sala-abrir" disabled={ocupado || sala.bloqueada} onClick={() => void copiar()}>Copiar link</button>
+          {sala.bloqueada && <p>Novas entradas bloqueadas. Gerencie o acesso em Sala online.</p>}</> : <p>Sala encerrada. Reabra pelo menu Sala online para gerar um novo convite.</p>}
+      </> : <p role="status">{inicializando ? 'Preparando convite…' : erro ? 'Sala indisponível no momento.' : 'Aguardando salvar a campanha…'}</p>}
+      {aviso && <p role="status">{aviso}</p>}
+      {erro && <div role="alert">{erro} {!config && tentarInicio}</div>}
+    </section>}
     {aberto && <div className="sala-overlay"><AccessibleDialog className="sala-dialog" aria-label="Sala online" onClose={onFechar}>
       <h2>Sala online</h2><button className="sala-fechar" onClick={onFechar}>Fechar painel</button>
       {!salaConfigurada() ? <p>As salas online ainda não foram ativadas neste site. Sua campanha continua funcionando normalmente.</p> : <>
-        {(!usuario || usuario.is_anonymous) ? <form onSubmit={e => { e.preventDefault(); void agir(async () => {
-          const { error } = await obterCliente().auth.signInWithOtp({ email: email.trim(), options: { emailRedirectTo: `${window.location.origin}/mestre` } });
-          if (error) throw new Error('Não foi possível enviar o link. Confira o e-mail ou tente novamente em alguns instantes.');
-          setAviso('Enviamos um link de acesso ao seu e-mail. Abra-o neste navegador e selecione esta campanha novamente.');
-        }); }}><p>Identifique-se como mestre para administrar sua sala. Os jogadores entram somente com nome e aprovação.</p>
-          <label>Seu e-mail<input type="email" autoComplete="email" required value={email} onChange={e => setEmail(e.target.value)} /></label><button disabled={ocupado}>Receber link de acesso</button>
-        </form> : !sala ? <><p>Compartilhe somente as fichas do grupo e os retratos revelados. A campanha completa permanece neste navegador.</p>
-          <button disabled={ocupado || !pronto} onClick={() => void agir(async () => { const id = await rpc<string>('sala_criar', { p_campanha: campanhaId, p_nome: dados.campanha.nome }); await carregar(id, true); })}>Criar sala desta campanha</button>
-        </> : <>
+        {!sala ? <p role="status">{inicializando ? 'Preparando convite…' : erro ? 'Sala indisponível no momento.' : 'Aguardando salvar a campanha…'}</p> : <>
           <p role="status">{sala.aberta ? sincronizando ? 'Atualizando a sala…' : 'Sala aberta' : 'Sala encerrada'}{!pronto ? ' · aguardando salvar a campanha' : ''}</p>
           {sala.aberta && config && <><label>Link de convite<input readOnly value={linkConvite(config.convite)} onFocus={e => e.target.select()} /></label>
-            <div className="sala-acoes"><button onClick={() => void agir(async () => { await navigator.clipboard.writeText(linkConvite(config.convite)); setAviso('Link copiado.'); })}>Copiar link</button>
+            <div className="sala-acoes"><button disabled={ocupado || sala.bloqueada} onClick={() => void copiar()}>Copiar link</button>
               <button disabled={ocupado || sincronizando} onClick={() => void comando(sala.bloqueada ? 'desbloquear' : 'bloquear')}>{sala.bloqueada ? 'Permitir novas entradas' : 'Bloquear novas entradas'}</button>
               <button disabled={ocupado || sincronizando} onClick={() => void comando('renovar')}>Renovar convite</button></div>
             <p>Renovar invalida o link anterior e recusa as solicitações pendentes. Quem já foi aprovado continua na sala.</p>
@@ -157,7 +166,7 @@ export default function SalaMestre({ dados, pronto, aberto, onFechar }: { dados:
             <button disabled={ocupado || sincronizando} onClick={() => void comando(sala.aberta ? 'encerrar' : 'reabrir')}>{sala.aberta ? 'Encerrar acesso de todos' : 'Reabrir com novo convite'}</button></div>
         </>}
       </>}
-      {aviso && <p role="status">{aviso}</p>}{erro && <p role="alert">{erro}</p>}
+      {aviso && <p role="status">{aviso}</p>}{erro && <div role="alert">{erro} {!config && tentarInicio}</div>}
     </AccessibleDialog></div>}
   </>;
 }

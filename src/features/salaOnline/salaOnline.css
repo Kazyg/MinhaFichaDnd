@@ -33,3 +33,9 @@
 .sala-documento { width: min(1100px, 100%); }
 .sala-documento img, .sala-documento canvas { max-width: 100%; }
 @media (max-width: 500px) { .sala-overlay { padding: .5rem; } .sala-dialog { max-height: 96dvh; } .sala-fechar { float: none; } }
+
+.sala-convite-bar { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; padding: .7rem 1rem; background: #25282c; color: #fff; border-bottom: 1px solid #656565; }
+.sala-convite-bar label { flex: 1 1 280px; font-size: .85rem; }
+.sala-convite-bar input { display: block; width: 100%; box-sizing: border-box; background: #17191c; color: #fff; border: 1px solid #777; padding: .5rem; margin-top: .3rem; }
+.sala-convite-bar p { margin: .25rem 0; }
+.sala-convite-bar [role=alert] { flex-basis: 100%; }
