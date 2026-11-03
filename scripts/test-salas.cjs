@@ -106,8 +106,11 @@ test('sala online: permissões, publicação, revogação, convites e isolamento
     assert.equal((await call('select * from public.salas')).length,0);
     await as(owner);
     await call("select public.sala_comando($1,'encerrar')",[room]);
+    const reserved = (await call('select convite from public.sala_config where sala=$1',[room]))[0].convite;
+    assert.notEqual(reserved, renewed);
     await assert.rejects(publish(view,3), /encerrada/);
     await call("select public.sala_comando($1,'reabrir')",[room]);
+    assert.equal((await call('select convite from public.sala_config where sala=$1',[room]))[0].convite,reserved,'reabrir preserva o convite gerado ao encerrar');
     await as(guest,true);
     assert.equal((await call('select * from public.salas')).length,0,'reabrir não reaprova visitantes');
     await db.exec('reset role; set role anon');

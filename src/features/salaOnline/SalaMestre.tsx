@@ -125,23 +125,25 @@ export default function SalaMestre({ dados, pronto, aberto, onFechar }: { dados:
   });
   const combate = dados.combates.find(c => c.id === rascunho.combateId);
   const monstros = dados.instancias.filter(i => i.categoria === 'monstro' && dados.participantes.some(p => p.combateId === combate?.id && p.instanciaId === i.id));
-  const marcar = (campo: 'jogadores' | 'monstros', id: string, sim: boolean) => setRascunho(atual => ({ ...atual, [campo]: sim ? [...atual[campo], id] : atual[campo].filter(v => v !== id) }));
+  const atualizarEscolha = (nova: EscolhaSala) => { setRascunho(nova); setEscolha(nova); setTentativa(t => t + 1); };
+  const participantesVisiveis = membros.filter(m => m.estado === 'pendente' || m.estado === 'aprovado');
+  const marcar = (id: string, sim: boolean) => atualizarEscolha({ ...rascunho, monstros: sim ? [...rascunho.monstros, id] : rascunho.monstros.filter(v => v !== id) });
   const preview = previa ? prepararPublicacao(dados, rascunho) : null;
   const copiar = () => agir(async () => {
-    if (!config || !sala?.aberta) return;
+    if (!config) return;
     await navigator.clipboard.writeText(linkConvite(config.convite)); setAviso('Link copiado.');
   });
   const tentarInicio = <button disabled={inicializando || !pronto} onClick={() => { salaRef.current = null; receberSala(null); setConfig(null); setRepetirInicio(t => t + 1); }}>Tentar novamente</button>;
   return <>
     {!aberto && membros.some(m => m.estado === 'pendente') && <p className="sala-alerta-pedidos" role="status">{membros.filter(m => m.estado === 'pendente').length} pedido(s) de entrada aguardando aprovação em Sala online.</p>}
     {!aberto && erro && <p className="am-erro" role="alert">Sala online: {erro} Abra Sala online para tentar novamente.</p>}
-    {aberto && <div className="sala-overlay"><AccessibleDialog className="sala-dialog sala-painel-mestre" aria-label="Sala online" onClose={onFechar}>
-      <header className="sala-painel-cabecalho"><div><span className="sala-eyebrow">ÁREA DO MESTRE</span><h2>Sala online</h2><p>{dados.campanha.nome}</p></div><button onClick={onFechar}>Fechar painel</button></header>
+    {aberto && <div className="sala-overlay" data-testid="sala-online-fundo" onClick={e => { if (e.target === e.currentTarget) onFechar(); }}><AccessibleDialog className="sala-dialog sala-painel-mestre" aria-label="Sala online" onClose={onFechar}>
+      <header className="sala-painel-cabecalho"><div><span className="sala-eyebrow">ÁREA DO MESTRE</span><h2>Sala online</h2><p>{dados.campanha.nome}</p></div><button className="sala-fechar-x" aria-label="Fechar sala online" onClick={onFechar}>×</button></header>
       {!salaConfigurada() ? <p>As salas online ainda não foram ativadas neste site. Sua campanha continua funcionando normalmente.</p> : <>
         {!sala ? <p role="status">{inicializando ? 'Preparando convite…' : erro ? 'Sala indisponível no momento.' : 'Aguardando salvar a campanha…'}</p> : <>
           <p className="sala-estado" role="status">{sala.aberta ? sincronizando ? 'Atualizando a sala…' : 'Sala aberta' : 'Sala encerrada'}{!pronto ? ' · aguardando salvar a campanha' : ''}</p>
-          {sala.aberta && config && <section className="sala-card" aria-label="Convite e acesso"><h3>Convide seu grupo</h3><p>Envie o link e aprove os jogadores quando chegarem.</p><label>Link de convite<input readOnly value={linkConvite(config.convite)} onFocus={e => e.target.select()} /></label>
-            <div className="sala-acoes"><button disabled={ocupado || sala.bloqueada} onClick={() => void copiar()}>Copiar link</button>
+          {config && <section className="sala-card" aria-label="Convite e acesso"><h3>{sala.aberta ? 'Convide seu grupo' : 'Novo convite preparado'}</h3><p>{sala.aberta ? 'Envie o link e aprove os jogadores quando chegarem.' : 'O link anterior foi invalidado. Este novo convite funcionará quando você reabrir a sala.'}</p><label>Link de convite<input readOnly value={linkConvite(config.convite)} onFocus={e => e.target.select()} /></label>
+            <div className="sala-acoes"><button disabled={ocupado} onClick={() => void copiar()}>Copiar link</button>
               <button disabled={ocupado || sincronizando} onClick={() => void comando(sala.bloqueada ? 'desbloquear' : 'bloquear')}>{sala.bloqueada ? 'Permitir novas entradas' : 'Bloquear novas entradas'}</button>
               <button disabled={ocupado || sincronizando} onClick={() => void comando('renovar')}>Renovar convite</button></div>
             <p>Renovar invalida o link anterior e recusa as solicitações pendentes. Quem já foi aprovado continua na sala.</p>
@@ -152,21 +154,20 @@ export default function SalaMestre({ dados, pronto, aberto, onFechar }: { dados:
               {!dados.instancias.some(i => i.categoria === 'jogador') && <p>Adicione as fichas dos jogadores à campanha.</p>}
               <small>Para fichas JSON antigas, abra a ficha uma vez na campanha para gerar o PDF.</small>
             </div>
-            <label>Combate exibido<select value={rascunho.combateId ?? ''} onChange={e => setRascunho(v => ({ ...v, combateId: e.target.value || null, monstros: [] }))}><option value="">Nenhum</option>{dados.combates.filter(c => c.estado !== 'encerrado').map((c, i) => <option key={c.id} value={c.id}>{c.nome || `Combate ${i + 1}`} ({c.estado})</option>)}</select></label>
-            {monstros.map(i => <label className="sala-check" key={i.id}><input type="checkbox" checked={rascunho.monstros.includes(i.id)} onChange={e => marcar('monstros', i.id, e.target.checked)} />Revelar retrato: {i.nome}</label>)}
+            <label>Combate exibido<select value={rascunho.combateId ?? ''} onChange={e => atualizarEscolha({ ...rascunho, combateId: e.target.value || null, monstros: [] })}><option value="">Nenhum</option>{dados.combates.filter(c => c.estado !== 'encerrado').map((c, i) => <option key={c.id} value={c.id}>{c.nome || `Combate ${i + 1}`} ({c.estado})</option>)}</select></label>
+            {monstros.map(i => <label className="sala-check" key={i.id}><input type="checkbox" checked={rascunho.monstros.includes(i.id)} onChange={e => marcar(i.id, e.target.checked)} />Revelar retrato: {i.nome}</label>)}
             <p>As imagens selecionadas aparecem quando esse combate é iniciado e somem ao encerrá-lo. A roda mostra os jogadores participantes e somente os monstros revelados. Sem retrato separado, aparece um símbolo neutro.</p>
-            <button onClick={() => { setEscolha(rascunho); setTentativa(t => t + 1); }}>Aplicar compartilhamento</button>
+            <p className="sala-ajuste-automatico">Alterações de visibilidade são sincronizadas automaticamente.</p>
           </fieldset>
           <button onClick={() => setPrevia(v => !v)}>{previa ? 'Fechar prévia' : 'Prévia da seleção para jogadores'}</button>
           {preview && <VisaoJogadores visao={preview.visao} carregar={async arquivo => { const blob = preview.arquivos.get(arquivo.id); if (!blob) throw new Error('Arquivo indisponível'); return blob; }} />}
-          <section className="sala-card" aria-label="Participantes"><h3>Participantes <span className="sala-badge">{membros.filter(m => m.estado === 'pendente').length} pendentes</span></h3><ul className="sala-membros">{[...membros].sort((a, b) => Number(b.estado === 'pendente') - Number(a.estado === 'pendente')).map(m => <li className={'sala-membro sala-membro-' + m.estado} key={m.usuario}><span><strong>{m.nome}</strong> · {m.estado} · {Date.now() - Date.parse(m.visto_em) < 60000 ? 'conectado' : 'ausente'}</span>
+          <section className="sala-card" aria-label="Participantes"><h3>Participantes <span className="sala-badge">{membros.filter(m => m.estado === 'pendente').length} pendentes</span></h3><ul className="sala-membros">{[...participantesVisiveis].sort((a, b) => Number(b.estado === 'pendente') - Number(a.estado === 'pendente')).map(m => <li className={'sala-membro sala-membro-' + m.estado} key={m.usuario}><span><strong>{m.nome}</strong> · {m.estado} · {Date.now() - Date.parse(m.visto_em) < 60000 ? 'conectado' : 'ausente'}</span>
             {m.estado === 'pendente' && <><button disabled={ocupado || !sala.aberta} onClick={() => void comando('aprovar', m.usuario)}>Aprovar {m.nome}</button><button disabled={ocupado} onClick={() => void comando('recusar', m.usuario)}>Recusar</button></>}
             {m.estado === 'aprovado' && <button disabled={ocupado} onClick={() => void comando('revogar', m.usuario)}>Remover {m.nome}</button>}
-            {['revogado','recusado'].includes(m.estado) && <button disabled={ocupado || !sala.aberta} onClick={() => void comando('aprovar', m.usuario)}>Autorizar retorno de {m.nome}</button>}
-          </li>)}</ul>{!membros.length && <p>Nenhuma solicitação ainda. Compartilhe o convite para reunir o grupo.</p>}</section>
+          </li>)}</ul>{!participantesVisiveis.length && <p>Nenhuma solicitação ainda. Compartilhe o convite para reunir o grupo.</p>}</section>
           <div className="sala-acoes sala-rodape"><button disabled={ocupado || sincronizando || !pronto || !sala.aberta} onClick={() => { envioPausado.current = false; setTentativa(t => t + 1); }}>Sincronizar agora</button>
             <button disabled={ocupado || sincronizando} onClick={() => void agir(async () => { await carregar(sala.id, true); ultimoEnvio.current = ''; setTentativa(t => t + 1); })}>Recarregar opções salvas da sala</button>
-            <button disabled={ocupado || sincronizando} onClick={() => void comando(sala.aberta ? 'encerrar' : 'reabrir')}>{sala.aberta ? 'Encerrar acesso de todos' : 'Reabrir com novo convite'}</button></div>
+            <button disabled={ocupado || sincronizando} onClick={() => void comando(sala.aberta ? 'encerrar' : 'reabrir')}>{sala.aberta ? 'Encerrar acesso de todos' : 'Reabrir sala'}</button></div>
         </>}
       </>}
       {aviso && <p role="status">{aviso}</p>}{erro && <div role="alert">{erro} {!config && tentarInicio}</div>}

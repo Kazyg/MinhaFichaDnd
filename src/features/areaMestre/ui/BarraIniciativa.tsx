@@ -1,4 +1,4 @@
-import { PointerEvent, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { ReactNode, PointerEvent, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import AccessibleDialog from '../../../pages/components/AccessibleDialog';
 import { DadosCampanha, ParticipanteCombate } from '../modelos';
 import MiniaturaFicha from './MiniaturaFicha';
@@ -9,6 +9,8 @@ import './condicoes.css';
 import './barraIniciativa.css';
 
 interface Props {
+  somenteLeitura?: boolean;
+  renderRetrato?: (instanciaId: string) => ReactNode;
   dados: DadosCampanha; combateId: string; ocupado: boolean;
   onAvancar: () => Promise<boolean>;
   onReordenar: (ordem: string[]) => Promise<boolean>;
@@ -30,7 +32,7 @@ export function janelaIniciativa(ordem: ParticipanteCombate[], ativo: string | n
   });
 }
 
-export default function BarraIniciativa({ dados, combateId, ocupado, onAvancar, onReordenar, onAbrirParticipante, onEncerrar, onAdicionarCondicao, onEditarCondicao }: Props) {
+export default function BarraIniciativa({ somenteLeitura = false, renderRetrato, dados, combateId, ocupado, onAvancar, onReordenar, onAbrirParticipante, onEncerrar, onAdicionarCondicao, onEditarCondicao }: Props) {
   const combate = dados.combates.find(c => c.id === combateId);
   const participantes = dados.participantes.filter(p => p.combateId === combateId).sort((a, b) => a.ordem - b.ordem);
   const janela = janelaIniciativa(participantes, combate?.participanteAtivoId ?? null, combate?.rodada ?? 1);
@@ -160,11 +162,11 @@ export default function BarraIniciativa({ dados, combateId, ocupado, onAvancar, 
 
         const principal = (!compacto || Math.abs(deslocamento) < 2) && [...janela].filter(item => item.participante.id === p.id).sort((a, b) => Math.abs(a.deslocamento) - Math.abs(b.deslocamento) || b.deslocamento - a.deslocamento)[0].chave === chave;
         const descricaoCopia = principal ? '' : janela.filter(item => item.participante.id === p.id).length > 1 ? ' (repetição visual)' : ' (prévia)';
-        const conteudo = <>{ficha ? <MiniaturaFicha ficha={ficha} anexos={dados.anexos} /> : <span className="am-miniatura am-miniatura-vazia" aria-hidden="true">◆</span>}<span><strong>{instancia.nome}</strong><small>PV {instancia.pv.atuais}/{instancia.pv.maximos}{instancia.pv.atuais === 0 ? ' · 0 PV' : ''}</small></span></>;
-        return <li key={chave} data-ocorrencia={chave} data-iniciativa-real-id={p.id} aria-current={deslocamento === 0 ? 'step' : undefined} aria-label={`${deslocamento === 0 ? 'Turno atual' : deslocamento < 0 ? `Anterior ${-deslocamento}` : `Próximo ${deslocamento}`}: ${instancia.nome}${descricaoCopia}`} title={`Posição real ${p.ordem + 1} · Iniciativa ${p.iniciativa}`} className={`am-iniciativa-cartao${alvo === p.id ? ' am-iniciativa-destino' : ''}${instancia.pv.atuais === 0 ? ' am-iniciativa-zero' : ''}`}>
-          {principal ? <><button type="button" className="am-iniciativa-abrir" disabled={bloqueado} aria-label={`Abrir participante ${instancia.nome}`} onClick={() => onAbrirParticipante(instancia.id)}>{conteudo}</button>{handle(p)}</> : <div className="am-iniciativa-abrir am-iniciativa-copia" aria-hidden="true">{conteudo}</div>}
-          {principal && onAdicionarCondicao && <button type="button" className="am-iniciativa-adicionar-condicao" title="Adicionar condição" aria-label={`Adicionar condição a ${instancia.nome}`} disabled={bloqueado} onClick={() => onAdicionarCondicao(p.id)}>+</button>}
-          {!!condicoes.length && <div className="am-iniciativa-condicoes" aria-hidden={principal ? undefined : true}>{condicoes.slice(0, 2).map(c => {
+        const conteudo = <>{renderRetrato ? renderRetrato(instancia.id) : ficha ? <MiniaturaFicha ficha={ficha} anexos={dados.anexos} /> : <span className="am-miniatura am-miniatura-vazia" aria-hidden="true">◆</span>}<span><strong>{instancia.nome}</strong>{(!somenteLeitura || instancia.categoria === 'jogador') && <small>PV {instancia.pv.atuais}/{instancia.pv.maximos}{instancia.pv.atuais === 0 ? ' · 0 PV' : ''}</small>}</span></>;
+        return <li key={chave} data-ocorrencia={chave} data-iniciativa-real-id={p.id} aria-current={deslocamento === 0 ? 'step' : undefined} aria-label={`${deslocamento === 0 ? 'Turno atual' : deslocamento < 0 ? `Anterior ${-deslocamento}` : `Próximo ${deslocamento}`}: ${instancia.nome}${descricaoCopia}`} title={somenteLeitura ? undefined : `Posição real ${p.ordem + 1} · Iniciativa ${p.iniciativa}`} className={`am-iniciativa-cartao${alvo === p.id ? ' am-iniciativa-destino' : ''}${instancia.pv.atuais === 0 && (!somenteLeitura || instancia.categoria === 'jogador') ? ' am-iniciativa-zero' : ''}`}>
+          {principal ? <><button type="button" className="am-iniciativa-abrir" disabled={bloqueado} aria-label={`Abrir participante ${instancia.nome}`} onClick={() => onAbrirParticipante(instancia.id)}>{conteudo}</button>{!somenteLeitura && handle(p)}</> : <div className="am-iniciativa-abrir am-iniciativa-copia" aria-hidden="true">{conteudo}</div>}
+          {!somenteLeitura && principal && onAdicionarCondicao && <button type="button" className="am-iniciativa-adicionar-condicao" title="Adicionar condição" aria-label={`Adicionar condição a ${instancia.nome}`} disabled={bloqueado} onClick={() => onAdicionarCondicao(p.id)}>+</button>}
+          {!somenteLeitura && !!condicoes.length && <div className="am-iniciativa-condicoes" aria-hidden={principal ? undefined : true}>{condicoes.slice(0, 2).map(c => {
             const catalogo = obterCondicao(c.tipo);
             const descricao = `${nomeCondicao(c)}${c.tipo === 'exaustao' ? ` · nível ${c.nivel}` : ''} · ${c.duracao === 'manual' ? '∞ · duração ilimitada' : `${c.restantes} turnos restantes · ${c.momento === 'inicio' ? 'Início' : 'Final'} do turno`}${c.observacao ? ` · ${c.observacao}` : ''}`;
             const conteudoCondicao = <><IconeCondicao icone={catalogo?.icone} /><span>{c.duracao === 'manual' ? '∞' : c.restantes}</span></>;
@@ -173,13 +175,13 @@ export default function BarraIniciativa({ dados, combateId, ocupado, onAvancar, 
         </li>;
       })}
     </ul></div>
-    <div className="am-iniciativa-acoes">
+    {!somenteLeitura && <div className="am-iniciativa-acoes">
       <button type="button" className="am-primario am-iniciativa-proximo" disabled={bloqueado} onClick={() => void executar(onAvancar, 'Turno avançado.')}>Próximo turno <span aria-hidden="true">→</span></button>
       {onEncerrar && <button type="button" className="am-iniciativa-encerrar" disabled={bloqueado} onClick={onEncerrar}>Encerrar combate</button>}
-    </div>
+    </div>}
     <span role="status" className="am-sr">{nomeAtivo ? `Turno de ${nomeAtivo}. Rodada ${combate.rodada}.` : ''} {mensagem}</span>
     {mensagem.startsWith('Não') && !reorganizar && <p role="alert" className="am-iniciativa-erro">{mensagem}</p>}
-    {reorganizar && <div className="am-overlay"><AccessibleDialog className="am-dialog am-ordem-completa" aria-label="Reorganizar iniciativa" onClose={fecharOrdem}>
+    {!somenteLeitura && reorganizar && <div className="am-overlay"><AccessibleDialog className="am-dialog am-ordem-completa" aria-label="Reorganizar iniciativa" onClose={fecharOrdem}>
       <h2>Reorganizar iniciativa</h2><p>Arraste pelo handle ou escolha a posição real. No handle, use as setas, Home ou End.</p>
       <ol ref={listaCompleta} aria-label="Ordem completa">{participantes.map((p, indice) => {
         const instancia = dados.instancias.find(i => i.id === p.instanciaId)!;

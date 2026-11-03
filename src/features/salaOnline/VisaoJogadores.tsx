@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import BarraIniciativa from '../areaMestre/ui/BarraIniciativa';
+import { DadosCampanha } from '../areaMestre/modelos';
 import AccessibleDialog from '../../pages/components/AccessibleDialog';
 import VisualizadorDocumento from '../areaMestre/ui/VisualizadorDocumento';
 import { ArquivoPublico, VisaoSala } from './compartilhamento';
@@ -33,11 +35,44 @@ function Documento({ arquivo, carregar, fechar }: { arquivo: ArquivoPublico; car
     {blob ? <VisualizadorDocumento anexo={{ id: arquivo.id, campanhaId: 'sala', nome: 'Ficha do grupo', mime: arquivo.mime, tamanho: blob.size, arquivo: blob }} /> : !erro && <p role="status">Carregando ficha…</p>}
   </AccessibleDialog></div>;
 }
+function ImagemAmpliada({ arquivo, carregar, fechar }: { arquivo: ArquivoPublico; carregar: CarregarArquivo; fechar: () => void }) {
+  const [url, setUrl] = useState(''); const [erro, setErro] = useState('');
+  useEffect(() => {
+    let ativo = true; let objeto = '';
+    void carregar(arquivo).then(blob => { if (ativo) { objeto = URL.createObjectURL(blob); setUrl(objeto); } }).catch(() => { if (ativo) setErro('Não foi possível carregar o retrato.'); });
+    return () => { ativo = false; if (objeto) URL.revokeObjectURL(objeto); };
+  }, [arquivo, carregar]);
+  return <div className="sala-overlay sala-imagem-overlay" data-testid="retrato-fundo" onClick={e => { if (e.target === e.currentTarget) fechar(); }}>
+    <AccessibleDialog className="sala-dialog sala-imagem-ampliada" aria-label="Retrato do monstro" onClose={fechar}>
+      <button className="sala-fechar-x" aria-label="Fechar retrato" onClick={fechar}>×</button>
+      {erro ? <p role="alert">{erro}</p> : url ? <img src={url} alt="Retrato do monstro ampliado" /> : <p role="status">Carregando retrato…</p>}
+    </AccessibleDialog>
+  </div>;
+}
+
+// Adapta exclusivamente a projeção pública para o mesmo componente visual do mestre.
+function dadosDaRoda(visao: VisaoSala): DadosCampanha {
+  const roda = visao.combate!.roda!;
+  return {
+    campanha: { id: 'publica', nome: visao.nome, schemaVersion: 1, roteiro: '', criadoEm: '', atualizadoEm: '' },
+    instancias: [
+      ...visao.jogadores.map(j => ({ id: j.id, campanhaId: 'publica', fichaOriginalId: null, categoria: 'jogador' as const, nome: j.nome, pv: j.pv })),
+      ...visao.combate!.imagens.map(m => ({ id: m.id, campanhaId: 'publica', fichaOriginalId: null, categoria: 'monstro' as const, nome: 'Monstro revelado', pv: { atuais: 1, maximos: 1 } })),
+    ],
+    combates: [{ id: 'combate', campanhaId: 'publica', nome: 'Combate', estado: 'ativo', rodada: roda.rodada, participanteAtivoId: roda.ativo, iniciadoEm: '', encerradoEm: null }],
+    participantes: roda.ordem.map((id, ordem) => ({ id, combateId: 'combate', instanciaId: id, iniciativa: 0, ordem, pvInicio: { atuais: 1, maximos: 1 } })),
+    fichas: [], anexos: [], layout: { campanhaId: 'publica', versao: 1, sidebarRecolhida: false, paineis: [] },
+  };
+}
+
 export default function VisaoJogadores({ visao, carregar = carregarArquivoRemoto }: { visao: VisaoSala; carregar?: CarregarArquivo }) {
   const [aberto, setAberto] = useState<ArquivoPublico | null>(null);
+  const [retratoAberto, setRetratoAberto] = useState<ArquivoPublico | null>(null);
+  const retratoPermitido = retratoAberto && visao.combate?.imagens.some(m => m.retrato?.id === retratoAberto.id);
+  useEffect(() => { if (!retratoPermitido) setRetratoAberto(null); }, [retratoPermitido]);
   const permitido = aberto && visao.jogadores.some(j => j.ficha?.id === aberto.id);
   return <div className="sala-visao">
-    <h2>{visao.nome}</h2><p>Fichas e vidas do grupo · alterações feitas pelo mestre</p>
+    <h2 className="sala-titulo-campanha">{visao.nome}</h2>
     <div className="sala-grupo">{visao.jogadores.map(j => <article className="sala-personagem" key={j.id}>
       <Retrato arquivo={j.retrato} carregar={carregar} /><h3>{j.nome}</h3>
       <p className="sala-vida" aria-label={`Vida de ${j.nome}: ${j.pv.atuais} de ${j.pv.maximos}`}><strong>{j.pv.atuais}</strong> / {j.pv.maximos} PV</p>
@@ -46,22 +81,14 @@ export default function VisaoJogadores({ visao, carregar = carregarArquivoRemoto
     </article>)}</div>
     {!visao.jogadores.length && <p>Ainda não há jogadores nesta campanha.</p>}
     {visao.combate && <section className="sala-combate-publico" aria-label="Roda do combate">
-      <header><h2>Roda do combate</h2>{visao.combate.roda && <span className="sala-badge">Rodada {visao.combate.roda.rodada}</span>}</header>
-      {visao.combate.roda ? <>
-        <ol className="sala-roda" aria-label="Ordem dos turnos">{visao.combate.roda.ordem.map(id => {
-          const jogador = visao.jogadores.find(j => j.id === id);
-          const monstro = visao.combate!.imagens.find(m => m.id === id);
-          if (!jogador && !monstro) return null;
-          const atual = visao.combate!.roda!.ativo === id;
-          return <li key={id} aria-current={atual ? 'step' : undefined} className={atual ? 'sala-turno sala-turno-atual' : 'sala-turno'}>
-            <Retrato arquivo={jogador?.retrato ?? monstro?.retrato ?? null} carregar={carregar} />
-            <strong>{jogador?.nome ?? 'Monstro revelado'}</strong>{atual && <span>Sua vez</span>}
-          </li>;
-        })}</ol>
-        {!visao.combate.roda.ordem.length && <p>Aguardando participantes visíveis no combate.</p>}
-        {visao.combate.roda.ativo === null && <p role="status">Aguardando o próximo turno visível.</p>}
-      </> : <div className="sala-monstros">{visao.combate.imagens.map(m => <figure key={m.id}><Retrato arquivo={m.retrato} carregar={carregar} /></figure>)}</div>}
+      {visao.combate.roda && <BarraIniciativa dados={dadosDaRoda(visao)} combateId="combate" ocupado={false} somenteLeitura
+        onAvancar={async () => false} onReordenar={async () => false}
+        onAbrirParticipante={id => { const retrato = visao.combate?.imagens.find(m => m.id === id)?.retrato; if (retrato) setRetratoAberto(retrato); }}
+        renderRetrato={id => <Retrato arquivo={visao.jogadores.find(j => j.id === id)?.retrato ?? visao.combate?.imagens.find(m => m.id === id)?.retrato ?? null} carregar={carregar} />} />}
+      {visao.combate.roda?.ativo === null && <p role="status">Aguardando o próximo turno visível.</p>}
+      <div className="sala-monstros">{visao.combate.imagens.map((m, indice) => <button key={m.id} className="sala-retrato-abrir" disabled={!m.retrato} aria-label={'Ampliar retrato do monstro ' + (indice + 1)} onClick={() => setRetratoAberto(m.retrato)}><Retrato arquivo={m.retrato} carregar={carregar} /></button>)}</div>
     </section>}
+    {retratoAberto && retratoPermitido && <ImagemAmpliada key={retratoAberto.id} arquivo={retratoAberto} carregar={carregar} fechar={() => setRetratoAberto(null)} />}
     {aberto && permitido && <Documento arquivo={aberto} carregar={carregar} fechar={() => setAberto(null)} />}
   </div>;
 }
