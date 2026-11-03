@@ -1,0 +1,2472 @@
+[
+  {
+    "file": "src/api/fichaPersonagem/backgroundOuroFluxo.test.tsx",
+    "line": 24,
+    "test": "ficha salva: escolha na interface credita 15 PO, persiste e não duplica ao reabrir",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege ficha salva: escolha na interface credita 15 PO, persiste e não duplica ao reabrir. Evidência observável: expect(await screen.findByText('Ouro: 0')).toBeInTheDocument(); expect(screen.queryByText(/Ficha antiga sem origem/)).not.toBeInTheDocument();",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/catalogoEquipamentosMagicos.test.tsx",
+    "line": 25,
+    "test": "melhoria %s %s não cria equipamento antes de vincular",
+    "parameter": "test.each(registros.filter(r => r.metadados.modo === 'melhoria').map(r => [r.indice, r.nomeIngles] as const))",
+    "category": "A",
+    "justification": "Protege melhoria [parâmetro] [parâmetro] não cria equipamento antes de vincular. Evidência observável: expect(origem.nomeIngles).toBe(nome); expect(f.itensMochila![0].equipamentoMagico?.modo).toBe('melhoria');",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/catalogoEquipamentosMagicos.test.tsx",
+    "line": 33,
+    "test": "registro %s %s: identificação, representação única e JSON",
+    "parameter": "test.each(registros.filter(r => r.metadados.modo === 'especifico').map(r => [r.indice, r.nomeIngles] as const))",
+    "category": "A",
+    "justification": "Protege registro [parâmetro] [parâmetro]: identificação, representação única e JSON. Evidência observável: expect(origem.nomeIngles).toBe(nome); expect(vinculo.tipo === 'arma' ? f.ArmasMochila : f.ArmadurasMochila).toEqual([]);",
+    "action": "Manter",
+    "assertions": 13
+  },
+  {
+    "file": "src/api/fichaPersonagem/catalogoEquipamentosMagicos.test.tsx",
+    "line": 62,
+    "test": "Foice Lunar +%s tem bônus locais, magias das classes corretas e exige segurar/sintonizar",
+    "parameter": "test.each([1, 2, 3])",
+    "category": "A",
+    "justification": "Protege Foice Lunar +[parâmetro] tem bônus locais, magias das classes corretas e exige segurar/sintonizar. Evidência observável: expect(foice.dano).toEqual(armas.find(a => a.nome === 'Foice Curta')!.dano); expect(f.itensSintonizados).toEqual([]);",
+    "action": "Manter",
+    "assertions": 16
+  },
+  {
+    "file": "src/api/fichaPersonagem/catalogoEquipamentosMagicos.test.tsx",
+    "line": 90,
+    "test": "Foice Lunar migra efeitos antigos sem duplicar bônus mágicos ou expandir seu alcance",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege Foice Lunar migra efeitos antigos sem duplicar bônus mágicos ou expandir seu alcance. Evidência observável: expect(calcularBonusMagiaPorClasse(reabrir(f), 'ataque_magia', 'druida')).toBe(1); expect(calcularBonusMagiaPorClasse(reabrir(f), 'ataque_magia', 'mago')).toBe(0);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/catalogoEquipamentosMagicos.test.tsx",
+    "line": 98,
+    "test": "escudo %s não ganha bônus permanente por raridade ou condição",
+    "parameter": "test.each(['Animated Shield', 'Sentinel Shield', 'Spellguard Shield', 'Arrow-Catching Shield', 'Shield of Missile Attraction', 'Pariah\\'s Shield'])",
+    "category": "A",
+    "justification": "Protege escudo [parâmetro] não ganha bônus permanente por raridade ou condição. Evidência observável: expect(s.ac).toBe(2); expect(f.ArmadurasMochila).toEqual([]);",
+    "action": "Manter",
+    "assertions": 7
+  },
+  {
+    "file": "src/api/fichaPersonagem/catalogoEquipamentosMagicos.test.tsx",
+    "line": 111,
+    "test": "armadura mágica fixa e alternativas compatíveis preservam CA e efeitos próprios",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege armadura mágica fixa e alternativas compatíveis preservam CA e efeitos próprios. Evidência observável: expect(selecionarCA(f).total).toBe(17); expect(f.selecionarBaseEquipamentoMagico(mithral.id, 'Peitoral')).toBe(true);",
+    "action": "Manter",
+    "assertions": 7
+  },
+  {
+    "file": "src/api/fichaPersonagem/catalogoEquipamentosMagicos.test.tsx",
+    "line": 126,
+    "test": "espadas com bases alternativas têm escolha explícita e não inventam bônus para iluminação/chamas",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege espadas com bases alternativas têm escolha explícita e não inventam bônus para iluminação/chamas. Evidência observável: expect(f.ArmasMochila).toBeNull(); expect(selecionarArma(f, f.ArmasMochila![2]).ataque).toBe(5);",
+    "action": "Manter",
+    "assertions": 7
+  },
+  {
+    "file": "src/api/fichaPersonagem/catalogoEquipamentosMagicos.test.tsx",
+    "line": 142,
+    "test": "Lâmina Solar preserva dano radiante, Acuidade e proficiência em espada curta",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege Lâmina Solar preserva dano radiante, Acuidade e proficiência em espada curta. Evidência observável: expect(a).toMatchObject({ dano_tipo: 'Radiante', dano: armas.find(a => a.nome === 'Espada Longa')!.dano }); expect(selecionarArma(f, a)).toMatchObject({ ataque: 8, formula: '1d8 +6', proficiente: true });",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/catalogoEquipamentosMagicos.test.tsx",
+    "line": 151,
+    "test": "cajado do poder aplica bônus próprios e CA uma única vez, só equipado e sintonizado",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege cajado do poder aplica bônus próprios e CA uma única vez, só equipado e sintonizado. Evidência observável: expect(selecionarArma(f, a).ataque).toBe(4); expect(calcularBonusMagiaPorClasse(f, 'ataque_magia', 'mago')).toBe(0);",
+    "action": "Manter",
+    "assertions": 6
+  },
+  {
+    "file": "src/api/fichaPersonagem/catalogoEquipamentosMagicos.test.tsx",
+    "line": 164,
+    "test": "edições duplicadas são registros distintos e dados incompletos não assumem uma variante segura",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege edições duplicadas são registros distintos e dados incompletos não assumem uma variante segura. Evidência observável: expect(sol.map(i => i.equipamentoMagico?.edicao)).toEqual(['DND_2014', 'DND_2024']); expect(reabrir(f).ArmasMochila).toBeNull();",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/catalogoEquipamentosMagicos.test.tsx",
+    "line": 174,
+    "test": "itens comuns não criam equipamentos e cópias de um escudo mágico não compartilham estados",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege itens comuns não criam equipamentos e cópias de um escudo mágico não compartilham estados. Evidência observável: expect(f.ArmasMochila).toBeNull(); expect(itemEstaEquipado(f, b)).toBe(true);",
+    "action": "Manter",
+    "assertions": 8
+  },
+  {
+    "file": "src/api/fichaPersonagem/catalogoEquipamentosMagicos.test.tsx",
+    "line": 185,
+    "test": "propriedades compactas atendem hover, teclado e toque sem confirmações narrativas",
+    "parameter": null,
+    "category": "B",
+    "justification": "Verifica foco, Escape, clique e conteúdo do tooltip; a interação hover anunciada no título nunca acontece.",
+    "action": "Exercitar mouseEnter/mouseLeave e preservar verificações de teclado/toque.",
+    "assertions": 12
+  },
+  {
+    "file": "src/api/fichaPersonagem/catalogoEquipamentosMagicos.test.tsx",
+    "line": 212,
+    "test": "sintonização preserva o limite mecânico sem verificar requisitos narrativos antigos",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege sintonização preserva o limite mecânico sem verificar requisitos narrativos antigos. Evidência observável: expect(f.setSintonizarItem(objetos[3].id, true)).toBe(false); expect(reabrir(f).getItensSintonizadosEquipados()).toHaveLength(3);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/catalogoEquipamentosMagicos.test.tsx",
+    "line": 221,
+    "test": "normalização legada reconhece o nome traduzido sem criar cópias na mochila",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege normalização legada reconhece o nome traduzido sem criar cópias na mochila. Evidência observável: expect(f.ArmasMochila).toHaveLength(1); expect(reabrir(f).ArmasMochila).toHaveLength(1);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/catalogoEquipamentosMagicos.test.tsx",
+    "line": 232,
+    "test": "modificadores especiais de atributo só funcionam quando o equipamento está ativo",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege modificadores especiais de atributo só funcionam quando o equipamento está ativo. Evidência observável: expect(selecionarArma(f, a).ataque).toBe(5); expect(selecionarArma(f, espada).ataque).toBe(2);",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/catalogoEquipamentosMagicos.test.tsx",
+    "line": 246,
+    "test": "equipamento mecânico sem encantamento não é promovido a arma mágica por raridade desconhecida",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege equipamento mecânico sem encantamento não é promovido a arma mágica por raridade desconhecida. Evidência observável: expect(i.equipamentoMagico).toBeUndefined(); expect(reabrir(f).ArmasMochila).toBeNull();",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/catalogoEquipamentosMagicos.test.tsx",
+    "line": 253,
+    "test": "%s integra a função explícita de maça sem bônus globais",
+    "parameter": "test.each(['Rod of Lordly Might', 'Witchlight Vane'])",
+    "category": "A",
+    "justification": "Protege [parâmetro] integra a função explícita de maça sem bônus globais. Evidência observável: expect(maca.dano).toEqual(armas.find(a => a.nome === 'Maça')!.dano); expect(selecionarArma(f, outra)).toEqual(antes);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/catalogoEquipamentosMagicos.test.tsx",
+    "line": 263,
+    "test": "arma especial com dados próprios preserva o dano declarado sem somar o dano condicional",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege arma especial com dados próprios preserva o dano declarado sem somar o dano condicional. Evidência observável: expect(selecionarArma(f, a)).toMatchObject({ ataque: 3, formula: '3d12 +3' });",
+    "action": "Manter",
+    "assertions": 1
+  },
+  {
+    "file": "src/api/fichaPersonagem/catalogoEquipamentosMagicos.test.tsx",
+    "line": 269,
+    "test": "Foice Lunar reconhece a proficiência real de druida em foice, inclusive sem sintonização",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege Foice Lunar reconhece a proficiência real de druida em foice, inclusive sem sintonização. Evidência observável: expect(selecionarArma(f, a)).toMatchObject({ ataque: 4, proficiente: true }); expect(selecionarArma(f, a)).toMatchObject({ ataque: 5, formula: '1d4 +3', proficiente: true });",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/conteudoVersionado.test.js",
+    "line": 39,
+    "test": "edições e revisões desconhecidas não caem no catálogo legado nem na revisão atual",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege edições e revisões desconhecidas não caem no catálogo legado nem na revisão atual. Evidência observável: expect(() => getRulesetData('DND_2030')).toThrow(/não suportada/); expect(buscarMagiaConteudo('DND_2014', 'Raio de Fogo')).toBeDefined();",
+    "action": "Manter",
+    "assertions": 8
+  },
+  {
+    "file": "src/api/fichaPersonagem/conteudoVersionado.test.js",
+    "line": 52,
+    "test": "catálogos têm identidade, fonte, revisão, licença e categoria; legado não é certificado",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege catálogos têm identidade, fonte, revisão, licença e categoria; legado não é certificado. Evidência observável: expect(new Set(registros.map(c => `${c.id}@${c.revisao}`)).size).toBe(registros.length); expect(buscarTalentoConteudo('DND_2024', 'Alerta')).toMatchObject({ natureza: 'oficial', licenca: 'CC-BY-4.0', categoria: 'Origin' });",
+    "action": "Manter",
+    "assertions": 10
+  },
+  {
+    "file": "src/api/fichaPersonagem/conteudoVersionado.test.js",
+    "line": 70,
+    "test": "Curar Ferimentos %s: escola, fórmula, escalonamento e alvos",
+    "parameter": "test.each([\r\n  ['DND_2014', 'evocação', '1d8+3', '3d8+3', null],\r\n  ['DND_2024', 'abjuração', '2d8+3', '6d8+3', '2d8+3'],\r\n])",
+    "category": "A",
+    "justification": "Protege Curar Ferimentos [parâmetro]: escola, fórmula, escalonamento e alvos. Evidência observável: expect(m.tipo).toBe(escola); expect(formulaCura({ ...m, revisao: 'ausente' }, 1, 3)).toBeNull();",
+    "action": "Manter",
+    "assertions": 6
+  },
+  {
+    "file": "src/api/fichaPersonagem/conteudoVersionado.test.js",
+    "line": 83,
+    "test": "Alerta %s aplica benefício por edição, nível ativo e mantém JSON",
+    "parameter": "test.each([['DND_2014', 'ALERTA', 7, 7], ['DND_2024', 'Alerta', 4, 5]])",
+    "category": "A",
+    "justification": "Protege Alerta [parâmetro] aplica benefício por edição, nível ativo e mantém JSON. Evidência observável: expect(f.selecionarTalentoAvanco(4, nome)).toBe(true); expect(selecionarIniciativa(f).total).toBe(2);",
+    "action": "Manter",
+    "assertions": 7
+  },
+  {
+    "file": "src/api/fichaPersonagem/conteudoVersionado.test.js",
+    "line": 96,
+    "test": "talento antigo não ganha automaticamente efeitos nem texto de 2024 ao reabrir",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege talento antigo não ganha automaticamente efeitos nem texto de 2024 ao reabrir. Evidência observável: expect(salvo.efeitos[0].conteudo).toBeUndefined(); expect(descreverTalentoSalvo(e)).toBe('');",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/conteudoVersionado.test.js",
+    "line": 108,
+    "test": "referência desconhecida preserva snapshot e bloqueia benefício automático",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege referência desconhecida preserva snapshot e bloqueia benefício automático. Evidência observável: expect(f.selecionarTalentoAvanco(4, 'Alerta')).toBe(true); expect(descreverTalentoSalvo(restaurada.efeitos[0])).toBe(f.efeitos[0].talentoSnapshot.descricao);",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/conteudoVersionado.test.js",
+    "line": 118,
+    "test": "Imobilizador valida nível, FOR ou DES, escolha, teto e repetibilidade antes de mudar estado",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege Imobilizador valida nível, FOR ou DES, escolha, teto e repetibilidade antes de mudar estado. Evidência observável: expect(erroTalento(f, 3, t, ['forca'])).toMatch(/nível 4/); expect(f.selecionarTalentoAvanco(4, t.nome, ['destreza'])).toBe(false);",
+    "action": "Manter",
+    "assertions": 10
+  },
+  {
+    "file": "src/api/fichaPersonagem/conteudoVersionado.test.js",
+    "line": 137,
+    "test": "aumento futuro não habilita requisito anterior; ASI/talento substituem apenas seu avanço",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege aumento futuro não habilita requisito anterior; ASI/talento substituem apenas seu avanço. Evidência observável: expect(f.aplicarAumentoAtributos(8, ['forca', 'forca'])).toBe(true); expect(f.escolhasAnteriores.at(-1).valor[0].conteudo.id).toMatch(/imobilizador/);",
+    "action": "Manter",
+    "assertions": 6
+  },
+  {
+    "file": "src/api/fichaPersonagem/conteudoVersionado.test.js",
+    "line": 149,
+    "test": "ASI retroativo respeita teto de um talento posterior",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege ASI retroativo respeita teto de um talento posterior. Evidência observável: expect(f.selecionarTalentoAvanco(8, 'Imobilizador', ['forca'])).toBe(true); expect(calcularValorAtributoFinal(f, 'forca')).toBe(19);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/conteudoVersionado.test.js",
+    "line": 157,
+    "test": "Habilidoso requer três escolhas válidas, concede perícias/ferramentas, repete com novas escolhas",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege Habilidoso requer três escolhas válidas, concede perícias/ferramentas, repete com novas escolhas. Evidência observável: expect(f.selecionarTalentoAvanco(4, 'Habilidoso', escolhas)).toBe(false); expect(selecionarPericia(f, 'Medicina', 'sabedoria').treinada).toBe(true);",
+    "action": "Manter",
+    "assertions": 11
+  },
+  {
+    "file": "src/api/fichaPersonagem/conteudoVersionado.test.js",
+    "line": 175,
+    "test": "Humano 2024 aceita só Origem, impede duplicata e não oferece placeholders",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege Humano 2024 aceita só Origem, impede duplicata e não oferece placeholders. Evidência observável: expect(selecionarTalentoInicial(f, 'TalentoOrigemHumano', 'Imobilizador', ['forca'])).toMatch(/categoria Origin/); expect(selecionarTalentoInicial(f, 'titulo-forjado', 'Alerta')).toMatch(/não concede/);",
+    "action": "Manter",
+    "assertions": 6
+  },
+  {
+    "file": "src/api/fichaPersonagem/conteudoVersionado.test.js",
+    "line": 185,
+    "test": "magia nova %s guarda referência e snapshot na exportação/reabertura",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "A",
+    "justification": "Protege magia nova [parâmetro] guarda referência e snapshot na exportação/reabertura. Evidência observável: expect(adicionarMagia(f, fonte(f), 'Curar Ferimentos')).toBeNull(); expect(pendenciasMagia(salvo, salvo.magiasConjuracao[0])).toEqual([]);",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/conteudoVersionado.test.js",
+    "line": 196,
+    "test": "magia legada 2014 em ficha 2024 mantém significado; revisão explícita arquiva antes de converter",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege magia legada 2014 em ficha 2024 mantém significado; revisão explícita arquiva antes de converter. Evidência observável: expect(resolverMagiaSalva(antiga).tipo).toBe('evocação'); expect(reabrir(salvo).magiasConjuracao).toEqual(salvo.magiasConjuracao);",
+    "action": "Manter",
+    "assertions": 6
+  },
+  {
+    "file": "src/api/fichaPersonagem/conteudoVersionado.test.js",
+    "line": 209,
+    "test": "magia com revisão desconhecida não prepara nem resolve por nome; importação preserva referência",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege magia com revisão desconhecida não prepara nem resolve por nome; importação preserva referência. Evidência observável: expect(adicionarMagia(f, fonte(f), 'Detectar Magia')).toBeNull(); expect(salvo.magiasConjuracao[0].snapshot).toEqual(f.magiasConjuracao[0].snapshot);",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/conteudoVersionado.test.js",
+    "line": 220,
+    "test": "importação recusa referência malformada e escolhas que quebrariam UI; revisão desconhecida válida fica pendente",
+    "parameter": null,
+    "category": "B",
+    "justification": "Rejeita referência malformada e escolhas inválidas, mas não inclui revisão desconhecida válida nem verifica pendência, apesar do título.",
+    "action": "Adicionar roundtrip válido com revisão futura, snapshot preservado e benefício inativo.",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/conteudoVersionado.test.js",
+    "line": 229,
+    "test": "modal de talento preserva metadados, exige escolhas e só fecha depois de sucesso",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege modal de talento preserva metadados, exige escolhas e só fecha depois de sucesso. Evidência observável: expect(botao).toBeDisabled(); expect(fechar).not.toHaveBeenCalled();",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/conteudoVersionado.test.js",
+    "line": 242,
+    "test": "talento de origem com escolhas obrigatórias pode ser concluído na UI e reaberto",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege talento de origem com escolhas obrigatórias pode ser concluído na UI e reaberto. Evidência observável: expect(mockFicha.efeitos.find(e => e.tituloEfeito === 'TalentoOrigem').escolhasTalento).toHaveLength(3); expect(selecionarPericia(reabrir(mockFicha), 'Acrobacia', 'destreza').treinada).toBe(true);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/conteudoVersionado.test.js",
+    "line": 253,
+    "test": "modal de magia 2024 exibe a versão correta e calcula a fórmula escolhida",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege modal de magia 2024 exibe a versão correta e calcula a fórmula escolhida. Evidência observável: expect(screen.getByRole('button', { name:'Escola: abjuração' })).toBeInTheDocument(); expect(screen.queryByLabelText('Modificador de conjuração')).not.toBeInTheDocument();",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/conteudoVersionado.test.js",
+    "line": 264,
+    "test": "detalhes de uma escolha legada mostram texto 2014; edição da ficha não a substitui",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege detalhes de uma escolha legada mostram texto 2014; edição da ficha não a substitui. Evidência observável: expect(screen.getByRole('button', { name:'Escola: evocação' })).toBeInTheDocument(); expect(screen.getByRole('article', { name:'Curar Ferimentos' }).textContent).toContain('2014');",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/conteudoVersionado.test.js",
+    "line": 275,
+    "test": "aba de detalhes e descrição de talento não usam Alerta 2014 em escolha 2024",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege aba de detalhes e descrição de talento não usam Alerta 2014 em escolha 2024. Evidência observável: expect(screen.getByText(/Some seu bônus de proficiência à iniciativa/)).toBeInTheDocument();",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/conteudoVersionado.test.js",
+    "line": 287,
+    "test": "detalhes preservam aquisições repetidas e atualizam após mutação da mesma ficha",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege detalhes preservam aquisições repetidas e atualizam após mutação da mesma ficha. Evidência observável: expect(screen.getAllByRole('button', { name: 'Habilidoso' })).toHaveLength(1); expect(screen.getByText('Escolhas: Medicina, História, Furtividade')).toBeInTheDocument();",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/conteudoVersionado.test.js",
+    "line": 299,
+    "test": "características de classe sem versão revisada não usam texto legado como fallback",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege características de classe sem versão revisada não usam texto legado como fallback. Evidência observável: expect(descricaoLegada).toContain('ferocidade primitiva'); expect(descricaoCaracteristica('Pacto da Corrente', 'DND_2030')).toMatch(/desconhecida/);",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/conteudoVersionado.test.js",
+    "line": 309,
+    "test": "PDF real identifica conteúdo, revisão, escolhas e legado 2014 em ficha 2024",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege PDF real identifica conteúdo, revisão, escolhas e legado 2014 em ficha 2024. Evidência observável: expect((await PDFDocument.load(bytes)).getPageCount()).toBeGreaterThanOrEqual(3); expect(selecionarPericia(f, 'Adestrar Animais', 'sabedoria').treinada).toBe(true);",
+    "action": "Manter",
+    "assertions": 6
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConcessoesIniciais.test.ts",
+    "line": 13,
+    "test": "proficiência do Anão não concede %s",
+    "parameter": "test.each(['ferramentas de ferreiro', 'suprimentos de cervejeiro', 'ferramentas de pedreiro'])",
+    "category": "A",
+    "justification": "Protege proficiência do Anão não concede [parâmetro]. Evidência observável: expect(f.itensMochila ?? []).toHaveLength(0); expect(f.ouro).toBe(0);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConcessoesIniciais.test.ts",
+    "line": 23,
+    "test": "Acólito: equipamentos, cinco incensos e 15 PO sem recipiente; seleção e JSON idempotentes",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege Acólito: equipamentos, cinco incensos e 15 PO sem recipiente; seleção e JSON idempotentes. Evidência observável: expect(f.ouro).toBe(15); expect(f.itensMochila?.map(i => i.id)).toEqual(ids);",
+    "action": "Manter",
+    "assertions": 8
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConcessoesIniciais.test.ts",
+    "line": 41,
+    "test": "troca remove somente instâncias concedidas e preserva progressão",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege troca remove somente instâncias concedidas e preserva progressão. Evidência observável: expect(f.itensMochila?.some(i => i.id === manual.id)).toBe(true); expect(f.talentos).toEqual(['teste']);",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConcessoesIniciais.test.ts",
+    "line": 55,
+    "test": "gastos não são recuperados alternando backgrounds; receitas manuais persistem",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege gastos não são recuperados alternando backgrounds; receitas manuais persistem. Evidência observável: expect(f.ouro).toBe(108);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConcessoesIniciais.test.ts",
+    "line": 69,
+    "test": "saldo de concessão já creditada sem histórico não é sobrescrito",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege saldo de concessão já creditada sem histórico não é sobrescrito. Evidência observável: expect(f.ouro).toBe(2); expect(f.concessoesIniciais?.revisao).toBeTruthy();",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConcessoesIniciais.test.ts",
+    "line": 78,
+    "test": "seleção explícita de Acólito salvo credita 15 PO uma vez, preservando saldo e itens",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege seleção explícita de Acólito salvo credita 15 PO uma vez, preservando saldo e itens. Evidência observável: expect(f.ouro).toBe(9);",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConcessoesIniciais.test.ts",
+    "line": 93,
+    "test": "registro legado bloqueado pela implementação anterior recebe crédito na próxima seleção",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege registro legado bloqueado pela implementação anterior recebe crédito na próxima seleção. Evidência observável: expect(f.ouro).toBe(15);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConcessoesIniciais.test.ts",
+    "line": 107,
+    "test": "2024 concede sua lista ou 50 PO, nunca as duas alternativas",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege 2024 concede sua lista ou 50 PO, nunca as duas alternativas. Evidência observável: expect(f.ouro).toBe(8); expect(f.ouro).toBe(50);",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConcessoesIniciais.test.ts",
+    "line": 120,
+    "test": "armas e armaduras usam modelos e instâncias distintas; outras moedas são estruturadas",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege armas e armaduras usam modelos e instâncias distintas; outras moedas são estruturadas. Evidência observável: expect(f.ArmasMochila).toHaveLength(2); expect(f.cobre).toBe(0);",
+    "action": "Manter",
+    "assertions": 8
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConcessoesIniciais.test.ts",
+    "line": 136,
+    "test": "remover item concedido e reselecionar não restaura objetos consumidos",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege remover item concedido e reselecionar não restaura objetos consumidos. Evidência observável: expect(f.itensMochila?.map(i => i.id)).toEqual(ids);",
+    "action": "Manter",
+    "assertions": 1
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConcessoesIniciais.test.ts",
+    "line": 145,
+    "test": "troca preserva saldo negativo preexistente sem apagar operações manuais",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege troca preserva saldo negativo preexistente sem apagar operações manuais. Evidência observável: expect(f.ouro).toBe(-5); expect(f.concessoesIniciais?.revisao).toBeTruthy();",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConcessoesIniciais.test.ts",
+    "line": 154,
+    "test": "importação rejeita quantidade excessiva e moeda negativa em concessões",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege importação rejeita quantidade excessiva e moeda negativa em concessões. Evidência observável: expect(() => roundtrip(f)).toThrow();",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConjuracao.test.js",
+    "line": 37,
+    "test": "%s %j: tabela correta e equivalência antes/depois de JSON",
+    "parameter": "test.each([\r\n  ['DND_2024', [['paladino',1]], [2]],\r\n  ['DND_2014', [['paladino',3]], [3]],\r\n  ['DND_2024', [['mago',1],['paladino',1]], [3]],\r\n  ['DND_2014', [['mago',1],['paladino',2]], [3]],\r\n  ['DND_2014', [['mago',1],['paladino',1]], [2]],\r\n  ['DND_2024', [['mago',5]], [4,3,2]],\r\n  ['DND_2014', [['mago',5]], [4,3,2]],\r\n  ['DND_2014', [['paladino',3],['guerreiro',1]], [3]],\r\n  ['DND_2024', [['mago',1],['paladino',3]], [4,2]],\r\n  ['DND_2014', [['mago',1],['paladino',3]], [3]],\r\n])",
+    "category": "A",
+    "justification": "Protege [parâmetro] [parâmetro]: tabela correta e equivalência antes/depois de JSON. Evidência observável: expect(selecionarPoolsMagia(f)[0].espacos).toEqual(esperado); expect(JSON.stringify(f)).toBe(antes);",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConjuracao.test.js",
+    "line": 57,
+    "test": "Bruxo3 %s: Pacto separado mesmo junto de Mago5",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "A",
+    "justification": "Protege Bruxo3 [parâmetro]: Pacto separado mesmo junto de Mago5. Evidência observável: expect(selecionarPoolsMagia(f)).toEqual([expect.objectContaining({ espacos: [0,2], recuperacao: 'Descanso curto ou longo' })]); expect(resumo(roundtrip(f))).toEqual(resumo(f));",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConjuracao.test.js",
+    "line": 67,
+    "test": "subclasse %s %s%d: fonte própria, INT, tabela e JSON",
+    "parameter": "test.each(['DND_2014','DND_2024'].flatMap(e => ['guerreiro','ladino'].flatMap(c => [3,4,7,10,13,16,19,20].map(n => [e,c,n]))))",
+    "category": "A",
+    "justification": "Protege subclasse [parâmetro] [parâmetro][parâmetro]: fonte própria, INT, tabela e JSON. Evidência observável: expect(fonte(f,chave)).toMatchObject({ atributo: 'inteligencia', lista: 'mago', espacos: esperado, categoria: edicao === 'DND_2014' ? 'conhecida' : 'preparada' }); expect(selecionarFontesConjuracao(f)).toEqual([]);",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConjuracao.test.js",
+    "line": 77,
+    "test": "multiclasse arcana usa terço arredondado para baixo; uma só fonte usa sua tabela",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege multiclasse arcana usa terço arredondado para baixo; uma só fonte usa sua tabela. Evidência observável: expect(selecionarPoolsMagia(f)[0].espacos).toEqual([3]); expect(fonte(f, 'guerreiro').espacos).toEqual([3]);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConjuracao.test.js",
+    "line": 83,
+    "test": "Mago2014 INT16/SAB10 prepara4: livro, cópias e truques independentes",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege Mago2014 INT16/SAB10 prepara4: livro, cópias e truques independentes. Evidência observável: expect(s).toMatchObject({ magias: 4, truques: 3, livroPorProgressao: 6, cd: 13, ataque: 5 }); expect(f.magiasConjuracao[0].preparada).toBe(true);",
+    "action": "Manter",
+    "assertions": 13
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConjuracao.test.js",
+    "line": 107,
+    "test": "atributos finais F5 e nível ativo F4 definem preparação/CD; consultas não alteram ordem",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege atributos finais F5 e nível ativo F4 definem preparação/CD; consultas não alteram ordem. Evidência observável: expect(fonte(f,'mago')).toMatchObject({ magias: 9, cd: 15 }); expect(fonte(f,'mago')).toMatchObject({ magias: 4, cd: 13 });",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConjuracao.test.js",
+    "line": 118,
+    "test": "mesma magia em duas fontes; exclusão por origem; slots altos não liberam aprendizado",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege mesma magia em duas fontes; exclusão por origem; slots altos não liberam aprendizado. Evidência observável: expect(selecionarPoolsMagia(f)[0].espacos).toEqual([4,3,2]); expect(reaberta.escolhasAnteriores).toHaveLength(1);",
+    "action": "Manter",
+    "assertions": 10
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConjuracao.test.js",
+    "line": 134,
+    "test": "migração não apaga ilegais, desconhecidas ou fonte ambígua; mantém snapshot e é idempotente",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege migração não apaga ilegais, desconhecidas ou fonte ambígua; mantém snapshot e é idempotente. Evidência observável: expect(reaberta.magiasConjuracao).toHaveLength(3); expect(pendenciasMagia(apenas,apenas.magiasConjuracao[2]).join()).toMatch(/ainda não está disponível no catálogo/);",
+    "action": "Manter",
+    "assertions": 7
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConjuracao.test.js",
+    "line": 151,
+    "test": "persistência cria backup permanente F6 e rejeita formato inválido sem descartá-lo",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege persistência cria backup permanente F6 e rejeita formato inválido sem descartá-lo. Evidência observável: expect(values.get('fichas.backup.F6-conjuracao-v1')).toBe(anterior); expect(() => hydrateFicha(invalid)).toThrow(/magiasConjuracao/);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConjuracao.test.js",
+    "line": 168,
+    "test": "revisão explícita de fonte mantém ID, arquiva origem anterior e rejeita revisão ilegal",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege revisão explícita de fonte mantém ID, arquiva origem anterior e rejeita revisão ilegal. Evidência observável: expect(revisarFonteMagia(f, original.id, fonte(f,'guerreiro').id)).toBeNull(); expect(resumo(roundtrip(f))).toEqual(resumo(f));",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConjuracao.test.js",
+    "line": 180,
+    "test": "preparar não aceita registro migrado de outra lista nem círculo adulterado",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege preparar não aceita registro migrado de outra lista nem círculo adulterado. Evidência observável: expect(prepararMagia(f, f.magiasConjuracao[0].id, true)).toMatch(/Revise a lista/); expect(pendenciasMagia(f,f.magiasConjuracao[1]).join()).toMatch(/Círculo salvo/);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConjuracao.test.js",
+    "line": 190,
+    "test": "falha no backup F6 impede a gravação principal",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege falha no backup F6 impede a gravação principal. Evidência observável: expect(() => persist(storage,previous,next)).toThrow(/backup da migração F6/); expect(storage.setItem).not.toHaveBeenCalledWith(STORAGE_KEY, next);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConjuracao.test.js",
+    "line": 200,
+    "test": "limites independentes %s %s%d = %d",
+    "parameter": "test.each([\r\n  ['DND_2014','paladino',3,3], ['DND_2024','paladino',1,2],\r\n  ['DND_2024','mago',5,9], ['DND_2024','feiticeiro',2,4],\r\n  ['DND_2014','feiticeiro',5,6], ['DND_2014','bardo',5,8],\r\n  ['DND_2024','bardo',5,9], ['DND_2024','clerigo',5,9], ['DND_2024','druida',5,9],\r\n  ['DND_2014','patrulheiro',3,3], ['DND_2024','patrulheiro',3,4],\r\n])",
+    "category": "A",
+    "justification": "Protege limites independentes [parâmetro] [parâmetro][parâmetro] = [parâmetro]. Evidência observável: expect(fonte(fixture(edicao,[[chave,nivel]]),chave).magias).toBe(limite);",
+    "action": "Manter",
+    "assertions": 1
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConjuracao.test.js",
+    "line": 210,
+    "test": "subclasses 2014 limitam escolas; 2024 não; Mãos Mágicas tem vaga reservada",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege subclasses 2014 limitam escolas; 2024 não; Mãos Mágicas tem vaga reservada. Evidência observável: expect(adicionarMagia(f,s.id,livres[0].nome)).toBeNull(); expect(adicionarMagia(f,s.id,'Mãos Mágicas')).toBeNull();",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConjuracao.test.js",
+    "line": 226,
+    "test": "20 níveis %s: tabelas de slots das classes existentes concordam com o motor",
+    "parameter": "test.each(['DND_2014','DND_2024'])",
+    "category": "A",
+    "justification": "Protege 20 níveis [parâmetro]: tabelas de slots das classes existentes concordam com o motor. Evidência observável: expect(slots.concat(Array(9-slots.length).fill(0))).toEqual(row.espacosMagia.concat(Array(9-row.espacosMagia.length).fill(0)));",
+    "action": "Manter",
+    "assertions": 1
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConjuracao.test.js",
+    "line": 236,
+    "test": "UI exibe espaços sem magias escolhidas e Pacto separado; render não grava",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege UI exibe espaços sem magias escolhidas e Pacto separado; render não grava. Evidência observável: expect(screen.getByRole('region', { name: 'Conjuração' })).toBeInTheDocument(); expect(JSON.stringify(mockFicha)).toBe(antes);",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConjuracao.test.js",
+    "line": 246,
+    "test": "modal bloqueia Desejo no nível1, preserva filtro de truque e permite fonte explícita",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege modal bloqueia Desejo no nível1, preserva filtro de truque e permite fonte explícita. Evidência observável: expect(screen.queryByText(/Catálogo parcial|Fonte de conjuração/)).not.toBeInTheDocument(); expect(validarEscolhaMagia(mockFicha,fonte(mockFicha,'mago').id,'Desejo')).toMatch(/1º círculo/);",
+    "action": "Manter",
+    "assertions": 6
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConjuracao.test.js",
+    "line": 263,
+    "test": "cards %s: fontes, círculos, ataque, dano e preparação",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "A",
+    "justification": "Protege cards [parâmetro]: fontes, círculos, ataque, dano e preparação. Evidência observável: expect(adicionarMagia(mockFicha, mago.id, 'Raio de Fogo')).toBeNull(); expect(bola.textContent).not.toMatch(/licença|legado-local|Revisão pendente|Dados de combate|Fonte:/);",
+    "action": "Manter",
+    "assertions": 11
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConjuracao.test.js",
+    "line": 283,
+    "test": "cura %s respeita edição e círculo escolhido",
+    "parameter": "test.each([['DND_2014', '1d8', '2d8'], ['DND_2024', '2d8', '4d8']])",
+    "category": "A",
+    "justification": "Protege cura [parâmetro] respeita edição e círculo escolhido. Evidência observável: expect(adicionarMagia(mockFicha, fonte(mockFicha, 'clerigo').id, 'Curar Ferimentos')).toBeNull(); expect(within(card).queryByText(/Ataque/)).not.toBeInTheDocument();",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConjuracao.test.js",
+    "line": 294,
+    "test": "cards preservam registros inativos e desconhecidos sem inventar fórmulas",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege cards preservam registros inativos e desconhecidos sem inventar fórmulas. Evidência observável: expect(within(screen.getByRole('region', { name: 'Magias pendentes de revisão' })).getByRole('article', { name: 'Registro antigo' })).toBeInTheDocument(); expect(JSON.stringify(mockFicha)).toBe(antes);",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConjuracao.test.js",
+    "line": 310,
+    "test": "Mísseis Mágicos %s aparece preparado, com dano por dardo e contador consistente",
+    "parameter": "test.each(['DND_2014','DND_2024'])",
+    "category": "A",
+    "justification": "Protege Mísseis Mágicos [parâmetro] aparece preparado, com dano por dardo e contador consistente. Evidência observável: expect(adicionarMagia(mockFicha,mago.id,'Mísseis Mágicos')).toBeNull(); expect(mockFicha.recursos.slots).toEqual({});",
+    "action": "Manter",
+    "assertions": 12
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConjuracao.test.js",
+    "line": 331,
+    "test": "mensagens simples distinguem catálogo, classe e limites em %s",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "A",
+    "justification": "Protege mensagens simples distinguem catálogo, classe e limites em [parâmetro]. Evidência observável: expect(incompat).toBeDefined(); expect(validarEscolhaMagia(f,s.id,magias[s.magias].nome)).toBe(`Você já atingiu o limite de ${s.magias} magias.`);",
+    "action": "Manter",
+    "assertions": 8
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaConjuracao.test.js",
+    "line": 350,
+    "test": "modal filtra por fonte e círculo sem esconder validação em %s",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "A",
+    "justification": "Protege modal filtra por fonte e círculo sem esconder validação em [parâmetro]. Evidência observável: expect(nomesVisiveis.includes(m.nome)).toBe(m.listas.includes(s.lista) && m.nivel <= s.circuloMaximo); expect(nomesClerigo.includes(m.nome)).toBe(m.listas.includes('clerigo') && m.nivel <= 2);",
+    "action": "Manter",
+    "assertions": 7
+  },
+  {
+    "file": "src/api/fichaPersonagem/FichaContext.test.js",
+    "line": 18,
+    "test": "cria, atualiza, importa, seleciona, exclui e reabre",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege cria, atualiza, importa, seleciona, exclui e reabre. Evidência observável: expect(await api.salvarFicha(fixture())).toBe(true); expect(api.fichas).toHaveLength(1);",
+    "action": "Manter",
+    "assertions": 7
+  },
+  {
+    "file": "src/api/fichaPersonagem/FichaContext.test.js",
+    "line": 35,
+    "test": "operações simultâneas preservam novas fichas",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege operações simultâneas preservam novas fichas. Evidência observável: expect(api.fichas).toHaveLength(2);",
+    "action": "Manter",
+    "assertions": 1
+  },
+  {
+    "file": "src/api/fichaPersonagem/FichaContext.test.js",
+    "line": 41,
+    "test": "autosave espera cinco segundos e não repete sem mudanças",
+    "parameter": null,
+    "category": "B",
+    "justification": "Confirma limite 4999/5000 ms e conteúdo persistido, mas não avança outro intervalo depois do primeiro save; não demonstra a ausência de repetição anunciada.",
+    "action": "Avançar novo intervalo após salvar e exigir uma única gravação.",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/FichaContext.test.js",
+    "line": 57,
+    "test": "falha de gravação preserva alterações e permite tentar novamente",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege falha de gravação preserva alterações e permite tentar novamente. Evidência observável: expect(await api.salvarPendentes()).toBe(false); expect((await repo.get('sintetica-1')).nomePersonagem).toBe('Pendente');",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/FichaContext.test.js",
+    "line": 70,
+    "test": "falha de leitura bloqueia o editor; recuperação preserva o legado",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege falha de leitura bloqueia o editor; recuperação preserva o legado. Evidência observável: expect(screen.queryByText('Editor pronto')).not.toBeInTheDocument(); expect(localStorage.getItem('fichas')).toBe('[corrompido');",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/FichaContext.test.js",
+    "line": 82,
+    "test": "colisão exige escolha; substituição explícita e importação inválida",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege colisão exige escolha; substituição explícita e importação inválida. Evidência observável: expect(await api.importarFicha(exportFicha(fixture()))).toBeNull(); expect(api.ficha.nomePersonagem).toBe('Importada');",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/FichaContext.test.js",
+    "line": 92,
+    "test": "edição durante gravação permanece pendente e é salva antes de sair",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege edição durante gravação permanece pendente e é salva antes de sair. Evidência observável: expect(api.status).toBe('sujo'); expect((await repo.get('sintetica-1')).nomePersonagem).toBe('Mais recente');",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/FichaContext.test.js",
+    "line": 109,
+    "test": "%s inicia gravação das pendências",
+    "parameter": "test.each(['pagehide', 'visibilitychange', 'beforeunload', 'unmount'])",
+    "category": "A",
+    "justification": "Protege [parâmetro] inicia gravação das pendências. Evidência observável: ",
+    "action": "Manter",
+    "assertions": 0
+  },
+  {
+    "file": "src/api/fichaPersonagem/FichaContext.test.js",
+    "line": 122,
+    "test": "StrictMode não duplica inicialização ou migração e preserva o legado",
+    "parameter": null,
+    "category": "B",
+    "justification": "StrictMode preserva uma ficha e o legado, mas não verifica quantas vezes a inicialização/migração é executada; deduplicação dos dados não prova deduplicação das operações.",
+    "action": "Instrumentar chamadas se inicialização única for contrato; preservar verificações reais de dados.",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/FichaContext.test.tsx",
+    "line": 39,
+    "test": "a saved character persists new talent choices after refresh and browser reload",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege a saved character persists new talent choices after refresh and browser reload. Evidência observável: expect( (await new FichasIndexedDB().load()).fichas[0].efeitos![0]?.escolhasTalento2024?.lista, ).toEqual([\"Mago\"]); expect(recuperada.magiasEscolhidas).toEqual([ { classe: \"Mago\", magia: [\"Bola de Fogo\"] }, ]);",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaEquipamentosMagicos.test.tsx",
+    "line": 24,
+    "test": "Adaga +1 tem ataque e dano locais; nome não muda a base em %s",
+    "parameter": "test.each(['DND_2014', 'DND_2024'] as const)",
+    "category": "A",
+    "justification": "Protege Adaga +1 tem ataque e dano locais; nome não muda a base em [parâmetro]. Evidência observável: expect(melhoria.sintonizavel).toBe(false); expect(selecionarArma(f, adaga)).toEqual(antes);",
+    "action": "Manter",
+    "assertions": 8
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaEquipamentosMagicos.test.tsx",
+    "line": 37,
+    "test": "instâncias iguais são distintas; não reutiliza item nem acumula melhorias",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege instâncias iguais são distintas; não reutiliza item nem acumula melhorias. Evidência observável: expect(a.id).not.toBe(b.id); expect(f.vincularItemMagico(a.id, 'arma', espada.id)).toBe(true);",
+    "action": "Manter",
+    "assertions": 8
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaEquipamentosMagicos.test.tsx",
+    "line": 51,
+    "test": "equipar/desequipar pelas duas abas usa o estado do equipamento e mantém o vínculo",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege equipar/desequipar pelas duas abas usa o estado do equipamento e mantém o vínculo. Evidência observável: expect(f.setEquiparArma(a)).toBe(true); expect(i.vinculoEquipamento?.id).toBe(a.id);",
+    "action": "Manter",
+    "assertions": 9
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaEquipamentosMagicos.test.tsx",
+    "line": 67,
+    "test": "item sem vínculo não concede bônus; mãos ocupadas não permitem estado contraditório",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege item sem vínculo não concede bônus; mãos ocupadas não permitem estado contraditório. Evidência observável: expect(f.setEquiparItem(i)).toBe(false); expect(itemEstaEquipado(f, i)).toBe(false);",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaEquipamentosMagicos.test.tsx",
+    "line": 77,
+    "test": "Sword of Answering cria exatamente uma representação permanente baseada na espada longa",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege Sword of Answering cria exatamente uma representação permanente baseada na espada longa. Evidência observável: expect(a).toMatchObject({ nome: i.nome, dano: base.dano, propriedades: base.propriedades, categoria: base.categoria }); expect(f.ArmasMochila![0].id).toBe(id);",
+    "action": "Manter",
+    "assertions": 6
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaEquipamentosMagicos.test.tsx",
+    "line": 93,
+    "test": "Sword of Answering aplica +3 equipada e sintonizada sem bloquear requisitos narrativos",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege Sword of Answering aplica +3 equipada e sintonizada sem bloquear requisitos narrativos. Evidência observável: expect(selecionarArma(f, a)).toEqual(base); expect(i.vinculoEquipamento?.id).toBe(a.id);",
+    "action": "Manter",
+    "assertions": 7
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaEquipamentosMagicos.test.tsx",
+    "line": 109,
+    "test": "Armadura +%s aplica somente CA na armadura associada",
+    "parameter": "test.each([1, 2, 3])",
+    "category": "A",
+    "justification": "Protege Armadura +[parâmetro] aplica somente CA na armadura associada. Evidência observável: expect(f.vincularItemMagico(i.id, 'arma', adaga.id)).toBe(false); expect(f.ArmaduraEquipada?.id).toBe(a.id);",
+    "action": "Manter",
+    "assertions": 8
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaEquipamentosMagicos.test.tsx",
+    "line": 125,
+    "test": "escudo mágico mantém o bônus normal e exige treino em 2024 (%s)",
+    "parameter": "test.each(['DND_2014', 'DND_2024'] as const)",
+    "category": "A",
+    "justification": "Protege escudo mágico mantém o bônus normal e exige treino em 2024 ([parâmetro]). Evidência observável: expect(f.vincularItemMagico(i.id, 'armadura', couro.id)).toBe(false); expect(f.escudoEquipado).toBeNull();",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaEquipamentosMagicos.test.tsx",
+    "line": 136,
+    "test": "excluir item remove só sua melhoria; excluir arma comum conserva item genérico",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege excluir item remove só sua melhoria; excluir arma comum conserva item genérico. Evidência observável: expect(f.ArmasMochila).toHaveLength(1); expect(f.itensEquipados).toEqual([]);",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaEquipamentosMagicos.test.tsx",
+    "line": 147,
+    "test": "excluir %s da arma especial não deixa representação órfã",
+    "parameter": "test.each(['item', 'arma'])",
+    "category": "A",
+    "justification": "Protege excluir [parâmetro] da arma especial não deixa representação órfã. Evidência observável: expect(f.ArmasMochila).toEqual([]); expect(f.itensSintonizados).toEqual([]);",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaEquipamentosMagicos.test.tsx",
+    "line": 155,
+    "test": "JSON e armazenamento preservam IDs e vínculos sem duplicar efeitos",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege JSON e armazenamento preservam IDs e vínculos sem duplicar efeitos. Evidência observável: expect(f.ArmasMochila!.map(a => a.id)).toEqual(ids); expect(f.efeitos?.filter(e => ['ataque_arma', 'dano_arma'].includes(e.tipoEfeito)) ?? []).toEqual([]);",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaEquipamentosMagicos.test.tsx",
+    "line": 169,
+    "test": "modelo reutilizável admite arma especial sem bônus numérico e bloqueia melhoria",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege modelo reutilizável admite arma especial sem bônus numérico e bloqueia melhoria. Evidência observável: expect(selecionarArma(f, a).ataque).toBe(3); expect(f.vincularItemMagico(i.id, 'arma', comum.id)).toBe(false);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaEquipamentosMagicos.test.tsx",
+    "line": 180,
+    "test": "legado recebe metadados; importação limpa vínculos duplicados e preserva equipamentos",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege legado recebe metadados; importação limpa vínculos duplicados e preserva equipamentos. Evidência observável: expect(restored.itensMochila![0].equipamentoMagico?.bonusAtaque).toBe(1); expect(restored.itensMochila!.find(i => i.id === j.id)?.vinculoEquipamento).toBeUndefined();",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaEquipamentosMagicos.test.tsx",
+    "line": 193,
+    "test": "interface associa e remove melhoria, sincroniza abas e não mostra controles sem itens",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege interface associa e remove melhoria, sincroniza abas e não mostra controles sem itens. Evidência observável: expect(screen.queryByRole('combobox')).not.toBeInTheDocument(); expect(nomeEquipamentoMagico(mockFicha, 'arma', a)).toBe('Adaga');",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaEquipamentosMagicos.test.tsx",
+    "line": 212,
+    "test": "interface oferece melhorias de armadura e requisito de sintonização para arma especial",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege interface oferece melhorias de armadura e requisito de sintonização para arma especial. Evidência observável: expect(i.vinculoEquipamento).toBeDefined(); expect(mockFicha.itensSintonizados).toContain(s.id);",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaEquipamentosMagicos.test.tsx",
+    "line": 227,
+    "test": "duas cópias da arma especial conservam duas representações e IDs diferentes",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege duas cópias da arma especial conservam duas representações e IDs diferentes. Evidência observável: expect(a.id).not.toBe(b.id); expect(new Set(f.ArmasMochila!.map(a => a.id)).size).toBe(2);",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaEquipamentosMagicos.test.tsx",
+    "line": 236,
+    "test": "remover armadura desfaz vínculo e mantém o item de melhoria",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege remover armadura desfaz vínculo e mantém o item de melhoria. Evidência observável: expect(f.ArmadurasMochila).toEqual([]); expect(selecionarCA(f).total).toBe(13);",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaEquipamentosMagicos.test.tsx",
+    "line": 246,
+    "test": "metadados persistidos prevalecem sobre nomes e não duplicam bônus de efeitos legados",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege metadados persistidos prevalecem sobre nomes e não duplicam bônus de efeitos legados. Evidência observável: expect(selecionarArma(f, f.ArmasMochila![0])).toMatchObject({ ataque: 4, formula: '1d4 +4' }); expect(f.efeitos?.filter(e => e.origemTipo === 'item') ?? []).toEqual([]);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaEquipamentosMagicos.test.tsx",
+    "line": 255,
+    "test": "importação descarta estado equipado contraditório e vínculos a IDs inexistentes",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege importação descarta estado equipado contraditório e vínculos a IDs inexistentes. Evidência observável: expect(restaurada.itensEquipados).toEqual([]); expect(selecionarArma(semAlvo, semAlvo.ArmasMochila![0]).ataque).toBe(3);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaInventario.test.js",
+    "line": 21,
+    "test": "equipar, trocar, excluir e reabrir %s",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "A",
+    "justification": "Protege equipar, trocar, excluir e reabrir [parâmetro]. Evidência observável: expect(f.setEquiparArma(a)).toBe(true); expect(f.getMaosOcupadas()).toBe(2);",
+    "action": "Manter",
+    "assertions": 13
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaInventario.test.js",
+    "line": 44,
+    "test": "cópias do catálogo têm IDs locais distintos e estáveis",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege cópias do catálogo têm IDs locais distintos e estáveis. Evidência observável: expect(new Set(f.ArmasMochila.map(i => i.id)).size).toBe(2); expect(roundtrip(f).ArmasMochila.map(i => i.id)).toEqual(f.ArmasMochila.map(i => i.id));",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaInventario.test.js",
+    "line": 52,
+    "test": "sintonizar é independente de equipar e sobrevive ao JSON",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege sintonizar é independente de equipar e sobrevive ao JSON. Evidência observável: expect(calcularValorAtributoFinal(f, 'forca')).toBe(10); expect(f.itensEquipados).toEqual([]);",
+    "action": "Manter",
+    "assertions": 11
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaInventario.test.js",
+    "line": 68,
+    "test": "migração conserva originais, remove órfãos e não repete",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege migração conserva originais, remove órfãos e não repete. Evidência observável: expect(f.inventarioAnterior.ArmaEquipada).toHaveLength(2); expect(roundtrip(f).versaoRegras).toBe('DND_2024');",
+    "action": "Manter",
+    "assertions": 6
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaInventario.test.js",
+    "line": 79,
+    "test": "backup F8 não verificado impede sobrescrever coleção",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege backup F8 não verificado impede sobrescrever coleção. Evidência observável: expect(() => persist(storage, raw, next)).toThrow(/backup F8/); expect(storage.setItem).not.toHaveBeenCalledWith(STORAGE_KEY, next);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaInventario.test.js",
+    "line": 87,
+    "test": "parser: %s",
+    "parameter": "test.each(['Your strength score increases by 2', 'Você ganha +2 em Força', 'bônus de +2 na força'])",
+    "category": "A",
+    "justification": "Protege parser: [parâmetro]. Evidência observável: expect(extrairEfeitosDoItem(item('i', descricao))).toEqual(expect.arrayContaining([expect.objectContaining({ atributo: 'forca', bonus: 2 })]));",
+    "action": "Manter",
+    "assertions": 1
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaInventario.test.js",
+    "line": 90,
+    "test": "atributo fixo: %s",
+    "parameter": "test.each(['Your intelligence score is 19', 'Seu valor de Inteligência muda para 19'])",
+    "category": "A",
+    "justification": "Protege atributo fixo: [parâmetro]. Evidência observável: expect(extrairEfeitosDoItem(item('i', descricao))).toEqual(expect.arrayContaining([expect.objectContaining({ atributo: 'inteligencia', valorFixo: 19 })]));",
+    "action": "Manter",
+    "assertions": 1
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaInventario.test.js",
+    "line": 93,
+    "test": "nomes e ataques locais não viram benefícios globais; explícitos prevalecem",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege nomes e ataques locais não viram benefícios globais; explícitos prevalecem. Evidência observável: expect(extrairEfeitosDoItem(item('+3 weapon', 'bônus de +3 nas jogadas de ataque e de dano'))).toEqual([]); expect(extrairEfeitosDoItem({ ...item('i'), efeitosExplicitos: [] })).toEqual([]);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaInventario.test.js",
+    "line": 105,
+    "test": "consumo persistente e recuperação específica %s",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "A",
+    "justification": "Protege consumo persistente e recuperação específica [parâmetro]. Evidência observável: expect(f.recursos.slots[pacto]).toBe(1); expect(f.recursos.morte).toEqual({ sucessos: 1, falhas: 2 });",
+    "action": "Manter",
+    "assertions": 8
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaInventario.test.js",
+    "line": 122,
+    "test": "abas de slots e morte conservam marcações após desmontar e importar",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege abas de slots e morte conservam marcações após desmontar e importar. Evidência observável: expect(screen.getByRole('button', { name: label })).toHaveAttribute('aria-pressed', 'true'); expect(screen.getByRole('button', { name: 'Falha de morte 2' })).toHaveAttribute('aria-pressed', 'true');",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaInventario.test.js",
+    "line": 134,
+    "test": "interface permite sintonizar sem equipar",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege interface permite sintonizar sem equipar. Evidência observável: expect(screen.getByRole('button', { name: 'Dessintonizar' })).toBeInTheDocument(); expect(mockFicha.itensEquipados).toBeNull();",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaInventario.test.js",
+    "line": 143,
+    "test": "Restaurar Vida não recupera slots nem outros recursos",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege Restaurar Vida não recupera slots nem outros recursos. Evidência observável: expect(mockFicha.vidaAtual).toBe(20); expect(mockFicha.vidaTemporaria).toBe(5);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaInventario.test.js",
+    "line": 154,
+    "test": "recursos inválidos são rejeitados antes de importar",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege recursos inválidos são rejeitados antes de importar. Evidência observável: expect(() => hydrateFicha({ id: 'f', nomePersonagem: 'F', recursos: { slots: { x: -1 }, morte: { sucessos: 0, falhas: 0 } } })).toThrow(/recursos/);",
+    "action": "Manter",
+    "assertions": 1
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaRecursosPersistencia.test.js",
+    "line": 19,
+    "test": "contexto real salva slots e morte e os restaura após recarregar",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege contexto real salva slots e morte e os restaura após recarregar. Evidência observável: expect(await screen.findByRole('button', { name: slot })).toHaveAttribute('aria-pressed', 'true'); expect(screen.getByRole('button', { name: 'Sucesso de morte 1' })).toHaveAttribute('aria-pressed', 'true');",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaRestauracao.test.js",
+    "line": 48,
+    "test": "JSON e consumidor de magias preservam %s %s",
+    "parameter": "test.each([\r\n  ['DND_2014', 'Guerreiro', CavaleiroArcano], ['DND_2024', 'Guerreiro', CavaleiroMistico2024],\r\n  ['DND_2014', 'Ladino', TrapaceiroArcano], ['DND_2024', 'Ladino', TrapaceiroArcano2024],\r\n])",
+    "category": "A",
+    "justification": "Protege JSON e consumidor de magias preservam [parâmetro] [parâmetro]. Evidência observável: expect(restored.subClasse[0].subclasse).toBeInstanceOf(Subclass); expect(api.ficha.atributosPersonagem.forca.valor).toBe(16);",
+    "action": "Manter",
+    "assertions": 12
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaRestauracao.test.js",
+    "line": 84,
+    "test": "subclasse única, arquivo das duplicadas e backup permanente da migração",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege subclasse única, arquivo das duplicadas e backup permanente da migração. Evidência observável: expect(fichas[0].subClasse).toHaveLength(1); expect(parseCollection(next).fichas[0].subclassesAnteriores).toHaveLength(1);",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaRestauracao.test.js",
+    "line": 100,
+    "test": "troca e perda de elegibilidade invalidam somente a origem da subclasse",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege troca e perda de elegibilidade invalidam somente a origem da subclasse. Evidência observável: expect(ficha.subClasse).toHaveLength(1); expect(ficha.efeitos).toContain(manual);",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaRestauracao.test.js",
+    "line": 115,
+    "test": "efeito com origem acompanha o nível da classe; efeito manual não muda",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege efeito com origem acompanha o nível da classe; efeito manual não muda. Evidência observável: expect(restored.efeitos.find(e => e.id === effect.id)).toMatchObject({ level: 5, tituloEfeito: 'selecionadoTalento5' }); expect(restored.efeitos.find(e => e.id === manual.id)).toBeDefined();",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaRestauracao.test.js",
+    "line": 131,
+    "test": "conteúdo antigo desconhecido e ajustes manuais são preservados sem converter edição",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege conteúdo antigo desconhecido e ajustes manuais são preservados sem converter edição. Evidência observável: expect(restored.versaoRegras).toBe('DND_2014'); expect(restored.campoAntigo).toEqual(ficha.campoAntigo);",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaRestauracao.test.js",
+    "line": 144,
+    "test": "falha do backup de migração impede sobrescrever a coleção",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege falha do backup de migração impede sobrescrever a coleção. Evidência observável: expect(() => persist(store, raw, next)).toThrow('quota'); expect(store.getItem('fichas')).toBe(raw);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaRestauracao.test.js",
+    "line": 155,
+    "test": "fluxo mobile real restaura idiomas, perícias e distribuição ao alternar abas e fichas",
+    "parameter": null,
+    "category": "B",
+    "justification": "Fluxo real verifica mudanças e persistência mobile, porém innerWidth só é restaurado no sucesso; uma falha contamina os próximos casos do arquivo.",
+    "action": "Restaurar largura em afterEach ou finally.",
+    "assertions": 12
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaSeletores.test.js",
+    "line": 34,
+    "test": "Guerreiro5/CON14: PV44, retroatividade, máximo manual e importação sem mutação da base",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege Guerreiro5/CON14: PV44, retroatividade, máximo manual e importação sem mutação da base. Evidência observável: expect(selecionarVida(f).total).toBe(44); expect(f.atributosPersonagem.constituicao.valor).toBe(14);",
+    "action": "Manter",
+    "assertions": 6
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaSeletores.test.js",
+    "line": 48,
+    "test": "iniciativa após bônus inicial, ASI, item e ajuste manual; perícia especializada dobra uma única vez",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege iniciativa após bônus inicial, ASI, item e ajuste manual; perícia especializada dobra uma única vez. Evidência observável: expect(selecionarIniciativa(f).total).toBe(3); expect(f.atributosPersonagem.destreza.valor).toBe(14);",
+    "action": "Manter",
+    "assertions": 8
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaSeletores.test.js",
+    "line": 68,
+    "test": "CA sem treino, escudo e Defesa condicionais em %s",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "A",
+    "justification": "Protege CA sem treino, escudo e Defesa condicionais em [parâmetro]. Evidência observável: expect(selecionarCA(f).total).toBe(12); expect(selecionarCA(f).total).toBe(13);",
+    "action": "Manter",
+    "assertions": 7
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaSeletores.test.js",
+    "line": 86,
+    "test": "Monge/Bárbaro: alternativas não somam, escudo exclui Monge em %s",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "A",
+    "justification": "Protege Monge/Bárbaro: alternativas não somam, escudo exclui Monge em [parâmetro]. Evidência observável: expect(selecionarCA(monge).total).toBe(14); expect(selecionarCA(barbaro).expressao).toBe('Bárbaro 10 + 2 + 4');",
+    "action": "Manter",
+    "assertions": 8
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaSeletores.test.js",
+    "line": 102,
+    "test": "Arquearia afeta ataque; Duelismo exige arma única equipada; efeito futuro fica inativo",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege Arquearia afeta ataque; Duelismo exige arma única equipada; efeito futuro fica inativo. Evidência observável: expect(selecionarArma(f, espada)).toMatchObject({ ataque: 5, formula: '1d8 +4' }); expect(selecionarArma(f, { ...espada, distancia: 'sim' }).ataque).toBe(7);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaSeletores.test.js",
+    "line": 114,
+    "test": "troca de linhagem 2014/2024 e raça preserva deslocamento manual",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege troca de linhagem 2014/2024 e raça preserva deslocamento manual. Evidência observável: expect(selecionarDeslocamento(f).total).toBe(35); expect(selecionarDeslocamento(f).total).toBe(42);",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaSeletores.test.js",
+    "line": 128,
+    "test": "UI usa valores finais, mantém especialização após exportar/reabrir",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege UI usa valores finais, mantém especialização após exportar/reabrir. Evidência observável: expect(screen.getByText('0/44')).toBeInTheDocument(); expect(selecionarPericia(reaberta, 'Furtividade', 'destreza').total).toBe(8);",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaSeletores.test.js",
+    "line": 141,
+    "test": "fontes de CA: itens somam, Defesa não duplica, CA manual persiste; níveis de origem limitam efeitos",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege fontes de CA: itens somam, Defesa não duplica, CA manual persiste; níveis de origem limitam efeitos. Evidência observável: expect(selecionarCA(f).total).toBe(20); expect(selecionarCA(parseImport(exportFicha(f))).total).toBe(24);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaSeletores.test.js",
+    "line": 154,
+    "test": "ficha incompleta explicita dados ausentes e preserva níveis planejados",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege ficha incompleta explicita dados ausentes e preserva níveis planejados. Evidência observável: expect(selecionarVida(f).ausentes).toEqual([2, 4, 5]); expect(f.multiclasses[0].nivelEscolhido).toEqual([1, 3, 6]);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaSeletores.test.js",
+    "line": 162,
+    "test": "PDF real longo: edição, UI/PDF equivalentes, multiclasse ativa, conteúdo paginado sem corte",
+    "parameter": null,
+    "category": "B",
+    "justification": "Gera PDF real e confere paginação/texto/coordenadas, mas substitui global.fetch sem restauração e só restaura drawText quando todas as asserções passam.",
+    "action": "Restaurar fetch e spy em finally para isolar falhas.",
+    "assertions": 11
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaSerialization.test.js",
+    "line": 6,
+    "test": "valida tipos, números, IDs, referências, profundidade e tamanho",
+    "parameter": null,
+    "category": "B",
+    "justification": "Verifica tipos, IDs, não finitos, tamanho e referências; nenhuma entrada ultrapassa a profundidade máxima declarada no título.",
+    "action": "Incluir árvore com profundidade maior que 60 e exigir rejeição específica.",
+    "assertions": 8
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaSerialization.test.js",
+    "line": 19,
+    "test": "snapshots do contrato atual %s fazem roundtrip sem mudar opções",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "A",
+    "justification": "Protege snapshots do contrato atual [parâmetro] fazem roundtrip sem mudar opções. Evidência observável: expect(JSON.parse(JSON.stringify(parseImport(exportFicha(ficha))))).toEqual(JSON.parse(JSON.stringify(ficha)));",
+    "action": "Manter",
+    "assertions": 1
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichaSerialization.test.js",
+    "line": 27,
+    "test": "fúrias ilimitadas têm representação explícita, sem aceitar infinito arbitrário",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege fúrias ilimitadas têm representação explícita, sem aceitar infinito arbitrário. Evidência observável: expect(JSON.parse(text).data.classePrincipal.niveis.find(n => n.nivel === 20).furias).toBe('ilimitado'); expect(() => parseImport(text.replace('\"ilimitado\"', '1e400'))).toThrow();",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichasIndexedDB.test.ts",
+    "line": 10,
+    "test": "CRUD, seleção, importação JSON e reabertura preservam ambas as edições e campos desconhecidos",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege CRUD, seleção, importação JSON e reabertura preservam ambas as edições e campos desconhecidos. Evidência observável: expect((await repo.load()).fichas).toHaveLength(2); expect(await repo.get('a')).toBeNull();",
+    "action": "Manter",
+    "assertions": 7
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichasIndexedDB.test.ts",
+    "line": 34,
+    "test": "migra %s fichas, repete sem duplicar e não ressuscita exclusões",
+    "parameter": "test.each([1, 3])",
+    "category": "A",
+    "justification": "Protege migra [parâmetro] fichas, repete sem duplicar e não ressuscita exclusões. Evidência observável: expect((await repo.load()).fichas).toHaveLength(count); expect(store.setItem).not.toHaveBeenCalled();",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichasIndexedDB.test.ts",
+    "line": 47,
+    "test": "migração parcial isola inválidos, duplicados e campos maliciosos sem perder fichas válidas",
+    "parameter": null,
+    "category": "B",
+    "justification": "Exercita isolamento de inválidos e IDs duplicados, porém os dados não incluem campos maliciosos apesar do título.",
+    "action": "Incluir campo __proto__ vindo de JSON e provar que o registro é isolado sem poluição.",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichasIndexedDB.test.ts",
+    "line": 58,
+    "test": "migra envelope e seleção e não substitui registros mais novos",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege migra envelope e seleção e não substitui registros mais novos. Evidência observável: expect((await repo.get('a'))!.nomePersonagem).toBe('Nova'); expect((await repo.load()).fichas).toHaveLength(2);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichasIndexedDB.test.ts",
+    "line": 67,
+    "test": "falha de leitura %s preserva dados e permite repetir",
+    "parameter": "test.each(['[corrompido', '{}', 'null'])",
+    "category": "A",
+    "justification": "Protege falha de leitura [parâmetro] preserva dados e permite repetir. Evidência observável: expect(store.setItem).not.toHaveBeenCalled(); expect(await repo.get('a')).not.toBeNull();",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichasIndexedDB.test.ts",
+    "line": 76,
+    "test": "conflito entre abas cancela a transação inteira",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege conflito entre abas cancela a transação inteira. Evidência observável: expect((await b.load()).fichas.map(f => f.id)).toEqual(['a']);",
+    "action": "Manter",
+    "assertions": 1
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichasIndexedDB.test.ts",
+    "line": 86,
+    "test": "falha de gravação na migração faz rollback inclusive do marcador e permite nova tentativa",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege falha de gravação na migração faz rollback inclusive do marcador e permite nova tentativa. Evidência observável: expect((await repo.load()).fichas).toHaveLength(0); expect((await repo.load()).fichas).toHaveLength(1);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/fichasIndexedDB.test.ts",
+    "line": 100,
+    "test": "falha de abertura é reportada",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege falha de abertura é reportada. Evidência observável: ",
+    "action": "Manter",
+    "assertions": 0
+  },
+  {
+    "file": "src/api/fichaPersonagem/itensCa.test.js",
+    "line": 20,
+    "test": "ataque +1 descrito: equipar, reequipar, JSON, armazenamento local, desequipar e excluir",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege ataque +1 descrito: equipar, reequipar, JSON, armazenamento local, desequipar e excluir. Evidência observável: expect(selecionarArma(f, arma).ataque).toBe(base + 1); expect(selecionarArma(f, arma).ataque).toBe(base);",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/itensCa.test.js",
+    "line": 35,
+    "test": "bônus explícitos respeitam arma, categoria e classe de magia após importar",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege bônus explícitos respeitam arma, categoria e classe de magia após importar. Evidência observável: expect(selecionarArma(f, arma)).toMatchObject({ ataque: 3, formula: '1d8 +4' }); expect(calcularBonusMagiaPorClasse(f, 'ataque_magia', 'bruxo')).toBe(0);",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/itensCa.test.js",
+    "line": 50,
+    "test": "sintonização, contador, limite, dessintonizar e desequipar",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege sintonização, contador, limite, dessintonizar e desequipar. Evidência observável: expect(f.getItensSintonizadosEquipados()).toHaveLength(0); expect(calcularValorAtributoFinal(f, 'forca')).toBe(16);",
+    "action": "Manter",
+    "assertions": 9
+  },
+  {
+    "file": "src/api/fichaPersonagem/itensCa.test.js",
+    "line": 69,
+    "test": "CA %s usa as mesmas parcelas na expressão e no total",
+    "parameter": "test.each([\r\n  ['Acolchoada', 'Armadura Leve', 11, 16, 18, 'Acolchoada 11 + 3 + 4'],\r\n  ['Peitoral', 'Armadura Média', 14, 16, 20, 'Peitoral 14 + 2 + 4'],\r\n  ['Placas', 'Armadura Pesada', 18, 16, 22, 'Placas 18 + 4'],\r\n  ['Couro', 'Armadura Leve', 11, 8, 14, 'Couro 11 - 1 + 4'],\r\n])",
+    "category": "A",
+    "justification": "Protege CA [parâmetro] usa as mesmas parcelas na expressão e no total. Evidência observável: expect(selecionarCA(f)).toMatchObject({ total, expressao }); expect(selecionarCA(f).total).toBe(total - 1);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/itensCa.test.js",
+    "line": 86,
+    "test": "CA sem armadura e manual, sem parcelas zero",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege CA sem armadura e manual, sem parcelas zero. Evidência observável: expect(selecionarCA(f)).toMatchObject({ total: 10, expressao: 'Sem armadura 10' }); expect(selecionarCA(f)).toMatchObject({ total: 17, expressao: 'CA manual 17' });",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/itensCa.test.js",
+    "line": 93,
+    "test": "UI alterna os estados do botão e apresenta CA compacta com tooltip",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege UI alterna os estados do botão e apresenta CA compacta com tooltip. Evidência observável: expect(screen.getByRole('button', { name: 'Dessintonizar' })).toHaveAttribute('aria-pressed', 'true'); expect(screen.getByRole('button', { name: 'Sintonizar' })).toHaveAttribute('aria-pressed', 'false');",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/itensCa.test.js",
+    "line": 108,
+    "test": "atualizar a descricao recalcula o efeito sem acumular valores antigos",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege atualizar a descricao recalcula o efeito sem acumular valores antigos. Evidência observável: expect(selecionarArma(f, arma).ataque).toBe(4); expect(f.efeitos.filter(e => e.origemTipo === 'item')).toHaveLength(1);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/itensCa.test.js",
+    "line": 118,
+    "test": "ataque e dano compartilhados na descricao afetam somente armas",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege ataque e dano compartilhados na descricao afetam somente armas. Evidência observável: expect(selecionarArma(f, arma)).toMatchObject({ ataque: 3, formula: '1d8 +3' }); expect(calcularBonusMagiaPorClasse(f, 'ataque_magia', 'mago')).toBe(0);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/itensCa.test.js",
+    "line": 125,
+    "test": "descricao de ataque e CD de magia compartilhados respeita a classe",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege descricao de ataque e CD de magia compartilhados respeita a classe. Evidência observável: expect(calcularBonusMagiaPorClasse(f, 'ataque_magia', 'mago')).toBe(1); expect(calcularBonusMagiaPorClasse(f, 'cd_magia', 'bruxo')).toBe(0);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/merge2024.test.js",
+    "line": 22,
+    "test": "troca de talento PHB por ASI arquiva registro e concessões sem acumular aumentos",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege troca de talento PHB por ASI arquiva registro e concessões sem acumular aumentos. Evidência observável: expect(f.selecionarTalentoAvanco(4, 'Atleta', { atributo: ['forca'] })).toBe(true); expect(salvo.escolhasAnteriores).toEqual(f.escolhasAnteriores);",
+    "action": "Manter",
+    "assertions": 8
+  },
+  {
+    "file": "src/api/fichaPersonagem/merge2024.test.js",
+    "line": 36,
+    "test": "magias e usos do talento persistem sem consumir vagas de classe e sem vazar para outra ficha",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege magias e usos do talento persistem sem consumir vagas de classe e sem vazar para outra ficha. Evidência observável: expect(selecionarTalentoInicial(f, 'TalentoOrigemHumano', 'Iniciado em Magia', escolhas)).toBeNull(); expect(outra.efeitos).toEqual(efeitosOutra);",
+    "action": "Manter",
+    "assertions": 6
+  },
+  {
+    "file": "src/api/fichaPersonagem/merge2024.test.js",
+    "line": 48,
+    "test": "JSON de feat/regras-2024 conserva escolhas em objeto no campo original",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege JSON de feat/regras-2024 conserva escolhas em objeto no campo original. Evidência observável: expect(salvo.efeitos[0].escolhasTalento).toEqual(escolhas); expect(JSON.parse(exportFicha(salvo)).data.efeitos[0].escolhasTalento).toEqual(escolhas);",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/merge2024.test.js",
+    "line": 61,
+    "test": "revisão desconhecida inativa talento e concessões sem apagar dados após importação",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege revisão desconhecida inativa talento e concessões sem apagar dados após importação. Evidência observável: expect(f.selecionarTalentoAvanco(4, 'Atleta', { atributo: ['forca'] })).toBe(true); expect(salvo.efeitos[0].escolhasTalento2024).toEqual({ atributo: ['forca'] });",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/merge2024.test.js",
+    "line": 71,
+    "test": "Alerta salvo com nome qualificado aplica iniciativa sem duplicar o bônus versionado",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege Alerta salvo com nome qualificado aplica iniciativa sem duplicar o bônus versionado. Evidência observável: expect(selecionarIniciativa(f).total).toBe(5); expect(selecionarIniciativa(parseImport(exportFicha(f))).total).toBe(5);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/merge2024.test.js",
+    "line": 80,
+    "test": "talento PHB não repetível bloqueia nova aquisição e planejamento retroativo duplicado",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege talento PHB não repetível bloqueia nova aquisição e planejamento retroativo duplicado. Evidência observável: expect(f.selecionarTalentoAvanco(8, 'Atleta', { atributo: ['forca'] })).toBe(true); expect(exportFicha(f)).toBe(antes);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/pendenciasRevisao.test.js",
+    "line": 20,
+    "test": "limite, duplicata, treino independente, redução, remoção da fonte e duas fichas",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege limite, duplicata, treino independente, redução, remoção da fonte e duas fichas. Evidência observável: expect(selecionarEspecializacao(f, escolha('Atletismo'))).toMatch(/treinamento/); expect(parseImport(exportFicha(f)).escolhasAnteriores[0].valor.pericia).toBe('Furtividade');",
+    "action": "Manter",
+    "assertions": 15
+  },
+  {
+    "file": "src/api/fichaPersonagem/pendenciasRevisao.test.js",
+    "line": 43,
+    "test": "manual é preservado e não autoriza nova escolha oficial",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege manual é preservado e não autoriza nova escolha oficial. Evidência observável: expect(selecionarEspecializacao(f, escolha('Atletismo'))).toMatch(/treinamento/); expect(parseImport(exportFicha(f)).efeitos[0].id).toBe(efeito.id);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/pendenciasRevisao.test.js",
+    "line": 50,
+    "test": "histórico e revisão explícita sobrevivem ao JSON; leitura não altera dados",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege histórico e revisão explícita sobrevivem ao JSON; leitura não altera dados. Evidência observável: expect(pendenciasLegadas(f).length).toBeGreaterThan(0); expect(parseImport(original).efeitos).toHaveLength(1);",
+    "action": "Manter",
+    "assertions": 12
+  },
+  {
+    "file": "src/api/fichaPersonagem/pendenciasRevisao.test.js",
+    "line": 75,
+    "test": "marcos de Bardo %s são próprios da edição",
+    "parameter": "test.each([['DND_2014', 3, 10], ['DND_2024', 2, 9]])",
+    "category": "A",
+    "justification": "Protege marcos de Bardo [parâmetro] são próprios da edição. Evidência observável: expect(selecionarEspecializacao(f, { fonte: `${edicao}:bardo:${primeiro}`, pericia: 'Furtividade', nivelAquisicao: primeiro - 1, edicao })).toMatch(/nível/); expect(selecionarEspecializacao(f, { fonte: `${edicao}:bardo:${primeiro}`, pericia: 'Furtividade', nivelAquisicao: primeiro, edicao })).toBeNull();",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/pendenciasRevisao.test.js",
+    "line": 80,
+    "test": "Mago revisado restringe perícias e treino futuro não satisfaz aquisição",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege Mago revisado restringe perícias e treino futuro não satisfaz aquisição. Evidência observável: expect(selecionarEspecializacao(f, escolha)).toMatch(/elegível/); expect(selecionarEspecializacao(f, { ...escolha, pericia: 'Arcanismo' })).toMatch(/treinamento/);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/pendenciasRevisao.test.js",
+    "line": 88,
+    "test": "metamagias revisadas persistem resumo, revisão e fonte; legado fica intacto",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege metamagias revisadas persistem resumo, revisão e fonte; legado fica intacto. Evidência observável: expect(opcoesMetamagia('desconhecida')).toEqual([]); expect(opcoesMetamagia('DND_2024').find(e => e.nome === 'Magia Sutil').descricao).toContain('materiais');",
+    "action": "Manter",
+    "assertions": 6
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 34,
+    "test": "marcos das doze classes %s, sem depender dos rótulos",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "A",
+    "justification": "Protege marcos das doze classes [parâmetro], sem depender dos rótulos. Evidência observável: expect(rules.classes).toHaveLength(12); expect(recursosNoNivel({ nome: 'Rótulo editado', chave: c.chave }, 4, edicao)).toEqual(['asi']);",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 46,
+    "test": "aliases e requisitos 12/13: %s",
+    "parameter": "test.each(['Barbaro', 'Bárbaro', 'Clérigo', 'Clerigo', 'Lutador', 'Guerreiro', 'Ranger', 'Rogue'])",
+    "category": "A",
+    "justification": "Protege aliases e requisitos 12/13: [parâmetro]. Evidência observável: expect(cumpreRequisitosClasse(name, () => 12)).toBe(false); expect(cumpreRequisitosClasse(name, () => 13)).toBe(true);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 50,
+    "test": "requisitos compostos exigem ambos: %s",
+    "parameter": "test.each(['monge', 'patrulheiro', 'paladino'])",
+    "category": "A",
+    "justification": "Protege requisitos compostos exigem ambos: [parâmetro]. Evidência observável: expect(cumpreRequisitosClasse(key, a => a === first ? 13 : 12)).toBe(false); expect(cumpreRequisitosClasse(key, () => 13)).toBe(true);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 57,
+    "test": "guerreiro exige Força OU Destreza",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege guerreiro exige Força OU Destreza. Evidência observável: expect(cumpreRequisitosClasse('guerreiro', a => a === 'destreza' ? 13 : 12)).toBe(true); expect(cumpreRequisitosClasse('guerreiro', a => a === 'forca' ? 13 : 12)).toBe(true);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 61,
+    "test": "chave de classe sobrevive a mudança de rótulo e JSON",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege chave de classe sobrevive a mudança de rótulo e JSON. Evidência observável: expect(chaveClasse(reabrir(ficha).classePrincipal)).toBe('guerreiro'); expect(recursosNoNivel(reabrir(ficha).classePrincipal, 6, ficha.versaoRegras)).toEqual(['asi']);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 66,
+    "test": "origem inválida é recusada pela UI e pela operação em %s",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "A",
+    "justification": "Protege origem inválida é recusada pela UI e pela operação em [parâmetro]. Evidência observável: expect(podeSelecionarClasse(ficha, mago, 4)).toBe(false); expect(nivelDaClasse(ficha, 'barbaro')).toBe(3);",
+    "action": "Manter",
+    "assertions": 6
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 77,
+    "test": "atributos de avanço futuro não autorizam multiclasse anterior",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege atributos de avanço futuro não autorizam multiclasse anterior. Evidência observável: expect(ficha.aplicarAumentoAtributos(8, ['inteligencia', 'carisma'])).toBe(true); expect(ficha.selecionarClasseNoNivel(classe(ficha, 'mago'), 5)).toBe(false);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 84,
+    "test": "classe já adquirida pode avançar sem revalidar entrada em multiclasse: %s",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "A",
+    "justification": "Protege classe já adquirida pode avançar sem revalidar entrada em multiclasse: [parâmetro]. Evidência observável: expect(ficha.selecionarClasseNoNivel(mago, 2)).toBe(true); expect(ficha.selecionarClasseNoNivel(classe(ficha, 'clerigo'), 3)).toBe(false);",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 97,
+    "test": "aumento já adquirido libera nova classe, inclusive após reabrir",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege aumento já adquirido libera nova classe, inclusive após reabrir. Evidência observável: expect(ficha.aplicarAumentoAtributos(4, ['inteligencia', 'carisma'])).toBe(true); expect(ficha.selecionarClasseNoNivel(classe(ficha, 'mago'), 5)).toBe(true);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 105,
+    "test": "ASI 19/20, atomicidade e reabertura %s",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "A",
+    "justification": "Protege ASI 19/20, atomicidade e reabertura [parâmetro]. Evidência observável: expect(ficha.aplicarAumentoAtributos(4, ['forca', 'forca'])).toBe(false); expect(calcularValorAtributoFinal(ficha, 'forca')).toBe(edicao === 'DND_2024' ? 19 : 20);",
+    "action": "Manter",
+    "assertions": 9
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 121,
+    "test": "ASI retroativo considera aumentos posteriores e mantém exceções de outras fontes",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege ASI retroativo considera aumentos posteriores e mantém exceções de outras fontes. Evidência observável: expect(ficha.aplicarAumentoAtributos(8, ['forca', 'forca'])).toBe(true); expect(calcularValorAtributoFinal(ficha, 'carisma')).toBe(25);",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 130,
+    "test": "trocar ASI/talento arquiva somente a escolha correspondente",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege trocar ASI/talento arquiva somente a escolha correspondente. Evidência observável: expect(ficha.aplicarAumentoAtributos(4, ['forca', 'forca'])).toBe(true); expect(ficha.efeitos.some(e => e.talento === 'Habilidoso')).toBe(false);",
+    "action": "Manter",
+    "assertions": 7
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 142,
+    "test": "array incompleto, repetido, point buy inválido e origem inválida não concluem",
+    "parameter": null,
+    "category": "B",
+    "justification": "As recusas retornam false, mas a última asserção testa apenas a string constante base; uma recusa que alterasse atributos continuaria passando.",
+    "action": "Comparar atributos antes e depois de cada recusa; após o caso válido capturar nova base.",
+    "assertions": 6
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 156,
+    "test": "distribuição preserva base e não reaplica bônus depois de reabrir",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege distribuição preserva base e não reaplica bônus depois de reabrir. Evidência observável: expect(erroDistribuicao(ficha)).toBeNull(); expect(ficha.concluirAtributos()).toBe(false);",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 168,
+    "test": "metamagia %s: entrada %s, total %s, sem duplicatas e reversível",
+    "parameter": "test.each([['DND_2014', 3, 4], ['DND_2024', 2, 6]])",
+    "category": "A",
+    "justification": "Protege metamagia [parâmetro]: entrada [parâmetro], total [parâmetro], sem duplicatas e reversível. Evidência observável: expect(ficha.selecionarMetamagia(entrada - 1, 0, options[0].nome)).toBe(false); expect(metamagiasNoNivel(ficha, nivelDaClasse(ficha, 'feiticeiro'))).toHaveLength(total);",
+    "action": "Manter",
+    "assertions": 7
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 183,
+    "test": "2024 permite uma substituição por nível e conserva as quatro opções legadas",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege 2024 permite uma substituição por nível e conserva as quatro opções legadas. Evidência observável: expect(ficha.selecionarMetamagia(3, 0, 'Magia Sutil')).toBe(true); expect(metamagiasNoNivel(ficha, 17).find(m => m.slot === 4).nome).toBe('Magia Distante');",
+    "action": "Manter",
+    "assertions": 6
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 196,
+    "test": "patrono 2014 selecionado imediatamente; 2024 preserva legado sem ativar controle",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege patrono 2014 selecionado imediatamente; 2024 preserva legado sem ativar controle. Evidência observável: expect(ficha.setPatrono({ nome: 'Primeiro' })).toBe(true); expect(reabrir(revised).patrono.nome).toBe('Legado');",
+    "action": "Manter",
+    "assertions": 6
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 217,
+    "test": "UI permite entrar em outra classe no nível 2 com atributos válidos: %s",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "A",
+    "justification": "Protege UI permite entrar em outra classe no nível 2 com atributos válidos: [parâmetro]. Evidência observável: expect(within(dialog).getByRole('button', { name: 'Mago', exact: true })).toBeInTheDocument(); expect(nivelDaClasse(api.ficha, 'mago')).toBe(1);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 228,
+    "test": "UI de talento no nível 4 exibe opções: %s",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "A",
+    "justification": "Protege UI de talento no nível 4 exibe opções: [parâmetro]. Evidência observável: expect(within(screen.getByRole('dialog')).getByRole('button', { name: /^Alerta$/i })).toBeInTheDocument(); expect(api.ficha.efeitos.some(e => /^alerta$/i.test(e.talento))).toBe(true);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 239,
+    "test": "modal oculta novas classes quando a classe de origem não cumpre os requisitos",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege modal oculta novas classes quando a classe de origem não cumpre os requisitos. Evidência observável: expect(within(screen.getByRole('dialog')).queryByRole('button', { name: 'Mago', exact: true })).not.toBeInTheDocument(); expect(within(screen.getByRole('dialog')).getByRole('button', { name: 'Paladino', exact: true })).toBeInTheDocument();",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 247,
+    "test": "modal preserva visibilidade por edição e valida requisitos: %s",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "A",
+    "justification": "Protege modal preserva visibilidade por edição e valida requisitos: [parâmetro]. Evidência observável: expect(Boolean(opcao)).toBe(['guerreiro', 'barbaro', 'ladino'].includes(classe.chave)); expect(ficha.selecionarClasseNoNivel(getRulesetData(edicao).classes.find(c => c.chave === 'mago'), 2)).toBe(false);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 262,
+    "test": "paladino só exibe seleção de subclasse no nível de entrada: %s",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "A",
+    "justification": "Protege paladino só exibe seleção de subclasse no nível de entrada: [parâmetro]. Evidência observável: expect(screen.getByRole('button', { name: /Selecionar.*Juramento|Selecionar.*Subclasse/ })).toBeInTheDocument(); expect(screen.queryByRole('button', { name: /Selecionar.*Juramento|Selecionar.*Subclasse/ })).not.toBeInTheDocument();",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 271,
+    "test": "UI ASI só aplica distribuição completa e válida",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege UI ASI só aplica distribuição completa e válida. Evidência observável: expect(screen.queryByRole('button', { name: 'Aplicar aumento' })).not.toBeInTheDocument(); expect(calcularValorAtributoFinal(api.ficha, 'forca')).toBe(20);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 282,
+    "test": "2014 aplica, substitui, limpa e restaura ASI sem acumular",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege 2014 aplica, substitui, limpa e restaura ASI sem acumular. Evidência observável: expect(calcularValorAtributoFinal(api.ficha, 'forca')).toBe(15); expect(calcularValorAtributoFinal(api.ficha, 'destreza')).toBe(13);",
+    "action": "Manter",
+    "assertions": 6
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 297,
+    "test": "2014 talento local selecionável persiste e substitui efeitos de Alerta",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege 2014 talento local selecionável persiste e substitui efeitos de Alerta. Evidência observável: expect(screen.queryByText(/nao-verificado|licença pendente|Implementação pendente|PHB pendente/)).not.toBeInTheDocument(); expect(selecionarIniciativa(api.ficha).total).toBe(iniciativa);",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 312,
+    "test": "background e idiomas são opcionais somente em 2014: %s",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "A",
+    "justification": "Protege background e idiomas são opcionais somente em 2014: [parâmetro]. Evidência observável: expect(Boolean(screen.queryByRole('button', { name: 'Distribuir Atributos' }))).toBe(edicao === 'DND_2014');",
+    "action": "Manter",
+    "assertions": 1
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 318,
+    "test": "2014 troca background na UI sem perder progressão ou idiomas",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege 2014 troca background na UI sem perder progressão ou idiomas. Evidência observável: expect(ficha.selecionarTalentoAvanco(4, 'ALERTA')).toBe(true); expect(calcularValorAtributoFinal(salvo, 'forca')).toBe(14);",
+    "action": "Manter",
+    "assertions": 7
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 337,
+    "test": "background remove apenas idiomas e perícias próprios, preservando outras fontes",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege background remove apenas idiomas e perícias próprios, preservando outras fontes. Evidência observável: expect(reabrir(ficha).idiomas).toContain('Gíria de Ladrões'); expect(ficha.idiomas).toContain('Gíria de Ladrões');",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 353,
+    "test": "2014 salvamento local restaura talento e ASI ao reabrir a interface",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege 2014 salvamento local restaura talento e ASI ao reabrir a interface. Evidência observável: expect(api.ficha.selecionarTalentoAvanco(4, 'ALERTA')).toBe(true); expect(calcularValorAtributoFinal(api.ficha, 'forca')).toBe(15);",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 367,
+    "test": "UI não conclui array zerado",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege UI não conclui array zerado. Evidência observável: expect(screen.getByRole('button', { name: 'Concluir' })).toBeDisabled();",
+    "action": "Manter",
+    "assertions": 1
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 373,
+    "test": "UI 2024 oferece duas metamagias no nível 2",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege UI 2024 oferece duas metamagias no nível 2. Evidência observável: expect(screen.getByLabelText('Metamagia 1')).toBeInTheDocument(); expect(screen.queryByText('Selecionar Patrono')).not.toBeInTheDocument();",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 380,
+    "test": "UI libera ASI para as doze classes %s no nível 4",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "A",
+    "justification": "Protege UI libera ASI para as doze classes [parâmetro] no nível 4. Evidência observável: expect(screen.getByLabelText('Aumento 1')).toBeInTheDocument();",
+    "action": "Manter",
+    "assertions": 1
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 388,
+    "test": "multiclasse Bruxo 2024 não mostra patrono no primeiro nível da classe e libera subclasse no terceiro",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege multiclasse Bruxo 2024 não mostra patrono no primeiro nível da classe e libera subclasse no terceiro. Evidência observável: expect(screen.queryByRole('button', { name: /Selecionar Patrono/ })).not.toBeInTheDocument(); expect(screen.getByRole('button', { name: /Selecionar seu Patrono/ })).toBeInTheDocument();",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 397,
+    "test": "trocar origem preserva perícias de classe e dados da origem anterior",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege trocar origem preserva perícias de classe e dados da origem anterior. Evidência observável: expect(ficha.pericias).toEqual(expect.arrayContaining(['Atletismo', 'Perícia manual', 'Atuação'])); expect(ficha.escolhasAnteriores.some(e => e.tipo === 'origem')).toBe(true);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 405,
+    "test": "planejar ASI e talento em 2024 persiste sem aplicar beneficios antes da aquisicao",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege planejar ASI e talento em 2024 persiste sem aplicar beneficios antes da aquisicao. Evidência observável: expect(ficha.aplicarAumentoAtributos(4, ['forca', 'forca'])).toBe(true); expect(ficha.aplicarAumentoAtributos(3, ['forca', 'forca'])).toBe(false);",
+    "action": "Manter",
+    "assertions": 11
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 426,
+    "test": "modal 2024 oculta classes sem requisitos de multiclasse",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege modal 2024 oculta classes sem requisitos de multiclasse. Evidência observável: expect(classes).toHaveLength(12); expect(dialog.queryByRole('button', { name: 'Escolher Mago' })).not.toBeInTheDocument();",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/progressao.test.js",
+    "line": 440,
+    "test": "modal recalcula elegibilidade ao atualizar atributos e confirma a classe liberada",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege modal recalcula elegibilidade ao atualizar atributos e confirma a classe liberada. Evidência observável: expect(screen.queryByRole('button', { name: 'Feiticeiro', exact: true })).not.toBeInTheDocument(); expect(nivelDaClasse(api.ficha, 'feiticeiro')).toBe(1);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/talentos2024Utils.test.ts",
+    "line": 43,
+    "test": "level, ability, spellcasting, armor and fighting-style prerequisites",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege level, ability, spellcasting, armor and fighting-style prerequisites. Evidência observável: expect(requisitosTalento(talento(\"Ator\"), ficha, 1)).not.toEqual([]); expect( requisitosTalento(talento(\"Especialista em Armaduras Pesadas\"), ficha, 4), ).toEqual([]);",
+    "action": "Manter",
+    "assertions": 8
+  },
+  {
+    "file": "src/api/fichaPersonagem/talentos2024Utils.test.ts",
+    "line": 64,
+    "test": "magic initiate requires distinct cantrips and a first-level spell from its chosen list",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege magic initiate requires distinct cantrips and a first-level spell from its chosen list. Evidência observável: expect( validarEscolhasTalento(talento(\"Iniciado em Magia\"), escolhas, ficha, 1), ).toEqual([]); expect( validarEscolhasTalento( talento(\"Iniciado em Magia\"), { ...escolhas, magias: [\"2024: Curar Ferimentos\"] }, ficha, 1, ), ).not.toEqual([]);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/talentos2024Utils.test.ts",
+    "line": 93,
+    "test": "repetition restrictions and editing an existing acquisition",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege repetition restrictions and editing an existing acquisition. Evidência observável: expect( validarEscolhasTalento( talento(\"Adepto Elemental\"), { atributo: [\"inteligencia\"], elemento: [\"Ígneo\"] }, ficha, 4, ), ).not.toEqual([]); expect( validarEscolhasTalento( talento(\"Ator\"), { atributo: [\"carisma\"] }, ficha, 4, \"ator\", ), ).toEqual([]);",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/talentos2024Utils.test.ts",
+    "line": 130,
+    "test": "ability grants, caps and replacement do not accumulate bonuses",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege ability grants, caps and replacement do not accumulate bonuses. Evidência observável: expect(calcularValorAtributoFinal(ficha, \"destreza\")).toBe(15); expect( validarEscolhasTalento( talento(\"Atleta\"), { atributo: [\"forca\"] }, ficha, 4, \"teste\", ), ).not.toEqual([]);",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/talentos2024Utils.test.ts",
+    "line": 151,
+    "test": "ability improvement supports two points on one ability; epic boons cap at thirty",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege ability improvement supports two points on one ability; epic boons cap at thirty. Evidência observável: expect( validarEscolhasTalento( talento(\"Aumento no Valor de Atributo\"), escolhas, ficha, 4, ), ).toEqual([]); expect(bonusVidaTalentos(ficha)).toBe(40);",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/fichaPersonagem/talentos2024Utils.test.ts",
+    "line": 171,
+    "test": "skills, expertise, tools and saving throws are owned by the feat",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege skills, expertise, tools and saving throws are owned by the feat. Evidência observável: expect(temEspecializacao(ficha, \"Percepção\")).toBe(true); expect(temSalvaguarda(ficha, \"Destreza\")).toBe(true);",
+    "action": "Manter",
+    "assertions": 6
+  },
+  {
+    "file": "src/api/fichaPersonagem/talentos2024Utils.test.ts",
+    "line": 192,
+    "test": "ritual and school-limited spells reject invalid choices",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege ritual and school-limited spells reject invalid choices. Evidência observável: expect( validarEscolhasTalento( talento(\"Conjurador Ritualista\"), { atributo: [\"inteligencia\"], magias: [\"2024: Alarme\", \"2024: Detectar Magia\"], }, ficha, 4, ), ).toEqual([]); expect( validarEscolhasTalento( talento(\"Tocado Por Fadas\"), { atributo: [\"sabedoria\"], magias: [\"2024: Curar Ferimentos\"] }, ficha, 4, ), ).not.toEqual([]);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/talentos2024Utils.test.ts",
+    "line": 226,
+    "test": "granted spells, independent free uses and choices survive JSON round-trip",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege granted spells, independent free uses and choices survive JSON round-trip. Evidência observável: expect(magiasConcedidas(ficha).map((r) => r.magia.nome)).toEqual([ \"2024: Enfeitiçar Pessoa\", \"2024: Passo Nebuloso\", ]); expect(ficha.magiasEscolhidas).toEqual([ { classe: \"Mago\", magia: [\"Bola de Fogo\"] }, ]);",
+    "action": "Manter",
+    "assertions": 7
+  },
+  {
+    "file": "src/api/fichaPersonagem/talentos2024Utils.test.ts",
+    "line": 252,
+    "test": "level-dependent grants change dynamically and inactive talents grant nothing",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege level-dependent grants change dynamically and inactive talents grant nothing. Evidência observável: expect(bonusVidaTalentos(ficha)).toBe(8); expect(magiasConcedidas(ficha)).toEqual([]);",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/fichaPersonagem/talentos2024Utils.test.ts",
+    "line": 265,
+    "test": "rapid ritual shares one free use across all granted rituals",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege rapid ritual shares one free use across all granted rituals. Evidência observável: expect(usarMagiaTalento(ficha, \"teste\", \"2024: Alarme\")).toBe(true); expect(usarMagiaTalento(ficha, \"teste\", \"2024: Detectar Magia\")).toBe(true);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/fichaPersonagem/talentos2024Utils.test.ts",
+    "line": 277,
+    "test": "a later ability increase cannot meet an earlier feat prerequisite",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege a later ability increase cannot meet an earlier feat prerequisite. Evidência observável: expect(requisitosTalento(talento(\"Ator\"), ficha, 4)).not.toEqual([]); expect(requisitosTalento(talento(\"Ator\"), ficha, 8)).toEqual([]);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/rulesets/conteudoBusca.test.js",
+    "line": 3,
+    "test": "busca e resolução clonam só a entrada, preservando isolamento: %s",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "A",
+    "justification": "Protege busca e resolução clonam só a entrada, preservando isolamento: [parâmetro]. Evidência observável: expect(resolvido).toEqual(talento); expect(getTalentosConteudo(edicao)[0].nome).not.toBe('Mudança local');",
+    "action": "Manter",
+    "assertions": 8
+  },
+  {
+    "file": "src/api/rulesets/custos.test.js",
+    "line": 16,
+    "test": "contagem de catálogos em criação, reabertura e níveis: %s",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "B",
+    "justification": "Conta chamadas a magias e talentos em três etapas reais, mas só valida as contagens de magias; regressão no catálogo de talentos passaria. Spies só são restaurados no sucesso.",
+    "action": "Verificar contagens de talentos e restaurar spies em finally.",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/rulesets/custos.test.js",
+    "line": 50,
+    "test": "duas fichas alternadas preservam escolhas, identidades e snapshots: %s",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "A",
+    "justification": "Protege duas fichas alternadas preservam escolhas, identidades e snapshots: [parâmetro]. Evidência observável: expect(exportFicha(b)).toBe(originalB); expect(make('c').racaPrincipal.tracos[0].descricao).not.toMatch(/Escolha [AB]/);",
+    "action": "Manter",
+    "assertions": 6
+  },
+  {
+    "file": "src/api/rulesets/custos.test.js",
+    "line": 74,
+    "test": "configuração e conteúdo não compartilham escolhas mutáveis: %s",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "A",
+    "justification": "Protege configuração e conteúdo não compartilham escolhas mutáveis: [parâmetro]. Evidência observável: expect(getRulesetConfig(edition).regras.idiomasDisponiveis).not.toContain('Manual'); expect(next.classes[0].subClasse[0].id).not.toBe(rules.classes[0].subClasse[0].id);",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/rulesets/equipamentoBackground.test.ts",
+    "line": 12,
+    "test": "todos os backgrounds %s têm dados estruturados independentes",
+    "parameter": "test.each(['DND_2014', 'DND_2024'] as const)",
+    "category": "A",
+    "justification": "Protege todos os backgrounds [parâmetro] têm dados estruturados independentes. Evidência observável: expect(backgrounds).toHaveLength(16); expect(f.ouro).toBe(valores[index]);",
+    "action": "Manter",
+    "assertions": 6
+  },
+  {
+    "file": "src/api/rulesets/equipamentoBackground.test.ts",
+    "line": 28,
+    "test": "$nome 2014 não oferece alternativa em dinheiro nem recipiente de moedas",
+    "parameter": "test.each(getRulesetData('DND_2014').backgroundsOuOrigens)",
+    "category": "A",
+    "justification": "Protege [parâmetro] 2014 não oferece alternativa em dinheiro nem recipiente de moedas. Evidência observável: expect(dados.alternativa).toBeUndefined(); expect(f.itensMochila?.some(i => /algibeira/i.test(i.nome)) ?? false).toBe(false);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/rulesets/equipamentoBackground.test.ts",
+    "line": 36,
+    "test": "$nome 2024 permite trocar equipamento por 50 peças de ouro",
+    "parameter": "test.each(getRulesetData('DND_2024').backgroundsOuOrigens)",
+    "category": "A",
+    "justification": "Protege [parâmetro] 2024 permite trocar equipamento por 50 peças de ouro. Evidência observável: expect(dados.alternativa).toEqual({ ouro: 50, prata: 0, cobre: 0 }); expect(f.ArmasMochila ?? []).toHaveLength(0);",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/rulesets/equipamentoBackground.test.ts",
+    "line": 47,
+    "test": "adaptador separa dinheiro e recipiente: %s",
+    "parameter": "test.each([\n  ['Algibeira contendo 15 po', { ouro: 15, prata: 0, cobre: 0 }],\n  ['Bolsa com 10 peças de ouro', { ouro: 10, prata: 0, cobre: 0 }],\n  ['Uma algibeira contendo moedas', { ouro: 0, prata: 0, cobre: 0 }],\n  ['Uma bolsa contendo 7 peças de prata', { ouro: 0, prata: 7, cobre: 0 }],\n  ['algibeira com 4 pc', { ouro: 0, prata: 0, cobre: 4 }],\n] as const)",
+    "category": "A",
+    "justification": "Protege adaptador separa dinheiro e recipiente: [parâmetro]. Evidência observável: expect(estruturarEquipamentos([descricao])).toEqual({ itens: [], moedas });",
+    "action": "Manter",
+    "assertions": 1
+  },
+  {
+    "file": "src/api/rulesets/equipamentoBackground.test.ts",
+    "line": 57,
+    "test": "recipientes independentes e recipientes com outros objetos continuam físicos",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege recipientes independentes e recipientes com outros objetos continuam físicos. Evidência observável: expect(dados.itens).toEqual([ { nome: 'Bolsa', quantidade: 1 }, { nome: 'Mochila', quantidade: 1 }, { nome: 'Algibeiras', quantidade: 2 }, { nome: 'Bolsa com pedras', quantidade: 1 }, ]); expect(dados.moedas.ouro).toBe(15);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/rulesets/equipamentoBackground.test.ts",
+    "line": 66,
+    "test": "%s 2024 mantém duas algibeiras físicas",
+    "parameter": "test.each(['Andarilho', 'Artesão', 'Criminoso', 'Mercador'])",
+    "category": "A",
+    "justification": "Protege [parâmetro] 2024 mantém duas algibeiras físicas. Evidência observável: expect(f.itensMochila?.filter(i => /algibeira/i.test(i.nome))).toHaveLength(2); expect(f.itensMochila?.map(i => i.id)).toEqual(ids);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/rulesets/equipamentoBackground.test.ts",
+    "line": 77,
+    "test": "quantidades e comprimentos são preservados sem inventar valores ambíguos",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege quantidades e comprimentos são preservados sem inventar valores ambíguos. Evidência observável: expect(equipamentoBackground('DND_2014', 'Pirata Bêbado')!.itens[0].quantidade).toBe(2); expect(equipamentoBackground('DND_2014', 'Membro da Guilda dos Ladrões das Sombras')!.itens.find(i => /5 a 9/.test(i.nome))).toBeDefined();",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/rulesets/equipamentoBackground.test.ts",
+    "line": 85,
+    "test": "reabrir concessão anterior preserva recipientes; nova seleção remove apenas o automático",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege reabrir concessão anterior preserva recipientes; nova seleção remove apenas o automático. Evidência observável: expect(f.itensMochila?.filter(i => /algibeira/i.test(i.nome))).toHaveLength(2); expect(f.ouro).toBe(11);",
+    "action": "Manter",
+    "assertions": 5
+  },
+  {
+    "file": "src/api/rulesets/magiaFormulas.test.ts",
+    "line": 5,
+    "test": "Mísseis Mágicos %s: dano por dardo, acerto automático e escalonamento",
+    "parameter": "test.each<RulesetVersion>(['DND_2014','DND_2024'])",
+    "category": "A",
+    "justification": "Protege Mísseis Mágicos [parâmetro]: dano por dardo, acerto automático e escalonamento. Evidência observável: expect(magia.combate?.ataque).toBeUndefined(); expect(calcularAlvosMagia(magia,3,4)).toBe(5);",
+    "action": "Manter",
+    "assertions": 7
+  },
+  {
+    "file": "src/api/rulesets/magiaFormulas.test.ts",
+    "line": 16,
+    "test": "Rajada Mística %s aumenta feixes, sem multiplicar o dano de cada feixe",
+    "parameter": "test.each<RulesetVersion>(['DND_2014','DND_2024'])",
+    "category": "A",
+    "justification": "Protege Rajada Mística [parâmetro] aumenta feixes, sem multiplicar o dano de cada feixe. Evidência observável: expect(calcularFormulaMagia(m.combate!.dano!,0,0,nivel,4)).toBe('1d10'); expect(calcularAlvosMagia(m,0,nivel)).toBe(feixes);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/api/rulesets/magiaFormulas.test.ts",
+    "line": 24,
+    "test": "diferenças de dado, ataque, resistência e concentração entre edições",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege diferenças de dado, ataque, resistência e concentração entre edições. Evidência observável: expect(antiga.combate).toMatchObject({ ataque:'distancia', dano:{ dado:8 } }); expect(buscarMagiaConteudo('DND_2024','Círculo da Morte')!.combate?.dano?.dado).toBe(8);",
+    "action": "Manter",
+    "assertions": 9
+  },
+  {
+    "file": "src/api/rulesets/magiaFormulas.test.ts",
+    "line": 38,
+    "test": "cura e escalonamento intervalado %s usam apenas os modificadores permitidos",
+    "parameter": "test.each<RulesetVersion>(['DND_2014','DND_2024'])",
+    "category": "A",
+    "justification": "Protege cura e escalonamento intervalado [parâmetro] usam apenas os modificadores permitidos. Evidência observável: expect(calcularFormulaMagia(cura.combate!.cura!,1,2,4,3)).toBe(edicao === 'DND_2014' ? '2d4 + 3' : '4d4 + 3'); expect(calcularFormulaMagia(bola.combate!.dano!,3,5,9,10)).toBe('10d6');",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/rulesets/magiaFormulas.test.ts",
+    "line": 48,
+    "test": "lacunas ambíguas não são oferecidas; dados históricos e referências desconhecidas são preservados",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege lacunas ambíguas não são oferecidas; dados históricos e referências desconhecidas são preservados. Evidência observável: expect(buscarMagiaConteudo('DND_2014','Lago')!.selecionavel).toBe(false); expect(buscarMagiaConteudo('DND_2014','Amizade animal')!.descricao).not.toBe('Descrição legada indisponível.');",
+    "action": "Manter",
+    "assertions": 6
+  },
+  {
+    "file": "src/api/rulesets/multiclasse.test.js",
+    "line": 4,
+    "test": "%s respeita limite 12/13 e informa requisitos por classe",
+    "parameter": "test.each(Object.keys(requisitosMulticlasse))",
+    "category": "A",
+    "justification": "Protege [parâmetro] respeita limite 12/13 e informa requisitos por classe. Evidência observável: expect(negado.permitido).toBe(false); expect(avaliarMulticlasse([classe === 'bardo' ? 'mago' : 'bardo'], classe, atributos(), 'DND_2024').permitido).toBe(true);",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/api/rulesets/multiclasse.test.js",
+    "line": 10,
+    "test": "valida todas as classes antes de adicionar uma quarta",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege valida todas as classes antes de adicionar uma quarta. Evidência observável: expect(resultado.permitido).toBe(false); expect(avaliarMulticlasse(['mago', 'druida', 'bardo'], 'ladino', valores, 'DND_2024').permitido).toBe(true);",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/api/rulesets/multiclasse.test.js",
+    "line": 19,
+    "test": "primeira classe e classe existente dispensam requisitos: %s",
+    "parameter": "test.each(['DND_2014', 'DND_2024'])",
+    "category": "A",
+    "justification": "Protege primeira classe e classe existente dispensam requisitos: [parâmetro]. Evidência observável: expect(avaliarMulticlasse([], 'mago', atributos(8), edicao).permitido).toBe(true); expect(avaliarMulticlasse(['mago', 'bardo'], 'bardo', atributos(8), edicao).permitido).toBe(true);",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/bibliotecas/Catalogo2024.test.ts",
+    "line": 5,
+    "test": "complete 2024 catalogs with separate legacy references",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege complete 2024 catalogs with separate legacy references. Evidência observável: expect(Magias2024).toHaveLength(391); expect(Talentos2024.some((t) => t.nome === \"2024: Alerta\")).toBe(true);",
+    "action": "Manter",
+    "assertions": 8
+  },
+  {
+    "file": "src/bibliotecas/Catalogo2024.test.ts",
+    "line": 16,
+    "test": "%s has usable metadata and description",
+    "parameter": "test.each(Magias2024.map((m) => [m.nome, m]))",
+    "category": "A",
+    "justification": "Protege [parâmetro] has usable metadata and description. Evidência observável: expect(m.classes.length).toBeGreaterThan(0); expect(m.descricao).not.toMatch(/CAPÍTULO|Tempo de Conjuração:/);",
+    "action": "Manter",
+    "assertions": 9
+  },
+  {
+    "file": "src/bibliotecas/Catalogo2024.test.ts",
+    "line": 46,
+    "test": "%s has category, prerequisites and required attribute choices",
+    "parameter": "test.each(Talentos2024.map((t) => [t.nome, t]))",
+    "category": "A",
+    "justification": "Protege [parâmetro] has category, prerequisites and required attribute choices. Evidência observável: expect([\"Origem\", \"Geral\", \"Estilo de Luta\", \"Dádiva Épica\"]).toContain( t.categoria, ); expect(minimo === null || camposTalento(t, {}).some(c => c.chave === 'atributo')).toBe(true);",
+    "action": "Manter",
+    "assertions": 4
+  },
+  {
+    "file": "src/bibliotecas/Catalogo2024.test.ts",
+    "line": 59,
+    "test": "2024 class lists and updated spell rules come from the supplied book",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege 2024 class lists and updated spell rules come from the supplied book. Evidência observável: expect(Magias2024.some((m) => m.nome === \"2024: Bola de Fogo\" && m.classes.includes('Mago'))).toBe(true); expect( Talentos2024.find((t) => t.nomeExibicao === \"Alerta\")?.descricao, ).toMatch(/Bônus de Proficiência/);",
+    "action": "Manter",
+    "assertions": 6
+  },
+  {
+    "file": "src/leveis/components/DescricaoCaracteristica.test.tsx",
+    "line": 5,
+    "test": "resume a conjuração 2014 e preserva o texto completo",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege resume a conjuração 2014 e preserva o texto completo. Evidência observável: expect(screen.getByText(/comece com 6 magias/)).toBeTruthy(); expect(screen.getByText(\"Texto original completo\")).toBeInTheDocument();",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/leveis/components/DescricaoCaracteristica.test.tsx",
+    "line": 12,
+    "test": "não aplica o resumo 2014 ao conteúdo 2024",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege não aplica o resumo 2014 ao conteúdo 2024. Evidência observável: expect(screen.getByText(\"Regra específica de 2024\")).toBeTruthy(); expect(screen.queryByRole(\"list\")).not.toBeInTheDocument();",
+    "action": "Manter",
+    "assertions": 2
+  },
+  {
+    "file": "src/leveis/components/DescricaoCaracteristica.test.tsx",
+    "line": 18,
+    "test": "remove a introdução da visão no escuro preservando alcance e cores",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege remove a introdução da visão no escuro preservando alcance e cores. Evidência observável: expect(screen.getByRole(\"listitem\").textContent).toBe(\"Você enxerga na penumbra a até 18 metros como luz plena; no escuro, como penumbra, apenas tons de cinza.\");",
+    "action": "Manter",
+    "assertions": 1
+  },
+  {
+    "file": "src/leveis/components/DescricaoCaracteristica.test.tsx",
+    "line": 23,
+    "test": "resume características longas de qualquer nome e mantém todas as regras acessíveis",
+    "parameter": null,
+    "category": "A",
+    "justification": "Protege resume características longas de qualquer nome e mantém todas as regras acessíveis. Evidência observável: expect(screen.getAllByRole(\"listitem\")).toHaveLength(3); expect(screen.getByText(\"Descrição completa e demais regras\")).toBeTruthy();",
+    "action": "Manter",
+    "assertions": 3
+  },
+  {
+    "file": "src/leveis/LevelUm.distribuicao.test.js",
+    "line": 10,
+    "test": "método e ação principal de distribuição continuam funcionais em %s: %s",
+    "parameter": "test.each(['DND_2014', 'DND_2024'].flatMap(versao => ['Array Padrão', 'Point Buy', 'Rolagem de Dados'].map(metodo => [versao, metodo])))",
+    "category": "A",
+    "justification": "Protege método e ação principal de distribuição continuam funcionais em [parâmetro]: [parâmetro]. Evidência observável: expect(screen.queryByRole('button', { name: 'Distribuir Atributos' })).not.toBeInTheDocument(); expect(ficha.distribuicaoAtributos.pontos).toBe(27);",
+    "action": "Manter",
+    "assertions": 9
+  }
+]

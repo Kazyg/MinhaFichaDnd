@@ -1,0 +1,35 @@
+.sala-pagina { min-height: 100dvh; padding: clamp(1rem, 4vw, 3rem); color: #f5f5f5; background: #1e1e1e; }
+.sala-pagina > header, .sala-pagina > .sala-visao { max-width: 1100px; margin-inline: auto; }
+.sala-pagina a { color: #ffb184; }
+.sala-overlay { position: fixed; inset: 0; z-index: 1100; padding: 1rem; background: #000b; display: flex; align-items: center; justify-content: center; }
+.sala-dialog { width: min(960px, 100%); max-height: 92dvh; overflow: auto; padding: clamp(1rem, 3vw, 2rem); background: #25282c; color: #f5f5f5; border: 1px solid #656565; border-radius: 12px; }
+.sala-dialog h2 { margin-top: 0; }
+.sala-dialog p, .sala-pagina p { line-height: 1.6; }
+.sala-dialog label, .sala-entrada label { display: block; margin-block: .75rem; }
+.sala-dialog input:not([type=checkbox]), .sala-dialog select, .sala-entrada input { display: block; width: 100%; box-sizing: border-box; background: #17191c; border: 1px solid #777; color: #fff; padding: .75rem; border-radius: 5px; font: inherit; margin-top: .4rem; }
+.sala-dialog button, .sala-pagina button, .sala-abrir { font: inherit; padding: .65rem 1rem; border-radius: 5px; border: 1px solid #91502f; color: #fff; background: #733313; cursor: pointer; }
+.sala-dialog button:hover, .sala-pagina button:hover { background: #93451f; }
+.sala-dialog button:disabled, .sala-pagina button:disabled { opacity: .55; cursor: default; }
+.sala-dialog :focus-visible, .sala-pagina :focus-visible, .sala-abrir:focus-visible { outline: 3px solid #ffb184; outline-offset: 3px; }
+.sala-abrir { font-size: .8rem; padding: .4rem .6rem; }
+.sala-fechar { float: right; }
+.sala-dialog fieldset { margin-block: 1.5rem; border: 1px solid #666; border-radius: 5px; padding: 1rem; }
+.sala-check input { margin-right: .6rem; accent-color: #ff8a50; }
+.sala-acoes { display: flex; flex-wrap: wrap; gap: .6rem; margin-block: 1rem; }
+.sala-grupo { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 1rem; }
+.sala-personagem { border: 1px solid #555; border-top: 3px solid #d26732; border-radius: 8px; padding: 1rem; background: #272b30; text-align: center; }
+.sala-personagem h3 { overflow-wrap: anywhere; }
+.sala-retrato { display: block; width: 120px; height: 120px; object-fit: contain; margin: auto; border-radius: 8px; }
+.sala-sem-retrato { display: grid; place-items: center; color: #ffb184; background: #17191c; font-size: 2rem; }
+.sala-vida { font-size: 1.3rem; }
+.sala-personagem meter { display: block; width: 100%; height: 1rem; margin-bottom: 1rem; }
+.sala-monstros { display: flex; flex-wrap: wrap; gap: 1rem; }
+.sala-monstros figure { margin: 0; padding: 1rem; background: #17191c; border-radius: 8px; }
+.sala-monstros .sala-retrato { width: min(240px, 60vw); height: min(240px, 60vw); }
+.sala-membros { padding: 0; list-style: none; }
+.sala-membros li { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; padding: .75rem 0; border-bottom: 1px solid #555; }
+.sala-membros li span { flex: 1 1 220px; overflow-wrap: anywhere; }
+.sala-entrada { max-width: 480px; margin: 3rem auto; padding: 1.5rem; background: #272b30; border-radius: 8px; }
+.sala-documento { width: min(1100px, 100%); }
+.sala-documento img, .sala-documento canvas { max-width: 100%; }
+@media (max-width: 500px) { .sala-overlay { padding: .5rem; } .sala-dialog { max-height: 96dvh; } .sala-fechar { float: none; } }

@@ -1,0 +1,10 @@
+﻿{
+    "lint":  {
+                 "exitCode":  0,
+                 "seconds":  11.3109433
+             },
+    "typecheck":  {
+                      "exitCode":  0,
+                      "seconds":  9.8934991
+                  }
+}
