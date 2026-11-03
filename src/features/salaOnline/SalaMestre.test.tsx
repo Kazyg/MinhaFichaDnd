@@ -1,11 +1,12 @@
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { toast } from 'react-toastify';
-jest.mock('react-toastify', () => ({ toast: { info: jest.fn() } }));
 import SalaMestre from './SalaMestre';
 import { DadosCampanha } from '../areaMestre/modelos';
 import { lerConfig, lerMembros, lerSala, publicarSala, rpc, observarSala } from './cliente';
 
 import { provisionarSala } from './provisionamento';
+
+jest.mock('react-toastify', () => ({ toast: { info: jest.fn() } }));
 jest.mock('./provisionamento', () => ({ provisionarSala: jest.fn() }));
 jest.mock('./cliente', () => ({
   salaConfigurada: () => true, lerConfig: jest.fn(), lerMembros: jest.fn(), lerSala: jest.fn(), obterCliente: jest.fn(), publicarSala: jest.fn(),
