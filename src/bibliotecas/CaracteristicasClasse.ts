@@ -90,6 +90,108 @@ export const caracteristicasDeClasse = [
       `,
   },
   {
+    nome: "Inspiração de Bardo",
+    versaoRegras: "DND_2024",
+    descricao: `
+        Você pode inspirar outros sobrenaturalmente por meio de palavras, música ou dança. Como uma Ação Bônus, escolha outra criatura a até 18 metros que possa vê-lo ou ouvi-lo. Essa criatura recebe um dado de Inspiração de Bardo. Uma criatura pode ter apenas um dado de Inspiração de Bardo por vez.
+        Uma vez, dentro da próxima hora, após falhar em um Teste de D20, a criatura pode jogar o dado e adicionar o resultado ao D20, potencialmente transformando a falha em sucesso. O dado é gasto quando jogado.
+        Você pode conceder Inspiração de Bardo um número de vezes igual ao seu modificador de Carisma, mínimo uma vez, e restaura todos os usos ao completar um Descanso Longo. O dado aumenta para d8 no nível 5, d10 no nível 10 e d12 no nível 15.
+      `,
+  },
+  {
+    nome: "Conjuração",
+    versaoRegras: "DND_2024",
+    descricao: `
+        Você conjura magias através de suas artes bárdicas. Você conhece dois truques da lista de Bardo e pode substituir um truque por outro da lista sempre que alcança um nível de Bardo. Ao atingir os níveis 4 e 10, aprende mais um truque.
+        Você prepara magias de 1º círculo ou superior da lista de Bardo. Para começar, escolha quatro magias de 1º círculo. O número de magias preparadas aumenta conforme a tabela da classe. Sempre que obtém um nível de Bardo, pode substituir uma magia preparada por outra magia de Bardo para a qual tenha espaços.
+        Carisma é seu atributo de conjuração, e você pode usar um Instrumento Musical como Foco de Conjuração para suas magias de Bardo.
+      `,
+  },
+  {
+    nome: "Especialista",
+    versaoRegras: "DND_2024",
+    descricao: `
+        Você obtém Especialização em duas de suas perícias à sua escolha nas quais já seja proficiente. No nível 9 de Bardo, obtém Especialização em mais duas perícias nas quais já seja proficiente.
+      `,
+  },
+  {
+    nome: "Pau pra Toda Obra",
+    versaoRegras: "DND_2024",
+    descricao: `
+        Você pode adicionar metade do seu Bônus de Proficiência, arredondado para baixo, a qualquer teste de atributo que realizar que use uma perícia na qual não possua proficiência e que não use seu Bônus de Proficiência.
+      `,
+  },
+  {
+    nome: "Subclasse de Bardo",
+    versaoRegras: "DND_2024",
+    descricao: `
+        Você adquire uma subclasse de Bardo à sua escolha: Colégio da Bravura, Colégio da Dança, Colégio do Conhecimento ou Colégio do Glamour. Você recebe as características da subclasse nos níveis correspondentes.
+      `,
+  },
+  {
+    nome: "Aumento no Valor de Atributo",
+    versaoRegras: "DND_2024",
+    descricao: `
+        Você adquire o talento Aumento no Valor de Atributo ou outro talento à sua escolha para o qual atenda os pré-requisitos. Você adquire essa característica novamente nos níveis 8, 12 e 16.
+      `,
+  },
+  {
+    nome: "Fonte de Inspiração",
+    versaoRegras: "DND_2024",
+    descricao: `
+        Você restaura todos os usos gastos de Inspiração de Bardo quando completa um Descanso Curto ou Longo. Além disso, pode gastar um espaço de magia, sem ação necessária, para recuperar um uso gasto de Inspiração de Bardo.
+      `,
+  },
+  {
+    nome: "Característica de Subclasse",
+    versaoRegras: "DND_2024",
+    descricao: `
+        Você recebe a característica da sua subclasse correspondente a este nível da classe.
+      `,
+  },
+  {
+    nome: "Contra-Encantamento",
+    versaoRegras: "DND_2024",
+    descricao: `
+        Se você ou uma criatura a até 9 metros de você falhar em uma salvaguarda contra um efeito que aplica as condições Amedrontado ou Enfeitiçado, você pode executar uma Reação para jogar novamente a salvaguarda, e a nova jogada tem Vantagem.
+      `,
+  },
+  {
+    nome: "Especialização",
+    versaoRegras: "DND_2024",
+    descricao: `
+        No nível 9 de Bardo, você obtém Especialização em mais duas perícias nas quais já seja proficiente à sua escolha.
+      `,
+  },
+  {
+    nome: "Segredos Mágicos",
+    versaoRegras: "DND_2024",
+    descricao: `
+        Sempre que alcançar um nível de Bardo, incluindo este nível, e o número de Magias Preparadas da tabela aumentar, você pode escolher qualquer uma das novas magias preparadas da lista de Bardo, Clérigo, Druida ou Mago. Essas magias contam como magias de Bardo para você. Sempre que substituir uma magia preparada desta classe, também pode trocá-la por uma magia dessas listas.
+      `,
+  },
+  {
+    nome: "Inspiração Superior",
+    versaoRegras: "DND_2024",
+    descricao: `
+        Quando você jogar Iniciativa, recupera usos gastos de Inspiração de Bardo até ter dois, se tiver menos do que isso.
+      `,
+  },
+  {
+    nome: "Dádiva Épica",
+    versaoRegras: "DND_2024",
+    descricao: `
+        Você adquire um talento Dádiva Épica ou outro talento à sua escolha para o qual atenda os pré-requisitos. A Dádiva da Recordação de Magia é recomendada para Bardos.
+      `,
+  },
+  {
+    nome: "Palavras de Criação",
+    versaoRegras: "DND_2024",
+    descricao: `
+        Você dominou duas das Palavras de Criação: as palavras de vida e morte. Você sempre tem Palavra de Poder: Matar e Palavra de Poder: Salvar preparadas. Quando conjura qualquer uma dessas magias, pode escolher uma segunda criatura que esteja a até 3 metros do primeiro alvo.
+      `,
+  },
+  {
     nome: "Conjuração de Bardo",
     descricao: `
           Você aprendeu a desembaraçar e remodelar o decido da realidade em harmonia com os seus desejos e música.
@@ -182,6 +284,80 @@ export const caracteristicasDeClasse = [
         `,
   },
   {
+    nome: "Invocações Místicas",
+    versaoRegras: "DND_2024",
+    descricao: `
+        Você descobriu Invocações Místicas, fragmentos de conhecimento proibido que conferem habilidades mágicas permanentes ou outros ensinamentos. Você recebe uma invocação no nível 1 e mais invocações conforme a tabela da classe.
+        Se uma invocação tiver pré-requisito, você deve atendê-lo para aprendê-la. Ao alcançar um nível de Bruxo, pode substituir uma de suas invocações por outra para a qual se qualifica, desde que ela não seja pré-requisito para outra invocação que você tenha.
+      `,
+  },
+  {
+    nome: "Magia de Pacto",
+    versaoRegras: "DND_2024",
+    descricao: `
+        Por meio de uma cerimônia oculta, você realizou um pacto com uma entidade misteriosa para obter a habilidade de conjurar magias.
+        Você conhece dois truques de Bruxo e pode substituir um truque ao alcançar um nível de Bruxo. Aprende mais um truque nos níveis 4 e 10.
+        A tabela da classe mostra seus espaços de Magia de Pacto, todos do mesmo círculo, restaurados ao completar Descanso Curto ou Longo. Você prepara magias de 1º círculo ou superior da lista de Bruxo conforme a coluna Magias Preparadas, podendo substituir uma magia preparada sempre que ganha um nível de Bruxo.
+        Carisma é seu atributo de conjuração, e você pode usar um Foco Arcano como Foco de Conjuração para suas magias de Bruxo.
+      `,
+  },
+  {
+    nome: "Astúcia Mágica",
+    versaoRegras: "DND_2024",
+    descricao: `
+        Ao final de um rito esotérico de 1 minuto, você recupera espaços de magia das suas Magias de Pacto gastos em número igual à metade da sua quantidade máxima, arredondado para cima. Você pode usar esta característica novamente após completar um Descanso Longo.
+      `,
+  },
+  {
+    nome: "Subclasse de Bruxo",
+    versaoRegras: "DND_2024",
+    descricao: `
+        Você adquire uma subclasse de Bruxo à sua escolha: Patrono Arquifada, Patrono Celestial, Patrono O Grande Antigo ou Patrono Ínfero. Você recebe as características da subclasse nos níveis correspondentes.
+      `,
+  },
+  {
+    nome: "Contatar Patrono",
+    versaoRegras: "DND_2024",
+    descricao: `
+        Você sempre tem Contato Extraplanar preparada. Com esta característica, pode conjurar a magia sem gastar espaço de magia para entrar em contato com seu patrono, e você é bem-sucedido automaticamente na salvaguarda da magia. Você recupera o uso ao completar Descanso Longo.
+      `,
+  },
+  {
+    nome: "Arcana Mística (6º círculo)",
+    versaoRegras: "DND_2024",
+    descricao: `
+        Seu patrono lhe concede uma magia de Bruxo de 6º círculo como arcanum. Você pode conjurá-la uma vez sem gastar espaço de magia e recupera o uso ao completar Descanso Longo. Ao alcançar um nível de Bruxo, pode substituir essa magia por outra magia de Bruxo do mesmo círculo.
+      `,
+  },
+  {
+    nome: "Arcana Mística (7º círculo)",
+    versaoRegras: "DND_2024",
+    descricao: `
+        Você recebe uma magia de Bruxo de 7º círculo como arcanum. Você pode conjurá-la uma vez sem gastar espaço de magia e recupera o uso ao completar Descanso Longo.
+      `,
+  },
+  {
+    nome: "Arcana Mística (8º círculo)",
+    versaoRegras: "DND_2024",
+    descricao: `
+        Você recebe uma magia de Bruxo de 8º círculo como arcanum. Você pode conjurá-la uma vez sem gastar espaço de magia e recupera o uso ao completar Descanso Longo.
+      `,
+  },
+  {
+    nome: "Arcana Mística (9º círculo)",
+    versaoRegras: "DND_2024",
+    descricao: `
+        Você recebe uma magia de Bruxo de 9º círculo como arcanum. Você pode conjurá-la uma vez sem gastar espaço de magia e recupera o uso ao completar Descanso Longo.
+      `,
+  },
+  {
+    nome: "Mestre Místico",
+    versaoRegras: "DND_2024",
+    descricao: `
+        Ao usar sua característica Astúcia Mágica, você restaura todos os seus espaços de magia gastos das suas Magias de Pacto.
+      `,
+  },
+  {
     nome: "Patrono Transcendental",
     descricao: `
           No 1° nível, você conclui uma barganha com um ser transcendental, à sua escolha: a Arquifada, o Corruptor ou o Grande Antigo, cada um deles é detalhado no final da descrição da classe. Sua escolha lhe confere traços no 1° nível e novamente no 6°, 10° e 14° nível.
@@ -245,6 +421,74 @@ export const caracteristicasDeClasse = [
     nome: "Mestre Místico",
     descricao: `
           No 20° nível, você pode recarregar sua reserva interior de poder místico quando suplicar ao seu patrono para recuperar espaços de magia gastos. Você pode gastar 1 minuto suplicando pela ajuda do seu patrono para recuperar todos os espaços de magia gastos da sua característica Magia de Pacto. Uma vez que você recuperou espaços de magia com essa característica, você deve terminar um descanso longo antes de fazê-lo novamente.
+        `,
+  },
+  {
+    nome: "Conjuração de Clérigo",
+    versaoRegras: "DND_2024",
+    descricao: `
+          Você aprendeu a conjurar magias por meio de oração e meditação. Você conhece três truques da lista de Clérigo e pode substituir um truque sempre que alcança um nível de Clérigo. Nos níveis 4 e 10, aprende mais um truque.
+          A tabela da classe mostra seus espaços de magia. Você recupera todos os espaços gastos ao completar um Descanso Longo.
+          Você prepara magias de 1º círculo ou superior da lista de Clérigo. Para começar, escolha quatro magias de 1º círculo. O número de magias preparadas aumenta conforme a tabela da classe. Sempre que completar um Descanso Longo, pode substituir suas magias preparadas por outras magias de Clérigo para as quais tenha espaços.
+          Sabedoria é seu atributo de conjuração, e você pode usar um Símbolo Sagrado como Foco de Conjuração para suas magias de Clérigo.
+        `,
+  },
+  {
+    nome: "Ordem Divina",
+    versaoRegras: "DND_2024",
+    descricao: `
+          Você se dedica a um papel sagrado à sua escolha. Protetor concede proficiência com armas Marciais e treinamento com Armadura Pesada. Taumaturgo concede um truque adicional de Clérigo e adiciona seu modificador de Sabedoria, mínimo +1, a testes de Inteligência (Arcanismo ou Religião).
+        `,
+  },
+  {
+    nome: "Canalizar Divindade",
+    versaoRegras: "DND_2024",
+    descricao: `
+          Você canaliza energia divina dos Planos Externos para alimentar efeitos mágicos. Começa com Centelha Divina e Expulsar Mortos-Vivos, e escolhe qual efeito usar sempre que gastar Canalizar Divindade. Você recupera um uso gasto ao completar Descanso Curto e todos ao completar Descanso Longo.
+          Centelha Divina permite, como ação Usar Magia, restaurar Pontos de Vida de uma criatura à sua vista a até 9 metros igual a 1d8 + seu modificador de Sabedoria, ou causar dano Necrótico ou Radiante com salvaguarda de Constituição. O número de d8 aumenta nos níveis 7, 13 e 18.
+          Expulsar Mortos-Vivos faz Mortos-Vivos escolhidos a até 9 metros realizarem salvaguarda de Sabedoria. Se falharem, ficam Amedrontados e Incapacitados por 1 minuto e tentam se afastar de você.
+        `,
+  },
+  {
+    nome: "Subclasse Clérigo",
+    versaoRegras: "DND_2024",
+    descricao: `
+          Você adquire uma subclasse de Clérigo à sua escolha: Domínio da Guerra, Domínio da Luz, Domínio da Trapaça ou Domínio da Vida. Você recebe as características da subclasse nos níveis correspondentes.
+        `,
+  },
+  {
+    nome: "Fulminar Mortos-Vivos",
+    versaoRegras: "DND_2024",
+    descricao: `
+          Ao usar Expulsar Mortos-Vivos, você pode jogar uma quantidade de d8s igual ao seu modificador de Sabedoria, mínimo 1d8, e somar os resultados. Cada Morto-Vivo que falhar na salvaguarda sofre dano Radiante igual ao total. Esse dano não encerra Expulsar Mortos-Vivos.
+        `,
+  },
+  {
+    nome: "Golpes Abençoados",
+    versaoRegras: "DND_2024",
+    descricao: `
+          Você escolhe uma opção de poder divino em combate. Conjuração Poderosa adiciona seu modificador de Sabedoria ao dano causado por qualquer truque de Clérigo. Golpe Divino permite, uma vez em cada um dos seus turnos, causar 1d8 de dano Necrótico ou Radiante adicional ao atingir uma criatura com uma jogada de ataque usando arma.
+        `,
+  },
+  {
+    nome: "Intervenção Divina",
+    versaoRegras: "DND_2024",
+    descricao: `
+          Como ação Usar Magia, você escolhe qualquer magia de Clérigo de 5º círculo ou inferior que não exija Reação para ser conjurada. Como parte da mesma ação, conjura essa magia sem gastar espaço de magia ou componentes Materiais. Você recupera o uso ao completar Descanso Longo.
+        `,
+  },
+  {
+    nome: "Golpes Abençoados Aprimorado",
+    versaoRegras: "DND_2024",
+    descricao: `
+          A opção escolhida em Golpes Abençoados fica mais poderosa. Conjuração Poderosa permite conceder Pontos de Vida Temporários iguais ao dobro do seu modificador de Sabedoria a você ou a uma criatura a até 18 metros quando seu truque de Clérigo causa dano. Golpe Divino aumenta o dano adicional para 2d8.
+        `,
+  },
+  {
+    nome: "Intervenção Divina Maior",
+    versaoRegras: "DND_2024",
+    descricao: `
+          Quando usar Intervenção Divina, você pode escolher Desejo como opção de magia. Se fizer isso, não pode usar Intervenção Divina novamente até completar 2d4 Descansos Longos.
         `,
   },
   {
@@ -324,6 +568,89 @@ export const caracteristicasDeClasse = [
           Em um panteão, cada divindade tem influência sobre certos aspectos da vida mortal e da civilização, chamados de domínios divinos. Juntando-se os domínios sobre os quais uma divindade tem influência, têm-se um conjunto denominado portfólio da divindade. Por exemplo, o portfólio do deus grego Apolo inclui os domínios do Conhecimento, da Luz e da Vida. Como um clérigo, você escolhe um aspecto de sua divindade para enfatizar, ganhando os poderes relativos àquele domínio.
           Essa escolha pode ainda corresponder a um grupo dedicado àquele deus. Apolo, por exemplo, pode ser venerado em uma região como Phoebus (“radiante”) Apolo, enfatizando sua associação sobre o domínio da Luz, e em outro local como Apolo Acesius (“curandeiro”), enfatizando seu domínio sobre a Vida. Da mesma forma, o domínio que você escolher poderia simplesmente representar uma preferência pessoal, o aspecto da divindade que mais agrada você.
           A descrição de cada domínio inclui exemplos de divindades que têm influência sobre eles. Estão incluídos deuses dos mundos dos Reinos Esquecidos, Greyhawk, Dragonlance e de Eberron, além dos antigos panteões Celta, Egípcio, Grego e Nórdico.
+        `,
+  },
+  {
+    nome: "Conjuração de Druida",
+    versaoRegras: "DND_2024",
+    descricao: `
+          Você aprendeu a conjurar magias através do estudo das forças místicas da natureza. Você conhece dois truques da lista de Druida e pode substituir um truque sempre que alcança um nível de Druida. Nos níveis 4 e 10, aprende mais um truque.
+          A tabela da classe mostra seus espaços de magia. Você recupera todos os espaços gastos ao completar um Descanso Longo.
+          Você prepara magias de 1º círculo ou superior da lista de Druida. Para começar, escolha quatro magias de 1º círculo. O número de magias preparadas aumenta conforme a tabela da classe. Sempre que completar um Descanso Longo, pode substituir suas magias preparadas por outras magias de Druida para as quais tenha espaços.
+          Sabedoria é seu atributo de conjuração, e você pode usar um Foco Druídico como Foco de Conjuração para suas magias de Druida.
+        `,
+  },
+  {
+    nome: "Idioma Druídico",
+    versaoRegras: "DND_2024",
+    descricao: `
+          Você domina Druídico, o idioma secreto dos Druidas. Ao aprender esse idioma antigo, você também adquiriu a habilidade mágica de se comunicar com animais; você sempre tem Falar com Animais preparada.
+          Você pode usar Druídico para deixar mensagens ocultas. Você e outros que conhecem Druídico identificam automaticamente tal mensagem. Outros podem perceber a presença da mensagem com um teste de Inteligência (Investigação) CD 15, mas não podem decifrá-la sem magia.
+        `,
+  },
+  {
+    nome: "Ordem Primal",
+    versaoRegras: "DND_2024",
+    descricao: `
+          Você se dedicou a uma função sagrada à sua escolha. Protetor concede proficiência com armas Marciais e treinamento com armadura Média. Xamã concede um truque adicional da lista de Druida e adiciona seu modificador de Sabedoria, mínimo +1, a testes de Inteligência (Arcanismo ou Natureza).
+        `,
+  },
+  {
+    nome: "Companheiro Selvagem",
+    versaoRegras: "DND_2024",
+    descricao: `
+          Você pode invocar um espírito da natureza em forma animal. Como ação Usar Magia, pode gastar um espaço de magia ou um uso de Forma Selvagem para conjurar Convocar Familiar sem componentes Materiais. Ao conjurar desse modo, o familiar é uma criatura Feérica e desaparece quando você completa Descanso Longo.
+        `,
+  },
+  {
+    nome: "Forma Selvagem",
+    versaoRegras: "DND_2024",
+    descricao: `
+          Como Ação Bônus, você assume uma forma Animal conhecida por esta característica por um número de horas igual à metade do seu nível de Druida, até usar Forma Selvagem novamente, ficar Incapacitado ou morrer. Você também pode sair da forma antes como Ação Bônus.
+          Você recupera um uso gasto ao completar Descanso Curto e todos os usos ao completar Descanso Longo. Você conhece quatro formas inicialmente, com ND máximo 1/4 e sem Deslocamento de Voo. O número de formas conhecidas e o ND máximo aumentam em níveis superiores, e a partir do nível 8 você pode escolher formas com Deslocamento de Voo.
+          Ao assumir Forma Selvagem, você recebe Pontos de Vida Temporários iguais ao seu nível de Druida. Suas estatísticas de jogo são substituídas pelo bloco da Fera, mas você mantém tipo de criatura, Pontos de Vida, Dados de Vida, Inteligência, Sabedoria, Carisma, características de classe, idiomas, talentos e proficiências. Você não pode conjurar magias enquanto está na forma, mas mantém Concentração em magias já conjuradas.
+        `,
+  },
+  {
+    nome: "Subclasse de Druida",
+    versaoRegras: "DND_2024",
+    descricao: `
+          Você adquire uma subclasse de Druida à sua escolha: Círculo da Lua, Círculo da Terra, Círculo das Estrelas ou Círculo do Mar. Você recebe as características da subclasse nos níveis correspondentes.
+        `,
+  },
+  {
+    nome: "Ressurgimento Selvagem",
+    versaoRegras: "DND_2024",
+    descricao: `
+          Uma vez em cada um dos seus turnos, se você não tiver mais usos de Forma Selvagem, pode recuperar um uso gastando um espaço de magia, sem exigir ação. Além disso, pode gastar um uso de Forma Selvagem, sem exigir ação, para recuperar um espaço de magia de 1º círculo. Depois disso, não pode fazê-lo novamente até completar Descanso Longo.
+        `,
+  },
+  {
+    nome: "Fúria Elemental",
+    versaoRegras: "DND_2024",
+    descricao: `
+          O poder dos elementos flui através de você. Escolha uma opção: Ataque Primal permite, uma vez por turno ao atingir com arma ou ataque da forma Animal em Forma Selvagem, causar 1d8 de dano Elétrico, Gélido, Ígneo ou Trovejante adicional; Conjuração Poderosa adiciona seu modificador de Sabedoria ao dano causado por qualquer truque de Druida.
+        `,
+  },
+  {
+    nome: "Fúria Elemental Aprimorada",
+    versaoRegras: "DND_2024",
+    descricao: `
+          A opção escolhida em Fúria Elemental fica mais poderosa. Ataque Primal aumenta o dano adicional para 2d8. Conjuração Poderosa aumenta para 90 metros o alcance de truques de Druida que tenham alcance de 3 metros ou mais.
+        `,
+  },
+  {
+    nome: "Magias Bestiais",
+    versaoRegras: "DND_2024",
+    descricao: `
+          Ao usar Forma Selvagem, você pode conjurar magias na forma Animal, exceto magias que tenham componente Material com custo especificado ou que consumam seu componente Material.
+        `,
+  },
+  {
+    nome: "Arquidruida",
+    versaoRegras: "DND_2024",
+    descricao: `
+          A vitalidade da natureza floresce em você. Sempre que joga Iniciativa e não tem usos de Forma Selvagem, recupera um uso gasto. Você também pode converter usos de Forma Selvagem em um único espaço de magia, com cada uso contribuindo com espaços de 2º círculo, recuperando essa conversão após Descanso Longo. Além disso, sua magia primitiva faz seu corpo envelhecer apenas um ano para cada dez anos passados.
         `,
   },
   {
@@ -417,6 +744,74 @@ export const caracteristicasDeClasse = [
   },
   {
     nome: "Conjuração de Feiticeiro",
+    versaoRegras: "DND_2024",
+    descricao: `
+          Através da sua magia inata, você pode conjurar magias de Feiticeiro. Você conhece quatro truques de Feiticeiro e pode substituir um deles sempre que alcança um nível de Feiticeiro. Nos níveis 4 e 10, aprende mais um truque.
+          A tabela da classe mostra seus espaços de magia. Você recupera todos os espaços gastos ao completar Descanso Longo.
+          Você prepara magias de 1º círculo ou superior da lista de Feiticeiro. Para começar, escolha duas magias de 1º círculo. O número de magias preparadas aumenta conforme a tabela da classe, e sempre que esse número aumentar você escolhe magias adicionais para as quais tenha espaços. Sempre que obtém um nível de Feiticeiro, pode substituir uma magia preparada por outra magia de Feiticeiro para a qual tenha espaços.
+          Carisma é seu atributo de conjuração, e você pode usar um Foco Arcano como Foco de Conjuração para suas magias de Feiticeiro.
+        `,
+  },
+  {
+    nome: "Feitiçaria Inata",
+    versaoRegras: "DND_2024",
+    descricao: `
+          Como Ação Bônus, você libera a magia latente em si por 1 minuto. Durante esse período, a CD para evitar suas magias de Feiticeiro aumenta em 1, e você tem Vantagem nas jogadas de ataque das magias de Feiticeiro que conjurar. Você pode usar essa característica duas vezes e recupera todos os usos gastos ao completar Descanso Longo.
+        `,
+  },
+  {
+    nome: "Fonte de Magia",
+    versaoRegras: "DND_2024",
+    descricao: `
+          Você acessa a fonte de magia dentro de si, representada por Pontos de Feitiçaria. Você não pode ter mais Pontos de Feitiçaria do que o valor mostrado na tabela da classe e recupera todos os pontos gastos ao completar Descanso Longo.
+          Você pode gastar um espaço de magia para receber Pontos de Feitiçaria iguais ao círculo do espaço, sem exigir ação. Como Ação Bônus, também pode transformar Pontos de Feitiçaria em um espaço de magia de até 5º círculo. Espaços criados desse modo desaparecem ao completar Descanso Longo.
+        `,
+  },
+  {
+    nome: "Metamagia",
+    versaoRegras: "DND_2024",
+    descricao: `
+          Sua magia flui de dentro para fora, permitindo ajustar suas magias. Você adquire duas opções de Metamagia no nível 2, mais duas no nível 10 e mais duas no nível 17. Ao atingir um nível de Feiticeiro, pode substituir uma opção conhecida por outra que não conhece.
+          Você pode usar apenas uma opção de Metamagia em uma magia ao conjurá-la, a menos que a própria opção diga o contrário.
+        `,
+  },
+  {
+    nome: "Opções de Metamagia",
+    versaoRegras: "DND_2024",
+    descricao: `
+          As opções disponíveis incluem Magia Acelerada, Magia Agravada, Magia Buscadora, Magia Cautelosa, Magia Distante, Magia Duplicada, Magia Persistente, Magia Potencializada, Magia Sutil e Magia Transmutada. Cada opção consome Pontos de Feitiçaria para modificar temporariamente uma magia conforme sua descrição.
+        `,
+  },
+  {
+    nome: "Subclasse de Feiticeiro",
+    versaoRegras: "DND_2024",
+    descricao: `
+          Você adquire uma subclasse de Feiticeiro à sua escolha: Feitiçaria Aberrante, Feitiçaria Dracônica, Feitiçaria Mecânica ou Feitiçaria Selvagem. Você recebe as características da subclasse nos níveis correspondentes.
+        `,
+  },
+  {
+    nome: "Restauração Feiticeira",
+    versaoRegras: "DND_2024",
+    descricao: `
+          Ao completar Descanso Curto, você pode recuperar Pontos de Feitiçaria gastos, mas não mais do que um número igual à metade do seu nível de Feiticeiro, arredondado para baixo. Você só pode usar esta característica novamente após completar Descanso Longo.
+        `,
+  },
+  {
+    nome: "Feitiçaria Encarnada",
+    versaoRegras: "DND_2024",
+    descricao: `
+          Quando não tiver mais usos de Feitiçaria Inata, você pode usá-la gastando 2 Pontos de Feitiçaria ao executar a Ação Bônus para ativá-la. Além disso, enquanto Feitiçaria Inata estiver ativa, você pode usar até duas opções de Metamagia em cada magia conjurada.
+        `,
+  },
+  {
+    nome: "Apoteose Arcana",
+    versaoRegras: "DND_2024",
+    descricao: `
+          Enquanto sua Feitiçaria Inata estiver ativa, você pode usar uma opção de Metamagia em cada um dos seus turnos sem gastar Pontos de Feitiçaria com ela.
+        `,
+  },
+  {
+    nome: "Conjuração de Feiticeiro",
     descricao: `
           Um evento do seu passado ou na vida de um parente ou ancestral deixou uma marca indelével em você, infundindo você com magia arcana. A fonte desse poder, independente da sua origem, flui em suas magias. Veja o capítulo 10 para as regras gerais de conjuração e o capítulo 11 para a lista de magias de feiticeiro.
       
@@ -490,6 +885,83 @@ export const caracteristicasDeClasse = [
     descricao: `
           No 20° nível, você recupera 4 pontos de feitiçaria gastos sempre que você terminar um descanso curto.
         `},
+  {
+    nome: "Estilo de Luta",
+    versaoRegras: "DND_2024",
+    descricao: `
+              Você aprimorou suas proezas marciais e tem um talento de Estilo de Luta à sua escolha. Sempre que atinge um nível de Guerreiro, você pode substituir o talento escolhido por outro talento de Estilo de Luta.
+            `,
+  },
+  {
+    nome: "Maestria em Arma",
+    versaoRegras: "DND_2024",
+    descricao: `
+              Seu treinamento permite usar propriedades de maestria com armas Simples ou Marciais à sua escolha. Você começa com três armas e pode alterar uma escolha ao completar Descanso Longo. A quantidade aumenta conforme a tabela da classe.
+            `,
+  },
+  {
+    nome: "Recuperar Fôlego",
+    versaoRegras: "DND_2024",
+    descricao: `
+              Como Ação Bônus, você recupera Pontos de Vida iguais a 1d10 + seu nível de Guerreiro. Você começa com dois usos, recupera um uso gasto ao completar Descanso Curto e todos ao completar Descanso Longo. A quantidade de usos aumenta conforme a tabela da classe.
+            `,
+  },
+  {
+    nome: "Mente Tática",
+    versaoRegras: "DND_2024",
+    descricao: `
+              Ao falhar em um teste de atributo, você pode gastar um uso de Recuperar Fôlego para jogar 1d10 e adicionar o resultado ao teste, potencialmente transformando a falha em sucesso. Se o teste ainda falhar, o uso não é gasto.
+            `,
+  },
+  {
+    nome: "Surto de Ação",
+    versaoRegras: "DND_2024",
+    descricao: `
+              No seu turno, você pode executar uma ação adicional, exceto a ação Usar Magia. Após usar esta característica, você precisa completar Descanso Curto ou Longo para usá-la novamente. A partir do nível 17, pode usá-la duas vezes antes de um descanso, mas apenas uma vez por turno.
+            `,
+  },
+  {
+    nome: "Subclasse de Guerreiro",
+    versaoRegras: "DND_2024",
+    descricao: `
+              Você adquire uma subclasse de Guerreiro à sua escolha: Campeão, Cavaleiro Místico, Combatente Psíquico ou Mestre da Batalha. Você recebe as características da subclasse nos níveis correspondentes.
+            `,
+  },
+  {
+    nome: "Ajuste Tático",
+    versaoRegras: "DND_2024",
+    descricao: `
+              Sempre que executar uma Ação Bônus para usar Recuperar Fôlego, você pode mover-se até metade do seu Deslocamento sem provocar Ataques de Oportunidade.
+            `,
+  },
+  {
+    nome: "Mestre Tático",
+    versaoRegras: "DND_2024",
+    descricao: `
+              Ao atacar com uma arma cuja propriedade de maestria você pode usar, você pode substituir essa propriedade por Empurrar, Drenar ou Lentidão para esse ataque.
+            `,
+  },
+  {
+    nome: "Dois Ataques Extras",
+    versaoRegras: "DND_2024",
+    descricao: `
+              Você pode atacar três vezes, em vez de uma, sempre que executar a ação Atacar no seu turno.
+            `,
+  },
+  {
+    nome: "Ataques Estudados",
+    versaoRegras: "DND_2024",
+    descricao: `
+              Se você realizar uma jogada de ataque contra uma criatura e errar, você tem Vantagem em sua próxima jogada de ataque contra essa criatura antes do final do seu próximo turno.
+            `,
+  },
+  {
+    nome: "Três Ataques Extras",
+    versaoRegras: "DND_2024",
+    descricao: `
+              Você pode atacar quatro vezes, em vez de uma, sempre que executar a ação Atacar no seu turno.
+            `,
+  },
   {
     nome: "Estilo de Luta Guerreiro",
     descricao: `
@@ -915,6 +1387,106 @@ export const caracteristicasDeClasse = [
     descricao: `
               A partir do 14° nível, você pode usar sua ação para terminar uma magia em si mesmo ou em uma criatura voluntária que você tocar.
               Você pode usar essa característica um número de vezes igual a seu modificador de Carisma (mínimo uma vez). Você recupera os usos gastos quando termina um descanso longo.
+            `,
+  },
+  {
+    nome: "Conjuração de Guardião",
+    versaoRegras: "DND_2024",
+    descricao: `
+              Você aprendeu a canalizar a essência mágica da natureza para conjurar magias de Guardião. A tabela da classe mostra seus espaços de magia, e você recupera todos os espaços gastos ao completar Descanso Longo.
+              Você prepara magias de 1º círculo ou superior da lista de Guardião. Para começar, escolha duas magias de 1º círculo. O número de magias preparadas aumenta conforme a tabela da classe. Sempre que completar Descanso Longo, pode substituir uma magia preparada por outra magia de Guardião para a qual tenha espaços.
+              Sabedoria é seu atributo de conjuração, e você pode usar um Foco Druídico como Foco de Conjuração para suas magias de Guardião.
+            `,
+  },
+  {
+    nome: "Inimigo Favorito",
+    versaoRegras: "DND_2024",
+    descricao: `
+              Você sempre tem Marca do Predador preparada. Pode conjurá-la sem gastar espaço de magia um número de vezes indicado na tabela da classe, recuperando todos os usos ao completar Descanso Longo.
+            `,
+  },
+  {
+    nome: "Maestria em Arma",
+    versaoRegras: "DND_2024",
+    descricao: `
+              Seu treinamento permite usar as propriedades de maestria de dois tipos de armas com as quais você tem proficiência. Sempre que completar Descanso Longo, pode alterar os tipos de armas escolhidos.
+            `,
+  },
+  {
+    nome: "Estilo de Luta Guardião",
+    versaoRegras: "DND_2024",
+    descricao: `
+              Você adquire um talento Estilo de Luta à sua escolha. Em vez disso, pode escolher Combatente Druídico: você aprende dois truques de Druida, que contam como magias de Guardião para você e usam Sabedoria como atributo de conjuração. Sempre que atingir um nível de Guardião, pode substituir um desses truques por outro truque de Druida.
+            `,
+  },
+  {
+    nome: "Explorador Hábil",
+    versaoRegras: "DND_2024",
+    descricao: `
+              Escolha uma perícia na qual você tenha proficiência, mas não seja Especialista; você obtém Especialização nessa perícia. Além disso, você conhece dois idiomas à sua escolha.
+            `,
+  },
+  {
+    nome: "Subclasse de Guardião",
+    versaoRegras: "DND_2024",
+    descricao: `
+              Você adquire uma subclasse de Guardião à sua escolha: Andarilho Feérico, Caçador, Senhor das Feras ou Vigilante das Sombras. Você recebe as características da subclasse nos níveis correspondentes.
+            `,
+  },
+  {
+    nome: "Errante",
+    versaoRegras: "DND_2024",
+    descricao: `
+              Seu Deslocamento aumenta em 3 metros enquanto você não estiver usando Armadura Pesada. Você também tem Deslocamento de Escalada e de Natação igual ao seu Deslocamento.
+            `,
+  },
+  {
+    nome: "Especialista",
+    versaoRegras: "DND_2024",
+    descricao: `
+              Escolha duas perícias nas quais você tenha proficiência, mas não seja Especialista. Você obtém Especialização nessas perícias.
+            `,
+  },
+  {
+    nome: "Incansável",
+    versaoRegras: "DND_2024",
+    descricao: `
+              Como ação Usar Magia, você pode conceder a si Pontos de Vida Temporários iguais a 1d8 + seu modificador de Sabedoria, mínimo 1. Pode usar essa ação um número de vezes igual ao seu modificador de Sabedoria, mínimo uma vez, recuperando os usos ao completar Descanso Longo. Além disso, sempre que completar Descanso Curto, seu nível de Exaustão, se houver, reduz em 1.
+            `,
+  },
+  {
+    nome: "Predador Implacável",
+    versaoRegras: "DND_2024",
+    descricao: `
+              Sofrer dano não quebra sua Concentração da Marca do Predador.
+            `,
+  },
+  {
+    nome: "Véu da Natureza",
+    versaoRegras: "DND_2024",
+    descricao: `
+              Como Ação Bônus, você pode invocar espíritos da natureza para conceder a si a condição Invisível até o final do seu próximo turno. Você pode usar essa característica um número de vezes igual ao seu modificador de Sabedoria, mínimo uma vez, recuperando os usos ao completar Descanso Longo.
+            `,
+  },
+  {
+    nome: "Caçador Preciso",
+    versaoRegras: "DND_2024",
+    descricao: `
+              Você tem Vantagem em jogadas de ataque contra a criatura marcada por sua Marca do Predador.
+            `,
+  },
+  {
+    nome: "Sentidos Selvagens",
+    versaoRegras: "DND_2024",
+    descricao: `
+              Sua conexão com as forças da natureza lhe concede Visão às Cegas com alcance de 9 metros.
+            `,
+  },
+  {
+    nome: "Matador de Inimigos Favoritos",
+    versaoRegras: "DND_2024",
+    descricao: `
+              O dado de dano da sua Marca do Predador se torna um d10 em vez de um d6.
             `,
   },
   {

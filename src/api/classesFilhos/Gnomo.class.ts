@@ -1,4 +1,4 @@
-import { Raca } from "../classesPrincipais/Raca.class.ts";
+import { Raca } from "../classesPrincipais/Raca.class";
 
 export class Gnomo extends Raca {
   constructor(subOpcoes: Raca[] = []) {

@@ -1,0 +1,13 @@
+.am-controles-pv { min-width: 0; }
+.am-controles-pv h2 { font-size: 1rem; color: var(--area-destaque); }
+.am-controles-pv h3 { font-size: .95rem; }
+.am-pv-instancia { display: flex; flex-direction: column; align-items: center; gap: .15rem; padding: .55rem .1rem; text-align: center; min-width: 0; }
+.am-pv-instancia strong { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .85rem; }
+.am-pv-instancia > span, .am-pv-instancia small { font-size: .75rem; }
+.am-pv-instancia .am-pv-barra { position: relative; width: 100%; height: 18px; min-height: 18px; border: 1px solid #050505; padding: 0; outline: none; background: #414141; border-radius: 10px; overflow: hidden; }
+.am-pv-barra .vida-atual { display: block; height: 100%; background: #920d06; }
+.am-pv-barra::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(to right, transparent 0, transparent calc(10% - 1px), #080808 calc(10% - 1px), #080808 10%); pointer-events: none; }
+.am-pv-instancia .am-pv-barra:focus-visible { outline: 2px solid var(--area-foco); outline-offset: 3px; }
+.am-pv-indefinido .am-pv-barra { border-style: dashed; }
+.am-pv-acoes { display: flex; flex-wrap: wrap; gap: .5rem; }
+.am-pv-detalhes { margin-top: 1rem; }

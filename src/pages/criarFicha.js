@@ -1,18 +1,46 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import CriacaoFicha from "./components/CriacaoFicha.tsx";
-import InformacoesPersonagem from "./components/InformacoesPersonagem.tsx";
-import PericiasEOutros from "./components/PericiasEOutros.tsx";
-import InventarioMagiasDetalhes from "./components/InventarioMagiasDetalhes.tsx";
+import React, { useEffect, useState, useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import CriacaoFicha from "./components/CriacaoFicha";
+import InformacoesPersonagem from "./components/InformacoesPersonagem";
+import PericiasEOutros from "./components/PericiasEOutros";
+import InventarioMagiasDetalhes from "./components/InventarioMagiasDetalhes";
 import "./css/criarFicha.css";
-import { useFicha } from "../api/fichaPersonagem/FichaContext.tsx";
+import { useFicha } from "../api/fichaPersonagem/FichaContext";
+import { exportFicha } from "../api/fichaPersonagem/fichaStorage";
+
+import GerenciarFichas from './components/GerenciarFichas';
+import SairIcon from './components/SairIcon';
 
 export default function CriarFicha() {
-  const { ficha, salvarFicha } = useFicha();
+  const [barraRecolhida, setBarraRecolhida] = useState(() => { try { return localStorage.getItem('progressao-recolhida') === 'true'; } catch { return false; } });
+  const alternarBarra = () => setBarraRecolhida(atual => { try { localStorage.setItem('progressao-recolhida', String(!atual)); } catch {} return !atual; });
+  const { ficha, salvarFicha, salvarPendentes } = useFicha();
+  const salvarAoSair = useRef(salvarPendentes);
+  salvarAoSair.current = salvarPendentes;
+  useEffect(() => () => { salvarAoSair.current?.(); }, []);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const navigate = useNavigate();
+  const location = useLocation();
+  const [fichasAbertas, setFichasAbertas] = useState(() => !ficha || !!location.state?.abrirFichas);
+  useEffect(() => {
+    if (location.state?.abrirFichas) {
+      setFichasAbertas(true);
+      navigate(location.pathname, { replace: true, state: null });
+    }
+  }, [location, navigate]);
+  const sair = async () => {
+    if (await salvarPendentes()) navigate('/');
+  };
+  const menuButton = useRef(null);
+  const [erroExportacao, setErroExportacao] = useState("");
+  const fecharMenu = () => { setIsMenuOpen(false); menuButton.current?.focus(); };
+  useEffect(() => { if (!fichasAbertas) menuButton.current?.focus(); }, [fichasAbertas]);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [abaAtiva, setAbaAtiva] = useState("criacao");
+  useEffect(() => {
+    if (document.activeElement === document.body) menuButton.current?.focus();
+  }, [isMobile]);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
@@ -20,32 +48,32 @@ export default function CriarFicha() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Redireciona para a Home se a ficha não estiver instanciada
-  useEffect(() => {
-    if (!ficha) {
-      navigate("/");
+  const handleSalvarFicha = async () => {
+    if (await salvarFicha(ficha)) fecharMenu();
+  };
+
+  const handleExportarPDF = async () => {
+    try {
+      setErroExportacao("");
+      const { exportarFichaPdf } = await import("../utils/exportarFichaPdf");
+      await exportarFichaPdf(ficha);
+    } catch (error) {
+      setErroExportacao("Não foi possível exportar o PDF. Tente novamente ou exporte JSON para guardar a ficha.");
+    } finally {
+      fecharMenu();
     }
-  }, [ficha, navigate]);
-
-  if (!ficha) {
-    return null; // Ou uma mensagem de carregamento
-  }
-
-  const handleSalvarFicha = () => {
-    salvarFicha(ficha);
-    setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleExportarPDF = () => {
-    console.log('Exportar PDF');
-  };
 
   const handleExportarJSON = () => {
     exportarFicha();
+    fecharMenu();
   };
 
   const exportarFicha = () => {
-    const fichaJSON = JSON.stringify(ficha, null, 2);
+    let fichaJSON;
+    try { fichaJSON = exportFicha(ficha); }
+    catch (error) { window.alert(error.message); return; }
     const blob = new Blob([fichaJSON], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -57,18 +85,27 @@ export default function CriarFicha() {
     URL.revokeObjectURL(url);
   };
 
-  const handleExportarXML = () => {
-    console.log('Exportar XML');
-  };
 
   return (
     <div className="criar-ficha">
-      <div className="menu-container">
-        <button className="hamburger-button" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+      <div className="menu-container" onKeyDown={e => { if (e.key === "Escape" && isMenuOpen) { e.preventDefault(); fecharMenu(); } }} onBlur={e => { if (!e.currentTarget.contains(e.relatedTarget)) setIsMenuOpen(false); }}>
+        <button ref={menuButton} data-page-focus aria-label="Menu da ficha" aria-expanded={isMenuOpen} aria-controls="acoes-ficha" className="hamburger-button" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           ☰
         </button>
 
-        {isMobile && (
+        {erroExportacao && <p role="alert">{erroExportacao}</p>}
+        {isMenuOpen && (
+          <div id="acoes-ficha" className="menu-options">
+            {ficha && <>
+            <button onClick={handleSalvarFicha}>Salvar Ficha</button>
+            <button onClick={handleExportarPDF}>Exportar PDF</button>
+            <button onClick={handleExportarJSON}>Exportar JSON</button>
+            </>}
+            <button className="menu-sair" onClick={sair}><SairIcon /> Sair</button>
+          </div>
+        )}
+
+        {ficha && isMobile && (
           <div className="menu-abas-criarFicha">
           {[
             { nome: "Criar", id: "criacao" },
@@ -78,6 +115,7 @@ export default function CriarFicha() {
           ].map((aba) => (
             <button
               key={aba.id}
+              aria-pressed={abaAtiva === aba.id}
               className={`aba-botao ${abaAtiva === aba.id ? "ativa" : ""}`}
               onClick={() => setAbaAtiva(aba.id)}
             >
@@ -87,33 +125,38 @@ export default function CriarFicha() {
         </div>
         )}
       </div>
-      {isMenuOpen && (
-          <div className="menu-options">
-            <button onClick={handleSalvarFicha}>Salvar Ficha</button>
-            <button onClick={handleExportarPDF}>Exportar PDF</button>
-            <button onClick={handleExportarJSON}>Exportar JSON</button>
-            <button onClick={handleExportarXML}>Exportar XML</button>
-          </div>
-        )}
-      {/* Modo Desktop: exibe todos os componentes */}
-      {!isMobile && (
-        <>
-          <CriacaoFicha />
-          <InformacoesPersonagem />
-          <PericiasEOutros />
-          <InventarioMagiasDetalhes />
-        </>
+      { }
+      {ficha && !isMobile && (
+        <div key={ficha.id} className={`desktop-layout ${barraRecolhida ? "barra-recolhida" : ""}`}>
+          <aside className="desktop-sidebar">
+            <div className="rolagem-progressao">
+              <header className="cabecalho-progressao">
+                {!barraRecolhida && <h2>Escolha seu Personagem</h2>}
+                <button className="alternar-progressao" aria-label={barraRecolhida ? 'Expandir progressão' : 'Recolher progressão'} aria-expanded={!barraRecolhida} aria-controls="conteudo-progressao" title={barraRecolhida ? 'Expandir progressão' : 'Recolher progressão'} onClick={alternarBarra}><svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M9 3v18" /><path d={barraRecolhida ? 'm13 9 3 3-3 3' : 'm16 9-3 3 3 3'} /></svg></button>
+              </header>
+              {barraRecolhida && <nav className="atalhos-progressao" aria-label="Níveis">{Array.from({ length: 20 }, (_, i) => <button key={i} title={`Nível ${i + 1}`} aria-label={`Abrir nível ${i + 1}`} onClick={() => { alternarBarra(); requestAnimationFrame(() => document.getElementById(`progressao-nivel-${i + 1}`)?.scrollIntoView({ block: 'nearest' })); }}>{i + 1}</button>)}</nav>}
+              <div id="conteudo-progressao" hidden={barraRecolhida}><CriacaoFicha exibirTitulo={false} /></div>
+            </div>
+          </aside>
+          <main className="desktop-main">
+            <InformacoesPersonagem />
+            <PericiasEOutros />
+            <InventarioMagiasDetalhes />
+          </main>
+        </div>
       )}
 
-      {/* Conteúdo das abas no Mobile */}
-      {isMobile && (
-        <div className="conteudo-abas">
+      { }
+      {ficha && isMobile && (
+        <div key={ficha.id} className="conteudo-abas">
           {abaAtiva === "criacao" && <CriacaoFicha />}
           {abaAtiva === "informacoes" && <InformacoesPersonagem />}
           {abaAtiva === "pericias" && <PericiasEOutros />}
           {abaAtiva === "inventario" && <InventarioMagiasDetalhes />}
         </div>
       )}
+      {!ficha && <main className="ficha-empty"><h1>Área do Jogador</h1><p>Crie uma nova ficha ou carregue uma ficha existente para começar.</p></main>}
+      {fichasAbertas && <GerenciarFichas onClose={() => setFichasAbertas(false)} />}
     </div>
   );
 }

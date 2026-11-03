@@ -1,4 +1,4 @@
-import { BackGround } from "../classesPrincipais/BackGrounds.class.ts"
+import { BackGround } from "../classesPrincipais/BackGrounds.class"
 
 export class Criminal extends BackGround {
     constructor() {

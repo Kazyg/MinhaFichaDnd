@@ -39,79 +39,26 @@
   transform: none !important;
 }
 
-.popup-vida-content {
-  background-color: #444;
-  padding: 20px;
-  border: 1px solid #ccc;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-width: 80vw;
-  max-height: 80vh;
-  overflow: auto;
-  border: none;
-  border-radius: 5px;
-}
 
-.popup-vida-content h3{
-  margin-top: 0;
-}
-
-.barra-deslizante-mobile {
-  margin-top: 25px;
-  margin-bottom: 20px;
-}
-
-.barra-deslizante-mobile input[type="range"] {
-  width: 100%;
-}
-
-.barra-deslizante-pc input[type="range"] {
-  transform: rotate(-90deg);
-  width: 100px;
-}
-
-.campo-texto {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding-right: 14px;
-  margin-bottom: 20px;
-}
-
-.campo-texto1 {
-  display: flex;
-  flex-direction: column;
-  width: 30%;
-}
-
-.campo-texto1 h5 {
-  margin: 0px;
-}
-
-.campo-texto input {
-  width: 100%;
-  padding: 5px;
-  margin-top: 10px;
-}
-
-.botoes {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 35px;
-}
-
-.botoes button {
-  width: 30%;
-  padding: 5px 10px;
-  background-color: #7289da;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-@media (max-width: 768px) {
-  .popup-vida {
-    position: fixed;
-  }
+.popup-vida-content { box-sizing: border-box; width: min(480px, calc(100vw - 24px)); max-height: 85dvh; overflow: auto; background: #23272a; color: #f0f1f3; padding: 24px; border: 1px solid #50565e; border-radius: 14px; box-shadow: 0 16px 48px #0008; }
+.popup-vida-content h3 { margin: 0 0 24px; font-size: 1.35rem; }
+.popup-vida-content .barra-deslizante-mobile { padding: 16px; background: #303438; border-radius: 10px; margin-bottom: 20px; }
+.popup-vida-content .vida-valor { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px; }
+.popup-vida-content .vida-valor strong { font-size: 1.6rem; }
+.popup-vida-content .vida-valor small { font-size: 0.9rem; color: #c5c9d0; }
+.popup-vida-content input[type="range"] { width: 100%; accent-color: #7289da; min-height: 32px; cursor: pointer; }
+.popup-vida-content .campo-texto { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.popup-vida-content .campo-texto1 { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.popup-vida-content label { font-weight: 600; }
+.popup-vida-content input[type="number"] { box-sizing: border-box; width: 100%; min-height: 44px; padding: 10px 12px; background: #303438; color: white; border: 1px solid #626974; border-radius: 6px; font: inherit; }
+.popup-vida-content .botoes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 24px; }
+.popup-vida-content .botoes button { min-height: 44px; padding: 10px 8px; border: 1px solid #626974; border-radius: 6px; color: white; background: #4f545c; font: inherit; cursor: pointer; }
+.popup-vida-content .botoes button:first-child { background: #5267b0; }
+.popup-vida-content .botoes .vida-restaurar { background: #304c43; border-color: #577a6c; }
+.popup-vida-content .botoes button:hover { filter: brightness(1.2); }
+.popup-vida-content :is(button, input):focus-visible { outline: 2px solid #a8bbff; outline-offset: 3px; }
+@media (max-width: 400px) {
+  .popup-vida-content { padding: 16px; }
+  .popup-vida-content .botoes { grid-template-columns: 1fr; }
+  .popup-vida-content .vida-valor { flex-wrap: wrap; }
 }

@@ -1,7 +1,7 @@
-import { CirculoDosSonhos } from "../classesClassesNetos/CirculoDosSonhos.ts";
-import { Classes } from "../classesPrincipais/Classes.class.ts";
-import { SubClasses } from "../classesPrincipais/SubClasses.ts";
-import { CirculoDaLua, CirculoDaTerra, CirculoDoPastor } from "../classesPrincipais/SubClassesExport.ts";
+import { CirculoDosSonhos } from "../classesClassesNetos/CirculoDosSonhos";
+import { Classes } from "../classesPrincipais/Classes.class";
+import { SubClasses } from "../classesPrincipais/SubClasses";
+import { CirculoDaLua, CirculoDaTerra, CirculoDoPastor } from "../classesPrincipais/SubClassesExport";
 
 export class Druida extends Classes {
   level: number;
@@ -26,12 +26,12 @@ export class Druida extends Classes {
       ["Arcanismo", "Adestrar Animais", "Intuição", "Medicina", "Natureza", "Percepção", "Religião", "Sobrevivência"],
       ["Armadura leve", "armadura média", "escudos"]
     );
-    this.level = 0; // Nível inicial
-    this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis
+    this.level = 0;
+    this.niveis = this.preencherNiveis();
     this.subClasse = [new CirculoDaLua(), new CirculoDaTerra(), new CirculoDosSonhos(), new CirculoDoPastor()];
   }
 
-  // Método para aumentar o nível
+
   aumentarNivel(): void {
     if (this.level < 20) {
       this.level += 1;
@@ -40,7 +40,7 @@ export class Druida extends Classes {
     }
   }
 
-  // Método para preencher a tabela de níveis
+
   private preencherNiveis() {
     return [
       { nivel: 1, proeficiencia: 2, caracteristicas: ["Druídico", "Conjuração de Druida"], truquesConhecidos: 2, espacosMagia: [2, 0, 0, 0, 0, 0, 0, 0, 0] },

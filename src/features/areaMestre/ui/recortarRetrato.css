@@ -1,0 +1,6 @@
+.am-recorte { min-width:0; border:1px solid #626262; border-radius:5px; margin:.75rem 0; }
+.am-recorte-imagem {position:relative;max-width:100%;width:min(100%,700px);touch-action:none;line-height:0;margin:.75rem auto;}
+.am-recorte-imagem canvas{display:block;width:100%;max-width:100%;height:auto;}
+.am-recorte-selecao{position:absolute;border:2px solid var(--area-destaque,#ff8a50);background:#ff8a5025;pointer-events:none;}
+.am-recorte-campos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem;}
+.am-recorte-campos input{min-height:42px;}

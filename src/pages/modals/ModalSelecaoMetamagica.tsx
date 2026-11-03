@@ -1,5 +1,6 @@
+import AccessibleDialog from "../components/AccessibleDialog";
 import React, { useState } from "react";
-import { Metamagica } from "../../bibliotecas/Metamagica.ts";
+import { Metamagica } from "../../bibliotecas/Metamagica";
 
 interface ModalSelecaoProps {
     opcoes: typeof Metamagica;
@@ -20,23 +21,23 @@ const ModalSelecaoMetamagica: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
     );
 
     return (
-        <div className="popup-content-modal">
+        <AccessibleDialog className="popup-content-modal" onClose={onClose} aria-label={titulo}>
             <h2>{titulo}</h2>
             <div className="popup-body-modal">
                 <div className="lista-racas">
                     <input
                         type="text"
-                        placeholder="Filtrar Metamagicas..."
+                        aria-label="Filtrar Metamagicas..." placeholder="Filtrar Metamagicas..."
                         value={filtro}
                         onChange={(e) => setFiltro(e.target.value)}
                     />
                     <ul>
                         {opcoesFiltradas.map((opcao) => (
-                            <li key={opcao.nome} onClick={() => {
+                            <li key={opcao.nome}><button type="button" className="selection-option" aria-pressed={selecionado === opcao.nome} onClick={() => {
                                 setSelecionado(opcao.nome);
                             }}>
                                 {opcao.nome}
-                            </li>
+                            </button></li>
                         ))}
                     </ul>
                 </div>
@@ -45,7 +46,7 @@ const ModalSelecaoMetamagica: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
                     {selecionado && (
                         <>
                             <h3>{selecionado}</h3>
-                            <p><strong>Descrição: </strong>{Metamagica.find(m => m.nome === selecionado)?.descricao}</p>
+                            <p><strong>Descrição: </strong>{opcoes.find(m => m.nome === selecionado)?.descricao}</p>
                         </>
                     )}
                 </div>
@@ -55,7 +56,7 @@ const ModalSelecaoMetamagica: React.FC<ModalSelecaoProps> = ({ opcoes = [], titu
                 {selecionado && (<button className="escolher-button" onClick={() => { onSelect(selecionado); onClose() }}>Escolher {selecionado}</button>)}
                 <button className="escolher-button" onClick={() => { onClose() }}>Fechar</button>
             </div>
-        </div>
+        </AccessibleDialog>
     );
 };
 

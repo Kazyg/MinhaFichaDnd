@@ -1,0 +1,113 @@
+.filtros-itens-modal {
+  width: 100%;
+  margin: -15px 0;
+  padding: 0 14px 5px;
+  border: 1px solid rgba(204, 204, 204, 0.25);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.filtros-itens-modal h5 {
+  margin: 0 0 8px;
+  color: #f1f1f1;
+  font-size: 0.95rem;
+}
+
+.filtro-descricao-input {
+  flex: 1 1 320px;
+}
+
+.selects-filtros-itens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.selects-filtros-itens select {
+  flex: 0 1 145px;
+  min-width: 175px;
+  padding: 8px 10px;
+  border: 1px solid rgba(204, 204, 204, 0.35);
+  border-radius: 8px;
+  background: #1f1f1f;
+  color: #f1f1f1;
+}
+
+.selects-filtros-itens button,
+.botao-filtro-itens {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(204, 204, 204, 0.35);
+  border-radius: 8px;
+  background: #2a2a2a;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  margin-bottom: 0px !important;
+}
+
+.selects-filtros-itens button:hover,
+.botao-filtro-itens:hover {
+  background: #353535;
+  border-color: rgba(204, 204, 204, 0.6);
+}
+
+.filtros-itens-barra {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.lista-itens-input {
+  flex: 1;
+  min-width: 0;
+  min-height: 30px;
+  padding: 11px 12px;
+  border: 1px solid rgba(204, 204, 204, 0.35);
+  border-radius: 8px;
+  background: #1f1f1f;
+  color: #f1f1f1;
+}
+
+.lista-itens-modal {
+  max-height: 281px !important;
+  overflow-y: auto;
+}
+
+.lista-itens-input::placeholder {
+  color: #b7b7b7;
+}
+
+.imagem-filtro-itens,
+.imagem-nofiltro-itens {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 768px) {
+  .selects-filtros-itens {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .selects-filtros-itens select {
+    min-width: 100%;
+  }
+
+  .filtro-descricao-input {
+    width: 100%;
+  }
+
+  .filtros-itens-barra {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .botao-filtro-itens {
+    width: 100%;
+  }
+}

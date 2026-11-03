@@ -1,6 +1,6 @@
-import { Classes } from "../classesPrincipais/Classes.class.ts";
-import { SubClasses } from "../classesPrincipais/SubClasses.ts";
-import { DominioDaLuz, DominioDoConhecimento, DominioDaVida, DominioDaTempestade, DominioDaEnganacao, DominioDaGuerra, DominioDaNatureza, DominioDaForja, DominioDaSepultura } from "../classesPrincipais/SubClassesExport.ts";
+import { Classes } from "../classesPrincipais/Classes.class";
+import { SubClasses } from "../classesPrincipais/SubClasses";
+import { DominioDaLuz, DominioDoConhecimento, DominioDaVida, DominioDaTempestade, DominioDaEnganacao, DominioDaGuerra, DominioDaNatureza, DominioDaForja, DominioDaSepultura } from "../classesPrincipais/SubClassesExport";
 
 export class Clerigo extends Classes {
   level: number;
@@ -25,8 +25,8 @@ export class Clerigo extends Classes {
       ["História", "Intuição", "Medicina", "Persuasão", "Religião"],
       ["Armadura leve", "armadura média", "escudos"]
     );
-    this.level = 0; // Nível inicial
-    this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis
+    this.level = 0;
+    this.niveis = this.preencherNiveis();
     this.subClasse = [
       new DominioDaLuz(), 
       new DominioDoConhecimento(), 
@@ -40,7 +40,7 @@ export class Clerigo extends Classes {
   ];
   }
 
-  // Método para aumentar o nível
+
   aumentarNivel(): void {
     if (this.level < 20) {
       this.level += 1;
@@ -49,7 +49,7 @@ export class Clerigo extends Classes {
     }
   }
 
-  // Método para preencher a tabela de níveis
+
   private preencherNiveis() {
     return [
       { nivel: 1, proeficiencia: 2, caracteristicas: ["Conjuração de Clérigo", "Domínio Divino"], truquesConhecidos: 3, espacosMagia: [2, 0, 0, 0, 0, 0, 0, 0, 0] },

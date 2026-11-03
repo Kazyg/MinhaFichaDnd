@@ -1,4 +1,4 @@
-/* Container principal */
+
 .level-container {
     width: 100%;
     overflow-y: auto;
@@ -13,29 +13,29 @@
     max-width: 230px;
     width: 100%;
   }
-  
+
   .level-container h2 {
     margin-top: 0;
     text-align: center;
     color: white;
   }
-  
-  /* Títulos */
+
+
   .tituloh2 {
-    font-size: 1.25rem; /* 20px */
+    font-size: 1.25rem;
     font-weight: 600;
     color: white;
     margin-bottom: 1rem;
   }
-  
+
   .tituloh3 {
-    font-size: 1rem; /* 16px */
+    font-size: 1rem;
     font-weight: 500;
     color: white;
     margin-bottom: 0.75rem;
   }
-  
-  /* Container de métodos de atributos */
+
+
   .metodo-atributos-container {
     display: flex;
     flex-direction: column;
@@ -43,13 +43,13 @@
     margin-bottom: 1rem;
     width: 100%;
   }
-  
-  /* Botões */
+
+
   .metodo-atributos-container button,
   .monta-atributos button {
     width: 100%;
     padding: 10px;
-    font-size: 0.875rem; /* 14px */
+    font-size: 0.875rem;
     font-weight: 500;
     color: white;
     border: none;
@@ -57,13 +57,13 @@
     cursor: pointer;
     transition: background 0.3s ease;
   }
-  
+
   .metodo-atributos-container button:hover,
   .monta-atributos button:hover {
     background: #e03e00;
   }
-  
-  /* Popup de distribuição de atributos */
+
+
   .monta-atributos-container {
     position: fixed;
     top: 0;
@@ -75,7 +75,7 @@
     justify-content: center;
     align-items: center;
   }
-  
+
   .monta-atributos {
     background: #222;
     padding: 20px;
@@ -83,26 +83,28 @@
     width: 300px;
     color: white;
   }
-  
+
   .monta-atributos h3 {
     margin-top: 0;
     text-align: center;
   }
-  
-  /* Container de traços e habilidades */
+
+
   .skills-container {
     margin-bottom: 0.75rem;
-    padding: 5px;
-    border-radius: 5px;
-    background: #444;
-    width: 110%;
-    margin-left: -15px;
+    padding: 6px 12px;
+    border: 1px solid #4f545c;
+    border-radius: 10px;
+    background: #303438;
+    width: 100%;
+    box-sizing: border-box;
+    margin-left: 0;
   }
-  
+
   .skills-container button {
     width: 100%;
     text-align: left;
-    font-size: 0.875rem; /* 14px */
+    font-size: 0.875rem;
     font-weight: 500;
     color: white;
     background: none;
@@ -112,18 +114,18 @@
     justify-content: space-between;
     align-items: center;
   }
-  
+
   .skills-container button:hover {
     color: #bbb;
   }
-  
+
   .skills-container .descricao {
-    font-size: 0.875rem; /* 14px */
+    font-size: 0.875rem;
     color: #bbb;
     margin-top: 0.5rem;
   }
-  
-  /* Checkboxes de proficiências */
+
+
   .checkbox-container {
     display: flex;
     width: 106%;
@@ -136,11 +138,11 @@
     background-color: #444;
     transition: background-color 0.3s ease;
   }
-  
+
   .checkbox-container:hover {
     background-color: #555;
   }
-  
+
   .checkbox-container input[type="checkbox"] {
     appearance: none;
     width: 18px;
@@ -151,12 +153,12 @@
     cursor: pointer;
     position: relative;
   }
-  
+
   .checkbox-container input[type="checkbox"]:checked {
     background-color: #ff4500;
     border-color: #ff4500;
   }
-  
+
   .checkbox-container input[type="checkbox"]:checked::before {
     content: "✔";
     position: absolute;
@@ -166,38 +168,38 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  
+
   .checkbox-container input[type="checkbox"]:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
-  
+
   .checkbox-container input[type="checkbox"]:disabled + span {
     opacity: 0.5;
   }
-  
+
   .checkbox-container.disabled-hover:hover {
     background-color: #444 !important;
   }
-  
-  /* Características de classe */
+
+
   .skills-container p {
-    font-size: 0.875rem; /* 14px */
+    font-size: 0.875rem;
     color: #bbb;
     margin: 0;
   }
-  
-  /* Scrollbar */
+
+
   .level-container::-webkit-scrollbar {
     width: 8px;
   }
-  
+
   .level-container::-webkit-scrollbar-thumb {
     background: gray;
     border-radius: 4px;
   }
-  
-  /* Popup de distribuição de atributos */
+
+
 .monta-atributos-container-distribuicao {
     position: fixed;
     top: 25%;
@@ -210,7 +212,7 @@
     align-items: center;
     z-index: 1000;
   }
-  
+
   .monta-atributos-distribuicao {
     background: #222;
     padding: 20px;
@@ -219,20 +221,20 @@
     color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   }
-  
+
   .atributos-container-distribuicao {
     display: flex;
     flex-direction: column;
     gap: 8px;
     margin-bottom: 1rem;
   }
-  
+
   .atributo-item-distribuicao {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  
+
   .atributo-item-distribuicao select {
     background: #333;
     border: 1px solid #555;
@@ -240,13 +242,13 @@
     color: white;
     padding: 4px;
   }
-  
+
   .point-buy-controls {
     display: flex;
     align-items: center;
     gap: 8px;
   }
-  
+
   .point-buy-controls button {
     background: #444;
     border: none;
@@ -255,7 +257,7 @@
     border-radius: 4px;
     cursor: pointer;
   }
-  
+
   .point-buy-controls button:hover {
     background: #555;
   }
@@ -298,3 +300,71 @@
       padding: 5px;
     }
   }
+
+.level-container .skills-container > button { font-size: 0.95rem; font-weight: 650; line-height: 1.35; padding: 4px 0; margin: 0; min-height: 32px; height: auto; gap: 8px; }
+.level-container .skills-container .descricao { color: #d5d8dc; line-height: 1.7; overflow-wrap: anywhere; text-align: left; direction: ltr; }
+.level-container .skills-container .descricao p { color: inherit; line-height: inherit; margin: 0 0 12px; }
+.descricao-caracteristica ul { padding-left: 20px; margin: 0; }
+.descricao-caracteristica li + li { margin-top: 12px; }
+.descricao-caracteristica details { margin-top: 16px; padding-top: 12px; border-top: 1px solid #50565e; }
+.descricao-caracteristica summary { cursor: pointer; color: #f0f1f3; margin-bottom: 12px; }
+.skills-container button:focus-visible, .descricao-caracteristica summary:focus-visible { outline: 2px solid #a8bbff; outline-offset: 3px; }
+
+
+.level-container .botao-metodo-atributos {
+  box-sizing: border-box;
+  width: 100% !important;
+  margin-left: 0;
+  background: transparent;
+  color: var(--selecao-texto-secundario);
+  border: 1px solid var(--selecao-texto-secundario);
+}
+
+.level-container .botao-metodo-atributos:hover:not(:disabled) {
+  background: transparent;
+  border-color: var(--selecao-texto-secundario);
+}
+
+.level-container .botao-metodo-atributos[aria-pressed="true"] {
+  border-color: var(--selecao-texto-secundario);
+  box-shadow: inset 0 0 0 1px var(--selecao-texto-secundario);
+}
+
+.level-container .botao-distribuir-principal {
+  box-sizing: border-box;
+  width: 100% !important;
+  min-height: 44px;
+  height: auto;
+  margin: 12px 0 0;
+  padding: 12px;
+  justify-content: center;
+  background: var(--selecao-fundo);
+  color: var(--selecao-texto-secundario);
+  border: 1px solid var(--selecao-fundo);
+  border-radius: 5px;
+  font-weight: 700;
+  line-height: 1.4;
+  white-space: normal;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.level-container .botao-distribuir-principal:hover:not(:disabled) {
+  background: var(--selecao-fundo-hover);
+  border-color: var(--selecao-fundo-hover);
+}
+
+.level-container .botao-distribuir-principal:focus-visible,
+.level-container .botao-metodo-atributos:focus-visible {
+  outline: 2px solid var(--selecao-texto-secundario);
+  outline-offset: 3px;
+}
+
+.level-container .botao-distribuir-principal:active:not(:disabled) {
+  background: var(--selecao-fundo-hover);
+  border-color: var(--selecao-texto-secundario);
+}
+
+.level-container .botao-distribuir-principal:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

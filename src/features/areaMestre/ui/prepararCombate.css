@@ -1,0 +1,55 @@
+.am-preparar-combate { width:min(1240px,96vw); }
+.am-dialog .am-iniciar-encontro { width:auto; }
+.am-encontro-preparado .am-dialog-acoes { flex-wrap:nowrap; }
+.am-encontro-preparado .am-dialog-acoes button { flex:1; min-width:0; white-space:normal; }
+.am-encontro-preparado .am-dialog-acoes .am-primario { width:auto; }
+.am-dialog.am-preparacao-modal { width:min(1100px,100%); height:88dvh; max-height:88dvh; box-sizing:border-box; overflow:hidden; display:flex; flex-direction:column; padding:1rem; }
+.am-preparacao-cabecalho { display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-shrink:0; padding-bottom:.7rem; }
+.am-preparacao-modal .am-preparacao-cabecalho h2 { margin:0; }
+.am-preparacao-conteudo { display:flex; flex-direction:column; flex:1; min-height:0; min-width:0; border:0; padding:0; margin:0; }
+.am-dialog .am-nome-combate { display:flex; align-items:center; gap:.6rem; flex-shrink:0; margin:0 0 .6rem; font-size:.85rem; }
+.am-dialog .am-nome-combate input { flex:1; min-width:0; min-height:36px; padding:.35rem .5rem; }
+.am-preparacao-regioes { display:grid; flex:1; min-height:0; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); gap:1rem; min-width:0; }
+.am-preparacao-regioes section { display:flex; flex-direction:column; min-height:0; min-width:0; background:#292c30; border:1px solid #555; border-radius:7px; }
+.am-preparacao-painel-cabecalho { display:flex; align-items:center; justify-content:space-between; gap:.5rem; flex-shrink:0; min-height:60px; padding:.6rem 1rem; box-sizing:border-box; border-bottom:1px solid #555; }
+.am-preparacao-modal .am-preparacao-painel-cabecalho h3 { margin:0; font-size:1rem; }
+.am-preparacao-lista { flex:1; min-height:0; overflow-y:auto; overflow-x:hidden; overscroll-behavior:contain; padding:0 1rem 1rem; }
+.am-preparacao-adicionar { position:relative; flex-shrink:0; }
+.am-preparacao-modal .am-preparacao-adicionar button { width:38px; min-height:38px; padding:0; font-size:1.6rem; line-height:1; }
+.am-preparacao-modal .am-preparacao-cabecalho button,.am-preparacao-modal .am-preparacao-adicionar button { display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; width:38px; height:38px; min-height:38px; padding:0; box-sizing:border-box; }
+.am-preparacao-modal .am-preparacao-cabecalho button { background:transparent; border-color:transparent; }
+.am-preparacao-modal .am-preparacao-cabecalho button:hover:enabled { background:#ffffff12; border-color:transparent; }
+.am-preparacao-cabecalho button svg,.am-preparacao-adicionar button svg { display:block; width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; }
+.am-preparacao-adicionar [role=tooltip] { position:absolute; right:0; top:calc(100% + 6px); z-index:2; width:max-content; max-width:220px; padding:.5rem; border:1px solid #777; border-radius:4px; background:#181818; color:#fff; font-size:.85rem; pointer-events:none; }
+.am-preparacao-rodape { flex-shrink:0; padding-top:.75rem; }
+.am-preparacao-rodape p { margin:0 0 .6rem; }
+.am-preparacao-modal .am-dialog-acoes { margin:0; flex-wrap:nowrap; }
+.am-preparacao-modal .am-preparacao-rodape .am-primario { width:auto; }
+.am-preparacao-navegacao { display:none; }
+.am-preparacao-modal [hidden] { display:none; }
+.am-preparacao-regioes h3 { color:var(--area-destaque,#ff8a50); margin-top:0; }
+.am-preparacao-regioes ul,.am-preparacao-regioes ol { list-style:none; padding:0; margin:0; }
+.am-preparacao-regioes li { display:flex; gap:.7rem; padding:.7rem 0; border-bottom:1px solid #555; }
+.am-preparacao-regioes li > div { min-width:0; flex:1; }
+.am-preparacao-regioes strong,.am-preparacao-regioes small { display:block; overflow-wrap:anywhere; margin-bottom:.4rem; }
+.am-preparacao-regioes small { color:#ddd; }
+.am-preparacao-acoes-item,.am-avulso-existente { display:flex; gap:.4rem; flex-wrap:wrap; }
+.am-avulso-existente { margin-top:.7rem; align-items:center; }
+.am-configurar-combatente { width:min(520px,94vw); }
+.am-configurar-combatente .am-dialog-acoes { flex-wrap:nowrap; }
+.am-configurar-combatente .am-dialog-acoes button { flex:1; min-width:0; white-space:normal; }
+.am-configurar-combatente .am-dialog-acoes .am-primario { width:auto; }
+.am-configurar-combatente label { display:block; margin:.7rem 0; }
+.am-configurar-combatente input:not([type=checkbox]),.am-configurar-combatente select { display:block; width:100%; margin-top:.3rem; min-height:40px; background:#30343a; color:#fff; border:1px solid #747474; border-radius:4px; padding:.5rem; }
+.am-preparacao-regioes .am-dialog-acoes { flex-wrap:wrap; }
+.am-preparacao-regioes button { max-width:100%; white-space:normal; }
+@media(max-width:650px) {
+  .am-dialog.am-preparacao-modal { padding:.7rem; height:90dvh; max-height:90dvh; }
+  .am-preparacao-navegacao { display:flex; gap:.5rem; flex-shrink:0; padding-bottom:.7rem; }
+  .am-preparacao-navegacao button { flex:1; }
+  .am-preparacao-navegacao [aria-pressed=true] { background:#b93600; border-color:#d55620; }
+  .am-preparacao-regioes { grid-template-columns:minmax(0,1fr); }
+  [data-painel=disponiveis] #am-participantes-selecionados,[data-painel=selecionados] #am-combatentes-disponiveis { display:none; }
+  .am-preparacao-painel-cabecalho { padding:.6rem; }
+  .am-preparacao-lista { padding:0 .6rem .6rem; }
+}

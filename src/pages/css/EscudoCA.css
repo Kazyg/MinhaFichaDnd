@@ -1,0 +1,22 @@
+.escudo-ca {
+  display: block;
+  flex: 0 0 auto;
+  width: var(--escudo-ca-tamanho, 3.8rem);
+  height: auto;
+  aspect-ratio: 1;
+  color: white;
+}
+
+.escudo-ca__valor {
+  fill: currentColor;
+  font: normal 400 75px Arial, sans-serif;
+  font-kerning: none;
+  letter-spacing: 0;
+  direction: ltr;
+}
+
+@media (max-width: 768px) {
+  .escudo-ca {
+    --escudo-ca-tamanho: 80px;
+  }
+}

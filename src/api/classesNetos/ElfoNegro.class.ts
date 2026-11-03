@@ -1,4 +1,4 @@
-import { Elfo } from "../classesFilhos/Elfo.class.ts";
+import { Elfo } from "../classesFilhos/Elfo.class";
 
 export class ElfoNegro extends Elfo {
     constructor() {

@@ -1,13 +1,13 @@
-import { PactoCorrente } from "../classesClassesNetos/PactoCorrente.ts";
-import { PactoLamina } from "../classesClassesNetos/PactoLamina.ts";
-import { PactoTomo } from "../classesClassesNetos/PactoTomo.ts";
-import { Arquifada } from "../classesEspeciais/Arquifada.class.ts";
-import { Celestial } from "../classesEspeciais/OCelestial.ts";
-import { Corruptor } from "../classesEspeciais/Corruptor.class.ts";
-import { GrandeAntigo } from "../classesEspeciais/GrandeAntigo.class.ts";
-import { Patronos } from "../classesEspeciais/Patronos.class.ts";
-import { Classes } from "../classesPrincipais/Classes.class.ts";
-import { SubClasses } from "../classesPrincipais/SubClasses.ts";
+import { PactoCorrente } from "../classesClassesNetos/PactoCorrente";
+import { PactoLamina } from "../classesClassesNetos/PactoLamina";
+import { PactoTomo } from "../classesClassesNetos/PactoTomo";
+import { Arquifada } from "../classesEspeciais/Arquifada.class";
+import { Celestial } from "../classesEspeciais/OCelestial";
+import { Corruptor } from "../classesEspeciais/Corruptor.class";
+import { GrandeAntigo } from "../classesEspeciais/GrandeAntigo.class";
+import { Patronos } from "../classesEspeciais/Patronos.class";
+import { Classes } from "../classesPrincipais/Classes.class";
+import { SubClasses } from "../classesPrincipais/SubClasses";
 
 export class Bruxo extends Classes {
   level: number;
@@ -44,13 +44,13 @@ export class Bruxo extends Classes {
     ],
     ["Armadura leve", "armas simples"]
     );
-    this.level = 0; // Nível inicial
-    this.niveis = this.preencherNiveis(); // Preenche a tabela de níveis
+    this.level = 0;
+    this.niveis = this.preencherNiveis();
     this.patronos = [new Arquifada(), new Corruptor(), new GrandeAntigo(), new Celestial()];
     this.subClasse = [new PactoCorrente(), new PactoLamina(), new PactoTomo()];
   }
 
-  // Método para aumentar o nível
+
   aumentarNivel(): void {
     if (this.level < 20) {
       this.level += 1;
@@ -59,7 +59,7 @@ export class Bruxo extends Classes {
     }
   }
 
-  // Método para preencher a tabela de níveis
+
   private preencherNiveis() {
     return [
       { nivel: 1, proeficiencia: 2, caracteristicas: ["Patrono Transcendental", "Magia de Pacto"], truquesConhecidos: 2, magiasConhecidas: 2, espacosMagia: 1, nivelMagia: "1°", invocacoesConhecidas: 0 },

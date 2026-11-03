@@ -1,0 +1,35 @@
+.am-dialog.am-condicoes-dialog { width:min(540px,96vw); }
+.am-condicoes-dialog form { display:flex; flex-direction:column; gap:.75rem; }
+.am-dialog.am-condicoes-dialog label { display:flex; flex-direction:column; gap:.35rem; }
+.am-condicoes-categoria > span { margin-bottom:.35rem; }
+.am-condicoes-dialog select { width:100%; min-height:40px; border:1px solid #666; border-radius:5px; background:#303438; color:#fff; padding:.4rem; }
+.am-condicoes-dialog .am-condicoes-busca { position:relative; }
+.am-condicoes-busca > span:not(.am-sr) { position:absolute; left:14px; top:0; height:48px; display:flex; align-items:center; pointer-events:none; }
+.am-dialog.am-condicoes-dialog .am-condicoes-busca input { box-sizing:border-box; height:48px; padding-left:44px; margin-bottom:0; }
+.am-dialog.am-condicoes-dialog textarea { box-sizing:border-box; display:block; width:100%; min-height:96px; resize:vertical; padding:.75rem; border:1px solid #666; border-radius:6px; background:#303438; color:#fff; font:inherit; line-height:1.5; }
+.am-dialog.am-condicoes-dialog textarea:focus-visible { outline:2px solid var(--area-foco,#ffb184); outline-offset:2px; border-color:var(--area-destaque,#ff8a50); }
+.am-condicoes-catalogo { display:flex; flex-direction:column; gap:.35rem; max-height:190px; overflow:auto; overscroll-behavior:contain; }
+.am-condicao-opcao { display:flex; flex-shrink:0; align-items:center; gap:.65rem; width:100%; text-align:left; background:#2b2e31; border:1px solid #505458; border-radius:6px; min-height:42px; padding:.5rem .65rem; transition:background .12s; }
+.am-condicao-opcao > span:first-of-type { flex:1; }
+.am-condicao-opcao small { display:block; font-size:.7rem; opacity:.8; font-weight:normal; margin-top:2px; }
+.am-condicao-opcao:hover:enabled { background:#3c3e40; }
+.am-condicao-opcao[aria-pressed=true] { border-color:var(--area-destaque,#ff8a50); background:#573729; }
+.am-icone-condicao { width:18px; height:18px; flex-shrink:0; vertical-align:middle; }
+.am-condicao-dano-continuo { color:#ffb184; }
+.am-condicao-positivos { color:#a5dcb7; }
+.am-condicao-negativos,.am-condicao-oficiais { color:#f1c1ba; }
+.am-condicao-marcadores { color:#d6d0ed; }
+.am-condicao-selecionada { margin:0; font-size:.85rem; color:var(--area-destaque,#ff8a50); }
+.am-dialog.am-condicoes-dialog .am-condicoes-checkbox,.am-dialog.am-condicoes-dialog .am-condicoes-momento label { display:flex; flex-direction:row; align-items:center; gap:.5rem; }
+.am-dialog .am-condicoes-momento input[type=radio],.am-dialog .am-condicoes-checkbox input[type=checkbox] { display:inline-block; width:18px; height:18px; min-height:0; padding:0; flex-shrink:0; accent-color:#cf4e18; }
+.am-condicoes-momento { margin:0; border:1px solid #505458; padding:.6rem; border-radius:5px; display:flex; gap:1rem; flex-wrap:wrap; }
+.am-condicoes-momento legend { padding:0 .3rem; }
+.am-condicoes-dialog .am-dialog-acoes { display:flex; gap:.5rem; margin-top:.5rem; }
+.am-condicoes-dialog .am-dialog-acoes button { flex:1; }
+.am-condicoes-dialog .am-condicao-excluir { color:#ffbaba; border-color:#a95858; background:transparent; }
+.am-condicoes-lista-aplicada { padding:0; margin:0; list-style:none; display:flex; flex-direction:column; gap:.5rem; max-height:55dvh; overflow:auto; }
+.am-condicoes-lista-aplicada button { display:flex; width:100%; text-align:left; gap:.6rem; align-items:center; }
+.am-condicoes-lista-aplicada button > span:first-of-type { flex:1; overflow-wrap:anywhere; }
+.am-condicoes-lista-aplicada small { display:block; font-weight:normal; margin-top:.3rem; }
+.am-condicoes-dialog button:focus-visible { outline:3px solid var(--area-foco,#ffb184); outline-offset:-3px; }
+@media(max-width:480px) { .am-condicoes-dialog .am-dialog-acoes { flex-wrap:wrap; } .am-condicoes-dialog .am-condicao-excluir { flex-basis:100%; } }

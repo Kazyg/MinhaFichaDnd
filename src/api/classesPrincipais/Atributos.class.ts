@@ -31,7 +31,7 @@ export class Atributos {
     this.sabedoria = atributos.sabedoria;
   }
 
-  // Método para somar um bônus a um atributo específico
+
   somarAtributo(atributo: string, bonus: number) {
     switch (atributo.toLowerCase()) {
       case "forca":

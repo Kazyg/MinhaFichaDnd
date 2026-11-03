@@ -1,734 +1,116 @@
-import React, { useEffect, useState } from "react";
-import { JSX } from 'react';
-import { motion } from "framer-motion";
-import ModalSelecaoMagias from "../../modals/ModalMagias.tsx";
-import "../../css/Magias.css"
-import { toast } from "react-toastify";
-import { useFicha } from "../../../api/fichaPersonagem/FichaContext.tsx";
-import { Bruxo } from "../../../api/classesClassesFilhos/Bruxo.class.ts";
-import { Clerigo } from "../../../api/classesClassesFilhos/Clerigo.class.ts"
-import { Druida } from "../../../api/classesClassesFilhos/Druida.class.ts"
-import { Feiticeiro } from "../../../api/classesClassesFilhos/Feiticeiro.class.ts"
-import { Lutador } from "../../../api/classesClassesFilhos/Lutador.class.ts"
-import { Rogue } from "../../../api/classesClassesFilhos/Rogue.class.ts"
-import { Mago } from "../../../api/classesClassesFilhos/Mago.class.ts"
-import { Paladino } from "../../../api/classesClassesFilhos/Paladino.class.ts"
-import { Ranger } from "../../../api/classesClassesFilhos/Ranger.class.ts"
-import { CavaleiroArcano } from "../../../api/classesClassesNetos/CavaleiroArcano.ts";
-import { TrapaceiroArcano } from "../../../api/classesClassesNetos/TrapaceiroArcano.ts";
-import magiaFire from "../../../imagens/darkFireMagia.png"
-import magiaIcon from "../../../imagens/local_fire_department_24dp_B7B7B7_FILL0_wght400_GRAD0_opsz24.png"
-import excluirIcon from "../../../imagens/delete_icon.png"
-import magiaIcon1 from "../../../imagens/local_fire_department_24dp_EA3323_FILL0_wght400_GRAD0_opsz24.png"
-import { magiasBardo, magiasBruxo, magiasClerigo, magiasDruida, magiasFeiticeiro, magiasMago, magiasPaladino, magiasPatrulheiro, Magias } from "../../../bibliotecas/Magia.ts"
-import { Classes } from "../../../api/classesPrincipais/Classes.class.ts";
+import React, { useId, useState } from 'react';
+import { toast } from 'react-toastify';
+import ModalSelecaoMagias from '../../modals/ModalMagias';
+import '../../css/ArmaInventario.css';
+import '../../css/Magias.css';
+import fogo from '../../../imagens/local_fire_department_24dp_EA3323_FILL0_wght400_GRAD0_opsz24.png';
+import { estadosSlots, alternarSlot } from './magiaSlots';
+import MagiaCard, { MagiaBadge } from './MagiaCard';
+import DescricaoMagia from '../DescricaoMagia';
+import { resolverMagiaSalva, buscarMagiaConteudo, apresentarMagia } from '../../../api/rulesets/conteudo';
+import { modificadorAtributo, selecionarProficiencia } from '../../../api/fichaPersonagem/fichaSeletores';
+import { useFicha } from '../../../api/fichaPersonagem/FichaContext';
+import { magiasConcedidas, usarMagiaTalento } from '../../../api/fichaPersonagem/talentos2024Utils';
+import { adicionarMagia, selecionarEscolhasMagia, selecionarFontesConjuracao, selecionarPoolsMagia } from '../../../api/fichaPersonagem/fichaConjuracao';
 
 export default function AbaMagias() {
-  const [modalMagiasAberta, setModalMagiasAberta] = useState(false);
-  const [modalInfoMagiasAberta, setModalInfoMagiasAberta] = useState(false);
-  const [magiaInfo, setMagiaInfo] = useState("");
-  const { ficha, refreshKey, forceUpdate } = useFicha();
-  const [magiaAtiva, setMagiasAtivas] = useState<boolean[]>(() =>
-    new Array(3/*magias.length*/).fill(false)
-  );
-  const [niveisExpandidos, setNiveisExpandidos] = useState<Record<number, boolean>>({});
-  const [espacosAtivos, setEspacosAtivos] = useState<Record<string, boolean>>({});
+  const { ficha, forceUpdate } = useFicha();
+  const [modal, setModal] = useState<string | null>(null);
+  const [compacto, setCompacto] = useState(false);
+  const [recolhidos, setRecolhidos] = useState<Record<string, boolean>>({});
+  const idMagias = useId();
 
-  const handleUsarMagia = (index: number) => {
-    setMagiasAtivas((prev) => {
-      const novoEstado = [...prev];
-      novoEstado[index] = !novoEstado[index];
-      return novoEstado;
-    });
+  const fontes = selecionarFontesConjuracao(ficha);
+  const pools = selecionarPoolsMagia(ficha);
+  const escolhas = selecionarEscolhasMagia(ficha);
+  const concedidas = magiasConcedidas(ficha);
+  const card = (escolha: typeof escolhas[number]) => {
+    const fonte = fontes.find(f => f.id === escolha.fonte);
+    const resolvida = resolverMagiaSalva(escolha);
+    const magia = resolvida ? apresentarMagia(resolvida) : undefined;
+    const fonteCompativel = fonte?.edicao === magia?.edicao ? fonte : undefined;
+    const circulos = pools.filter(p => fonteCompativel && p.fontes.includes(fonteCompativel.id)).flatMap(p => p.espacos.flatMap((n, i) => n > 0 ? [i + 1] : []));
+    return <MagiaCard key={escolha.id} nome={escolha.nome} magia={magia} origem={`${fonte?.nome ?? escolha.classe} · ${magia?.edicao.replace('DND_', '') ?? escolha.edicao.replace('DND_', '')}`}
+      compacto={compacto} ataque={fonteCompativel?.ataque} cd={fonteCompativel?.cd} modificador={fonteCompativel ? modificadorAtributo(ficha, fonteCompativel.atributo) : undefined} nivelPersonagem={ficha?.levelTotal ?? 1} circulos={circulos}>
+      <DescricaoMagia magia={magia} snapshot={escolha.snapshot} />
+    </MagiaCard>;
   };
-  const toggleNivelExpandido = (nivel: number) => {
-    setNiveisExpandidos(prev => ({
-      ...prev,
-      [nivel]: !prev[nivel]
-    }));
+  const talentoCard = (m: typeof concedidas[number]) => {
+    const resolvida = buscarMagiaConteudo('DND_2024', m.magia.nome.replace(/^2024: /, ''));
+    const magia = resolvida ? apresentarMagia(resolvida) : undefined;
+    const mod = m.atributo ? modificadorAtributo(ficha, m.atributo) : undefined;
+    return <MagiaCard key={`${m.origem}:${m.magia.nome}`} nome={m.magia.nome.replace(/^2024: /, '')} magia={magia} origem={`${m.talento} · ${m.atributo ?? 'atributo pendente'} · 2024`}
+      compacto={compacto} ataque={mod === undefined ? undefined : mod + selecionarProficiencia(ficha)} cd={mod === undefined ? undefined : 8 + mod + selecionarProficiencia(ficha)} modificador={mod} nivelPersonagem={ficha?.levelTotal ?? 1}>
+      <DescricaoMagia magia={magia} />
+      {!magia && <p>{m.magia.descricao}</p>}
+      {m.magia.nivel > 0 && m.usosSemEspaco > 0 && <button disabled={(ficha?.efeitos?.find(e => e.tituloEfeito === m.origem)?.usosMagiaTalento?.[m.chaveUso] ?? 0) >= m.usosSemEspaco}
+        onClick={() => { if (ficha && usarMagiaTalento(ficha, m.origem, m.magia.nome)) forceUpdate(); }}>Usar sem espaço</button>}
+    </MagiaCard>;
   };
-  const toggleEspacoAtivo = (nivel: number, index: number) => {
-    const key = `nivel-${nivel}-index-${index}`;
-    setEspacosAtivos(prev => ({
-      ...prev,
-      [key]: !prev[key]
-    }));
-  };
-
-  const variants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: (i: number) => ({
-      opacity: 1,
-      x: 0,
-      transition: { duration: 1, delay: i * 0.2, ease: "easeOut" }
-    })
-  };
-
-  const calcularModificador = (valor) => Math.floor((valor - 10) / 2);
-
-  const tabelaConjuradores = [
-    {
-      nivel: 1, espacos: [
-        { nivelMagia: 1, espaco: 2 }, { nivelMagia: 2, espaco: 0 }, { nivelMagia: 3, espaco: 0 },
-        { nivelMagia: 4, espaco: 0 }, { nivelMagia: 5, espaco: 0 }, { nivelMagia: 6, espaco: 0 },
-        { nivelMagia: 7, espaco: 0 }, { nivelMagia: 8, espaco: 0 }, { nivelMagia: 9, espaco: 0 }
-      ]
-    },
-    {
-      nivel: 2, espacos: [
-        { nivelMagia: 1, espaco: 3 }, { nivelMagia: 2, espaco: 0 }, { nivelMagia: 3, espaco: 0 },
-        { nivelMagia: 4, espaco: 0 }, { nivelMagia: 5, espaco: 0 }, { nivelMagia: 6, espaco: 0 },
-        { nivelMagia: 7, espaco: 0 }, { nivelMagia: 8, espaco: 0 }, { nivelMagia: 9, espaco: 0 }
-      ]
-    },
-    {
-      nivel: 3, espacos: [
-        { nivelMagia: 1, espaco: 4 }, { nivelMagia: 2, espaco: 2 }, { nivelMagia: 3, espaco: 0 },
-        { nivelMagia: 4, espaco: 0 }, { nivelMagia: 5, espaco: 0 }, { nivelMagia: 6, espaco: 0 },
-        { nivelMagia: 7, espaco: 0 }, { nivelMagia: 8, espaco: 0 }, { nivelMagia: 9, espaco: 0 }
-      ]
-    },
-    {
-      nivel: 4, espacos: [
-        { nivelMagia: 1, espaco: 4 }, { nivelMagia: 2, espaco: 3 }, { nivelMagia: 3, espaco: 0 },
-        { nivelMagia: 4, espaco: 0 }, { nivelMagia: 5, espaco: 0 }, { nivelMagia: 6, espaco: 0 },
-        { nivelMagia: 7, espaco: 0 }, { nivelMagia: 8, espaco: 0 }, { nivelMagia: 9, espaco: 0 }
-      ]
-    },
-    {
-      nivel: 5, espacos: [
-        { nivelMagia: 1, espaco: 4 }, { nivelMagia: 2, espaco: 3 }, { nivelMagia: 3, espaco: 2 },
-        { nivelMagia: 4, espaco: 0 }, { nivelMagia: 5, espaco: 0 }, { nivelMagia: 6, espaco: 0 },
-        { nivelMagia: 7, espaco: 0 }, { nivelMagia: 8, espaco: 0 }, { nivelMagia: 9, espaco: 0 }
-      ]
-    },
-    {
-      nivel: 6, espacos: [
-        { nivelMagia: 1, espaco: 4 }, { nivelMagia: 2, espaco: 3 }, { nivelMagia: 3, espaco: 3 },
-        { nivelMagia: 4, espaco: 0 }, { nivelMagia: 5, espaco: 0 }, { nivelMagia: 6, espaco: 0 },
-        { nivelMagia: 7, espaco: 0 }, { nivelMagia: 8, espaco: 0 }, { nivelMagia: 9, espaco: 0 }
-      ]
-    },
-    {
-      nivel: 7, espacos: [
-        { nivelMagia: 1, espaco: 4 }, { nivelMagia: 2, espaco: 3 }, { nivelMagia: 3, espaco: 3 },
-        { nivelMagia: 4, espaco: 1 }, { nivelMagia: 5, espaco: 0 }, { nivelMagia: 6, espaco: 0 },
-        { nivelMagia: 7, espaco: 0 }, { nivelMagia: 8, espaco: 0 }, { nivelMagia: 9, espaco: 0 }
-      ]
-    },
-    {
-      nivel: 8, espacos: [
-        { nivelMagia: 1, espaco: 4 }, { nivelMagia: 2, espaco: 3 }, { nivelMagia: 3, espaco: 3 },
-        { nivelMagia: 4, espaco: 2 }, { nivelMagia: 5, espaco: 0 }, { nivelMagia: 6, espaco: 0 },
-        { nivelMagia: 7, espaco: 0 }, { nivelMagia: 8, espaco: 0 }, { nivelMagia: 9, espaco: 0 }
-      ]
-    },
-    {
-      nivel: 9, espacos: [
-        { nivelMagia: 1, espaco: 4 }, { nivelMagia: 2, espaco: 3 }, { nivelMagia: 3, espaco: 3 },
-        { nivelMagia: 4, espaco: 3 }, { nivelMagia: 5, espaco: 1 }, { nivelMagia: 6, espaco: 0 },
-        { nivelMagia: 7, espaco: 0 }, { nivelMagia: 8, espaco: 0 }, { nivelMagia: 9, espaco: 0 }
-      ]
-    },
-    {
-      nivel: 10, espacos: [
-        { nivelMagia: 1, espaco: 4 }, { nivelMagia: 2, espaco: 3 }, { nivelMagia: 3, espaco: 3 },
-        { nivelMagia: 4, espaco: 3 }, { nivelMagia: 5, espaco: 2 }, { nivelMagia: 6, espaco: 0 },
-        { nivelMagia: 7, espaco: 0 }, { nivelMagia: 8, espaco: 0 }, { nivelMagia: 9, espaco: 0 }
-      ]
-    },
-    {
-      nivel: 11, espacos: [
-        { nivelMagia: 1, espaco: 4 }, { nivelMagia: 2, espaco: 3 }, { nivelMagia: 3, espaco: 3 },
-        { nivelMagia: 4, espaco: 3 }, { nivelMagia: 5, espaco: 2 }, { nivelMagia: 6, espaco: 1 },
-        { nivelMagia: 7, espaco: 0 }, { nivelMagia: 8, espaco: 0 }, { nivelMagia: 9, espaco: 0 }
-      ]
-    },
-    {
-      nivel: 12, espacos: [
-        { nivelMagia: 1, espaco: 4 }, { nivelMagia: 2, espaco: 3 }, { nivelMagia: 3, espaco: 3 },
-        { nivelMagia: 4, espaco: 3 }, { nivelMagia: 5, espaco: 2 }, { nivelMagia: 6, espaco: 1 },
-        { nivelMagia: 7, espaco: 0 }, { nivelMagia: 8, espaco: 0 }, { nivelMagia: 9, espaco: 0 }
-      ]
-    },
-    {
-      nivel: 13, espacos: [
-        { nivelMagia: 1, espaco: 4 }, { nivelMagia: 2, espaco: 3 }, { nivelMagia: 3, espaco: 3 },
-        { nivelMagia: 4, espaco: 3 }, { nivelMagia: 5, espaco: 2 }, { nivelMagia: 6, espaco: 1 },
-        { nivelMagia: 7, espaco: 1 }, { nivelMagia: 8, espaco: 0 }, { nivelMagia: 9, espaco: 0 }
-      ]
-    },
-    {
-      nivel: 14, espacos: [
-        { nivelMagia: 1, espaco: 4 }, { nivelMagia: 2, espaco: 3 }, { nivelMagia: 3, espaco: 3 },
-        { nivelMagia: 4, espaco: 3 }, { nivelMagia: 5, espaco: 2 }, { nivelMagia: 6, espaco: 1 },
-        { nivelMagia: 7, espaco: 1 }, { nivelMagia: 8, espaco: 0 }, { nivelMagia: 9, espaco: 0 }
-      ]
-    },
-    {
-      nivel: 15, espacos: [
-        { nivelMagia: 1, espaco: 4 }, { nivelMagia: 2, espaco: 3 }, { nivelMagia: 3, espaco: 3 },
-        { nivelMagia: 4, espaco: 3 }, { nivelMagia: 5, espaco: 2 }, { nivelMagia: 6, espaco: 1 },
-        { nivelMagia: 7, espaco: 1 }, { nivelMagia: 8, espaco: 1 }, { nivelMagia: 9, espaco: 0 }
-      ]
-    },
-    {
-      nivel: 16, espacos: [
-        { nivelMagia: 1, espaco: 4 }, { nivelMagia: 2, espaco: 3 }, { nivelMagia: 3, espaco: 3 },
-        { nivelMagia: 4, espaco: 3 }, { nivelMagia: 5, espaco: 2 }, { nivelMagia: 6, espaco: 1 },
-        { nivelMagia: 7, espaco: 1 }, { nivelMagia: 8, espaco: 1 }, { nivelMagia: 9, espaco: 0 }
-      ]
-    },
-    {
-      nivel: 17, espacos: [
-        { nivelMagia: 1, espaco: 4 }, { nivelMagia: 2, espaco: 3 }, { nivelMagia: 3, espaco: 3 },
-        { nivelMagia: 4, espaco: 3 }, { nivelMagia: 5, espaco: 2 }, { nivelMagia: 6, espaco: 1 },
-        { nivelMagia: 7, espaco: 1 }, { nivelMagia: 8, espaco: 1 }, { nivelMagia: 9, espaco: 1 }
-      ]
-    },
-    {
-      nivel: 18, espacos: [
-        { nivelMagia: 1, espaco: 4 }, { nivelMagia: 2, espaco: 3 }, { nivelMagia: 3, espaco: 3 },
-        { nivelMagia: 4, espaco: 3 }, { nivelMagia: 5, espaco: 3 }, { nivelMagia: 6, espaco: 1 },
-        { nivelMagia: 7, espaco: 1 }, { nivelMagia: 8, espaco: 1 }, { nivelMagia: 9, espaco: 1 }
-      ]
-    },
-    {
-      nivel: 19, espacos: [
-        { nivelMagia: 1, espaco: 4 }, { nivelMagia: 2, espaco: 3 }, { nivelMagia: 3, espaco: 3 },
-        { nivelMagia: 4, espaco: 3 }, { nivelMagia: 5, espaco: 3 }, { nivelMagia: 6, espaco: 2 },
-        { nivelMagia: 7, espaco: 1 }, { nivelMagia: 8, espaco: 1 }, { nivelMagia: 9, espaco: 1 }
-      ]
-    },
-    {
-      nivel: 20, espacos: [
-        { nivelMagia: 1, espaco: 4 }, { nivelMagia: 2, espaco: 3 }, { nivelMagia: 3, espaco: 3 },
-        { nivelMagia: 4, espaco: 3 }, { nivelMagia: 5, espaco: 3 }, { nivelMagia: 6, espaco: 2 },
-        { nivelMagia: 7, espaco: 2 }, { nivelMagia: 8, espaco: 1 }, { nivelMagia: 9, espaco: 1 }
-      ]
-    }
-  ];
-
-  const todasMagiasPorClasse = {
-    Bardo: magiasBardo,
-    Bruxo: magiasBruxo,
-    Clerigo: magiasClerigo,
-    Druida: magiasDruida,
-    Feiticeiro: magiasFeiticeiro,
-    Mago: magiasMago,
-    Paladino: magiasPaladino,
-    Patrulheiro: magiasPatrulheiro
-  };
-
-  function buscarMagiaNaClasse(nomeMagia: string, classe: keyof typeof todasMagiasPorClasse) {
-    return todasMagiasPorClasse[classe]?.find(m => m.nome === nomeMagia);
-  }
-
-  const agruparMagiasPorNivel = () => {
-    const magiasAgrupadas: Record<number, { nome: string, classe: string }[]> = {};
-
-    ficha?.magiasEscolhidas?.forEach(magiaEscolhida => {
-      let classe;
-      switch (magiaEscolhida.classe) {
-        case "Bardo": classe = "Bardo";
-          break;
-        case "Bruxo": classe = "Bruxo";
-          break;
-        case "Clerigo": classe = "Clerigo";
-          break;
-        case "Druida": classe = "Druida";
-          break;
-        case "Feiticeiro": classe = "Feiticeiro";
-          break;
-        case "Mago": classe = "Mago";
-          break;
-        case "Paladino": classe = "Paladino";
-          break;
-        case "Patrulheiro": classe = "Patrulheiro";
-          break;
-      }
-      magiaEscolhida.magia.forEach(magiaNome => {
-        const magiaInfo = buscarMagiaNaClasse(magiaNome, classe);
-        if (magiaInfo) {
-          const nivel = magiaInfo.nivel;
-          if (!magiasAgrupadas[nivel]) {
-            magiasAgrupadas[nivel] = [];
-          }
-          magiasAgrupadas[nivel].push({
-            nome: magiaNome,
-            classe: magiaEscolhida.classe
-          });
-        }
-      });
-    });
-
-    return magiasAgrupadas;
-  };
-
-  function hidratarClasse(classeData: any): Classes {
-    switch (classeData.nome) {
-      case 'Bruxo':
-        return Object.assign(new Bruxo(), classeData);
-
-      case 'Clerigo':
-        return Object.assign(new Clerigo(), classeData);
-
-      case 'Druida':
-        return Object.assign(new Druida(), classeData);
-
-      case 'Feiticeiro':
-        return Object.assign(new Feiticeiro(), classeData);
-
-      case 'Lutador':
-        return Object.assign(new Lutador(), classeData);
-
-      case 'Rogue':
-        return Object.assign(new Rogue(), classeData);
-
-      case 'Mago':
-        return Object.assign(new Mago(), classeData);
-
-      case 'Paladino':
-        return Object.assign(new Paladino(), classeData);
-
-      case 'Ranger':
-        return Object.assign(new Ranger(), classeData);
-
-      default:
-        return classeData;
-    }
-  }
-
-  function calcularMagiasConhecidas() {
-    let magiasConhecidas: { classe: string, magias: number }[] = [];
-    let truqueConhecidos: { classe: string, magias: number }[] = [];
-    if (ficha) {
-      const { levelTotal, multiclasses, atributosPersonagem, efeitos } = ficha;
-      let tamanhoArrayClasses = multiclasses?.length || 0;
-      if (levelTotal && multiclasses) for (let quantClasses = 1; quantClasses <= tamanhoArrayClasses; quantClasses++) {
-        const classeNoNivel = hidratarClasse(multiclasses[quantClasses - 1].classe);
-        let nivelClasse = 0;
-        const niveisEscolhidos = ficha?.multiclasses?.find(m => m.classe.nome === classeNoNivel?.nome)?.nivelEscolhido.sort((a, b) => a - b) ?? [];
-
-        for (const nivel of niveisEscolhidos) {
-          if (nivel <= nivel) {
-            nivelClasse++;
-          } else {
-            break;
-          }
-        }
-
-        if (classeNoNivel instanceof Bruxo) {
-          magiasConhecidas.push({ classe: "Bruxo", magias: classeNoNivel.niveis.find(n => n.nivel === nivelClasse)?.magiasConhecidas ?? 0 });
-          truqueConhecidos.push({ classe: "Bruxo", magias: classeNoNivel.niveis.find(n => n.nivel === nivelClasse)?.truquesConhecidos ?? 0 });
-        }
-        if (classeNoNivel instanceof Clerigo) {
-          let magiaClerigo = 0
-          let sabedoriaAtual = atributosPersonagem?.sabedoria.valor;
-          const efeitosSabedoria = efeitos?.filter((e: any) => e.atributo === "sabedoria");
-          if (efeitosSabedoria) if (efeitosSabedoria.length > 0) {
-            const bonusSabedoria = efeitosSabedoria.reduce((acc: number, e: any) => acc + e.bonus, 0);
-            if (sabedoriaAtual) sabedoriaAtual += bonusSabedoria;
-          }
-          magiaClerigo = calcularModificador(sabedoriaAtual) + nivelClasse;
-          magiasConhecidas.push({ classe: "Clerigo", magias: magiaClerigo });
-          truqueConhecidos.push({ classe: "Clerigo", magias: classeNoNivel.niveis.find(n => n.nivel === nivelClasse)?.truquesConhecidos ?? 0 });
-        }
-        if (classeNoNivel instanceof Druida) {
-          let magiaDruida = 0
-          let sabedoriaAtual = atributosPersonagem?.sabedoria.valor;
-          const efeitosSabedoria = efeitos?.filter((e: any) => e.atributo === "sabedoria");
-          if (efeitosSabedoria) if (efeitosSabedoria.length > 0) {
-            const bonusSabedoria = efeitosSabedoria.reduce((acc: number, e: any) => acc + e.bonus, 0);
-            if (sabedoriaAtual) sabedoriaAtual += bonusSabedoria;
-          }
-          magiaDruida = calcularModificador(sabedoriaAtual) + nivelClasse;
-          magiasConhecidas.push({ classe: "Druida", magias: magiaDruida });
-          truqueConhecidos.push({ classe: "Druida", magias: classeNoNivel.niveis.find(n => n.nivel === nivelClasse)?.truquesConhecidos ?? 0 });
-        }
-        if (classeNoNivel instanceof Feiticeiro) {
-          magiasConhecidas.push({ classe: "Feiticeiro", magias: classeNoNivel.niveis.find(n => n.nivel === nivelClasse)?.magiasConhecidas ?? 0 });
-          truqueConhecidos.push({ classe: "Feiticeiro", magias: classeNoNivel.niveis.find(n => n.nivel === nivelClasse)?.truquesConhecidos ?? 0 });
-        }
-        if (classeNoNivel instanceof Lutador) {
-          let subClasse = ficha?.subClasse?.find(s => s.classe.nome === classeNoNivel.nome)?.subclasse;
-          if (subClasse instanceof CavaleiroArcano) {
-            magiasConhecidas.push({ classe: "Lutador", magias: subClasse.magiasEspacos.find(m => m.nivel === nivelClasse)?.magias ?? 0 });
-            truqueConhecidos.push({ classe: "Lutador", magias: subClasse.magiasEspacos.find(m => m.nivel === nivelClasse)?.truques ?? 0 });
-          }
-        }
-        if (classeNoNivel instanceof Rogue) {
-          let subClasse = ficha?.subClasse?.find(s => s.classe.nome === classeNoNivel.nome)?.subclasse;
-          if (subClasse instanceof TrapaceiroArcano) {
-            magiasConhecidas.push({ classe: "Ladino", magias: subClasse.magiasEspacos.find(m => m.nivel === nivelClasse)?.magias ?? 0 });
-            truqueConhecidos.push({ classe: "Ladino", magias: subClasse.magiasEspacos.find(m => m.nivel === nivelClasse)?.truques ?? 0 });
-          }
-        }
-        if (classeNoNivel instanceof Mago) {
-          let magiaMago = 0
-          let inteligenciaAtual = atributosPersonagem?.sabedoria.valor;
-          const efeitosInteligencia = efeitos?.filter((e: any) => e.atributo === "inteligência");
-          if (efeitosInteligencia) if (efeitosInteligencia.length > 0) {
-            const bonusInteligencia = efeitosInteligencia.reduce((acc: number, e: any) => acc + e.bonus, 0);
-            if (inteligenciaAtual) inteligenciaAtual += bonusInteligencia;
-          }
-          magiaMago = calcularModificador(inteligenciaAtual) + nivelClasse;
-          magiasConhecidas.push({ classe: "Mago", magias: magiaMago });
-          truqueConhecidos.push({ classe: "Mago", magias: classeNoNivel.niveis.find(n => n.nivel === nivelClasse)?.truquesConhecidos ?? 0 });
-        }
-
-        if (classeNoNivel instanceof Paladino) {
-          let magiaPaladino = 0
-          let carismaAtual = atributosPersonagem?.carisma.valor;
-          const efeitosCarisma = efeitos?.filter((e: any) => e.atributo === "carisma");
-          if (efeitosCarisma) if (efeitosCarisma.length > 0) {
-            const bonusInteligencia = efeitosCarisma.reduce((acc: number, e: any) => acc + e.bonus, 0);
-            if (carismaAtual) carismaAtual += bonusInteligencia;
-          }
-          magiaPaladino = calcularModificador(carismaAtual) + nivelClasse;
-          magiasConhecidas.push({ classe: "Paladino", magias: magiaPaladino });
-          truqueConhecidos.push({ classe: "Paladino", magias: 0 });
-        }
-        if (classeNoNivel instanceof Ranger) {
-          magiasConhecidas.push({ classe: "Patrulheiro", magias: classeNoNivel.niveis.find(n => n.nivel === nivelClasse)?.magiasConhecidas ?? 0 });
-          truqueConhecidos.push({ classe: "Patrulheiro", magias: 0 });
-        }
-      }
-    }
-    ficha?.setMagiasConhecidas(magiasConhecidas);
-    ficha?.setTruquesConhecidas(truqueConhecidos);
-  }
-
-  const getEspacosPorNivel = (nivelMagia: number) => {
-    calcularEspacosMagia();
-    return ficha?.espacosMagiaTotais?.find(e => e.nivelMagia === nivelMagia)?.espaco || 0;
-  };
-
-  function calcularEspacosMagia() {
-    let levelConjurador = 0;
-    if (ficha) {
-      const { levelTotal, multiclasses } = ficha;
-      multiclasses?.map((multiclasse) => {
-
-        let nivelClasse = 0;
-        const niveisEscolhidos = multiclasse?.nivelEscolhido.sort((a, b) => a - b) ?? [];
-
-        for (const nivel of niveisEscolhidos) {
-          if (nivel <= (levelTotal || 0)) {
-            nivelClasse++;
-          } else {
-            break;
-          }
-        }
-        if ((multiclasse?.classe.nome === "Bardo") ||
-          (multiclasse?.classe.nome === "Clerigo") ||
-          (multiclasse?.classe.nome === "Druida") ||
-          (multiclasse?.classe.nome === "Feiticeiro") ||
-          (multiclasse?.classe.nome === "Mago")) {
-          levelConjurador += nivelClasse;
-        }
-        if ((multiclasse?.classe.nome === "Paladino") ||
-          (multiclasse?.classe.nome === "Patrulheiro")) {
-          levelConjurador += Math.floor(nivelClasse / 2);
-        }
-        if ((multiclasse?.classe.nome === "Lutador" && ficha.subClasse?.find(s => s.classe.nome === multiclasse.classe.nome)?.subclasse instanceof CavaleiroArcano) ||
-          (multiclasse?.classe.nome === "Ladino" && ficha.subClasse?.find(s => s.classe.nome === multiclasse.classe.nome)?.subclasse instanceof TrapaceiroArcano)) {
-          levelConjurador += Math.floor(nivelClasse / 3);
-        }
-      })
-    }
-    ficha?.setEspacosMagiaTotais(tabelaConjuradores.find(t => t.nivel === levelConjurador)?.espacos || [{ nivelMagia: 0, espaco: 0 }])
-  }
-
-  function validarMagiaClasse(magia: string) {
-    let classe = [""];
-    let magiaAchada;
-    if (!!magiasBardo.find(m => m.nome === magia)) {
-      classe.push("Bardo");
-      magiaAchada = magiasBardo.find(m => m.nome === magia);
-    }
-    if (!!magiasBruxo.find(m => m.nome === magia)) {
-      classe.push("Bruxo");
-      magiaAchada = magiasBruxo.find(m => m.nome === magia);
-    }
-    if (!!magiasClerigo.find(m => m.nome === magia)) {
-      classe.push("Clerigo");
-      magiaAchada = magiasClerigo.find(m => m.nome === magia);
-    }
-    if (!!magiasDruida.find(m => m.nome === magia)) {
-      classe.push("Druida");
-      magiaAchada = magiasDruida.find(m => m.nome === magia);
-    }
-    if (!!magiasFeiticeiro.find(m => m.nome === magia)) {
-      classe.push("Feiticeiro");
-      magiaAchada = magiasFeiticeiro.find(m => m.nome === magia);
-    }
-    if (!!magiasMago.find(m => m.nome === magia)) {
-      classe.push("Mago");
-      magiaAchada = magiasMago.find(m => m.nome === magia);
-    }
-    if (!!magiasPaladino.find(m => m.nome === magia)) {
-      classe.push("Paladino");
-      magiaAchada = magiasPaladino.find(m => m.nome === magia);
-    }
-    if (!!magiasPatrulheiro.find(m => m.nome === magia)) {
-      classe.push("Patrulheiro");
-      magiaAchada = magiasPatrulheiro.find(m => m.nome === magia);
-    }
-    return { magiaAchada, classe };
-  }
-
-  function validarMagiaEscolhida(magiaAchada: {
-    nome: string;
-    nivel: number;
-    tipo: string;
-  }, classe: string[]) {
-    calcularMagiasConhecidas();
-    let classeValida;
-    if (magiaAchada.nivel === 0) {
-      let permitido = false;
-      classe.forEach(classe => {
-        const truquesDaClasse = ficha?.truquesConhecidos?.find(t => t.classe === classe)?.magias ?? 0;
-        const truquesAtuais = ficha?.magiasEscolhidas?.find(m => m.classe === classe)?.magia.length || 0;
-
-        if (truquesAtuais < truquesDaClasse) {
-          permitido = true
-          classeValida = classe;
-        }
-      });
-
-      if (permitido === false) {
-        toast.error(`Você já atingiu o limite de magias para esta classe`, {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
-        return { valida: false, classeValida };
-      }
-    } else {
-      let permitido = false;
-      classe.forEach(classe => {
-        const magiasDaClasse = ficha?.magiasConhecidas?.find(m => m.classe === classe)?.magias ?? 0;
-        const magiasAtuais = ficha?.magiasEscolhidas?.find(m => m.classe === classe)?.magia.length || 0;
-
-        if (magiasAtuais < magiasDaClasse) {
-          permitido = true;
-          classeValida = classe;
-        }
-      });
-      if (permitido === false) {
-        toast.error(`Você já atingiu o limite de magias para esta classe`, {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
-        return { valida: false, classeValida };;
-      }
-    }
-    return { valida: true, classeValida };
-  }
-
-  type Atributos = "forca" | "destreza" | "constituicao" | "inteligencia" | "sabedoria" | "carisma";
-
-  const atributoPorClasseConjuradora: { [classe: string]: Atributos } = {
-    Mago: "inteligencia",
-    Clerigo: "sabedoria",
-    Druida: "sabedoria",
-    Paladino: "carisma",
-    Bruxo: "carisma",
-    Feiticeiro: "carisma",
-    Bardo: "carisma",
-    Patrulheiro: "sabedoria",
-  };
-
-  const calcularCDsMagia = () => {
-    let linhas: JSX.Element[] = [];
-
-    ficha?.multiclasses?.forEach((mc: any) => {
-      const classeNome = mc.classe.nome;
-      const atributoChave = atributoPorClasseConjuradora[classeNome];
-
-      if (!atributoChave) return;
-
-      let valorBase = ficha.atributosPersonagem?.[atributoChave]?.valor ?? 10;
-
-      const efeitosDoAtributo = ficha.efeitos?.filter((e: any) => e.atributo === atributoChave);
-      if (efeitosDoAtributo) if (efeitosDoAtributo?.length > 0) {
-        const bonus = efeitosDoAtributo.reduce((acc: number, e: any) => acc + e.bonus, 0);
-        valorBase += bonus;
-      }
-
-      const mod = calcularModificador(valorBase);
-      const prof = ficha?.proeficiencia ?? 0;
-      const cd = 8 + mod + prof;
-
-      linhas.push(<p key={classeNome}>{classeNome} ({atributoChave}): {cd}</p>);
-    });
-
-    return (
-      <div>
-        <h3>DC de magias</h3>
-        {linhas}
-      </div>
-    );
-  };
-
-  const renderMagiasPorNivel = () => {
-    const magiasAgrupadas = agruparMagiasPorNivel();
-    const niveisOrdenados = Object.keys(magiasAgrupadas)
-      .map(Number)
-      .sort((a, b) => a - b);
-
-    return niveisOrdenados.map(nivel => {
-      const magiasDoNivel = magiasAgrupadas[nivel];
-      const espacos = getEspacosPorNivel(nivel);
-      const isExpanded = niveisExpandidos[nivel] !== false; // Padrão: expandido
-
-      return (
-        <div key={`nivel-${nivel}`} className="nivel-magia-container">
-          <div className="nivel-header">
-            <h4>Nível {nivel}</h4>
-            <span onClick={() => toggleNivelExpandido(nivel)}>{isExpanded ? '▼' : '▶'}</span>
-            <div className="espacos-magia">
-              {[...Array(espacos)].map((_, i) => {
-                const key = `nivel-${nivel}-index-${i}`;
-                const isAtivo = espacosAtivos[key] || false;
-
-                return (
-                  <button
-                    key={key}
-                    className="botao-espaco-magia"
-                    onClick={() => toggleEspacoAtivo(nivel, i)}
-                  >
-                    <img
-                      src={isAtivo ? magiaIcon : magiaIcon1}
-                      className="espaco-magia-icon"
-                      alt={`Espaço de magia nível ${nivel}`}
-                    />
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {isExpanded && (
-            <div className="magias-do-nivel">
-              {magiasDoNivel.map((magia, index) => (
-                <div key={`${nivel}-${index}`} className="magia-container">
-                  <div className="moldura-container">
-                    {magiaAtiva[index] && (
-                      <>
-                        {[...Array(5)].map((_, i) => (
-                          <motion.img
-                            key={i}
-                            className={`moldura-magia${i + 1}`}
-                            src={magiaFire}
-                            initial="hidden"
-                            animate="visible"
-                            custom={i}
-                            variants={variants}
-                          />
-                        ))}
-                      </>
-                    )}
-                  </div>
-                  <div className="dados-magia-container">
-                    <div className="magia-coluna1">
-                      <p>{magia.nome} ({magia.classe})</p>
-                    </div>
-                    <div className="magia-coluna2">
-                      <button
-                        className="botao-equipar"
-                        onClick={() => {
-                          setModalInfoMagiasAberta(true);
-                          setMagiaInfo(magia.nome)
-                        }}
-                      >
-                        <img src={magiaIcon1} className="equipar" />
-                        <img src={magiaIcon1} className="equipar-hover" />
-                      </button>
-                    </div>
-                    <div className="magia-coluna3">
-                      <button
-                        className="botao-equipar"
-                        onClick={() => handleUsarMagia(index)}
-                      >
-                        <img src={magiaIcon1} className="equipar" />
-                        <img src={magiaIcon1} className="equipar-hover" />
-                      </button>
-                      <button
-                        className="botao-excluir"
-                        onClick={() => {
-                          ficha?.excluirMagiaEscolhidas(magia.nome);
-                          forceUpdate();
-                        }}
-                      >
-                        <img alt="excluir" className="icon-excluir" src={excluirIcon} />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
+  const grupo = (nome: string, registros: typeof escolhas, recursos: typeof pools, talentos: typeof concedidas = []) => {
+    const niveis = [...new Set([...registros.map(e => e.nivel).filter((n): n is number => n !== null), ...talentos.map(m => m.magia.nivel),
+      ...recursos.flatMap(p => p.espacos.flatMap((total, i) => total > 0 ? [i + 1] : []))])].sort((a, b) => a - b);
+    if (!niveis.length) return null;
+    return <section key={nome} aria-label={nome} className="magia-grupo">
+      {nome !== 'Conjuração' && <h3>{nome}</h3>}
+      {niveis.map(nivel => {
+        const chave = `${nome}:${nivel}`;
+        const rotulo = nivel === 0 ? 'Truques' : `Círculo ${nivel}`;
+        const aberto = !recolhidos[chave];
+        const idConteudo = `${idMagias}-${encodeURIComponent(chave)}`;
+        return <section key={nivel} className="magia-circulo" aria-label={`${nome}, ${rotulo}`}>
+        <div className="magia-circulo-header"><h4><button type="button" className="magia-circulo-toggle"
+          aria-label={`${aberto ? 'Recolher' : 'Expandir'} ${rotulo} — ${nome}`} aria-expanded={aberto} aria-controls={idConteudo}
+          onClick={() => setRecolhidos(anteriores => ({ ...anteriores, [chave]: !anteriores[chave] }))}>
+          <span aria-hidden="true">{aberto ? '▾' : '▸'}</span>{rotulo}
+        </button></h4>
+          {nivel > 0 && recursos.filter(p => p.espacos[nivel - 1] > 0).map(pool => <div className="magia-slots" key={pool.id} role="group" aria-label={`${pool.nome}, círculo ${nivel}`}>
+            {Array.from({ length: pool.espacos[nivel - 1] }, (_, slot) => {
+              const chave = pool.id.startsWith('pacto:') ? pool.id : `${pool.id}:${nivel - 1}`;
+              const gasto = estadosSlots(ficha?.recursos.slots ?? {}, chave, pool.espacos[nivel - 1])[slot];
+              const rotulo = `${pool.nome}, círculo ${nivel}, espaço ${slot + 1}: ${gasto ? 'gasto' : 'disponível'}`;
+              return <button key={slot} className={`magia-slot${gasto ? ' gasto' : ''}`} aria-label={rotulo} title={`${rotulo}. Recuperação: ${pool.recuperacao}`} aria-pressed={gasto}
+                onClick={() => { if (ficha) { alternarSlot(ficha.recursos.slots, chave, pool.espacos[nivel - 1], slot); forceUpdate(); } }}><img src={fogo} alt="" /></button>;
+            })}
+            <MagiaBadge detalhe={`${pool.nome}: ${pool.espacos[nivel - 1]} espaços; recuperação: ${pool.recuperacao}`}>ⓘ</MagiaBadge>
+          </div>)}
         </div>
-      );
-    });
+        <div id={idConteudo} className="magia-cards" hidden={!aberto}>{registros.filter(e => e.nivel === nivel).map(card)}{talentos.filter(m => m.magia.nivel === nivel).map(talentoCard)}</div>
+      </section>; })}
+    </section>;
   };
-
-  return (
-    <>
-      <div key={refreshKey} className="magias">
-        <div className="header-magias">
-          <div className="dc-magias">
-            {calcularCDsMagia()}
-          </div>
-          <div className="header-titulo">
-            <h3>Magias Aprendidas</h3>
-            <button className="adicionar-armas" onClick={() => setModalMagiasAberta(true)}>
-              Escolher Magia
-            </button>
-          </div>
-        </div>
-        {renderMagiasPorNivel()}
-      </div>
-      {modalInfoMagiasAberta && (
-        <>
-          <div className="popup-overlay" onClick={() => setModalInfoMagiasAberta(false)}></div>
-          <div className="popup">
-            <ModalSelecaoMagias
-              onSelect={(magia) => {
-              }}
-              magiaSelect={magiaInfo}
-              onClose={() => setModalInfoMagiasAberta(false)}
-              titulo={"Info " + magiaInfo}
-            />
-          </div>
-        </>
-      )}
-      {modalMagiasAberta && (
-        <>
-          <div className="popup-overlay" onClick={() => setModalMagiasAberta(false)}></div>
-          <div className="popup">
-            <ModalSelecaoMagias
-              onSelect={(magia) => {
-                const magiaClasse = validarMagiaClasse(magia);
-                const valida = validarMagiaEscolhida(magiaClasse.magiaAchada, magiaClasse.classe);
-                if (valida.valida) ficha?.setMagiaEscolhidas({ classe: valida.classeValida, magia: magiaClasse.magiaAchada.nome });
-              }}
-              magiaSelect=""
-              onClose={() => setModalMagiasAberta(false)}
-              titulo="Lista de Magias"
-            />
-          </div>
-        </>
-      )}
-    </>
-  );
+  const pacto = pools.filter(p => p.id.startsWith('pacto:'));
+  const fontesPacto = new Set(fontes.filter(f => f.progressao === 'pacto').map(f => f.id));
+  const pendentes = escolhas.filter(e => e.nivel === null);
+  return <div className={`magias${compacto ? ' magias-compactas' : ''}`}>
+    <div className="header-magias"><h3>Conjuração</h3><button className="adicionar-armas" onClick={() => setModal('')}>Escolher Magia</button>
+      <button type="button" className="magia-visualizacao-toggle" aria-label="Visualização compacta" title={compacto ? 'Usar visualização ampliada' : 'Usar visualização compacta'} aria-pressed={compacto} onClick={() => setCompacto(anterior => !anterior)}>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+          {compacto ? <><rect x="4" y="4" width="16" height="6" rx="1" /><rect x="4" y="14" width="16" height="6" rx="1" /></> : <><rect x="3" y="4" width="7" height="16" rx="1" /><rect x="14" y="4" width="7" height="16" rx="1" /><path d="M3 9h7M3 14h7M14 9h7M14 14h7" /></>}
+        </svg>
+      </button>
+      {fontes.map(fonte => <div className="magia-fonte" role="group" aria-label={fonte.nome} key={fonte.id}>
+        <MagiaBadge detalhe={`${fonte.nome} · ${fonte.edicao.replace('DND_', '')} · nível ${fonte.nivel}. Conjuração por ${fonte.atributo}; escolhas até o círculo ${fonte.circuloMaximo}.`}>{fonte.nome}</MagiaBadge>
+        <MagiaBadge detalhe={`CD das magias de ${fonte.nome}, usando ${fonte.atributo}`}>CD {fonte.cd}</MagiaBadge>
+        <MagiaBadge detalhe={`Ataque mágico de ${fonte.nome}, usando ${fonte.atributo}`}>Ataque {fonte.ataque >= 0 ? '+' : ''}{fonte.ataque}</MagiaBadge>
+        <MagiaBadge detalhe={`Truques selecionados e limite de ${fonte.nome}`}>Truques {escolhas.filter(e => e.fonte === fonte.id && e.categoria === 'truque').length}/{fonte.truques}</MagiaBadge>
+        <MagiaBadge detalhe={`Magias ${fonte.categoria === 'conhecida' ? 'conhecidas' : 'preparadas'} e limite de ${fonte.nome}`}>{fonte.categoria === 'conhecida' ? 'Conhecidas' : 'Preparadas'} {escolhas.filter(e => e.fonte === fonte.id && (fonte.categoria === 'livro' ? e.preparada : e.categoria === fonte.categoria)).length}/{fonte.magias}</MagiaBadge>
+      </div>)}
+    </div>
+    {!fontes.length && <p>Nenhuma fonte de conjuração ativa neste nível.</p>}
+    {grupo('Conjuração', escolhas.filter(e => e.nivel !== null && !fontesPacto.has(e.fonte) && !e.fonte.startsWith('DND_2014:bruxo') && !e.fonte.startsWith('DND_2024:bruxo')), pools.filter(p => !p.id.startsWith('pacto:')))}
+    {grupo(pacto[0]?.nome ?? 'Magia de Pacto', escolhas.filter(e => e.nivel !== null && (fontesPacto.has(e.fonte) || e.fonte.startsWith('DND_2014:bruxo') || e.fonte.startsWith('DND_2024:bruxo'))), pacto)}
+    {concedidas.length > 0 && grupo('Magias concedidas por talentos', [], [], concedidas)}
+    {pendentes.length > 0 && <section aria-label="Magias pendentes de revisão"><h4>Magias pendentes de revisão</h4><div className="magia-cards">{pendentes.map(card)}</div></section>}
+    {modal !== null && <>
+      <div className="popup-overlay" onClick={() => setModal(null)} />
+      <div className="popup"><ModalSelecaoMagias titulo={modal ? `Info ${escolhas.find(e => e.id === modal)?.nome ?? modal}` : 'Escolher magia e fonte'} magiaSelect={modal ? escolhas.find(e => e.id === modal)?.nome ?? modal : ''} escolhaSalva={escolhas.find(e => e.id === modal)}
+        onClose={() => setModal(null)} onSelect={(nome, fonte, aquisicao) => {
+          if (!ficha || !fonte) return false;
+          const erro = adicionarMagia(ficha, fonte, nome, aquisicao);
+          if (erro) { toast.error(erro); return false; }
+          forceUpdate(); return true;
+        }} /></div>
+    </>}
+  </div>;
 }

@@ -1,6 +1,6 @@
-import { Classes } from "../classesPrincipais/Classes.class.ts"
-import { SubClasses } from "../classesPrincipais/SubClasses.ts";
-import { CaminhoDoArautoDaTempestade, CaminhoDoFanatico, CaminhoDoGuardiaoAncestral, CaminhoFurioso, CaminhoGuerreiroTotemico } from "../classesPrincipais/SubClassesExport.ts"
+import { Classes } from "../classesPrincipais/Classes.class"
+import { SubClasses } from "../classesPrincipais/SubClasses";
+import { CaminhoDoArautoDaTempestade, CaminhoDoFanatico, CaminhoDoGuardiaoAncestral, CaminhoFurioso, CaminhoGuerreiroTotemico } from "../classesPrincipais/SubClassesExport"
 
 export class Barbaro extends Classes {
     level: number;

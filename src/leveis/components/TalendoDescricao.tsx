@@ -1,24 +1,27 @@
 import React, { useState } from "react";
-import { bibliotecaPrincipal } from "../../bibliotecas/bibliotecaPrincipal.ts";
+import { descreverTalentoSalvo } from '../../api/fichaPersonagem/talentosConteudo';
+import type { Efeitos } from '../../api/classesPrincipais/Efeitos';
+import { useFicha } from "../../api/fichaPersonagem/FichaContext";
 
 interface CaracteristicasClasseProps {
     talento: string;
+    efeito?: Efeitos;
 }
 
-const TalentoDescricao: React.FC<CaracteristicasClasseProps> = ({ talento }) => {
-    // Estado para controlar quais características estão expandidas
+const TalentoDescricao: React.FC<CaracteristicasClasseProps> = ({ talento, efeito }) => {
+    const { ficha } = useFicha();
+
     const [caracteristicasExpandidas, setCaracteristicasExpandidas] = useState<{ [key: string]: boolean }>({});
 
-    // Função para alternar a visibilidade da descrição
+
     const toggleCaracteristica = (caracteristica: string) => {
         setCaracteristicasExpandidas((prev) => ({
             ...prev,
             [caracteristica]: !prev[caracteristica],
         }));
     };
-    const descricao =
-          bibliotecaPrincipal.Talentos.find((item) => item.nome.toLowerCase() === talento.toLowerCase())?.descricao ||
-          "Descrição não encontrada.";
+    const salvo = efeito ?? ficha?.efeitos?.find(e => e.talento === talento);
+    const descricao = salvo ? descreverTalentoSalvo(salvo) : '';
 
     return (
         <div key={talento} className="skills-container">

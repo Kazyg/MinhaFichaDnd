@@ -1,9 +1,10 @@
-import { Elfo } from "../classesFilhos/Elfo.class.ts";
+import { Elfo } from "../classesFilhos/Elfo.class";
 
 export class ElfoFloresta extends Elfo {
     constructor() {
       super();
       this.nome = "Elfo da Floresta";
+      this.velocidade = 35;
       this.tracos?.push(
         {
           traco: "Treinamento Élfico com Armas",

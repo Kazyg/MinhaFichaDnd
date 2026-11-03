@@ -1,4 +1,4 @@
-import { Raca } from "../classesPrincipais/Raca.class.ts";
+import { Raca } from "../classesPrincipais/Raca.class";
 
 export class MeioElfo extends Raca {
   constructor(atributo1: string, atributo2: string, pericia1: string, pericia2: string) {

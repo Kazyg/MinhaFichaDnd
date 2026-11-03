@@ -1,3 +1,4 @@
+import AccessibleDialog from "../components/AccessibleDialog";
 import React, { useState } from "react";
 import { Armaduras_equip } from "../../api/equipamentos/Armaduras";
 
@@ -12,20 +13,20 @@ export default function ModalInventarioEquipamentos({
   onClose,
   onSelecionarEquipamento,
 }: ModalInventarioEquipamentosProps) {
-  const [mostrarFiltros, setMostrarFiltros] = useState(true); // Estado para controlar a exibição dos filtros
+  const [mostrarFiltros, setMostrarFiltros] = useState(true);
   const [filtroCategoria, setFiltroCategoria] = useState<string | null>(null);
   const [escolhido, setEscolhido] = useState<Armaduras_equip | null>(null);
   const [filtro, setFiltro] = useState("");
 
-  // Função para filtrar os equipamentos
+
   const equipamentosFiltrados = equipamentos.filter((equipamento) => {
     return filtroCategoria ? equipamento.categoria.includes(filtroCategoria) : true;
   });
 
-  // Função para selecionar um filtro
+
   const selecionarFiltro = (categoria: string) => {
     setFiltroCategoria(categoria);
-    setMostrarFiltros(false); // Esconde os botões de filtro e mostra a lista de equipamentos
+    setMostrarFiltros(false);
   };
 
   const opcoesFiltradas = equipamentosFiltrados.filter((opcao) =>
@@ -34,10 +35,10 @@ export default function ModalInventarioEquipamentos({
 
 
   return (
-    <div className="popup-content-modal">
+    <AccessibleDialog className="popup-content-modal" onClose={onClose} aria-label="Selecione um Equipamento">
       <h2>Selecione um Equipamento</h2>
 
-      {/* Mostra os botões de filtro ou a lista de equipamentos */}
+      { }
       {mostrarFiltros ? (
         <div className="menu-abas">
           <button className="escolher-button" onClick={() => selecionarFiltro("Armadura Leve")}>Armaduras Leves</button>
@@ -51,15 +52,15 @@ export default function ModalInventarioEquipamentos({
             <div className="lista-racas">
             <input
                   type="text"
-                  placeholder={`Filtrar ${filtroCategoria}...`}
+                  aria-label={`Filtrar ${filtroCategoria}...`} placeholder={`Filtrar ${filtroCategoria}...`}
                   value={filtro}
                   onChange={(e) => setFiltro(e.target.value)}
                 />
               <ul>
                 {opcoesFiltradas.map((equipamento) => (
-                  <li key={equipamento.nome} onClick={() => setEscolhido(equipamento)}>
+                  <li key={equipamento.nome}><button type="button" className="selection-option" aria-pressed={escolhido?.nome === equipamento.nome} onClick={() => setEscolhido(equipamento)}>
                     <strong>{equipamento.nome}</strong>
-                  </li>
+                  </button></li>
                 ))}
               </ul>
             </div>
@@ -84,6 +85,6 @@ export default function ModalInventarioEquipamentos({
         </>
       )}
       <button className="escolher-button" onClick={onClose}>Fechar</button>
-    </div>
+    </AccessibleDialog>
   );
 }
