@@ -14,7 +14,7 @@ export interface Sala {
   id: string; aberta: boolean; bloqueada: boolean; revisao: number; visao: VisaoSala;
   atualizada_em: string; mestre_visto_em: string;
 }
-export interface Membro { usuario: string; nome: string; estado: 'pendente' | 'aprovado' | 'recusado' | 'revogado'; visto_em: string }
+export interface Membro { usuario: string; nome: string; estado: 'pendente' | 'aprovado' | 'recusado' | 'revogado'; visto_em: string; pedido_versao?: number }
 export interface ConfigSala { convite: string; escolha: EscolhaSala }
 export async function rpc<T>(nome: string, parametros: Record<string, unknown>): Promise<T> {
   const { data, error } = await obterCliente().rpc(nome, parametros);
@@ -32,7 +32,7 @@ export async function lerConfig(id: string): Promise<ConfigSala> {
   return data;
 }
 export async function lerMembros(id: string): Promise<Membro[]> {
-  const { data, error } = await obterCliente().from('sala_membros').select('usuario,nome,estado,visto_em').eq('sala', id).order('nome');
+  const { data, error } = await obterCliente().from('sala_membros').select('usuario,nome,estado,visto_em,pedido_versao').eq('sala', id).order('nome');
   if (error) throw new Error('Não foi possível atualizar os participantes.');
   return data ?? [];
 }

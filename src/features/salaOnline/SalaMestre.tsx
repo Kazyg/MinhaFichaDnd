@@ -42,9 +42,10 @@ export default function SalaMestre({ dados, pronto, aberto, onFechar }: { dados:
     if (!nova) { receberSala(null); setConfig(null); throw new Error('Sala indisponível. Tente novamente.'); }
     receberSala(nova); setMembros(pessoas);
     for (const pessoa of pessoas) {
-      if (pessoa.estado === 'pendente' && !pedidosNotificados.current.has(pessoa.usuario)) {
-        pedidosNotificados.current.add(pessoa.usuario);
-        toast.info(pessoa.nome + ' solicitou entrada na sala. Abra Sala online para aprovar.', { toastId: 'sala-pedido-' + id + '-' + pessoa.usuario, autoClose: 8000 });
+      const pedido = pessoa.usuario + ':' + (pessoa.pedido_versao ?? 1);
+      if (pessoa.estado === 'pendente' && !pedidosNotificados.current.has(pedido)) {
+        pedidosNotificados.current.add(pedido);
+        toast.info(pessoa.nome + ' solicitou entrada na sala. Abra Sala online para aprovar.', { toastId: 'sala-pedido-' + id + '-' + pedido, autoClose: 8000 });
       }
     }
     if (opcoes) {
