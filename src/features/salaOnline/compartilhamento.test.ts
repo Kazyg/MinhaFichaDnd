@@ -17,7 +17,7 @@ const escolha = { jogadores: ['pj'], combateId: 'b', monstros: ['pm'] };
 test('permite somente os campos públicos e os arquivos explicitamente compartilhados', () => {
   const dados = campanha(); const resultado = prepararPublicacao(dados, escolha);
   expect(resultado.visao.jogadores[0].pv).toEqual({ atuais: 4, maximos: 12 });
-  expect(JSON.stringify(resultado.visao)).not.toMatch(/SEGREDO|999|iniciativa|rodada|roteiro|anexoId/);
+  expect(JSON.stringify(resultado.visao)).not.toMatch(/SEGREDO|999|iniciativa|roteiro|anexoId/);
   expect(resultado.visao.combate?.imagens[0]).toEqual({ id: 'm0', retrato: { id: 'm0-retrato', mime: 'image/png', nome: 'Retrato' } });
   expect([...resultado.arquivos.values()]).not.toContain(dados.anexos[1].arquivo);
   expect(resultado.visao.jogadores[0].pv).not.toBe(dados.instancias[0].pv);
@@ -34,7 +34,7 @@ test('monstro sem recorte não usa sua ficha como imagem', () => {
 });
 test('não aceita monstros na lista do grupo nem jogadores na lista de inimigos', () => {
   const resultado = prepararPublicacao(campanha(), { ...escolha, jogadores: ['pm'], monstros: ['pj'] });
-  expect(resultado.visao.jogadores).toEqual([]); expect(resultado.visao.combate?.imagens).toEqual([]);
+  expect(resultado.visao.jogadores.map(j => j.nome)).toEqual(['Clériga']); expect(resultado.visao.combate?.imagens).toEqual([]);
 });
 test('só revela os monstros escolhidos no combate selecionado', () => {
   const resultado = prepararPublicacao(campanha(), { ...escolha, monstros: [] });
@@ -44,4 +44,23 @@ test('não compartilha o JSON original, nem anexos de outra campanha', () => {
   const dados = campanha(); dados.fichas[0].formato = 'json'; dados.anexos[2].campanhaId = 'outra';
   const resultado = prepararPublicacao(dados, escolha);
   expect(resultado.visao.jogadores[0].ficha).toBeNull(); expect(resultado.visao.combate?.imagens[0].retrato).toBeNull(); expect(resultado.arquivos.size).toBe(0);
+});
+
+test('todos os jogadores aparecem mesmo sem seleção salva', () => {
+  expect(prepararPublicacao(campanha(), { ...escolha, jogadores: [] }).visao.jogadores).toHaveLength(1);
+});
+test('roda respeita ordem, turno e rodada sem expor monstros ocultos', () => {
+  const dados = campanha();
+  dados.participantes.push({ id: 'jp', combateId: 'b', instanciaId: 'pj', iniciativa: 25, ordem: 0, pvInicio: { atuais: 4, maximos: 12 } });
+  const revelada = prepararPublicacao(dados, escolha).visao;
+  expect(revelada.combate?.roda).toEqual({ rodada: 5, ordem: ['j0','m0'], ativo: 'm0' });
+  const oculta = prepararPublicacao(dados, { ...escolha, monstros: [] }).visao;
+  expect(oculta.combate?.roda).toEqual({ rodada: 5, ordem: ['j0'], ativo: null });
+  expect(JSON.stringify(oculta)).not.toMatch(/SEGREDO|999|iniciativa|mp|pm/);
+  dados.combates[0].participanteAtivoId = 'jp';
+  expect(prepararPublicacao(dados, escolha).visao.combate?.roda?.ativo).toBe('j0');
+});
+test('jogador de outra campanha nunca entra no grupo automático', () => {
+  const dados = campanha(); dados.instancias[0].campanhaId = 'outra';
+  expect(prepararPublicacao(dados, escolha).visao.jogadores).toEqual([]);
 });

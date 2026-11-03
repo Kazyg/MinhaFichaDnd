@@ -44,8 +44,24 @@ export default function VisaoJogadores({ visao, carregar = carregarArquivoRemoto
       <meter min={0} max={Math.max(1, j.pv.maximos)} value={j.pv.atuais} aria-label={`Pontos de vida de ${j.nome}`} />
       <button disabled={!j.ficha} onClick={() => setAberto(j.ficha)}>{j.ficha ? 'Abrir ficha' : 'Ficha ainda não compartilhada'}</button>
     </article>)}</div>
-    {!visao.jogadores.length && <p>O mestre ainda não compartilhou personagens.</p>}
-    {visao.combate && <section aria-label="Imagens do combate"><h2>Combate</h2><div className="sala-monstros">{visao.combate.imagens.map(m => <figure key={m.id}><Retrato arquivo={m.retrato} carregar={carregar} /></figure>)}</div>{!visao.combate.imagens.length && <p>Aguardando o mestre revelar as imagens.</p>}</section>}
+    {!visao.jogadores.length && <p>Ainda não há jogadores nesta campanha.</p>}
+    {visao.combate && <section className="sala-combate-publico" aria-label="Roda do combate">
+      <header><h2>Roda do combate</h2>{visao.combate.roda && <span className="sala-badge">Rodada {visao.combate.roda.rodada}</span>}</header>
+      {visao.combate.roda ? <>
+        <ol className="sala-roda" aria-label="Ordem dos turnos">{visao.combate.roda.ordem.map(id => {
+          const jogador = visao.jogadores.find(j => j.id === id);
+          const monstro = visao.combate!.imagens.find(m => m.id === id);
+          if (!jogador && !monstro) return null;
+          const atual = visao.combate!.roda!.ativo === id;
+          return <li key={id} aria-current={atual ? 'step' : undefined} className={atual ? 'sala-turno sala-turno-atual' : 'sala-turno'}>
+            <Retrato arquivo={jogador?.retrato ?? monstro?.retrato ?? null} carregar={carregar} />
+            <strong>{jogador?.nome ?? 'Monstro revelado'}</strong>{atual && <span>Sua vez</span>}
+          </li>;
+        })}</ol>
+        {!visao.combate.roda.ordem.length && <p>Aguardando participantes visíveis no combate.</p>}
+        {visao.combate.roda.ativo === null && <p role="status">Aguardando o próximo turno visível.</p>}
+      </> : <div className="sala-monstros">{visao.combate.imagens.map(m => <figure key={m.id}><Retrato arquivo={m.retrato} carregar={carregar} /></figure>)}</div>}
+    </section>}
     {aberto && permitido && <Documento arquivo={aberto} carregar={carregar} fechar={() => setAberto(null)} />}
   </div>;
 }

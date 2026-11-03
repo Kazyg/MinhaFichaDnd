@@ -54,7 +54,11 @@ test('sala online: permissões, publicação, revogação, convites e isolamento
     const publish = (v, revision=0) => call('select public.sala_publicar($1,$2,$3,$4)', [room,revision,JSON.stringify(v),'{}']);
     await assert.rejects(publish({ ...view, roteiro: 'segredo' }), /Publicação inválida/);
     await assert.rejects(publish({ ...view, combate: { imagens: [{ id: 'm0', retrato: null, pv: 100 }] } }), /Publicação inválida/);
-    await publish(view);
+    const withWheel = { ...view, combate: { ...view.combate, roda: { rodada: 2, ordem: ['j0','m0'], ativo: 'm0' } } };
+    await assert.rejects(publish({ ...view, combate: { ...view.combate, roda: { rodada: 2, ordem: ['m-oculto'], ativo: null } } }), /Publicação inválida/);
+    await assert.rejects(publish({ ...view, combate: { ...view.combate, roda: { rodada: 2, ordem: ['j0'], ativo: 'm0' } } }), /Publicação inválida/);
+    await assert.rejects(publish({ ...withWheel, combate: { ...withWheel.combate, roda: { ...withWheel.combate.roda, pv: 999 } } }), /Publicação inválida/);
+    await publish(withWheel);
     await assert.rejects(publish(view), /outra aba/);
     await as(guest,true);
     await assert.rejects(call("select public.sala_comando($1,'renovar')", [room]), /Apenas o mestre/);
