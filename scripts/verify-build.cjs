@@ -8,7 +8,7 @@ const output = fs.mkdtempSync(path.join(os.tmpdir(), 'minhafichadnd-build-'));
 console.log(`Build descartável: ${output}`);
 try {
   const result = spawnSync(process.execPath, [path.join(__dirname, 'build.cjs')], {
-    stdio: 'inherit', env: { ...process.env, BUILD_PATH: output },
+    stdio: 'inherit', env: { ...process.env, BUILD_PATH: output, GENERATE_SOURCEMAP: 'true' },
   });
   if (result.error) throw result.error;
   process.exitCode = result.status || (result.signal ? 1 : 0);
@@ -20,6 +20,9 @@ try {
       const copia = fs.readFileSync(path.join(output, 'ocr', arquivo));
       if (!origem.equals(copia)) throw new Error(`Asset OCR alterado durante o build: ${arquivo}`);
     }
+    const transport = spawnSync(process.execPath, [path.join(__dirname, 'verify-sala-transport.cjs'), path.join(output, 'static/js')], { stdio: 'inherit' });
+    if (transport.error) throw transport.error;
+    if (transport.status !== 0) throw new Error('Falha na autenticação da sala no bundle final.');
     console.log('OCR local: worker, kernels e idiomas preservados no build.');
   }
 } finally {

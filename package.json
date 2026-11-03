@@ -28,7 +28,7 @@
     "start": "node scripts/start-local.cjs",
     "build": "node scripts/build.cjs",
     "build:verify": "node scripts/verify-build.cjs",
-    "obfuscate": "javascript-obfuscator ./build --output ./build --compact true --control-flow-flattening true --exclude \"**/ocr/**\"",
+    "obfuscate": "javascript-obfuscator ./build --output ./build --compact true --control-flow-flattening false --exclude \"**/ocr/**\"",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
