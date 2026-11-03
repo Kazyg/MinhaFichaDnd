@@ -89,7 +89,8 @@ test('sala encerrada não reabre automaticamente', async () => {
   (lerSala as jest.Mock).mockResolvedValue({ id: 'sala', aberta: false, revisao: 4 });
   render(<SalaMestre dados={dados} pronto aberto onFechar={jest.fn()} />);
   await screen.findByText(/Sala encerrada/);
-  expect(screen.queryByRole('button', { name: 'Copiar link' })).not.toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Copiar link' })).toBeInTheDocument();
+  expect(screen.getByText(/novo convite funcionará/)).toBeInTheDocument();
   expect(publicarSala).not.toHaveBeenCalled();
 });
 test('resposta atrasada da campanha anterior não aparece na próxima', async () => {
@@ -145,4 +146,50 @@ test('aprovação remove o aviso de pedido pendente', async () => {
   (lerMembros as jest.Mock).mockResolvedValue([{ usuario: 'visitante', nome: 'Lia', estado: 'aprovado', visto_em: '' }]);
   await act(async () => (observarSala as jest.Mock).mock.calls[0][1]());
   await waitFor(() => expect(screen.queryByText(/aguardando aprovação em Sala online/)).not.toBeInTheDocument());
+});
+
+test('X e clique no fundo fecham o painel; clique dentro não fecha', async () => {
+  const fechar = jest.fn();
+  render(<SalaMestre dados={dados} pronto aberto onFechar={fechar} />);
+  await screen.findByLabelText('Link de convite');
+  fireEvent.click(screen.getByRole('dialog', { name: 'Sala online' }));
+  expect(fechar).not.toHaveBeenCalled();
+  fireEvent.click(screen.getByRole('button', { name: 'Fechar sala online' }));
+  expect(fechar).toHaveBeenCalledTimes(1);
+  fireEvent.click(screen.getByTestId('sala-online-fundo'));
+  expect(fechar).toHaveBeenCalledTimes(2);
+});
+test('participante removido some da lista', async () => {
+  (lerMembros as jest.Mock).mockResolvedValue([{ usuario: 'v', nome: 'Visitante', estado: 'aprovado', visto_em: '' }]);
+  render(<SalaMestre dados={dados} pronto aberto onFechar={jest.fn()} />);
+  await screen.findByRole('button', { name: 'Remover Visitante' });
+  (lerMembros as jest.Mock).mockResolvedValue([{ usuario: 'v', nome: 'Visitante', estado: 'revogado', visto_em: '' }]);
+  fireEvent.click(screen.getByRole('button', { name: 'Remover Visitante' }));
+  await waitFor(() => expect(screen.queryByText('Visitante')).not.toBeInTheDocument());
+  expect(rpc).toHaveBeenCalledWith('sala_comando', { p_sala: 'sala', p_acao: 'revogar', p_usuario: 'v' });
+});
+test('desmarcar monstro publica a ocultação sem botão de aplicar', async () => {
+  const combate: DadosCampanha = { ...dados,
+    combates: [{ id: 'b', campanhaId: 'c', estado: 'ativo', rodada: 1, participanteAtivoId: 'p', iniciadoEm: '', encerradoEm: null }],
+    instancias: [...dados.instancias, { id: 'm', campanhaId: 'c', fichaOriginalId: null, categoria: 'monstro', nome: 'Dragão', pv: { atuais: 200, maximos: 200 } }],
+    participantes: [{ id: 'p', combateId: 'b', instanciaId: 'm', iniciativa: 20, ordem: 0, pvInicio: { atuais: 200, maximos: 200 } }],
+  };
+  (lerConfig as jest.Mock).mockResolvedValue({ convite: 'abc', escolha: { jogadores: [], combateId: 'b', monstros: ['m'] } });
+  render(<SalaMestre dados={combate} pronto aberto onFechar={jest.fn()} />);
+  await waitFor(() => expect(publicarSala).toHaveBeenCalledTimes(1), { timeout: 3000 });
+  await waitFor(() => expect(screen.getByRole('checkbox', { name: 'Revelar retrato: Dragão' })).toBeEnabled());
+  fireEvent.click(screen.getByRole('checkbox', { name: 'Revelar retrato: Dragão' }));
+  await waitFor(() => expect(publicarSala).toHaveBeenCalledTimes(2), { timeout: 3000 });
+  expect((publicarSala as jest.Mock).mock.calls[1][1].visao.combate.imagens).toEqual([]);
+  expect((publicarSala as jest.Mock).mock.calls[1][1].visao.combate.roda.ordem).toEqual([]);
+  expect(screen.queryByRole('button', { name: 'Aplicar compartilhamento' })).not.toBeInTheDocument();
+});
+test('encerrar mostra imediatamente o novo convite reservado', async () => {
+  render(<SalaMestre dados={dados} pronto aberto onFechar={jest.fn()} />);
+  await screen.findByLabelText('Link de convite');
+  (lerSala as jest.Mock).mockResolvedValue({ id: 'sala', revisao: 1, aberta: false, bloqueada: false });
+  (lerConfig as jest.Mock).mockResolvedValue({ convite: 'reservado', escolha: { jogadores: [], combateId: null, monstros: [] } });
+  fireEvent.click(screen.getByRole('button', { name: 'Encerrar acesso de todos' }));
+  await waitFor(() => expect(screen.getByLabelText('Link de convite')).toHaveValue('https://teste/sala#convite=reservado'));
+  expect(screen.getByRole('button', { name: 'Reabrir sala' })).toBeInTheDocument();
 });

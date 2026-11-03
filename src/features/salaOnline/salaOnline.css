@@ -55,3 +55,19 @@
 .sala-turno { flex: 0 0 130px; display: flex; flex-direction: column; align-items: center; gap: .5rem; padding: 1rem .5rem; text-align: center; border: 2px solid #4f5661; border-radius: 60px 60px 16px 16px; }
 .sala-turno .sala-retrato { width: 76px; height: 76px; border-radius: 50%; }.sala-turno-atual { border-color: #ffbc77; background: #473323; }.sala-turno-atual > span:last-child { color: #ffcf9e; font-weight: bold; }
 @media (max-width: 600px) { .sala-painel-cabecalho { align-items: flex-start; padding: 1rem; }.sala-painel-cabecalho button { padding: .5rem; }.sala-acoes > button { flex: 1 1 150px; }.sala-turno { flex-basis: 104px; } }
+
+.sala-painel-cabecalho { position: sticky; top: 0; z-index: 2; padding-right: 4rem; }
+.sala-dialog .sala-fechar-x { position: absolute; top: .6rem; right: .6rem; width: 36px; height: 36px; padding: 0; margin: 0; border-radius: 50%; font-size: 1.6rem; line-height: 1; z-index: 3; }
+.sala-pagina { padding: .75rem clamp(.75rem, 3vw, 2rem); }
+.sala-pagina > header { display: flex; align-items: center; gap: 1rem; padding: .35rem 0; margin-bottom: .5rem; }
+.sala-pagina > header h1 { margin: 0; font-size: 1rem; }.sala-pagina > header a { font-size: .85rem; }
+.sala-titulo-campanha { font-size: 1.25rem; margin: .5rem 0 .75rem; }
+.sala-combate-publico .am-barra-iniciativa { grid-template-columns: minmax(80px, 120px) minmax(0, 850px); }
+.sala-combate-publico .am-iniciativa-abrir .sala-retrato { width: 30px; height: 32px; margin: 0; }
+.sala-combate-publico [aria-current=step] .sala-retrato { width: 40px; height: 42px; }
+.sala-combate-publico .am-iniciativa-abrir { color: inherit; }
+.sala-retrato-abrir { background: transparent!important; border: 0!important; padding: .25rem!important; }
+.sala-imagem-overlay { z-index: 1200; }.sala-imagem-ampliada { position: relative; width: min(1000px, 95vw); padding: 3rem 1rem 1rem; }
+.sala-imagem-ampliada > img { display: block; max-width: 100%; max-height: 78dvh; width: auto; height: auto; object-fit: contain; margin: auto; }
+@media(max-width:650px) { .sala-combate-publico .am-barra-iniciativa { grid-template-columns: minmax(0,1fr); } }
+.sala-combate-publico .am-sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
