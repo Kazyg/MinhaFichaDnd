@@ -3,6 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import SalaJogador from './SalaJogador';
 import { lerMembros, lerSala, observarSala, obterCliente, rpc } from './cliente';
 
+jest.mock('./provisionamento', () => ({ garantirIdentidade: jest.fn().mockResolvedValue({ id: 'visitante' }) }));
 jest.mock('./cliente', () => ({ salaConfigurada: () => true, lerMembros: jest.fn(), lerSala: jest.fn(), observarSala: jest.fn(), obterCliente: jest.fn(), rpc: jest.fn() }));
 jest.mock('./VisaoJogadores', () => ({ __esModule: true, default: ({ visao }: { visao: { nome: string } }) => <div>Grupo compartilhado: {visao.nome}</div> }));
 const sala = { id: 'sala-1', aberta: true, visao: { nome: 'Aventura' }, atualizada_em: new Date().toISOString(), mestre_visto_em: new Date().toISOString() };
@@ -39,4 +40,24 @@ test('falha de rede sinaliza última atualização sem fingir sincronização', 
   await act(async () => atualizar());
   await screen.findByText(/Reconectando · dados podem estar desatualizados/);
   expect(screen.getByText('Grupo compartilhado: Aventura')).toBeInTheDocument();
+});
+
+test('convite inválido não abre campanha nem carrega dados', async () => {
+  (rpc as jest.Mock).mockRejectedValue(new Error('Convite indisponível ou novas entradas bloqueadas.'));
+  render(<MemoryRouter><SalaJogador /></MemoryRouter>);
+  fireEvent.change(screen.getByLabelText('Seu nome'), { target: { value: 'Lia' } });
+  fireEvent.click(screen.getByRole('button', { name: 'Solicitar entrada' }));
+  await screen.findByRole('alert');
+  expect(lerSala).not.toHaveBeenCalled();
+  expect(sessionStorage.getItem('sala-convite-abc')).toBeNull();
+});
+test('convite direciona à sala retornada pelo servidor, sem escolher campanha', async () => {
+  (rpc as jest.Mock).mockResolvedValue('sala-outra');
+  (lerMembros as jest.Mock).mockResolvedValue([{ usuario: 'visitante', estado: 'aprovado' }]);
+  render(<MemoryRouter><SalaJogador /></MemoryRouter>);
+  fireEvent.change(screen.getByLabelText('Seu nome'), { target: { value: 'Lia' } });
+  fireEvent.click(screen.getByRole('button', { name: 'Solicitar entrada' }));
+  await screen.findByText('Grupo compartilhado: Aventura');
+  expect(lerSala).toHaveBeenCalledWith('sala-outra');
+  expect(screen.queryByRole('button', { name: /campanha/i })).not.toBeInTheDocument();
 });

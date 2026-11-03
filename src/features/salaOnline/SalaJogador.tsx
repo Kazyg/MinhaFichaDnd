@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { lerMembros, lerSala, observarSala, obterCliente, rpc, Sala, salaConfigurada } from './cliente';
+import { garantirIdentidade } from './provisionamento';
 import VisaoJogadores from './VisaoJogadores';
 import './salaOnline.css';
 
@@ -49,8 +50,7 @@ export default function SalaJogador() {
   const entrar = async () => {
     setOcupado(true); setErro('');
     try {
-      const api = obterCliente(); const { data: { session } } = await api.auth.getSession();
-      if (!session) { const { error } = await api.auth.signInAnonymously(); if (error) throw new Error('Não foi possível identificar o visitante. Tente novamente em alguns instantes.'); }
+      await garantirIdentidade();
       const salaId = await rpc<string>('sala_pedir_entrada', { p_convite: convite, p_nome: nome.trim() });
       sessionStorage.setItem(`sala-convite-${convite}`, salaId); setId(salaId); setEstado('pendente');
     } catch (causa) { setErro(causa instanceof Error ? causa.message : 'Não foi possível entrar.'); }
