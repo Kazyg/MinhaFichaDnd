@@ -16,5 +16,6 @@ jobs:
       - run: npm ci
       - run: npm test -- --watchAll=false --runInBand
       - run: npm run lint
+      - run: npm run test:salas
       - run: npm run typecheck
       - run: npm run build:verify

@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import SalaMestre from '../../salaOnline/SalaMestre';
 import AccessibleDialog from '../../../pages/components/AccessibleDialog';
 import { CategoriaFicha, DadosCampanha, FichaOriginal, PainelLayout, RoteiroCampanha } from '../modelos';
 import { incorporarImportacao, removerFichaCampanha } from '../fichasCampanha';
@@ -55,6 +56,7 @@ export function AreaMestreWorkspace({ estado, onSair }: { estado: RetornoUseCamp
   const [nome, setNome] = useState('');
   const [novoNome, setNovoNome] = useState('');
   const [menu, setMenu] = useState(false);
+  const [salaOnlineAberta, setSalaOnlineAberta] = useState(false);
   const [confirmarRecarga, setConfirmarRecarga] = useState(false);
   const [editor, setEditor] = useState<{ roteiro: RoteiroCampanha | null; id: string } | null>(null);
   const [excluirRoteiro, setExcluirRoteiro] = useState<RoteiroCampanha | null>(null);
@@ -210,6 +212,7 @@ export function AreaMestreWorkspace({ estado, onSair }: { estado: RetornoUseCamp
             <button onClick={abrirGerenciador}>Campanhas</button>
             <button disabled={carregando} onClick={() => { setMenu(false); setBackup('restaurar'); }}>Restaurar backup</button>
             {dados && <>
+              <button onClick={() => { setMenu(false); setSalaOnlineAberta(true); }}>Sala online</button>
               <button disabled={carregando || salvando} onClick={() => void abrirGestaoCombates()}>Combates e histórico</button>
               <button disabled={carregando} onClick={() => { setMenu(false); setBackup('exportar'); }}>Exportar backup da campanha</button>
               <button disabled={carregando} onClick={() => { setNovoNome(dados.campanha.nome); setMenu(false); setEditarNome(true); }}>Editar nome da campanha</button>
@@ -223,6 +226,7 @@ export function AreaMestreWorkspace({ estado, onSair }: { estado: RetornoUseCamp
       </div>
       <span className="am-marca">minhafichadnd</span>
     </header>
+    {dados && <SalaMestre key={dados.campanha.id} dados={dados} aberto={salaOnlineAberta} onFechar={() => setSalaOnlineAberta(false)} pronto={!pendente && !salvando && !carregando && !conflito && !erro} />}
     {(carregando || salvando || pendente) && <span className="am-sr" role="status">{carregando ? 'Carregando campanhas…' : salvando ? 'Salvando alterações…' : 'Alterações pendentes'}</span>}
     {erro && <div className="am-erro" role="alert"><p>{erro}</p>
       {dados && <button onClick={() => void estado.salvarAgora()} disabled={conflito || salvando}>Tentar salvar novamente</button>}

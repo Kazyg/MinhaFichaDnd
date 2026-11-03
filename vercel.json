@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/sala", "destination": "/index.html" },
+    { "source": "/mestre", "destination": "/index.html" },
+    { "source": "/jogador", "destination": "/index.html" },
+    { "source": "/criar-ficha", "destination": "/index.html" }
+  ]
+}
