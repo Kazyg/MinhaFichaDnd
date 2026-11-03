@@ -29,7 +29,14 @@ test('nome cria solicitação; só carrega o grupo após aprovação e limpa ap�
   (lerMembros as jest.Mock).mockResolvedValue([{ usuario: 'visitante', estado: 'revogado' }]);
   await act(async () => atualizar());
   await waitFor(() => expect(screen.queryByText('Grupo compartilhado: Aventura')).not.toBeInTheDocument());
-  expect(screen.getByText(/acesso não foi autorizado/)).toBeInTheDocument();
+  expect(screen.getByLabelText('Seu nome')).toHaveValue('');
+  expect(sessionStorage.getItem('sala-convite-abc')).toBeNull();
+  (lerMembros as jest.Mock).mockResolvedValue([{ usuario: 'visitante', estado: 'pendente' }]);
+  fireEvent.change(screen.getByLabelText('Seu nome'), { target: { value: 'Lia' } });
+  fireEvent.click(screen.getByRole('button', { name: 'Solicitar entrada' }));
+  await screen.findByText('Aguardando a aprovação do mestre…');
+  expect((rpc as jest.Mock).mock.calls.filter(([name]) => name === 'sala_pedir_entrada')).toHaveLength(2);
+  expect(screen.queryByText('Grupo compartilhado: Aventura')).not.toBeInTheDocument();
 });
 test('falha de rede sinaliza última atualização sem fingir sincronização', async () => {
   sessionStorage.setItem('sala-convite-abc','sala-1');
@@ -60,4 +67,14 @@ test('convite direciona à sala retornada pelo servidor, sem escolher campanha',
   await screen.findByText('Grupo compartilhado: Aventura');
   expect(lerSala).toHaveBeenCalledWith('sala-outra');
   expect(screen.queryByRole('button', { name: /campanha/i })).not.toBeInTheDocument();
+});
+
+test.each(['revogado', 'recusado'])('reabrir convite com acesso %s limpa a sessão da sala e pede nome', async estado => {
+  sessionStorage.setItem('sala-convite-abc', 'sala-1');
+  (lerMembros as jest.Mock).mockResolvedValue([{ usuario: 'visitante', estado }]);
+  render(<MemoryRouter><SalaJogador /></MemoryRouter>);
+  expect(await screen.findByLabelText('Seu nome')).toHaveValue('');
+  expect(sessionStorage.getItem('sala-convite-abc')).toBeNull();
+  expect(lerSala).not.toHaveBeenCalled();
+  expect(rpc).not.toHaveBeenCalled();
 });

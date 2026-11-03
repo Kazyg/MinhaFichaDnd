@@ -134,7 +134,7 @@ test('pedido de entrada notifica com modal fechada e não se repete a cada atual
   render(<SalaMestre dados={dados} pronto aberto={false} onFechar={jest.fn()} />);
   await screen.findByText(/aguardando aprovação em Sala online/);
   expect(toast.info).toHaveBeenCalledTimes(1);
-  expect(toast.info).toHaveBeenCalledWith(expect.stringContaining('Lia solicitou entrada'), expect.objectContaining({ toastId: 'sala-pedido-sala-visitante' }));
+  expect(toast.info).toHaveBeenCalledWith(expect.stringContaining('Lia solicitou entrada'), expect.objectContaining({ toastId: 'sala-pedido-sala-visitante:1' }));
   await act(async () => (observarSala as jest.Mock).mock.calls[0][1]());
   expect(toast.info).toHaveBeenCalledTimes(1);
   expect(screen.queryByLabelText('Link de convite')).not.toBeInTheDocument();
@@ -192,4 +192,17 @@ test('encerrar mostra imediatamente o novo convite reservado', async () => {
   fireEvent.click(screen.getByRole('button', { name: 'Encerrar acesso de todos' }));
   await waitFor(() => expect(screen.getByLabelText('Link de convite')).toHaveValue('https://teste/sala#convite=reservado'));
   expect(screen.getByRole('button', { name: 'Reabrir sala' })).toBeInTheDocument();
+});
+
+test('nova solicitação da mesma pessoa notifica mesmo sem observar a revogação intermediária', async () => {
+  const pessoa = { usuario: 'visitante', nome: 'Gui', estado: 'pendente', visto_em: '' };
+  (lerMembros as jest.Mock).mockResolvedValue([{ ...pessoa, pedido_versao: 1 }]);
+  render(<SalaMestre dados={dados} pronto aberto={false} onFechar={jest.fn()} />);
+  await waitFor(() => expect(toast.info).toHaveBeenCalledTimes(1));
+  (lerMembros as jest.Mock).mockResolvedValue([{ ...pessoa, pedido_versao: 2 }]);
+  await act(async () => (observarSala as jest.Mock).mock.calls[0][1]());
+  await waitFor(() => expect(toast.info).toHaveBeenCalledTimes(2));
+  expect(toast.info).toHaveBeenLastCalledWith(expect.stringContaining('Gui solicitou entrada'), expect.objectContaining({ toastId: 'sala-pedido-sala-visitante:2' }));
+  await act(async () => (observarSala as jest.Mock).mock.calls[0][1]());
+  expect(toast.info).toHaveBeenCalledTimes(2);
 });
