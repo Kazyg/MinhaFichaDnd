@@ -1,6 +1,7 @@
 import { AnexoCampanha, DadosCampanha } from '../areaMestre/modelos';
 
 export interface EscolhaSala {
+  /** Mantido para compatibilidade com configurações antigas; o grupo é sempre público. */
   jogadores: string[];
   combateId: string | null;
   monstros: string[];
@@ -9,7 +10,7 @@ export interface ArquivoPublico { id: string; mime: string; nome: string }
 export interface VisaoSala {
   nome: string;
   jogadores: { id: string; nome: string; pv: { atuais: number; maximos: number }; ficha: ArquivoPublico | null; retrato: ArquivoPublico | null }[];
-  combate: { imagens: { id: string; retrato: ArquivoPublico | null }[] } | null;
+  combate: { roda?: { rodada: number; ordem: string[]; ativo: string | null }; imagens: { id: string; retrato: ArquivoPublico | null }[] } | null;
 }
 export interface PublicacaoSala { visao: VisaoSala; arquivos: Map<string, Blob> }
 
@@ -27,7 +28,9 @@ export function prepararPublicacao(dados: DadosCampanha, escolha: EscolhaSala): 
     return { id, mime: anexo.mime, nome: retrato ? 'Retrato' : 'Ficha do grupo' };
   };
   const anexo = (id?: string) => dados.anexos.find(a => a.id === id);
-  const jogadores = dados.instancias.filter(i => i.categoria === 'jogador' && i.campanhaId === dados.campanha.id && escolha.jogadores.includes(i.id)).map((instancia, indice) => {
+  const idsPublicos = new Map<string, string>();
+  const jogadores = dados.instancias.filter(i => i.categoria === 'jogador' && i.campanhaId === dados.campanha.id).map((instancia, indice) => {
+    idsPublicos.set(instancia.id, `j${indice}`);
     const ficha = dados.fichas.find(f => f.id === instancia.fichaOriginalId && f.categoria === 'jogador' && f.campanhaId === dados.campanha.id);
     const documento = ficha ? anexo(ficha.formato === 'json' ? ficha.pdfAnexoId : ficha.anexoId) : undefined;
     return {
@@ -43,11 +46,17 @@ export function prepararPublicacao(dados: DadosCampanha, escolha: EscolhaSala): 
     const instancia = dados.instancias.find(i => i.id === p.instanciaId && i.categoria === 'monstro' && i.campanhaId === dados.campanha.id);
     if (!instancia) return [];
     const ficha = dados.fichas.find(f => f.id === instancia.fichaOriginalId && f.categoria === 'monstro' && f.campanhaId === dados.campanha.id);
-    return [{ ficha }];
-  }).map(({ ficha }, indice) => ({
-    id: `m${indice}`,
-    // Nunca usar anexoId como fallback: uma imagem pode ser a ficha inteira.
-    retrato: adicionar(ficha?.imagemAnexoId !== ficha?.anexoId ? anexo(ficha?.imagemAnexoId) : undefined, `m${indice}-retrato`, true),
-  }));
-  return { visao: { nome: dados.campanha.nome, jogadores, combate: combate ? { imagens: retratos } : null }, arquivos };
+    return [{ ficha, instancia }];
+  }).map(({ ficha, instancia }, indice) => {
+    idsPublicos.set(instancia.id, `m${indice}`);
+    return {
+      id: `m${indice}`,
+      // Nunca usar anexoId como fallback: uma imagem pode ser a ficha inteira.
+      retrato: adicionar(ficha?.imagemAnexoId !== ficha?.anexoId ? anexo(ficha?.imagemAnexoId) : undefined, `m${indice}-retrato`, true),
+    };
+  });
+  const ordem = combate ? dados.participantes.filter(p => p.combateId === combate.id).sort((a, b) => a.ordem - b.ordem) : [];
+  const ativo = ordem.find(p => p.id === combate?.participanteAtivoId);
+  const roda = combate ? { rodada: combate.rodada, ordem: ordem.flatMap(p => idsPublicos.has(p.instanciaId) ? [idsPublicos.get(p.instanciaId)!] : []), ativo: ativo ? idsPublicos.get(ativo.instanciaId) ?? null : null } : undefined;
+  return { visao: { nome: dados.campanha.nome, jogadores, combate: combate ? { imagens: retratos, roda } : null }, arquivos };
 }

@@ -34,8 +34,24 @@
 .sala-documento img, .sala-documento canvas { max-width: 100%; }
 @media (max-width: 500px) { .sala-overlay { padding: .5rem; } .sala-dialog { max-height: 96dvh; } .sala-fechar { float: none; } }
 
-.sala-convite-bar { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; padding: .7rem 1rem; background: #25282c; color: #fff; border-bottom: 1px solid #656565; }
-.sala-convite-bar label { flex: 1 1 280px; font-size: .85rem; }
-.sala-convite-bar input { display: block; width: 100%; box-sizing: border-box; background: #17191c; color: #fff; border: 1px solid #777; padding: .5rem; margin-top: .3rem; }
-.sala-convite-bar p { margin: .25rem 0; }
-.sala-convite-bar [role=alert] { flex-basis: 100%; }
+
+.sala-painel-mestre { width: min(900px, 100%); background: #202327; padding: 0; }
+.sala-painel-mestre > :not(.sala-painel-cabecalho) { margin-inline: clamp(1rem, 3vw, 1.75rem); }
+.sala-painel-cabecalho { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.5rem; background: linear-gradient(120deg,#38291f,#24262b); border-bottom: 1px solid #65503b; }
+.sala-painel-cabecalho h2 { margin: .25rem 0; }.sala-painel-cabecalho p { margin: 0; color: #d5c7bc; }
+.sala-eyebrow { font-size: .7rem; letter-spacing: .12em; color: #ffb184; }
+.sala-card, .sala-painel-mestre fieldset { padding: 1.2rem; margin-block: 1rem; border: 1px solid #4c5058; border-radius: 12px; background: #292d33; }
+.sala-card h3 { margin: 0 0 .5rem; }.sala-card p, .sala-grupo-resumo p { color: #d3d5d9; }
+.sala-estado { padding: .6rem 1rem; background: #263e34; border-radius: 8px; }
+.sala-badge { display: inline-block; border: 1px solid #9e6c44; border-radius: 999px; padding: .25rem .65rem; color: #ffcf9e; font-size: .8rem; }
+.sala-chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }.sala-chips span { background: #383e48; border-radius: 999px; padding: .3rem .75rem; }
+.sala-grupo-resumo { border-left: 3px solid #9fb99c; padding-left: 1rem; margin-bottom: 1.5rem; }
+.sala-membro { padding: .75rem; border-radius: 8px; background: #20242a; }.sala-membro-pendente { border-left: 3px solid #efb66d; }
+.sala-rodape { padding-block: 1rem; border-top: 1px solid #50545d; }
+.sala-alerta-pedidos { margin: .5rem 1rem; padding: .75rem 1rem; color: #ffe3b8; background: #453321; border-radius: 8px; }
+.sala-combate-publico { margin-block: 1.5rem; padding: 1rem; border: 1px solid #7c5b3e; border-radius: 16px; background: #23262c; }
+.sala-combate-publico > header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.sala-roda { display: flex; gap: .8rem; overflow-x: auto; padding: 1rem .25rem; list-style: none; }
+.sala-turno { flex: 0 0 130px; display: flex; flex-direction: column; align-items: center; gap: .5rem; padding: 1rem .5rem; text-align: center; border: 2px solid #4f5661; border-radius: 60px 60px 16px 16px; }
+.sala-turno .sala-retrato { width: 76px; height: 76px; border-radius: 50%; }.sala-turno-atual { border-color: #ffbc77; background: #473323; }.sala-turno-atual > span:last-child { color: #ffcf9e; font-weight: bold; }
+@media (max-width: 600px) { .sala-painel-cabecalho { align-items: flex-start; padding: 1rem; }.sala-painel-cabecalho button { padding: .5rem; }.sala-acoes > button { flex: 1 1 150px; }.sala-turno { flex-basis: 104px; } }
